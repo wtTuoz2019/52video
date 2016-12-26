@@ -1,0 +1,353 @@
+*{
+	padding: 0;
+	margin: 0;
+	outline: none;
+}
+*,*:before,*:after{
+	box-sizing:border-box;
+}
+.clearfix:before,.clearfix:after{
+	content:'';
+	display:table;
+}
+.clearfix:after{
+	clear:both;
+}
+.clearfix{
+	zoom:1;
+}
+table{border-collapse:collapse;border-spacing:0; }
+li{
+	list-style: none;
+}
+body,html{
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+body{
+	font-family: "微软雅黑";
+	font-size: 1rem;
+	background: #ececec;
+	background-image: url(../img/body_bg.png);
+	background-size: 100% 100%;
+}
+a{
+	text-decoration: none;
+}
+
+/*search*/
+.main{
+	width: 100%;
+	height: 45px;
+	padding: 0 3px;
+	line-height: 42px;
+	background: #fff;	
+	
+}
+.search-bar{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 99;
+	background: #fff;
+	height: 45px;
+}
+.search-bar .search-text{
+	width: 75%;
+	border: 1px solid #d4d4d4;
+	color: #a9a9a9;
+	vertical-align: middle;
+	margin-right: 2%;
+	height: 35px;
+	line-height: 35px;
+	padding: 0 5px;
+}
+.search-bar a.search-btn{
+	/*background:linear-gradient(to bottom,#fff 10%,#e7bd97 60%,#d3a67f 100%) ;
+	background:-webkit-linear-gradient(to bottom,#fff 10%,#e7bd97 60%,#d3a67f 100%) ;
+	background:-moz-linear-gradient(to bottom,#fff 10%,#e7bd97 60%,#d3a67f 100%) ;
+	background:-ms-linear-gradient(to bottom,#fff 10%,#e7bd97 60%,#d3a67f 100%) ;
+	background:-o-linear-gradient(to bottom,#fff 10%,#e7bd97 60%,#d3a67f 100%) ;
+	filter:progid:DXImageTransform.microsoft.gradient(gradienttype=0,startColorStr=#e7bd97,endColorStr=#d3a67f); */
+	background: url(../img/search-btn.png) repeat;
+	background-size:100% 100% ;
+	width: 20%;
+	border: 1px solid #f8d4ba;
+	height: 30px;
+	line-height: 25px;
+	text-align: center;
+	border-radius: 30px;
+	color: #fff;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 0.9rem;
+}
+
+/*content*/
+.content{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	padding: 0 10px;
+	background: #ececec;
+	padding-bottom:15px;
+}
+.pa-none{
+	padding-bottom: 0;
+	position: fixed;
+	top: 0;
+}
+
+/* **muen** */
+.menu{
+	margin:8px auto;
+	text-align: center;
+}
+.menu a{
+	color: #fff;
+	background: #b0b0b0;
+	margin: 0 5px;
+	height: 32px;
+	line-height: 32px;
+	display: inline-block;
+	padding: 0 20px;
+	font-size: 1.3rem;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+}
+.menu a.btn-active{
+	background: #76c200;
+}
+/* Swiper */
+.swiper-container {
+        width: 100%;
+        height: 200px;
+        text-align: center;
+        margin: 0 auto;
+}
+.swiper-slide {
+        text-align: center;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        height: 200px;
+}
+.swiper-slide img{
+	width: 100%;
+	height: 100%;
+}
+.video-box{
+	margin: 0 auto;
+	width: 100%;
+}
+.video-box img{
+	width: 100%;
+	height: 100%;
+}
+.video-box ul li a{
+	display: inline-block;
+	color: #fff;
+	background: url(../img/body_bg.png) no-repeat;
+	background-size: 100% 100%;
+	padding: 10px;
+	width: 45%;
+	float: left;
+	height: 100%;
+	margin: 5px 2.5%;
+}
+.video-box ul li a h1{
+	font-size: 0.9rem;
+}
+.video-box ul li a .img-box{
+	width: 100%;
+	height: 40%;
+	margin: 5px 0;
+	position: relative;
+}
+.video-box  .star-icon{
+	position: absolute;
+	display: block;
+	top: 50%;
+	left: 50%;
+	height: 50px;
+	width: 50px;
+	margin-top: -25px;
+	margin-left: -25px;
+}
+.video-box  .star-icon img{
+	
+}
+.video-box ul li a img{
+	width: 100%;
+	height: 100%;
+}
+.person-box span{
+	font-size: 0.7rem;
+}
+.person-box span.head-img{
+	height: 30px;
+	width: 30px;
+	vertical-align: middle;
+	display: inline-block;
+}
+.person-box span.head-img img{
+	width: 100%;
+	height: 100%;
+}
+.person-box span.stutas{
+	color: green;
+	margin-left: 5px;
+}
+/* calendar */
+#wrap{
+	width:100%;
+	margin:248px auto 0 auto;
+	height: auto;
+	padding: 0 10px;
+	position: relative;
+}
+#kalendar{
+	width:100%;
+	border:solid 1px #bebebe;
+	margin:0 auto;
+	height: auto;
+	background: #fff;
+}	
+/* 选择年月 的行 */
+#kalendar tr#select{
+	height:45px;
+	background: #fff;
+	text-align: center;
+}
+#kalendar tr#select td{
+	clear:both;
+	width: 20%;
+	margin: 0 auto;
+}
+#kalendar tr#select td div{
+	height:30px;
+	line-height:30px;
+	display: inline-block;
+}
+#select #year ul,#select #month ul{
+	clear:both;
+}
+#select #year ul li,#select #month ul li{
+	float:left;
+	width:30px;
+}
+#select #year ul li input,#select #month ul li input{
+	width:30px;
+	text-align:30px;
+	cursor:pointer;
+	background: transparent;
+	border: 0;
+	color: #02aebc;
+	font-size: 2rem;
+	vertical-align: middle;
+}
+#select #year ul li.selectChange,#select #month ul li.selectChange{
+	width:70px;
+	line-height: 34px;
+}
+#select #year ul li.selectChange select,#select #month ul li.selectChange select{
+	width:70px;
+	padding-left:2px;
+	cursor:pointer;
+	border: 0;
+}
+#select #year ul li.selectChange select option,#select #month ul li.selectChange select option{
+	padding-left:5px;
+}
+/* 星期表头 的行 */
+#kalendar tr#week{
+	height:45px;
+}
+#kalendar tr#week td ul{
+	clear:both;
+}
+#kalendar tr#week td ul li{
+	float:left;
+	width:14.2861%;
+	height:45px;
+	line-height:45px;
+	text-align:center;
+	background:#fff;
+}
+
+/* 某月具体日期 的每一行 */
+#kalendar tr#day ul.dayList{
+	width:100%;
+	height:45px;
+	clear:both;
+}
+#kalendar tr#day ul.dayList li{
+	float:left;
+	width:14.2861%;
+	height:45px;
+	line-height:45px;
+	text-align:center;
+	z-index: 2;
+	position: relative;
+	cursor:pointer;
+}
+/* 日期占用行数(4-6行)，将不需要显示的行隐藏 */
+#kalendar tr#day ul.hide{
+	display:none;
+}
+/* 周末 的特殊样式 */
+#week .weekend,#day .weekend{
+	color:#EA0000;
+}
+
+/* 下面几个样式注意顺序，选择器不能简写，否则日历中 今天 的样式会被鼠标滑过的样式替换 */
+/* 鼠标经过某个日期 的特殊样式 */
+#kalendar tr#day td ul.dayList li.mouseFloat{
+	background:#FFDCB9;
+}
+/* 当天是周末 的特殊样式 */
+#kalendar tr#day td ul.dayList li.todayWeekend{
+	color:#EA0000;
+	background:#abcdef;
+	font-weight:700;
+}
+/* 当天 的特殊样式 */
+#kalendar tr#day td ul.dayList li.today{
+	background:#00b0bc;
+	font-weight:700;
+}
+#kalendar tr#day ul.dayList li.high{
+	background: #d7f4f8;
+	font-weight:700;
+}
+.fllow{
+	position: absolute;
+	height: 150px;
+	width: 150px;
+	top: 50%;
+	left: 50%;
+	margin-top: -75px;
+	margin-left: -75px;
+	text-align: center;
+	color: #d7f4f8;
+	font-size: 8rem;
+	font-family:"arial black";
+}
+@media (max-width: 640px) {
+	.person-box span.head-img{
+	height: 25px;
+	width: 25px;
+	}
+}

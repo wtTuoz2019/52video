@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时间轴</title>
+<link rel="stylesheet" href="__PUBLIC__/timeline/main.css" />
+<link rel="stylesheet" href="__PUBLIC__/timeline/style.css" />
+<style type="text/css">
+h2.top_title{border-bottom:none;background:none;text-align:center;line-height:32px; font-size:20px}
+h2.top_title span{font-size:12px; color:#666;font-weight:500}
+  a.add:hover{ color:red;}
+</style>
+</head>
+
+<body>
+
+
+<h2 class="top_title"><a >时间轴</a><br/><span>请使用IE9+或Chrome，Firefox高级浏览器或手机访问本页</span></h2>
+<div style=" width:100%; text-align:center; font-size:30px; margin-top:20px; margin-right:20px;">
+	<a  href="javascript:" class="add" onClick="add()">新增</a></div>
+<section id="cd-timeline" class="cd-container">
+	   <!--foreach:{$list $vo}-->
+       <div class="cd-timeline-block">
+		<div class="cd-timeline-img    <?php echo $vo['wuid']?'cd-picture':'cd-movie';　?>">
+			<span><?php echo $vo['wuid']?'done':'ing';　?></span>
+		</div>
+
+		<div class="cd-timeline-content">
+			
+			<p>{$vo.content}</p>
+           <?php if(!$vo['wuid']){?>
+			<a href="javascript:" onClick="del({$vo.id},this)" class="cd-read-more" >删除</a>
+            <a href="javascript:" onClick="edit({$vo.id})" class="cd-read-more" >编辑</a>
+            <a href="javascript:" onClick="over({$vo.id})" class="cd-read-more" >完成</a>
+               <?php }else{?>
+            <p> 完成人：<img src="{$vo.wheadpic}"  height="30px;" alt="Location"> {$vo.wnickname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$php(echo date('Y-m-d H:i',$vo['overtime']))}</p>
+              <?php }?>
+			<span class="cd-date">	<img src="{$vo.headpic}"  height="30px;" alt="Location"> {$vo.nickname}<p>{$php(echo date('Y-m-d H:i',$vo['dateline']))}</p></span>
+		</div>
+	</div>
+         <!--{/foreach}-->
+	
+	
+	
+</section>
+
+<div id="footer">
+   
+</div>
+<script>
+function add() {
+	urldialog({
+	title:'添加',
+	url:'__URL__/add'
+	});
+};
+//修改
+function edit(url) {
+	urldialog({
+	title:'编辑',
+	url:'__URL__/edit/id-'+url
+	});
+};
+
+function over(id) {
+	
+	ajaxpost({
+		name:'确认完成吗? ',
+		url:'__URL__/betch',
+		data:{id: id},
+		tip:1,
+		success:function(){
+			window.location.reload();
+		}
+	});
+	
+};
+
+//删除
+function del(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'确认删除? ',
+		url:"__URL__/del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().remove();
+		}
+	});
+}
+</script>
+<script type=text/javascript src="/public/js/jquery.js"></script>	
+<script type=text/javascript src="/public/js/duxui.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+<script type=text/javascript src="/public/kindeditor/kindeditor-min.js"></script>
+<script type=text/javascript src="/public/kindeditor/lang/zh_CN.js"></script>
+<script type=text/javascript src="/public/js/common.js"></script>
+</body>
+</html>

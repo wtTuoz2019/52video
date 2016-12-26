@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+<name>会员中心</name>
+<file>member</file>
+<ver>2</ver>
+<author>forward</author>
+<info>提供强大的会员中心扩展</info>
+<prefix>dc_</prefix>
+<nomenu>1</nomenu>
+</config>

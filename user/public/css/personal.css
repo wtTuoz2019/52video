@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+span.star{ width:68px; display:inline-block; vertical-align:middle; height:30px;}
+span.star0{ background:url(../images/start.png) no-repeat 0 0;}
+span.star1{ background:url(../images/start.png) no-repeat 0 -30px;}
+span.star2{ background:url(../images/start.png) no-repeat 0 -60px;}
+span.star3{ background:url(../images/start.png) no-repeat 0 -90px;}
+span.star4{ background:url(../images/start.png) no-repeat 0 -120px;}
+span.star5{ background:url(../images/start.png) no-repeat 0 -150px;}
+
+ul.picList li dt img,ul.picList2 li dt img,.videoBox1 .videoInfo .videoInfoCon .kcPic img{ width: 100%; display:block;}
+.mar-b15{ margin-bottom:15px;}
+.personalBox h3{ position:relative; font-size:16px; line-height:2; margin-bottom:10px;}
+.personalBox h3 a.more{ position:absolute; right:0; top:0;}
+
+.personalBox{ width:1100px; margin:0 auto; overflow:hidden; text-align:left}
+.subNavBox{ width: 228px; overflow:hidden;}
+.subNavCon{ border:1px solid #d6d6d6; margin-bottom:15px; padding-bottom:40px;}
+.personInfo{ padding:40px 0 20px 0; text-align:center;}
+.personInfo p.txPic img{ width:120px; height:120px; margin:0 auto; display:block;}
+.personInfo p.name{ margin:5px 0;}
+.personInfo p.edit a{ color:#31afed; font-size:14px;}
+.myEduTit{ background:#29aced; line-height:50px; height:50px; color:#fff; font-size:20px; text-align:center;}
+.sunNavList{ margin:0 15px;  overflow:hidden;}
+.sunNavList li{ padding:5px 0; border-bottom:1px solid #d7d7d7; width:236px; overflow:hidden;}
+.sunNavList li a{ display:block; height:40px; line-height:40px; font-size:16px; padding-left:50px; width:186px; overflow:hidden; background:url(../images/personal_icon.png) no-repeat; text-align:left; color:#31afed;}
+
+.sunNavList li.myKc1 a{ background-position:10px 10px}
+.sunNavList li.myKc2 a{background-position:10px -40px;}
+.sunNavList li.myKc3 a{background-position:10px -90px;}
+.sunNavList li.myKc4 a{ background-position:10px -192px;}
+.sunNavList li.myKc5 a{ background-position:10px -144px;}
+/*.sunNavList li.myKc6 a{ background-position:10px -144px;}*/
+
+.sunNavList li a.cur{ color:#ccc;}
+.subNavBox .ad{ text-align:center;}
+
+.personalBody{ width:800px; overflow:hidden;}
+.personalBody h3{ color:#4d4d4d; font-size:18px;}
+.message-box{ margin-bottom:20px; border-top:1px solid #ccc; box-sizing:border-box;}
+.message-box a.red{color:red; margin-right:3px;}
+.message-box a.red:hover{text-decoration:underline;}
+.message-box .pers-message ul,.message-box .add-message ul{float:left; }
+.message-box .add-message ul li{ margin:20px 300px 0 0;  overflow:hidden;}
+.message-box .pers-message ul li{ margin:20px 150px 0 0; verflow:hidden; }
+.videoBox1 .videoCon{ width:538px  overflow:hidden;}
+.videoBox1 .videoInfo{width:295px; verflow:hidden; }
+.videoBox1 .videoInfo .videoInfoCon{ background:#a0a0a0; padding:2px;}
+.videoBox1 .videoInfo .videoInfoCon .kcPic{ width:140px; overflow:hidden;}
+.videoBox1 .videoInfo .videoInfoCon .kcTxt{ width:142px; overflow:hidden;}
+.videoBox1 .videoInfo .videoInfoCon .kcTxt p{ white-space:nowrap; overflow:hidden; line-height:1.9;}
+.videoBox1 .videoInfo .videoInfoCon .kcTxt p.source{ font-size:12px;}
+.videoBox1 .videoInfo .videoInfoCon .kcTxt p.other span.num{ background:url(../images/arrow.png) no-repeat; background-position:0 -114px; padding-left:20px; width:50px; overflow:hidden; display:inline-block; vertical-align:middle;}
+.videoBox1 .videoInfo .videoInfoCon .kcTxt p span.star{display:inline-block; width:60px; overflow:hidden;vertical-align:middle;}
+.videoBox1 .videoInfo .videoInfoCon .kcTxt p span.star em{ width:12px; height:12px; display:inline-block; background:url(../images/arrow.png) no-repeat; background-position:0 -142px;}
+.tabTit{ background:#c9c9c9; padding:0 10px; height:38px; line-height:38px; text-align:center; font-size:16px;}
+.tabTit span.cur{ color:#00a0e9;}
+.tabConCer h4,.tabConCer p{ white-space:nowrap; line-height:2.2;}
+.tabConCer h4{ font-size:16px;}
+.tabConCer p{ color:#888;}
+.tabConCer span{ display:inline-block; overflow:hidden; vertical-align:middle;}
+.tabConCer span.chapter{ padding-left:5px; width:48px;}
+.tabConCer span.tit{ width:165px;}
+.tabConCer span.time{ width:76px; color:#00a0e9; font-size:13px;}
+.tabConCer span.time.red{ color:#f00;}
+
+
+
+ul.picList,ul.picList2{ width:813px; overflow:hidden;}
+ul.picList li,ul.picList2 li{ float:left; display:inline; width:258px; margin-right:13px; overflow:hidden; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,.2);}
+ul.picList li dt,ul.picList2 li dt{ width:258px; height:189px; overflow:hidden;}
+ul.picList li dd{ border:1px solid #d6d6d6; border-top:0; width:256px; overflow:hidden;}
+ul.picList li dd p.name{ padding:5px; font-size:16px;}
+ul.picList li dd .progressBar{ height:8px; background:#eee; overflow:hidden;}
+ul.picList li dd .progressBar span{ display:inline-block; height:8px; background:#00a0e9;}
+ul.picList li dd .goStud{ padding:16px 0; text-align:center;}
+ul.picList li dd .goStud a{ background:url(../images/jt.gif) no-repeat right center; padding-right:16px;}
+ul.picList2 li dd{border:1px solid #d6d6d6; border-top:3px solid #29aced; width:236px; overflow:hidden; padding:6px 10px;}
+ul.picList2 li dd p{height:28px;}
+ul.picList2 li dd p.name{ font-size:16px;}
+ul.picList2 dd p.other span{ vertical-align:middle;}
+ul.picList2 dd p.other span.num{background:url(../images/arrow.png) no-repeat; background-position:0 -114px; padding-left:20px; width:74px; display:inline-block; overflow:hidden;}
+ul.picList2 dd p.other span.star{ margin-right: 22px;}
+ul.picList2 dd p.other span.free{ background:#ccc; padding:1px 10px; display:inline-block; border-radius:3px;}
+
+.myTrouble{ border-bottom:1px solid #d6d6d6; padding-bottom:40px; margin-bottom:40px;}
+ul.wdList li{ padding:2px 0;}
+ul.wdList li p{ white-space:nowrap; overflow:hidden;}
+ul.wdList li p.integral{ color:#888; padding-bottom:6px;}
+ul.wdList li p span{ display:inline-block; overflow:hidden; vertical-align:middle;}
+ul.wdList li p span.question{ width:730px;}
+ul.wdList li p span.time{ width:70px; text-align:right;}
+ul.wdList li p a{ font-size:16px;}

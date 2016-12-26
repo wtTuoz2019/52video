@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>闪阅云微信直播系统</title>
+
+</head>
+
+<body>
+<!--#include file="head.html"-->
+<link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
+
+ <div class="havhome1">
+ 
+
+<!--用户界面-->
+ <div class="hav1-right">
+
+<div class="right1-tone">
+<p class="font">扫码观看</p>
+<p>Scan Code View</p>
+<div class="hacer">
+
+<img src="/upload/login/{$code}.png"  style="margin-left: -18px; margin-top: 25px;"/ width="150px">
+
+</div>
+<img src="__TPL__/new/images/ts.jpg" style=" margin-left:250px; margin-top:-100px;">
+<!--
+<div class="left1-two">
+<p>登录看直播、点播、参与互动。</p>
+</div>
+</div>
+
+-->
+</div>
+</div>
+
+ <script>
+function getResult(){
+	$.post("__URL__/logincode", { code: '{$code}'},
+	function(d){
+	
+		
+		if (d.status == 1) { 
+		window.location='{$tourl}';
+		}
+	}, "json");
+}
+setInterval("getResult()",3000); 
+ </script>
+ 
+ 
+ </div>
+ <!--#include file="foot.html"-->
+</body>
+
+</html>

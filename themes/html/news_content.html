@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$common.title}</title>
+<link href="css/base.css" type="text/css" rel="stylesheet">
+<link href="css/details1.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery1.42.min.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
+</head>
+
+<body>
+ <!--头部-->
+<!--#include file="head.html"-->
+<!--END-->
+<!--start 中间部分--> 
+<div class="volid">
+	<div class="contentBox">
+    	<h1>{$info.title}</h1>
+        <div class="signsource"><?php echo date('Y-m-d H:i:s', $info['updatetime']);?><!-- <span>|</span>来源：腾讯网 --></div>
+		<div class="volid_main">
+			{$info.content}
+<script class="CuPlayerVideo" data-mce-role="CuPlayerVideo" type="text/javascript" src="__PUBLIC__/player/js/CuSunX1.min.js"></script>   
+</div>
+               
+		</div>
+		<div class="volid_bottom">
+			<ul>
+				<li><a href="javascript:;" onclick="praise()"><i class="blog_icon8"> </i><span class="laud">{$info.laud}</span></a></li>
+				<li style="border:none;"><a href="javascript:;" onclick="collection()"><i class="blog_icon9"> </i><span class="collection">{$num}</span></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+
+<!--底部-->
+<!--#include file="foot.html"-->
+<!--END-->
+<script>
+
+// $('.load_m').css('text-align', 'right');
+// var page=2;
+// function jiazai(){
+// 	$.post('__ROOT__/user/index.php/comment/commentlist.html',{page:page,fid:'{$info.aid}',type:'content'},function(data){
+// 		if(data.status=='1'){
+// 			$('#comments_list').append(data.html);
+// 			page=page+1;
+// 		}else{
+// 			$('.load_m').hide();	
+// 		}
+// 	},'json')
+// };
+// function praise(){
+// 	// var myDialog = art.dialog();// 初始化一个带有loading图标的空对话框
+// 	$.post('__ROOT__/index.php/change',{page:page,fid:'{$info.aid}'},function(data){
+
+// 		if(data.status=='1'){
+// 			var num = $('.laud').html();
+// 			num++;
+// 			$('.laud').html(num);
+// 			var config = {
+// 				title:'提示',
+// 				content:data.msg,
+// 				width:150,
+// 				icon: 'succeed',
+// 				height:90
+// 			};
+// 			dialog(config);
+// 		}else{
+// 			var config = {
+// 				title:'提示',
+// 				content:data.msg,
+// 				icon: 'warning',
+// 				width:150,
+// 				height:92
+// 			};
+// 			dialog(config);
+// 		}
+// 	},'json')
+// }
+// function collection(){
+// 	$.post('__ROOT__/index.php/change/collection',{fid:'{$info.aid}'},function(data){
+// 		if(data.status=='1'){
+// 				var n = $('.collection').html();
+// 				n++;
+// 				$('.collection').html(n)
+// 				var config = {
+// 				title:'提示',
+// 				content:data.message,
+// 				width:150,
+// 				icon: 'succeed',
+// 				height:90
+// 			};
+// 			dialog(config);
+// 		}else{
+// 			var config = {
+// 				title:'提示',
+// 				content:data.message,
+// 				width:150,
+// 				icon: 'warning',
+// 				height:90
+// 			};
+// 			dialog(config);
+// 		}
+// 	},'json')
+// }
+// $("#submit").click(function(){
+//   $.post("__ROOT__/user/index.php/comment/data",
+//   {	
+//   	type:'content',
+//     fid:$('#fid').val(),
+//     message:$('#message').val()
+//   },
+//   function(data){
+//     // if(data.status == 1){
+// 	     alter(data.message);
+// 	   	// }
+//   });
+// });
+
+</script>
+</body>
+</html>

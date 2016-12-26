@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html >
+<html lang="zh_CN">
+<head>
+<title>{$common.title}</title>
+<meta name="keywords" content="{$common.keywords}" />
+<meta name="description" content="{$common.description}" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width; initial-scale=1; user-scalable=no;">
+<link href="__TPL__/mobile/Content/wap.css" rel="stylesheet" media="screen">
+<link href="__TPL__/mobile/Content/live.css" rel="stylesheet" media="screen">
+<link href="__TPL__/mobile/Content/ui-dialog.css" rel="stylesheet" media="screen">
+<script src="__TPL__/mobile/Scripts/jquery.min.js"></script>
+<script src="__TPL__/mobile/Scripts/dialog-min.js"></script>
+</head>
+<body>
+<header><img src="{$sys.logo}"/></header>
+<dl class="video_info">
+	<dt><h4>{$info.title}</h4>
+    </dt>
+    <dd>发&nbsp;&nbsp;布&nbsp;&nbsp;人：{$teacher[$info['tid']]['name']}
+	</dd>
+    <dd>发布时间：{$info.updatetime time="Y-m-d"}</dd>
+    <dd>视频简介：{$info.description}</dd>
+</dl>
+   
+
+<div class="foot"><section style="max-width: 100%; box-sizing: border-box; margin: 1em; text-align: center; padding: 0.5em 1em; border: 1px solid rgb(204, 204, 204); min-width: -webkit-min-content; border-top-left-radius: 0.3em; border-top-right-radius: 0.3em; border-bottom-right-radius: 0.3em; border-bottom-left-radius: 0.3em; word-wrap: break-word !important;"><section style="max-width: 100%; box-sizing: border-box; margin-top: -1em; padding: 0px; line-height: 1.4em; border: none; word-wrap: break-word !important;"><fieldset style="padding: 15px; border: 1px dotted rgb(0, 187, 236); line-height: 2em; font-family: inherit; min-height: 1.5em; max-width: 100%; border-bottom-right-radius: 15px; border-bottom-left-radius: 10px; word-wrap: break-word !important;"><legend style="margin: 0px; padding: 0px; font-family: inherit; max-width: 100%; word-wrap: break-word !important;"><p style="margin: 0px; line-height: 2em; padding: 0px 20px 4px; color: rgb(255, 255, 255); font-size: 14px; white-space: pre-wrap; word-break: normal; word-wrap: normal; min-height: 1.5em; max-width: 100%; border-bottom-right-radius: 100%; border-bottom-left-radius: 100%; background-color: rgb(0, 187, 236);"><span style="line-height: 1.5em; font-size: 16px;"><strong>民校通</strong></span></p></legend><p style="margin: 0px; padding: 0px; word-break: normal; word-wrap: normal; min-height: 1.5em; max-width: 100%; line-height: 1.5em;"><span style="line-height: 2em; max-width: 100%; font-size: 14px; color: rgb(63, 63, 63); word-wrap: break-word ! important;">上海市七宝明强小学校园电视台</span></p><p style="margin: 0px; padding: 0px; word-break: normal; word-wrap: normal; min-height: 1.5em; max-width: 100%; line-height: 1.5em;"><span style="font-size: 16px; line-height: 2em; max-width: 100%; word-wrap: break-word ! important;">微信号：schoolma</span></p></fieldset><p style="margin: 0px; line-height: 1.5em;"><span style="line-height: 1.5em; font-size: 12px; white-space: pre-wrap;"></span></p><p style="margin: 5px 0px 15px; text-align: center; text-indent: 0em; line-height: 1.5em;"><span style="line-height: 1.5em; font-size: 12px;"><img data-src="http://mmbiz.qpic.cn/mmbiz/gPKgoIgeYlONGe0dpYHOzJZD3NLRYcYHMqsRZTow5Ec9jURrrpZSRKGMqVWhiapTufBlRYicEibkyloU6XibVtMDLA/640?wxfrom=5&amp;wx_fmt=jpeg" style="width: auto !important; visibility: visible !important; height: auto !important;" data-w="258" data-ratio="1" data-s="300,640" data-type="jpeg" width="auto" _width="auto" src="http://videowap.tuoz.net/themes/html/images/1437444452.png"><br><span style="line-height: 1.5em; font-size: 12px; color: rgb(89, 89, 89);"><strong>长按二维码点击“识别图中二维码”即可关注</strong></span></span></p><p style="margin: 0px; line-height: 1.5em;"><span style="line-height: 1.5; white-space: pre-wrap; max-width: 100%; font-size: 12px; color: rgb(255, 0, 0); word-wrap: break-word !important; box-sizing: border-box !important;">分享到朋友圈</span><span style="line-height: 1.5; white-space: pre-wrap; max-width: 100%; font-size: 12px; word-wrap: break-word !important; box-sizing: border-box !important;">丨点右上角···分享</span></p></section></section><p class="copyright">{$sys.copyright}</p></div>
+<!-- <img src="__TPL__/mobile/Picture/qrcode.jpg" style="display:none"/> -->
+<div id="container" class="container animate" style="height:48px;overflow:hidden;">
+    <footer>
+        <section class="nav_footer" id="nav_footer">
+            <ul>
+                <ol class="tbox">
+                    <li style="width: 10px;">
+                       <span style="display:block;width:10px;height:28px;"></span> 
+                    </li>
+                    <li style="width: 100%;vertical-align: middle;">
+                        <input type="text" name="message" id="message" class="toolstext" style="width: 100%;padding:0 5px;">
+                    </li>
+                    <li style="width: 100%;vertical-align: middle;">
+                        <a id="btnsend" fid="{$info.aid}" class="toolssend on" style="height: 28px;line-height: 28px;margin: 0 10px;">发送</a>
+                    </li>
+                </ol>
+            </ul>
+        </section>
+    </footer>
+</div>
+<script type="text/javascript">
+
+$('#btnsend').on('click', function(){
+	var this_ = this;
+	var mes = $('#message').val();
+	if(mes.length < 5){
+		var dq = dialog({
+				width: '40em',
+				height: '40em',
+				title: '提示',
+				content: '请输入大于5字符评论内'
+			})	
+			dq.show();
+			return;
+	}
+	$.ajax({
+	  url: "http://videowap.tuoz.net/index.php/comment/save",
+	  type: "POST",
+	  data: {
+		fid: $(this_).attr('fid'),
+		message: mes
+	  },
+	  dataType: "json",
+	  success: function( d ) {
+		if(d.status == 1){
+			$('#message').val('');
+			var dq = dialog({
+				width: '20em',
+				height: '20em',
+				title: '提示',
+				content: '评论成功'
+			})	
+			dq.show();
+		}else{
+			alter('评论失败');
+			var dq = dialog({
+				width: '20em',
+				height: '20em',
+				title: '提示',
+				content: '评论失败'
+			})	
+			dq.show();
+		}
+	  }
+	});	
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<div class="page_function">
+  <div class="info">
+    <h3>会员中心管理</h3>
+    <small><font color="#333">欢迎使用 DUX CENTER</small> </font></div>
+  <div class="tip">您可以在这里进行用户中心的设置已经与用户有关的管理。</div>
+<!--[if lt IE 8]> 
+<div class="index_tip"><p>您正在使用IE6或IE7为了您更好的体验，请升级浏览器至IE8以上或者更换其他浏览器<a href="http://www.microsoft.com/china/windows/internet-explorer/" target="_blank">Internet Explorer 8</a> 其他浏览器: 
+<a href="http://www.mozillaonline.com/">Firefox</a> / <a href="http://www.google.com/chrome/?hl=zh-CN">Chrome</a> / <a href="http://www.apple.com.cn/safari/">Safari</a> / <a href="http://www.operachina.com/">Opera</a></p></div>
+<![endif]-->
+</div>
+<div class="page_main">
+<h3>会员中心概况</h3>
+  <div class="page_table table_list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="120">会员中心版本: </td>
+        <td width="250">1.0</td>
+        <td width="120">中心状态: </td>
+        <td>
+        <?php if($config['base_status']){ ?>
+        <font color=green>已开启</font>
+        <?php }else{ ?>
+        <font color=red>已关闭</font>
+        <?php } ?>
+        </td>
+      </tr>
+      <tr>
+        <td width="120">注册状态: </td>
+        <td width="250">
+        <?php if($config['reg_status']){ ?>
+        <font color=green>已开启</font>
+        <?php }else{ ?>
+        <font color=red>已关闭</font>
+        <?php } ?>
+        
+        </td>
+        <td width="120">会员组总数: </td>
+        <td><?php echo model('user_center_group')->count(); ?> 个</td>
+      </tr>
+      <tr>
+        <td width="120">会员总数: </td>
+        <td width="250">
+        <?php echo model('user_center_user')->count(); ?> 个
+        </td>
+        <td width="120">禁止会员: </td>
+        <td> <?php echo model('user_center_user')->count('B.gid=2'); ?> 个</td>
+      </tr>
+      <tr>
+        <td width="120"> 已审核会员:</td>
+        <td width="250">
+        <?php echo model('user_center_user')->count('A.status=1'); ?> 个
+        </td>
+        <td width="120">未审核会员: </td>
+        <td><?php echo model('user_center_user')->count('A.status=0'); ?>  个</td>
+      </tr>
+      
+    </table>
+  </div>
+  
+
+</div>

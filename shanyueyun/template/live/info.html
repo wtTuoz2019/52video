@@ -1,0 +1,436 @@
+<div class="page_function">
+  <div class="info">
+    <h3>直播{$action_name}</h3>
+    <small>使用以下功能进行{$model_info.name}{$action_name}操作</small> </div>
+</div>
+<div class="tab" id="tab"> 
+<a class="selected" href="#tab1">基本内容</a> 
+<!-- <a href="#tab2">高级信息</a> 
+<a href="#tab3">扩展信息</a> 
+<a href="javascript:history.go(-1)">返回上级</a> --></div>
+<div class="page_form">
+  <form action="__URL__/{$action}_save/time1-<?php echo time(); ?>-ajax-true" method="post" id="form" autocomplete="off">
+    <div class="page_table form_table" id="tab1">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="100" align="right">栏目</td>
+          <td width="350"><select name="cid"  reg="." id="cid" msg="栏目未选择"  >
+              <option value="">======选择栏目======</option>
+              <!--foreach:{$category_list $vo}--> 
+              <option value="{$vo['cid']}" <?php if($class_info['cid']==$vo['cid']) { ?> selected="selected" <?php } ?> 
+                
+              >
+                  {$vo['cname']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+        
+        <?php if($user['cid']){ ?>
+          <input name="csid" type="hidden" value="{$user.cid}" />
+         <?php }else{ ?>
+         <tr>
+          <td width="100" align="right">所属学校</td>
+          <td width="350"><select name="csid"  reg="." id="csid" >
+              <option value="0">======全部学校======</option>
+              <!--foreach:{$school $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['csid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+         <?php } ?>
+         <tr>
+          <td width="100" align="right">所属科目</td>
+          <td width="350"><select name="sid"  reg="." id="sid" onchange="changeteacher()" >
+              <option value="0">======全部科目======</option>
+              <!--foreach:{$subject $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['sid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['cname']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+         <tr>
+          <td width="100" align="right">所属年级</td>
+          <td width="350"><select name="gid"  reg="." id="gid" onchange="changeteacher()" >
+              <option value="0">======全部年级======</option>
+              <!--foreach:{$grade $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['gid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['cname']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+        <script>
+        function changeteacher(){
+			var sid=$('#sid').val();
+			var gid=$('#gid').val();
+			$.post('__URL__/teacher/',{sid:sid,gid:gid},function(data){
+				var html=' <option value="0">======全部老师======</option>';
+				$.each(data,function(index,vo){
+					html+='<option value='+vo.id+' >'+vo.name+'</option>';
+					})
+				$('#tid').html(html);
+				},'json');
+			
+			}
+        
+        </script>
+          <tr>
+          <td width="100" align="right">所属老师</td>
+          <td width="350"><select name="tid"  reg="." id="tid" >
+              <option value="0">======全部老师======</option>
+              <!--foreach:{$teacher $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['tid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td width="100" align="right">标题</td>
+          <td colspan="2"><input name="title" type="text" class="text_value" id="title" style="float:left; width:360px;" value="{$info.title}" reg="\S" msg="标题不能为空" />
+            <div class="corol_button"></div>
+            <div onclick="fontbold()" class="bold_button"></div>
+            <input id="font_color" name="font_color" type="hidden" value="{$info.font_color}" />
+            <input id="font_bold" name="font_bold" type="hidden" value="{$info.font_bold}" /></td>
+        </tr>
+          <tbody id="expand">
+          </tbody>
+       
+        <td width="100" align="right">内容形象图</td>
+        <td colspan="2">
+          <?php echo module('editor')->get_image_upload('image1','image',false,'editor_content') ?>
+          <input name="image" type="text" class="text_value" id="image" style="width:220px; float:left" value="{$info.image}"/> 
+          &nbsp;&nbsp;<input type="button" id="image1" class="button_small" value="选择图片" />
+        </td>
+        </tr>
+        <tr>
+        <td width="100" align="right">内容</td>
+        <td colspan="2">
+          <?php echo module('editor')->get_editor('content'); ?>
+          <textarea name="content" style="width:100%; height:350px;" id="content">{$info_data.content html}</textarea>
+          <input type="button" onclick="javascript:get_remote_image()" style="margin-top:10px;" class="button_small" value="远程图片本地化" />
+          <?php echo module('editor')->get_editor_upload('editor_upload','editor_content') ?>
+          <input type="button" id="editor_upload" class="button_small" style="margin-top:10px;" value="上传图片和文件到编辑器" />
+          <!--hook-->
+          <?php module('common')->plus_hook('content','tools',$info);  ?>
+          <!--hook end-->
+          </td>
+      </tr>
+        <tr>
+          <td width="100" align="right">直播通道</td>
+          <td width="350"><select name="channel"  reg=".">
+              <?php 
+              foreach ($channel as $k => $vo) {
+              ?>
+              <option value="{$vo['id']}" <?php if($info['channel']==$vo['id']) { ?> selected="selected" <?php } ?> >{$vo['name']}</option>
+              <?php };?>
+            </select>
+            </td>
+          <td></td>
+        </tr>
+     
+      <tr>
+        <td width="100" align="right">描述</td>
+        <td colspan="2"><textarea name="description" class="text_textarea" id="description">{$info.description}</textarea>
+          &nbsp;&nbsp;
+        </td>
+        </tr>
+             <tr>
+          <td width="100" align="right">关键词</td>
+          <td colspan="2"><input name="keywords" type="text" class="text_value" id="keywords" value="{$info.keywords}" />
+            &nbsp;&nbsp;<input type="button" id="" onclick="javascript:get_keywords()" class="button_small" value="提取关键词" />
+            <?php if($info['taglink']){ ?>
+            &nbsp;&nbsp;<input name="taglink" type="checkbox" value="1" checked="checked" />
+            <?php }else{ ?>
+            &nbsp;&nbsp;<input name="taglink" type="checkbox" value="1" />
+            <?php } ?>
+             内容自动链接
+          </td>
+        </tr>
+          <tr>
+        <td width="100" align="right">手机模板</td>
+        <td width="350">
+        <input name="tpl" type="text" class="text_value" id="tpl" value="{$info.tpl}"  />
+        </td>
+        <td>留空采用栏目指定模板</td>
+      </tr>
+      
+       <tbody id="zidingyi" style="display:none" >
+       
+        <tr>
+        <td width="100" align="right">风格：</td>
+        <td width="350">
+       <input name="zidingyi[style]" type="radio" value="chengse"  <!--if:{$zidingyi['style']=='chengse' ||!$zidingyi['style']}-->checked="checked"<!--{/if}-->  /> 橙色&nbsp;&nbsp;<input name="zidingyi[style]" type="radio" value="red"  <!--if:{$zidingyi['style']=='red'}-->checked="checked"<!--{/if}-->  /> 红色&nbsp;&nbsp;
+        </td>
+        <td> </td>
+      </tr>
+       
+        <tr>
+        <td width="100" align="right">附加logo1</td>
+        <td colspan="2">
+          <?php echo module('editor')->get_image_upload('logo1','logo',false,'editor_content') ?>
+          <input name="zidingyi[logo]" type="text" class="text_value" id="logo" style="width:220px; float:left" value="{$zidingyi.logo}"/> 
+          &nbsp;&nbsp;<input type="button" id="logo1" class="button_small" value="选择图片" />
+        </td>
+        </tr>
+        
+        
+       
+        
+          <tr>
+        <td width="100" align="right">标题图片</td>
+        <td colspan="2">
+          <?php echo module('editor')->get_image_upload('titleimage1','titleimage',false,'editor_content') ?>
+          <input name="zidingyi[titleimage]" type="text" class="text_value" id="titleimage" style="width:220px; float:left" value="{$zidingyi.titleimage}"/> 
+          &nbsp;&nbsp;<input type="button" id="titleimage1" class="button_small" value="选择图片" />
+        </td>
+        </tr>
+          <tr>
+        <td width="100" align="right">图片链接</td>
+        <td width="350">
+        <input name="zidingyi[titleurl]" type="text" class="text_value" id="titleurl" value="{$zidingyi[titleurl]}" />
+        </td>
+        <td></td>
+      </tr> 
+      <tr>
+        <td width="100" align="right">公告区</td>
+        <td colspan="2"><textarea name="zidingyi[notice]" class="text_textarea" id="notice">{$zidingyi[notice]}</textarea>
+          &nbsp;&nbsp;
+        </td>
+        </tr>
+        <tr>
+        <td width="100" align="right">关注链接</td>
+        <td width="350">
+        <input name="zidingyi[addurl]" type="text" class="text_value" id="addurl" value="{$zidingyi[addurl]}" />
+        </td>
+        <td></td>
+      </tr> 
+          <tr>
+        <td width="100" align="right">评论区：</td>
+        <td width="350">
+        显示名称：
+         <input name="zidingyi[comment][name]" type="text"   value="{$zidingyi['comment']['name']}"  />
+       
+        </td>
+        <td> <input name="zidingyi[comment][show]" type="radio" value="1"  <!--if:{$zidingyi['comment']['show']==1}-->checked="checked"<!--{/if}-->  /> 显示&nbsp;&nbsp;<input name="zidingyi[comment][show]" type="radio" value="0" <!--if:{!$zidingyi['comment']['show']}-->checked="checked"<!--{/if}-->  /> 隐藏&nbsp;&nbsp;</td>
+      </tr>
+      
+      
+       <tr>
+        <td width="100" align="right">内容区：</td>
+        <td width="350">
+        显示名称：
+         <input name="zidingyi[content][name]" type="text"   value="{$zidingyi['content']['name']}"  />
+       
+        </td>
+        <td> <input name="zidingyi[content][show]" type="radio" value="1"  <!--if:{$zidingyi['content']['show']==1}-->checked="checked"<!--{/if}-->  /> 显示&nbsp;&nbsp;<input name="zidingyi[content][show]" type="radio" value="0" <!--if:{!$zidingyi['content']['show']}-->checked="checked"<!--{/if}-->  /> 隐藏&nbsp;&nbsp;</td>
+      </tr>
+       <tr>
+        <td width="100" align="right">内容区附加一：</td>
+        <td width="350">
+        显示名称：
+         <input name="zidingyi[content1][name]" type="text"   value="{$zidingyi['content1']['name']}"  />
+       
+        </td>
+        <td> <input name="zidingyi[content1][show]" type="radio" value="1"  <!--if:{$zidingyi['content1']['show']==1}-->checked="checked"<!--{/if}-->  /> 显示&nbsp;&nbsp;<input name="zidingyi[content1][show]" type="radio" value="0" <!--if:{!$zidingyi['content1']['show']}-->checked="checked"<!--{/if}-->  /> 隐藏&nbsp;&nbsp;</td>
+      </tr>
+      
+       <tr>
+        <td width="100" align="right">内容区附加二：</td>
+        <td width="350">
+        显示名称：
+         <input name="zidingyi[content2][name]" type="text"   value="{$zidingyi['content2']['name']}"  />
+       
+        </td>
+        <td> <input name="zidingyi[content2][show]" type="radio" value="1"  <!--if:{$zidingyi['content2']['show']==1}-->checked="checked"<!--{/if}-->  /> 显示&nbsp;&nbsp;<input name="zidingyi[content2][show]" type="radio"  value="0"<!--if:{!$zidingyi['content2']['show']}-->checked="checked"<!--{/if}-->  /> 隐藏&nbsp;&nbsp;</td>
+      </tr>
+       <tr>
+        <td width="100" align="right">关联文章区：</td>
+        <td width="350">
+        显示名称：
+         <input name="zidingyi[link][name]" type="text"   value="{$zidingyi['link']['name']}"  />
+       
+        </td>
+        <td> <input name="zidingyi[link][show]" type="radio" value="1"  <!--if:{$zidingyi['link']['show']==1}-->checked="checked"<!--{/if}-->  /> 显示&nbsp;&nbsp;<input name="zidingyi[link][show]" type="radio" value="0" <!--if:{!$zidingyi['link']['show']}-->checked="checked"<!--{/if}-->  /> 隐藏&nbsp;&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="100" align="right">内容附加一</td>
+        <td colspan="2">
+          <?php echo module('editor')->get_editor('content1'); ?>
+          <textarea name="zidingyi[content1][content]" style="width:100%; height:200px;" id="content1">{$content1}</textarea>
+          <input type="button" onclick="javascript:get_remote_image()" style="margin-top:10px;" class="button_small" value="远程图片本地化" />
+          <?php echo module('editor')->get_editor_upload('editor_upload1','editor_content1') ?>
+          <input type="button" id="editor_upload1" class="button_small" style="margin-top:10px;" value="上传图片和文件到编辑器" />
+        
+          </td>
+      </tr>
+       <tr>
+        <td width="100" align="right">内容附加二</td>
+        <td colspan="2">
+          <?php echo module('editor')->get_editor('content2'); ?>
+          <textarea name="zidingyi[content2][content]" style="width:100%; height:200px;" id="content2">{$content2}</textarea>
+          <input type="button" onclick="javascript:get_remote_image()" style="margin-top:10px;" class="button_small" value="远程图片本地化" />
+          <?php echo module('editor')->get_editor_upload('editor_upload2','editor_content2') ?>
+          <input type="button" id="editor_upload2" class="button_small" style="margin-top:10px;" value="上传图片和文件到编辑器" />
+        
+          </td>
+      </tr>
+      
+          </tbody>
+   
+        <tr>
+        <td width="100" align="right">关联文章</td>
+        <td width="350">
+        <input name="aids" type="text" class="text_value" id="aids" value="{$info.aids}" />
+        </td>
+      <td>填入文章ID，以英文下逗号隔开，列如：1,2,3</td>
+      </tr>
+      <!--hook-->
+       <?php module('common')->plus_hook('content','edit_tpl_tag',$info);  ?>
+      <!--hook end-->
+      <!--hook-->
+       <?php module('common')->plus_hook('content','edit_tpl',$info);  ?>
+      <!--hook end-->
+      <?php if(model('user_group')->model_power('content','past')){ ?>
+      <tr>
+        <td width="100" align="right">状态</td>
+        <td width="350">
+        <?php if(!isset($info['status'])){ $info['status']=1; } ?>
+        <input name="status" type="radio" value="1"  <!--if:{$info['status']==1}-->checked="checked"<!--{/if}-->  /> 发布&nbsp;&nbsp;<input name="status" type="radio"  <!--if:{$info['status']==0}-->checked="checked"<!--{/if}-->  /> 草稿&nbsp;&nbsp;
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td width="100" align="right">评论审核显示</td>
+        <td width="350">
+       
+        <input name="comment" type="radio" value="1"  <!--if:{$info['comment']==1}-->checked="checked"<!--{/if}-->  /> 开启&nbsp;&nbsp;<input name="comment" type="radio"  <!--if:{$info['comment']==0}-->checked="checked"<!--{/if}-->  /> 关闭&nbsp;&nbsp;
+        </td>
+        <td></td>
+      </tr>
+       <tr>
+        <td width="100" align="right">预约报名</td>
+        <td width="350">
+       
+        <input name="signup" type="radio" value="1"  onClick="signupchange()" <!--if:{$info['signup']==1}-->checked="checked"<!--{/if}-->  /> 开启&nbsp;&nbsp;<input name="signup" type="radio" onClick="signupchange()"  value="0" <!--if:{$info['signup']==0}-->checked="checked"<!--{/if}-->   /> 关闭&nbsp;&nbsp;
+        </td>
+        <td></td>
+      </tr>
+      
+         <tr id="field_list">
+        <td width="100" align="right">资料选项</td>
+        <td width="350">
+       
+         <!--foreach:{$field_list $vo}-->
+         <!--if:{$vo['field']!='aid'}-->
+           <input name="field_lists[]"  type="checkbox" value="{$vo['field']}"  <!--if:{in_array($vo['field'],$info['field_lists'])}-->checked="checked"<!--{/if}-->  /> {$vo['name']}&nbsp;&nbsp;
+           <!--{/if}--> 
+           <!--{/foreach}-->
+      
+        </td>
+        <td></td>
+      </tr>
+      <script>
+      
+      signupchange();
+	  function signupchange(){
+		  
+		  var flag=$('input[name="signup"]:checked').val();
+		
+		  if(flag=='1'){
+			  $('#field_list').show();
+			  }else{
+			  $('#field_list').hide();	  
+				  }
+		  
+		  }
+	  
+      </script>
+        <tr>
+        <td width="100" align="right">访问量</td>
+        <td width="350">
+        <input name="views" type="text" class="text_value" id="views" value="{$info.views}" />
+        </td>
+        <td>内容浏览量</td>
+      </tr>
+      <?php } ?>
+      <?php if(!model('user_group')->model_power('content','past')&&model('user_group')->model_power('content','cancel')){ ?>
+      <input name="status" id="status" type="hidden" value="0" />
+      <?php } ?>
+      </table>
+    </div>
+    
+    <div class="page_table form_table" id="tab2" style="display:none;">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="100" align="right">副标题</td>
+          <td width="350"><input name="subtitle" type="text" class="text_value" id="subtitle" value="{$info.subtitle}" /></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td width="100" align="right">英文URL名称</td>
+          <td width="350"><input name="urltitle" type="text" class="text_value" id="urltitle" value="{$info.urltitle}" /></td>
+          <td></td>
+        </tr>
+     
+      <tr>
+        <td width="100" align="right">顺序</td>
+        <td width="350">
+        <input name="sequence" type="text" class="text_value" id="sequence" value="{$info.sequence}" />
+        </td>
+        <td>(自定义顺序)</td>
+      </tr>
+      <tr>
+        <td width="100" align="right">跳转到</td>
+        <td width="350">
+        <input name="url" type="text" class="text_value" id="url" value="{$info.url}" />
+        </td>
+        <td>URL链接，支持标签</td>
+      </tr>
+      <tr>
+        <td width="100" align="right">更新时间</td>
+        <td width="350">
+        <input name="updatetime"  id="updatetime" type="text" class="text_value" style="width:260px; float:left" value="<?php echo date('Y-m-d H:i:s'); ?>" reg="\S" msg="更新时间不能为空" /><div id="updatetime_button" class="time"></div>
+        <script>$('#updatetime_button').calendar({ id:'#updatetime',format:'yyyy-MM-dd HH:mm:ss'});</script>
+        </td>
+        <td></td>
+      </tr>
+      </table>
+    </div>
+    <div class="page_table form_table" id="tab3" style="display:none;">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      	  <tr>
+            <td width="100" align="right" style="padding:0px; height:0px;"></td>
+            <td width="350" style="padding:0px; height:0px;"></td>
+            <td style="padding:0px; height:0px;"></td>
+          </tr>
+
+      </table>
+    </div>
+    <?php if(model('user_group')->model_power('content','add')||model('user_group')->model_power('content','edit')){ ?>
+    <!--普通提交-->
+    <div class="form_submit">
+      <input name="aid" type="hidden" value="{$info.aid}" />
+      <input name="file_id" id="file_id" type="hidden" value="{$file_id}" />
+      <button type="submit" class="button">保存</button>
+    </div>
+    <?php } ?>
+  </form>
+</div>
+</div>
+{include file="live/common"}
+

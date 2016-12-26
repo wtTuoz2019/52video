@@ -1,0 +1,97 @@
+﻿@charset "utf-8";
+@CHARSET "UTF-8";
+                   .contentBox{
+                    position: relative;
+                }
+                .noe{display: none}
+                .down{
+                    position: absolute;
+                    width: 100%;
+                    height: 320px;
+                    left: 0;
+                    top: 0;
+                    background: #fff url('__PUBLIC__/images/a.png') no-repeat;
+                    font-size: 45px;
+                    text-align: center;
+                }
+                .down .doo{
+                    width: 70%;
+                    height: 220px;
+                    background: #000;
+                    border-radius: 6px;
+                    margin-top: 50px;
+                    margin-left:15%;
+                    padding-top: 80px;
+                    filter:alpha(opacity=80); /*IE滤镜，透明度50%*/
+                    -moz-opacity:0.8; /*Firefox私有，透明度50%*/
+                    opacity:0.8;/*其他，透明度50%*/
+                }
+                .down span{
+                    color: #fff;
+                }
+                .down .endtime{
+                    color: #ff0000;
+                    font-size: 27px;
+                }
+                .down .endtime i{
+                    color: #fff;
+                    font-style: normal;
+                }
+				.nav_footer>ul {
+					position: fixed;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					margin: auto;
+					z-index: 1000;
+					height: 50px;
+					display: -webkit-box;
+					border-top: 1px solid #3D3D46;
+					display: block;
+					width: 100%;
+					background: rgba(255, 255, 255, 0.7);
+					display: -webkit-box;
+					display: box;
+					margin: 0;
+					padding: 0;
+					-webkit-box-orient: horizontal;
+					background: -webkit-gradient(linear, 0 0, 0 100%, from(#697077), to(#3F434E), color-stop(60%, #464A53));
+					box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+				}
+				.nav_footer>ul li {
+					padding: 5px 0;
+					width:30%;
+				}
+				.nav_footer>ul a {
+display: block;
+width: 70px;
+height: 39px;
+line-height: 35px;
+overflow: hidden;
+margin: auto;
+color: #ffffff;
+text-align: center;
+overflow: hidden;
+-webkit-box-sizing: border-box;
+font-size: 16px;
+color: #999999;
+}
+.nav_footer>ul a.on span.icons_home {
+background-position: center -58px;
+}
+.nav_footer>ul a.nav_add {
+color: #ffffff;
+font-size: 24px;
+border-radius: 3px;
+}
+.nav_footer>ul a span.icons_home_edit {
+background-position: center -1559px;
+}
+.nav_footer>ul a span {
+display: inline-block;
+width: 26px;
+height: 34px;
+background: url(../Images/icons.png) no-repeat center -8px;
+-webkit-background-size: 50px auto;
+margin-top: 3px;
+}

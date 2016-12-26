@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<link href="css/base.css" type="text/css" rel="stylesheet">
+<link href="css/details2.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery1.42.min.js"></script>
+<script type="text/javascript" src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
+</head>
+
+<body>
+<!--start 中间部分-->
+<h3 class="title">{$title}</h3>
+<div class="t100">
+    <div class="bjBox">
+        <ul class="bjList clearfix" id="comments_list">
+        </ul>
+	</div>
+</div>
+<div class="cbmain"></div>
+<script language="javascript" type="text/javascript">
+var pageIndex=0;
+
+ var  fid='<?php echo $fid;?>';
+ 
+
+function getResult(){
+	$.post("__URL__/ajax_list", { fid: fid,pageIndex:pageIndex},
+	function(d){
+	
+		
+		if (d.status == 1) { 
+			pageIndex=d.message.pageIndex;
+		// if(d.message.num <= number){
+			$('#more').hide();
+		// }
+			$("#comments_list").prepend($(buildLi(d.message.info)));
+		}
+	}, "json");
+}
+
+function buildLi(data){
+  var strVar = "";
+  for (var i = 0; i < data.length; i++) {
+	strVar += "<li style=\"border-bottom:none\">";
+	strVar += "<div class=\"txPic left\" style=\"width:100px\"><img src=\""+ data[i]['pic'] +"\"><\/div>";
+	strVar += "<div class=\"bjListCon\">";
+	strVar += "<p class=\"biaoti\">"+ data[i]['name'] +" :<\/p>";
+	strVar += "<p class=\"jianjie\" style=\"font-size:37px\">"+ data[i]['message'] +"<\/p>";
+	strVar += "<p class=\"time\">"+ data[i]['t'] +"<\/p>";
+	strVar += "<\/div>";
+	strVar += "<\/li>";
+  };
+  return strVar;
+};	
+function time(){ 
+	getResult();
+}setInterval("time()",3000);
+</script>
+</body>

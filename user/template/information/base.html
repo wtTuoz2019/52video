@@ -1,0 +1,39 @@
+<link href="__PUBLIC__/css/personal.css" type="text/css" rel="stylesheet">
+<link href="__PUBLIC__/css/style_1.css" type="text/css" rel="stylesheet">
+<!--start 中间-->
+<div class="personalBox clearfix">
+  
+      {include file="index/menu"}  
+    <div class="personalBody right">
+      <h3>我的好友</h3>
+         <div class="form">
+          <form action="__URL__/base_data.html" method="post" id="form">
+            <ul>
+                <li><label>用户名：</label> {$user_info.username}</li>
+                  <li><label>Email：</label> <input name="email" type="text" class="text" id="email" value="{$user_info.email}" reg="^\w+([-\.]\w+)*@\w+([\.-]\w+)*\.\w{2,4}$" msg="请输入正确的邮箱地址" > </li>
+                  <li><label>昵称：</label> <input name="nicename" type="text" class="text" id="nicename" value="{$user_info.nicename}" reg="^(?!_)(?!.*?_$)[\u4e00-\u9fa5\w\-]{{$user_config.reg_username_length_min},{$user_config.reg_username_length_max}}$" msg="昵称只能为中英文数字与下划线且支持{$user_config.reg_username_length_min}~{$user_config.reg_username_length_max}位" > </li>
+                  <!--foreach:{$field_list $vo}-->
+                    <?php echo model('user_model')->get_field_html($vo,$user_info[$vo['field']]); ?>
+                  <!--{/foreach}-->
+                  <!--hook-->
+                  <?php module('common')->plus_hook('information','base_tpl');  ?>
+                  <!--hook end-->
+                  <li><label></label> <button class="button" type="submit">提交</button></li>
+              </ul>
+          </form>
+        </div>
+    </div>
+</div>
+<style>
+  body ,html{background: #fff;}
+</style>
+<script>
+saveform({
+	success:function(msg){
+		$.duxnotice.success(msg);
+	},
+	failure:function(msg){
+		$.duxnotice.failure(msg);
+	}
+});
+</script> 

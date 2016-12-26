@@ -1,0 +1,45 @@
+<link href="__PUBLIC__/css/personal.css" type="text/css" rel="stylesheet">
+<link href="__PUBLIC__/css/style_1.css" type="text/css" rel="stylesheet">
+<!--start 中间-->
+<div class="personalBox clearfix">
+{include file="index/menu"}
+<div class="personalBody right">
+  <h3>我的好友</h3>
+  <div id="tab" class="tabs">
+      <ul>
+        <li><a class="selected"  href="__URL__/post.html">发送信息</a></li>
+        <li><a href="__URL__/index.html">返回收件箱</a></li>
+      </ul>
+      <div class="menu"> </div>
+      <div class="fn-clear"></div>
+    </div>
+  <div class="form">
+    <form action="__URL__/post_data.html" method="post" id="form">
+      <ul>
+          <li><label>收件人：</label>  <input name="username" type="text" class="text" id="username" value="{$_GET['user']}" reg="\S" msg="请输入收件人用户名，可通过好友列表直接发送！" > </li>
+          <li><label>标题：</label>  <input name="title" type="text" class="text"  style="width:400px;" id="title" reg="\S" msg="请输入信息标题！" > </li>
+          <li><label>内容：</label>
+            <textarea name="content" class="textarea" style="width:400px;" id="content" reg="\S" msg="信息内容未填写！"></textarea>
+            </li>
+            <!--foreach:{$field_list $vo}-->
+              <?php echo model('user_model')->get_field_html($vo,$user_info[$vo['field']]); ?>
+            <!--{/foreach}-->
+            <li><label></label> <button class="button" type="submit">提交</button></li>
+        </ul>
+    </form>
+    </div>
+  </div>
+</div>
+<style>
+  body, html {background: #ffffff;}
+</style>
+<script>
+saveform({
+	success:function(msg){
+		window.location.href=msg;
+	},
+	failure:function(msg){
+		$.duxnotice.failure(msg);
+	}
+});
+</script> 

@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{$css}
+{$js}
+</head>
+<body scroll="no">
+<div class="page_function">
+  <div class="info">
+    <h3>菜单{$action_name}</h3>
+    <small>使用以下功能进行菜单修改{$action_name}</small> 
+  </div>
+</div>
+<div class="page_form">
+<form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="page_table form_table">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    
+    <tr>
+        <td width="120">上级菜单</td>
+        <td width="300">
+        <select name="pid">
+        <option value="0">=====顶级菜单=====</option>
+            <!--foreach:{$menu_list $vo}-->
+            <option <!--if:{$vo['id']==$info['pid']}-->selected="selected"<!--{/if}--> value="{$vo.id}">{$vo.name}</option>
+            <!--{/foreach}-->
+        </select>
+        
+        </td>
+      </tr>
+      <tr>
+        <td width="120">菜单名称</td>
+        <td width="300">
+        <input name="name" type="text" class="text_value" id="name" value="{$info.name}" reg="\S" msg="菜单名称不能为空" />
+        </td>
+      </tr>
+         <tr>
+        <td width="120">模块名称</td>
+        <td width="300">
+        <input name="module" type="text" class="text_value" id="module" value="{$info.module}" reg="\S" msg="module名称不能为空" />
+        </td>
+      </tr>
+      
+     
+      <tr>
+        <td width="120">排序</td>
+        <td width="300">
+        <input name="sort" type="text" class="text_value" id="sort" value="<!--if:{empty($info[sort])}-->0<!--{else}-->{$info.sort}<!--/if-->" reg="[0-9]" msg="菜单排序只能为数字" />
+        </td>
+      </tr>
+      <tr>
+        <td width="120">状态</td>
+        <td width="300">
+        <input name="status" type="text" class="text_value" id="status" value="<!--if:{empty($info[status])}-->0<!--{else}-->{$info.status}<!--/if-->" reg="[0-9]" msg="状态只能为数字" />
+        </td>
+      </tr>
+    </table>
+</div>
+
+<div class="form_submit">
+<input name="id" type="hidden" value="{$info.id}" />
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+var win = art.dialog.open.origin;
+saveform({
+	success:function(){
+		win.location.reload();
+		art.dialog.close();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+</script>
+</body>

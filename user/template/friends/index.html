@@ -1,0 +1,37 @@
+<link href="__PUBLIC__/css/personal.css" type="text/css" rel="stylesheet">
+<!--start 中间-->
+<div class="personalBox clearfix">
+  
+      {include file="index/menu"}  
+        <!--start 广告-->
+        <!--<div class="ad"><img src="images/pic/ad.jpg" /></div>-->
+        <!--end  广告-->
+    <div class="personalBody right">
+      <h3>我的好友</h3>
+        <?php if(empty($list)){ echo '<div class="tools">暂时没有添加好友</div>';} ?>
+    <div class="friends-list">
+      <ul>
+        <!--foreach:{$list $vo}-->
+        <li>
+        <div class="user-pic"><img src="<?php echo model('user')->picture($user_info['uid'],2); ?>" /></div>
+        <div class="user-menu">
+        
+        <div><a href="__APP__/home/index/{$vo.uid}.html" target="_blank"><?php if($vo['remark']){ echo $vo['remark']; }else{ echo $vo['nicename']; }  ?> ({$vo.username})</a></div>
+        <div><a class="button_small" href="__APP__/message/post.html?user={$vo.username}">发送信息</a> <a class="button_small" href="javascript:;" onclick="del({$vo.uid},this)">解除好友</a> <a class="button_small" href="__URL__/edit/{$vo.uid}.html">修改备注</a>  </div>
+        </div>
+        <div class="fn-clear"></div>
+        </li>
+        <!--{/foreach}-->
+      </ul>
+    </div>
+    <div class="fn-clear"></div>
+  </div>
+  <div class="pages">{$page}</div>
+    </div>
+</div>
+<!--end 中间-->
+<style>
+    .personalBody h3{border-bottom: 1px solid #ccc;font-size: 16px;}
+    .info-list ul li, .info-list1 ul li{width: 400px;float: left;line-height: 25px;}
+    .h10{height: 30px;clear: both;}
+</style>

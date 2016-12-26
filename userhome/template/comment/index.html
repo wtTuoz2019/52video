@@ -1,0 +1,150 @@
+<link href="__PUBLICURL__/css/other.css" type="text/css" rel="stylesheet">
+<div class="page_function">
+  <div class="info">
+    <h3>评论管理</h3>
+    <small>将栏目与评论进行绑定来实现附加字段功能</small> </div>
+  <div class="exercise"> 
+   <a href="javascript:menuload('__URL__')">评论列表</a> 
+  </div>
+</div>
+<div class="page_main">
+  <div class="page_table table_list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th width="20"><center>选择</center></th>
+        <th width="10%"><center>id</center></th>
+        <th width="10%">评论人</th>
+        <th width="20%">名称</th>
+        <th width="20%">内容</th>
+        <th width="10%">审核状态</th>
+        <th width="10%"><center>操作</center></th>
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr>
+        <td><center><input name="id[]" type="checkbox" class="cbitem" value="{$vo['id']}" ></td>
+        <td><center>{$vo.id}</center></td>
+        <td><?php echo model('comment')->info_user($vo['uid']); ?></td>
+        <td><?php echo model('comment')->info_title($vo['fid']); ?></td>
+        <td>{$vo.message}</td>
+        <td class="flag">{$vo.flag}</td>
+        <td><center>
+         &nbsp;&nbsp;<a  href="javascript:void(0);" onclick="examine('{$vo.id}',this)">审核</a>
+         &nbsp;&nbsp;<a href="javascript:void(0);" onclick="del('{$vo.id}',this)">删除</a>
+         </center></td>
+      </tr>
+      <!--{/foreach}-->
+
+    </table>
+
+  </div>
+  <div class="page_tool"  style="margin-top:15px;">
+    <div class="function">
+      <input type="button" onclick="selectall();" additional="0" class="button_small" id="selectall" value="全选" />
+<!--      <input type="button" onclick="selectrev();" additional="0" class="button_small" id="selectrev" value="反选" />-->
+      <input type="button" onclick="moredel();" class="button_small" value="删除" />
+    </div>
+     <ul class="dc_pagination dc_paginationA dc_paginationA06">{$page}</ul>
+  </div>
+ 
+</div>
+
+<script>
+//添加
+function add() {
+	urldialog({
+	title:'评论添加',
+	url:'__URL__/add'
+	});
+};
+//修改
+function edit(url) {
+	urldialog({
+	title:'评论编辑',
+	url:'__URL__/edit/id-'+url
+	});
+};
+
+//审核
+function examine(id,obj) {
+  var obj;
+  ajaxpost({
+    name:'确定审核评论？ ',
+    url:"__URL__/examine",
+    data:{id: id},
+    tip:1,
+    success:function(){
+      $(obj).parents('tr').find('.flag').html(1);
+    }
+  });
+}
+
+//删除
+function del(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'删除评论后会同时评论下级内容! ',
+		url:"__URL__/del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$(obj).parents('tr').remove();
+		}
+	});
+}
+
+//选择反选
+//function selectrev() {
+//  var checkItems=$('.cbitem');
+//  var check_box=$("#check_box");
+//  $.each(checkItems, function(i,val){
+//	  if(checkItems.eq(i).prop("checked") == false){
+//		 checkItems.eq(i).prop("checked", true);
+//	  }
+//	  if(checkItems.eq(i).prop("checked") == true){
+//		checkItems.eq(i).prop("checked", false);  
+//	  } 
+//  });
+//}
+
+function selectall(){
+ var checklist = $('.cbitem');
+ var check_box=$("#selectall");
+ var add = check_box.attr('additional');
+ if(add == 0){
+   for(var i=0;i<checklist.length;i++){
+      checklist[i].checked = 1;
+   }
+   check_box.attr("additional","1");
+ }else{
+  for(var j=0;j<checklist.length;j++){
+     checklist[j].checked = 0;
+  }
+  check_box.attr("additional","0");
+ }
+}
+
+//批量删除
+function moredel(id) {
+  var checkItems=$('.cbitem');
+  var arr=[];
+
+  checkItems.each(function(i, val){
+    if(checkItems[i].checked == true){
+      arr.push(checkItems.eq(i).val());
+    }
+  });
+  ajaxpost({
+    name:'删除评论后会同时评论下级内容! ',
+    url:"__URL__/moredeldel",
+    data:{id: arr},
+    tip:1,
+    success:function(){
+      window.location.reload()
+    }
+  });
+}
+
+
+
+
+</script>

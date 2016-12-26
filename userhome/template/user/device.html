@@ -1,0 +1,65 @@
+<div class="page_function">
+ 
+  <div class="exercise"> 
+   <a href="__URL__/device">设备列表</a>	
+  
+   </div>
+</div>
+
+<div class="page_main">
+  <div class="box-body">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+      <tr>
+        <th width="10%"><center>ID</center></th>
+        
+          <th><center>设备类型</center></th>
+         <th><center>SN</center></th>
+         <th><center>状态</center></th>
+        <th><center>操作</center></th>
+      </tr>
+      <!--foreach:{$user['devices'] $vo}-->
+      <tr>
+        <td><center>{$vo.id}</center></td>
+       <th><center>{$names[$vo['nid']]['name']}</center></th>
+       <th><center>{$vo.sn}</center></th>
+          
+         <td><center>
+        <!--if:{$vo['error']==0}-->
+      正常
+        <!--{else}-->
+     损坏
+        <!--{/if}-->
+        </center></td>
+        <td> <center><a href="__URL__/peoples/id-{$vo.id}">监看人员</a>&nbsp;&nbsp; <a href="javascript:" onClick="baoxiu('{$vo.id}',this)">报修</a></center></td>
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+</div>
+
+<div class="page_tool">
+				<div class="page">
+     					 <ul class="pagination">
+                                           {$page}
+                                        </ul>
+ </div>	
+</div>
+
+                                  
+                                    
+<script>
+
+//审核
+function baoxiu(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'确定要报修此设备？',
+		url:"__URL__/baoxiu",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			window.location.reload();;
+		}
+	});
+}
+</script>

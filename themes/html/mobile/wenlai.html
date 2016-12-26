@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content=""/>
+<title>{$common.title}</title>
+<link rel="stylesheet" href="__TPL__mobile/css/style.css" type="text/css" />
+ <script type="text/javascript" src="__TPL__mobile/Scripts/jquery-1.10.2.js" ></script>
+
+ <script type="text/javascript" src="__TPL__mobile/Scripts/jquery-latest.min.js" ></script>
+
+  <style media="all">
+  #list{
+		position:absolute;
+		top:0;
+		bottom:1px;
+		width:100%;
+	}
+	#pullDown, #pullUp {
+	background:transparent;
+	padding:5px 10px;
+	font-weight:bold;
+	text-align:center;
+	font-size:14px;
+	color:#fff;
+}
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+	display:block; float:left;
+	width:40px; height:40px;
+	
+	-webkit-background-size:40px 80px; background-size:40px 80px;
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-duration:250ms;	
+}
+#pullDown .pullDownIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+#pullDown.flip .pullDownIcon {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+#pullUp.flip .pullUpIcon {
+
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+	background-position:0 100%;
+	-webkit-transform:rotate(0deg) translateZ(0);
+	-webkit-transition-duration:0ms;
+	-webkit-animation-name:loading;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:linear;
+}
+@-webkit-keyframes loading {
+	from { -webkit-transform:rotate(0deg) translateZ(0); }
+	to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+  </style>
+</head>
+	
+<body>
+	<div class="body_bg">
+		<img src="__TPL__/mobile/img/video/body_bg.png" >
+	</div>
+    <div id="list" class="ui-content" role="main" style="padding:0px;">
+    	<div id="shishi" name="shishi"  class="listDiv"  >
+        <div id="pullDown">
+					<span class="pullDownIcon"></span>
+					<span class="pullDownLabel"></span>
+				</div>
+	<div class="warper">
+		<ul class="orderList">
+		 <?php  
+     $loop=array();
+    $aids='550,549,548,551,552,553,554,555,556,557';
+    $loop=model('content')->getlist( $aids);
+   
+      ?>
+              <!--foreach:{$loop $vo}-->
+			<li>
+				<div class="date">
+					<i></i>
+					<strong>{$vo.starttime time="Y.m.d"}</strong>
+					<p>{$vo.starttime time="H:i"}</p>
+				</div>
+				<div class="content">
+					<span class="triangle"></span>
+					<a href="{$vo.aurl}">
+						<h5>{$vo.titlex}</h5>
+						<div class="picture">
+							<img src="{$vo.image}" />
+							<span class="play"></span>
+						</div>
+						<div class="person">
+                        <img src="{$teacher[$vo['tid']]['image']}">
+							<p>{$teacher[$vo['tid']]['name']}<i>|</i>{$teacher[$vo['tid']]['title']}</p>
+						</div>
+					</a>
+				</div>
+			</li>
+              <!--/loop-->
+             
+		</ul>
+       
+	</div>
+    <div id="pullUp">
+					<span class="pullUpIcon"></span>
+					<span class="pullUpLabel"></span>
+				</div>
+     </div>  
+    </div>
+	<a href="#">
+		<span class="up"></span>
+	</a>
+  
+</body>
+</html>

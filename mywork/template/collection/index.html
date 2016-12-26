@@ -1,0 +1,93 @@
+<link href="__PUBLIC__/css/personal.css" type="text/css" rel="stylesheet">
+<link href="__PUBLIC__/css/other.css" type="text/css" rel="stylesheet">
+<!--start 中间-->
+<div class="personalBox clearfix">
+    {include file="index/menu"}  
+    <div class="personalBody right">
+      <h3>我的收藏</h3>
+       <?php if(empty($list)){ echo '<div class="tools">暂时没有收藏内容</div>';} ?>
+     <div class="myCollection">
+     	<ul>
+        <!--foreach:{$list $vo}-->
+        	<li>
+                	<div class="collPic"><a href="<?php echo ROOTAPP ?>/label/admin_aurl/aid-{$vo['aid']}.html"><img src="__ROOT__/public/images/mycollect-pic.png" alt="" /></a><span onClick="del('{$vo.aid}',this)">╳</span></div>
+                    <div class="collContent">
+                    	<p>{$vo.title}</p>
+                        <progress value="50" max="100"></progress>
+                        <a href="<?php echo ROOTAPP ?>/label/admin_aurl/aid-{$vo['aid']}.html" class="learnNow">继续学习</a>
+                    </div>
+            </li>
+          <!--{/foreach}-->
+        </ul>
+     </div>
+     <div style="clear:both;">
+       <ul class="dc_pagination dc_paginationA dc_paginationA06">{$page}</ul>
+     </div>
+    
+    </div>
+
+</div>
+<!--end 中间-->
+<style>
+    .personalBody h3{border-bottom: 1px solid #ccc;font-size: 18px;}
+    .info-list ul li, .info-list1 ul li{width: 400px;float: left;line-height: 25px; }
+	.myCollection{width:103%; padding:5px 0 10px 0;}
+	.myCollection ul li{margin-left:4px; border:1px solid #dcdcdc; width:29.88888%; float:left; margin-right:20px; box-shadow:0 0 5px rgba(0,0,0,0.3);margin-bottom:20px; position:relative;}
+	.myCollection ul li:last-child{margin-right:0;}
+	.myCollection .collContent{padding:5px 0px 15px 0;}
+	.collContent p{padding-left:10px;}
+	.collContent a.learnNow{margin:10px 0 0 80px; background:url(../../public/images/learn-arrow-icon.png) no-repeat 40% 60%; display:block;}
+	.collContent progress{width:100%; bcakground:#eaeaea; color:#31afed; border:1px solid #eaeaea;}
+	.collContent progress::-moz-progress-bar { background: #31afed; height:15px }
+    .collContent progress::-webkit-progress-bar { background: #eaeaea;}
+    .collContent progress::-webkit-progress-value  { background: #31afed;}
+	.collPic span{display:block; width:27px; height:27px; background:#817c71; color:#fff; text-align:center;  line-height:29px; position:absolute; top:0; right:0; cursor:pointer;}
+	.collPic a:hover {opacity:0.5}
+	.collContent .learnNow:hover {text-decoration:underline;}
+	.personalBody input{width:100%; background:#28aced; text-align:center; padding:15px 0; color:#fff; cursor:pointer;}
+    .h10{height: 30px;clear: both;}
+    table th {
+  padding: 10px;
+  background-color: #fafafa;
+  border-top: 1px solid #eee;
+  background-image: url("../images/table_bg.jpg");
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  color: #666666;
+  font-weight: bold;
+}
+table td {
+  padding: 10px;
+  background-image: url("../images/table_bg.jpg");
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  height: 25px;
+}
+.collContent p {
+  padding: 5px 10px 5px 10px;
+    height: 18px;
+    overflow: hidden;
+}
+
+</style>
+<script>
+$('.myCollection ul li').hover(function(){
+  $(this).find('a').next('a').show();
+},function(){
+  $(this).find('a').next('a').hide();
+});
+function del(aid,obj) {
+  var obj;
+  ajax_confirm({
+    name:'确认要删除本条收藏内容吗？', 
+    url:"__URL__/del",
+    data:{aid: aid},
+    success:function(msg){
+      $(obj).parents('li').remove();
+    },
+    failure:function(msg){
+      $.duxnotice.failure(msg);
+    }
+  });
+}
+</script>

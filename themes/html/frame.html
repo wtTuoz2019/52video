@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$common.title}</title>
+<!--<link href="css/base.css" type="text/css" rel="stylesheet">-->
+<link href="css/details.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery1.42.min.js"></script>
+<script type="text/javascript" src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
+<script>
+$(function(){ 
+    $(window).resize(); 
+}); 
+</script>
+<style>
+*{
+	padding:0;
+	margin:0
+}
+body,html{
+	height:99%;
+	width:100%;
+	}
+.full{
+	width:100%;
+	height:100%;
+	}
+#CuPlayer{
+	width:100%;
+	height:100%;
+	position:relative;
+	}
+#videoPlayer {
+	width:100%;
+	height:100%;
+	}
+#videoPlayer object{
+	width:100%;
+	height:100%;
+	}	
+#videoPlayer embed{
+	width:100%;
+	height:100%;
+	}	
+.down {
+    font-size: 1em;
+    text-align: center;
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.down .doo {
+    border-radius: 6px;
+    opacity: 0.8;
+	width:60%;
+	height:27%;
+	margin: 0;
+	padding:0;
+	position:absolute;
+	bottom:0;
+	margin-left:-29%;
+	left:50%
+}
+#dao{
+	/*width:auto;
+	height:auto;
+	position:absolute;
+	height:60px;
+	width:100%;
+	text-align:center;
+	top:50%;
+	left:50%;
+	margin-top:-25px;
+	margin-left:-50%*/
+	font-size:12px;
+	line-height:23px
+	}
+</style>
+</head>
+
+<body>
+ <!--头部-->
+
+<!--END-->
+<!--start 中间部分-->
+<div class="full">
+	
+
+     <?php   if ($info["cid"] == 16) {  ?>   
+      <div id="play" class="play" style="width:100%; height:100%">
+        	
+        </div> 
+       <script type="text/javascript" src="http://cdn.aodianyun.com/lss/aodianplay/player.js"></script>
+<script type="text/javascript">
+
+var play='true';
+					t1 = '{$info.starttime}'*1000;
+					t = '{$info.starttime}'*1000 + '{$info.time}'*60*1000;
+					ts = <?php echo time(); ?>*1000;	
+
+				if(ts < t1){
+				
+					play='false';
+		        }else if(ts > t1 && ts < t){
+		        play='true';
+					
+				}else{
+					 play='false';
+					
+					
+				}	
+if(play=='false'){
+	var objectPlayer=new aodianPlayer({
+    container:'play',//播放器容器ID，必要参数
+   rtmpUrl:'rtmp://{$sys.ali}{$channel.vMp4url}',//控制台开通的APP rtmp地址，必要参数
+  hlsUrl:'http://{$sys.ali}{$channel.vMp4url}.m3u8',//控制台开通的APP rtmp地址，必要参
+    /* 以下为可选参数*/
+    width: '100%',//播放器宽度，可用数字、百分比等
+    height: '400',//播放器高度，可用数字、百分比等
+    autostart: false,//是否自动播放，默认为false
+    bufferlength: '1',//视频缓冲时间，默认为3秒。hls不支持！手机端不支持
+    maxbufferlength: '2',//最大视频缓冲时间，默认为2秒。hls不支持！手机端不支持
+    stretching: '1',//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1。hls初始设置不支持，手机端不支持
+    controlbardisplay: 'disable',//是否显示控制栏，值为：disable、enable默认为disable。
+    //adveDeAddr: '',//封面图片链接
+    //adveWidth: 320,//封面图宽度
+    //adveHeight: 240,//封面图高度
+    //adveReAddr: ''//封面图点击链接
+});
+
+	
+	}else{
+	var objectPlayer=new aodianPlayer({
+    container:'play',//播放器容器ID，必要参数
+   rtmpUrl:'rtmp://{$sys.ali}{$channel.vMp4url}',//控制台开通的APP rtmp地址，必要参数
+  hlsUrl:'http://{$sys.ali}{$channel.vMp4url}.m3u8',//控制台开通的APP rtmp地址，必要参
+    /* 以下为可选参数*/
+    width: '100%',//播放器宽度，可用数字、百分比等
+    height: '100%',//播放器高度，可用数字、百分比等
+    autostart: true,//是否自动播放，默认为false
+    bufferlength: '1',//视频缓冲时间，默认为3秒。hls不支持！手机端不支持
+    maxbufferlength: '2',//最大视频缓冲时间，默认为2秒。hls不支持！手机端不支持
+    stretching: '1',//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1。hls初始设置不支持，手机端不支持
+    controlbardisplay: 'disable',//是否显示控制栏，值为：disable、enable默认为disable。
+    //adveDeAddr: '',//封面图片链接
+    //adveWidth: 320,//封面图宽度
+    //adveHeight: 240,//封面图高度
+    //adveReAddr: ''//封面图点击链接
+});
+	
+		
+		}
+
+
+/* rtmpUrl与hlsUrl同时存在时播放器优先加载rtmp*/
+/* 以下为Aodian Player支持的事件 */
+/* objectPlayer.startPlay();//播放 */
+/* objectPlayer.pausePlay();//暂停 */
+/* objectPlayer.stopPlay();//停止 hls不支持*/
+/* objectPlayer.closeConnect();//断开连接 */
+/* objectPlayer.setMute(true);//静音或恢复音量，参数为true|false */
+/* objectPlayer.setVolume(volume);//设置音量，参数为0-100数字 */
+/* objectPlayer.setFullScreenMode(1);//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1。手机不支持 */
+</script>
+        
+				 
+		<div class="down <?php 
+		 $end = $info['starttime'] + 60*$info['time'];
+		 if ($info['starttime'] <= time() && $end >= time()) {
+		 	echo 'noe';
+		 }
+		?>" >
+        
+        <img style="width: 100%; height: 100%;position: absolute;left:0;top:0" src="{$info.image}">
+			<div class="doo" >
+				<div id="dao" class="endtime" value="{$info.starttime}"></div>
+			</div>
+		</div>
+        <script type="text/javascript">
+$(function(){
+	var t = {$info.time}*60;
+    setInterval(function(){
+      $(".endtime").each(function(){
+        var obj = $(this);
+        var endTime = new Date(parseInt(obj.attr('value')) * 1000);
+        var nowTime = new Date();
+        var nMS=endTime.getTime() - nowTime.getTime();
+        var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+        var myH=Math.floor(nMS/(1000*60*60)) % 24; //小时 
+        var myM=Math.floor(nMS/(1000*60)) % 60; //分钟 
+        var myS=Math.floor(nMS/1000) % 60; //秒 
+        var myMS=Math.floor(nMS/100) % 10; //拆分秒
+		var x=nMS/1000;
+		var y = x+t;
+        if(nMS>= 0){
+            var str = "<span>离直播开始还有<\/span><br>" + myD+"<i>天</i>"+myH+"<i>小时</i>"+myM+"<i>分</i>"+myS+"<i>秒</i>";
+			obj.html(str);
+        }else{
+			if(y>0){
+				$('.down').hide();
+			}else{
+				$('.down').show();
+				var str = "<span style=\"color:#f00;\">直播已结束稍后即可点播回看<\/span>";  
+				obj.html(str);
+				$('#CuPlayer').html('');
+			}
+        }
+      });
+    }, 100);
+});
+
+/*$(window).resize(function(){ 
+    $(".doo").css({ 
+        position: "absolute", 
+        left: ($(window).width() - $(".doo").outerWidth())/2, 
+        top: ($(window).height() - $(".doo").outerHeight())/2 
+    });     
+});*/ 
+</script>
+	 <?php  }elseif(strstr($info['videourl'],"qq.com")){ ?>
+
+<iframe frameborder="0" width="100%" height="400" src="{$info.videourl}" allowfullscreen></iframe>
+
+<?php  }elseif(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"shanyueyun")||strstr($info['videourl'],"urren")){?>
+
+<div id="videoPlayer"></div>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/plays/player.js"></script>
+<script type="text/javascript">
+  var w = "100%";//视频宽度
+  var h = "100%";//视频高度
+  var url = "{$info.videourl}";//视频地址
+  var image = "{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+  CKobject.embed('__PUBLIC__/plays/ckplayer.swf','videoPlayer','ckplayerFlashBox',w,h,false,flashvars,video,params);
+</script>
+
+
+
+<?php }else{  ?>
+    <div class="close_light_bg" id="close_light_bg"></div>
+        
+        <div class="video" id="CuPlayer" >
+   
+	 <script>   
+            var vID        = ""; 
+            var vWidth     = "100%";
+            var vHeight    = "100%";
+            var vFile      = "__PUBLIC__/player/CuSunV2set.xml";
+            var vPlayer    = "__PUBLIC__/player/player.swf?v=2.5";
+            var vPic       = "{$info.image}";
+            var vCssurl    = "__PUBLIC__/player/images/mini.css";
+            //PC,安卓,iOS
+            var vMp4url    = '{$info.videourl}';
+            </script>
+            <script class="CuPlayerVideo" data-mce-role="CuPlayerVideo" type="text/javascript" src="__PUBLIC__/player/js/CuSunX1.min.js"></script>   
+         </div>
+        <?php  }  ?>   
+	
+        
+</div>
+
+
+<!--END-->
+
+
+</body>
+</html>

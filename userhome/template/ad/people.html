@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{$css}
+{$js}
+</head>
+<body scroll="no">
+<div class="page_function">
+  <div class="info">
+    <h3>讨论组{$action_name}</h3>
+    <small>使用以下功能进行讨论组修改{$action_name}</small> 
+  </div>
+</div>
+<div class="page_form">
+<form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="page_table form_table">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    
+
+      <tr>
+        <td  align="right"  width="15%">讨论组名称</td>
+        <td colspan="3">
+        {$info.name}
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+     <tr>
+          <td align="right">选择人员：</td>
+          <td  >
+          <select  id="all" multiple="multiple" style="width:80px; height:200px;" ></select>
+          </td>
+          <td >
+              <p><input type="button" class="button" onclick="addItem(true)" value="&gt;&gt;"></p>
+              <p><input type="button" class="button" onclick="addItem(false)" value="&gt;"></p>
+              <p><input type="button" class="button" onclick="dropItem(false)" value="&lt;"></p>
+              <!--<p><input type="button" class="button" onclick="dropItem(true)" value="&lt;&lt;"></p>-->
+            </td>
+            
+            <td>
+          <select name="peoples[]" id="select" multiple="multiple" style="width:80px; height:200px;" >
+             <!--foreach:{$list $vo}-->
+            <option value="{$vo.id}">{$vo.realname}</option>
+            <!--{/foreach}-->
+          </select>
+          </td>
+      </tr>
+    </table>
+</div>
+
+<div class="form_submit">
+<input name="id" type="hidden" value="{$info.id}" />
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+var win = art.dialog.open.origin;
+saveform({
+	success:function(){
+		win.location.reload();
+		art.dialog.close();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+</script>
+
+<script>
+$(document).ready(function(e) {
+    getArticleBycate();
+	$('#smart').submit(function ()
+	{
+		$('#select').find('option').attr('selected','true');
+	});
+	
+});
+function getArticleBycate(){
+	var name=$('#cate').val();
+	var html=null;
+	$.post("__URL__/getpeople",{'name':name,'id':'{$info.id}'},function(data){
+		 $(data).each(function(){
+			 
+		 if(this.id){
+        html+='<option value="'+this.id+'">'+this.realname+'</option>';
+			 }
+   		 });
+		 
+		 $('#all').html(html);
+		 alloption()
+		
+		},'json')
+	}
+function alloption(){
+	$('#all').find('option').dblclick(function(){
+		$(this).prependTo($('#select'));
+		selectoption();
+		});
+	
+	}
+function selectoption(){
+	$('#select').find('option').dblclick(function(){
+		$(this).remove();
+		
+		});
+	}
+function addItem(flag){
+	if(flag){
+		$('#all').find('option').prependTo($('#select'));
+		}else{
+			
+		$('#all').find('option:selected').prependTo($('#select'));
+			}
+	selectoption();		
+	}	
+function dropItem(flag){
+	if(flag){
+		
+		$('#select').find('option').remove();
+		}else{
+			
+			$('#select').find('option:selected').remove();
+			}
+	}	
+</script>
+
+</body>

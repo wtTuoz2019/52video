@@ -1,0 +1,95 @@
+<link href="__PUBLIC__/css/personal.css" type="text/css" rel="stylesheet">
+<!--start 中间-->
+<div class="personalBox clearfix">
+  
+      {include file="index/menu"}  
+        <!--start 广告-->
+        <!--<div class="ad"><img src="images/pic/ad.jpg" /></div>-->
+        <!--end  广告-->
+    <div class="personalBody right">
+      <h3>内容列表 <span class="small"> <a href="__URL__/add">添加内容</a> </span></h3>
+
+           <?php if(empty($list)){ echo '<div class="tools">暂时没有内容</div>';} ?>
+       <?php if($list){ ?>
+     <div class="page_table table_list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+      <th width="40"><center>选择</center></th>
+        <th width="40"><center>ID</center></th>
+        <th width="">标题</th>
+        <th width="40"><center>发布</center></th>
+        <th width="50"><center>访问量</center></th>
+        <th width="130"><center>更新时间</center></th>
+        
+        <th width="80"><center>操作</center></th>
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr id="del_{$vo['aid']}">
+        <td><center><input name="id[]" type="checkbox" id="id[]" value="{$vo['aid']}" ></td>
+        <td><center>{$vo.aid}</center></td>
+        <td><span><a href="<?php echo ROOTAPP ?>/label/admin_aurl/aid-{$vo['aid']}.html" target="_blank">{$vo.title}</a>
+        <!--if:{$vo['image']<>''}-->
+        <a href="javascript:void(0);" rel="{$vo.image}" class="class_pic"><img align="AbsMiddle" src="__PUBLICURL__/images/ico/pic.png" width="14" height="14" alt="" /></a>
+        <!--{/if}-->
+        </span>
+        
+        </td>
+        <td><center>
+        <!--if:{$vo['status']<>0}-->
+        <font color=green><b>√</b></font>
+        <!--{else}-->
+        <font color=red><b>×</b></font>
+        <!--{/if}-->
+        </center></td>
+        <td><center>{$vo.views}</center></td>
+        <td><center>
+        {$php(echo date('Y-m-d H:i:s',$vo['updatetime']))}
+        </center></td>
+        
+        <td><center>
+        
+        <a href="__URL__/edit/id-{$vo.aid}">修改</a>
+        
+        &nbsp;&nbsp;<a href="javascript:void(0);" onclick="del('{$vo.aid}',this)">删除</a>
+       
+        </center></td>
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+      
+      <?php }?>
+    </div>
+</div>
+<!--end 中间-->
+<style>
+    .personalBody h3{border-bottom: 1px solid #ccc;font-size: 16px;}
+    .info-list ul li, .info-list1 ul li{width: 400px;float: left;line-height: 25px;}
+    .h10{height: 30px;clear: both;}
+    table th {padding: 10px;background-color: #fafafa;border-top: 1px solid #eee;background-image: url("../images/table_bg.jpg");background-repeat: repeat-x;background-position: bottom left;color: #666666;font-weight: bold;}
+table td {padding: 10px;background-image: url("../images/table_bg.jpg");background-repeat: repeat-x;background-position: bottom left;height: 25px;}
+.small a{font-size: 14px;color: #31afed;float: right;}
+</style>
+<script>
+$('.box li').hover(function(){
+  $(this).find('a').next('a').show();
+},function(){
+  $(this).find('a').next('a').hide();
+});
+function del(aid,obj) {
+  var obj;
+  ajax_confirm({
+    name:'确认要删除本条收藏内容吗？', 
+    url:"__URL__/del",
+    data:{aid: aid},
+    success:function(msg){
+      // $.duxnotice.success(msg);
+      console.log($(obj).parents('tr'));
+      $(obj).parents('tr').remove();
+    },
+    failure:function(msg){
+      // $.duxnotice.failure(msg);
+    }
+  });
+}
+</script>

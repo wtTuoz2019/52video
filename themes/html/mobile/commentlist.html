@@ -1,0 +1,460 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<title>{$common.title}</title>
+
+<script language="javascript" src="__TPL__/mobile/Scripts/zepto.js"></script>
+<script language="javascript" src="__TPL__/mobile/Scripts/event.js"></script>
+<script language="javascript" src="__TPL__/mobile/Scripts/touch.js"></script>
+<script language="javascript" src="__TPL__/mobile/Scripts/ajax.js"></script>
+<script language="javascript" src="__TPL__/mobile/Scripts/ye_dialog_s.js"></script>
+
+<style>
+	* {font-family: 'Arial';font-size:14px;margin:0px;padding:0px}
+	ul, ol {list-style: none;padding: 0;}
+	a{text-decoration: none;}
+	html,body{-webkit-touch-callout: none;}
+	pre {
+			white-space: pre-wrap;      
+			white-space: -moz-pre-wrap; 
+			white-space: -pre-wrap;     
+			white-space: -o-pre-wrap;   
+			word-wrap: break-word;      
+	}
+	
+	
+	
+/**/
+.btnPlay {
+width: 56px;
+height: 56px;
+display: block;
+position: absolute;
+left: 50%;
+top: 50%;
+margin: -28px 0 0 -28px;
+border-radius: 60px;
+box-shadow: 0 2px 3px hsla(0, 0%, 0%, 0.3);
+cursor: pointer;
+overflow: hidden;
+border: 2px solid hsl(0, 100%, 100%);
+}
+.btnPlay .canPlay {
+width: 0;
+height: 0;
+font-size: 0;
+line-height: 0;
+border-width: 15px 15px 15px 22px;
+border-style: dashed dashed dashed solid;
+border-color: hsla(0, 0%, 0%, 0) hsla(0, 0%, 0%, 0) hsla(0, 0%, 0%, 0) hsl(0, 100%, 100%);
+left: 21px;
+top: 13px;
+}
+.btnPlay em {
+display: block;
+position: absolute;
+}
+.mv_video {
+
+text-align: center;
+border:1px solid #c9c9c9;
+-moz-border-radius: 5px; 
+-webkit-border-radius: 5px; 
+border-radius: 5px; 
+margin:10px 10px 0px 10px;
+/* background: hsl(0, 0%, 94%); */
+background: #fff;
+overflow: hidden;
+
+
+}
+.mv_video .vWrap {
+text-align: center;
+}
+.mv_video .vWrap {
+position: relative;
+background: hsl(0, 100%, 100%);
+text-align: center;
+}
+.vWrap img {
+max-width: 100%;
+max-height: 100%;
+}
+.btnPlay .vloading {width: 10px;height: 10px;border-radius: 10px;background-color: hsl(0, 100%, 100%);left: 10px;top: 24px;-webkit-animation: loadinganm 1.2s linear infinite;-webkit-transform-style: preserve-3d;}
+@-webkit-keyframes loadinganm {
+	0% {
+		opacity: .1;
+		-webkit-transform: translate(-5px,0);
+	}
+
+	40% {
+		opacity: 1;
+		-webkit-transform: translate(30px,0);
+	}
+
+	100% {
+		opacity: 0;
+		-webkit-transform: translate(0px,0);
+	}
+}
+
+.vWrap video {
+position: absolute;
+top: 0;
+left: 0;
+}
+video {
+background: #f0f0f0;
+}
+video {
+max-width: 100%;
+vertical-align: top;
+}
+/**/
+</style>
+
+<script>
+
+	scrollnumber=0;
+	
+		$(window).scroll(function(){
+			// 当滚动到最底部以上100像素时， 加载新内容
+			//if($('#mengban').css('display')=='none'){
+				if (($(document).height() - $(this).scrollTop() - $(this).height()<80 ) ) {
+					if(scrollnumber==0){
+						scrollnumber=1;
+							if(parseInt($('#currpage').val())<=parseInt($('#totalpage').val())){
+								$('#addzhi').css('display','block')
+								getmore();
+							}
+						
+					}
+				}
+			//}
+		});
+	
+
+	function getmore(){
+		getorder=$('#order').val()//排序
+		
+		pages = $('#currpage').val()
+		if(pages){
+			//LoadPageShow();
+			$.get('/index.php?s=/Weixin/getkecheng/laiyuan/84/xueshu/205/page/'+$('#currpage').val(),function(datamsg){
+				var stdata=$.parseJSON(datamsg);
+				if(stdata.ret=='error'){
+					$('#rCount').remove();
+				}else{
+					$('#rCount').remove();
+					addajax(stdata.entity)
+				}
+			});
+		}
+	}
+	
+	function addajax(_cont){
+		$('#addzhi').css('display','none')
+		$('#cont_lists').append(_cont);
+		scrollnumber=0;
+	}
+</script>
+<script>
+	eventTester = function(p,e,o){  
+    p.addEventListener(e,function(){  
+	//alert('d')
+        o.removeClass('vloading').addClass('canPlay')  
+    });  
+ }
+ 
+
+$(document).ready(function(){
+
+	//$.ajaxSetup({
+	 // async: false
+	 // });
+	u = navigator.userAgent
+	$('.btn-close').on('touchstart',function(e){
+		$('#spa-panel-video').css('z-index','2001')
+		$('#spa-page-wxtopics').css('z-index','2002')
+		$('video').remove();
+		stopnextoption();
+	})
+	
+})
+
+function stopnextoption(){
+	event.stopPropagation();
+	event.preventDefault()
+}
+
+function autoplayer(){
+	playobj = $('.btnPlay');
+	playobj.each(function(index){
+		//$(this).on('touchstart',function(){
+		$(this).on('click',function(){
+		
+			   stopnextoption();
+			   newobj = playobj.eq(index).find('em')
+					newobj.removeClass('canPlay').addClass('vloading')
+					playobj.eq(index).find('video').remove();
+					shareid =  newobj.data('media');
+					
+					//geturl = newobj.data('url');
+					//if(geturl){
+						//var stdata=[];
+						//stdata.url = geturl.replace('.mak', '.mp4');  
+					//}else{
+						$.get(siteurl+"/Weixin/getmedia/media/"+shareid+"/filetype/kejian/",
+							function (msg){
+							 stdata = $.parseJSON(msg)
+							 stdata.url = stdata.url.replace('.mak', '.mp4');  
+							if(u.indexOf('Android') > -1){//判断是否是安卓系统
+								var player = '<video width="100%" height="100%" id="play_'+shareid+'" controls="" loop="" src="'+stdata.url+'" ></video>'
+							}else{
+								if(u.indexOf('iPad') > -1){
+									width='100%';
+									height='100%';
+								}else{
+									width='1px';
+									height='1px';
+								}
+							
+								var player='<video width="'+width+'" height="'+height+'" id="play_'+shareid+'"  class="ios" x-webkit-airplay=""   controls="" loop="loop" src="'+stdata.url+'"></video>'
+								//
+							}
+							
+							
+							playobj.eq(index).parent().append(player);
+						 	videoplay = document.getElementById('play_'+shareid);
+						 	videoplay.play();
+						 	eventTester(videoplay,"loadedmetadata",newobj);
+							
+							
+						})
+					//}
+					
+					
+			  //}
+		})
+		
+		
+	})
+}
+</script>
+
+
+<body style="background-color:#e5e5e5 ">
+	
+	<div ><style>
+@media only screen and (-webkit-min-device-pixel-ratio:1) { 
+
+	.header_nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 3;
+		width: 100%;
+		height: 40px;
+		line-height: 40px!important;
+		text-align: center;
+		font-size: 18px;
+		background: #1491c5;
+		min-width: 320px;
+		color: #fff;
+	}
+	.header_nav .return_btn {
+		left: 0;
+		width: 40px;
+		height: 40px;
+		background: url(__TPL__/mobile/Images/back.png) #1491c5 no-repeat center center;
+		-moz-background-size: 24px 23px;
+		-webkit-background-size: 24px 23px;
+		-o-background-size: 24px 23px;
+		background-size: 24px 23px;
+	}
+	.header_nav p {
+		line-height: 40px!important;font-size:1.3rem;font-weight: 700;
+	}
+	.header_nav .home_btn {
+		right: 10px;
+		width: 30px;
+		height: 40px;
+		background: url(Images/new.png) no-repeat center center;
+		-moz-background-size: 26px 26px;
+		-webkit-background-size: 26px 26px;
+		-o-background-size: 26px 26px;
+		background-size: 26px 26px;
+	}
+	.header_nav .home_btn, .header_nav .return_btn {
+		position: absolute;
+		top: 0;
+	}
+	
+	
+	
+}
+@media only screen and (-webkit-min-device-pixel-ratio:2) {
+		.header_nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 3;
+		width: 100%;
+		height: 41px;
+		line-height: 41px!important;
+		text-align: center;
+		font-size: 18px;
+		background: #1ba8b9;
+		color: #fff;
+	}
+	.header_nav .return_btn {
+		/*left: 0;*/
+		left: 10px;
+		width: 30px;
+		height: 26px;
+		background: url(__TPL__/mobile/Images/back.png) #1ba8b9 no-repeat center center;
+		-moz-background-size: 24px 23px;
+		-webkit-background-size: 24px 23px;
+		-o-background-size: 24px 23px;
+		background-size: 24px 23px;
+		
+	}
+	.header_nav p {
+		line-height: 40px!important;
+	}
+	.header_nav .home_btn {
+		/*right: 0;*/
+		right: 10px;
+		width: 30px;
+		height: 28px;
+		background: url(__TPL__/mobile/Images/new.png) no-repeat center center;
+		-moz-background-size: 26px 26px;
+		-webkit-background-size: 26px 26px;
+		-o-background-size: 26px 26px;
+		background-size: 26px 26px;
+	}
+	.header_nav .home_btn, .header_nav .return_btn {
+		position: absolute;
+		top:7px
+		/*top: 0;*/
+	}
+	
+	
+}
+
+
+.home_yesch{background: url(__TPL__/mobile/Images/task_startall_big@2x.png) no-repeat center center;}
+.home_nosch{background: url(__TPL__/mobile/Images/task_start_big@2x.png) no-repeat center center;}
+.home_edit{background: url(__TPL__/mobile/edit.png) no-repeat center center;}
+.home_nosch, .home_yesch, .home_edit{
+		right: 10px;
+		width: 30px;
+		height: 26px;
+		
+		-moz-background-size: 23px 23px;
+		-webkit-background-size: 23px 23px;
+		-o-background-size: 23px 23px;
+		background-size: 23px 23px;
+		position: absolute;
+		top:7px
+	}
+
+
+
+
+
+.zhuixian_right, .zhuixian_left{
+		color:#ffffff;
+		float:left;
+		background-color:#1ba8b9;
+		
+		/*
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		*/
+		margin-top:3px;
+		line-height: 28px;
+		margin-top: 1px;
+		width: 73px;
+	}
+.zhuixian_right{
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+.zhuixian_left{
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+
+.yuanjiao{
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background-color:#ffffff;
+	height:30px;
+	line-height:30px;
+	padding-left: 1px;
+}
+.comnunyua{
+	padding:5px;
+	width:149px;
+	margin:0 auto;
+	
+}
+.allcss{color:#1ba8b9;float:left;width:74px }
+</style>
+<div class="header_nav">
+	<a href="javascript:"  class="return_btn"></a>	<p>视频列表</p>
+</div>
+</div>
+	
+	<div style="margin-top:50px ">
+		
+		<div id="cont_lists">
+			
+			    <!--foreach:{$loop $vo}-->
+				<div class="mv_video" style="clear:both;margin-top:10px ">    
+				  <div style="text-align:center;border-bottom:1px solid #c9c9c9;font-size:1.2rem;padding:10px 0px 7px;line-height:20px;margin:0px 10px 10px">{$vo.titlex}</div>            
+				  <div class="vWrap" thumbs="1" style="margin: 0px 10px 7px; ">              
+					<div>
+					<a href="{$vo.aurl}">	<img src="{$vo.image}"   style="display: inline;"> </a>
+						<div style="position:absolute;left:50%;top:50%;margin:-90px 0 0 90px; color:#fff">{$vo.updatetime time="Y-m-d"}</div>
+					</div>           
+					
+				  </div>   
+			  </div>
+			   <!--/loop-->
+<p id="rCount" class="more" style="height:1px " >
+	<input name="currpage" id="currpage" type="hidden" value="2">
+	<input name="totalpage" id="totalpage" type="hidden" value="7">
+	
+</p>
+<script>
+	autoplayer()
+</script>
+		</div>
+			
+		
+		<!--正在加载 start-->
+		<div  style="text-align:center;">
+				<div style="margin:0px  10px 20px" >
+					<span id="addzhi" style="height:20px;color:#474747;display:none ">
+					<img src="__TPL__/mobile/Picture/loadinga51.gif" style="width:20px;height:20px;vertical-align: bottom;">&nbsp;正在加载...
+					</span>
+				</div>
+		 </div>
+		 <!--正在加载 end-->
+		 
+		
+		
+		
+		
+		
+	</div>
+	
+</body>
+</html>

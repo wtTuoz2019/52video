@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$common.title}</title>
+<link href="css/base.css" type="text/css" rel="stylesheet">
+<link href="css/other.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery1.42.min.js"></script>
+</head>
+
+<body>
+ <!--头部-->
+<!--#include file="head.html"-->
+<!--END-->
+<!--start 中间-->
+<div class="contentBox">
+  <div class="sortBox f_l" style="width:1100px;">
+  	<ul class="sortList clearfix">
+  		<!--foreach:{$loop $vo}-->
+      	<li class="clearfix" style="width:1100px;">   
+          	<div class="sortPic left"><a href="{$vo.aurl}"><img src="{$vo.image}" /></a></div>
+              <div class="sortCon left" style="width:743px;">
+              	<h4><a href="{$vo.aurl}">{$vo.titlex}</a></h4>
+                  <p class="source">{$teacher[$vo['tid']]['name']}  {$teacher[$vo['tid']]['title']} <span style="float:right;color:#f00;" class="fr"><?php if($vo['cid'] == 16){
+                  	 echo date('m-d H:i', $vo['starttime']);?>开课</span>
+                  	<?php };?> </span></p>  
+                  <p class="intro">{$vo['description']}</p>
+                  <div class="enter">
+                  	<a href="{$vo.aurl}">详<br />细<br />内<br />容</a>
+                  </div>
+              </div>
+          </li>
+          <!--/loop-->
+          
+      </ul>
+      <ul class="dc_pagination dc_paginationA dc_paginationA06">{$page}</ul>
+  </div>
+</div>
+<!--end 中间-->
+<!--底部-->
+<!--#include file="foot.html"-->
+<!--END-->
+</body>
+<script type="text/javascript">
+	$('.rightbox ul li:eq(2)').css('border-right', 'none');	
+	$('.rightbox ul li:eq(5)').css('border-right', 'none');	
+	$('.rightbox ul li:last-child').css('border-right', 'none');
+</script>
+</html>

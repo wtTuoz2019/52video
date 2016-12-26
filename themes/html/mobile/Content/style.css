@@ -1,0 +1,483 @@
+/* -- 底部按钮 -- */
+body{background:#333;}
+.fixed-bottom{
+	background: #333;
+	position:fixed;
+	bottom:15px;
+	left:0;
+	box-shadow:0 -1px 2px rgba(0, 0, 0, 0.2);
+	width:100%;
+	z-index:2000;
+	height:48px;
+	line-height:48px;
+	text-align:center;
+}
+
+.fixed-bottom a{
+	width: 50%;
+	color: #fff;
+	display: block;
+	height:42px;
+	float:left;
+	line-height:42px;
+	text-align: center;
+	border-radius: 3px;
+	position:relative;
+	margin:3px 0px 3px 0;
+	}
+	
+.fixed-bottom a.interact-comment{
+	background-image: -moz-linear-gradient(top , #09c, #057);
+	background-image: -ms-linear-gradient(top , #09c, #057);
+	background-image: -webkit-linear-gradient(top , #09c, #057);
+	background-image: -o-linear-gradient(top , #09c, #057);
+	background-image: linear-gradient(top , #09c, #057);
+}
+
+.fixed-bottom a.interact-comment:active{
+	background-image: -moz-linear-gradient(top , #057, #09c);
+	background-image: -ms-linear-gradient(top , #057, #09c);
+	background-image: -webkit-linear-gradient(top , #057, #09c);
+	background-image: -o-linear-gradient(top , #057, #09c);
+	background-image: linear-gradient(top , #057, #09c);
+}
+
+.fixed-bottom a.interact-like{
+	background-image: -moz-linear-gradient(top , #ff6868, #c40000);
+	background-image: -webkit-linear-gradient(top , #ff6868, #c40000);
+	background-image: -ms-linear-gradient(top , #ff6868, #c40000);
+	background-image: -o-linear-gradient(top , #ff6868, #c40000);
+	background-image: linear-gradient(top , #ff6868, #c40000); 
+}
+
+.fixed-bottom a.interact-like:active{
+	background: red;
+}
+
+
+/* -- 评论弹框 -- */
+
+.input-editor .nickname{
+	border: 0;
+	border-bottom: 1px solid #ccc;
+	font-size: 14px;
+	height: 27px;
+	padding: 0;
+	margin: 0;
+	
+}
+
+.input-editor textarea{
+	border: 0;
+	color: #000;
+	border-top: 1px solid #eee;
+	font-size: 14px;
+	height: auto;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	padding-top: 5px;
+	min-height: 72px;
+	outline: none;
+	resize: none;
+}
+
+
+.input-type button{
+	background: #eee;
+	border-radius: 3px;
+	color:#333;
+	display: block;
+	float: left;
+	height: 35px;
+	line-height: 35px;
+	padding: 0 20px;
+	float: right;
+	border:0;
+}
+
+.input-type button.input-type-submit{
+	background: #2791dc;
+	color: #fff;
+	margin-left: 5px;
+}
+
+.like-tips{
+	background: #314c83 ;
+    border-radius: 3px;
+    box-sizing: content-box;
+    display: block;
+    font-size: 14px;
+    height: 14px;
+    left: 50%;
+    line-height: 44px;
+    margin: 0 auto 0 -17px;
+    opacity: 1;
+    padding: 4px;
+    position: absolute;
+    text-align: center;
+    top: -6px;
+    transform: translateY(-10px);
+	-webkit-transform: translateY(-10px);
+	-ms-transform:translateY(-10px);
+	-moz-transform:translateY(-10px);
+    width: 27px;
+    z-index: 1;
+	}
+	
+.like-tips:after{
+	background: #314c83 none repeat scroll 0 0;
+    bottom: -5px;
+    content: "";
+    height: 15px;
+    left: 50%;
+    margin-left: -8px;
+    opacity: 1;
+    position: absolute;
+    transform: rotate(45deg);
+	 -webkit-transform:rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+    width: 15px;
+	}
+.like-tips-value{
+	background: transparent;
+    color: #fff;
+    margin: 0 auto;
+    position: relative;
+    top: -16px;
+	z-index:2;
+	}
+/*视频块*/
+.fixed-top{
+	width: 100%;
+	background: #fff;
+	padding-top:0;
+	position:relative;
+}
+
+.channels{
+	width: 100%;
+	background: #000;
+	position:relative;
+	height:200px;
+}
+
+.player{
+	width: 100%;
+	height:100%;
+	position: relative;
+}
+
+.player video{
+	width:100%;
+	height: 200px;
+}
+#play video{
+	width:100%;
+	height: 100%;
+}
+#play object{
+	width:100%;
+	height: 100%;
+}
+.backdrop{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	margin: 0 auto;
+	/*overflow: hidden;*/
+	height: 100%;
+}
+
+.backdrop img, .watchover img{
+	width: 100%;
+	height:100%;
+	overflow: hidden;
+}
+
+.counter{
+	z-index: 100;
+	color: #fff;
+	position: absolute;
+	height: 100px;
+    left: 50%;
+	top: 50%;
+    width: 290px;
+    margin-left: -145px;
+    margin-top: -50px;
+	text-align: center;
+	background:rgba(0,0,0,0.6);
+	border-radius:10px;
+	padding:10px 0
+}
+
+.counter p{
+	color: #fff;
+}
+
+.counter .tsfm{
+	width: 290px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.counter .tsfm span{
+	display: inline-block;
+	width: 23%;
+}
+
+.watchover{
+	position:absolute;
+	top:0;
+	left:0;
+	height:200px;
+	width:100%;
+	z-index:999999;
+	}
+.watchover .black-warp{
+	color:red;
+	font-size:18px;
+	text-align:center;
+	line-height:100px;
+	border-radius:30px;
+	width:290px;
+	height:100px;
+	background:rgba(0,0,0,0.6);
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-145px;
+	margin-top:-50px;
+	}
+
+/*tab*/
+.mian-content{
+	background: #333;
+	color: #fff;
+	text-align:center;
+	position:relative;
+	width:100%;
+	padding-bottom:42px
+}
+
+#myTab{
+	height:36px;
+	line-height:36px;
+	padding:0;
+	margin:0;
+	width:100%;
+	background:#333;
+	position:relative;
+	text-align:center;
+}
+
+#myTab li {
+	width:25%;
+	float:left;
+	height:40px;
+	}
+
+#myTab li a{
+	display:block;
+	height:40px;
+	float:left;
+	line-height:40px;
+	width:100%;
+	border-bottom:5px solid #333;
+	color:#fff;
+	
+}
+#myTab li a.selected{border-bottom:3px solid #fff;}
+
+.mui-content-padded p{
+	color: #fff;
+/*	text-align:center;*/
+}
+
+.sponsor{
+	text-align: center;
+	background:#333;
+	position:fixed;
+	bottom:0;
+	font-size:12px;
+	width:100%;
+	height:15px;
+	line-height:15px
+	}
+
+.look-zan{
+	color:#fff;
+	padding: 5px 10px;
+	background:rgba(0,0,0,0.5);
+	border-radius: 3px;
+	text-align: center;
+	line-height: 0px;
+	font-size: 14px;
+	float:left;
+	z-index:99999;
+	margin-top:8px
+	/*position:absolute;
+	top:5px;*/
+}
+
+ /*.view-look{
+	left:0;
+}*/
+
+.view-like{
+	position:absolute;
+	right:0;
+}
+
+.look-zan  i{
+	height: 15px;
+	width: 15px;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.look-zan  i.look{
+	background:  url(../Images/view.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.look-zan  i.like{
+	background:  url(../Images/like.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+.look-zan  span{
+	display: block;
+	float: left;
+	margin-top: 7px;
+	float: right;
+}
+/*tab list*/
+div.details img{
+	width:100%;
+	margin:5px 0
+}
+
+div.details img:last-child{
+	/*margin:0*/
+}
+
+div.details{
+  background-image: -moz-linear-gradient(left, #494949, #595959, #494949);
+  background-image: -ms-linear-gradient(left, #494949, #595959, #494949);
+  background-image: -webkit-linear-gradient(left, #494949, #595959, #494949);
+  background-image: -o-linear-gradient(left, #494949, #595959, #494949);
+  background-image: linear-gradient(left, #494949, #595959, #494949); 
+  padding: 10px;
+  min-height:300px;
+ }
+ 
+div.details dl{
+	overflow:hidden;
+	margin-bottom:0;
+}
+
+
+
+div.atlas{
+	background: #fff;
+	height: auto; 
+	width: 100%;
+	padding: 10px 10px 1px 10px;
+	min-height:300px;
+}
+
+ul.comment{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-align:left
+}
+
+div.atlas li{
+	color:#000;
+	font-size: 12px;
+	border-bottom:1px solid #ccc ;
+	width:100%;
+}
+
+div.atlas li > a{
+	display: block;
+	height: 30px;
+	width: 30px;
+	border-radius: 3px;
+	float: left;
+}
+
+div.atlas li > a img{
+	width: 100%;
+	vertical-align: middle;
+}
+
+div.atlas li > dl{
+	display: block;
+	margin-left:40px;
+	margin-top:10px;
+	margin-bottom:10px
+}
+
+.atlas li > dl dt.comment-user{color:#8b8b8b; }
+
+.atlas li > dl dd.comment-data{font-size:15px; word-break:break-all; word-wrap:break-word;}
+
+.atlas li > dl dd span{color:#8b8b8b; margin-top: 5px; display: inline-block;}
+
+#comment-hint{text-align: center; margin: 15px 0 10px 0;}
+
+#comment-hint div a{color:#ccc;}
+
+.atlas li > dl dt.comment-user-other{color:#8b8b8b; }
+
+/*back top*/
+.backTop{
+	overflow:hidden; 
+	visibility:hidden; 
+	opacity:0; 
+	-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+	bottom: 50px;
+	border-radius: 5px;
+	right: 10px;
+	position: fixed;
+    background: rgba(0,0,0,1) url(../Images/gotop.png) no-repeat center center;
+    z-index: 9999;
+	width: 60px;
+	height: 60px; }
+	
+.backTop.visited{
+	opacity: 1;
+	visibility: visible; }
+	
+.backTop.fade-out{
+	opacity: 0.5;
+}	
+
+
+@media screen and (min-width:768px){
+	.channels{
+	height:400px;
+    }
+	
+	.player video{
+	width:100%;
+	height: 400px;
+    }
+    
+	.watchover{
+	height:400px;
+	}
+	div.details{
+		min-height:600px;
+		}
+	.div.atlas{
+		min-height:600px;
+		}
+	}

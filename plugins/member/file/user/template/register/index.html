@@ -1,0 +1,72 @@
+<div id="login" class="warp">
+  <div id="main" class="reg">
+   <div id="header">
+      <div class="title">
+        <h1>会员注册</h1>
+        <div class="small">login</div>
+      </div>
+      <div class="fn-clear"></div>
+    </div>
+  
+  <div class="fn-clear"></div>
+  
+  <div id="reg_head">
+  	<ul>
+    	<li class="current">
+        	<span class="num">1</span>
+            <span class="title">填写会员信息</span>
+        </li>
+        <li>
+        	<span class="num">2</span>
+            <span class="title">验证/审核</span>
+        </li>
+        <li>
+        	<span class="num">3</span>
+            <span class="title">注册成功</span>
+        </li>
+        <div class="fn-clear"></div>
+    </ul>
+  </div>
+  <div class="form">
+    <form action="__URL__/data.html" method="post" id="form">
+    	<ul>
+            <li><label><span class="red">*</span> 用户名：</label> <input name="username" type="text" class="text" id="username" reg="^(?!_)(?!.*?_$)[\w]{{$user_config.reg_username_length_min},{$user_config.reg_username_length_max}}$" msg="用户名只能为字母数字下划线组成且支持{$user_config.reg_username_length_min}~{$user_config.reg_username_length_max}位" > </li>
+            <li><label><span class="red">*</span> 昵称：</label> <input name="nicename" type="text" class="text" id="nicename" reg="^(?!_)(?!.*?_$)[\u4e00-\u9fa5\w\-]{{$user_config.reg_username_length_min},{$user_config.reg_username_length_max}}$" msg="昵称只能为中英文数字与下划线且支持{$user_config.reg_username_length_min}~{$user_config.reg_username_length_max}位" > </li>
+            <li><label><span class="red">*</span> 密 码：</label> <input name="password" type="password" class="text" id="password" reg="\S{{$user_config.reg_password_length_min},{$user_config.reg_password_length_max}}" msg="密码不能为空且支持{$user_config.reg_password_length_min}~{$user_config.reg_password_length_max}位" > </li>
+            <li><label><span class="red">*</span> 重复密码：</label> <input name="password2" type="password" class="text" id="password2" repeat="#password" reg="\S" msg="密码重复输入错误" > </li>
+            <li><label><span class="red">*</span> Email：</label> <input name="email" type="text" class="text" id="email" reg="^\w+([-\.]\w+)*@\w+([\.-]\w+)*\.\w{2,4}$" msg="请输入正确的邮箱地址" > </li>
+            <!--foreach:{$field_list $vo}-->
+              <?php echo model('user_model')->get_field_html($vo); ?>
+            <!--{/foreach}-->
+            
+            <?php echo model('verification')->verify_image('reg'); ?>
+            
+            
+            <!--hook-->
+            <?php module('common')->plus_hook('register','index_tpl');  ?>
+            <!--hook end-->  
+            
+            <li><label>注册条款</label> <input name="agreement" id="agreement" type="checkbox" value="1"> 我已仔细阅读并同意<a href="__URL__/agreement.html" target="_blank">注册协议</a></li>
+            <li><label></label> <button class="button" type="submit">注册</button> </li>
+        </ul>
+    </form>
+    </div>
+  <div class="fn-clear"></div>
+  <div class="sep10"></div>
+  <div class="sep10"></div>
+  <div class="sep10"></div>
+  <div class="sep10"></div>
+  </div>
+</div>
+
+<script>
+saveform({
+	success:function(url){
+		window.location.href=url;
+	},
+	failure:function(msg){
+		$.duxnotice.failure(msg);
+		fleshVerify();
+	}
+});
+</script> 

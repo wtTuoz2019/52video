@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$user_config.base_name}</title>
+<meta name="keywords" content="{$user_config.base_keywords}">
+<meta name="description" content="{$user_config.base_description}">
+<link href="/themes/html/css/base.css" type="text/css" rel="stylesheet">
+<link href="/themes/html/css/index.css" type="text/css" rel="stylesheet">
+<link href="/themes/html/css/style.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/themes/html/js/jquery1.42.min.js"></script>
+<script type="text/javascript" src="/themes/html/js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="/themes/html/js/jqthumb.min.js"></script>
+</head>
+
+<body>
+<div class="fullBox">
+	<div class="topBox clearfix">
+    	<div class="logo left"><img src="{$sys.logo}" alt="校园电台"></div>
+        <div class="mainNav left">
+        	<ul class="clearfix">
+                <li class="current"> 
+                    <a class="title" href="/index.php/">首页</a>
+                </li>
+                <li> 
+                    <a class="title" href="/index.php/field/">点播资源</a>
+                </li>
+                <li> 
+                    <a class="title" href="/index.php/live/">直播活动</a>
+                </li>
+                <li> 
+                    <a class="title" href="/index.php/xinwenlanmu/">新闻</a>
+                </li>
+            </ul>
+        </div>
+        <div class="searchBox left">
+        	<input type="text" placeholder="请输入您要输入的关键字" class="wenben">
+            <input type="submit" value="" class="tijiao">
+        </div>
+      
+        <div class="other right">
+            <ul class="clearfix">
+              <?php 
+            session_start();
+            $userinfo = explode("|",$_COOKIE['93GDN__duxuser']);
+            $uid = $userinfo[0];
+            if($uid <= 0){
+        ?>
+                <li><a href="__ROOT__/user/index.php/login?url=<?php echo $_SERVER["HTTP_HOST"].$_SERVER["PHP_SELF"];?>" class="login">登录</a></li>
+                <li><a href="__ROOT__/user/index.php/register/index.html" class="login">注册</a></li>
+                <?php }else{;?>
+                    <li><a href="__ROOT__/user/index.php/information/logout.html" class="login">退出</a></li>
+                <li><a href="__ROOT__/user/index.php" class="login">个人主页</a></li>
+                    <?php };?>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--body-->
+<div class="footer">
+
+</div>
+<div class="copy_">{$sys.copyright}</div>
+</body>
+</html>

@@ -1,0 +1,264 @@
+
+<div class="page_form">
+<form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="box-body">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+    
+      <tr>
+        <td width="120" align="right">名称</td>
+        <td width="300">
+        <input name="name" type="text" class="form-control" id="name" value="{$info.name}" reg="\S" msg="名称不能为空" />
+        </td>
+        <td></td>
+      </tr>
+  
+         <tr>
+        <td width="120" align="right">地址</td>
+        <td width="300">
+        <input name="vurl" type="text" class="form-control" id="vurl" value="{$info.vurl}" reg="\S" msg="地址" />
+        </td>
+        <td></td>
+      </tr>
+      <?php if($info) { ?> 
+      <script type="text/javascript" src="__PUBLICURL__/ckplayer/js/offlights.js"></script>
+   <script type="text/javascript" src="__PUBLICURL__/ckplayer/ckplayer.js" charset="utf-8"></script>
+         <tr>
+        <td  colspan="2"><div id="a1"></div>
+        <script type="text/javascript">
+	//如果你不需要某项设置，可以直接删除，注意var flashvars的最后一个值后面不能有逗号
+	function loadedHandler(){
+	
+	}
+	var _nn=0;
+	var endtime=0;
+	var flag=false;
+	function ckplayer_status(str){
+	var statusarray=CKobject.getObjectById('ckplayer_a1').getStatus();
+	
+	if(statusarray.time>endtime&&endtime!=0&&flag){
+		flag=false;
+		CKobject.getObjectById('ckplayer_a1').videoPause();
+		}
+		
+	}
+	
+	var flashvars={
+		f:'__PUBLICURL__/ckplayer/m3u8.swf',//视频地址
+		a:'{$info.vurl}',//调用时的参数，只有当s>0的时候有效
+		s:'4',
+		c:'0',//是否读取文本配置,0不是，1是
+		x:'',//调用配置文件路径，只有在c=1时使用。默认为空调用的是ckplayer.xml
+		i:'',//初始图片地址
+		v:'80',//默认音量，0-100之间
+		p:'0',//视频默认0是暂停，1是播放，2是不加载视频字点20'
+		//以下为自定义的播放器参数用来在插件里引用的
+		my_url:encodeURIComponent(window.location.href)//本页面地址
+		//调用自定义播放器参数结束
+		};
+	var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always'};
+	var video=['{$info.vurl}'];
+	CKobject.embed('__PUBLICURL__/ckplayer/ckplayer.swf','a1','ckplayer_a1','100%','300',false,flashvars,video,params);
+	
+
+	function getprogress(){
+		
+		var statusarray=CKobject.getObjectById('ckplayer_a1').getStatus();
+
+		var a=new   Date(statusarray.time*1000);
+		$('#progressinput').val(statusarray.time);
+		$('#progress').val(formatDate(a));
+		
+		
+		}
+	function getprogressend(){
+		
+		var statusarray=CKobject.getObjectById('ckplayer_a1').getStatus();
+
+		var a=new   Date(statusarray.time*1000);
+		
+		$('#progressendinput').val(statusarray.time);
+		$('#progressend').val(formatDate(a));
+		
+		}
+			
+	
+   function   formatDate(now)   {     
+                 
+              var   hour=checkTime(now.getHours()-8);     
+              var   minute=checkTime(now.getMinutes());     
+              var   second=checkTime(now.getSeconds());   
+			  if(hour!='00')  
+              return   hour+":"+minute+":"+second; 
+			  else    
+			    return   minute+":"+second; 
+              }      
+         
+
+function checkTime(i)
+{
+if (i<10) 
+  {i="0" + i}
+  return i
+}
+	function playseek(e){
+		var time=$(e).attr('data-time');
+		endtime=parseFloat($(e).attr('end-time'));
+		flag=true;
+		CKobject.getObjectById('ckplayer_a1').videoSeek(time);
+		
+		}
+	
+</script>
+        
+        </td>
+      	 <td>
+        		 
+			<p  >
+          
+           <input name="progress" id="progress" value="00:00:00" class="form-control"  type="text" style="width:100px" ><input type="button" value="获取开始时间点" class="button"  onclick="getprogress()"/> 
+            <input name="progress"  id="progressinput" value="0"   type="hidden" >
+            
+             </p>
+            <p><input name="progressend" id="progressend" value="00:00:00" style="width:100px"  class="form-control" type="text" ><input type="button" value="获取结束时间点" class="button"  onclick="getprogressend()"/>
+            <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
+				
+			</p>
+             <p><input name="title" id="title" value="" style="width:300px"  class="form-control" type="text" placeholder="看点介绍" >
+			</p>
+			<p >
+	      <input type="button" onClick="addtime()" id="button" class="button" value="添加">
+			</p>
+			<div class="clear" id="functions">
+             <!--foreach:{$times $vo}-->
+        <div id="button{$vo.id}"><button type="button" class="button" data-time="{$vo.start}" end-time="{$vo.end}" onClick="playseek(this)">{$vo.name}</button>
+          <p><a href="javascript:" onClick="edittimes('{$vo.id}',this)">编辑</a>&nbsp;&nbsp;<a href="javascript:" onClick="deltimes('{$vo.id}',this)">删除</a></p>
+          </div>
+        
+           <!--{/foreach}-->
+            </div>
+	
+         </td>
+      </tr>
+      
+      
+      
+       <?php } ?> 
+     
+     
+    </table>
+</div>
+
+<div class="form_submit">
+<input name="id" type="hidden" value="{$info.id}" />
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+       
+</div>
+</div>
+
+<script>
+
+
+
+
+//提交表单
+savelistform({addurl:"__URL__/videoadd",listurl:"javascript:history.go(-1)"});
+var flag=false;
+var tid=0;
+function edittimes(id,obj){
+	flag=true;
+	tid=id;
+	button=$(obj).parent().parent().find('button');
+	var start=button.attr('data-time');
+	$('#progressinput').val(start);
+	start=new   Date(start*1000);
+	$('#progress').val(formatDate(start));
+	
+	var end=button.attr('end-time');
+	$('#progressendinput').val(end);
+	end=new   Date(end*1000);
+	$('#progressend').val(formatDate(end));
+	$('#title').val(button.text());
+	$('#button').val('保存');
+	
+	}
+function addtime(){
+	
+var length_ = $('#title').val().length;
+		if (length_<1) {
+			
+			$.dialog( '名称不可小于1个字符');
+			return false;
+		};
+		if(flag){
+	 $.post("__URL__/times_save",
+	  {	
+		type:'content',
+		vid:'{$info.id}',
+		id:tid,
+		start:$('#progressinput').val(),
+		end:$('#progressendinput').val(),
+		name:$('#title').val()
+	  },
+	  function(d){
+		if(d.status == 1){
+			$('#button'+tid).html('<button type="button" class="button" data-time="'+$('#progressinput').val()+'" end-time="'+$('#progressendinput').val()+'" onClick="playseek(this)">'+$('#title').val()+'</button><p><a href="javascript:" onClick="edittimes('+d.message+',this)">编辑</a>&nbsp;&nbsp;<a href="javascript:" onClick="deltimes('+d.message+',this)">删除</a></p>');
+			
+			
+			
+							
+		}else{
+			$.dialog('编辑失败');
+		}
+		$('#button').val('添加');
+		clearinput()
+	  },'json');	
+	  		
+			
+			}else{
+	  $.post("__URL__/times_add",
+	  {	
+		type:'content',
+		vid:'{$info.id}',
+		start:$('#progressinput').val(),
+		end:$('#progressendinput').val(),
+		name:$('#title').val()
+	  },
+	  function(d){
+		if(d.status == 1){
+			$('#functions').append('<div id="button"'+d.message+'><button type="button" class="button" data-time="'+$('#progressinput').val()+'" end-time="'+$('#progressendinput').val()+'" onClick="playseek(this)">'+$('#title').val()+'</button><p><a href="javascript:" onClick="edittimes('+d.message+',this)">删除</a>&nbsp;&nbsp;<a href="javascript:" onClick="deltimes('+d.message+',this)">删除</a></p></div>');
+			
+			
+			
+							
+		}else{
+			$.dialog('添加失败');
+		}
+		clearinput()
+	  },'json');	
+	  
+		}
+	}
+function clearinput(){
+	$('#progressinput').val('');
+	$('#progressendinput').val('');
+	$('#progress').val('');
+	$('#progressend').val('');
+	$('#title').val('');
+	}
+//删除
+function deltimes(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'确定删除？ ',
+		url:"__URL__/timesdel",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			
+			$(obj).parent().parent().remove();
+		}
+	});
+}
+</script>

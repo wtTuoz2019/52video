@@ -1,0 +1,64 @@
+@charset "utf-8";
+/* CSS Document */
+html {overflow-y:scroll;}
+body {margin:0; padding:0; font:14px/1.5 "微软雅黑"; background:#ffffff; text-align:center; color:#666;}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p,img{padding:0; margin:0; border:0;}
+table,td,tr,th{font-size:12px;}
+ol,ul {list-style:none;}
+li{list-style-type:none;}
+img{vertical-align:top;border:0;}
+h1,h2,h3,h4,h5,h6{font-size:inherit; font-weight:normal;}
+address,cite,code,em,th,i{font-weight:normal; font-style:normal;}
+.hx a,.hx em,.fB{font-weight:bold;}
+.clearfix{*zoom:1;}
+.clearfix:after{display:block; overflow:hidden; clear:both; height:0; visibility:hidden; content:".";}
+a:link,a:visited,a:hover,a:active{color:#666; text-decoration:none;}
+.left{ float:left; display:inline;}
+.right{ float:right; display:inline;}
+.fontS{ font-family:"宋体";}
+
+/*----公用头部----*/
+.fullBox{ background:url(../images/line.jpg) repeat-x 0 0; text-align:center; margin-bottom:11px; width:2000px}
+.topBox{ width:1130px; overflow:hidden; margin:0 auto; text-align:left; padding-top:30px; height:59px; overflow:hidden;}
+.logo{  overflow:hidden; padding:0 70px 0 50px }
+.logo img{ display:block; width:100%;}
+.mainNav{ width:340px; overflow:hidden;} 
+.mainNav li,.other li{ float:left; display:inline; margin-left:22px; line-height:30px;}
+.mainNav li a,a.down{ color:#fff; font-size:18px;}
+.searchBox{ margin-left:22px; width:264px; border:1px solid #d2d2d2; border-radius:10px; padding:10px; background:#fff; height:28px; margin-top:-10px;}
+.searchBox input.wenben{ color:#b2b2b2; line-height:28px; height:28px; width:230px; border:0; overflow:hidden; background:none; float:left; display:inline;}
+.searchBox input.tijiao{ width:28px; height:28px; background:url(../images/icon.png) no-repeat; overflow:hidden; float:left; display:inline;}
+a.login{ color:#585858; background:#dcdcdc; line-height:50px; height:50px; padding:0 28px; display:inline-block; border-radius:5px; font-size:25px;}
+  
+/*-----关于我们---*/
+.usOther{ width:984px; margin:0 auto; padding-top:60px;}
+.usOther li{ float:left; display:inline; width:182px; height:182px; margin:0 32px;}
+.usOther li a{ display:block; width:182px; height:182px; line-height:182px; text-align:center; font-size:24px;  background:url(../images/icon.png) no-repeat; background-position:-115px 0;}
+
+/*-------公用底部------*/
+.footer{ background:#999999; margin-top:50px; text-align:center; padding:20px 0 0 0; color:#fff;}
+.footer section h3{font-size:18px;}
+.footer section h4{font-size:16px;}
+.footer .wrap{width:50%; text-align:center; margin:0 auto; padding-bottom:20px}
+.footer aside{background:#666666; padding:20px; text-align:center;}
+.footer section{text-align:left; display:block; width:350px;}
+.footer section .message-word{border-top:1px solid #fff; margin-top:5px; padding-top:10px; font-size:14px; line-height:1.8}
+.footer section .message-word p:first-child{margin-bottom:30px}
+.footer section.about-us{float:left;} 
+.footer section.contact-us{float:right;}
+.footerCon{ width:1100px; margin:0 auto; color:#fff;}
+.footerLogo{ font-size:24px; padding:0 30px 0 0; height:40px; line-height:40px; border-right:1px solid #999;}
+.footerCopyRight{ float:right; display:inline; width:780px; overflow:hidden; margin-top:-5px;}
+.footerCopyRight li{ float:left; display:inline; width:260px; overflow:hidden; font-size:14px; line-height:1.8; text-align:left;}
+
+/*-------翻页-----*/
+.page{ text-align:right; padding-right:20px; color:#cacaca;}
+.page a{ display:inline-block; width:25px; height:25px; line-height:25px; text-align:center; border:1px solid #cacaca; color:#cacaca; background:#fff; margin-right:3px;}
+.page a.cur{ border:1px solid#00a0e9; background:#00a0e9; color:#fff;}
+
+@media screen and (max-width:1400px){
+	.footer .wrap{ width:70%}
+	}
+@media screen and (max-width:1050px){
+	.footer .wrap{ width:100%}
+	}

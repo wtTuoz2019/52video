@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{$css}
+{$js}
+</head>
+<body scroll="no">
+<div class="page_function">
+  <div class="info">
+    <h3>评论{$action_name}</h3>
+  </div>
+</div>
+<div class="page_form">
+<form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="page_table form_table">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    
+    
+       <tr>
+          <td width="100">所属文章</td>
+          <td width="350"><select name="fid"  reg="." id="sid" >
+             
+             <!--foreach:{$list $vo}-->    
+              <option value="{$vo['aid']}" <?php if($info['fid']==$vo['aid']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['title']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+        
+     
+    </table>
+</div>
+
+<div class="form_submit">
+<input name="id" type="hidden" value="{$info.id}" />
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+var win = art.dialog.open.origin;
+saveform({
+	success:function(){
+		win.location.reload();
+		art.dialog.close();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+</script>
+</body>

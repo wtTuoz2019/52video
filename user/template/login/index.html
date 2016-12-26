@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>登陆</title>
+<link href="../public/css/login.css" type="text/css" rel="stylesheet">
+<!-- <link href="__PUBLIC__/css/style_1.css" type="text/css" rel="stylesheet"> -->
+{$js}
+</head>
+
+<body>
+  <div id="head"></div>
+  <div class="loginBox">
+      <div class="topLogin"></div>
+        <div class="loginCon">
+          <div class="regBody">
+              <p>请输入以下信息</p>
+                <form action="__URL__/data.html?url={$url}" method="post" id="form" autocomplete="off">
+                  <div class="name">
+                    <input type="text" placeholder="请输入用户名" class="wenben" name="username" id="username"  reg="\S" msg="" />
+                  </div>
+                  <div class="password">
+                    <input type="password" placeholder="请输入密码" class="wenben" name="password" id="password" reg="\S" msg="" />
+                  </div>
+                  <div class="loginBtn"><input type="submit" class="submit2" value="登 录" /></div>
+                  <div class="forget"><a style="margin-right:15px;" href="__APP__/register/index.html">用户注册</a><a href="__APP__/forget/index.html">忘记密码</a></div>
+                  <!--hook-->
+    <?php module('common')->plus_hook('login','register_tpl');  ?>
+    <!--hook end-->
+                </form>
+            </div>
+        </div>
+    </div>
+    <style>
+#tips { float: left; }
+.duxnotice { height: 33px; line-height: 33px; text-align: center; font-size: 14px; left: 0; right: 0; zoom: 1; display: none }
+.duxnotice_success { background: url(__PUBLIC__/images/success_bg.gif) repeat-x; border-bottom: 1px solid #50c24e; color: #006633; }
+.duxnotice_warning { background: url(__PUBLIC__/images/warning_bg.gif) repeat-x; border-bottom: 1px solid #ffc237; color: #826200; }
+.duxnotice_failure { background: url(__PUBLIC__/images/failure_bg.gif) repeat-x; border-bottom: 1px solid #8b0000; color: #ffffff; }
+</style>
+<script>
+saveform({
+  success:function(url){
+    window.location.href=url;
+  },
+  failure:function(msg){
+    fleshVerify();
+    $.duxnotice.failure(msg);
+    
+  }
+});
+</script> 
+</body>
+</html>

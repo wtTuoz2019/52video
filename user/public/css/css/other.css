@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+.contentBox{ width:1100px; overflow:hidden; margin:0 auto; text-align:left;}
+ul.sortList li .sortPic img{ display:block; width:100%;}
+
+.classifyBox{ border: 1px solid #e5e5e5; margin-bottom:14px;}
+.classifyBox .tit{ width:66px; padding-top:35px; height:90px; text-align:center; color:#fff; background:#31afed; font-size:18px; position:relative; z-index:2;}
+.classifyBox .classifyCon{ position:relative; width:1032px; overflow:hidden; z-index:1; margin-left:-1px; padding:16px 0;}
+.classifyBox .classifyCon li{ float:left; display:inline; width:171px; border-left:1px dotted #d0d0d0; text-align:center; line-height:1.9;}
+.classifyBox .classifyCon li a{ font-size:16px;}
+.classifyBox .classifyCon li a.cur{ color:#43b5ed;}
+
+.sortBox{ padding:15px 0;}
+ul.sortList li{ width:1100px; overflow:hidden; margin-bottom:28px;}
+ul.sortList li .sortPic{ width:268px; height:152px; overflow:hidden;}
+ul.sortList li .sortCon{ border:1px solid #e5e5e5; border-left:0; padding:10px 68px 0 20px; width:743px; height:140px; overflow:hidden; position:relative;}
+ul.sortList li .sortCon h4{ font-size:16px; position:relative; margin-bottom:6px;}
+ul.sortList li .sortCon h4 span{ position:absolute; left:50%; font-size:13px; line-height:2;}
+ul.sortList li .sortCon h4 span.red{ color:#f00;}
+ul.sortList li .sortCon h4 span.lan{ color:#31afed;}
+ul.sortList li .sortCon p{ width:648px; margin-bottom:8px; font-size:13px;}
+ul.sortList li .sortCon p.intro{ color:#999;}
+ul.sortList li .sortCon .enter{ width:68px; height:152px; background:#31afed; position:absolute; right:0; top:0; overflow:hidden;}
+ul.sortList li .sortCon .enter a{ display:block; text-align:center; font-size:16px; color:#fff; padding-top:28px;}
+
+.showMore{ margin-top:18px; background:#eee;}
+.showMore a{ display:block; text-align:center; line-height:58px; height:58px; color:#999; font-size:18px;}

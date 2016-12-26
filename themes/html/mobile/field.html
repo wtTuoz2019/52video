@@ -1,0 +1,245 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content=""/>
+<title>{$common.title}</title>
+<link rel="stylesheet" href="__TPL__mobile/css/style.css" type="text/css" />
+ <script type="text/javascript" src="__TPL__mobile/Scripts/jquery-1.10.2.js" ></script>
+
+ <script type="text/javascript" src="__TPL__mobile/Scripts/iscroll/jquery-latest.min.js" ></script>
+ <script type="text/javascript" src="__TPL__mobile/Scripts/iscroll/iscroll.js" ></script>
+ <script type="text/javascript">
+var myScroll,
+	pullDownEl, pullDownOffset,
+	pullUpEl, pullUpOffset,
+	generatedCount = 0;  
+/**
+	* 下拉刷新 （自定义实现此方法）
+	* myScroll.refresh();		// 数据加载完成后，调用界面更新方法
+	*/
+function pullDownAction () {
+	setTimeout(function () {
+
+		myScroll.refresh();		//数据加载完成后，调用界面更新方法   Remember to refresh when contents are loaded (ie: on ajax completion)
+	}, 1000);
+}
+/**
+	* 滚动翻页 （自定义实现此方法）
+	* myScroll.refresh();		// 数据加载完成后，调用界面更新方法
+	*/
+function pullUpAction () {
+	setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+	getmore();
+		myScroll.refresh();		// 数据加载完成后，调用界面更新方法 Remember to refresh when contents are loaded (ie: on ajax completion)
+	}, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+} 
+/** 
+	* 初始化iScroll控件
+	*/
+$(function(){  
+	pullDownEl = document.getElementById('pullDown');
+	pullUpEl = document.getElementById('pullUp');
+	pullDownOffset = pullDownEl.offsetHeight;
+	pullUpOffset = pullUpEl.offsetHeight;
+	
+	var id='list';
+	var yLen=80;
+	 
+	var hei=document.getElementById(id).maxScrollY;
+	  
+	myScroll = new iScroll(id, { 
+		useTransition: false, 
+		topOffset: pullDownOffset,
+		onRefresh: function () {
+			if (pullDownEl.className.match('loading')) {
+				pullDownEl.className = '';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '';
+			} else if (pullUpEl.className.match('loading')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '';
+			}
+		},
+		onScrollMove: function () {
+			if (this.y >= yLen && !pullDownEl.className.match('flip')) {
+				pullDownEl.className = 'flip';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '';
+				this.minScrollY = 0;
+			} else if (this.y < yLen && pullDownEl.className.match('flip')) {
+				pullDownEl.className = '';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '';
+				this.minScrollY = -pullDownOffset;
+			}
+			else if (this.y < (this.maxScrollY - yLen) && !pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'flip';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '';
+				this.maxScrollY = this.maxScrollY;
+			} else if (this.y > (this.maxScrollY + yLen) && pullUpEl.className.match('flip')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '';
+				this.maxScrollY = pullUpOffset;
+			}
+			 
+		}, 
+		onScrollEnd: function () {
+			if (pullDownEl.className.match('flip')) {
+				pullDownEl.className = 'loading';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';				
+				pullDownAction();	// Execute custom function (ajax call?)
+			} 
+				else if (pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'loading';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';				
+				pullUpAction();	// Execute custom function (ajax call?)
+			} 
+			
+		} 
+	}); 
+	
+	setTimeout(function () { document.getElementById(id).style.left = '0'; }, 800);
+});
+</script>
+  <style media="all">
+  #list{
+		top:0;
+		position:absolute;
+		width:100%;
+		bottom:1px;
+	}
+	#pullDown, #pullUp {
+	background:transparent;
+	padding:5px 10px;
+	font-weight:bold;
+	text-align:center;
+	font-size:14px;
+	color:#fff;
+	padding-top:20px;
+}
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+	display:block; float:left;
+	width:40px; height:40px;
+	
+	-webkit-background-size:40px 80px; background-size:40px 80px;
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-duration:250ms;	
+}
+#pullDown .pullDownIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+#pullDown.flip .pullDownIcon {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+#pullUp.flip .pullUpIcon {
+
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+	background-position:0 100%;
+	-webkit-transform:rotate(0deg) translateZ(0);
+	-webkit-transition-duration:0ms;
+	-webkit-animation-name:loading;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:linear;
+}
+@-webkit-keyframes loading {
+	from { -webkit-transform:rotate(0deg) translateZ(0); }
+	to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+	#list img.jiantou{
+		position: fixed;
+		top: 32px;
+		left: 73%;
+		z-index: 1700;
+		width: 15px;
+	}
+
+  </style>
+</head>
+	
+<body>
+	<div class="body_bg">
+		<img src="__TPL__/mobile/img/video/body_bg.png" >
+	</div> 
+    <div class="btngroups">
+				<button type="button" class="left" onClick="javascript:window.location.href='/index.php/live/?token=<?php echo $_GET['token'];?>';"><img src="img/live.png"/>直播</button>
+				<button type="button" class="right" onClick="javascript:window.location.href='/index.php/field/?token=<?php echo $_GET['token'];?>';"><img src="img/back.png"/>回看</button>
+			</div>
+    <div id="list" class="ui-content" role="main" style="padding:0px;">
+    	
+    	<div id="shishi" name="shishi"  class="listDiv"  >
+        <div id="pullDown">
+					<span class="pullDownIcon"></span>
+					<span class="pullDownLabel"></span>
+				</div>
+                
+	<div class="warper">
+		<ul class="orderList">
+			
+              <!--foreach:{$loop $vo}-->
+			<li>
+				<div class="date">
+					<i></i>
+					<strong>{$vo.inputtime time="Y.m.d"}</strong>
+					<p>{$vo.inputtime time="H:i"}</p>
+				</div>
+				<div class="content">
+					<span class="triangle"></span>
+					<a href="{$vo.aurl}">
+						<h5>{$vo.titlex}</h5>
+						<div class="picture">
+							<img src="{$vo.image}" />
+							<span class="play"></span>
+						</div>
+						<div class="person">
+                        <!--<img src="{$teacher[$vo['tid']]['image']}">-->
+							<p>
+                            	<!--{$teacher[$vo['tid']]['name']}{$teacher[$vo['tid']]['title']}-->
+                            	<span></span>
+                                <span><img src='img/see.png' />{$vo.views}</span>
+                            </p>
+						</div>
+					</a>
+				</div>
+			</li>
+              <!--/loop-->
+             
+		</ul>
+       
+	</div>
+    <div id="pullUp">
+					<span class="pullUpIcon"></span>
+					<span class="pullUpLabel"></span>
+				</div>
+     </div>
+     <img class="jiantou" src="img/snajiao.png"/>  
+    </div>
+	<a href="#">
+		<span class="up"></span>
+	</a>
+  <script>
+var page=2;
+function getmore(){
+	$.get('__ROOT__/index.php/category/pc_list',{page:page,cid:'13'},function(data){
+		if(data.status==1){
+			page+=1;
+			var info=data.message;
+			var html='';
+			for(var i=0;i<info.length;i++){
+			
+				html+="<li><div class='date'><i></i><strong>"+info[i]['date']+"</strong><p>"+info[i]['time']+"</p></div><div class='content'><span class='triangle'></span><a href='"+info[i]['aurl']+"'><h5>"+info[i]['title']+"</h5><div class='picture'><img src='"+info[i]['image']+"' /><span class='play'></span></div><div class='person'><p><span></span><span><img src="+'/themes/html/mobile/img/see.png'+" />'"+info[i]['views']+"'</span></p></div></a></div></li>";
+				}
+			$('.orderList').append(html);		}
+		},'json') 
+	 
+	 
+	}
+</script>
+ <!--#include file="sharewx.html"-->
+</body>
+</html>

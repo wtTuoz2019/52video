@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> 直播平台</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="__PUBLICURL__/home/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="__PUBLICURL__/home/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="__PUBLICURL__/home/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Daterange picker -->
+        <link href="__PUBLICURL__/home/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="__PUBLICURL__/home/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="__PUBLICURL__/home/css/data.css" rel="stylesheet" type="text/css" />
+        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+   <body>
+
+
+<div class="container">
+       		<div class="row">
+       			<div class="data-statistic clearfix">
+		        	  <div class="data-statistic-currentcount">
+					        <div class="data-statistic-title">总会员</div>
+					        <div id="now1Online" class="data-statistic-count">{$data.allcount}<span class="postfix ml-15"></span></div>
+					        <i class="icon"></i>
+				      </div>
+				      <div class="data-statistic-daikuan">
+					        <div class="data-statistic-title">男会员</div>
+					        <div id="now5Bw" class="data-statistic-count">{$data.coursecount}<span class="postfix ml-15"></span></div>
+					        <i class="icon"></i>
+				      </div>
+				      <div class="data-statistic-totalcount">
+					        <div class="data-statistic-title">女会员</div>
+					        <div id="datOnline" class="data-statistic-count">{$data.livecount}<span class="postfix ml-15"></span></div>
+					        <i class="icon"></i>
+				      </div>
+				    <!--  <div class="data-statistic-todydaikuan">
+					        <div class="data-statistic-title">累计流量</div>
+					        <div id="dayTr" class="data-statistic-count">0<span class="postfix ml-15">MB</span></div>
+					        <i class="icon"></i>
+				      </div>-->
+			    </div>
+			    
+             
+			    <div class="panel-heading">
+			        <h3 class="panel-title">用户性别</h3>
+		        </div>
+		        <div class="panel-body ledata-home-userface clearfix">
+			        <div class="box pull-left">
+			        	<div class="con sex clearfix pull-left" >
+                				<div style="margin-bottom: 30px" >
+                                    <p id="man_title" data-placement="bottom" data-toggle="tooltip"  class="pull-left" data-original-title="" title="">
+                                            <i class="icon-data-user-man-wj" > </i>
+                                            <i id="man_pic"></i>
+                                     </p>
+                                    <div class="progress">
+                                            <div class="progress-bar wid1" style="width:{$data.man}%"></div>
+                                    </div>
+                                    <span> {$data.man}% </span>
+                                </div>
+                                <div style="margin-bottom: 30px" >
+                                      <p id="woman_title" data-placement="bottom" data-toggle="tooltip" class="pull-left" data-original-title="" title="">
+                                            <i class="icon-data-user-woman-wj"></i>
+                                            <i id="woman_pic"></i>
+                                     </p>
+                                    <div class="progress">
+                                            <div class="progress-bar wid2" style="width:{$data.woman}%"></div>
+                                    </div>
+                                     <span> {$data.woman}% </span>
+                                </div>
+                                <div >
+                                   <p id="human_title" data-placement="bottom" data-toggle="tooltip"  class="pull-left" data-original-title="" title="">
+                                            <i class="icon-data-user-human-wj"></i>
+                                            <i id="human_pic"></i>
+                                    </p>
+                                    <div class="progress">
+                                            <div class="progress-bar wid3" style="width:{$data.human}%"></div>
+                                    </div>
+                                    <span> {$data.human}% </span>
+                                </div> 
+			        		<!--<div class="pull-left icon">
+			        			<i class="icon-data-sex-wj"></i>
+			        		</div>
+			        		<div class="pull-left info">
+				                <h5 class="title">性别</h5>
+				                <p class="txt">您的会员属于
+				                	<span id="gender" class="text-warning">未知</span>
+				                	知音
+				                </p>
+				           	</div>
+				            <div class="pull-left chart icons">
+				               
+				                <p id="man_title" data-placement="bottom" data-toggle="tooltip" class="pull-left" data-original-title="" title="">
+				                    <i class="icon-data-user-man-wj"></i>
+				                    <i id="man_pic"></i>
+				                </p>
+				                <p id="woman_title" data-placement="bottom" data-toggle="tooltip" class="pull-left" data-original-title="" title="">
+				                    <i class="icon-data-user-woman-wj"></i>
+				                    <i id="woman_pic"></i>
+				                </p>
+				                <p id="human_title" data-placement="bottom" data-toggle="tooltip" class="pull-left" data-original-title="" title="">
+				                    <i class="icon-data-user-human-wj"></i>
+				                    <i id="human_pic"></i>
+				                </p>
+				            </div>-->
+				        </div>
+				       <!-- <div class="con age clearfix">
+				            <div class="pull-left icon">
+				               	<i class="icon-data-age-wj"></i>
+				            </div>
+				            <div class="pull-left info">
+						        <h5 class="title">年龄</h5>
+						        <p class="txt">您的平台属于
+						            <span id="age" class="text-success"></span>
+						            知音
+						        </p>
+						    </div> 
+				        </div>        -->
+			        </div>
+               		<div class="chart pull-left" id="mobile-chart" style="height: 270px;width:355px;"></div>
+		        </div>
+       			
+		        
+    		</div>
+    	</div>
+
+ <!--<div class="chart" id="line-chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+ 
+ <div class="chart" id="mobile-chart" style="height: 400px;"></div>-->
+<script type=text/javascript src=" __PUBLICURL__/js/highcharts.js"></script>
+<script type=text/javascript src=" __PUBLICURL__/js/highcharts-3d.js"></script>
+<script type="text/javascript">
+$(function () {
+  
+	
+    $('#mobile-chart').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: '会员来源统计'
+        },
+        subtitle: {
+            text: '来源对比'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 20,
+                depth: 20
+            }
+        },
+        series: [{
+            name: '数量',
+            data: [
+                {$data.citydata}         ]
+        }]
+    });
+	
+
+});
+		</script>
+        
+    </body>
+</html>

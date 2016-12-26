@@ -1,0 +1,99 @@
+<div class="page_function">
+  <div class="info">
+    <h3>采集通道管理</h3>
+    <small>将栏目与采集通道绑定来实现附加字段功能</small> </div>
+  <div class="exercise"> 
+   <a href="javascript:menuload('__URL__')">采集通道列表</a>
+   <?php if(model('user_group')->model_power('expand_model','add')){ ?>
+   <a href="javascript:;" onclick="add()">添加采集通道</a>
+   <?php } ?>
+  
+   </div>
+</div>
+<div class="page_main">
+  <div class="page_table table_list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th width="10%"><center>id</center></th>
+         <th width="10%">采集名称</th>
+        <th width="20%">采集地址</th>
+        <th width="15%">域名</th>
+        <th width="10%">token</th>
+        <th width="10%">key</th>
+        <th width="10%">上次采集时间</th>
+        <th width="15%"><center>操作</center></th>
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr>
+        <td><center>{$vo.id}</center></td>
+        <td>{$vo.name}</td>
+        <td>{$vo.url}</td>
+        <td>{$vo.domain}.tuoz.net</td>
+        <td>{$vo.token}</td>
+        <td>{$vo.api}</td>
+        <td><?php echo $vo['updatetime'] > 0 ? date('Y-m-d H:i', $vo['updatetime']) : "未采集";?></td>
+        <td><center>
+         &nbsp;&nbsp;<a href="javascript:void(0);" onclick="collect('{$vo.id}')">采集</a>
+         &nbsp;&nbsp;<a  href="javascript:void(0);" onclick="edit('{$vo.id}')">修改</a>
+         &nbsp;&nbsp;<a href="javascript:void(0);" onclick="del('{$vo.id}',this)">删除</a>
+         </center></td>
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+</div>
+
+<div class="page_tool">
+  <div class="page"></div>
+</div>
+<script>
+//添加
+function add() {
+	urldialog({
+	title:'采集通道添加',
+	url:'__URL__/add'
+	});
+};
+//修改
+function edit(url) {
+	urldialog({
+	title:'采集通道编辑',
+	url:'__URL__/edit/id-'+url
+	});
+};
+//采集
+function collect (url) {
+  urldialog({
+  title:'数据采集',
+  url:'__URL__/collect/id-'+url
+  });
+}
+
+//删除
+function collect(id,obj) {
+  var obj;
+  ajaxpost({
+    name:'数据采集',
+    url:"__URL__/collect",
+    data:{id: id},
+    tip:1,
+    success:function(){
+      // $(obj).parent().parent().parent().remove();
+    }
+  });
+}
+
+//删除
+function del(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'删除采集通道后会同时采集通道下级内容! ',
+		url:"__URL__/del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().remove();
+		}
+	});
+}
+</script>

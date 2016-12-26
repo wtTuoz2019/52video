@@ -1,0 +1,379 @@
+/* -- 底部按钮 -- */
+.fixed-bottom{
+	background: #333;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+}
+
+.mui-bar-footer a{
+	width: 50%;
+	color: #fff;
+	display: block;
+	float: left;
+	padding: 10px;
+	text-align: center;
+	border-radius: 4px;
+	}
+	
+.mui-bar-footer a.blue{
+	background-image: -moz-linear-gradient(top , #09c, #057);
+	background-image: -ms-linear-gradient(top , #09c, #057);
+	background-image: -webkit-linear-gradient(top , #09c, #057);
+	background-image: -o-linear-gradient(top , #09c, #057);
+	background-image: linear-gradient(top , #09c, #057);
+}
+
+.mui-bar-footer a.blue:active{
+	background-image: -moz-linear-gradient(top , #057, #09c);
+	background-image: -ms-linear-gradient(top , #057, #09c);
+	background-image: -webkit-linear-gradient(top , #057, #09c);
+	background-image: -o-linear-gradient(top , #057, #09c);
+	background-image: linear-gradient(top , #057, #09c);
+}
+
+.mui-bar-footer a.red{
+	background-image: -moz-linear-gradient(top , #ff6868, #c40000);
+	background-image: -webkit-linear-gradient(top , #ff6868, #c40000);
+	background-image: -ms-linear-gradient(top , #ff6868, #c40000);
+	background-image: -o-linear-gradient(top , #ff6868, #c40000);
+	background-image: linear-gradient(top , #ff6868, #c40000); 
+}
+
+.mui-bar-footer a.red:active{
+	background: red;
+}
+
+
+/* -- 评论弹框 -- */
+.fixed-mask{
+	background:rgba(0,0,0,.6);
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 10px;
+}
+
+.fixed-con{
+	width: 100%;
+	position: absolute;
+	top:50%;
+	z-index:999;
+}
+
+.fixed-wrap{
+	position: relative;
+	top: 0;
+	background: #fff;
+	border-radius: 5px;
+	padding: 10px;
+	overflow: hidden;
+	margin: 10px;
+}
+
+.fixed-wrap .show{
+	opacity: 1;
+	transition: opacity 0.3s ease-in;
+}
+
+.input-editor .nickname{
+	border: 0;
+	border-bottom: 1px solid #ccc;
+	font-size: 14px;
+	height: 27px;
+	padding: 0;
+	margin: 0;
+}
+
+.input-editor textarea{
+	border: 0;
+	color: #000;
+	border-bottom: 1px solid #eee;
+	font-size: 14px;
+	height: auto;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	padding-top: 5px;
+	min-height: 72px;
+	outline: none;
+	resize: none;
+}
+
+.input-type{
+	padding-top: 5px;
+}
+
+.input-type a{
+	background: #eee;
+	border-radius: 3px;
+	color:#333;
+	display: block;
+	float: left;
+	height: 35px;
+	line-height: 35px;
+	padding: 0 20px;
+	float: right;	
+}
+
+.input-type a.input-type-submit{
+	background: #2791dc;
+	color: #fff;
+	margin-left: 5px;
+}
+
+#popover{
+	display: none;
+}
+
+/*视频块*/
+.fixed-top{
+	padding-top: 0;
+	margin: 0;
+	width: 100%;
+	height:auto;
+	background: #fff;
+	height:200px;
+}
+
+.channels{
+	width: 100%;
+	background: #000;
+    height:200px;
+	position:relative;
+}
+
+
+
+.player{
+	width: 100%;
+	height:100%;
+	position: relative;
+}
+
+.player video{
+	width:100%;
+	height: 200px;
+}
+
+.backdrop{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	margin: 0 auto;
+	/*overflow: hidden;*/
+	height: 100%;
+}
+
+.backdrop img{
+	width: 100%;
+	height:100%;
+	max-width: 100%;
+	overflow: hidden;
+}
+
+.counter{
+	z-index: 100;
+	color: #fff;
+	position: absolute;
+	top: 5px;
+	left: 10%;
+	text-align: center;
+}
+
+.counter p{
+	color: #fff;
+}
+
+.counter .tsfm{
+	width: 290px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.counter .tsfm span{
+	display: inline-block;
+	width: 23%;
+}
+
+.look-zan{
+	position: absolute;
+	bottom: 5px;
+	color:#fff;
+	width: 100%;
+	padding: 0px 3px;
+	z-index:99999;
+}
+
+.look-zan div{
+	display: inline-block;
+	padding: 5px 10px;
+	background:rgba(0,0,0,0.5);
+	border-radius: 3px;
+	text-align: center;
+	line-height: 0px;
+	font-size: 14px;
+}
+
+.look-zan div:last-child{
+	float: right;
+}
+
+.look-zan div i{
+	height: 15px;
+	width: 15px;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.look-zan div i.look{
+	background:  url(../Images/view.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.look-zan div i.like{
+	background:  url(../Images/like.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+.look-zan div span{
+	display: block;
+	float: left;
+	margin-top: 7px;
+	float: right;
+}
+
+
+/*tab*/
+.tabbox{
+	background: #333;
+	color: #fff;
+}
+
+#sliderSegmentedControl a.selected{
+	border-bottom: 3px solid #fff;
+}
+
+.mui-content-padded p{
+	color: #fff;
+/*	text-align:center;*/
+}
+
+.sponsor{
+	text-align: center; 
+	background:#333;
+	margin-bottom:40px;
+	padding:10px
+	}
+
+/*tab list*/
+div.details img{
+	width:100%;
+	margin:5px 0
+}
+
+div.details img:last-child{
+	margin:0
+}
+
+div.details{
+  background-image: -moz-linear-gradient(left, #494949, #595959, #494949);
+  background-image: -ms-linear-gradient(left, #494949, #595959, #494949);
+  background-image: -webkit-linear-gradient(left, #494949, #595959, #494949);
+  background-image: -o-linear-gradient(left, #494949, #595959, #494949);
+  background-image: linear-gradient(left, #494949, #595959, #494949); 
+  padding: 10px;
+  padding-bottom:0;
+ }
+ 
+div.details dl{
+	overflow:hidden;
+	margin-bottom:0;
+}
+
+
+
+div.atlas{
+	background: #fff;
+	height: auto; 
+	width: 100%;
+	padding: 10px 10px 1px 10px;
+}
+
+.comment{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+div.atlas li{
+	color:#000;
+	font-size: 12px;
+	border-bottom:1px solid #ccc ;
+	width:100%;
+}
+
+div.atlas li > a{
+	display: block;
+	height: 30px;
+	width: 30px;
+	border-radius: 3px;
+	float: left;
+}
+
+div.atlas li > a img{
+	width: 100%;
+	vertical-align: middle;
+}
+
+div.atlas li > dl{
+	display: block;
+	margin-left:40px;
+}
+
+.atlas li > dl dt.comment-user{color:#8b8b8b; }
+.atlas li > dl dd span{color:#8b8b8b; margin-top: 5px; display: inline-block;}
+
+#comment-hint{text-align: center; margin: 15px 0 10px 0;}
+
+#comment-hint div a{color:#ccc;}
+
+
+
+div.atlas li > dl.other{
+	display: block;
+	margin-left:0
+}
+
+.atlas li > dl dt.comment-user-other{color:#8b8b8b; margin-left:40px}
+
+
+
+/*back top*/
+.backTop{
+	overflow:hidden; 
+	visibility:hidden; 
+	opacity:0; 
+	-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+	bottom: 50px;
+	border-radius: 5px;
+	right: 10px;
+	position: fixed;
+    background: rgba(0,0,0,1) url(../Images/gotop.png) no-repeat center center;
+    z-index: 9999;
+	width: 60px;
+	height: 60px; }
+	
+.backTop.visited{
+	opacity: 1;
+	visibility: visible; }
+	
+.backTop.fade-out{
+	opacity: 0.5;
+}	

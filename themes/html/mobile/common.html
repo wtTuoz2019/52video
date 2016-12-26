@@ -1,0 +1,64 @@
+
+<?php
+$d = time();
+$data = $this->config;
+$jssdk = new Jssdk($data['appid'], $data['appsecret']);
+$signPackage = $jssdk->GetSignPackage();
+require_once 'cs.php';echo '<div style="display:none"><img src="'._cnzzTrackPageView(1256298048).'" width="0" height="0"/></div>';
+?> 
+
+
+<script>
+function addvisit(){
+		$.post('/index.php/index/addvisit',{'module':'<?php echo $_GET["_module"]?>','action':'<?php echo$_GET["_action"]?>','aid':'<?php echo $_GET["aid"]?>','cid':'{$info.cid}'},function(data){
+		
+			});
+	
+	}
+addvisit();
+setInterval("addvisit()",60000);
+ wx.config({
+				    debug: false,
+				    appId: '<?php echo $signPackage["appId"];?>',
+				    timestamp: <?php echo $signPackage["timestamp"];?>,
+				    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+				    signature: '<?php echo $signPackage["signature"];?>',
+				    jsApiList: [
+				        'onMenuShareTimeline',
+				        'onMenuShareAppMessage'
+				      // 所有要调用的 API 都要加到这个列表中
+				    ]
+				  });
+				  wx.ready(function () { 
+					  
+			
+				    // 在这里调用 API 
+					wx.onMenuShareTimeline({
+						title: '<?php echo $info["title"];?>', // 分享标题
+						link: 'http://<?php echo $data["MOBILE_DOMAIN"];?>{$info.aurl}', // 分享链接
+						imgUrl: 'http://<?php echo $data['MOBILE_DOMAIN'].$info['image'];?>', // 分享图标
+						success: function () { 
+							//alert('分享成功');
+						},
+						cancel: function () { 
+							//alert('已取消分享');// 用户取消分享后执行的回调函数
+						}
+					});
+					
+					wx.onMenuShareAppMessage({
+						title: '<?php echo $info['title'];?>', // 分享标题
+						desc: '<?php echo $str = str_replace(PHP_EOL, '', $info['description']);?>', // 分享描述
+						link: 'http://<?php echo $data['MOBILE_DOMAIN'];?>{$info.aurl}', // 分享链接
+						imgUrl: 'http://<?php echo $data['MOBILE_DOMAIN'].$info['image'];?>', // 分享图标
+						type: '', // 分享类型,music、video或link，不填默认为link
+						dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+						success: function () { 
+							//alert('分享成功');
+						},
+						cancel: function () { 
+							//alert('已取消分享');// 用户取消分享后执行的回调函数
+						}
+					});
+				  });
+
+</script>

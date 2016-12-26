@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>注册</title>
+<link href="__APP__/../public/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__APP__/../public/css/login.css" type="text/css" rel="stylesheet">
+<script type=text/javascript > var app="/user/index.php" </script>
+<script type=text/javascript src="/public/js/jquery.js"></script>
+<script type=text/javascript src="/public/js/duxui.js"></script>
+<script type=text/javascript src="/public/js/common.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+<script type=text/javascript src="/public/kindeditor/kindeditor-min.js"></script>
+<script type=text/javascript src="/public/kindeditor/lang/zh_CN.js"></script>
+<script type=text/javascript src="/user/public/js/swfobject.js"></script>
+<script type=text/javascript src="/user/public/js/jquery.lhgcalendar.js"></script>
+<script type=text/javascript src="/user/public/js/jquery.duxnotice.js"></script>
+<script type=text/javascript src="/user/public/js/jquery.duxform.js"></script>
+<script type=text/javascript src="/user/public/js/jquery.common.js"></script>
+</head>
+
+<body>
+  <div class="loginBox">
+      <div class="topReg"></div>
+        <div class="regCon" style="padding-left: 0;">
+          <div id="main" class="reg" style="margin:0 112px;">
+            <div id="header" style="width: 617px;border-bottom: 1px solid #ccc;">
+              <div class="title">
+                <h1>找回密码</h1>
+                <div class="small">forget</div>
+              </div>
+              <div class="fn-clear"></div>
+            </div>
+            <div class="fn-clear"></div>
+            <div id="reg_head">
+              <ul>
+                <li class="current">
+                  <span class="num">1</span>
+                    <span class="title">找回密码</span>
+                </li>
+                <li>
+                  <span class="num">2</span>
+                    <span class="title">邮箱验证</span>
+                </li>
+                <li>
+                  <span class="num">3</span>
+                    <span class="title">修改密码</span>
+                </li>
+                  <div class="fn-clear"></div>
+              </ul>
+            </div>
+          </div>
+          <div class="regBody" style="padding-left: 145px;padding-top:145px;">
+            <form action="__URL__/data.html" method="post" id="form">
+                <div class="name"><input name="username" type="text" placeholder="请输入用户名" class="wenben" id="username" reg="^(?!_)(?!.*?_$)[\w]{{$user_config.reg_username_length_min},{$user_config.reg_username_length_max}}$" msg="用户名只能为字母数字下划线组成且支持{$user_config.reg_username_length_min}~{$user_config.reg_username_length_max}位" /></div>
+                <div class="eMail"><input name="email" type="text" placeholder="请输入用邮箱地址" class="wenben" id="email" reg="^\w+([-\.]\w+)*@\w+([\.-]\w+)*\.\w{2,4}$" msg="请输入正确的邮箱地址"  ></div>
+                <div class="verify"><?php echo model('verification')->verify_image1('reg'); ?></div>
+                <div class="btn"><input type="submit" value="注 册" class="submit" />or 已注册，请 <a href="#">登录</a></div>
+            </div>
+          </form>
+        </div>
+        </div>
+    </div>
+    <script>
+saveform({
+  success:function(url){
+    window.location.href=url;
+  },
+  failure:function(msg){
+    $.duxnotice.failure(msg);
+    fleshVerify();
+  }
+});
+</script> 
+</body>
+</html>

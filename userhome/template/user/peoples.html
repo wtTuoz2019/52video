@@ -1,0 +1,63 @@
+<div class="page_function">
+ 
+  <div class="exercise"> 
+   <a href="__URL__/peoples/id-{$id}">监看人员</a>	
+  <a href="javascript:;" onclick="add()">添加人员</a>
+   </div>
+</div>
+
+<div class="page_main">
+  <div class="box-body">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+      <tr>
+        <th width="10%"><center>ID</center></th>
+       
+          <th><center>用户</center></th>
+        
+        <th><center>操作</center></th>
+      </tr>
+      <!--foreach:{$peoples $vo}-->
+      <tr>
+        <td><center>{$vo.id}</center></td>
+       <th><center><img src="{$vo.headimgurl}" height="50px"><p>{$vo.nicename}</p></center></th>
+           
+       
+        <td> <center><a href="javascript:" onClick="del('{$vo.id}',this)">删除</a></center></td>
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+</div>
+
+<div class="page_tool">
+				<div class="page">
+     					 <ul class="pagination">
+                           {$page}
+                         </ul>
+ </div>	
+</div>
+
+                                  
+                                    
+<script>
+function add() {
+	urldialog({
+	title:'监看人员添加',
+	url:'__URL__/addpeople/id-{$id}'
+	});
+};
+
+//审核
+function del(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'确定要删除此人？',
+		url:"__URL__/delpeople",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().remove();
+		}
+	});
+}
+</script>

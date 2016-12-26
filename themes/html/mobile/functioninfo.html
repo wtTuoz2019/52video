@@ -1,0 +1,71 @@
+
+                     <div class="tab-pane " id="funcions{$vo.id}">
+                     
+                     <?php if($vo['type']=='comment'){?>
+                     
+                      <!--#include file="menu_comment.html"-->
+					 <?php }elseif($vo['type']=='jiaoyancomment'){?>
+                          <!--#include file="menu_jiaoyan.html"-->
+                          <?php }elseif($vo['type']=='content'){?>
+                        	{$vo.content html}
+                         <?php }elseif($vo['type']=='url'){?>
+                         <script>
+						 $('.funcions{$vo.id}').bind('click',function(){
+							 
+							window.location="{$vo.content}"; 
+							 });
+						 </script>
+                          <?php }elseif($vo['type']=='linkaid'){?>
+                          <ul>
+     <?php  
+     $loop=array();
+     if($vo['content'])
+    $loop=model('content')->getlist($vo['content']);
+  
+      ?> <!--foreach:{$loop $val}-->    
+                <li   class="<?php echo $val['cid']==16?'live-class':'over-class';  ?> m_recommend">
+                    
+                   
+                   		<span class="quan"></span>
+						<span class="quan2"></span>
+						<div class="col-xs-6 cebian">
+                            <p>
+                       		<span><?php echo $val['cid']==16?date('Y-m-d',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?>&nbsp;&nbsp;<?php echo $val['cid']==16?'直播':'重播';  ?></span><img src="img/video.png"/></p>
+							<a href="{$val.aurl}">
+                            <img src="{$val.image}" class="img-responsive m_img"/>
+                            <img src="img/to_play.png" class="to_play"/>
+                            </a>
+							
+						</div>
+                        <div class="col-xs-6 r_text">
+                   		<p><a href="{$val.aurl}">{$val.title}</a></p>
+                   		</div>
+				</li>
+		<!--/loop-->
+		</ul>
+                             <?php }elseif($vo['type']=='looktimes'){?>
+     <ul  class="orderList">
+     <?php  
+     $loop=array();
+    $loop=model('content')->gettimes($info['videourl']);
+  
+      ?> 
+      
+      
+      <!--foreach:{$loop $val}-->    
+                <li  >
+                <div class="date">
+                	<i class="dian"></i>
+					<i class="datetime"><?=formartkandian($val[start])?></i>
+					
+				</div>
+                <div class="content">
+                    <a href="javascript:" onclick="playseek(this)" data-time="{$val.start}"  end-time="{$val.end}">{$val.name} </a>
+                  </div> 
+				</li>
+		<!--/loop-->
+		</ul>
+                           <?php }?>
+					</div>
+                      
+                

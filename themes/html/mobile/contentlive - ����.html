@@ -1,0 +1,335 @@
+﻿
+<!doctype html>
+<html lang="zh_CN">
+<head>
+<title>{$common.title}</title>
+<meta name="keywords" content="{$common.keywords}" />
+<meta name="description" content="{$common.description}" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<link href="__TPL__/mobile/Content/wap.css?a=1" rel="stylesheet" media="screen">
+<link href="__TPL__/mobile/Content/live.css?a=1" rel="stylesheet" media="screen">
+<link href="__TPL__/mobile/Content/ui-dialog.css" rel="stylesheet" media="screen">
+<script src="__TPL__/mobile/Scripts/jquery.min.js"></script>
+<script src="__TPL__/mobile/Scripts/dialog-min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body>
+<?php require_once '/cs.php';echo '<img src="'._cnzzTrackPageView(1256298048).'" width="0" height="0"/>';?>
+<?php
+$jssdk = new JSSDK("wx142510e8e5968274", "baf308fd24b8f208b680a4f4c86593ce");
+$signPackage = $jssdk->GetSignPackage();
+$url=$_SERVER["REQUEST_URI"];
+session_start();
+$id = isset($_SESSION['uid']) ? $_SESSION['uid'] : 0;
+if(!$id){
+?> 
+<script type="text/javascript">
+  //window.location.href="__ROOT__/index.php/comment/wechat<?php echo '?url='.urlencode($url);?>";
+</script>
+<?php };?>
+<header><img src="{$sys.logo}"/> 心系理想 超越平凡</header>
+<script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
+<!--<div class="close_light_bg" id="close_light_bg" ></div>-->
+
+<div id="play" style="width:100%;"></div>
+<script type="text/javascript" src="http://cdn.aodianyun.com/lss/player.js"></script>
+<script type="text/javascript">
+$(function(){
+	var t = {$info.time}*60;
+    setInterval(function(){
+      $(".endtime").each(function(){
+        var obj = $(this);
+        var endTime = new Date(parseInt(obj.attr('value')) * 1000);
+        var nowTime = new Date();
+        var nMS=endTime.getTime() - nowTime.getTime();
+        var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+            var myH=Math.floor(nMS/(1000*60*60)) % 24; //小时 
+        var myM=Math.floor(nMS/(1000*60)) % 60; //分钟 
+        var myS=Math.floor(nMS/1000) % 60; //秒 
+        var myMS=Math.floor(nMS/100) % 10; //拆分秒
+		var x=nMS/1000;
+		var s = x + t;
+        if(nMS>= 0){
+			 var str = "<span>离直播开始还有<\/span><i>" + myD+"</i>天<i>"+myH+"</i>小时<i>"+myM+"</i>分<i>"+myS+"</i>秒";
+			obj.html(str);
+			$("#play").hide();
+			$(".down").show();
+			$("#play").html('');
+        }else{
+			if(s > 0){
+				$("#play").show();
+				$(".down").hide();
+			}else if(s == 0){
+				window.location.reload();
+			}else{
+				var str = "直播已结束稍后即可点播回看";  
+				obj.html(str);
+				$("#play").hide();
+				$(".down").show();
+				$("#play").html('');
+			}	
+		}
+      });
+    }, 100);
+});
+</script>
+<script type="text/javascript">
+aodianPlayer({
+  container:'play',//播放器容器ID，必要参数
+  rtmpUrl:'rtmp://play.heims.com.cn/schoolvideo/{$channel.vMp4url}',//控制台开通的APP rtmp地址，必要参数
+  hlsUrl:'http://ios.heims.com.cn/schoolvideo/{$channel.vMp4url}.m3u8',//控制台开通的APP rtmp地址，必要参
+
+  player:{
+    name:'lssplayer',//播放器名称，必要参数
+    /* 以下为可选参数*/
+    width: '720',//播放器宽度，可用数字、百分比等
+    height: '480',//播放器高度，可用数字、百分比等
+	 html5Width: '100%',//手机端浏览器，播放器宽度，可用数字、百分比等
+    html5Height: '200',//手机端浏览器，播放器高度，可用数字、百分比等
+    
+    autostart: true,//是否自动播放，默认为false
+    bufferlength: '3',//视频缓冲时间，默认为3秒
+    stretching: '1',//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1
+    controlbardisplay: 'disable'//是否显示控制栏，值为：disable、enable默认为disable
+  }
+});
+/* 以下为LSS Player支持的事件 */
+/* lssHandle.startPlay();//播放 */
+/* lssHandle.pause();//暂停 */
+/* lssHandle.stopPlayer();//停止 */
+/* lssHandle.closeConnect();//断开连接 */
+/* lssHandle.setMute(true);//静音或恢复音量，参数为true|false */
+/* lssHandle.setVolume(volume);//设置音量，参数为0-100数字 */
+/* lssHandle.setFullScreenMode(1);//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1 */
+</script>
+</div>
+<div class="down">
+    <div class="doo">
+        <div id="dao" class="endtime" value="{$info.starttime}"></div>
+    </div>
+</div>
+<style>
+	.down{
+		width:100%; height:200px; background:#000; text-align:center; line-height:200px;display:none;
+	}
+	.doo{
+		width:100%;height:200px;
+	}
+	.dao{
+		width:100%;height:200px;color:#fff;
+	}
+</style>
+<dl class="video_info">
+	<dt><h4>{$info.title}</h4></dt>
+    <dd>
+    <img src="__TPL__/mobile/Images/05.jpg" style="width: 100%;height:100%">
+</dd>
+</dl> 
+<dl class="video_info" style="margin-bottom:32px;">
+	<dt><h4>评论<span id="num">0</span>条</h4></dt>
+    <ul id="comments_list">	
+    </ul>
+    <span class="more">查看更多</span>
+</dl>
+<div id="container" class="container animate" style="height:48px;overflow:hidden;">
+    <footer>
+        <section class="nav_footer" id="nav_footer">
+            <ul>
+                <ol class="tbox">
+                    <li style="width: 10px;">
+                       <span style="display:block;width:10px;height:28px;"></span> 
+                    </li>
+                    <li style="width: 100%;vertical-align: middle;">
+                        <input type="text" name="message" id="message" class="toolstext" style="width: 100%;padding:0 5px;">
+                    </li>
+                    <li style="width: 100%;vertical-align: middle;">
+                        <a id="btnsend" fid="{$info.aid}" class="toolssend on" style="height: 28px;line-height: 28px;margin: 0 10px;">发送</a>
+                    </li>
+                </ol>
+ 				<span>视盛信息提供直播技术支持</span>
+            </ul>
+        </section>
+    </footer>
+</div>
+<script type="text/javascript">
+  var data = {
+    fid: {$info.aid},
+    pageSize: 10,
+    pageIndex: 0,
+  };
+  var id = 0;
+function mydialog(t){
+	var d = dialog({
+		content: t
+	});
+	d.show();
+	setTimeout(function () {
+		d.close().remove();
+	}, 2000);	
+}
+function getcomment(){
+	$.post('__ROOT__/index.php/comment/pc_list',{data: data},function(d){
+		if(d.status==1){
+			var count = d.message.count;
+			var page1 = data['pageSize']*data['pageIndex'];
+			var page2 = data['pageSize']*data['pageIndex'] + data['pageSize'];
+			if (data['pageIndex'] == 0) {
+				if (count > 0) {
+					id = d.message.info[0]['id'];
+				}
+			}
+			$('#num').html(count);
+			if(d.message.count == 0){
+				$('.more').hide();
+				$('#comments_list').html('暂无数据');
+			}else{
+				 if(count > page1 && count < page2){
+					$('.more').hide();
+					$('#comments_list').append(escapes(d.message.info));	
+				}else{
+					$('#comments_list').append(escapes(d.message.info));	
+					$('.more').show();
+				}
+			}	
+		}else{
+			mydialog ('操作失败');	
+		}
+	},'json')
+}
+getcomment();
+$(".more").click(function(){
+	data['pageIndex']++;
+	getcomment();
+});
+function upcomment(){
+	data['id'] = id;
+	$.post('__ROOT__/index.php/comment/pc_list',{data: data},function(d){
+		if(d.status==1){
+			var count = d.message.count;
+			if (count > 0) {
+				id = d.message.info[0]['id'];
+			}
+			$('#comments_list').prepend(escapes(d.message.info));
+		}
+	},'json')
+}
+
+var flag=0;
+$('#btnsend').on('click', function(){
+	var this_ = this;
+	var mes = $('#message').val();
+	var size = 5;
+	if(flag==1){
+		return false;
+	}
+	flag==1;
+	var uid=<?php echo $id;?>;
+	if(mes.length < 1){
+		mydialog('请输入大于1字符评论内');
+    	return;
+    }
+	$.ajax({
+	  url: "__ROOT__/index.php/comment/save",
+	  type: "POST",
+	  data: {
+		fid: $(this_).attr('fid'),
+		message: mes,
+        uid: uid
+	  },
+	  dataType: "json",
+	  success: function( d ) {
+		$('#message').val('');
+		if(d.status == 1){
+			$('#message').val('');
+            mydialog('评论成功');
+			flag=0;
+			upcomment();
+		}else{
+            mydialog('评论失败');
+			flag=0
+        }
+	  }
+	});	
+})
+
+function escapes(data){
+	var strVar = "";
+	if(!data){
+		return '';
+	}
+	for(var i=0;i<data.length;i++){
+    	strVar += "<li class=\"module-infobox layout-box media-graphic line-bottom\" id=\"boxId_1439540345766_24\">";
+		strVar += "<a href=\"#\" class=\"mod-media size-xs\"><div class=\"media-main\"><img src=\""+data[i]['pic']+"\" height=\"34\" width=\"34\"><\/div><\/a>";
+		strVar += "<div class=\"box-col item-list\"><div class=\"item-main txt-s mct-a txt-cut\">"+data[i]['name']+"<\/div>";
+		strVar += "<div class=\"item-other txt-xxs mct-d txt-cut\"><span class=\"time\">"+data[i]['time']+"<\/span><\/div>";
+		strVar += "<div class=\"item-minor txt-l mct-b\">"+data[i]['message']+"<\/div><\/div><\/li>";
+	}
+	return strVar;
+}
+
+
+function qwert(){
+	//upcomment()
+}setInterval("qwert()",1000);
+
+
+  wx.config({
+    debug: false,
+    appId: '<?php echo $signPackage["appId"];?>',
+    timestamp: <?php echo $signPackage["timestamp"];?>,
+    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+    signature: '<?php echo $signPackage["signature"];?>',
+    jsApiList: [
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage' 
+      // 所有要调用的 API 都要加到这个列表中
+    ]
+  });
+  wx.ready(function () {
+    // 在这里调用 API
+	wx.onMenuShareTimeline({
+		title: '<?php echo $info['title'];?>', // 分享标题
+		link: '<?php echo $signPackage['url'];?>', // 分享链接
+		imgUrl: 'http://wap.52video.net<?php echo $info['image'];?>', // 分享图标
+		success: function () { 
+			//alert('分享成功');
+		},
+		cancel: function () { 
+			//alert('已取消分享');// 用户取消分享后执行的回调函数
+		}
+	});
+	
+	wx.onMenuShareAppMessage({
+		title: '<?php echo $info['title'];?>', // 分享标题
+		desc: '<?php echo $info['description'];?>', // 分享描述
+		link: '<?php echo $signPackage['url'];?>', // 分享链接
+		imgUrl: 'http://wap.52video.net<?php echo $info['image'];?>', // 分享图标
+		type: '', // 分享类型,music、video或link，不填默认为link
+		dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		success: function () { 
+			//alert('分享成功');
+		},
+		cancel: function () { 
+			//alert('已取消分享');// 用户取消分享后执行的回调函数
+		}
+	});
+  });
+
+
+
+wx.error(function(res){
+
+    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+
+});
+
+
+
+
+</script>
+
+</body>
+</html>

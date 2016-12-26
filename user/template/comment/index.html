@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>评论</title>
+<link href="/user/public/css/bootstrap.css" rel="stylesheet">
+<script src="/public/js/jquery.js"></script>
+<script src="/user/public/js/jquery.raty.js"></script>
+<script  src="/public/js/duxui.js"></script>
+<script  src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script  src="/public/dialog/plugins/iframeTools.js"></script>
+<script  src="/user/public/js/jquery.duxform.js"></script>
+<script  src="/user/public/js/jquery.common.js"></script>
+
+</head>
+
+<body>
+ <?php if(!$user_info){?>
+ <form action="__APP__/login/data.html" method="post" id="form">
+            <dl>
+            	<dt>用户名：</dt>
+                <dd><input name="username" type="text" class="text" id="username"  reg="\S" msg="" ></dd>
+            	<dt>密码：</dt>
+                <dd><input name="password" type="password" class="text" id="password" reg="\S" msg="" > </dd>
+            	 <?php echo model('verification')->verify_image_new('login'); ?>
+            	<dt>&nbsp;</dt>
+                <dd><input type="submit" value="登录"></dd>
+            </dl>
+              </form>
+    <script>
+saveform({
+	success:function(url){
+		window.location.reload();
+	},
+	failure:function(msg){
+		fleshVerify();
+		$.duxnotice.failure(msg);
+		
+	}
+});
+</script>           
+              
+ <?php }else{  ?>
+  <form action="__URL__/data.html" method="post" id="form">
+<dl>
+	<dt>评分</dt>
+    <dd><div class="star"></div></dd>
+    <dt>评价</dt>
+    <dd><textarea name="message"></textarea></dd>
+    <dt>&nbsp;</dt>
+    <input name="fid" value="<?=$_GET['fid']?>" type="hidden" />
+     <input name="type" value="<?=$_GET['type']?>" type="hidden" />
+    <dd><input class="btn" type="submit" value="提交"></dd>
+</dl>
+ </form>
+<script>
+$('.star').raty();
+
+var win = art.dialog.open.origin;
+saveform({
+	success:function(){
+		win.location.reload();
+		art.dialog.close();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+</script>
+ <?php }?>
+<style>
+dl{ margin:20px 0 10px 0;}
+dt{ width:100px; text-align:right; font-weight:normal; float:left;}
+dd{ padding:0 0 10px 105px;}
+dd input[type="text"],dd input[type="password"]{ margin:0 5px 0 0;}
+textarea{ width:400px; height:100px;}
+input[type="submit"].btn,input[type="submit"].btn:hover{ margin-left:150px; color:#FFF;  background:#d10000; border: none;  font-size: 14px; padding: 8px 30px;}
+</style>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<div id="central" class="warp">
+  {include file="index/menu"}
+  <div id="main">
+    <div id="header">
+      <div class="title">
+        <h1>会员中心</h1>
+        <div class="small">头像上传</div>
+      </div>
+      <div class="return"><a href="__APP__/">中心首页</a></div>
+      <div class="fn-clear"></div>
+    </div>
+    <div class="form">
+		<div id="avatar"></div>
+    </div>
+  </div>
+  <div class="fn-clear"></div>
+</div>
+<script type="text/javascript">
+function uploadevent(status) {
+    if(status==1){
+		$.duxnotice.success('用户头像保存成功！');
+	}else{
+		$.duxnotice.failure('用户头像保存失败！');
+	}
+}
+
+var flashvars = {
+    "jsfunc": "uploadevent",
+    "imgUrl" : "<?php echo model('user')->picture($user_info['uid'],4); ?>",
+    "pid": "{$user_info.uid}",
+    "uploadSrc": true,
+    "showBrow": true,
+    "showCame": true,
+    "uploadUrl": "__URL__/avatar_data.html?action=uploadavatar",
+	"pSize":"300|300|120|120|64|64|32|32",
+}, params = {
+    "menu": "false",
+    "scale": "noScale",
+    "allowFullscreen": "true",
+    "allowScriptAccess": "always",
+    "wmode": "transparent",
+    "bgcolor": "#FFFFFF"
+}, attributes = {
+    "id": "avatar"
+};
+
+swfobject.embedSWF("__PUBLIC__/images/FaustCplus.swf", "avatar", "650", "500", "9.0.0", "__PUBLIC__/images/expressInstall.swf", flashvars, params, attributes);
+
+</script>

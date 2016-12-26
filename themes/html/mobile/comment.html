@@ -1,0 +1,366 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content=""/>
+<title>评论列表</title>
+<link rel="stylesheet" href="__TPL__mobile/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css"> 
+<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
+<script type="text/javascript" src="__TPL__mobile/Scripts/jquery-1.10.2.js" ></script>
+
+<script type="text/javascript" src="__PUBLIC__/dialog/jquery.artDialog.js?skin=default"></script>
+<script type="text/javascript" src="__PUBLIC__/dialog/plugins/iframeTools.js"></script>
+</head>
+
+<body>
+	
+    <div class="container">
+    	
+      <!--foreach:{$commentlist $v}-->
+        <div class="commentarea clearfix">
+        	<div class="commentarea_left left">
+        		<img  src="{$v.pic}" style="width: 34px;height: 34px;margin-top: 10px;"/>
+        	</div>
+        	<div class="commentarea_right right">
+        		<h6>{$v.name}</h6>
+        		<div class="comtop">
+        			<!--<span>置顶</span>-->
+        			<!--<p id="comtopwben">{$v.message}</p>
+        			<h6 id="comtoph6">全文</h6>-->
+                    <div id="mirror">  
+		       			<p id="comtopwben" style="line-height:15px">{$v.message}</p>
+     			    </div> 
+        			<div id="comtoph6"></div> 
+                    
+        		</div>
+        		<div class="commid">
+        			<div class="imgbox">
+                    
+                        <?php foreach($v['images'] as $key=>$val){ 
+                        if($val)echo '<img src="'.$val.'">';
+                         } ?>
+        				
+        			</div>
+        			<div class="date" style="position: relative;">
+        				<date>{$v.time}</date>
+        				<div class="current" id="current">
+							<ul>
+								<li> 
+									<span class="glyphicon glyphicon-heart-empty zan" onclick="goodplus('{$v.id}',this);"><i>赞</i></span>
+									<!--<span></span>-->
+								</li>
+								<li id="excom" pid="{$v.id}" onClick="comment(this)">
+									<span class="glyphicon glyphicon-comment"></span>
+									评论
+								</li>
+							</ul>
+						</div>
+        				<span class="right" id="right" onClick="show(this)"><img src="img/comicon.png" style="width: 20px;"></span>
+        			</div>
+        		</div>
+        		<div class="combtm"> 
+                
+                 <?php if(is_array($v['praiselist'] )){?>
+        			<div class="dianzan">
+        				<div class="left">
+        					<span class="glyphicon glyphicon-heart-empty"></span>
+        				</div>
+        				<div class="userlist right">
+                          <?php foreach($v['praiselist'] as $key=>$val){   ?>
+        					<img src="{$val.picture}" />
+                            
+                            <?php } ?>
+        					
+        				<!--	<p>&nbsp;…共{$v.praise}人赞</p>-->
+        				</div>
+        			</div>
+                    
+                    <?php } ?>
+                     
+        			<div class="pinglun clearfix"  style="clear: both;">
+                   
+        				<div class="left">
+        					<span class="glyphicon glyphicon-comment"></span>
+        				</div>
+        				<div class="commentlist right" id="orderList">
+        					<ul id="commentlist{$v.id}">
+                             
+                              <?php foreach($v['res'] as $key=>$val){   ?>
+        						<li>
+        							<div class="left">
+        								<img src="{$val.pic}" style="width: 35px;height: 37px;"/>
+        							</div>
+        							<div class="comlistarea right">
+        								<div class="username">{$val.nickname}</div>
+        								<p>{$val.message}</p>
+        							</div>
+        						</li>
+        						<?php } ?>
+        					</ul>
+        					<div class="showMore" style="display:none;">
+        						<a href="javascript:"><span>更多</span></a>
+        						<p id="text">还有<span>0</span>条评论未显示</p>
+        					</div>
+        				</div>
+                        
+                          
+        			</div>    
+            	</div>
+                
+                    <!--评论-->
+                    <div id="excomment">
+                    	<input type="text" id="message{$v.id}"  placeholder="评论"/>
+                        <button type="button" class="btn btn-success" onClick="reply(this,'{$v.id}')">提交</button>
+                    </div>     
+
+        	</div> 
+        </div>
+  <!--/list-->
+   
+      <div id="mask"></div> 	
+    
+      
+	
+	</div>	
+    <?php if($commentlist){  ?>
+      <div class="load_m tr" id="more">加载更多</div>
+	<?php  } ?>
+<script>
+		
+			
+		commentHandle();
+		function commentHandle(){
+			$("div#orderList").each(function(index, element) {
+				if($(element).find('li').length>3){
+					
+					$(element).find('#text').find('span').text($(element).find('li').length-3);			$(element).find('.showMore').show();
+					
+					$(element).find("ul li:gt(2)").hide();  
+					
+				$(element).find(".showMore a span").click(function(){
+			  	if($(element).find("ul li:gt(2)").is(":visible"))
+			  		{
+				    $(element).find("ul li:gt(2)").hide();
+				    $(".showMore a span").text("更多");
+			  		}
+			  		else{
+					$(element).find("ul li:gt(2)").show();
+					$(element).find(".showMore a span").text("隐藏");   
+			  			}
+		   			 });
+				
+					}
+               });
+				
+			}
+			function show(e){
+			$(e).prev("#current").slideToggle();	
+				}
+	//	$("span#right").each(function(index, element) {
+//                $(element).click(function(){
+//				
+//				$("span#right").eq(index).prev("#current").slideToggle();
+//			})
+//            });
+			//弹出评论
+			function comment(e){
+				$(e).closest(".commentarea").find("#excomment").show()
+				}
+		//   $("li#excom").click(function(){
+//				showMask();
+//				$(this).closest(".commentarea").find("#excomment").show()
+//		   });
+		   $("#mask").click(function(){
+				$("#mask,#excomment,#current").hide();
+		   });
+		 var data = {
+			 	fid:'{$fid}',
+			    pageSize: 5,
+			    pageIndex: '{$pageindex}',
+			  };
+		$("#more").click(function(){
+		
+			getcomment();
+			
+	});
+	
+	function getcomment(){
+		$.post('__ROOT__/index.php/comment/pc_list',{data: data},function(d){
+			if(d.status==1){
+				if(d.message.pageindex!=0)
+				data['pageIndex']=d.message.pageindex;
+				$('.container').append(escapes(d.message.info));	
+					commentHandle();
+				}
+			
+		},'json')
+		
+		}
+	function escapes(data){
+				var strVar = "";
+				if(!data){
+					return '';
+				}
+				for(var i=0;i<data.length;i++){
+					 strVar +='<div class="commentarea clearfix"><div class="commentarea_left left"><img  src="'+data[i]['pic']+'" style="width: 34px;height: 34px;margin-top: 10px;"/></div><div class="commentarea_right right"><h6>'+data[i]['name']+'</h6><div class="comtop"><p id="comtopwben">'+data[i]['message']+'</p><h6 id="comtoph6">全文</h6></div><div class="commid"><div class="date" style="position: relative;"><date>'+data[i]['time']+'</date><div class="current" id="current"><ul><li> <span class="glyphicon glyphicon-heart-empty zan" onclick="goodplus('+data[i]['id']+',this)"><i>赞</i></span></li><li id="excom" pid="'+data[i]['id']+'" onClick="comment(this)"><span class="glyphicon glyphicon-comment"></span>评论</li></ul></div><span class="right" id="right" onClick="show(this)"><img src="img/comicon.png" style="width: 20px;"></span></div></div><div class="combtm">';
+					 strVar+='<div class="dianzan"><div class="left"><span class="glyphicon glyphicon-heart-empty"></span></div><div class="userlist right">';
+                if(data[i]['praiselist']){
+					for(var j=0;j<data[i]['praiselist'].length;j++){	
+						strVar+='<img src="'+data[i]['praiselist'][j]['picture']+'" />';
+					}
+                    }
+	strVar+='</div></div>';
+        			strVar+='<div class="pinglun clearfix"  style="clear: both;">';
+					  if(data[i]['res']){
+						strVar+='<div class="left"><span class="glyphicon glyphicon-comment"></span></div><div class="commentlist right" id="orderList"><ul id="commentlist'+data[i]['id']+'">';  
+						for(var k=0;j<data[i]['res'].length;k++){	
+						strVar+='<li><div class="left"><img src="'+data[i]['res'][k]['pic']+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><div class="username">'+data[i]['res'][k]['nickname']+'</div><p>'+data[i]['res'][k]['message']+'</p></div></li>';
+							}
+						strVar+='</ul><div class="showMore" style="display:none;"><a href="javascript:"><span>更多</span></a><p id="text">还有<span>0</span>条评论未显示</p></div></div>';  
+						  }
+					strVar+='</div></div><div id="excomment"><input type="text" id="message'+data[i]['id']+'"  placeholder="评论"/> <button type="button" class="btn btn-success" onClick="reply(this,'+data[i]['id']+')">提交</button> </div></div> </div>';
+					}
+				return strVar;
+			}
+		
+		
+		
+		
+					
+				
+			//显示全文
+		    /*var wben= $("#comtopwben").text();
+   		    $("#comtopwben").html(wben.substring(0,49));
+            $("#comtoph6").click(function(){
+	            $("#comtopwben").html(wben);
+	            $("#comtoph6").html("收起"); 
+            });*/
+		function getTotal(){
+				var slideHeight=35;
+				$('div#mirror').each(function(index,element){
+					var disHeight=$(element).height();
+					if(disHeight >= slideHeight){
+						$(element).css({'height':slideHeight+'px','overflow':'hidden'});
+						$('div#mirror').eq(index).next('#comtoph6').append('<a href="#">显示全文</a>');
+					}
+					$(element).next('#comtoph6').find('a').click(function(){
+						var curHeight=$(element).height();
+						if(curHeight == slideHeight){
+							$(element).animate({
+								height:disHeight
+							},1000);
+							$(element).next('#comtoph6').find('a').text('隐藏');
+						}
+						else{
+							$(element).animate({
+								height:slideHeight
+							},1000);
+							$(element).next('#comtoph6').find('a').text('显示全文');	
+						}
+						return false;
+					});
+				});	
+		}
+		getTotal();
+			
+			
+				
+			//显示遮罩层    
+			function showMask(){     
+				$("#mask").css("height",$(document).height());     
+				$("#mask").css("width",$(document).width());     
+				$("#mask").show();     
+			}  
+			
+		   
+				
+		//评论
+		/*function openNew(pid){
+			
+			var sWidth=document.body.scrollWidth;
+			var sHeight=document.body.scrollHeight;
+		
+			var oMask=document.createElement("div");
+				oMask.id="mask";
+				oMask.style.height=sHeight+"px";
+				oMask.style.width=sWidth+"px";
+				document.body.appendChild(oMask);
+			var oComment=document.createElement("div");
+				oComment.id="excomment";
+				oComment.innerHTML="<input type='text' id='message' pid='"+pid+"' placeholder='评论'/><button type='button' class='btn btn-success' onclick='reply();'>提交</button>";
+				document.body.appendChild(oComment);
+		
+			oMask.onclick=function(){
+					document.body.removeChild(oComment);
+					document.body.removeChild(oMask);
+				};
+			};*/
+		
+	function reply(e,pid){
+		var pid=pid;
+		var mesage=$('#message'+pid).val();
+	  $.post("__ROOT__/user/index.php/comment/reply_add",
+	  {	
+		id:'{$fid}',
+		pid:pid,
+		mes:mesage
+	  },
+	  function(d){
+		if(d.status == 1){
+			alert( d.message);
+			$('#commentlist'+pid).append('<li><div class="left"><img src="{$headpic}" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><div class="username">{$nickname}</div><p>'+mesage+'</p></div></li>');
+			$('#message'+pid).val('');
+			$('#message'+pid).parent().hide();
+		  }
+	  },'json');
+	}
+					
+			
+	//	$("li#excom").each(function(index, element) {
+//                $(element).click(function(){
+//				//openNew($(element).attr('pid'));
+//				
+//				$("li#right").eq(index).parent("#current").slideToggle();
+//			})
+//       });
+//			
+
+		
+	  //点赞	
+	  var span = document.getElementsByTagName('span');//获取存放点赞数的dom 
+	  var num; //点赞数 
+	  var flag = 0; //不同情况的标记 	
+	  for(var i = 1; i < span.length + 1; i++){ 
+		//  senddata(i);  
+		}
+		
+	  function goodplus(fid,e){ 
+		  flag = 1; 
+		//$('.userlist').eq($('.zan').index($(e))).append('<img src="{$headpic}" />');
+//		return false;
+		 // num = parseInt(span.item(gindex-1).innerHTML); 
+		 // if(checkcookie(fid) == true){ 
+		  // num = num + 1; 
+		   $.post('__ROOT__/index.php/change/laud',{type:'comment',fid:fid},function(data){
+			
+			if(data.status==1){
+				
+				// $(_this).find('.num').html(n);
+				alert( data.message);
+				$('.userlist').eq($('.zan').index($(e))).append('<img src="{$headpic}" />');
+			}else{
+				alert(data.message);
+			}
+		},'json')//通过Ajax修改页面上的数据 
+		 // }else{ 
+//		   alert("你已经点过赞了！")  
+//		  } 
+		}
+		 
+			 	
+		
+	</script>
+	</body>
+</html>

@@ -1,0 +1,106 @@
+<div class="page_function">
+  <div class="info">
+    <h3>{$info.name}管理</h3>
+    </div>
+  <div class="exercise"> 
+   <a href="__URL__/signup/aid-{$aid}">报名列表</a>
+    <a href="__URL__/signup/aid-{$aid}-download-true">导出</a>
+  
+   </div>
+</div>
+<div class="page_main">
+  <div class="page_table table_list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th width="10%"><center>ID</center></th>
+        <!--foreach:{$field_list $vo}-->
+        <th><center>{$vo.name}</center></th>
+        <!--{/foreach}-->
+        <th><center>状态</center></th>
+        <th><center>报名时间</center></th>
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr>
+        <td><center><input name="id[]" type="checkbox" id="id[]" value="{$vo['uid']}" >{$vo.id}</center></td>
+        <!--foreach:{$field_list $model}-->
+        <td><center>
+        <?php
+        if($model['admin_html']<>''){
+        eval(html_out(str_replace('{content}', $vo[$model['field']] ,$model['admin_html'])));
+        }else{
+        echo model('expand_model')->get_list_model($model['type'],$vo[$model['field']],$model['config']);
+        }
+        ?>
+        </center></td>
+        <!--{/foreach}-->
+         <td><center>
+         <?php  echo $vo['status']?'已通过':'未通过';  ?>
+        </center></td>
+        <td><center>
+       {$php(echo date('Y-m-d H:i:s',$vo['dateline']))}
+        </center></td>
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+</div>
+
+<div class="page_tool">
+	<div class="function">
+  <input type="button" onclick="javascript:selectall('id[]');" class="button_small" value="全选" />
+ 
+  <input type="button" onclick="javascript:audit(1);"  class="button_small" value="通过" />
+
+ <input type="button" onclick="javascript:audit(2);"  class="button_small" value="删除" />
+
+  
+  </div>
+
+  <div class="page">{$page}</div>
+</div>
+<script>
+//选择
+function selectall(name){   
+    $("[name='"+name+"']").each(function(){//反选   
+    if($(this).attr("checked")){   
+          $(this).removeAttr("checked");   
+    }else{   
+          $(this).attr("checked",'true');   
+    }   
+    })  
+}
+
+//批量操作
+function audit(status){
+	var str="";
+	$("[name='id[]']").each(function(){//反选   
+    if($(this).attr("checked")){
+		  str+=$(this).val()+","; 
+    }
+    })
+	
+	ajaxpost({
+		name:'您确认要继续进行操作吗？操作将无法撤销！',
+		url:"__URL__/batch",
+		data:{status: status, uid:str, aid:'{$aid}'},
+		tip:1,
+		success:function(){
+			window.location.reload();	
+		}
+	});
+}
+
+//审核
+function shenhe(uid,obj) {
+	var obj;
+	ajaxpost({
+		name:'确定要删除此记录？',
+		url:"__URL__/del",
+		data:{id: id,fid: {$info.id}},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().remove();
+		}
+	});
+}
+</script>

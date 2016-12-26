@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+
+<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>登陆成功</title>
+<style>
+.anv{ width:100px; margin: 0 auto; margin-top:50px;}
+.login{ border-top: 1px solid #CCC; margin-top:30px; line-height:60px; font-size:20px; text-align:center;}
+.one{width:40%; height:30px; margin-left:30%; float:left;}
+</style>
+</head>
+
+<body>
+<div class="anv">
+<img src="__TPL__/new/images/logos.jpg" style="margin:0 auto;"/ width="100px">
+</div>
+<div class="login">您已登陆成功！</div>
+
+ <input  type="button" value="关闭本窗口" onClick="WeixinJSBridge.call('closeWindow');" class="one"  />
+
+<script>
+
+	WeixinJSBridge.call('closeWindow');
+
+	
+</script>
+
+</body>
+</html>

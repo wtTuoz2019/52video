@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{$css}
+{$js}
+</head>
+<body scroll="no">
+<div class="page_function">
+  <div class="info">
+    <h3>直播通道{$action_name}</h3>
+    <small>使用以下功能进行直播通道修改{$action_name}</small> 
+  </div>
+</div>
+<div class="page_form">
+<form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="page_table form_table">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="120">通道名称</td>
+        <td width="300">
+        <input name="name" type="text" class="text_value" id="name" value="{$info.name}" reg="\S" msg="通道名称值不能为空" />
+        </td>
+      </tr>
+      <tr>
+        <td width="120">本地vServer</td>
+        <td width="300">
+        <input name="local_vServer" type="text" class="text_value" id="name" value="{$info.local_vServer}" reg="\S" msg="本地vServer值不能为空" />
+        </td>
+      </tr>
+      <tr style="display:none;">
+        <td width="120">vServer</td>
+        <td width="300">
+        <input name="vServer" type="hidden" class="text_value" id="name" value="rtmp://4718.lssplay.aodianyun.com/schoolvideo" reg="\S" msg="vServer值不能为空" />
+        </td>
+      </tr>
+      <tr>
+        <td width="120">vMp4url</td>
+        <td width="300">
+        <input name="vMp4url" type="text" class="text_value" id="title" value="{$info.vMp4url}" reg="\S" msg="vMp4url值不能为空" />
+        </td>
+      </tr>
+      <tr style="display:none;">
+        <td width="120">vIosurl</td>
+        <td width="300">
+        <input name="vIosurl" type="hidden" class="text_value" id="title" value="http://4718.hlsplay.aodianyun.com/schoolvideo/schoolstream1.m3u8" reg="\S" msg="vIosurl值不能为空" />
+        </td>
+      </tr>
+    </table>
+</div>
+
+<div class="form_submit">
+<input name="id" type="hidden" value="{$info.id}" />
+<input name="updatetime" type="hidden" value="<?php echo time();?>" />
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+var win = art.dialog.open.origin;
+saveform({
+	success:function(){
+		win.location.reload();
+		art.dialog.close();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+</script>
+</body>

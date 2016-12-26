@@ -1,0 +1,151 @@
+<p class="allcomment">全部评论<span>（<font id="commentnum">0</font>）</span></p>
+  <link rel="stylesheet" href="__PUBLIC__/data/css/font-awesome.min.css" />   
+    <div class="modal" id="mymodal">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+					<div class="modal-body">
+						<textarea id="editors" placeholder=""></textarea>
+						<div class="icongroups">
+				
+						</div>
+						<div style="text-align: center;position:relative">
+                        	<input name="pid" type="hidden" value="" id="pid">
+                            <input name="toname" type="hidden" value="" id="toname">
+							<button id="input-type-submit" type="button" class="btn btn-primary">发布</button>
+							<button id="modal_cance" type="button" class="btn btn-default"  data-dismiss="modal">返回</button>
+                            <div id="messageto"></div>
+						</div>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+        
+        
+        <div class="modal fade bs-example-modal-sm hongbao" id="mymodal-data1" style=" width:345px;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">					
+               <a href="javascript:" data-toggle="modal" data-target="#mymodal-data1"> <div class="Closebutton"></div></a>
+
+								<div class="modal-content" id="modal" style=" background:none;">
+									<div class="modal-body" style=" background:none;">
+									<div class="list" style=" background:none;">
+<input   name="price" placeholder="输入金额，1-1000元" value="" id="price">
+<input name="desc" placeholder="很精彩，赞一个" value="" id="desc">
+<input  type="submit" value=""  onClick="pay()" id="pay" style=" width:228px; background:none; height:50px; border:none;">
+									</div>
+									</div>
+									
+								</div>
+						</div>
+     <script type="text/javascript">  
+  	var url='http://{$config.MOBILE_DOMAIN}';
+	  var headpic='<?php echo $_SESSION["headpic"];?>';
+	 var nickname='<?php echo $_SESSION["nickname"];?>';
+	  var uid='<?php echo $_SESSION["uid"];?>';
+	  var data = {
+			    fid: '{$info.aid}',
+				uid:uid,
+			    pageSize: 10,
+			    pageIndex: 0,
+			  };  
+			  var arr = {
+			    fid: '{$info.aid}',
+			    id:'0'
+			  };
+			var listflag={
+			    fid: '{$info.aid}',
+			    id:'0'
+			  };
+			  var id = 0,
+			  flag=0;
+			  var commentflag='save';
+			  var newcommentflag=false; 
+	
+	
+		
+</script>
+         <script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>   
+						<div class="comment">
+							<div style=" -webkit-overflow-scrolling: touch; overflow:auto;"> <div class="load_m tr" id="refresh">有新评论，刷新看看</div>
+   <div class="container" id="container">
+    
+    
+      	
+    
+      
+	
+	</div>	
+    
+      <div class="load_m tr" id="more">加载更多</div>
+	
+      <div class="commentinput">
+			<img id="smile" src="__PUBLIC__/images/smile.png">
+            <?php if($info['hall']){ ?>
+            	<input type="text" id="editors" placeholder="我来说两句" readonly onClick="comment(this)">
+            <a  data-toggle="modal" data-target="#mymodal-data1"  href="javascript:"><img id="shang" src="__PUBLIC__/images/shang.png"></a>
+            <?php }else{?>
+			<input type="text" style="width:80%;" id="editors" placeholder="" readonly onClick="comment(this)">
+          <?php }?>
+		
+		</div>
+    <script>
+			$('#refresh').bind('click',function(e){
+				automatic(arr);
+				
+				});
+			$(function(){ 
+　			
+				setInterval("qwert()",5000);
+		}); 
+			
+			$('span#right').bind('click',function(e){
+				 e.stopPropagation();
+  				$(this).prev("#current").slideToggle();	
+				})
+	
+		$("#more").click(function(){
+			getcomment();
+			
+		});
+			function tocomment(){
+				$("#mymodal").modal("toggle");
+				}
+			function pay(){
+		 price=parseFloat($('#price').val());
+		
+		if(price>1000 || price <1||$('#price').val()==''){
+	$.dialog({
+						        content: '金额不得小于1或大于1000元',
+								bottom:'20%',
+								fixed:true,
+								width:200,
+								height:80
+					          });
+	return false;
+	}
+	
+		$.ajax({
+				  url: "__ROOT__/index.php/comment/savepay",
+				  type: "POST",
+				  data: {
+					fid: data['fid'],
+					message: $('#desc').val(),
+					price: price,
+			        uid: data['uid']
+				  },
+				  dataType: "json",
+				  success: function( d ) {
+					if(d.message>0){
+				$.post('__ROOT__/wxpay/index?openid={$userinfo.openid}',{id:d.message,price:$('#price').val(),desc:$('#desc').val()},function(data){
+		
+			callpay(data);
+			},'json')
+			} 
+		 }});
+		}
+  
+  
+  
+  
+    </script>
+    
+    </div>
+						</div>

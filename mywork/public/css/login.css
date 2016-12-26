@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+html,body{ width:100%; height:100%;}
+body {margin:0; padding:0; font:14px/1.5 "微软雅黑"; background:url(../images/login/bg.jpg) no-repeat center top; text-align:center; color:#666;}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p,img{padding:0; margin:0; border:0;}
+table,td,tr,th{font-size:12px;}
+ol,ul {list-style:none;}
+li{list-style-type:none;}
+img{vertical-align:top;border:0;}
+h1,h2,h3,h4,h5,h6{font-size:inherit; font-weight:normal;}
+address,cite,code,em,th,i{font-weight:normal; font-style:normal;}
+a:link,a:visited,a:hover,a:active{ color:#666; text-decoration:none;}
+.loginCon .name input:-webkit-autofill {background: none !important;}
+.loginBox{ width:900px; margin:0 auto; padding-top:100px;}
+.topReg,.topLogin{ width:218px; height:128px; overflow:hidden; margin:0 auto; margin-bottom:5px;}
+.topReg{ background:url(../images/login/reg.png) no-repeat 0 0;}
+.topLogin{ background:url(../images/login/login.png) no-repeat 0 -34px;}
+.regCon{ padding-left:270px; padding-top:30px; height:567px; overflow:hidden; background:rgba(255,255,255,0.8) !important; background:#fff; filter:alpha(opacity:80); box-shadow: 0 0 10px rgba(0,0,0,0.3); text-align:left;}
+.regBody{ width:360px; /*overflow:hidden;*/}
+.regBody p{ font-size:16px; text-align:center; line-height:2.5;}
+.regBody .name,.regBody .password,.regBody .eMail,.verify{ border:1px solid #29aced; height:50px; width:316px; margin-bottom:15px;position: relative; background:url(../images/login/login_icon.png) no-repeat; padding-left:42px;}
+.regBody .verify{background: none;}
+.regBody .password{ background-position:0 -50px;}
+.regBody .eMail{ background-position:0 -100px;}
+.loginBox input.wenben{ font-family:"微软雅黑"; font-size:16px; line-height:50px; height:50px; width:300px; background:none; border:0;outline:none;}
+.read,.btn,.loginBtn{ text-align:left; margin-bottom:15px;}
+.btn{ color:#999;}
+.read input{ width:20px; height:20px; vertical-align:middle; margin-right:6px;}
+.btn .submit{ width:150px; height:50px; text-align:center; font-size:16px; font-family:"微软雅黑"; font-weight:700; background:#29aced; color:#fff; text-align:center; border:0; vertical-align:middle; border-radius:5px; margin-right:10px;outline:none; cursor:pointer;}
+
+.loginCon{ padding-left:270px; padding-top:110px; height:402px; overflow:hidden; background:rgba(255,255,255,0.8) !important; background:#fff; filter:alpha(opacity:80); box-shadow: 0 0 10px rgba(0,0,0,0.3); text-align:left;}
+.loginBtn  input.submit2{ width:100%; height:50px; text-align:center; font-size:16px;font-family:"微软雅黑"; font-weight:700; background:#29aced; color:#fff; text-align:center; border:0; vertical-align:middle; border-radius:5px; margin-right:10px; cursor:pointer;}
+.forget{ text-align:center;}
+.forget a{ font-size:16px;}
+
+.success{display: block;float: left;position: absolute;top: 0px;height:50px;left: 369px;width: 166px;color:red;;background: url(../images/right.png) no-repeat left center;padding-left:20px;  }
+.warning{  display: block;float: left;position: absolute;top: 0px;height:50px;left: 369px;width: 166px;color:red;;background: url(../images/error.png) no-repeat left 3px;padding-left:20px;  }

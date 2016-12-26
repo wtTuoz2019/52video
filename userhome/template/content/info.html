@@ -1,0 +1,404 @@
+
+  <link rel="stylesheet" href="/themes/html/mobile/css/style1.css">
+  <link rel="stylesheet" href="/themes/html/mobile/music/css/style.css">    
+        	<div class="basicContent" id="basic" >
+
+        	
+        	<div class="page_form">
+  <form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form" autocomplete="off">
+    <div class="box-body" id="tab1">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+        <tr>
+          <td width="100" align="right">栏目</td>
+          <td width="350"><select name="cid"  reg="." id="cid" msg="栏目未选择" onChange="get_fields()" >
+              <option value="">======选择栏目======</option>
+              <!--foreach:{$category_list $vo}--> 
+              <option value="{$vo['cid']}" <?php if($class_info['cid']==$vo['cid']) { ?> selected="selected" <?php } ?> 
+                 
+              >
+                  {$vo['cname']}
+              </option> 
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+         <?php if($user['cid']){ ?>
+          <input name="csid" type="hidden" value="{$user.cid}" />
+         <?php }else{ ?>
+         <tr>
+          <td width="100" align="right">所属学校</td>
+          <td width="350"><select name="csid"  reg="." id="csid" >
+              <option value="0">======全部学校======</option>
+              <!--foreach:{$school $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['csid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+         <?php } ?>
+         <tr>
+          <td width="100" align="right">所属科目</td>
+          <td width="350"><select name="sid"  reg="." id="sid" onchange="changeteacher()" >
+              <option value="0">======全部科目======</option>
+              <!--foreach:{$subject $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['sid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['cname']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+         <tr>
+          <td width="100" align="right">所属年级</td>
+          <td width="350"><select name="gid"  reg="." id="gid" onchange="changeteacher()" >
+              <option value="0">======全部年级======</option>
+              <!--foreach:{$grade $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['gid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['cname']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+        <script>
+        function changeteacher(){
+			var sid=$('#sid').val();
+			var gid=$('#gid').val();
+			$.post('__URL__/teacher/',{sid:sid,gid:gid},function(data){
+				var html=' <option value="0">======全部老师======</option>';
+				$.each(data,function(index,vo){
+					html+='<option value='+vo.id+' >'+vo.name+'</option>';
+					})
+				$('#tid').html(html);
+				},'json');
+			
+			}
+        
+        </script>
+          <tr>
+          <td width="100" align="right">所属老师</td>
+          <td width="350"><select name="tid"  reg="." id="tid" >
+              <option value="0">======全部老师======</option>
+              <!--foreach:{$teacher $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['tid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td width="100" align="right">标题</td>
+          <td ><input name="title" type="text" class="form-control" id="title"  value="{$info.title}" reg="\S" msg="标题不能为空" />
+           </td>
+           <td></td>
+        </tr>
+        
+       
+         <tr>
+        <td width="100" align="right">缩略图</td>
+        <td >
+          <?php echo module('editor')->get_image_upload('image1','image',false,'editor_content') ?>
+          <input name="image" type="text" class="form-control" id="image" style="width:220px; float:left" value="{$info.image}" onchange="imagechange(this)"/> 
+          &nbsp;&nbsp;<input type="button" id="image1" class="button_small" value="选择图片" />
+        </td>
+        <td>宽1000px,高550px</td>
+        </tr>
+      <tr>
+        <td width="100" align="right">视频地址</td>
+        <td colspan="2">
+          <input name="videourl" id="videourl" type="text" class="form-control" style="width:220px; float:left" value="{$info.videourl}"/> 
+          <input name="videourl1" type="hidden" class="form-control" style="width:220px; float:left" value="{$info.videourl}"/>
+          &nbsp;&nbsp;<input type="button" id="info" class="button_small ke-button-common ke-button" value="视频空间" />
+        </td>
+      </tr>
+       <tr>
+        <td width="100" align="right">发布时间</td>
+        <td width="350">
+        <input name="airtime"  id="airtime" type="text" class="form-control" style="width:260px; float:left" value="<?php echo $info['airtime']?date('Y-m-d H:i:s',$info['airtime']):''; ?>"/><div id="airtime_button" class="time"></div>
+        <script>$('#airtime_button').calendar({ id:'#airtime',format:'yyyy-MM-dd HH:mm:ss'});</script>
+        </td>
+        <td>不填默认即时发布</td>
+      </tr>
+      <tr>
+        <td width="100" align="right">描述</td>
+        <td ><textarea name="description" class="text_textarea" id="description">{$info.description}</textarea>
+          &nbsp;&nbsp;
+        </td>
+         <td>微信分享时的介绍</td>
+        </tr>
+       <tr style="display:none">
+        <td width="100" align="right">手机模板</td>
+        <td width="350">
+        <input name="tpl" type="text" class="form-control" id="tpl" value="<!--if:{$info['tpl']}-->{$info.tpl}<!--{else}-->friendtpl.html<!--{/if}-->" />
+        </td>
+        <td>留空采用栏目指定模板</td>
+      </tr>
+    
+       
+        <tr>
+        <td width="100" align="right">顶部通栏</td>
+        <td >
+          <?php echo module('editor')->get_image_upload('logo1','logo',false,'editor_content') ?>
+          <input name="zidingyi[logo]" type="text" class="form-control" id="logo" style="width:220px; float:left" value="{$zidingyi.logo}" onchange="imagechange(this)"/> 
+          &nbsp;&nbsp;<input type="button" id="logo1" class="button_small" value="选择图片" />
+        </td>
+         <td>宽1000px,高150px</td>
+        </tr>
+        
+      
+        
+          <tr>
+        <td width="100" align="right">中部通栏</td>
+        <td >
+          <?php echo module('editor')->get_image_upload('titleimage1','titleimage',false,'editor_content') ?>
+          <input name="zidingyi[titleimage]" type="text" class="form-control" id="titleimage" style="width:220px; float:left" value="{$zidingyi.titleimage}" onchange="imagechange(this)"/> 
+          &nbsp;&nbsp;<input type="button" id="titleimage1" class="button_small" value="选择图片" />
+        </td>
+         <td>宽1000px,高150px</td>
+        </tr>
+           <tr>
+        <td width="100" align="right">中部通栏链接</td>
+        <td width="350">
+        <input name="zidingyi[titleurl]" type="text" class="form-control" id="titleurl" value="{$zidingyi[titleurl]}" />
+        </td>
+         <td>如：http://live.shanyueyun.com,必须带有http</td>
+      </tr> 
+      <tr>
+        <td width="100" align="right">滚动字幕</td>
+        <td colspan="2"><textarea name="zidingyi[notice]" class="text_textarea" id="notice">{$zidingyi[notice]}</textarea>
+        </td>
+        </tr>
+       
+        <tr>
+        <td width="100" align="right">附加功能</td>
+        <td width="350" id="functions">
+        <!--foreach:{$functions $vo}-->
+        
+          <div id="button{$vo.id}"><button type="button" class="button">{$vo.name}</button><input type="hidden" value="{$vo.id}" name="functions[{$vo.id}]">
+          <p><a href="javascript:" onClick="editfunctions('{$vo.id}')">编辑</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" onClick="delfunctions('{$vo.id}',this)">删除</a></p>
+          </div>
+        
+           <!--{/foreach}-->
+        </td>
+      <td> <button type="button" class="button" onClick="addfunctions()">添加</button></td>
+      </tr>
+   
+    
+      <tr >
+        <td width="100" align="right">发布状态</td>
+        <td width="350">
+        <?php if(!isset($info['status'])){ $info['status']=0; } ?>
+        <input name="status" type="radio" value="1"  <!--if:{$info['status']==1}-->checked="checked"<!--{/if}-->  /> 发布&nbsp;&nbsp;<input name="status" type="radio"  <!--if:{$info['status']==0}-->checked="checked"<!--{/if}-->  /> 草稿&nbsp;&nbsp;
+        </td>
+        <td></td>
+      </tr>
+    
+       <tr>
+        <td width="100" align="right">评论审核</td>
+        <td width="350">
+       
+        <input name="comment" type="radio" value="1"  <!--if:{$info['comment']==1}-->checked="checked"<!--{/if}-->  /> 开启&nbsp;&nbsp;<input name="comment" type="radio"  <!--if:{!$info['comment']}-->checked="checked"<!--{/if}-->  /> 关闭&nbsp;&nbsp;
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td width="100" align="right">红包打赏</td>
+        <td width="350">
+       
+        <input name="hall" type="radio" value="1"  <!--if:{$info['hall']==1}-->checked="checked"<!--{/if}-->  /> 开启&nbsp;&nbsp;<input name="hall" type="radio"  <!--if:{!$info['hall']}-->checked="checked"<!--{/if}-->  /> 关闭&nbsp;&nbsp;
+        </td>
+        <td></td>
+      </tr>
+       <?php if(model('user_group')->home_power('signup')){?>
+       <tr>
+        <td width="100" align="right">预约报名</td>
+        <td width="350" >
+       
+        <input name="signup" type="radio" value="1"   <!--if:{$info['signup']==1}-->checked="checked"<!--{/if}-->  /> 开启&nbsp;&nbsp;<input name="signup" type="radio"   value="0" <!--if:{$info['signup']==0}-->checked="checked"<!--{/if}-->   /> 关闭&nbsp;&nbsp;
+        </td>
+        <td></td>
+      </tr>
+       <tbody id="field_list"  >
+       
+          <tr >
+        <td width="100" align="right">报名选项</td>
+        <td width="350">
+       
+         <!--foreach:{$field_list $vo}-->
+         <!--if:{$vo['field']!='aid'}-->
+           <input name="field_lists[]"  type="checkbox" value="{$vo['field']}"  <!--if:{in_array($vo['field'],$info['field_lists'])}-->checked="checked"<!--{/if}-->  /> {$vo['name']}&nbsp;&nbsp;
+           <!--{/if}--> 
+           <!--{/foreach}-->
+      
+        </td>
+        <td></td>
+      </tr>
+        <tr>
+        <td width="100" align="right">报名审核</td>
+        <td width="350" >
+       
+        <input name="noaudit" type="radio" value="1"   <!--if:{$info['noaudit']==1}-->checked="checked"<!--{/if}-->  /> 开启&nbsp;&nbsp;<input name="noaudit" type="radio"   value="0" <!--if:{$info['noaudit']==0}-->checked="checked"<!--{/if}-->   /> 关闭&nbsp;&nbsp;
+        </td>
+        <td></td>
+      </tr>
+       <tbody id="autosign"  >
+        <tr>
+        <td width="100" align="right">自动审核</td>
+        <td width="350" >
+       
+        <input name="autoaudit" type="radio" value="1"   <!--if:{$info['autoaudit']==1}-->checked="checked"<!--{/if}-->  /> 开启&nbsp;&nbsp;<input name="autoaudit" type="radio"   value="0" <!--if:{$info['autoaudit']==0}-->checked="checked"<!--{/if}-->   /> 关闭&nbsp;&nbsp;
+        </td>
+        <td></td>
+      </tr>
+      
+      <tr id="auditfield_lists">
+        <td width="100" align="right">自动审核匹配项</td>
+        <td width="350" >
+        <!--foreach:{$field_list $vo}-->
+         <!--if:{$vo['field']!='aid'}-->
+           <input name="auditfield_lists[]"  type="checkbox" value="{$vo['field']}"  <!--if:{in_array($vo['field'],$info['auditfield_lists'])}-->checked="checked"<!--{/if}-->  /> {$vo['name']}&nbsp;&nbsp;
+           <!--{/if}--> 
+           <!--{/foreach}-->
+        </td>
+        <td></td>
+      </tr>
+      <?php } ?>
+      </tbody>
+ <script>
+      window.onload=function(){
+	 $('input[name="signup"]').parent().find('ins').click(function(){
+		   signupchange();
+		 });
+	 $('input[name="noaudit"]').parent().find('ins').click(function(){
+		   autosignupchange();
+		 });
+		 $('input[name="autoaudit"]').parent().find('ins').click(function(){
+		  autoauditsignupchange();
+		 });
+	}
+      signupchange();
+	  function signupchange(){
+		  
+		  var flag=$('input[name="signup"]:checked').val();
+		
+		  if(flag=='1'){
+			  $('#field_list').show();
+			  }else{
+			  $('#field_list').hide();	  
+				  }
+		  
+		  }
+	   autosignupchange();
+	  function autosignupchange(){
+		  
+		  var flag=$('input[name="noaudit"]:checked').val();
+		
+		  if(flag=='1'){
+			  $('#autosign').show();
+			  }else{
+			  $('#autosign').hide();	  
+				  }
+		  
+		  }
+		     autoauditsignupchange();
+	  function  autoauditsignupchange(){
+		  
+		  var flag=$('input[name="autoaudit"]:checked').val();
+		
+		  if(flag=='1'){
+			  $('#auditfield_lists').show();
+			  }else{
+			  $('#auditfield_lists').hide();	  
+				  }
+		  
+		  }
+	  
+      </script>
+      </table>
+    </div>
+    
+    <div class="page_table form_table" id="tab2" style="display:none;">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="100" align="right">副标题</td>
+          <td width="350"><input name="subtitle" type="text" class="form-control" id="subtitle" value="{$info.subtitle}" /></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td width="100" align="right">英文URL名称</td>
+          <td width="350"><input name="urltitle" type="text" class="form-control" id="urltitle" value="{$info.urltitle}" /></td>
+          <td></td>
+        </tr>
+      <tr>
+        <td width="100" align="right">访问量</td>
+        <td width="350">
+        <input name="views" type="text" class="form-control" id="views" value="{$info.views}" />
+        </td>
+        <td>内容浏览量</td>
+      </tr>
+      <tr>
+        <td width="100" align="right">顺序</td>
+        <td width="350">
+        <input name="sequence" type="text" class="form-control" id="sequence" value="{$info.sequence}" />
+        </td>
+        <td>(自定义顺序)</td>
+      </tr>
+      <tr>
+        <td width="100" align="right">跳转到</td>
+        <td width="350">
+        <input name="url" type="text" class="form-control" id="url" value="{$info.url}" />
+        </td>
+        <td>URL链接，支持标签</td>
+      </tr>
+      <tr>
+        <td width="100" align="right">更新时间</td>
+        <td width="350">
+        <input name="updatetime"  id="updatetime" type="text" class="form-control" style="width:260px; float:left" value="<?php echo date('Y-m-d H:i:s'); ?>" reg="\S" msg="更新时间不能为空" /><div id="updatetime_button" class="time"></div>
+        <script>$('#updatetime_button').calendar({ id:'#updatetime',format:'yyyy-MM-dd HH:mm:ss'});</script>
+        </td>
+        <td></td>
+      </tr>
+     
+      </table>
+    </div>
+    <div class="page_table form_table" id="tab3" style="display:none;">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      	  <tr>
+            <td width="100" align="right" style="padding:0px; height:0px;"></td>
+            <td width="350" style="padding:0px; height:0px;"></td>
+            <td style="padding:0px; height:0px;"></td>
+          </tr>
+          <tbody id="expand">
+          </tbody>
+      </table>
+    </div>
+   
+    <!--普通提交-->
+    <div class="form_submit">
+      <input name="aid" type="hidden" value="{$info.aid}" />
+      <input name="file_id" id="file_id" type="hidden" value="{$file_id}" />
+      <button type="submit" class="button">保存</button>
+    </div>
+     
+  </form>
+</div> 
+{include file="phone"} 
+
+    
+   
+
+</div>
+</div>
+            
+       
+  
+      
+{include file="content/common"}

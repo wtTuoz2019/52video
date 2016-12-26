@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$user_config.base_name}</title>
+<meta name="keywords" content="{$user_config.base_keywords}">
+<meta name="description" content="{$user_config.base_description}">
+<link href="__PUBLIC__/css/base.css" type="text/css" rel="stylesheet">
+{$js}
+</head>
+
+<body>
+<div class="fullBox" id="head">
+	<div class="topBox clearfix">
+    	<div class="logo left"><img src="{$sys.logo}" ></div>
+        <div class="mainNav left">
+        	<ul class="clearfix">
+                <li class="current"> 
+                    <a class="title" href="/index.php/">首页</a>
+                </li>
+                <li> 
+                    <a class="title" href="/index.php/field/">回看</a>
+                </li>
+                <li> 
+                    <a class="title" href="/index.php/live/">直播</a>
+                </li>
+            </ul>
+        </div>
+        <div class="searchBox left">
+        	<input type="text" placeholder="请输入您要输入的关键字" class="wenben">
+            <input type="submit" value="" class="tijiao">
+        </div>
+      
+        <div class="other right">
+            <ul class="clearfix">
+              <?php 
+            session_start();
+            $userinfo = explode("|",$_COOKIE['93GDN__duxuser']);
+            $uid = $userinfo[0];
+            if($uid <= 0){
+        ?>
+                <li><a href="__ROOT__/index.php/login?url=<?php echo $_SERVER["HTTP_HOST"].$_SERVER["PHP_SELF"];?>" class="login">登录</a></li>
+                <li><a href="__ROOT__/index.php/register/index.html" class="login">注册</a></li>
+                <?php }else{;?>
+                    <li><a href="__ROOT__/index.php/information/logout.html" class="login">退出</a></li>
+                <li><a href="__ROOT__/index.php" class="login">个人主页</a></li>
+                    <?php };?>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--body-->
+<div class="footer">
+    <div class="footerCon clearfix">
+        <div class="footer_fl">
+            <h2>关于我们</h2>
+            <p>
+                <?php echo html_entity_decode($about[0]['content']);?>
+            </p>
+        </div>
+        <div class="footer_fr">
+            <h2>联系方式</h2>
+            <p><?php echo html_entity_decode($about[1]['content']);?></p>
+        </div>
+    </div>
+    
+</div>
+<div class="copy_">{$sys.copyright}</div>
+</body>
+</html>

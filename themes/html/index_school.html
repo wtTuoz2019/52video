@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>闪阅云微信直播系统</title>
+
+</head>
+
+<body>
+<!--#include file="head.html"-->
+<link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
+<div class="frist" style="background:url(__TPL__/new/images/school.jpg) no-repeat center top;"></div>
+ <div class="nav">
+ 
+
+<div class="center">
+
+
+ 
+ 
+ 
+  <div class="school">
+<div class="school-frist"  style="background:url(__TPL__/new/images/schooltitle.jpg) no-repeat center top;height: 90px;">
+
+</div>
+<div class=" school-second">
+<ul>
+    <!--foreach:{$loop $list}-->
+<li><a href="/field/school/csid-{$list.id}" target="_blank"> <img src="{$list.image}" width="175px" height="85px" /></a></li>
+   <!--/list-->
+</ul>
+
+
+</div>
+
+ </div>
+ 
+ <div class="page "  style=" display: inline-block;"> 
+   <ul >{$page}</ul>
+   </div>
+ 
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ </div>
+ 
+ <!--#include file="foot.html"-->
+</body>
+
+</html>

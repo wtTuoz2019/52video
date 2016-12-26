@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content=""/>
+	<title>{$info.title}</title>
+	<!-- 自定义样式 -->
+	<link rel="stylesheet" href="__TPL__diytpl/css/style.css" type="text/css" />
+    <!--JQuery-->
+    <script src="__TPL__diytpl/javascript/jquery-2.1.4.min.js" ></script>
+     <!--TAB-->
+    <script src="__TPL__diytpl/javascript/jquery.idTabs.min.js" ></script>
+     <style>
+    	.orderList1 li .person img{
+			float:none;
+			margin:0;
+			
+		}
+    </style>
+</head>
+	
+<body>
+	<!--<div class="body_bg">
+		<img src="img/body_bg.png" >
+	</div>-->
+	<!--<div class="content-header">
+		<div class="main">
+			<div class="search-bar">
+				<input type="text" class="search-text" placeholder="直播名称" />
+				<a href="#" class="search-btn">搜索</a>
+			</div>
+		</div>
+		<div class="menu">
+			<a href="#" class="index">首页</a>
+			<a href="#" class="department">科室</a>
+		</div>
+	</div>-->
+	
+	<div class="wraper dianbo-content">
+		<!--<div class="content-header">
+			<div class="main">
+				<div class="search-bar">
+                <form action="" method="post">
+					<input type="text" class="search-text"  name="search_data"/>
+					<button  type="submit" class="search-btn">搜索</button>
+                </form>
+				</div>
+			</div>
+			<div class="menu" id="myTab">
+				<a href="__URL__/index/tid-{$_GET['tid']}" class="index">所有</a>
+				<!--	<a href="__URL__/dapartment/tid-{$_GET['tid']}" class="department">科室</a>--
+                <a href="#item1mobile" class="index">首页</a>
+				<a href="#item2mobile" class="department">年级</a>
+			</div>
+		</div>-->
+        <div id="item1mobile">
+        		<ul class="orderList1" >
+                    <!--<div class="btngroups">
+                        <button type="button" class="left">视频直播</button>
+                        <button type="button" class="right">视频点播</button>
+                    </div>-->
+                    <!--foreach:{$list $vo}-->
+                    <li>
+                      <!--  <div class="date">
+                            <i></i>
+                            <strong>{$vo.updatetime time="Y.m.d"}
+        </strong>
+                            <p>{$vo.updatetime time="H:i"}</p>
+                        </div>-->
+                        <div class="content">
+                         
+                            <a href="{$vo.aurl}">
+                              
+                                <div class="picture">
+                                    <img src="{$vo.image}" />
+                                    <span class="play"></span>
+                                </div>
+                                  <h5> {$vo.title len="20"}</h5>
+                                <div class="person">
+                                   <p><?php echo $vo['cid']==16?date('Y-m-d',model('content')->get_starttime($vo['aid'])):date('Y-m-d',$vo['updatetime'])?> <span style=" position:relative;"><img id="img-1" src="__TPL__diytpl/img/eyes2.png" />{$vo.views}</span>  </p>
+                                 <!-- <img id="img-1" src="__TPL__diytpl/img/eyes1.png" />-->
+                                
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <!--{/foreach}-->
+			
+		 	   </ul>
+        	   <div class="pagination"> {$page}</div> 
+               
+        </div>
+        
+         <!--<div id="item2mobile" >
+                <div class="content clearfix">
+                    <ul class="userinfoArea" >
+                        
+                          <!--<td><a href="#"><img src="img/keshi1.png" alt="" /></a></td>
+                            <td><a href="#"><img src="img/keshi1.png" alt="" /></a></td>
+                            <td><a href="#"><img src="img/keshi1.png" alt="" /></a></td>-->
+                           
+                            <!--foreach:{$dlist $vo}--
+                            <li><a href="__URL__/index/tid-{$_GET['tid']}-gid-{$vo.id}">
+                                <div class="depart-header">
+                                     
+                                </div>
+                                <button type="button" class="btn btn-depart">{$vo.name}</button>
+                                </a>
+                             </li>
+                            <!--{/foreach}
+                            
+                                
+                    </ul>    
+   	           </div>
+     
+            </div>
+      
+        	
+        </div>-->
+        
+		
+	</div>
+	<a href="#">
+		<span class="up"></span>
+	</a>
+    
+	<script>
+	  	$('#myTab').idTabs(); 
+		 
+	</script>
+	 
+ <!--#include file="sharewx.html"-->
+</body>
+   	
+</html>

@@ -1,0 +1,27 @@
+body{ background:none}
+.logo{ text-align:left; margin-top:5px;}
+.discrption{ text-align:center; margin:10px;}
+.logo img{ height:50px; text-align:center}
+.tabledetail{ margin-left:10%; margin-right:10%; border: #333 solid 1px; padding:20px;}
+table{ margin-top:20px;}
+.headpic td{ height:25px;padding: 2px;}
+.form_submit{ text-align:center; margin-top:10px;}
+.headpic{ text-align:center; border-bottom: 1px solid #333; margin:5px; padding:5px;}
+.ui-form-item-l span{padding-left: 115px;}
+.ui-avatar-tiled{width:80px;height:80px; float:left}
+.right{  display:inline-block; width:50%;    margin-left: 20px;
+    margin-top: 20px;}
+.right > span {
+    float: left;
+	height:40px;
+	line-height:40px;
+	font-size:32px;
+	margin:5px;
+	
+}
+.ui-btn-lg{ width:100%;  float:left }
+.avatardes{ margin-top:20px; margin-bottom:10px;}
+.add-people i{ line-height:20px;}
+.add-people p{ margin-left:10px; }
+.picture img{ width:100%}
+

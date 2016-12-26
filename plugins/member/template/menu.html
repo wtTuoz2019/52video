@@ -1,0 +1,41 @@
+<div class="title"><a href="javascript:void(0)">基础设置</a></div>
+<ul class="load menu">
+  <li><a href="__APP__/user_center/index">中心首页</a></li>
+  <li><a href="__APP__/user_center/setting">中心设置</a></li>
+  <li><a href="__APP__/user_center_model/index">附加字段</a></li>
+  <!--hook-->
+  <?php module('common')->plus_hook('menu','user_center_tpl_base');  ?>
+  <!--hook end-->
+</ul>
+<div class="title"><a href="javascript:void(0)">用户管理</a></div>
+<ul class="load menu">
+  <li><a href="__APP__/user_center_group/index">会员组管理</a></li>
+  <li><a href="__APP__/user_center_user/index">会员管理</a></li>
+    <li><a href="__APP__/user_center_user/data">会员数据</a></li>
+     <li><a href="__APP__/user_center_user/dynamic">会员动态</a></li>
+  <!--hook-->
+  <?php module('common')->plus_hook('menu','user_center_tpl_user');  ?>
+  <!--hook end-->
+</ul>
+<div class="title"><a href="javascript:void(0)">评论审核</a></div>
+<ul class="load menu">
+  <li><a href="__APP__/comment/index">评论审核管理</a></li>
+</ul>
+<div class="title"><a href="javascript:void(0)">会员功能</a></div>
+<ul class="menu">
+  <!--hook-->
+  <?php module('common')->plus_hook('menu','user_center_tpl_function');  ?>
+  <!--hook end-->
+</ul>
+<!--hook-->
+<?php module('common')->plus_hook('menu','user_center_tpl');  ?>
+<!--hook end--> 
+
+<script>
+url=$(".load li:first a").attr("href");
+if(!url||url=='#'){
+	ajaxload('__APP__/menu/error');
+}else{
+	ajaxload(url);
+}
+</script>

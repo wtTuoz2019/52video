@@ -1,0 +1,59 @@
+.player { 
+	height:200px; }
+
+.page{
+	height: 200px;
+	color: #fff;
+	position: absolute;
+	top: 0;
+	text-align: center;}
+	
+.page img{ 
+	height: 100%;
+	width: 100%; } 
+	
+.page #countdown{
+	position: absolute; 
+	top: 32px; }
+
+.page p{ 
+	position: absolute; 
+	top: 10px; left: 40%; }
+
+.page .tsfm{
+	position: absolute;
+	left: 47px;
+	top: 60px; }
+	
+.page .tsfm span{
+	font-weight: bold;
+	margin:0 25px; }
+	
+.ui-header .look-zan{
+	position: absolute; 
+	bottom:3px;
+	width: 100%; 
+	color: white; }
+
+.ui-header .look-zan div{
+	display: inline-block; 
+	float: left;
+	padding: 3px 0;
+	width: 50px;
+	vertical-align: middle;
+	text-align: center;
+	background: rgba(128,128,128,.4); 
+	border-radius: 3px;  }
+	
+.ui-header .look-zan div img{
+	width:25%; 
+	margin-right: 5px;
+	display: inline-block;
+	margin-bottom: 3px;
+	vertical-align: middle; }
+
+.ui-header .look-zan div.like{
+	float: right; }
+.none{
+	display:none;
+	}

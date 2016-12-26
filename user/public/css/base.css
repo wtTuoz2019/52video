@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+html {overflow-y:scroll;}
+body {margin:0; padding:0; font:14px/1.5 "微软雅黑"; background:#ffffff; text-align:center; color:#666;}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p,img{padding:0; margin:0; border:0;}
+table,td,tr,th{font-size:12px;}
+ol,ul {list-style:none;}
+li{list-style-type:none;}
+img{vertical-align:top;border:0;}
+h1,h2,h3,h4,h5,h6{font-size:inherit; font-weight:normal;}
+address,cite,code,em,th,i{font-weight:normal; font-style:normal;}
+.hx a,.hx em,.fB{font-weight:bold;}
+.clearfix{*zoom:1;}
+.clearfix:after{display:block; overflow:hidden; clear:both; height:0; visibility:hidden; content:".";}
+a:link,a:visited,a:hover,a:active{color:#666; text-decoration:none;}
+.left{ float:left; display:inline;}
+.right{ float:right; display:inline;}
+.fontS{ font-family:"宋体";}
+
+/*----公用头部----*/
+.fullBox{ background:url(../images/line.jpg) repeat-x 0 0; text-align:center; margin-bottom:11px;}
+.topBox{ width:1100px; overflow:hidden; margin:0 auto; text-align:left; padding-top:30px; height:59px; overflow:hidden;}
+.logo{ width:190px; height:30px; overflow:hidden;}
+.logo img{ display:block; width:100%;}
+.mainNav{ width:420px; overflow:hidden;}
+.mainNav li,.other li{ float:left; display:inline; margin-left:22px; line-height:30px;}
+.mainNav li a,a.down{ color:#fff; font-size:18px;}
+.searchBox{ margin-left:22px; width:264px; border:1px solid #d2d2d2; border-radius:10px; padding:10px; background:#fff; height:28px; margin-top:-10px;}
+.searchBox input.wenben {line-height: 28px;height: 28px;padding-left: 8px;margin-right: 10px;width: 210px;border: 0;overflow: hidden;background: none;float: left;display: inline;}
+.searchBox input.tijiao{ width:28px; height:28px; background:url(../images/icon.png) no-repeat; overflow:hidden; float:left; display:inline;}
+a.login{ color:#585858; background:#dcdcdc; line-height:23px; height:24px; margin-top:4px; padding:0 10px; display:inline-block; border-radius:5px;}
+
+/*-----关于我们---*/
+.usOther{ width:984px; margin:0 auto; padding-top:60px;}
+.usOther li{ float:left; display:inline; width:182px; height:182px; margin:0 32px;}
+.usOther li a{ display:block; width:182px; height:182px; line-height:182px; text-align:center; font-size:24px;  background:url(../images/icon.png) no-repeat; background-position:-115px 0;}
+
+/*-------公用底部------*/
+.footer{ background:#999999; margin-top:50px; padding:30px 0; text-align:left; font-size: 14px;}
+.footerCon{ width:1100px; margin:0 auto; color:#fff;}
+.footer_fl{width: 350px;float: left;padding: 10px 92px;}
+.footer_fr{width: 380px;float: left;padding: 10px 93px;}
+.footer_fl h2, .footer_fr h2{border-bottom: 1px solid #ffffff;font-size: 20px;margin-bottom: 15px;padding-bottom: 5px;}
+.f18{font-size: 18px;}
+.t10{margin-top: 10px;}
+.copy_{height: 60px;line-height:60px;text-align: center;background: #666666;color: #fff;}
+
+/*-------翻页-----*/
+.page{ text-align:right; padding-right:20px; color:#cacaca;}
+.page a{ display:inline-block; width:25px; height:25px; line-height:25px; text-align:center; border:1px solid #cacaca; color:#cacaca; background:#fff; margin-right:3px;}
+.page a.cur{ border:1px solid#00a0e9; background:#00a0e9; color:#fff;}
+
+

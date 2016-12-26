@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		
+		<!-- Css 样式-->
+	    <link rel="stylesheet" href="__TPL__mobile/music/css/style.css" />
+	    
+	    <!-- Javascript -->
+	    <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+	    
+	    <!-- Plugin -->
+	    <link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+	    <script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+        <link rel="stylesheet" href="__TPL__mobile/Scripts/countdown/jquery.countdown.css" />
+        <script type="text/javascript" src="__TPL__mobile/Scripts/countdown/jquery.countdown.js" ></script>
+       
+       <!-- dialog -->
+       <script type=text/javascript src="__PUBLIC__/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="__PUBLIC__/dialog/plugins/iframeTools.js"></script>
+        
+	</head>
+	<body>
+		
+		<section>
+		<div class="play-box">
+				<div class="channels">
+        
+        <div class="show">
+
+    
+       <div id="play" class="play" style="width:100%;">
+        	
+        </div>
+        <div id="backdrop" class="backdrop">
+			<img src="{$info.image}"  alt="" />
+			<div class="counter">
+				<p>直播未开始</p>
+				
+			</div>   
+		</div>
+<script type="text/javascript" src="__PUBLIC__/plays/players.js"></script>
+<script type="text/javascript">
+aodianPlayer({
+  container:'play',//播放器容器ID，必要参数
+  rtmpUrl:'rtmp://{$sys.play}/schoolvideo/{$channel.vMp4url}',//控制台开通的APP rtmp地址，必要参数
+  hlsUrl:'http://{$sys.ios}/schoolvideo/{$channel.vMp4url}.m3u8',//控制台开通的APP rtmp地址，必要参
+
+  player:{
+    name:'lssplayer',//播放器名称，必要参数
+    /* 以下为可选参数*/
+    width: '100%',//播放器宽度，可用数字、百分比等
+    height: '100%',//播放器高度，可用数字、百分比等
+	 html5Width: '100%',//手机端浏览器，播放器宽度，可用数字、百分比等
+    html5Height: '200',//手机端浏览器，播放器高度，可用数字、百分比等
+    wmode:'Transparent',
+    autostart: 'flase',//是否自动播放，默认为false
+    bufferlength: '3',//视频缓冲时间，默认为3秒
+    stretching: '1',//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1
+    controlbardisplay: 'disable'//是否显示控制栏，值为：disable、enable默认为disable
+  }
+});
+/* 以下为LSS Player支持的事件 */
+/* lssHandle.startPlay();//播放 */
+/* lssHandle.pause();//暂停 */
+/* lssHandle.stopPlayer();//停止 */
+/* lssHandle.closeConnect();//断开连接 */
+/* lssHandle.setMute(true);//静音或恢复音量，参数为true|false */
+/* lssHandle.setVolume(volume);//设置音量，参数为0-100数字 */
+/* lssHandle.setFullScreenMode(1);//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1 */
+
+
+				 
+</script>
+
+
+    </div>
+</div>
+		</div>
+	<!--	<div class="scroll-bar">
+			<marquee style="color:#fff; font-size: 1.2rem; width: 100%; line-height: 25px;" scrollamount=1>{$zidingyi.notice}</marquee>	
+			
+		</div>-->
+		<div class="view-box clearfix">	
+				<span class="view" style=" display: inline-block; margin-top: 13px;">观看人次:335人</span>
+				<div class="" style="float: right;">
+			    	<a href="{$zidingyi.addurl}" class="Focus" ><!--<span class="glyphicon glyphicon-plus"></span>--><span style="font-size:2.5rem">+</span><span> 关注</span></a>
+			    <!--	<a href="##" class="view-order "><span class="glyphicon glyphicon-time"></span><span>直播预约</span></a>-->
+				</div>
+		</div>
+		</section>
+		<section>
+			<div class="tab-box" id="tab-box">
+				<ul id="myTab" class="  clearfix" role="tablist">
+                
+				    <li class="active"><a href="#comment" role="tab" data-toggle="tab">评论</a></li>		
+				    <li><a href="#details" role="tab" data-toggle="tab">个人介绍</a></li>
+                    	
+                 
+                    <li><a href="#contents" role="tab" data-toggle="tab">其他回看</a></li>
+                    
+				</ul>
+				
+				<div class="T-title">
+					<!--<div class="h1">关爱生活，关爱美德</div>-->
+                     <?php if($zidingyi['titleimage']){ ?> 
+					<a href="{$zidingyi.titleurl}"><img src="{$zidingyi.titleimage}" aalt="" /></a>
+                     <?php } ?>
+				</div> 
+				<div id="myTabContent" class="tab-content">
+                	
+					<div class="tab-pane active" id="comment">
+						<div  class="infos clearfix ">
+						<a href="javascript:" class="btn-comment" data-toggle="modal" data-target="#mymodal-data1"><span class="glyphicon glyphicon-usd"></span><span>赏</span></a>
+                       
+							<a href="javascript:" class="btn-comment" data-toggle="modal" data-target="#mymodal-data" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-edit "></span><span>我要写评论</span></a>
+							<a href="javascript:" class="btn-zan" onclick="zan()"><span class="glyphicon glyphicon-heart"></span>+<span id="zan-counts">{$info.laud}</span></a>
+						</div>
+                        <div class="modal fade bs-example-modal-sm hongbao" id="mymodal-data1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">						    <style>
+.hongbao{ bottom:20%; width:50%; left:25%}						
+.hongbao input { width:80%; margin-left:10%}
+div.list { padding-top:30px;}
+
+</style>
+								<div class="modal-content">
+									<div class="modal-body">
+									<div class="list">
+<input   name="price" placeholder="输入金额，1-1000元" value="" id="price">
+<input name="desc" placeholder="很精彩，赞一个" value="" id="desc">
+<input  type="submit" value="微信支付"  onClick="pay()">
+									</div>
+									</div>
+									
+								</div>
+						</div>
+						<div class="modal fade bs-example-modal-sm" id="mymodal-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">						    
+								<div class="modal-content">
+									<div class="modal-body">
+										<textarea class="texta" placeholder="在此录入你的评论，长度不能超过100字符" id="editors"></textarea>
+									</div>
+									<div class="modal-footer">
+										<a  class="btn-cancel" data-dismiss="modal">取消</a>
+										<a  class="btn-send" id="btn">发送</a>
+									</div>
+								</div>
+						</div>
+						<div class="comment">
+							<ul id="commentlist">
+                            
+					
+								
+							</ul>
+							<div class="load">
+								<p><a href="javascript:" class="load-none">暂无评论</a></p>
+								<p><a href="javascript:" class="load-more load">加载更多评论</a></p>
+								<p><a href="javascript:" class="load-end">没有更多了</a></p>
+							</div>
+						</div>
+					</div>
+               
+                
+					<div class="tab-pane" id="details">
+						{$info.content}
+					</div>
+            
+                 
+                     
+                     <div class="tab-pane" id="link">
+							<ul>
+     <?php  
+     $loop=array();
+     if($info['aids'])
+    $loop=model('content')->getlist($info['aids']);
+  
+      ?> <!--foreach:{$loop $vo}-->    
+                <li style='list-style:none;' class="<?php echo $vo['cid']==16?'live-class':'over-class';  ?>">
+                    <a href="{$vo.aurl}">●{$vo.title} </a>
+                   <span><?php echo $vo['cid']==16?'直播':'重播';  ?></span>
+				</li>
+		<!--/loop-->
+		</ul>
+					</div>
+                    
+				</div>
+			</div>
+		</section>
+		<script>
+		            var s =document.getElementById("tab-box");
+		            var uls = document.getElementById("myTab");
+					var as = uls.getElementsByTagName("a");
+					for(var i=0; i<as.length;i++){
+						var sum = parseInt(s.clientWidth/ as.length)
+						as[i].style.width = sum +"px";
+					}
+					
+					function zan(){
+						var counts = document.getElementById("zan-counts");
+						
+						$.post('/index.php/change',{type:'love',fid:'{$info.aid}',uid:'<?php echo $_SESSION["uid"];?>'},function(data){
+				if(data.status=='1'){
+				
+					 counts.innerHTML = counts.innerHTML*1+1;
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}else{
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}
+			},'json');
+						
+						   
+					}
+					
+		</script>
+       <!--#include file="common.html"-->
+<!--Tabs.js-->
+<script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
+
+<script type="text/javascript"> 
+	
+	  var data = {
+			    fid: '1',
+				uid:'<?php echo $_SESSION["uid"];?>',
+			    pageSize: 10,
+			    pageIndex: 0,
+			  };
+			  var arr = {
+			    fid: '{$info.aid}',
+			    id: 0
+			  };
+			  var id = 0,
+			  flag=0;
+ 
+	function pay(){
+		 price=parseFloat($('#price').val());
+		
+		if(price>1000 || price <0||$('#price').val()==''){
+	$.dialog({
+						        content: '金额不得于1或大于1000元',
+								bottom:'20%',
+								fixed:true,
+								width:200,
+								height:80
+					          });
+	return false;
+	}
+	
+		$.ajax({
+				  url: "__ROOT__/index.php/comment/savepay",
+				  type: "POST",
+				  data: {
+					fid: data['fid'],
+					message: $('#desc').val(),
+					price: price,
+			        uid: data['uid']
+				  },
+				  dataType: "json",
+				  success: function( d ) {
+					if(d.message>0){
+				$.post('__ROOT__/wxpay/index?openid={$userinfo.openid}',{id:d.message,price:$('#price').val(),desc:$('#desc').val()},function(data){
+		
+			callpay(data);
+			},'json')
+			} 
+		 }});
+		}
+	
+	//调用微信JS api 支付
+
+	function jsApiCall(jsApiParameters)
+	{
+			
+		WeixinJSBridge.invoke(
+			'getBrandWCPayRequest',
+			jsApiParameters,
+			function(res){
+				WeixinJSBridge.log(res.err_msg);
+				  if(res.err_msg == "get_brand_wcpay_request:ok"){
+                  //alert(res.err_code+res.err_desc+res.err_msg);
+                  $("#mymodal-data1").hide();
+				  $(".modal-backdrop").hide();
+                   }
+				
+			}
+		);
+	}
+
+	function callpay(jsApiParameters)
+	{
+		if (typeof WeixinJSBridge == "undefined"){
+			
+		    if( document.addEventListener ){
+		        document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+		    }else if (document.attachEvent){
+		        document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+		        document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+		    }
+		}else{
+		    jsApiCall(jsApiParameters);
+		}
+	}
+	
+	
+
+	
+	$('#btn').click(function(){
+	  var this_ = this;
+				var mes = $('#editors').val();
+				if(flag==1){
+					return false;
+				}
+				flag==1;
+			
+				if(mes.length < 1){
+					
+					//alert('请输入大于1字符评论');
+					$.dialog({
+						        content: '请输入大于1字符评论',
+								top:'300px',
+								fixed:true,
+								width:200,
+								height:80
+					          });  
+			    	return;
+			    }
+				
+			   
+				$.ajax({
+				  url: "__ROOT__/index.php/comment/save",
+				  type: "POST",
+				  data: {
+					fid: data['fid'],
+					message: mes,
+			        uid: data['uid']
+				  },
+				  dataType: "json",
+				  success: function( d ) {
+					$('#editors').val('');
+					if(d.status == 1){
+						$('#editors').val('');
+			           		//alert('评论成功');
+							$.dialog({
+						        content: '评论成功',
+								top:'300px',
+								absolute:true,
+								width:200,
+								height:80
+					          });  
+							//postcomment();
+							$("#mymodal-data").hide();
+							$(".modal-backdrop").hide();
+						flag=0;
+						
+					
+					}else{
+			           //	alert('评论失败');
+						$.dialog({
+						        content: '评论失败',
+								top:'300px',
+								fixed:true,
+								width:200,
+								height:80
+					          });
+						flag=0
+			        }
+				  }
+				});	
+	});
+	
+	
+			function getcomment(){
+				
+				$.post('__ROOT__/index.php/comment/pc_list',{data: data},function(d){
+					if(d.status==1){
+						var count = d.message.count;
+						if(d.message.pageindex != 0)
+						data['pageIndex']=d.message.pageindex;
+						
+						if(d.message.count == 0){
+							$('.load').hide();
+							//$('#comments_list').html('暂无数据');
+						}else{
+								if(arr['id']==0)
+							arr['id'] = d.message.info[0]['id'];
+							
+							$('#commentlist').append(escapes(d.message.info));	
+							
+						}	
+					}else{
+						//alert ('操作失败');
+						$.dialog({
+						        content: '操作失败',
+								top:'300px',
+								fixed:true,
+								width:200,
+								height:80
+								
+					          });	
+					}
+				},'json')
+			}
+			getcomment();
+		
+		$('a.load').bind('click',function(){
+				getcomment();
+				})
+			
+		function escapes(data){
+				var strVar = "";
+				if(!data){
+					return '';
+				}
+				for(var i=0;i<data.length;i++){
+			//		 strVar +='<div class="dialog"><div class="user"><dl><dt><img src="'+data[i]['pic']+'">  </dt> <dd> <P class="username">'+data[i]['name']+'</P><div class="info">'+data[i]['message']+'</div> </dd> </dl></div>';
+					 strVar+='<li class="clearfix"><dl><dt ><p class="user-img"><img src="'+data[i]['pic']+'"></p></dt><dd><p class="user-box"><span class="user-name">'+data[i]['name']+'</span></p><p class="time" ><span class="glyphicon glyphicon-usd"  style=" color:#EC1069;vertical-align;float:right">'+data[i]['price']+'</span><span style="color: #888888;">'+data[i]['time']+'<span></p><p class="user-say">'+data[i]['message']+'</p></dd></dl></li>';
+			    	
+				}
+				return strVar;
+			}
+		function automatic(arr){
+				$.post('__ROOT__/index.php/comment/pc_auto',{data: arr},function(d){
+					if(d.status==1){
+						$('#commentlist').prepend(escapes(d.message.info));
+						arr['id'] = d.message.info[0]['id'];
+					}
+				},'json')
+			}
+	function qwert(){
+				
+				automatic(arr);
+			}setInterval("qwert()",5000);
+
+	$('#mask').click(function(){
+		$('#mask,#register').hide();
+	});
+function changecolor(color){
+	if(color=='red')
+{
+	$('.view-box').addClass('backgroudCb');
+	$('.infos').addClass('chageCw');
+	$('#myTab').addClass('backgroudC')
+	}else{
+		$('#myTab').addClass('tab-nav')
+		}
+}
+
+var style="<?php echo $zidingyi[style];?>";
+changecolor(style);
+</script>
+        
+	</body>
+</html>

@@ -1,0 +1,517 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6,p,span,ul,li,a,i,body{font: 12px/1.5em "微软雅黑";}
+ul,li{list-style-type:none;}
+a{text-decoration: none;}
+.left{float:left;}
+.right{float:right;}
+.clearfix{*zoom:1;}
+.clearfix:after{display:block; overflow:hidden; clear:both; height:0; visibility:hidden; content:".";}
+
+/*西安音乐节 CSS样式*/
+.header
+{
+	margin-left: 10px;
+}
+.header h4
+{
+	font-size:18px;
+	font-weight:bold;
+}
+.show 
+{
+	width: 325px;
+	margin: 0 auto;
+}
+.content_left,.content_mid,.content_right,
+.content_mid p,.content_right p
+{
+	display: inline-block;
+}
+.content_left
+{
+	margin-right: 20px;
+}
+.content_left p,.commentarea_right h6,.commentarea_right .comtop h6
+{
+	color: #1874CD;
+}
+.content_mid p
+{
+	color: #6495ED;
+	margin-right: 5px;
+}
+.content_mid span
+{
+	top: 4px;
+	color:#A3A3A3;
+}
+.content_right,.comlistarea .username
+{
+	color:#7D9EC0;
+}
+.content_right span
+{
+	font-size: 20px;
+	margin-right: 3px;
+}
+.content_right p
+{
+	font-size: 18px;
+}
+.commentarea
+{
+	border-bottom: 1px solid #A6A6A6;
+	padding-bottom: 8px;
+}
+.commentarea_left
+{
+	width: 14%;
+}
+.commentarea_right
+{
+	width: 86%;
+}
+.commentarea_right h6,.commentarea_right .comtop h6
+{
+	font-size: 14px;
+}
+.commentarea_right .comtop span
+{
+	font-size: 10px;
+	background: #1E90FF;
+	color: #fff;
+	padding: 1px 3px;	
+}
+.commentarea_right .comtop p,.commentarea_right .dianzan .userlist p
+{
+	display: inline;
+}
+.commentarea_right .commid .imgbox img
+{
+	width: 80px;
+	height: 80px;
+	margin: 2px;
+}
+.commentarea_right .commid .date
+{
+	padding: 4px 0;
+	color: #666;
+}
+.commentarea_right .combtm
+{
+	background: #DEDEDE;
+	padding-top: 5px;
+}
+.commentarea_right .dianzan,.commentarea_right .pinglun
+{
+	padding: 5px;
+}
+.commentarea_right .dianzan span,.commentarea_right .pinglun span
+{
+	color: #0099FF;
+	margin-right: 10px;
+}
+.commentarea_right .dianzan .userlist,.commentlist
+{
+	width: 90%;
+}
+.commentarea_right .dianzan .userlist img
+{
+	width: 35px;
+	height: 35px;
+	margin-bottom: 5px;
+}
+.commentarea_right .combtm .pinglun span
+{
+	margin-top: 10px;
+}
+.commentlist ul li
+{
+	margin-bottom: 10px;
+	clear: right;
+}
+.comlistarea
+{
+	width: 80%;
+}
+.commentlist .showMore 
+{
+	clear: left;
+}
+.commentlist .showMore  p
+{
+	color: #A6A6A6;
+	font-size: 12px;
+}
+.commentlist .showMore  p span
+{
+	color: #000;
+	margin-right: 0;
+}
+.conmidlist
+{
+	width: 27%;
+	background: #eeeff3;
+	padding: 7px 0 0 14px;
+	position: absolute;
+	top: 390px;
+	left: 50px;
+	z-index: 99;
+	display: none;
+}
+.conmidlist ul li
+{
+	margin-bottom: 5px;
+}
+.conmidlist ul li a,.conmidlist ul li a:hover,.conmidlist ul li a:active
+{
+	color:  #6495ED;
+}
+.modal .modal-body .btn-default,
+.modal .modal-body .btn-primary
+{
+	width: 80%;
+	border: none;
+}
+.modal .modal-body .btn-primary
+{
+	background-color: #66CDAA;
+	margin-bottom: 10px;
+}
+.modal .modal-body .btn-default
+{
+	border-radius: 1px;
+	margin-bottom: 120px;
+}
+.modal .modal-body .btn-default:hover
+{
+	background: #fff;
+}
+.modal-backdrop
+{
+	background: none;
+}
+.modal-body
+{
+	background-color: #eeeff3;
+	padding: 0;
+}
+.modal-body textarea
+{
+	width: 100%;
+	border: none;
+	height: 105px;
+	margin-top: 30px;
+	resize: none;
+}
+.icongroups
+{
+	width: 60%;
+	margin-top: 10px;
+}
+.icongroups .picture
+{
+	margin-left: 15%;
+}
+.icongroups .video,.icongroups .picture
+{
+	margin-right: 15%;
+}
+.icongroups .video,.icongroups .sound,.current ul li,.commentlist .showMore  a span
+{
+	display: inline-block;
+}
+.icongroups .glyphicon{font-size: 18px;color: #666;}
+.icongroups p{font-size: 10px;}
+.current
+{
+	width: 180px;
+	background-color: rgba(0,0,0,.7);
+	border-radius: 4px;
+	z-index: 999;
+	position: absolute;	
+	right:25px;
+	top: 0;
+	display: none;
+}
+.current ul
+{
+	padding-top: 6px;
+}
+.current ul li
+{
+	margin-left: 10px;
+	padding-right: 10px;
+	color: #fff;
+	border-right: 1px solid #000;
+	font-size: 12px;
+}
+.current ul li:last-child
+{
+	border-right: none;
+}
+.current ul li a
+{
+	color: #fff;
+}
+.commid .date
+{
+	position: relative;
+}
+
+/*视频列表 CSS样式*/
+.body_bg{z-index:0;position:fixed;top: 0;bottom: 0;left: 0;right: 0;}
+.body_bg img,.wraper{width: 100%;}
+.body_bg img
+{
+	height: 100%;
+}
+.wraper
+{
+	overflow: hidden;
+}
+.orderList
+{
+	border-left: 2px solid rgba(255,255,255,0.5);
+	min-height: 100%;
+	margin-right: 10px;
+	margin-left: 80px;
+	padding-left: 15px;
+	position: relative;
+	z-index: 1;
+	clear: right;
+}
+.orderList li
+{
+	padding:10px 0;
+}
+.orderList li .date
+{
+	float: left;
+	width: 62px;
+	margin-left: -90px;
+	text-align: right;
+	position: relative;
+}
+.orderList li .date i
+{
+	width: 8px;
+	height: 8px;
+	border-radius: 4px;
+	background:#ccc;
+	position: absolute;
+	top:15px;
+	right: -16px;
+}
+.orderList li .date strong,.orderList li .date p
+{
+	color:#b6b6b6;
+}
+.orderList li .date strong
+{
+	font-weight: normal;
+}
+.orderList li .content
+{
+	background: rgba(255,255,255,.1);
+	padding: 8px 10px;
+	border-radius: 5px;
+	position: relative;
+}
+.orderList li .content .triangle
+{
+	background: url(../img/video/arrow.png) no-repeat;
+	background-size: 8px 16px;
+	width: 8px;
+	height: 16px;
+	opacity: 0.1;
+	position: absolute;
+	top: 12px;
+    left: -8px;  
+}
+.orderList li .content a,.orderList li .date strong
+{
+	display: block;
+}
+.orderList li a h5
+{
+	color: #fff;
+	font-size: 14px;
+	text-shadow: 0 1px 2px #555;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.orderList li .picture
+{
+	margin-top: 10px;
+	text-align: center;
+	position: relative;
+}
+.orderList li .picture img
+{
+	margin: 0 auto;
+	max-width: 100%;
+	max-height: 300px;
+}
+.orderList li .picture .play
+{
+	background: url(../img/video/starticon.png) no-repeat;
+	background-size: 50px 50px;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+    margin: -25px 0 0 -25px;
+}
+.orderList li .person
+{
+	position: relative;
+	height:40px;
+}
+.orderList li .person img
+{
+	width: 40px;
+	height: 40px;
+	margin:5px 8px 0 0;
+}
+.orderList li .person p
+{
+	display: inline-block;
+	position: absolute;
+	top: 18px;
+	color: #CCC;
+	font-size: 14px;
+}
+.orderList li .person p i
+{
+	color: #999999;
+	font-size: 14px;
+	margin: 0 5px;
+	font-style: normal;
+}
+.orderList li .person p span
+{
+	color:#C9302C;
+	margin: 0 10px;
+}
+.up
+{
+	background: url(../img/video/up.png) no-repeat;
+	background-size: 30px 30px;
+	width: 30px;
+	height: 30px;	
+	cursor: pointer;
+	z-index: 99;
+	position: fixed;
+	bottom: 20px;
+	right: 10px;
+}
+.btngroups
+{
+	z-index: 1;
+	position: relative;
+	margin:0 auto;
+	padding-top: 10px;
+	margin-bottom:40px;
+}
+.btngroups button
+{
+	border: none;
+	border-radius: 3px;
+	padding: 6px 12px;
+	font-weight: bolder;
+	color: #fff;
+	background: #27408B;
+}
+
+
+.moreLink
+{
+	display:block;
+	color:#fff;
+	text-align:center;
+	font-size:16px;
+	padding:5px 0;
+	position:relative;
+	z-index:1
+}
+
+.moreLink:hover
+{
+	text-decoration:underline	
+}
+
+
+/*修改*/
+.orderList{
+	margin-left:75px;
+}
+.body_bg{
+	background: #2CA5B7;
+}
+.body_bg img {
+    display: none;
+}
+.orderList li .date strong, .orderList li .date p{
+	color:#fff;
+}
+.orderList li .content{
+	background:#fff;
+}
+.orderList li a h5{
+	color:#333;
+	text-shadow:none;
+}
+.btngroups{
+	position: fixed;
+    top: 0;
+    margin: 0;
+    width: 100%;
+    z-index: 1500;
+	padding:0;
+}
+.btngroups button{
+	width: 50%;
+    height: 45px;
+    background: #148097;
+	font-size: 16px;
+	border-radius:0;
+}
+.btngroups button:first-child{
+	border-right:1px solid #025769;
+}
+#list{
+	margin-top:45px;
+}
+.orderList li .person p>span>img{
+	height:13px;
+	width:inherit;
+	margin:0;
+	position:relative;
+	top:2px;
+	left:-4px;
+}
+.orderList li .person p>span{
+	color:#000;
+}
+.orderList li .person p>span:last-child{
+	float:right;
+}
+.orderList li .person p>span:first-child{
+	float:left;
+}
+.orderList li .person p{
+	width:100%;
+}
+.btngroups>button>img{
+	height: 18px;
+    position: relative;
+    top: 3px;
+    left: -5px;
+}
+.orderList li .content .triangle{
+	opacity:1;
+}

@@ -1,0 +1,145 @@
+<div class="page_function">
+  <div class="info">
+    <small>注意：1级菜单最多只能开启3个，2级子菜单最多开启5个!</small> </div>
+  <div class="exercise"> 
+  
+   <a href="__URL__/menu_add">添加主菜单</a>
+  
+   </div>
+</div>
+<div class="page_main">
+  <div class="box-body">
+  <form action="__URL__/menu_send" method="post" id="form" autocomplete="off">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+      <tr>
+     
+        <th><center>主菜单名称</center></th>
+        <th><center>关联关键词</center></th>
+        <th width="30%"><center>关联文章（url）</center></th>
+           <th width="10%"><center>显示顺序</center></th>
+      
+        <th><center>操作</center></th>
+      </tr>
+      <!--foreach:{$class $vo}-->
+      <tr>
+       
+      
+      
+        <td><center>{$vo.title} </center></td>
+       
+         <td><center>{$vo.keyword}</center></td>
+        <td><center>{$vo.url} </center></td>
+         <td><center><span>{$vo.sort}</span></center></td>
+         <td><center><a title="修改主菜单" href="__URL__/menu_add/id-{$vo.id}" class="btnGreen cboxElement">修改</a>
+											<a href="javascript:;" class="btnGray vm" onclick='del({$vo.id},this)'>删除</a></center></td>
+      </tr>
+       <!--foreach:{$vo['class'] $v}-->
+                                            <tr >
+                                               <td><center>{$vo.title} ————{$v.title} </center></td>
+                                               <!-- <td  align="right" style=" text-align:left;">
+                                                  ————├{$v.title} 
+                                                </td>  -->
+                    
+                                                <td >
+                                                    <center>{$vo.keyword}</center>
+                                                </td>
+                                                <td><center>{$vo.url} </center></td>
+                                                 <td >
+                                                    <center><span>{$vo.sort}</span></center>
+                                                </td>
+                                                <td><center><a title="修改主菜单" href="__URL__/menu_add/id-{$vo.id}" class="btnGreen cboxElement">修改</a>
+											<a href="javascript:;" class="btnGray vm" onclick='del({$vo.id},this)'>删除</a></center></td>
+                                            </tr>
+                                            <!--{/foreach}-->
+      <!--{/foreach}-->
+      
+      	<tr class="hover">
+        								<td colspan="5" class="td25">
+											<button type="submit"  class="btnGreen special">生成自定义菜单</button>		
+											<span id="cdul" style="float:left;">
+												注：<br>
+												(使用前提是已经拥有了自定义菜单的用户才能够使用，)<br>
+												第一步:必须先填写【AppId】【 AppSecret】！<br>
+												第二步:添加菜单，<br>
+												第三步:点击生成!<br>
+												注意：1级菜单最多只能开启3个，2级子菜单最多开启5个<br>
+												官方说明：修改后，需要重新关注，或者最迟隔天才会看到修改后的效果！<br>
+											</span>
+										</td>				
+     								</tr>	
+    </table>
+    </form>
+  </div>
+</div>
+</div>
+  <script>
+        function del(id,obj) {
+			var obj;
+			ajaxposta({
+				name:'确认要删除本内容吗?删除无法恢复！',
+				url:"__URL__/del",
+				data:{id: id,table:'diymen_class' },
+				tip:1,
+				success:function(){
+					window.location.reload();
+					//window.location.href=window.location.href;
+				}
+			});
+		}
+		
+		function ajaxposta(config,url,data,tip,success,failure,cancel){
+			if(!config.name){
+				var config = {
+					name:config,
+					url:url,
+					data:data,
+					tip:tip,
+					success:success,
+					failure:failure,
+					cancel:cancel
+				};
+			}
+			art.dialog.through({
+				content: config.name,
+				lock: true,
+				icon: 'warning',
+				button: [{
+					name: '确认操作',
+					callback: function() {
+					//window.top.sub_lock();
+					$.ajax({
+					type: 'POST',
+					url: config.url,
+					data: config.data,
+					dataType: 'json',
+					success: function(json) {
+						//window.top.sub_lock_close();
+						if(config.tip){
+						art.dialog.tips(json.message, 3);
+						}
+						if (json.status == 1) {
+							if(typeof config.success == "function"){
+								config.success(json.message);
+							}
+						} else {
+							if(typeof config.failure == "function"){
+								config.failure(json.message);
+							}
+						}
+					}
+				});
+				},
+				focus: true
+				},
+				{
+					name: '取消',
+					callback: function() {
+						  if(typeof config.cancel == "function"){
+							config.cancel();
+						}
+					}
+				}]
+			});
+			
+		}
+		</script>

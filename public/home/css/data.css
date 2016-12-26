@@ -1,0 +1,216 @@
+/* data */
+
+.data-statistic {
+    padding-bottom: 14px;
+}
+.data-statistic .data-statistic-currentcount {
+    background: #1073c2 none repeat scroll 0 0;
+}
+.data-statistic  div {
+    float: left;
+    height: 110px;
+    margin: 0 28px 0 20px;
+   /* padding: 22px 0 22px 70px;*/
+    padding: 12px 0 22px 26px;
+    position: relative;
+    /*width: 200px;*/
+   width: 192px;
+}
+.data-statistic .data-statistic-title {
+    color: #fff;
+    font-size: 14px;
+}
+.data-statistic .data-statistic-count {
+    color: #fff;
+    font-size: 36px;
+    padding-top: 2px;
+    margin-top: -82px;
+}
+.data-statistic .data-statistic-count .postfix {
+    font-size: 14px;
+}
+.ml-15 {
+    margin-left: 15px !important;
+}
+.data-statistic  div.data-statistic-currentcount .icon {
+    background-position: -100px 0;
+}
+.data-statistic  div i.icon {
+    background: rgba(0, 0, 0, 0) url(/public/home/images/icon-data-home.png) no-repeat scroll 0 0;
+    display: block;
+    height: 68px;
+    left: -20px;
+    position: absolute;
+    top: 24px;
+    width: 68px;
+}
+em, i {
+    font-style: normal;
+}
+.data-statistic  div.data-statistic-daikuan {
+    background: #299ed9 none repeat scroll 0 0;
+}
+.data-statistic  div.data-statistic-daikuan .icon {
+   background-position: -100px -76px;
+}
+.data-statistic  div.data-statistic-totalcount {
+    background: #38b8e8 none repeat scroll 0 0;
+}
+.data-statistic  div.data-statistic-totalcount .icon {
+    background-position: 0 -76px;
+}
+.data-statistic  div.data-statistic-todydaikuan {
+    background: #56ceec none repeat scroll 0 0;
+}
+.data-statistic  div.data-statistic-todydaikuan .icon {
+    background-position: 0 -158px;
+}
+.panel-heading {
+    background-color: #fff;
+	
+    color: #333;
+   /* width: 321px;*/
+    width: 675px;
+    border: 1px solid #ddd;
+    border-left: 3px solid #1073c2;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+	margin-top: 12px;
+}
+.panel-title {
+    color: inherit;
+    font-size: 16px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+/*.panel-body {
+    padding: 25px 25px 70px;
+}*/
+.panel-body{
+	padding: 0px;
+}
+.ledata-home-userface .box {
+    width: 320px;
+}
+.ledata-home-userface .sex, .ledata-home-userface .age {
+    border: 1px solid #ddd;
+    border-top: none;
+}
+.ledata-home-userface .con {
+   /* height: 120px;*/
+   /*height: 135px;*/
+   height: 270px;
+    padding: 25px 0 20px 15px;
+	background-color:#fff;
+	width: 320px;
+}
+.ledata-home-userface .con .icon {
+    margin-right: 10px;
+    width: 38px;
+	
+}
+.icon-data-sex-wj, .icon-data-age-wj,.icon-data-user-man-wj, .icon-data-user-woman-wj, .icon-data-user-human-wj{
+	background: rgba(0, 0, 0, 0) url(/public/home/images/icon-data-home.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+.icon-data-sex-wj {
+    background-position: -4px -237px;
+}
+.icon-data-sex-wj, .icon-data-age-wj {
+    height: 38px;
+    width: 38px;
+}
+.ledata-home-userface .con .info {
+    width: 80px;
+}
+.ledata-home-userface .con .info .title {
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 3px;
+    margin-bottom: 0;
+}
+.ledata-home-userface .con .info .txt {
+    color: #888;
+    font-size: 12px;
+    line-height: 14px;
+}
+.text-warning {
+    color: #fb9d44;
+}
+.ledata-home-userface .con .chart {
+    width: 175px;
+    margin-top: 15px
+}
+.ledata-home-userface .con .icons p {
+    cursor: pointer;
+    height: 46px;
+    margin-right: 5px;
+    position: relative;
+    width: 46px;
+}
+.icon-data-user-man-wj {
+    background-position: -2px -328px;
+}
+.icon-data-user-man-wj, .icon-data-user-woman-wj, .icon-data-user-human-wj, .icon-data-user-had-wj {
+    height: 46px;
+    width: 47px;
+}
+.icon-data-user-woman-wj {
+    background-position: -50px -328px;
+}
+.icon-data-user-man-wj, .icon-data-user-woman-wj, .icon-data-user-human-wj, .icon-data-user-had-wj {
+    height: 46px;
+    width: 47px;
+}
+.icon-data-user-human-wj {
+    background-position: -100px -328px;
+}
+.icon-data-user-man-wj, .icon-data-user-woman-wj, .icon-data-user-human-wj, .icon-data-user-had-wj {
+    height: 46px;
+    width: 47px;
+}
+.ledata-home-userface .con .icon {
+    margin-right: 10px;
+    width: 38px;
+}
+.icon-data-age-wj {
+    background-position: -4px -285px;
+}
+/*.panel-heading .stop-time{
+	width:900px;
+}*/
+
+.panel-heading,.ledata-home-userface .box{
+	margin-left: 19px;
+}
+.sex .progress {
+    background: rgba(0, 0, 0, 0.05) none repeat scroll 0 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25) inset, 0 1px rgba(255, 255, 255, 0.08);
+    padding: 2px;
+    width: 190px;
+	display:inline-block;
+	margin: 12px 5px 0 8px;
+}
+.sex .progress-bar{
+    border-radius: 4px;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01), 0 1px rgba(255, 255, 255, 0.3) inset;
+    height: 16px;
+	/*background-color: #639cd3;*/
+}
+.sex .progress .wid1 {
+	width:20%;
+	background-color: #38b8e8;
+
+}
+.sex .progress .wid2 {
+	width:30%;
+	background-color: #fa5258;
+}
+.sex .progress .wid3 {
+	width:50%;
+	background-color: #d8d8d8;
+}
+
+

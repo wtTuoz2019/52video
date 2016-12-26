@@ -1,0 +1,24 @@
+<div class="subNavBox left">
+<div class="subNavCon">
+  <div class="personInfo">
+    <p class="txPic"><img src="<?php echo model('user')->picture($user_info['uid']); ?>" width="120" height="120" /></p>
+    <p class="name">{$user_info.nicename}</p>
+    <p class="edit"><a href="__APP__/information/base.html">编辑个人资料</a></p>
+  </div>
+  <div class="myEduTit">个人中心</div>
+  <div class="sunNavList">
+    <ul class="clearfix">
+        <li class="myKc1"><a href="__APP__/">会员首页</a></li>
+
+      <?php $list=model('menu')->main_menu(); if(!empty($list)){ foreach ($list as $vo) { ?>
+      <?php $sublist=model('menu')->menu_list($vo['id']); if(!empty($sublist)){ foreach ($sublist as $value) { ?>
+      <li class="myKc2"><a href="__APP__/{$value.module}/index.html">{$value.name}</a></li>
+      <?php } }} } ?>
+      <!--<li><a href="__APP__/information/base.html">个人资料</a></li>-->
+      <li class="myKc3"><a href="__APP__/information/avatar.html">头像设置</a></li>
+      <li  class="myKc4"><a href="__APP__/information/password.html">密码修改</a></li>
+      <li  class="myKc5"><a href="__APP__/information/logout.html">退出登录</a></li>
+      </ul>
+  </div>
+</div>
+</div>

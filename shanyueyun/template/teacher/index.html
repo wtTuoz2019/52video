@@ -1,0 +1,87 @@
+<div class="page_function">
+  <div class="info">
+    <h3>老师管理</h3>
+    <small>将栏目与老师进行绑定来实现附加字段功能</small> </div>
+  <div class="exercise"> 
+   <a href="javascript:menuload('__URL__')">老师列表</a>
+   <?php if(model('user_group')->model_power('expand_model','add')){ ?>
+   <a href="javascript:;" onclick="add()">添加老师</a>
+   <?php } ?>
+  
+   </div>
+</div>
+<div class="page_main">
+<div class="page_menu">
+  搜索：
+  <input name="search" type="text" class="text_value" id="search" value="<?php echo urldecode($_GET['search']) ?>" />
+  &nbsp;&nbsp;<input type="button"  class="button_small" onclick="javascript:location.href='__URL__/index/search-'+$('#search').val();" value="搜索" />
+  </div>
+  <div class="page_table table_list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th width="10%"><center>头像</center></th>
+        <th width="20%">名称</th>
+          <th width="10%">职称</th>
+           <th width="30%">学校</th>
+           <th width="10%">科目</th>
+            <th width="10%">年级</th>
+       
+        <th width="10%"><center>操作</center></th>
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr>
+        <td><center><img src="{$vo.image}" height="40px" /></center></td>
+        <td>{$vo.name}</td>
+        <td>{$vo.title}</td>
+          <td>{$school[$vo['cid']]['name']}</td>
+         <td>{$subject[$vo['sid']]['name']}</td>
+          <td>{$grade[$vo['gid']]['name']}</td>
+       
+        <td><center>
+       
+         &nbsp;&nbsp;<a  href="javascript:void(0);" onclick="edit('{$vo.id}')">修改</a>
+       
+       
+         
+         &nbsp;&nbsp;<a href="javascript:void(0);" onclick="del('{$vo.id}',this)">删除</a>
+       
+         </center></td>
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+</div>
+
+<div class="page_tool">
+  <div class="page">{$page}</div>
+</div>
+<script>
+//添加
+function add() {
+	urldialog({
+	title:'老师添加',
+	url:'__URL__/add'
+	});
+};
+//修改
+function edit(url) {
+	urldialog({
+	title:'老师编辑',
+	url:'__URL__/edit/id-'+url
+	});
+};
+
+//删除
+function del(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'删除老师后会同时老师下级内容! ',
+		url:"__URL__/del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().remove();
+		}
+	});
+}
+</script>

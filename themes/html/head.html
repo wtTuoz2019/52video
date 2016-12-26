@@ -1,0 +1,81 @@
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="js/jqthumb.min.js"></script>
+<script type="text/javascript" src="__TPL__new/js/main.js"></script>
+<link href="__TPL__/new/css/main.css" rel="stylesheet" type="text/css" />	
+
+<div class="navigation">
+<a id="gw" href="http://shanyueyun.com">返回官网</a>
+<ul class="head">
+<li class="logo_img"><a href="http://shanyueyun.com"><img src="__TPL__/new/images/logo.png"  style=" height:80px;"/></a></li>
+
+<li id="index"><a href="/" >首页</a></li>
+<li id="field"><a href="/field/" >重播</a></li>
+<li id="live"><a href="/live/">直播</a></li>
+   <?php 
+            session_start();
+          
+            $uid = $_SESSION['uid']; if($uid <= 0){
+        ?>
+<li id="login"><a href="/login">用户登录</a></li>
+<?php }?>
+ <li class="li3"><div>
+
+    <fieldset class="search">
+         <input type="text" class="box" name="s" id="s" class="inputText" placeholder="请输入您要搜索的名称" x-webkit-speech>
+          <button class="btn tijiao" title="搜索" > </button>
+    </fieldset>
+
+</div>
+<article class="article">
+</article></li>
+
+</ul>
+<?php if($uid){ ?>
+<div class="other right">
+<ul class="clearfix">
+                <li><img src="<?php echo $_SESSION['headpic'];?>" width="50px"></li>
+                		<!--<li><a href="javascript:" class="login"><?php echo $_SESSION['nickname'];?></a></li>-->
+                    <li><a href="/weixinlogin/logout" class="login">退出</a></li>
+              </ul>
+              </div>  
+                    <?php };?>
+</div>
+<style>
+	.navigation #gw{
+		float: right;
+		color: #fff;
+		text-decoration: underline;
+		line-height: 80px;
+		margin-right: 40px;
+	}
+</style>
+
+<script type="text/javascript"> 
+
+var moudle="<?=$_GET['_module']?>"
+var cid="{$info.cid}";
+if(cid=='13'){
+	moudle='field';
+	}else if(cid=='16'){
+		moudle='live';
+		}
+
+$('#'+moudle).find('a').addClass('headcur')
+    $('.tijiao').bind('click' ,function(){
+        var v = $('#s').val();
+        window.location.href="__APP__/field/index?v="+v; 
+    });
+	 var childWindow;
+	 
+	 function toweixinLogin()
+            { 
+				
+                childWindow = window.open("http://live.shanyueyun.com/login/login.html?url=<?php echo  urlencode($_SERVER['REQUEST_URI']);?>","weixinLogin");
+            } 
+                        
+            function closeChildWindow()
+            {
+                childWindow.close();
+            }
+	
+</script>

@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<title>{$common.title}</title>
+
+<script language="javascript" src="__TPL__/mobile/Scripts/zepto.js"></script>
+<script language="javascript" src="__TPL__/mobile/Scripts/event.js"></script>
+<script language="javascript" src="__TPL__/mobile/Scripts/touch.js"></script>
+<script language="javascript" src="__TPL__/mobile/Scripts/ajax.js"></script>
+<script language="javascript" src="__TPL__/mobile/Scripts/ye_dialog_s.js"></script>
+
+<style>
+	* {font-family: 'Arial';font-size:14px;margin:0px;padding:0px}
+	ul, ol {list-style: none;padding: 0;}
+	a{text-decoration: none;}
+	html,body{-webkit-touch-callout: none;}
+	pre {
+			white-space: pre-wrap;      
+			white-space: -moz-pre-wrap; 
+			white-space: -pre-wrap;     
+			white-space: -o-pre-wrap;   
+			word-wrap: break-word;      
+	}
+	.classlist { 
+			margin:10px 10px 0px 10px;
+			padding:5px;
+			border:1px solid #c9c9c9;
+			background: #fff; 
+			-moz-border-radius: 5px; 
+			-webkit-border-radius: 5px; 
+			border-radius: 5px; 
+			text-align:center;
+			overflow:hidden;
+		} 
+
+</style>
+
+<body style="background-color:#e5e5e5 ">
+	
+	<div ><style>
+@media only screen and (-webkit-min-device-pixel-ratio:1) { 
+
+	.header_nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 3;
+		width: 100%;
+		height: 40px;
+		line-height: 40px!important;
+		text-align: center;
+		font-size: 18px;
+		background: #1491c5;
+		min-width: 320px;
+		color: #fff;
+	}
+	.header_nav .return_btn {
+		left: 0;
+		width: 40px;
+		height: 40px;
+		background: url(Images/back.png) #1491c5 no-repeat center center;
+		-moz-background-size: 24px 23px;
+		-webkit-background-size: 24px 23px;
+		-o-background-size: 24px 23px;
+		background-size: 24px 23px;
+	}
+	.header_nav p {
+		line-height: 40px!important;font-size:1.3rem;font-weight: 700;
+	}
+	.header_nav .home_btn {
+		right: 10px;
+		width: 30px;
+		height: 40px;
+		background: url(Images/new.png) no-repeat center center;
+		-moz-background-size: 26px 26px;
+		-webkit-background-size: 26px 26px;
+		-o-background-size: 26px 26px;
+		background-size: 26px 26px;
+	}
+	.header_nav .home_btn, .header_nav .return_btn {
+		position: absolute;
+		top: 0;
+	}
+	
+	
+	
+}
+@media only screen and (-webkit-min-device-pixel-ratio:2) {
+		.header_nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 3;
+		width: 100%;
+		height: 41px;
+		line-height: 41px!important;
+		text-align: center;
+		font-size: 18px;
+		background: #1ba8b9;
+		color: #fff;
+	}
+	.header_nav .return_btn {
+		/*left: 0;*/
+		left: 10px;
+		width: 30px;
+		height: 26px;
+		background: url(Images/back.png) #1ba8b9 no-repeat center center;
+		-moz-background-size: 24px 23px;
+		-webkit-background-size: 24px 23px;
+		-o-background-size: 24px 23px;
+		background-size: 24px 23px;
+		
+	}
+	.header_nav p {
+		line-height: 40px!important;
+	}
+	.header_nav .home_btn {
+		/*right: 0;*/
+		right: 10px;
+		width: 30px;
+		height: 28px;
+		background: url(Images/new.png) no-repeat center center;
+		-moz-background-size: 26px 26px;
+		-webkit-background-size: 26px 26px;
+		-o-background-size: 26px 26px;
+		background-size: 26px 26px;
+	}
+	.header_nav .home_btn, .header_nav .return_btn {
+		position: absolute;
+		top:7px
+		/*top: 0;*/
+	}
+	
+	
+}
+
+
+.home_yesch{background: url(Images/task_startall_big@2x.png) no-repeat center center;}
+.home_nosch{background: url(Images/task_start_big@2x.png) no-repeat center center;}
+.home_edit{background: url(Images/edit.png) no-repeat center center;}
+.home_nosch, .home_yesch, .home_edit{
+		right: 10px;
+		width: 30px;
+		height: 26px;
+		
+		-moz-background-size: 23px 23px;
+		-webkit-background-size: 23px 23px;
+		-o-background-size: 23px 23px;
+		background-size: 23px 23px;
+		position: absolute;
+		top:7px
+	}
+
+
+
+
+
+.zhuixian_right, .zhuixian_left{
+		color:#ffffff;
+		float:left;
+		background-color:#1ba8b9;
+		
+		/*
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		*/
+		margin-top:3px;
+		line-height: 28px;
+		margin-top: 1px;
+		width: 73px;
+	}
+.zhuixian_right{
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+.zhuixian_left{
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+
+.yuanjiao{
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background-color:#ffffff;
+	height:30px;
+	line-height:30px;
+	padding-left: 1px;
+}
+.comnunyua{
+	padding:5px;
+	width:149px;
+	margin:0 auto;
+	
+}
+.allcss{color:#1ba8b9;float:left;width:74px }
+</style>
+<div class="header_nav">
+	<a href="index.php?s=/Weixin/index"  class="return_btn"></a>	<p>课件，共4种分类</p>
+</div>
+</div>
+	
+	<div style="margin-top:50px ">
+		
+		<div id="cont_lists">
+			<div class="classlist">
+			<div style="text-align:center;border-bottom:1px solid #c9c9c9;font-size:1.2rem;padding:10px 0px ">栏目列表</div>
+			<div style="margin-top:10px;min-height:50px">
+				 <a href="/index.php/field/">
+					<div style="float:left;text-align:center;width:25%;line-height:25px;overflow: hidden;height: 25px; " title="视频点播">回看</div>
+				</a>
+				 <a href="/index.php/live/">
+					<div style="float:left;text-align:center;width:25%;line-height:25px;overflow: hidden;height: 25px; " title="视频直播">直播</div>
+				</a>	
+			</div>
+			
+		</div>
+			
+		<div class="classlist" style="display:none">
+			<div style="text-align:center;border-bottom:1px solid #c9c9c9;font-size:1.2rem;padding:10px 0px ">科目列表</div>
+			<div style="margin-top:10px;min-height:50px">
+				 <!--list:{table="diyfield_value" where="did=2"  order="sequence desc" }-->
+				<a href="__ROOT__/index.php/field/index/sid-{$list.id}">
+					<div style="float:left;text-align:center;width:25%;line-height:25px;overflow: hidden;height: 25px; " title="{$list.name}">{$list.name}</div>
+				</a>
+				<!--/list-->  	
+			</div>
+		</div>
+		<div class="classlist" style="display:none">
+			<div style="text-align:center;border-bottom:1px solid #c9c9c9;font-size:1.2rem;padding:10px 0px ">年级列表</div>
+			<div style="margin-top:10px;min-height:50px">
+				 <!--list:{table="diyfield_value" where="did=1"  order="sequence desc" }-->  
+			<a href="__ROOT__/index.php/field/index/sid-{$list.id}">
+				<div style="float:left;text-align:center;width:25%;line-height:25px;overflow: hidden;height: 25px; " title="{$list.name}">{$list.name}</div>
+			</a>
+			<!--/list-->  
+		</div>
+			
+		</div>
+		
+<p id="rCount" class="more" style="height:1px " >
+	<input name="currpage" id="currpage" type="hidden" value="2">
+	<input name="totalpage" id="totalpage" type="hidden" value="1">
+	
+</p>
+		</div>
+			
+		
+		<!--正在加载 start-->
+		<div  style="text-align:center;">
+				<div style="margin:0px  10px 20px" >
+					<span id="addzhi" style="height:20px;color:#474747;display:none ">
+					<img src="Picture/loadinga51.gif" style="width:20px;height:20px;vertical-align: bottom;">&nbsp;正在加载...
+					</span>
+				</div>
+		 </div>
+		 <!--正在加载 end-->
+		 
+		
+		
+		
+		
+		
+	</div>
+	<script>
+
+	scrollnumber=0;
+	
+		$(window).scroll(function(){
+			// 当滚动到最底部以上100像素时， 加载新内容
+			//if($('#mengban').css('display')=='none'){
+				if (($(document).height() - $(this).scrollTop() - $(this).height()<80 ) ) {
+					if(scrollnumber==0){
+						scrollnumber=1;
+							if(parseInt($('#currpage').val())<=parseInt($('#totalpage').val())){
+								$('#addzhi').css('display','block')
+								getmore();
+							}
+						
+					}
+				}
+			//}
+		});
+	
+
+	function getmore(){
+		getorder=$('#order').val()//排序
+		
+		pages = $('#currpage').val()
+		if(pages){
+			//LoadPageShow();
+			$.get('/index.php?s=/Weixin/get_audio_video/type//page/'+$('#currpage').val(),function(datamsg){
+				var stdata=$.parseJSON(datamsg);
+				
+				
+				
+				if(stdata.ret=='error'){
+					$('#rCount').remove();
+				   //LoadPageHide(0);
+				}else{
+					$('#rCount').remove();
+					
+					//setTimeout(function(){addajax(stdata.entity)},500);
+					addajax(stdata.entity)
+					
+					//$('#cont_lists').append(stdata.entity);
+					//LoadPageHide(1,$(".topicList"),stdata.entity)   
+				}
+			});
+		}
+	}
+	
+	function addajax(_cont){
+		$('#addzhi').css('display','none')
+		$('#cont_lists').append(_cont);
+		scrollnumber=0;
+	}
+</script>
+ <!--#include file="sharewx.html"-->
+</body>
+</html>

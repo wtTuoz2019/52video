@@ -1,0 +1,78 @@
+<div class="page_function">
+ 
+  <div class="exercise"> 
+   <a href="__URL__/video">视频列表</a>	
+  <a href="__URL__/videoadd" >添加</a>
+  
+   </div>
+</div>
+<div class="col-md-1 "></div>
+<div class="col-md-4 "><form method="get">
+<div class="input-group input-group-sm">
+
+                                        <input type="text" class="form-control" name="search" placeholder="名称"  id="search">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary"   type="submit">查询</button>
+                                            </span>
+                                        </span>
+                                    </div>  
+                                    
+                                    </form>
+                                    </div>
+  <div class="col-md-7 "></div>
+<div class="page_main">
+  <div class="box-body">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+      <tr>
+        <th width="10%"><center>ID</center></th>
+        
+           <th><center>名称</center></th>
+             
+        <th><center>地址</center></th>
+        <th><center>操作</center></th>
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr>
+        <td><center><input name="id[]" type="checkbox" id="id[]" value="{$vo['uid']}" >{$vo.id}</center></td>
+       
+      
+        
+       
+           <th><center>{$vo.name}</center></th>
+          
+         <td><center>
+        {$vo.vurl}
+        </center></td>
+        <td> <a href="__URL__/videoedit/id-{$vo.id}">设置看点</a>&nbsp;&nbsp; <a href="javascript:" onClick="del('{$vo.id}',this)">删除</a></td>
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+</div>
+
+<div class="page_tool">
+				<div class="page">
+     					 <ul class="pagination">
+                                           {$page}
+                                        </ul>
+ </div>	
+</div>
+
+                                  
+                                    
+<script>
+
+//审核
+function del(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'确定要删除此记录？',
+		url:"__URL__/videodel",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().remove();
+		}
+	});
+}
+</script>

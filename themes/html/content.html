@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$common.title}</title>
+<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
+<link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+<link href="css/base.css" type="text/css" rel="stylesheet">
+<link href="css/details.css" type="text/css" rel="stylesheet">
+
+
+
+
+<style>
+	.comment>div{
+		overflow:inherit!important;
+	}
+	.down{
+		top: 68px;
+	}
+</style>
+</head>
+
+<body>
+ <!--头部-->
+<!--#include file="head.html"-->
+<script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
+<link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
+<!--END-->
+<!--start 中间部分--> 
+<div class="volid">
+	<div class="contentBox">
+    		<img class="big_img" src="/upload/aidimage/{$info.aid}.png"  />
+				<h1><img src="/upload/aidimage/{$info.aid}.png"  />
+                <p>
+                	<span>温馨提示：</span>
+                	<br/>
+                    鼠标移动到二维码会放大！
+                </p>{$info.title}</h1>
+                
+                
+                <script>
+                	$('.contentBox h1 img').mouseover(function(){
+						$('.big_img').show();
+					}).mouseout(function(){
+						$('.big_img').hide();
+					});
+					var play=1;
+                </script>
+             
+                  <?php   if ($info['airtime']>time()) {  ?>
+          <div style="background: #fff url('{$info.image}') no-repeat scroll 0 0 / cover ;" class="down" >
+			<div class="doo">
+				<div id="dao" class="endtime" value="{$info.airtime}"></div>
+			</div>
+		</div> 
+        <script type="text/javascript">
+ play=0;
+</script> 
+             <?php
+         }
+		?>
+                
+		<div class="volid_main">
+     
+            
+
+<?php  if(strstr($info['videourl'],"qq.com")){ ?>
+
+<iframe frameborder="0" width="100%" height="400" src="{$info.videourl}" allowfullscreen></iframe>
+
+<?php  }elseif(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"shanyueyun")||strstr($info['videourl'],"urren")){?>
+
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1" ></div>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "400";//视频高度
+  var url = "{$info.videourl}";//视频地址
+  var image = "{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>
+
+
+<?php }else{?>
+<div id="videoPlayer"></div>
+ <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1" ></div>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "400";//视频高度
+  var url = "http://{$config.out}/video/{$info.videourl}/video.m3u8";//视频地址
+  var image = "{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>
+
+  
+      
+        <?php  }  ?>       
+		</div>
+         <?php   if ($info['airtime']>time()) {  ?>
+       <script>
+       
+   timeid=  setInterval(function(){
+      $(".endtime").each(function(){
+        var obj = $(this);
+        var endTime = new Date(parseInt(obj.attr('value')) * 1000);
+        var nowTime = new Date();
+        var nMS=endTime.getTime() - nowTime.getTime();
+        var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+        var myH=Math.floor(nMS/(1000*60*60)) % 24; //小时 
+        var myM=Math.floor(nMS/(1000*60)) % 60; //分钟 
+        var myS=Math.floor(nMS/1000) % 60; //秒 
+        var myMS=Math.floor(nMS/100) % 10; //拆分秒
+		var x=nMS/1000;
+		
+        if(nMS>= 0){
+            var str = "<span>离开播还有<\/span><br>" + myD+"<i>天</i>"+myH+"<i>小时</i>"+myM+"<i>分</i>"+myS+"<i>秒</i>";
+			obj.html(str);
+        }else{
+			
+			$('.down').hide();
+				clearInterval(timeid);
+			
+        }
+      });
+    }, 100);
+    
+       </script>
+        
+             <?php
+         }
+		?>
+		<div class="volid_bottom">
+			<ul>
+				<li><a href="javascript:;" onclick="praise()"><i class="blog_icon8"> </i><span class="laud">{$info.laud}</span></a></li>
+				<li style="border:none;"><a href="javascript:;" onclick="collection()"><i class="blog_icon9"> </i><span class="collection">加入收藏</span></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="contentBox t100">
+    <ul id="mainTabs">
+    <!--foreach:{$functions $key $vo}-->
+                          
+          <li>
+    		<a  href="#funcions{$vo.id}" >{$vo.name}</a>	
+        </li>	
+                           <!--/loop-->
+    	
+       
+    </ul>
+    <!--foreach:{$functions $key $vo}-->
+    <div id="funcions{$vo.id}">
+   
+  
+                     <?php if($vo['type']=='comment'){?>
+                      <!--#include file="menu_comment.html"-->
+      <?php }elseif($vo['type']=='jiaoyancomment'){?>
+                   <!--#include file="menu_jiaoyan.html"-->
+					
+                          <?php }elseif($vo['type']=='content'){?>
+                        	
+    						{$vo.content html}
+  
+                         <?php }elseif($vo['type']=='url'){?>
+                         <script>
+						 $('.funcions{$vo.id}').bind('click',function(){
+							 
+							window.location="{$vo.content}"; 
+							 });
+						 </script>
+                          <?php }elseif($vo['type']=='linkaid'){?>
+                          <ul>
+     <?php  
+     $loop=array();
+     if($vo['content'])
+    $loop=model('content')->getlist($vo['content']);
+  
+      ?> <!--foreach:{$loop $val}-->    
+                <li   class="<?php echo $val['cid']==16?'live-class':'over-class';  ?>">
+                    <a href="{$val.aurl}"><span>●</span>{$val.title len="20"} </a>
+                   <span><?php echo $val['cid']==16?'直播':'重播';  ?></span>
+				</li>
+		<!--/loop-->
+		</ul>
+                   <?php }elseif($vo['type']=='looktimes'){?>
+                          <ul class="t_kuang">
+     <?php  
+     $loop=array();
+    $loop=model('content')->gettimes($info['videourl']);
+  
+      ?> <!--foreach:{$loop $val}-->    
+                <li>
+                	<i class="datetime"><?=formartkandian($val[start])?></i>
+                    <a href="javascript:" onclick="playseek(this)" data-time="{$val.start}"  end-time="{$val.end}"><span class="dian"> </span><span class="dian1"></span>
+                    
+                    <span class="t_text">{$val.name}</span> </a>
+                   
+				</li>
+		<!--/loop-->
+		</ul>
+                           <?php }?>
+					</div>
+                           <!--/loop-->
+  
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.idTabs.min.js"></script>
+<script>
+	$("#mainTabs").idTabs();
+</script>
+<div class="contentBox">
+	<div class="mborder"></div>
+</div>
+<div class="contentBox">
+	<div class="addAnswerBox">
+		<form  id="form">					 
+			<p class="comment-form-comment" id="commentform" >
+				<textarea id="message" name="message" cols="45" rows="8" reg="\S" msg="评论不能为空" ></textarea>
+			</p>
+			<p class="form-submit handle2" id="commentform" >
+        <input id="fid" name="fid" value="{$info.aid}" type="hidden" />
+				<input id="content_" name="type" value="content" type="hidden" />
+	      <input name="submit" type="botton" id="submit" class="btn fr" value="立即评论">
+			</p>
+			<div class="clear"></div>
+	  </form>
+	</div>
+</div> 
+<!--底部-->
+<!--#include file="foot.html"-->
+<!--END-->
+<script type="text/javascript"> 
+  	var url='http://live.shanyueyun.com';
+	  var headpic='<?php echo $_SESSION["headpic"];?>';
+	 var nickname='<?php echo $_SESSION["nickname"];?>';
+	  var uid='<?php echo $_SESSION["uid"];?>';
+	  var data = {
+			    fid: '{$info.aid}',
+				uid:uid,
+			    pageSize: 10,
+			    pageIndex: 0,
+			  };  
+			  var arr = {
+			    fid: '{$info.aid}',
+			    id:'0'
+			  };
+			var listflag={
+			    fid: '{$info.aid}',
+			    id:'0'
+			  };
+			  var id = 0,
+			  flag=0;
+			  var commentflag='save';
+			  var newcommentflag=false;
+	
+	
+
+
+	//弹窗
+	function mydialog(t, c) {
+		var d = art.dialog({
+		  title: t,
+		  content: c,	
+		  });
+		  d.show();
+		  setTimeout(function () {
+			d.close();
+		}, 1200);
+	}
+
+	
+	
+	function collection(){
+		$.post('__ROOT__/index.php/change/collection',{fid:'{$info.aid}'},function(data){
+			if(data.status=='1'){
+				$('#collection').html("已收藏")
+				mydialog('提示', data.message);
+			}else{
+				mydialog('提示', data.message);
+			}
+		},'json')
+	}
+	
+	$("#submit").click(function(){
+		var length_ = $('#message').val().length;
+		if (length_<1) {
+			
+			mydialog('提示', '评论不可小于1个字符');
+			return false;
+		};
+	  $.post("__ROOT__/user/index.php/comment/data",
+	  {	
+		type:'content',
+		fid:$('#fid').val(),
+		message:$('#message').val()
+	  },
+	  function(d){
+		if(d.status == 1){
+			window.location.reload();
+		}else{
+			mydialog('提示', '评论需先登录');
+		}
+	  },'json');
+	});
+	
+	$(function(){ 
+		
+	　　$("#modal_cance").text('X');
+	
+	}); 
+	
+	
+	
+	$(window).scroll(function () {
+		if ($(window).scrollTop() >= 690) {
+			 $('#a1').addClass('drag');
+		}else{
+			$('#a1').removeClass('drag');
+		}
+		
+		
+		if($('#a1').hasClass("drag")){
+				var $div = $("#a1");
+			  /* 绑定鼠标左键按住事件 */
+			  $div.bind("mousedown",function(event){
+				/* 获取需要拖动节点的坐标 */
+				var offset_x = $(this)[0].offsetLeft;//x坐标
+				var offset_y = $(this)[0].offsetTop;//y坐标
+				/* 获取当前鼠标的坐标 */
+				var mouse_x = event.pageX;
+				var mouse_y = event.pageY;
+				/* 绑定拖动事件 */
+				/* 由于拖动时，可能鼠标会移出元素，所以应该使用全局（document）元素 */
+				$(document).bind("mousemove",function(ev){
+				  /* 计算鼠标移动了的位置 */
+				  var _x = ev.pageX - mouse_x;
+				  var _y = ev.pageY - mouse_y;
+				  /* 设置移动后的元素坐标 */
+				  var now_x = (offset_x + _x ) + "px";
+				  var now_y = (offset_y + _y ) + "px";
+				  /* 改变目标元素的位置 */
+				  $div.css({
+					top:now_y,
+					left:now_x
+				  	});
+					});
+			  	});
+			  /* 当鼠标左键松开，接触事件绑定 */
+			  $(document).bind("mouseup",function(){
+				$(this).unbind("mousemove");
+			  });
+		  
+			  $div.mouseenter( function() {
+				$div.append("<div id='dragto'> 点击按住视频可拖动 </div>");
+			  }).mouseleave( function(){
+				  $div.find("#dragto").remove();
+			  }); 
+		 }
+	});
+</script>
+</body>
+</html>

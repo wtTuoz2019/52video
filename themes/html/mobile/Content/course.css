@@ -1,0 +1,57 @@
+﻿.container {
+font-size: 12px;
+max-width: 640px;
+min-width: 320px;
+margin: auto;
+position: relative;
+background-color: white;
+}
+
+ul, li{margin:0;padding:0;}
+.nav_footer{height:48px;}
+.nav_footer > ul {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+margin: auto;
+background: #f3f3f3;
+z-index: 1000;
+border-top: 1px solid #b2b2b2;
+}
+.nav_footer > ul li {
+vertical-align: middle;
+}
+.tbox{
+width:100%;
+height:28px;margin:10px 0;
+}
+.toolstext {
+height: 28px;
+line-height: 28px;
+border: 1px solid #797979;
+border-radius: 3px;
+font-size: 34px;
+}
+.toolssend {
+width: 147px;
+border-radius: 5px;
+background-color: #2792ff;
+font-size: 34px;
+color: white;
+vertical-align: middle;
+text-align: center;
+}
+.tbox > * {
+height: 100%;
+display: table-cell;
+vertical-align: top;
+}
+.nav_footer > ul a {
+display: block;
+height: 30px;
+text-align: center;
+overflow: hidden;
+width: 143px;
+margin: 9px 0;
+}

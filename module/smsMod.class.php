@@ -1,0 +1,37 @@
+<?php
+class smsMod extends commonMod {
+
+	public function __construct()
+    {
+        parent::__construct();
+		$this->appkey='23365622';
+		$this->secret='423a30b9c2f0ecf48c3613bd5ba143f4';
+    }
+
+	public function index() {
+		
+$mobile =$_POST['mobile'];
+$_SESSION['mobilecode']=$rand=rand(1000,9999);
+require(CP_CORE_PATH . '/../ext/TopSdk.php');
+ $c = new TopClient;
+$c ->appkey = $this->appkey ;
+$c ->secretKey = $this->secret ;
+$req = new AlibabaAliqinFcSmsNumSendRequest;
+$req ->setSmsType( "normal" );
+$req ->setSmsFreeSignName( "闪阅云" );
+$req ->setSmsParam( "{code:'".$rand."'}" );
+$req ->setRecNum( $mobile );
+$req ->setSmsTemplateCode( "SMS_9545056" );
+$resp = $c ->execute( $req );
+if($resp->code){
+	echo 0;	
+	}else{
+		
+echo 1;	
+		}
+
+
+	}
+
+
+	}

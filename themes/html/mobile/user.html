@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- 让 Bootstrap 兼容 IE 兼容模型 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 让 Bootstrap 兼容 国产浏览器的高速模型 -->
+		<meta name="renderer" content="webkit">
+		<!-- 实现响应式的设置 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title><?php echo $_SESSION['nickname'];?>的个人中心</title>
+		<!-- 引入 Bootstrap 的 CSS 文件 -->
+        <link rel="stylesheet" href="__PUBLIC__/data/css/font-awesome.min.css" type="text/css">
+		<link href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="__TPL__mobile/css/main.css" />
+        
+	</head>
+	<body>
+    	<div id="screen">
+        	<button class="s_close">x</button>
+        	<div id="a1" >
+            	
+            </div>
+        </div>
+    
+    
+    
+		<div id="picture_frame">
+			<img class="background" src="img/user_bg.jpg" height="100%" width="100%"/>
+			<div id="mine_xinxi">
+				<img class="header_img" src="<?php echo $_SESSION['headpic'];?>"/>
+				<p>
+					<?php echo $_SESSION['nickname'];?>
+					<a href="#" class="t_bianji">
+						编辑
+						<img height="14px" src="img/bainji.png"/>
+					</a>
+				</p>
+			</div>
+			
+			<!--设置-->
+			<div id="set">
+				<img src="img/set_icon.png" height="17px"/>设置
+			</div>
+		</div>
+		
+		<!---->
+		<div id="navigation">
+			<a href="#new_comment" class="col-xs-4 n_active">我的评议</a>
+			<a href="#history_video" class="col-xs-4">历史课程</a>
+			<a href="#all_data" class="col-xs-4">数据汇聚</a>
+		</div>
+		<div id="main">
+			<!--最新评论页面-->
+			<div id="new_comment" class="m_active">
+            <div class="my_comment">
+             <!--foreach:{$loop $vo}-->
+			
+					<div class="comment_area">
+						<img class="triangle" src="img/triangle.png"/>
+						<div class="row mytext">
+							<div class="col-xs-2">
+								<img src="{$vo.pic}" height="40px" width="40px"/>
+							</div>
+							<div class="col-xs-10">
+								<p class="username">{$vo.name}<span>
+                                 <?php if($vo['videourl']){ ?>
+                                <a href="#" onclick="nowpagetoplayseek(this) " class="playseek" data-time="{$vo.progress}" end-time="{$vo.progressend}" videourl="{$vo.videourl}" style="float:right"><span class="fa  fa-video-camera"></span><span class="f-ib">{$php(echo  $vo['progress']?date('i:s',$vo['progress']):'')}</span></a>
+                                <?php }?>
+                                </span></p>
+								<p class="usertext">
+                                <a href="{$vo.aurl}">	{$vo.message}</a>
+                                <br/>
+								<span>{$php(echo date('Y-m-d H:i',$vo['time']))}</span>
+								
+								</p>
+							</div>
+						</div>
+                         <?php if(is_array($vo['res'])){ ?>
+						<div class="otherstext">
+                              <!--foreach:{$vo['res'] $v}-->
+							<div class="row">
+								<div class="col-xs-2">
+									<img src="{$v.pic}" height="30px" width="30px"/>
+								</div>
+								<div class="col-xs-10">
+									<p class="username">{$v.nickname}<span>{$v.time}</span></p>
+									<p class="usertext">
+										{$v.message}
+									</p>
+								</div>
+							</div>
+                              <!--{/foreach}-->
+							
+						</div>
+                         <?php }?>
+					</div>
+					
+					
+				
+                 <!--{/foreach}-->
+                </div>
+			</div>
+			<!--历史视频页面-->
+			<div id="history_video">
+            
+               <!--foreach:{$myarticle $vo}-->
+				<div class="video_kuang">
+					<span class="quan"></span>
+					<span class="quan2"></span>
+					<div class="col-xs-6 videoimg">
+                    <?php if($val['cid']==16){ ?>
+						<p class="now_live">直播<img src="img/video.png" height="12px"/></p>
+                          <?php }else{?>
+                          <p >回看<img src="img/video1.png" height="12px"/></p>
+                            <?php } ?>
+						<a href="{$vo.aurl}"><img class="vimg" src="{$vo.image}"/></a>
+					</div>
+					<div class="col-xs-6 videotext">
+						<p><a href="{$vo.aurl}">{$vo.title}</a></p>
+						<p>{$php(echo date('Y-m-d',$vo['updatetime']))}</p>
+					</div>
+				</div>
+                <script>
+                var index='{$vo.aid}'
+                </script>
+                 <!--{/foreach}-->
+				
+				
+			</div>
+            <!--数据汇聚页面-->
+            <div id="all_data">
+            
+            	<div class="watchtime">
+                	<div class="row">
+                    	<div class="col-xs-12">
+                        	<h4>{$mydata.alltime}分钟</h4>
+                            <span>观课时长</span>
+                            <img src="img/time.png"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-xs-6 t_left">
+                        	<h5>{$mydata.livetime}分钟</h5>
+                            <span>直播时长</span>
+                        </div>
+                        <div class="col-xs-6">
+                        	<h5>{$mydata.fieldtime}分钟</h5>
+                            <span>回看时长</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reviewnum">
+                	<div class="row">
+                    	<div class="col-xs-12">
+                        	<h4>{$mydata.mycommentnum}条</h4>
+                            <span>评议数量</span>
+                            <img src="img/mytext.png"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-xs-6 t_left">
+                        	<h5>{$mydata.mycommentreplynum}条</h5>
+                            <span>回复数量</span>
+                        </div>
+                        <div class="col-xs-6">
+                        	<h5>{$mydata.mycommentlaudnum}个</h5>
+                            <span>点赞数量</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="othernum">
+                	<div class="row">
+                    	<div class="col-xs-12">
+                        	<h4>{$mydata.becommentnum}条</h4>
+                            <span>评议数量</span>
+                            <img src="img/jiaohu.png"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-xs-6 t_left">
+                        	<h5>{$mydata.becommentreplynum}条</h5>
+                            <span>回复数量</span>
+                        </div>
+                        <div class="col-xs-6">
+                        	<h5>{$mydata.becommentlaudnum}个</h5>
+                            <span>点赞数量</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!--设置-->
+            <div id="set_data">
+            	<div class="headimg">
+                	<div class="col-xs-4 text-left">
+                    	头像
+                    </div>
+                    <div class="col-xs-8 text-right">
+                    	<img height="60px" src="<?php echo $_SESSION['headpic'];?>"/>
+                        <b>&gt;</b> 
+                    </div>
+                </div>
+                <div class="myname">
+                	<div class="col-xs-4 text-left">
+                    	名字
+                    </div>
+                    <div class="col-xs-8 text-right">
+                    	<span><?php echo $_SESSION['nickname'];?></span>
+                        <b>&gt;</b> 
+                    </div>
+                </div>
+                <div class="mysex" data-toggle="modal" data-target="#mySex">
+                	<div class="col-xs-4 text-left">
+                    	性别
+                    </div>
+                    <div class="col-xs-8 text-right">
+                    	<span>男</span>
+                        
+                    	<b>&gt;</b> 
+                    </div>
+                   
+                </div>
+                
+                <div id="mySex" class="modal fade">
+				    <div class="modal-dialog">
+				      	<div class="modal-content">
+					        <div class="modal-body">
+					          	<button data-dismiss="modal" class="btn btn-default btn-block">男</button>
+					          	<button data-dismiss="modal" class="btn btn-default btn-block">女</button>
+					        </div>
+				        	<div class="modal-footer">
+				          		<button data-dismiss="modal" class="btn btn-default btn-block">
+				            		取消
+				          		</button>
+				        	</div>
+				      	</div>
+				    </div>
+				</div>
+                
+                
+                
+                <div class="myjob">
+                	<div class="col-xs-4 text-left">
+                    	行业
+                    </div>
+                    <div class="col-xs-8 text-right">
+                    	<span>未设置</span>
+                        <b>&gt;</b> 
+                    </div>
+                </div>
+                
+                <div class="backcenter">
+                	返回主界面
+                </div>
+            
+            </div> 
+            <!--修改-->
+            <div id="amend">
+            	<div class="a_title navbar-fixed-top">
+                    <span>更改头像</span>
+                    <a href="#">&lt;</a>
+                    <button class="btn btn-sm btn-default" disabled="disabled">保存</button>
+            	</div>
+                <div class="a_body">
+                
+                	<div class="a_txt">
+                    	<input type="text" value="1"/>
+                    </div>
+                    
+                    <div class="a_img">
+                    	<div class="myheader">
+                			<img src="<?php echo $_SESSION['headpic'];?>"/>
+                        </div>
+                    
+                    	<input type="file" id="touxiang">
+                    </div>
+                </div>
+            </div>
+            
+			<div id="data"></div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- 引入 jQuery 文件 -->
+		<script src="__PUBLIC__/js/jquery.js"></script>
+		<!-- 引入 Bootstrap 的 JS 文件 -->
+		<script src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js?timetemp=<?php echo time();?>" charset="utf-8"></script>
+		<script>
+			//导航之间的跳转
+			$('#navigation a').click(function(event){
+				event.preventDefault();
+				var id=$(this).attr('href');
+				$(this).addClass('n_active').siblings('.n_active').removeClass('n_active');
+				$(id).addClass('m_active').siblings('.m_active').removeClass('m_active');
+			});
+        	
+			
+			//关闭视频
+			$('#screen .s_close').click(function(){
+				$(this).parent().css('display','none');
+				$('#a1').empty();
+			});
+		
+		
+		
+		
+		
+			$('#set').click(function(){
+				$('#set_data').addClass('m_active').siblings('.m_active').removeClass('m_active');
+				$('body').css('background','#E7E7E6');
+				$('#picture_frame').css('display','none');
+				$('#navigation').css('display','none');
+			});
+			
+			$('#set_data div.backcenter').click(function(){
+				$('#new_comment').addClass('m_active').siblings('.m_active').removeClass('m_active');
+				$('body').css('background','#fff');
+				$('#picture_frame').css('display','block');
+				$('#navigation').css('display','block');
+			});
+			
+			function display(){
+				$('#amend').addClass('m_active').siblings('.m_active').removeClass('m_active');
+				/*获取当前修改的信息*/
+				
+				$('#amend .a_title>button').attr('disabled',"true");
+				var txt2=me.children('div:first-child').html();
+				$('#amend .a_title>span').html("更改" + txt2);
+			}
+			
+			
+			$('#picture_frame a.t_bianji').click(function(){
+				$('#picture_frame').css('display','none');
+				$('#navigation').css('display','none');
+				$('#amend').addClass('m_active').siblings('.m_active').removeClass('m_active');
+				$('#amend .a_body .a_txt').css('display','block');
+			});
+			var me;
+			
+			
+			
+			//点击设置里面的头像姓名等div框
+			$('#set_data>div').click(function(){
+				
+				var c_name=$(this).attr('class');
+				
+				if(c_name=='myname' || c_name=='myjob'){
+					$('body').css('background','#fff');
+					me=$(this);
+					display();
+					$('#amend .a_body .a_txt').css('display','block');
+					/*获取当前的姓名等*/
+					var txt=me.children('div:last-child').children('span').html();
+					$('#amend .a_txt input').val(txt);
+				}else if(c_name=='headimg'){
+					$('body').css('background','#fff');
+					me=$(this);
+					display();
+					$('#amend .a_body .a_img').css('display','block');
+				}
+				
+				
+			
+				
+			});
+			
+			
+			
+			var text;
+			//输入名字是发生改变
+			$('#amend input').keyup(function(){
+				$('#amend .a_title>button').removeAttr("disabled");
+				text=$(this).val();
+				
+			});
+			
+			$('#touxiang').change(function(){
+				
+			
+				$('#amend .a_title>button').removeAttr("disabled");
+			});
+			
+			
+			
+			
+			$('#amend .a_title>button').click(function(){
+				$('body').css('background','#E7E7E6');
+				$('#set_data').addClass('m_active').siblings('.m_active').removeClass('m_active');
+				$('#amend .a_body>div').css('display','none');
+				
+				
+				if(me.attr('class')=='myname' || me.attr('class')=='myjob'){
+						me.children('div:last-child').children('span').html(text);
+				}
+				
+			
+			});
+			
+			
+			
+			$('#amend .a_title>a').click(function(){
+				$('body').css('background','#E7E7E6');
+				$('#set_data').addClass('m_active').siblings('.m_active').removeClass('m_active');
+				$('#amend .a_body>div').css('display','none');
+			});
+			
+			
+			//设置里面的内容更改
+			$('#mySex .modal-body button').click(function(){
+				var txt=$(this).html();
+				$('#set_data .mysex').children('div:last-child').children('span').html(txt);
+			});
+			
+				var getcflag=1;var getvflag=1;	
+				var pageIndex='{$pageIndex}';
+			//下来时加载页面
+			$(window).scroll(function () {
+				
+					if ($(window).scrollTop() > $(document).height() - $(window).height()-2) {
+					
+						if(stop){
+							if($('#new_comment').hasClass('m_active')){
+								getcomment();
+								
+							}else{
+								getvideos();
+								
+							}
+						}
+					}
+				});
+				
+	
+		function getcomment(){
+		
+		
+		if(getcflag==1){
+			getcflag=0;
+			}else{
+				return false;
+				}
+		$.post('/myhome/getcomment',{pageIndex: pageIndex},function(d){
+			getcflag=1;
+		
+			if(d.status==1){
+			
+				$('.my_comment').append(escapes(d.message));	
+				
+			}
+		},'json')
+		
+		}	
+		
+		function getvideos(){
+		
+		
+		if(getvflag==1){
+			getvflag=0;
+			}else{
+				return false;
+				}
+		$.post('/myhome/getvideos',{index: index},function(d){
+			getvflag=1;
+		
+			if(d.status==1){
+				var html='';var data=d.message;
+				
+				for(var i=0;i<data.length;i++){	
+				index=data[i]['aid'];
+				html+='<div class="video_kuang"><span class="quan"></span><span class="quan2"></span><div class="col-xs-6 videoimg">';
+				if(data[i]['cid']=='16'){
+				html+='<p class="now_live">直播<img src="img/video.png" height="12px"/></p>';
+				}else{
+                html+='<p >回看<img src="img/video1.png" height="12px"/></p>';
+				}
+				html+='<a href="/content/index?aid='+data[i]['aid']+'"><img class="vimg" src="'+data[i]['image']+'"/></a></div><div class="col-xs-6 videotext"><p><a href="/content/index?aid='+data[i]['aid']+'">'+data[i]['title']+'</a></p><p>'+data[i]['time']+'</p></div></div>';
+				}
+				$('#history_video').append(html);	
+				
+			}
+		},'json')
+		
+		}		 
+			function escapes(data){
+				var strVar = "";
+				
+		for(var i=0;i<data.length;i++){	
+		
+			pageIndex=data[i]['id'];
+				if(data[i]['status']=='0'){
+						continue;
+						}
+			strVar+='<div class="comment_area"><img class="triangle" src="img/triangle.png"/><div class="row mytext"><div class="col-xs-2"><img src="'+data[i]['pic']+'" height="40px" width="40px"/></div><div class="col-xs-10"><p class="username">'+data[i]['name']+'<span>';
+		
+			if(data[i]['videourl']){
+		var process=data[i]['progress']!='0'?formatDate(new Date(data[i]['progress']*1000)):'';
+      strVar+=' <a href="javascript:" onclick="nowpagetoplayseek(this)" class="playseek" data-time="'+data[i]['progress']+'" end-time="'+data[i]['progressend']+'" videourl="'+data[i]['videourl']+'" style="float:right"><span class="fa  fa-video-camera"></span><span class="f-ib">'+process+'</span></a>';
+			}
+             strVar+='</span></p><p class="usertext"><a href="/content/index?aid='+data[i]['aid']+'">	'+data[i]['message']+'</a><br/><span>'+data[i]['time']+'</span></p></div></div>';
+                 if(data[i]['res']){
+					
+				 strVar+='<div class="otherstext">';
+				for(var k=0;k<data[i]['res'].length;k++){	
+	
+				 strVar+='<div class="row"><div class="col-xs-2"><img src="'+data[i]['res'][k]['pic']+'" height="30px" width="30px"/></div><div class="col-xs-10"><p class="username">'+data[i]['res'][k]['nickname']+'<span>'+data[i]['res'][k]['time']+'</span></p><p class="usertext">'+data[i]['res'][k]['message']+'</p></div></div>';
+				}
+							
+				strVar+='</div>';
+				 }
+					strVar+='</div>';
+			}
+		
+				return strVar;
+				}
+			
+        </script>
+	</body>
+</html>

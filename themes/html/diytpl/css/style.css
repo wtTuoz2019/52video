@@ -1,0 +1,1025 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;box-sizing: border-box;outline: 0 none;}
+h1,h2,h3,h4,h5,h6,p,span,ul,li,a,i,body{font: 14px/1.5em "微软雅黑";}
+ul,li{list-style-type:none;}
+a{text-decoration: none;}
+.left{float:left;}
+.right{float:right;}
+.clearfix{*zoom:1;}
+.clearfix:after{display:block; overflow:hidden; clear:both; height:0; visibility:hidden; content:".";}
+
+body{
+	background: url(../img/body_bg.png) no-repeat fixed;
+	
+	/*background-size: 100% 100%;*/
+}
+/*search*/
+.main{
+	width: 96%;
+	height: 45px;
+	padding: 0 3px;
+	line-height: 42px;
+	/*background: #fff;*/
+	/*position: fixed;
+	top: 0;
+	z-index: 100;*/
+	margin: 0 auto;
+}
+.clear{ clear:both;}
+.search-bar{
+	/*position: fixed;
+	top: 0;*/
+	width: 100%;
+}
+.search-bar .search-text{
+	width: 74%;
+	/*border: 1px solid #d4d4d4;*/
+	border: none;
+	color: #000;
+	vertical-align: middle;
+	margin-right: 3%;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 5px;
+	border-radius: 30px;
+}
+.search-bar button.search-btn{
+	/*background:linear-gradient(to bottom,#fff 10%,#e7bd97 60%,#d3a67f 100%) ;
+	background:-webkit-linear-gradient(to bottom,#fff 10%,#e7bd97 60%,#d3a67f 100%) ;
+	background:-moz-linear-gradient(to bottom,#fff 10%,#e7bd97 60%,#d3a67f 100%) ;
+	background:-ms-linear-gradient(to bottom,#fff 10%,#e7bd97 60%,#d3a67f 100%) ;
+	background:-o-linear-gradient(to bottom,#fff 10%,#e7bd97 60%,#d3a67f 100%) ;
+	filter:progid:DXImageTransform.microsoft.gradient(gradienttype=0,startColorStr=#e7bd97,endColorStr=#d3a67f); */
+	/*background: url(../img/search-btn.png) repeat;*/
+	background-size:100% 100% ;
+	width: 21%;
+	border: 1px solid #fff;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 30px;
+	color: #fff;
+	/*box-shadow: 0 2px 2px rgba(0,0,0,0.3);*/
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 0.9rem;
+	background: transparent;
+}
+
+/* **muen** */
+.menu{
+	margin: 8px auto;
+	text-align: center;	
+}
+.menu a{
+	color: #fff;
+	/*background: #b0b0b0;*/
+	margin: 0 10px;
+	height: 33px;
+	line-height: 33px;
+	display: inline-block;
+	padding: 0 10px;
+	font-size: 1.1rem;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+	border: 1px solid #fff;
+	border-radius: 5px;
+}
+
+/* Swiper */
+.swiper-container {
+        width: 100%;
+        height: 230px;
+        text-align: center;
+        margin: 0 auto;
+}
+.swiper-slide {
+        text-align: center;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+}
+.swiper-slide img{
+	width: 98%;
+}
+/* 直播列表 */
+/*.body_bg{z-index:0;position:fixed;top: 0;bottom: 0;left: 0;right: 0;}
+.body_bg img
+{
+	width: 100%;
+	height: 100%;
+}*/
+.wraper
+{
+	width: 100%;
+	overflow: hidden;
+	background:#3596B9  no-repeat fixed;
+	/*background-size: 100% 100%;*/
+}
+.orderList
+{
+	border-left: 2px solid rgba(255,255,255,0.5);
+	min-height: 100%;
+	margin-right: 10px;
+	margin-left: 80px;
+	padding-left: 15px;
+	position: relative;
+	z-index: 1;
+	clear: right;
+	margin-top: 100px;
+	clear: both;
+}
+
+
+.orderList li
+{
+	padding:10px 0;
+}
+.orderList li .date
+{
+	float: left;
+	width: 62px;
+	margin-left: -90px;
+	text-align: right;
+	position: relative;
+}
+.orderList li .date i
+{
+	width: 8px;
+	height: 8px;
+	border-radius: 4px;
+	background:#ccc;
+	position: absolute;
+	top:15px;
+	right: -16px;
+}
+.orderList li .date strong,.orderList li .date p
+{
+	color:#fff;
+}
+.orderList li .date strong
+{
+	font-weight: normal;
+	display: block;
+}
+.orderList li .content
+{
+	background: rgba(255,255,255,.1);
+	padding: 24px 10px;
+	border-radius: 5px;
+	position: relative;
+}
+.orderList li .content .triangle
+{
+	background: url(../img/arrow.png) no-repeat;
+	background-size: 8px 16px;
+	width: 8px;
+	height: 16px;
+	opacity: 0.1;
+	position: absolute;
+	top: 12px;
+    left: -8px;  
+}
+.orderList li .content a
+{
+	display: block;
+}
+.orderList li a h5
+{
+	color: #fff;
+	font-size: 14px;
+	text-shadow: 0 1px 2px #555;
+	/*white-space: nowrap;*/
+	
+}
+.orderList li .picture
+{
+	margin-top: 10px;
+	text-align: center;
+	position: relative;
+}
+.orderList li .picture img
+{
+	margin: 0 auto;
+	max-width: 100%;
+	max-height: 300px;
+}
+.orderList li .picture .play
+{
+	background: url(../img/starticon.png) no-repeat;
+	background-size: 50px 50px;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+    margin: -25px 0 0 -25px;
+}
+.orderList li .person
+{
+	position: relative;
+
+}
+.orderList li .person img
+{
+    float: right;
+  	margin:0px 50px 0 0;
+}
+.orderList li .person p
+{
+	display: inline-block;
+	position: absolute;
+	width:99%;
+	color: #fff;
+	font-size: 14px;
+}
+.text{ float:right;}
+.orderList li .person p i
+{
+	color: #999999;
+	font-size: 14px;
+	margin: 0 5px;
+	font-style: normal;
+}
+.orderList li .person p span
+{
+	color:#fff;
+	float:right;
+	
+	
+}
+.up
+{
+	background: url(../img/up.png) no-repeat;
+	background-size: 30px 30px;
+	width: 30px;
+	height: 30px;	
+	cursor: pointer;
+	z-index: 99;
+	position: fixed;
+	bottom: 20px;
+	right: 10px;
+}
+/*.btngroups
+{
+	z-index: 1;
+	position: relative;
+	margin:0 auto;
+	padding-top: 10px;
+}
+.btngroups button
+{
+	border: none;
+	border-radius: 3px;
+	padding: 6px 12px;
+	font-weight: bolder;
+	color: #fff;
+	background: #27408B;
+}*/
+.orderList1
+{
+	
+	min-height: 100%;
+	margin-right: 10px;
+	margin-left: 10px;
+	padding-left: 15px;
+	position: relative;
+	z-index: 1;
+	clear: right;
+	margin-top: 100px;
+	clear: both;
+}
+.orderList1 li
+{
+	padding:10px 0;
+}
+.orderList1 li .date
+{
+	float: left;
+	width: 62px;
+	margin-left: -90px;
+	text-align: right;
+	position: relative;
+}
+.orderList1 li .date i
+{
+	width: 8px;
+	height: 8px;
+	border-radius: 4px;
+	background:#ccc;
+	position: absolute;
+	top:15px;
+	right: -16px;
+}
+.orderList1 li .date strong,.orderList li .date p
+{
+	color:#fff;
+}
+.orderList1 li .date strong
+{
+	font-weight: normal;
+	display: block;
+}
+.orderList1 li .content
+{
+	background: #FFF;
+	padding: 24px 10px;
+	border-radius: 5px;
+	position: relative;
+	box-shadow: 5px 5px 9px #555;
+}
+.orderList1 li .content .triangle
+{
+	background: url(../img/arrow.png) no-repeat;
+	background-size: 8px 16px;
+	width: 8px;
+	height: 16px;
+	opacity: 0.1;
+	position: absolute;
+	top: 12px;
+    left: -8px;  
+}
+.orderList1 li .content a
+{
+	display: block;
+}
+.orderList1 li a h5
+{
+	color: #000;
+	font-size: 16px;
+	
+	white-space: nowrap;
+	overflow: hidden;
+}
+.orderList1 li .picture
+{
+	margin-top: -15px;
+	text-align: center;
+	position: relative;
+}
+.orderList1 li .picture img
+{
+	margin: 0 auto;
+	width: 95%;
+	max-height: 300px;
+}
+.list-one{ margin: 0 auto; width:70%; padding-bottom:10px;}
+.list-one li{ float:left; text-align:center; padding-left:5px;}
+.orderList1 li .picture .play
+{
+	background: url(../img/starticon.png) no-repeat;
+	background-size: 50px 50px;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+    margin: -25px 0 0 -25px;
+}
+.orderList1 li .person
+{
+	position: relative;
+
+}
+.orderList1 li .person img
+{
+    float: right;
+  	margin:0px 50px 0 0;
+}
+.orderList1 li .person p
+{
+	display: inline-block;
+	position: absolute;
+	width:99%;
+	color: #000;
+	font-size: 14px;
+}
+.orderList1 li .person p i
+{
+	color: #999999;
+	font-size: 14px;
+	margin: 0 5px;
+	font-style: normal;
+}
+.orderList1 li .person p span
+{
+	color:#000;
+	float:right;
+	
+	
+}
+.content-header{
+	width: 100%;
+	/*margin-top: 15px;*/
+	z-index: 100;
+	background: #2C86A7;
+	/*background-image: url(../img/header_bg.png)
+	background-size: 100% 100%;*/
+	position: fixed;
+	top: 0;
+	/*padding-top: 5px;*/
+	
+}
+/*.live-content{
+	margin-top: 246px;
+}*/
+/*.menu a.list{
+	background: #83bb1f;
+}*/
+
+/* 点播频道视频*/
+/*.menu a.department{
+	background: #83bb1f;
+}*/
+/*.dianbo-content{
+	margin-top: 93px;
+}*/
+
+.orderList2
+{
+	
+	min-height: 100%;
+	margin-right: 10px;
+	margin-left: 10px;
+	padding-left: 15px;
+	position: relative;
+	z-index: 1;
+	clear: right;
+	margin-top: 100px;
+	clear: both;
+}
+.orderList2 li
+{
+	padding:10px 0;
+}
+.orderList2 li .date
+{
+	float: left;
+	width: 62px;
+	margin-left: -90px;
+	text-align: right;
+	position: relative;
+}
+.orderList2 li .date i
+{
+	width: 8px;
+	height: 8px;
+	border-radius: 4px;
+	background:#ccc;
+	position: absolute;
+	top:15px;
+	right: -16px;
+}
+.orderList2 li .date strong,.orderList li .date p
+{
+	color:#fff;
+}
+.orderList2 li .date strong
+{
+	font-weight: normal;
+	display: block;
+}
+.orderList2 li .content
+{
+	
+	padding: 24px 10px;
+	border-radius: 5px;
+	position: relative;
+
+}
+.orderList2 li .content .triangle
+{
+	background: url(../img/arrow.png) no-repeat;
+	background-size: 8px 16px;
+	width: 8px;
+	height: 16px;
+	opacity: 0.1;
+	position: absolute;
+	top: 12px;
+    left: -8px;  
+}
+.orderList2 li .content a
+{
+	display: block;
+}
+.orderList2 li a h5
+{
+	color: #fff;
+	font-size: 16px;
+	
+	
+}
+.orderList2 li .picture
+{ width:50%;
+	margin-top: -15px;
+	text-align: center;
+	position: relative;
+}
+.orderList2 li .picture img
+{
+	margin: 0 auto;
+	width:100%;
+	max-height: 300px;
+}
+.orderList2 li .picture .play
+{
+	background: url(../img/starticon.png) no-repeat;
+	background-size: 50px 50px;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+    margin: -25px 0 0 -25px;
+}
+.orderList2 li .person
+{
+	position: absolute;
+    top: 110px;
+    width: 100%;
+
+}
+.orderList2 li .person img
+{
+    float: right;
+  	margin:0px 50px 0 0;
+}
+.orderList2 li .person p
+{
+	display: inline-block;
+	position: absolute;
+	width:99%;
+	color: #fff;
+	font-size: 14px;
+}
+.orderList2 li .person p i
+{
+	color: #999999;
+	font-size: 14px;
+	margin: 0 5px;
+	font-style: normal;
+}
+.orderList2 li .person p span
+{
+	color:#fff;
+	float:right;
+	
+	
+}
+
+
+
+
+
+
+/* 分页 */
+.pagination {
+	width: 82%;
+	margin: 0 auto;
+	margin-top: 12px;
+	/*border:1px solid #ccc;*/
+}
+.pagination li{
+	float: left;
+}
+.pagination li a{
+	display: inline-block;
+	/*width: 31px;*/
+	text-align:center;
+	/*border: 1px solid #fff;*/
+	height: 35px;
+	line-height: 35px;
+	color: #fff;
+	/*background: #fff;
+	border-right: 1px solid #ccc;*/
+
+}
+.pagination li a.nextPage, .pagination li a.prePage
+{
+	width: 45px;
+}
+.pagination li a.firstPage, .pagination li a.lastPage{
+	width: 40px;
+}
+
+/* 个人中心 */
+.table-view {
+    background-color: #fff;
+    list-style: outside none none;
+    margin-top: 95px;
+    position: relative;
+}
+.table-view-cell::before {
+    background-color: #c8c7cc;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -1px;
+    transform: scaleY(0.5);
+}
+.table-view-cell::after {
+    background-color: #c8c7cc;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transform: scaleY(0.5);
+}
+.table-view-cell{
+	overflow: hidden;
+    padding: 13px 22px;
+    position: relative;
+}
+.table-view-cell img{
+	margin-right: 12px;
+	width: 21px;
+}
+.table-view-content{
+	position: relative;
+}
+.table-view-content p{
+	margin-right: 7px;
+}
+.table-view-content .count{
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	background: #f6561a;
+	border-radius: 50%;
+	text-align: center;
+	color: #fff;
+}
+.table-view-content p,.table-view-content .count{
+	display: inline-block;
+}
+.table-view-content i{
+	display: block;
+	width: 8px;
+	height: 8px;
+	border-radius: 4px;
+	background: #f6561a;
+	position: absolute;
+	top: -7px;
+	left: 58px;
+}
+.table-view-content .icon-angle-right{
+	font-size: 16px;
+	color: #898989;
+	margin-top: 3px;
+}
+#item2mobile .content{
+ 	/*background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0;*/
+    border-radius: 5px;
+    padding: 10px 5px;
+    width: 98%;
+    margin: 0 auto;
+ }
+
+.video-box{
+	margin: 0 auto;
+	width: 100%;
+	margin-top: 10px;
+}
+.video-box img{
+	width: 100%;
+	height: 100%;
+}
+.video-box ul li a{
+	display: inline-block;
+	color: #fff;
+	background: #1E799A;
+	background-size: 100% 100%;
+	/*background-color: rgba(49,40,36,0.4);*/
+	padding: 10px;
+	width: 45%;
+	float: left;
+	height: 193px;
+	margin: 5px 2.5%;
+	border-radius: 5px;
+}
+.video-box ul li a h1{
+	font-size: 0.9rem;
+}
+.video-box ul li a .img-box{
+	width: 100%;
+	height: 100px;;
+	margin: 5px 0;
+	position: relative;
+}
+.video-box  .star-icon{
+	position: absolute;
+	display: block;
+	top: 50%;
+	left: 50%;
+	height: 50px;
+	width: 50px;
+	margin-top: -25px;
+	margin-left: -25px;
+}
+.video-box  .star-icon img{
+	
+}
+.video-box ul li a img{
+	width: 100%;
+	height: 100%;
+}
+
+#img{width:25px; height:14px; margin:0;top:2px;position:relative;}
+#img-1{width:25px; height:14px;top:2px;position:relative; }
+.person-box span{
+float:right;
+}
+.person-box span.head-img{
+	height: 30px;
+	width: 30px;
+	vertical-align: middle;
+	display: inline-block;
+}
+.person-box span.head-img img{
+	width: 100%;
+	height: 100%;
+}
+.person-box span.stutas{
+	color: green;
+	margin-left: 5px;
+}
+/* calendar */
+#wrap{
+	width: 100%;
+	margin: 7px auto 0 auto;
+	height: auto;
+	padding: 0 10px;
+	position: relative;
+}
+#kalendar{
+	width:100%;
+	border:solid 1px #bebebe;
+	margin:0 auto;
+	height: auto;
+	background: #fff;
+}	
+/* 选择年月 的行 */
+#kalendar tr#select{
+	height:45px;
+	background: #fff;
+	text-align: center;
+}
+#kalendar tr#select td{
+	clear:both;
+	width: 20%;
+	margin: 0 auto;
+}
+#kalendar tr#select td div{
+	height:30px;
+	line-height:30px;
+	display: inline-block;
+}
+#select #year ul,#select #month ul{
+	clear:both;
+}
+#select #year ul li,#select #month ul li{
+	float:left;
+	width:30px;
+}
+#select #year ul li input,#select #month ul li input{
+	width:30px;
+	text-align:30px;
+	cursor:pointer;
+	background: transparent;
+	border: 0;
+	color: #02aebc;
+	font-size: 2rem;
+	vertical-align: middle;
+}
+#select #year ul li.selectChange,#select #month ul li.selectChange{
+	width:70px;
+	line-height: 34px;
+}
+#select #year ul li.selectChange select,#select #month ul li.selectChange select{
+	width:70px;
+	padding-left:2px;
+	cursor:pointer;
+	border: 0;
+}
+#select #year ul li.selectChange select option,#select #month ul li.selectChange select option{
+	padding-left:5px;
+}
+/* 星期表头 的行 */
+#kalendar tr#week{
+	height:45px;
+}
+#kalendar tr#week td ul{
+	clear:both;
+}
+#kalendar tr#week td ul li{
+	float:left;
+	width:14.2861%;
+	height:45px;
+	line-height:45px;
+	text-align:center;
+	background:#fff;
+}
+
+/* 某月具体日期 的每一行 */
+#kalendar tr#day ul.dayList{
+	width:100%;
+	height:45px;
+	clear:both;
+}
+#kalendar tr#day ul.dayList li{
+	float:left;
+	width:14.2861%;
+	height:45px;
+	line-height:45px;
+	text-align:center;
+	z-index: 2;
+	position: relative;
+	cursor:pointer;
+}
+/* 日期占用行数(4-6行)，将不需要显示的行隐藏 */
+#kalendar tr#day ul.hide{
+	display:none;
+}
+/* 周末 的特殊样式 */
+#week .weekend,#day .weekend{
+	color:#EA0000;
+}
+
+/* 下面几个样式注意顺序，选择器不能简写，否则日历中 今天 的样式会被鼠标滑过的样式替换 */
+/* 鼠标经过某个日期 的特殊样式 */
+#kalendar tr#day td ul.dayList li.mouseFloat{
+	background:#FFDCB9;
+}
+/* 当天是周末 的特殊样式 */
+#kalendar tr#day td ul.dayList li.todayWeekend{
+	color:#EA0000;
+	background:#abcdef;
+	font-weight:700;
+}
+/* 当天 的特殊样式 */
+#kalendar tr#day td ul.dayList li.today{
+	background:#00b0bc;
+	font-weight:700;
+}
+#kalendar tr#day ul.dayList li.high{
+	background: #d7f4f8;
+	font-weight:700;
+}
+.fllow{
+	position: absolute;
+	height: 150px;
+	width: 150px;
+	top: 50%;
+	left: 50%;
+	margin-top: -75px;
+	margin-left: -75px;
+	text-align: center;
+	color: #d7f4f8;
+	font-size: 8rem;
+	font-family:"arial black";
+}
+/*.content .userinfoArea{
+	background: #baf3e5;
+}*/
+/* 点播科室  */
+.userinfoArea{
+	margin-top: 100px;
+}
+.userinfoArea li{
+	height: 70px;
+	text-align: center;
+	float: left;
+	margin: 5px 3px;
+}
+ .userinfoArea li .depart-header{
+	width:107px;
+	height: 20px;
+	line-height: 20px;
+	background: #a6b864;
+	margin:0 auto;
+}
+ .userinfoArea li .btn-depart{
+	width: 107px;
+	height: 50px;
+	border: none;
+	font-size: 20px;
+	font-weight: bold;
+	color: #baf3e5;
+	/*letter-spacing: 1px;*/
+	background: linear-gradient(to right,#1281ac,#1587ab,#157196);
+	background: -moz-linear-gradient(to right,#1281ac,#1587ab,#157196);
+	background: -webkit-linear-gradient(to right,#1281ac,#1587ab,#157196);
+	background: -ms-linear-gradient(to right,#1281ac,#1587ab,#157196);
+	background: -o-linear-gradient(to right,#1281ac,#1587ab,#157196);
+}
+
+@media (max-width: 640px) {
+	.person-box span.head-img{
+	height: 25px;
+	width: 25px;
+	}
+}
+.wraper{
+	background:#55B0C3;
+}
+.orderList{
+	margin-top:30px;
+}
+.orderList li .content{
+	background:#fff;
+}
+.orderList li a h5,.video-box ul li a h1{
+	color:#000;
+	text-shadow:none;
+}
+.orderList li .person p,.video-box ul li a .person p,.orderList1 li .person p{
+	color:#A1A1A1;
+}
+.orderList li .person p span,.orderList1 li .person p span{
+	color:#a1a1a1;
+}
+.orderList2 li .person p span,.orderList2 li .person p{
+	color:#DBDBDB;
+}
+.orderList li .date i{
+	background:#fff;
+}
+.orderList li .content .triangle{
+	opacity:1;
+}
+#img-1,#img{
+	width: 19px;
+    height: 15px;
+    left: -3px;
+}
+.orderList{ 
+	margin-left:75px;
+}
+body{
+	background:#55B0C3;
+}
+.video-box ul li a{
+	height:inherit;
+	width: 47%;
+	margin: 5px 1.5%;
+	border-radius:0;
+	padding: 5px;
+	background:#fff;
+}
+.video-box ul li a .img-box{
+	margin-top:0;
+}
+.video-box ul li a h1{
+	margin-bottom:5px;
+}
+.list-one li{
+	float:none;
+}
+.list-one li a{
+	color:#fff;
+}
+.orderList1{
+	margin-top:10px;
+	padding:0;
+}
+.orderList1 li .content{
+	border-radius:0;
+	box-shadow:none;
+}
+.orderList1 li .content{
+	padding: 22px 0px;
+}
+.orderList1 li a h5{
+	padding-left:8px;
+}
+.orderList1 li .person p{
+	padding-left: 8px;
+    padding-right: 5px;
+}
+.orderList2{
+	margin-top:0;
+	padding: 0;
+    margin: 0;
+}
+.video-box ul li a .person p,.video-box ul li a .person p span{
+	font-size:12px;
+}
+.video-box ul li a .person p span #img{
+	width: 16px;
+    height: 13px;
+}

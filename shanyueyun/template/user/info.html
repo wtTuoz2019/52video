@@ -1,0 +1,174 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLICURL__/data/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+{$css}
+{$js}
+</head>
+<body scroll="no">
+
+<div class="page_function">
+  <div class="info">
+    <h3>管理员{$action_name}</h3>
+    <small>使用以下功能进行管理员{$action_name}操作</small> 
+  </div>
+</div>
+<div class="tab" id="tab"> <a class="selected" href="#">{$action_name}管理员</a>
+<?php if(model('user_group')->model_power('user','visit')){ ?>
+ <a  href="javascript:menuload('__URL__')">返回管理员列表</a>
+ <?php } ?>
+ </div>
+<div class="page_form">
+<form action="__URL__/{$action}_save/time-<?php echo time() ?>-ajax-true" method="post" id="form">
+<div class="page_table form_table">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="100" align="right">管理组</td>
+      <td width="300"><select name="gid" id="gid">
+        <!--foreach:{$user_group $vo}-->
+        <option value="{$vo.id}" <?php if($info['gid']==$vo['id']) { ?> selected="selected" <?php } ?>>{$vo.name}</option>
+        <!--{/foreach}-->
+      </select></td>
+      <td></td>
+    </tr>
+       
+    <tr>
+      <td width="100" align="right">帐号</td>
+      <td width="300"><input name="user" type="text" class="text_value" id="user" value="{$info.user}" reg="\S" msg="管理员帐号不能为空" /></td>
+      <td></td>
+    </tr>
+     <tr>
+          <td width="100" align="right">logo上传</td>
+          <?php echo module('editor')->_get_image_upload('image1','image',false,'editor_content') ?>
+          <td><input name="logo" type="text" class="text_value" id="image" value="{$info.logo}"/> </td>
+          <td width="120"><input type="button" id="image1" class="button_small" value="选择图片" /></td>
+        </tr>
+       <tr>
+      <td width="100" align="right">域名</td>
+      <td width="300"><input name="siteurl" type="text" class="text_value" id="siteurl" value="{$info.siteurl}" />如：mol.heims.com.cn</td>
+      <td></td>
+    </tr>
+     <tr>
+      <td width="100" align="right">站点名称</td>
+      <td width="300"><input name="sitename" type="text" class="text_value" id="siteurl" value="{$info.sitename}" /></td>
+      <td></td>
+    </tr>
+   	 <tr>
+          <td width="100" align="right">所属学校</td>
+          <td width="300">
+               <select id="example-dropUp" multiple="multiple" reg="\S" msg="通道必选" name="cid">
+                <!--foreach:{$school $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['cid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+                   </select>
+          
+          
+        
+            </td>
+          <td></td>
+        </tr>
+       <tr>
+      <td width="100" align="right">关于我们</td>
+      <td width="300">
+        <?php echo module('editor')->get_editor('about'); ?>
+      <textarea name="about" class="text_textarea" id="about">{$info.about}</textarea></td>
+      <td></td>
+    </tr>
+     <tr>
+      <td width="100" align="right">联系我们</td>
+      <td width="300">
+        <?php echo module('editor')->get_editor('contact'); ?>
+      <textarea name="contact" class="text_textarea" id="contact">{$info.contact}</textarea></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td width="100" align="right">版权信息</td>
+      <td width="300"><input name="copyright" type="text" class="text_value" id="copyright" value="{$info.copyright}" /></td>
+      <td></td>
+    </tr>
+      <tr>
+        <td width="120" align="right">到期时间</td>
+        <td width="300">
+         <input name="overtime"  id="overtime" type="text" class="text_value" style="width:210px; float:left" value="<?php if($info['overtime']){echo date('Y-m-d',$info['overtime']);} ?>" /><div id="overtime_button" class="time"></div>
+        <script>$('#overtime_button').calendar({ id:'#overtime',format:'yyyy-MM-dd'});</script>
+        
+        </td>
+      </tr>
+       <tr>
+      <td width="100" align="right">学校名称</td>
+      <td width="300"><input name="nicename" type="text" class="text_value" id="nicename" value="{$info.nicename}" reg="\S" msg="学校名称不能为空" /></td>
+      <td></td>
+    </tr>
+    
+       <tr>
+      <td width="100" align="right">营业执照</td>
+      <td width="300"><img src="{$info.cardimage}" height="500px;"></td>
+      <td></td>
+    </tr>
+   	<?php if($action=='add'){ ?>
+   
+    <tr>
+      <td width="100" align="right">密码</td>
+      <td width="300"><input name="password" type="password" class="text_value" id="password"  /></td>
+      <td>不修改密码请勿填写！</td>
+    </tr>
+    <tr>
+      <td width="100" align="right">确认密码</td>
+      <td width="300"><input name="password2" type="password" class="text_value" id="password2"  /></td>
+      <td></td>
+    </tr>
+    <?php } ?>
+    <tr>
+      <td width="100" align="right">状态</td>
+      <?php if(!isset($info['status'])){ $info['status']=1; } ?>
+      <td width="300"><input name="status" type="radio" value="1" <!--if:{$info['status']==1}--> checked="checked" <!--{/if}--> />
+        正常&nbsp;&nbsp;
+        <input name="status" type="radio" value="0" <!--if:{$info['status']==0}--> checked="checked" <!--{/if}--> />
+        禁用
+        
+         <input name="status" type="radio" value="0" <!--if:{$info['status']==2}--> checked="checked" <!--{/if}--> />
+        待审核
+        
+         <input name="status" type="radio" value="0" <!--if:{$info['status']==3}--> checked="checked" <!--{/if}--> />
+        不通过
+         </td>
+      <td></td>
+    </tr>
+  </table>
+</div>
+<?php if(model('user_group')->model_power('user','add')||model('user_group')->model_power('user','edit')){ ?>
+<!--普通提交-->
+<div class="form_submit">
+<input name="id" type="hidden" value="{$info.id}" />
+<button type="submit" class="button">保存</button> 
+</div>
+<?php } ?>
+</form>
+</div>
+</div>
+<script src="__PUBLICURL__/data/js/bootstrap.min.js" type="text/javascript"></script>
+   <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
+   <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
+<script type="text/javascript">
+	$(document).ready(function() {
+				$('#example-dropUp').multiselect({
+					includeSelectAllOption: true,
+					nonSelectedText:'未选择',
+					nSelectedText:'个已选',
+					selectAllText: '全选',
+					allSelectedText: '已全选',
+					enableClickableOptGroups: true,
+					enableFiltering: true,
+					numberDisplayed: 1,
+					maxHeight: 300
+					
+				});
+			});
+
+//提交表单
+savelistform({addurl:"__URL__/add",listurl:"__URL__"});
+</script>

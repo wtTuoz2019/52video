@@ -1,0 +1,633 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content=""/>
+    <title>{$common.title}</title>
+<link rel="stylesheet" href="__TPL__mobile/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css"> 
+<link rel="stylesheet" href="__TPL__mobile/css/contentlive3.css" />
+<!-- dialog -->
+<link rel="stylesheet" href="__TPL__mobile/dialog/skins/simple.css" type="text/css">
+ <link rel="stylesheet" href="__TPL__mobile/Scripts/iscroll/jquery.mobile-1.4.3.min.css" />
+<script type="text/javascript" src="__TPL__mobile/Scripts/iscroll/jquery.mobile-1.4.3.min.js" ></script>
+<script type="text/javascript" src="__TPL__mobile/Scripts/iscroll/jquery-latest.min.js" ></script> 
+<script type="text/javascript" src="__TPL__mobile/Scripts/iscroll/iscroll.js" ></script>
+ <script src="__TPL__mobile/bootstrap-3.3.5-dist/js/bootstrap.min.js" type="text/javascript"></script>
+ <script type="text/javascript" src="__TPL__mobile/Scripts/countdown/jquery.countdown.js" ></script>
+    <link rel="stylesheet" href="__TPL__mobile/Scripts/countdown/jquery.countdown.css" />
+	<script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <!-- dialog -->
+   	<script type="text/javascript" src="__TPL__mobile/dialog/jquery.artDialog.js"></script>
+    <style type="text/css" media="all">
+/*需要修改的jquery mobile样式  */
+.ui-table-columntoggle-btn {display:none;}
+#list{
+	position:absolute;
+	top:0px;
+	bottom:-260px;
+	overflow:hidden;
+	width:100%;
+}
+@media screen and (min-width:768px){#list{bottom:-460px}}
+@media screen and (min-width:568px){#list{bottom:-360px}}
+/**
+	*
+	* 下拉样式 Pull down styles
+	*
+	*/
+#pullDown, #pullUp {
+	background:transparent;
+	height:40px;
+	line-height:40px;
+	padding:5px 10px;
+	font-weight:bold;
+	font-size:14px;
+	color:#888;
+}
+</style>
+</head>
+
+<body>
+<!-- 视频区域 -->
+<div class="fixed-top" id="fixed-top">
+<div class="fixed">
+	<div class="channels">
+        
+        <div class="show">
+   <?php   if ($info["cid"] == 16) {  ?>
+    
+     <?php 
+		 $end = $info['starttime'] + 60*$info['time'];
+		 if ($end <= time()) {
+		 ?>
+		
+        <div class="watchover">
+            <img src="{$info.image}"  alt="" />
+        	<div class="black-warp">
+                直播已经结束，稍后即可点播回看
+            </div>
+        </div>
+        <?php
+         }
+		?>
+    
+       <div id="play" class="play" style="width:100%;">
+        	
+        </div>
+        <div id="backdrop" class="backdrop">
+			<img src="{$info.image}"  alt="" />
+			<div class="counter">
+				<p>距离直播还有</p>
+				<div id="countdown"></div>
+				<div class="tsfm"><span>天</span><span>时</span><span>分</span><span>秒</span></div>
+			</div>   
+		</div>
+<script type="text/javascript" src="__PUBLIC__/plays/players.js"></script>
+<script type="text/javascript">
+aodianPlayer({
+  container:'play',//播放器容器ID，必要参数
+  rtmpUrl:'rtmp://{$sys.play}/schoolvideo/{$channel.vMp4url}',//控制台开通的APP rtmp地址，必要参数
+  hlsUrl:'http://{$sys.ios}/schoolvideo/{$channel.vMp4url}.m3u8',//控制台开通的APP rtmp地址，必要参
+
+  player:{
+    name:'lssplayer',//播放器名称，必要参数
+    /* 以下为可选参数*/
+    width: '100%',//播放器宽度，可用数字、百分比等
+    height: '100%',//播放器高度，可用数字、百分比等
+	 html5Width: '100%',//手机端浏览器，播放器宽度，可用数字、百分比等
+    html5Height: '200',//手机端浏览器，播放器高度，可用数字、百分比等
+    wmode:'Transparent',
+    autostart: 'flase',//是否自动播放，默认为false
+    bufferlength: '3',//视频缓冲时间，默认为3秒
+    stretching: '1',//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1
+    controlbardisplay: 'disable'//是否显示控制栏，值为：disable、enable默认为disable
+  }
+});
+/* 以下为LSS Player支持的事件 */
+/* lssHandle.startPlay();//播放 */
+/* lssHandle.pause();//暂停 */
+/* lssHandle.stopPlayer();//停止 */
+/* lssHandle.closeConnect();//断开连接 */
+/* lssHandle.setMute(true);//静音或恢复音量，参数为true|false */
+/* lssHandle.setVolume(volume);//设置音量，参数为0-100数字 */
+/* lssHandle.setFullScreenMode(1);//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1 */
+
+
+
+var note = $('#note'),
+					newYear = true;
+					t1 = {$info.starttime}*1000;
+					t = {$info.starttime}*1000 + {$info.time}*60*1000;
+					ts = <?php echo time(); ?>*1000;	
+
+				if(ts < t1){
+					$("#play").hide();
+					$("#backdrop").show();
+		        }else if(ts > t1 && ts < t){
+		        
+					$("#play").show();
+					$("#backdrop").hide();
+					newYear = false;
+				}else{
+					$("#play").hide();
+					$("#backdrop").show();
+					
+				}				 
+	
+				$('#countdown').countdown({
+					timestamp	: t1,
+					callback	: function(days, hours, minutes, seconds){
+						
+						var message = "";
+					
+						message += days + " day" + ( days==1 ? '':'s' ) + ", ";
+						message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
+						message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
+						message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+						note.html(message);
+						if(days==0&&hours==0&&minutes==0&&seconds==0){
+							$("#play").show();
+							$("#backdrop").hide();
+						}
+					}
+				});
+				 
+</script>
+
+
+ <?php  }else{  ?>
+<div class="player">
+            <?php  if(strstr($info['videourl'],"qq.com")){ ?>
+<iframe frameborder="0" width="100%" height="200" src="{$info.videourl}" allowfullscreen></iframe> 
+
+<?php  }elseif(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"shanyueyun")){?>
+
+      <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1" ></div>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "200";//视频高度
+  var url = "{$info.videourl}";//视频地址
+  var image = "{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:1};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>
+
+
+<?php }else{  ?>
+        
+                 
+        
+          <script type="text/javascript" src="__PUBLIC__/ckplayer/js/offlights.js"></script>
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1"></div>
+   <script type="text/javascript">
+	//如果你不需要某项设置，可以直接删除，注意var flashvars的最后一个值后面不能有逗号
+	function loadedHandler(){
+	
+	}
+	var _nn=0;
+	function ckplayer_status(str){
+		_nn+=1;
+		if(_nn>100){
+			_nn=0;
+			document.getElementById('statusvalue').value='';
+		}
+		document.getElementById('statusvalue').value=str+'\n'+document.getElementById('statusvalue').value;
+	}
+	
+	var flashvars={
+		f:'rtmp://{$config.ip}/vod/mp4:{$info.videourl}',//视频地址
+		a:'',//调用时的参数，只有当s>0的时候有效
+		s:'0',//调用方式，0=普通方法（f=视频地址），1=网址形式,2=xml形式，3=swf形式(s>0时f=网址，配合a来完成对地址的组装)
+		c:'0',//是否读取文本配置,0不是，1是
+		x:'',//调用配置文件路径，只有在c=1时使用。默认为空调用的是ckplayer.xml
+		i:'{$info.image}',//初始图片地址
+		z:'__PUBLIC__/public/ckplayer/buffer.swf',//缓冲广告，只能放一个，swf格式
+		
+		v:'80',//默认音量，0-100之间
+		p:'1',//视频默认0是暂停，1是播放，2是不加载视频字点20'
+		//以下为自定义的播放器参数用来在插件里引用的
+		my_url:encodeURIComponent(window.location.href)//本页面地址
+		//调用自定义播放器参数结束
+		};
+	var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always'};//这里定义播放器的其它参数如背景色（跟flashvars中的b不同），是否支持全屏，是否支持交互
+	var video=['http://fms.heims.com.cn/vod/{$info.videourl}'];
+	CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1','100%','200',false,flashvars,video,params);
+	/* 
+		以上代码演示的兼容flash和html5环境的。如果只调用flash播放器或只调用html5请看其它示例
+	*/
+
+	function ckplayer_status(str){
+		
+	}
+	
+	function getprogress(){
+		
+		var statusarray=CKobject.getObjectById('ckplayer_a1').getStatus();
+
+		var a=new   Date(statusarray.time*1000);
+		$('#progress').val(formatDate(a));
+		$('#progressinput').val(statusarray.time);
+		
+		}
+		
+	
+   function   formatDate(now)   {     
+                 
+              var   hour=checkTime(now.getHours()-8);     
+              var   minute=checkTime(now.getMinutes());     
+              var   second=checkTime(now.getSeconds());   
+			  if(hour!='00')  
+              return   hour+":"+minute+":"+second; 
+			  else    
+			    return   minute+":"+second; 
+              }      
+         
+
+function checkTime(i)
+{
+if (i<10) 
+  {i="0" + i}
+  return i
+}
+	function playseek(e){
+		var time=$(e).attr('data-time');
+		$('body,html').animate({
+						scrollTop: 0 ,
+					 	}, 300
+					);
+		CKobject.getObjectById('ckplayer_a1').videoSeek(time);
+		
+		}
+</script>
+              <?php  }  ?>  
+        </div>
+	 <?php  }?>
+    </div>
+</div>
+<!-- 视频区域结束 -->
+<div class="title">
+	<p>{$info.title}</p>
+	<a href="javascript:" class="zhan"><i class=" glyphicon glyphicon-eye-open"></i><span>{$info.views}</span></a>
+</div>
+</div>
+
+<div class="mian-content" style="">
+	<ul id="myTab">
+         <li><a href="#item1mobile">互动评课</a></li>
+        <li><a href="#item2mobile">教学设计</a></li>
+        <li><a href="#item3mobile">课程推荐</a></li>
+    </ul>
+	<div id="item1mobile" >
+    	<div id="list" class="ui-content" role="main" style="padding:0px;">
+        <div id="shishi" name="shishi"  class="listDiv"  >
+        <div id="pullDown">
+					
+					<span class="pullDownLabel"></span>
+				</div>
+        <ul>
+    	<li id="commentlist">
+	
+             </li>
+       </ul>
+       <div id="pullUp">
+					
+					<span class="pullUpLabel">上拉加载更多</span>
+				</div>
+       </div>
+       </div>
+            
+         <style>
+		 #commentform{  margin-bottom: 10px;}
+         #commentform span{ font-size:8px;}
+       #item1mobile #commentform   input{width:55px; padding:2px 0px; font-size:8px; margin-left:5px;border-radius:8px;background:#4bd5ef;}
+		 #commentform .area{ width:120px; background:#000000;border-radius:4px; display: inline-flex;}
+          #commentform .progress1{ background:#4bd5ef; border-radius:4px; height:10px; text-align:center;  line-height:10px; display:inline-block;}
+         </style>
+		<div class="comment">
+        
+        <div class="comment-form-comment" id="commentform" >
+          
+           <span id="start">开始:00:00</span>
+            <div class="area"><div class="progress1" id="progress1"></div></div>
+             <span id="end">结束:00:00</span>
+          
+            <input type="button" value="获取开始" class="btn btn-primary"  onclick="getprogress()"  />
+            
+            <input type="button" value="获取结束" class="btn btn-primary"   onclick="getprogressend()"  style=" "/>
+            <input name="progress"  id="progressinput" value="0"  type="hidden" >
+            <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
+         </div>
+			<img src="img/comicons.png" style="width: 22px;margin: 0 10px 0 15px;"/>
+			<input type="text" placeholder="点击可参与直播交流"  id="editors" />
+			<button class="btn btn-primary" id="btn">发送</button>
+		</div>
+		<!--注册框-->
+		<div id="mask"></div>
+		
+	</div>
+	
+	<div id="item2mobile" >	
+    		
+		<div class="person">
+			<img src="{$teacher[$info['tid']]['image']}" />
+			<div class="introduce">
+				<h4>{$teacher[$info['tid']]['name']}<small> {$subject[$info['sid']]['name']}</small>&nbsp;<small></small></h4>
+				<p>{$teacher[$info['tid']]['des']}</p>
+			</div>
+		</div>
+		<div class="contentlive">
+			<!--<h5>直播内容简介:</h5>-->
+			<p>{$info.content}</p>
+		</div>
+	</div>
+	
+	<div id="item3mobile">		
+
+		<ul>
+     <?php  
+     $loop=array();
+     if($info['aids'])
+    $loop=model('content')->getlist($info['aids']);
+   
+      ?>
+
+			 <!--foreach:{$loop $vo}-->    
+                <li class="<?php echo $vo['cid']==16?'live-class':'over-class';  ?>">
+                    <a href="{$vo.aurl}">●{$vo.title} </a>
+                   <span><?php echo $vo['cid']==16?'直播':'重播';  ?></span>
+				</li>
+		<!--/loop-->
+		</ul>
+	</div>
+	
+</div>
+<div class="sponsor">
+{$school[$info['csid']]['name']} © 视盛信息技术支持
+</div>
+<!--#include file="common.html"-->
+<!--Tabs.js-->
+<script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
+
+<script type="text/javascript"> 
+  $("#myTab").idTabs();
+  	
+  	//评论	
+	function showMask(){     
+	    $('#mask').css('height',$(document).height());     
+	    $('#mask').css('width',$(document).width());     
+	    $('#mask').show();     
+	} 
+	  var data = {
+			    fid: {$info.aid},
+				uid:'<?php echo $_SESSION["uid"];?>',
+			    pageSize: 10,
+			    pageIndex: 0,
+			  };
+			  var arr = {
+			    fid: {$info.aid},
+			    id: 0
+			  };
+			  var id = 0,
+			  flag=0;
+	$('#btn').click(function(){
+	  var this_ = this;
+				var mes = $('#editors').val();
+				if(flag==1){
+					return false;
+				}
+				flag==1;
+			
+				if(mes.length < 1){
+					
+					//alert('请输入大于1字符评论');
+					$.dialog({
+						        content: '请输入大于1字符评论',
+								top:'300px',
+								fixed:true,
+								width:200,
+								height:80
+					          });  
+			    	return;
+			    }
+				
+			   
+				$.ajax({
+				  url: "__ROOT__/index.php/comment/save",
+				  type: "POST",
+				  data: {
+					fid: data['fid'],
+					message: mes,
+					progress:$('#progressinput').val(),
+					progressend:$('#progressendinput').val(),
+			        uid: data['uid']
+				  },
+				  dataType: "json",
+				  success: function( d ) {
+					$('#editors').val('');
+					if(d.status == 1){
+						$('#editors').val('');
+			           		//alert('评论成功');
+							$.dialog({
+						        content: '评论成功',
+								top:'300px',
+								absolute:true,
+								width:200,
+								height:80
+					          });  
+							//postcomment();
+						flag=0;
+						
+					
+					}else{
+			           //	alert('评论失败');
+						$.dialog({
+						        content: '评论失败',
+								top:'300px',
+								fixed:true,
+								width:200,
+								height:80
+					          });
+						flag=0
+			        }
+				  }
+				});	
+	});
+	
+	
+			function getcomment(){
+				
+				$.post('__ROOT__/index.php/comment/pc_list',{data: data},function(d){
+					if(d.status==1){
+						var count = d.message.count;
+						if(d.message.pageindex != 0)
+						data['pageIndex']=d.message.pageindex;
+						
+						if(d.message.count == 0){
+							$('.load').hide();
+							//$('#comments_list').html('暂无数据');
+						}else{
+								if(arr['id']==0)
+							arr['id'] = d.message.info[0]['id'];
+							
+							$('#commentlist').append(escapes(d.message.info));	
+							
+						}	
+					}else{
+						//alert ('操作失败');
+						$.dialog({
+						        content: '操作失败',
+								top:'300px',
+								fixed:true,
+								width:200,
+								height:80
+					          });	
+					}
+				},'json')
+			}
+			getcomment();
+		
+			
+		function escapes(data){
+				var strVar = "";
+				if(!data){
+					return '';
+				}
+				for(var i=0;i<data.length;i++){
+					 strVar +='<div class="dialog"><div class="user"><dl><dt><img src="'+data[i]['pic']+'">  </dt> <dd> <P class="username">'+data[i]['name'];
+					 if(data[i]['progress']!=0){
+				
+			strVar += "<a  onclick=\"playseek(this) \" data-time=\""+data[i]['progress']+"\"  end-time=\""+data[i]['progressend']+"\" style=\"float:right\"><img src=\"__PUBLIC__/images/play.jpg\" height=\"18px;\"><span class=\"f-ib\">"+formatDate(new Date(data[i]['progress']*1000))+"</span></a>";
+					}
+					 strVar+='</P><div class="info">'+data[i]['message']+'</div> </dd> </dl></div>';
+			    	
+				}
+				return strVar;
+			}
+		function automatic(arr){
+				$.post('__ROOT__/index.php/comment/pc_auto',{data: arr},function(d){
+					if(d.status==1){
+						$('#commentlist').prepend(escapes(d.message.info));
+						arr['id'] = d.message.info[0]['id'];
+					}
+				},'json')
+			}
+	function qwert(){
+				
+				automatic(arr);
+			}setInterval("qwert()",5000);
+
+	$('#mask').click(function(){
+		$('#mask,#register').hide();
+	});
+	
+			
+</script>
+
+<script type="text/javascript">
+var myScroll,
+	pullDownEl, pullDownOffset,
+	pullUpEl, pullUpOffset,
+	generatedCount = 0;
+/**
+	* 下拉刷新 （自定义实现此方法）
+	* myScroll.refresh();		// 数据加载完成后，调用界面更新方法
+	*/
+function pullDownAction () {
+	setTimeout(function () {
+	//console.log("下拉刷新...");
+	myScroll.refresh();		//数据加载完成后，调用界面更新方法   Remember to refresh when contents are loaded (ie: on ajax completion)
+	}, 1000);
+}
+/**
+	* 滚动翻页 （自定义实现此方法）
+	* myScroll.refresh();		// 数据加载完成后，调用界面更新方法
+	*/
+function pullUpAction () {
+	setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+		//console.log("上拉加载...");
+	
+				getcomment();
+		myScroll.refresh();		// 数据加载完成后，调用界面更新方法 Remember to refresh when contents are loaded (ie: on ajax completion)
+	}, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+}
+/**
+	* 初始化iScroll控件
+	*/
+$(function(){
+	pullDownEl = document.getElementById('pullDown');
+	pullUpEl = document.getElementById('pullUp');
+	pullDownOffset = pullDownEl.offsetHeight;
+	pullUpOffset = pullUpEl.offsetHeight;
+	
+	var id='list';
+	var yLen=80;
+	
+	var hei=document.getElementById(id).maxScrollY;
+	
+	myScroll = new iScroll(id, {
+		useTransition: false,
+		topOffset: pullDownOffset,
+		onRefresh: function () {
+			if (pullDownEl.className.match('loading')) {
+				pullDownEl.className = '';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '';
+			} else if (pullUpEl.className.match('loading')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '';
+			}
+		},
+		onScrollMove: function () {
+			if (this.y >= yLen && !pullDownEl.className.match('flip')) {
+				pullDownEl.className = 'flip';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '正在刷新';
+				this.minScrollY = 0;
+			} else if (this.y < yLen && pullDownEl.className.match('flip')) {
+				pullDownEl.className = '';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '';
+				this.minScrollY = -pullDownOffset;
+			}
+			else if (this.y < (this.maxScrollY - yLen) && !pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'flip';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
+				this.maxScrollY = this.maxScrollY;
+			} else if (this.y > (this.maxScrollY + yLen) && pullUpEl.className.match('flip')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '';
+				this.maxScrollY = pullUpOffset;
+			}
+			
+		},
+		onScrollEnd: function () {
+			if (pullDownEl.className.match('flip')) {
+				pullDownEl.className = 'loading';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '';				
+				pullDownAction();	// Execute custom function (ajax call?)
+			}
+				else if (pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'loading';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '';				
+				pullUpAction();	// Execute custom function (ajax call?)
+			}
+			
+		}
+	});
+	
+	setTimeout(function () { document.getElementById(id).style.left = '0'; }, 800);
+	
+	 		
+	
+	
+});
+</script>
+
+</body>
+</html>

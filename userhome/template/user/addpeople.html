@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLICURL__/data/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+{$css}
+{$js}
+  <link href="__PUBLICURL__/data/css/admin.css" rel="stylesheet" type="text/css" />
+<style>
+.form-control{
+	width:150px;
+	}
+
+</style>
+</head>
+<body scroll="no">
+<div class="page_function">
+  <div class="info">
+    <h3>应用{$action_name}</h3>
+    <small>使用以下功能进行应用修改{$action_name}</small> 
+  </div>
+</div>
+<div class="page_form">
+<form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="page_table form_table">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    
+      <tr>
+        <td width="120" align="right">微信昵称</td>
+        <td width="150">
+        <input name="nicename" type="text" class="form-control" id="nicename"  reg="\S" msg="名称不能为空" />
+        </td>
+        <td><button class="button" type="button" onclick="getpeople()">获取人员</button></td>
+      </tr>
+       <tr>
+        <td width="120" align="right"></td>
+        <td width="150" ><ul></ul></td><td></td>
+       </tr>
+    
+    </table>
+</div>
+
+<div class="form_submit">
+<input name="did" type="hidden" value="{$did}" />
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+       
+</div>
+</div> 
+
+<script type="text/javascript">
+
+var win = art.dialog.open.origin;
+saveform({
+	success:function(data){
+
+		art.dialog.close();
+		win.location.reload();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+	
+function getpeople(){
+	var nicename=$('#nicename').val();
+	if(nicename.length<1){
+				
+		alert('请输入大于1字符的昵称');
+			    	return;
+			    }
+	$.post('__URL__/getpeople',{nicename:nicename},function(data){
+		var html='';
+		if(data.status==1){
+			$(data.message).each(function(index, element) {
+				if(index==0){
+              html+='<li><img src="'+element.headimgurl+'" height="50px"><p>'+element.nicename+'</p><input type="radio" name="uid" value="'+element.uid+'" checked="checked"/></li>';			}else{
+				    html+='<li><img src="'+element.headimgurl+'" height="50px"><p>'+element.nicename+'</p><input type="radio" name="uid" value="'+element.uid+'" /></li>';		  
+				  }
+			
+            });
+			}else{
+			alert(data.message);	
+				}
+			  $('ul').html(html);
+		},'json');
+	}
+</script>
+</body>

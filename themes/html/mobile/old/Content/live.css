@@ -1,0 +1,137 @@
+﻿.container {
+font-size: 12px;
+max-width: 640px;
+min-width: 320px;
+margin: auto;
+position: relative;
+background-color: white;
+}
+
+ul, li{margin:0;padding:0;}
+.nav_footer{height:48px;}
+.nav_footer > ul {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+margin: auto;
+background: #f3f3f3;
+z-index: 1000;
+border-top: 1px solid #b2b2b2;
+}
+.nav_footer > ul li {
+vertical-align: middle;
+height:48px;
+}
+.tbox{
+width:100%;
+height:48px;
+}
+.toolstext {
+height: 28px;
+line-height: 28px;
+border: 1px solid #797979;
+border-radius: 3px;
+font-size: 14px;
+}
+.toolssend {
+width: 147px;
+border-radius: 5px;
+background-color: #2792ff;
+font-size: 14px;
+color: white;
+vertical-align: middle;
+text-align: center;
+}
+.tbox > * {
+height: 100%;
+display: table-cell;
+vertical-align: top;
+}
+.nav_footer > ul a {
+display: block;
+height: 28px;
+text-align: center;
+overflow: hidden;
+width: 43px;
+margin: 9px 0;
+}
+/*评论*/
+.module-infobox {
+position: relative;
+padding: 10px 12px 10px 2px;
+}
+.line-bottom{
+border-bottom: 1px solid #dadada;
+}
+.layout-box {
+/*display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;*/
+}
+.module-infobox .mod-media {
+height: 34px;
+/*margin: 0 14px 0 0;*/
+padding: 0;
+width:34px;
+display:block;
+float:left;
+
+}
+.size-xs {
+width: 2.125rem;
+}
+.mod-media .media-main {
+position: relative;
+width:34px;
+height:34px;
+}
+.module-infobox img {
+vertical-align: text-bottom;
+}
+img[Attributes Style] {
+height: 34px;
+width: 34px;
+}
+.module-infobox .item-list {
+/*padding: 0 15px 0 0;*/
+margin-left:50px;
+}
+.item-main {
+font-weight: 400;
+}
+.txt-s {
+font-size: .8125rem;
+}
+.media-graphic .item-main {
+line-height: 1.125rem;
+overflow: hidden;
+}
+a .mct-a, .mct-a {
+color: #333;
+}
+.mct-d {
+color: #929292;
+font-size: .7125rem;
+}
+.media-graphic .item-other {
+padding: .25rem 0 0;
+line-height: 1rem;
+}
+.stage-single-landing .module-infobox .item-minor{
+padding: 8px 0 0;
+}
+.mct-b {
+color: #5d5d5d;
+}
+.txt-l {
+font-size: .9375rem;
+}
+.item-minor{
+	/*word-wrap: break-word;*/
+	overflow:hidden;
+}
+.cenr{
+	text-align:center;display: block;
+}

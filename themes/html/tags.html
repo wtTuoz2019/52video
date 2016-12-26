@@ -1,0 +1,136 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>{$common.title}</title>
+<meta name="keywords" content="{$common.keywords}" />
+<meta name="description" content="{$common.description}" />
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="js/jquery.min.js"></script>
+<!-- grid-slider -->
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="js/jquery.contentcarousel.js"></script>
+<!-- //grid-slider -->
+</head>
+<body>
+    <!-- start header_bottom -->
+   <!--头部-->
+<!--#include file="head.html"-->
+<!--END-->
+	<!-- end menu -->
+     <div class="main">
+       <div class="about_banner_img"><img src="images/blog_img1.jpg" class="img-responsive" alt=""/></div>
+		 <div class="about_banner_wrap">
+      	    <h1 class="m_11">{$info.name}</h1>
+      	</div>
+      	<div class="border"> </div>
+      	<div class="container">
+      		<div class="row single-top">
+		  	   <div class="col-md-8">
+                 <!--foreach:{$loop $vo}-->
+		  	   	<div class="blog_box">
+				 <div class="blog_grid">
+				  <h3><a href="{$vo.aurl}">{$vo.titlex}</a></h3>
+				  <a href="{$vo.aurl}"><img src="{$vo.image}" class="img-responsive" alt=""/></a>
+				  <div class="singe_desc">
+				    <p>{$vo.descrption}</p>
+				     <div class="comments">
+		  				<ul class="links">
+		  					<li><a href="#"><i class="blog_icon1"> </i><br><span>{$vo.updatetime time="Y-m-d"}</span></a></li>
+		  					<li><a href="#"><i class="blog_icon2"> </i><br><span>{$teacher[$vo['tid']]['name']}</span></a></li>
+		  					<li><a href="#"><i class="blog_icon3"> </i><br><span>1206</span></a></li>
+		  					<li><a href="#"><i class="blog_icon4"> </i><br><span>1206</span></a></li>
+		  				</ul>
+		  				<div class="btn_blog"><a href="{$vo.aurl}">观看</a>
+			            </div>
+		  		        <div class="clear"></div>
+		  		     </div>
+				  </div>
+				 </div>
+				</div>
+                  <!--/loop-->
+				
+				<ul class="dc_pagination dc_paginationA dc_paginationA06">
+				 {$page}
+		       </ul>
+			   </div>
+			   <div class="col-md-4 ">
+			    	<ul class="blog-list">
+					  <h4>目录</h4>
+                       <!--list:{table="category" type="top" order="cid asc" limit="7"}-->
+					 <li> <a class="title" href="{$list.curl}">{$list.name}</a></li>
+					    <!--/list-->
+				    </ul>
+				    
+					<ul class="single_times">
+					 	<h3>精品课程</h3>
+                          <!--list:{table="content" type="sub" cid="13" position="3" order="updatetime desc" limit="6"}-->
+					 	<li><a href="{$list.aurl}" target="_blank"><span class="week_class">{$list.titlex}</span> </a> <div class="clear"></div></li>
+                        <!--/list-->
+					 	
+					 </ul>
+					  <div class="course_demo">
+				          <ul id="flexiselDemo3">	
+                         <li><a href="__ROOT__/index.php/field/index/tid-{$list['id']}" target="_blank"><img src="{$list.image}" /><div class="desc">
+								<h3>{$list.name}<br><span class="m_text">{$list.title}</span></h3>
+								<p>{$subject[$list['sid']]['name']}<br>{$grade[$list['gid']]['name']}</p>
+								
+								<div class="clear"></div>
+							</div></a></li>
+													    	  	       	   	    	
+						</ul>
+				<script type="text/javascript">
+			$(window).load(function() {
+				$("#flexiselDemo3").flexisel({
+					visibleItems: 4,
+					animationSpeed: 1000,
+					autoPlay: true,
+					autoPlaySpeed: 3000,    		
+					pauseOnHover: true,
+					enableResponsiveBreakpoints: true,
+			    	responsiveBreakpoints: { 
+			    		portrait: { 
+			    			changePoint:480,
+			    			visibleItems: 1
+			    		}, 
+			    		landscape: { 
+			    			changePoint:640,
+			    			visibleItems: 2
+			    		},
+			    		tablet: { 
+			    			changePoint:768,
+			    			visibleItems: 2
+			    		} 
+			    	}
+			    });
+			    
+			});
+		</script>
+		<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+	  </div>
+			    
+				 
+				   <ul  class="blog-list1">
+					 <h4>热门标签</h4>
+                     
+                     <!--list:{table="tags" order="id desc" limit="10"}-->
+	<li> <a href="__INDEX__/tags-{$list.name}/">{$list.name}</a> </li>
+<!--/list--> 
+						
+						<div class="clear"></div>
+					</ul>
+		   	     </div>
+				<div class="clear"></div>
+			  </div>
+      	</div> 
+     </div>
+     <!--头部-->
+<!--#include file="foot.html"-->
+<!--END-->
+</body>
+</html>

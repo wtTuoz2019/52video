@@ -1,0 +1,125 @@
+@charset "utf-8";
+/* CSS Document */
+dd, dt, dl{
+	margin: 0;
+	padding: 0;
+}
+.contentBox{ width:1100px; overflow:hidden; margin:0 auto; text-align:left;}
+ul.sortList li .sortPic img{ display:block; width:100%;}
+
+.classifyBox{ border: 1px solid #e5e5e5; margin-bottom:14px;}
+.classifyBox .tit {width: 100px;padding-top: 15px;height: 65px;text-align: center;color: #fff;background: #31afed;font-size: 18px;position: relative;z-index: 2;}
+.classifyBox .classifyCon{ position:relative; width:998px; overflow:hidden; z-index:1; margin-left:-1px; padding:16px 0;}
+.classifyBox .classifyCon li{ float:left; display:inline; width:163px; border-left:1px dotted #d0d0d0; text-align:center; line-height:3;}
+.classifyBox .classifyCon li a{ font-size:16px;}
+.classifyBox .classifyCon li a.cur{ color:#43b5ed;}
+
+.sortBox{ padding:15px 0;width: 770px;}
+ul.sortList li{ width:770px; overflow:hidden; margin-bottom:28px;}
+ul.sortList li .sortPic{ width:268px; height:152px; overflow:hidden;}
+ul.sortList li .sortCon{ border:1px solid #e5e5e5; border-left:0; padding:10px 68px 0 20px; width:413px; height:140px; overflow:hidden; position:relative;}
+ul.sortList li .sortCon h4{ font-size:16px; position:relative; margin-bottom:6px;}
+ul.sortList li .sortCon h4 span{ position:absolute; left:50%; font-size:13px; line-height:2;}
+ul.sortList li .sortCon h4 span.red{ color:#f00;}
+ul.sortList li .sortCon h4 span.lan{ color:#31afed;}
+ul.sortList li .sortCon p{ width:648px; margin-bottom:8px; font-size:13px;}
+ul.sortList li .sortCon p.intro{ color:#999;}
+ul.sortList li .sortCon .enter{ width:68px; height:152px; background:#31afed; position:absolute; right:0; top:0; overflow:hidden;}
+ul.sortList li .sortCon .enter a{ display:block; text-align:center; font-size:16px; color:#fff; padding-top:28px;}
+
+.showMore{ margin-top:18px; background:#eee;}
+.showMore a{ display:block; text-align:center; line-height:58px; height:58px; color:#999; font-size:18px;}
+
+ul.dc_pagination {
+	overflow: hidden;
+	margin: 3% 0 2% 0;
+	float: right;
+}
+ul.dc_pagination li:first-child {
+	margin-left: 0px;
+	text-transform: uppercase;
+}
+ul.dc_pagination li {
+	display: inline-block;
+	margin: 0px;
+	margin-left: 5px;
+	padding: 0px;
+}
+ul.dc_pagination li a {
+	color: #000;
+	display: block;
+	padding: 4px 11px 4px 11px;
+	text-decoration: none;
+	font-size:0.85em;
+}
+ul.dc_paginationA06 li a:hover, ul.dc_paginationA06 li a.current {
+	background:#00BFF0;
+	color: #FFF;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	-o-border-radius:3px;
+}
+.rightbox{
+	width: 300px;
+	float:right;
+	padding: 15px 0;
+}
+.f_l{
+	float: left;
+}
+.klist{
+	width: 300px;
+	height: 45px;
+	background: #31afed;
+	color: #fff;
+	text-align: center;
+	line-height: 45px;
+}
+.rightbox ul{
+	display: block;
+	width: 266px;
+	padding: 16px;
+	height: auto;
+	overflow: hidden;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+}
+.rightbox ul li{
+	display: inline;
+	font-size: 16px;
+	line-height: 35px;
+	padding: 0 22px;
+	border-right: 1px solid #cccccc;
+	
+} 
+.col-md-12 dt {
+  float: left;
+  padding-right: 0px;
+  padding-top: 7px;
+  margin-bottom: 0;
+  text-align: left;
+}
+.col-md-12 dd {
+  float: left;
+  padding-top: 7px;
+  padding-left: 10px;
+}
+.form-group {
+  display: block;
+	zoom: 1;
+	height: auto;
+	overflow: hidden;
+}
+.form-group  dd a.cur, .col-md-12 dd a:hover {
+  background-color: #31afed;
+  color: #fff;
+  border-radius: 4px;
+}
+.form-group dd a {
+  padding: 0 5px;
+  display: inline;
+  margin-right: 5px;
+}
+

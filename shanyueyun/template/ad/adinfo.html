@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{$css}
+{$js}
+</head>
+<body scroll="no">
+<div class="page_function">
+  <div class="info">
+    <h3>广告{$action_name}</h3>
+    <small>使用以下功能进行广告修改{$action_name}</small> 
+  </div>
+</div>
+<div class="page_form">
+<form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="page_table form_table">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    
+
+      <tr>
+        <td width="120">广告名称</td>
+        <td width="300">
+        <input name="name" type="text" class="text_value" id="name" value="{$info.name}" reg="\S" msg="广告名称不能为空" />
+        </td>
+      </tr>
+       <tr>
+          <td width="120" >广告类型</td>
+          <td width="300">
+          <select name="type"   id="type"  >
+              <option value="1" <!--if:{'1'==$info['type']}-->selected="selected"<!--{/if}-->>图片</option>
+              <option value="2" <!--if:{'2'==$info['type']}-->selected="selected"<!--{/if}-->>代码</option>
+              </select>
+            </td>
+          
+        </tr>
+       <tr>
+        <td width="120" >广告图</td>
+        <td width="300">
+          <?php echo module('editor')->get_image_upload('image1','image',false) ?>
+          <input name="image" type="text" class="text_value" id="image" style="width:220px; float:left" value="{$info.image}"/> 
+          &nbsp;&nbsp;<input type="button" id="image1" class="button_small" value="选择图片" />
+         
+        </td>
+        </tr>
+        <tr>
+        <td width="120">广告链接</td>
+        <td width="300">
+        <input name="url" type="text" class="text_value" id="url" value="{$info.url}" reg="\S" msg="广告链接不能为空" />
+        </td>
+      </tr>
+      <tr>
+        <td width="120">开始时间</td>
+        <td width="300">
+         <input name="starttime"  id="starttime" type="text" class="text_value" style="width:260px; float:left" value="<?php if($info['starttime']){echo date('Y-m-d H:i:s',$info['starttime']);}else{ echo date('Y-m-d H:i:s');} ?>" reg="\S" msg="更新时间不能为空" /><div id="starttime_button" class="time"></div>
+        <script>$('#starttime_button').calendar({ id:'#starttime',format:'yyyy-MM-dd HH:mm:ss'});</script>
+        
+        </td>
+      </tr>
+        <tr>
+        <td width="120">结束时间</td>
+        <td width="300">
+         <input name="endtime"  id="endtime" type="text" class="text_value" style="width:260px; float:left" value="<?php if($info['endtime']){echo date('Y-m-d H:i:s',$info['endtime']);}else{ echo date('Y-m-d H:i:s');}?>" reg="\S" msg="更新时间不能为空" /><div id="endtime_button" class="time"></div>
+        <script>$('#endtime_button').calendar({ id:'#endtime',format:'yyyy-MM-dd HH:mm:ss'});</script>
+        
+        </td>
+      </tr>
+      <tr>
+        <td width="120">广告代码(类型为代码时填写)</td>
+        <td width="300">
+        <textarea name="body"  style="width:290px;">{$info.body}</textarea>
+        </td>
+      </tr>
+     
+      <tr>
+        <td width="120">排序</td>
+        <td width="300">
+        <input name="sequence" type="text" class="text_value" id="sequence" value="<!--if:{empty($info[sequence])}-->100<!--{else}-->{$info.sequence}<!--/if-->" reg="[0-9]" msg="广告排序只能为数字" />
+        </td>
+      </tr>
+    </table>
+</div>
+
+<div class="form_submit">
+<input name="id" type="hidden" value="{$info.id}" />
+<input name="pid" type="hidden" value="{$info.pid}" />
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+var win = art.dialog.open.origin;
+saveform({
+	success:function(){
+		win.location.reload();
+		art.dialog.close();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+</script>
+</body>

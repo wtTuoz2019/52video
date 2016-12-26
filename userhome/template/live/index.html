@@ -1,0 +1,178 @@
+<section class="content">
+<div class="col-md-10 "><form method="get">
+<div class="input-group input-group-sm">
+
+                                        <input type="text" class="form-control" name="search" placeholder="数据关键词"  id="search">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary"   type="submit">查询</button>
+                                            </span>
+                                        </span>
+                                    </div>  
+                                    
+                                    </form>
+                                    </div>
+<div class="col-md-2 ">
+
+                    	
+                       <a href="__URL__/add/cid-{$class_info.cid}" class="btn  btn-primary"><i class="fa fa-pencil"></i> 发布直播</a>
+                    
+                       
+                                           
+                                            
+                                        </div>
+                 <div class="row">
+                 
+                   <!--foreach:{$list $vo}-->
+                        <div class="col-lg-4 col-xs-6">
+                        
+                            <!-- small box -->
+                            <div class="small-box ">
+                            <h3><a href="http://live.shanyueyun.com<?php echo ROOTAPP ?>/content/index?aid={$vo['aid']}" target="_blank">{$vo.title len="16"}</a><a href="javascript:void(0);" rel="<?php 
+         $url = "http://".$sys['MOBILE_DOMAIN']."/content/index?aid=".$vo['aid'];
+          $id = $vo['aid'];
+          model('live')->gsetQrcode($url, $id);
+          echo $img = "/upload/aidimage/".$vo['aid'].".png";
+        ?>" forhref="http://{$sys['MOBILE_DOMAIN']}/content/index?aid={$vo['aid']}" class="class_pic"><img align="AbsMiddle" src="__PUBLICURL__/images/ico/pic.png" width="14" height="14" alt="" /></a></h3>
+                              <div class="col-sm-9">
+                              	
+                             <img class="video_img" src="{$vo.image}" width="100%" height="170px"> 
+                           	 <div class="mask" >
+                             	<button class="end btn btn-default" onClick="endlive('{$vo.aid}')">结束直播</button>
+                             </div>
+                             <p > <span class="fa  fa-video-camera">:<?php echo model('live')->get_url($vo['channel']);?></span> <span class="glyphicon glyphicon-stats right">{$vo.views}</span></p>  
+                                      
+                              <p  class="timedate"> {$php(echo date('Y-m-d H:i',model('live')->get_starttime($vo['aid'])))}</p>   
+                            </div>
+                            
+                             <div class="col-sm-3 center">
+                             
+                               <!--if:{$vo['signup']<>0}-->
+                                  
+                             	 <a class="btn btn-default btn-sm" href="__APP__/form_list/signup/aid-{$vo.aid}">报名审核</a>
+                                  <!--{/if}-->
+                                 <a class="btn btn-default btn-sm" href="__APP__/comment/person/id-{$vo.aid}">审核评论</a>
+                                   <a class="btn btn-default btn-sm" href="<?php echo ROOTAPP ?>/comment/list_/id-{$vo.aid}"  target="_blank">评论墙</a>
+                                     <a class="btn btn-default btn-sm" href="__APP__/data/index/id-{$vo.aid}">数据详情</a>
+                                       <a class="btn btn-default btn-sm" href="  __URL__/edit/id-{$vo.aid}">编辑</a>
+                                         <a class="btn btn-default btn-sm" onclick="del('{$vo.aid}',this)" href="javascript:">删除</a>
+                                         
+                            </div>
+                        </div><!-- ./col -->
+                     
+                    </div>
+                    
+                     <!--{/foreach}-->
+
+
+               
+            </div>
+                <div class="row">
+                                        <ul class="pagination">
+                                           {$page}
+                                        </ul>
+                                    </div>
+
+                </section>
+                
+                 <script>
+	$(document).ready(function() {
+					$(".class_pic").powerFloat({
+   					 targetMode: "ajax"
+});
+     		
+                });
+        	//删除
+function del(aid,obj) {
+	var obj;
+	ajaxpost({
+		name:'确认要删除本内容吗?删除无法恢复！',
+		url:"__URL__/del",
+		data:{aid: aid,cid: '{$class_info.cid}'},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().remove();
+		}
+	});
+}
+
+function downloadpic(pic){
+	
+	window.location='__URL__/downpic?pic='+pic;
+	
+	}
+function search(){
+	window.location="";
+	
+	}
+	
+function endlive(aid){
+	art.dialog.through({
+	    content: '是否要转成回看？',
+	    lock: true,
+	    icon: 'warning',
+	    button: [{
+			name: '转回看',
+			callback: function() {
+		urldialog({
+		title:'直播转回看',
+		url:'__APP__/content/livetime/id-'+aid
+		});
+	
+		
+		},
+		focus: true
+		},
+		{
+			name: '结束直播',
+			callback: function() {
+				if(!confirm('您确定要结束直播吗？')){
+					return false;
+					}
+	
+	$.post("__APP__/content/streamend", { aid: aid},
+	function(d){
+	
+		
+		if (d.status == 1) { 
+	   $.dialog({content:'结束成功'});
+		}
+	}, "json");
+			}
+		},
+		{
+			name: '取消',
+			callback: function() {
+				  
+			}
+		}]
+	});
+	
+	
+	}	
+		
+        </script>
+        
+        
+        <style>
+			.small-box div{
+				padding:0;
+			}
+			.row .small-box  .col-sm-9{
+				position:relative;
+			}
+        	.row .small-box  button.end{
+				width:90px;
+				text-align:center;
+				border:0;
+				margin-top:130px;
+			}
+			div.mask{
+				width:100%;
+				height:170px;
+				position:absolute;
+				top:0;
+				background: rgba(0, 0, 0, 0.5);
+				text-align: center;
+			}
+			
+        </style>

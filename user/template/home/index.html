@@ -1,0 +1,53 @@
+
+<link href="/user/public/css/style_1.css" rel="stylesheet" type="text/css" />
+<link href="/public/kindeditor/themes/default/default.css" rel="stylesheet" type="text/css" />
+
+<div id="user-index" class="warp">
+	<div id="user-index-head">
+    	<div class="user-pic"> <img src="<?php echo model('user')->picture($info['uid']); ?>" width="120" height="120" /> </div>
+        <div class="user-title"> {$info.nicename}的主页</div>
+    </div>
+  <div id="main">
+    <div class="user-info">
+    	<div class="left_">
+    	<span class="red">{$info.nicename}({$info.username})</span>，于<span class="blue">{$info.reg_time time="Y年m月d日"}</span>第<span class="blue">{$info.uid}</span>位加入本站。
+        </div>
+        <div class="left_">
+        <a href="__APP__/friends/add/{$info.uid}.html" class="button_small">加为好友</a>  <a class="button_small" href="__APP__/message/post.html?user={$info.username}">发送信息</a> </div>
+    </div>
+    <div class="box-title">
+      <h2>最新发布</h2>
+    </div>
+    <?php if(empty($loop)){ echo '<div class="tools">该用户暂无内容</div>';} ?>
+    <div class="box">
+      <ul>
+        <!--foreach:{$loop $vo}-->
+        <li><span class="title"><a href="__APP__/collection/content/{$vo.aid}.html" target="_blank">{$vo.title} </a>  <!--if:{$vo['image']<>''}-->
+        <a href="javascript:void(0);" rel="{$vo.image}" class="class_pic"><img align="AbsMiddle" src="__PUBLICURL__/images/ico/pic.png" width="14" height="14" alt="" /></a>
+        <!--{/if}-->
+          <span class="time">{$vo.updatetime time="Y-m-d"}</span>
+        </li>
+        <!--{/foreach}-->
+      </ul>
+      <div class="fn-clear"></div>
+    </div>
+     
+     <div class="sep10"></div>
+     <div class="sep10"></div>
+     <div class="sep10"></div>
+  </div>
+  <div class="fn-clear">{$page}</div>
+</div>
+<style type="text/css">
+
+#main .box ul span.time{ float: right; padding-right: 10%}
+#main .box-title h2 {text-align: left;}
+.left_{text-align: left;}
+#main .box-title h2 {line-height: 35px;margin-top: 10px;}
+.box ul{padding-bottom: 45px;}
+</style>
+<script type="text/javascript">
+$(".class_pic").powerFloat({
+    targetMode: "ajax"
+});
+</script>

@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$common.title}</title>
+
+</head>
+
+<body>
+ <!--头部-->
+<!--#include file="head.html"-->
+<link href="__TPL__/new/css/style.css" rel="stylesheet" type="text/css" />
+<!--END-->
+<!--start 中间-->
+
+<div class="bannner" style="background: rgba(0, 0, 0, 0) url('__TPL__/new/images/banner.jpg') no-repeat scroll center top;">
+<div class="bannerhead">
+<div class="bannercontent">
+<p  class="bannertitle">{$school[$csid]['name']}</p>
+<p>{$school[$csid]['des']}
+</p>
+</div>
+</div>
+
+</div>
+
+<div class="nav">
+<div class="bodyer">
+      <div class="preview"> 
+        <div class="scrolldoorFrame"> 
+            <ul class="scrollUl"> 
+            <li class="list"> 分类：</li>
+                <!--foreach:{$urlarray['sid'] $list}-->
+                <!--if:{$list['pid']==0}-->
+        <li class="sd02 {$list.class}" id="pid{$list.id}" alt="uid{$list.id}"> <a href="__URL__/school{$list.url}" >{$list.name}</a></li>  <!--/if-->
+        <!--/list-->
+               
+             </ul> 
+             
+            <div class="bor03 cont"> 
+            
+                <div id="uid66" style="display:none" alt="pid66"> 
+                    <ul class="list01"  >
+                    <li><a href="#">不限</a></li>
+                 <!--foreach:{$urlarray['sid'] $list}-->
+                <!--if:{$list['pid']}-->
+        <li  class="{$list.class}"> <a href="__URL__/school{$list.url}" >{$list.name}</a></li> 
+         <!--/if-->
+        <!--/list-->
+               
+                  
+                      </ul>
+                      
+            <ul class="list02">
+                         <!--foreach:{$urlarray['gid'] $list}-->
+     
+        <li  class="{$list.class}"> <a href="__URL__/school{$list.url}" >{$list.name}</a></li> 
+       
+        <!--/list-->
+                       
+                 
+                     </ul>
+                </div> 
+               
+            </div> 
+         </div> 
+       </div>
+     </div>
+ <script>
+ $('.list01 li a').eq(0).attr('href',$('#pid66 a').attr('href'));
+  if($('#pid66').hasClass('cur')){
+		$('#uid66').show();
+		$('.list01 li').eq(0).addClass('cur');
+		};
+	if($('.list01 .cur').hasClass('cur')){
+		$('#pid66').addClass('cur');
+		$('#uid66').show();
+		}
+   
+
+ 
+ </script>   
+     
+     
+      <div class="top">
+ <div class="bodyer1"> 
+   
+    
+    <div class="preview"> 
+        <div class="scrolldoorFrame">
+       
+            <ul class="scrollUl3"> 
+          <li class="sd02" id="cid0"><a href="{$allurl}">全部</a></li>
+      
+                <li class="sd02" id="cid13"><a href="{$fieldurl}">重播</a></li> 
+                <li class="sd02" id="cid16"><a href="{$liveurl}">直播</a></li> 
+                 <li style=" float:right; line-height:45px; color:#999; font-size:14px;">
+                  共{$count}个筛选结果
+                 </li>
+            </ul> 
+            <script>
+var cid="<?php echo $cid; ?>";
+$('#cid'+cid).addClass('cur');
+</script>
+            <div class="bor03 cont1"> 
+                <div id="cc01"> 
+                <!--foreach:{$loop $list}-->
+                    <div class="cnav">
+                    <div class="video">
+                     <a  href="{$list.aurl}" target="_blank" >
+                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $list['image'];} ?>" />
+                    </a>
+                     <?php if($list['cid']==16){ ?>
+                     <div class="videtext">
+                     <p style="
+                  <?php 
+                    if ($list['status'] == 0) {
+                      echo "color:red";
+                    }elseif($vo['status'] == 1){
+                      echo "color:blue";
+                    }else{
+                      echo "color:green";
+                    }
+                    ?>" class="fr">
+                      <?php
+                       if($list['cid'] == 16){
+                        if ($list['status'] == 0) {
+                          echo '正在直播';
+                        }elseif ($list['status'] == 1) {
+                          echo date('Y-m-d H:i', $vo['starttime']).' 开课';
+                        }elseif ($list['status'] == 2){
+                          echo '已结束';
+                        }
+                      };?>
+                      </p>
+                    </div>
+                    
+                     <?php } ?>
+                    </div>
+                    <div class=" mages">
+                    <p>{$list.titlex len='15'}</p>
+                    <p><?php echo date('Y-m-d', $list['updatetime']);?></p>
+                      <span style=" float:right; line-height:35px; color:#278497;">
+                        <img src="__TPL__new/images/1.jpg" />{$list.views}</span>
+                    </div>
+                    </div>
+                   <!--/list-->
+                 
+                   
+                 
+                </div> 
+                
+             
+            
+               
+            </div> 
+        </div> 
+    </div> 
+</div>
+
+<div class="page "> 
+   <ul >{$page}</ul>
+   </div>
+</div>
+     
+     
+     
+     
+    </div>
+<!--end 中间-->
+<!--底部-->
+<!--#include file="foot.html"-->
+<!--END-->
+</body>
+<script type="text/javascript">
+	$('.rightbox ul li:eq(2)').css('border-right', 'none');	
+	$('.rightbox ul li:eq(5)').css('border-right', 'none');	
+	$('.rightbox ul li:last-child').css('border-right', 'none');
+	jQuery(function(){
+		jQuery('.sortPic a img').jqthumb({
+			width: 268,
+			height: 152,
+			after: function(imgObj){
+				imgObj.css('opacity', 0).animate({opacity: 1}, 1000);
+			}
+		});
+	});
+</script>
+</html>

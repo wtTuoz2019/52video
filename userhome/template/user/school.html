@@ -1,0 +1,46 @@
+<div class="page_form">
+<form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="box-body">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+    
+    
+      <tr>
+        <td width="120">名称</td>
+        <td width="300">
+        <input name="name" type="text" class="form-control" id="name" value="{$school.name}" reg="\S" msg="自定义字段名称不能为空" />
+        </td>
+        <td></td>
+      </tr>
+          <tr>
+        <td width="100">LOGO</td>
+        <td colspan="2">
+          <?php echo module('editor')->get_image_upload('image1','image',false,'editor_content') ?>
+          <input name="image" type="text" class="form-control" id="image" style="width:220px; float:left" value="{$school.image}"/> 
+          &nbsp;&nbsp;<input type="button" id="image1" class="button_small" value="选择图片" />
+       
+        </td>
+        <td></td>
+        </tr>
+         <tr>
+        <td width="120">简介</td>
+        <td width="300">
+         
+          <textarea name="des" style="width:500px; height:300px;" id="des">{$school.des}</textarea>
+         
+        </td>
+        <td></td>
+      </tr>
+    
+    </table>
+</div>
+
+<div class="form_submit">
+<input name="id" type="hidden" value="{$school.id}" />
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+</div>
+<script type="text/javascript">
+//提交表单
+savelistform({addurl:"__URL__/school",listurl:"__URL__/school"});
+</script>

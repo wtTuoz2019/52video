@@ -1,0 +1,94 @@
+<div class="page_function">
+  <div class="info">
+    <h3>设备管理</h3>
+    <small>将栏目与设备绑定来实现附加字段功能</small> </div>
+  <div class="exercise"> 
+   <a href="javascript:menuload('__URL__')">设备列表</a>
+   <?php if(model('user_group')->model_power('expand_model','add')){ ?>
+   <a href="javascript:;" onclick="add()">添加设备</a>
+   <?php } ?>
+  
+   </div>
+</div>
+<div class="page_main">
+<div class="page_menu">
+  搜索：
+  <input name="search" type="text" class="text_value" id="search" value="<?php echo urldecode($_GET['search']) ?>" />
+  &nbsp;&nbsp;<input type="button"  class="button_small" onclick="javascript:location.href='__URL__/index/search-'+$('#search').val();" value="搜索" />
+  </div>
+  <div class="page_table table_list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th width="10%"><center>id</center></th>
+        <th width="10%"><center>设备类型</center></th>
+        <th width="15%"><center>SN</center></th>
+       
+       <th width="20%">所属</th>
+           <th width="5%">状态</th>
+           
+            <th width="30%">监看地址</th>
+              <th width="20%">备注</th>
+
+        <th width="10%"><center>操作</center></th>
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr>
+        <td><center>{$vo.id}</center></td>
+        <td><center>{$names[$vo['nid']]['name']}</center></td>
+         <td><center>{$vo.sn}</center></td>
+       <td>{$users[$vo['cid']]}</td>
+       
+          <td>
+            <!--if:{$vo['error']==0}-->
+      正常
+        <!--{else}-->
+     损坏
+        <!--{/if}-->
+          
+          </td>
+         
+           <td>http://{$sys['MOBILE_DOMAIN']}/content/monitor/id-{$vo.id}-type-id.html</td>
+       <td>{$vo.note}</td>
+        <td><center>
+         &nbsp;&nbsp;<a  href="javascript:void(0);" onclick="edit('{$vo.id}')">修改</a>
+       <!--  &nbsp;&nbsp;<a href="javascript:void(0);" onclick="del('{$vo.id}',this)">删除</a>-->
+         </center></td>
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+</div>
+
+<div class="page_tool">
+  <div class="page">{$page}</div>
+</div>
+<script>
+//添加
+function add() {
+	urldialog({
+	title:'设备添加',
+	url:'__URL__/add'
+	});
+};
+//修改
+function edit(url) {
+	urldialog({
+	title:'设备编辑',
+	url:'__URL__/edit/id-'+url
+	});
+};
+
+//删除
+function del(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'删除设备后会同时设备下级内容! ',
+		url:"__URL__/del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().remove();
+		}
+	});
+}
+</script>

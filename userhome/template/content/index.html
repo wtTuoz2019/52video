@@ -1,0 +1,104 @@
+<section class="content">
+<div class="col-md-10 "><form method="get">
+<div class="input-group input-group-sm">
+
+                                        <input type="text" class="form-control" name="search" placeholder="数据关键词"  id="search">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary"   type="submit">查询</button>
+                                            </span>
+                                        </span>
+                                    </div>  
+                                    
+                                    </form>
+                                    </div>
+<div class="col-md-2 ">
+
+                        <a href="__ROOT__/index.php/content/add/cid-{$class_info.cid}" class="btn btn-primary"><i class="fa fa-pencil"></i> 发布回看</a>
+                         
+                       
+                       
+                                           
+                                            
+                                        </div>
+                 <div class="row">
+                 
+                   <!--foreach:{$list $vo}-->
+                        <div class="col-lg-4 col-xs-6">
+                        
+                            <!-- small box -->
+                            <div class="small-box ">
+                            <h3><a href="http://live.shanyueyun.com<?php echo ROOTAPP ?>/content/index?aid={$vo['aid']}" target="_blank">{$vo.title len="16"}</a><a href="javascript:void(0);" rel="<?php 
+         $url = "http://".$sys['MOBILE_DOMAIN']."/content/index?aid=".$vo['aid'];
+          $id = $vo['aid'];
+          model('live')->gsetQrcode($url, $id);
+          echo $img = "/upload/aidimage/".$vo['aid'].".png";
+        ?>" forhref="http://{$sys['MOBILE_DOMAIN']}/content/index?aid={$vo['aid']}" class="class_pic"><img align="AbsMiddle" src="__PUBLICURL__/images/ico/pic.png" width="14" height="14" alt="" /></a></h3>
+                              <div class="col-sm-9">
+                             <img src="{$vo.image}" width="100%" height="170px"> 
+                           
+                             <p >  <!--if:{$cateid==16}--><span class="fa  fa-video-camera">:<?php echo model('live')->get_url($vo['channel']);?></span>  <!--/if--><span class="glyphicon glyphicon-stats right">{$vo.views}</span></p>  
+                                      
+                              <p  class="timedate"> {$php(echo date('Y-m-d H:i:s',$vo['updatetime']))}</p>   
+                            </div>
+                            
+                             <div class="col-sm-3 center">
+                             
+                               <!--if:{$vo['signup']<>0}-->
+                                  
+                             	 <a class="btn btn-default btn-sm" href="__APP__/form_list/signup/aid-{$vo.aid}">报名审核</a>
+                                  <!--{/if}-->
+                                 <a class="btn btn-default btn-sm" href="__APP__/comment/person/id-{$vo.aid}">审核评论</a>
+                                   <a class="btn btn-default btn-sm" href="<?php echo ROOTAPP ?>/comment/list_/id-{$vo.aid}"  target="_blank">评论墙</a>
+                                     <a class="btn btn-default btn-sm" href="__APP__/data/index/id-{$vo.aid}">数据详情</a>
+                                       <a class="btn btn-default btn-sm" href="  __APP__/content/edit/id-{$vo.aid} ">编辑</a>
+                                         <a class="btn btn-default btn-sm" onclick="del('{$vo.aid}',this)" href="javascript:">删除</a>
+                                         
+                            </div>
+                        </div><!-- ./col -->
+                     
+                    </div>
+                    
+                     <!--{/foreach}-->
+
+
+               
+            </div>
+                <div class="row">
+                                        <ul class="pagination">
+                                           {$page}
+                                        </ul>
+                                    </div>
+
+                </section>
+                
+                 <script>
+	$(document).ready(function() {
+					$(".class_pic").powerFloat({
+   					 targetMode: "ajax"
+});
+     		
+                });
+        	//删除
+function del(aid,obj) {
+	var obj;
+	ajaxpost({
+		name:'确认要删除本内容吗?删除无法恢复！',
+		url:"__URL__/del",
+		data:{aid: aid,cid: '{$class_info.cid}'},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().remove();
+		}
+	});
+}
+
+function downloadpic(pic){
+	
+	window.location='__URL__/downpic?pic='+pic;
+	
+	}
+function search(){
+	window.location="";
+	
+	}
+        </script>

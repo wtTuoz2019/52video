@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>闪阅云微信直播系统</title>
+
+</head>
+
+ 
+<body>
+<!--#include file="head.html"-->
+<link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.SuperSlide.2.1.js"></script>
+
+    <div id="slideBox" class="slideBox">
+			<div class="hd">
+				<ul><li class="on"></li><li class=""></li><li class=""></li><li class=""></li></ul>
+			</div>
+			<div class="bd">
+			<ul style="width:100%;">
+					<li id="li1" style="display: list-item; opacity: 0.984624;"><!--<img src="{xiandian::RES}/images/img/banner01.jpg">--></li>
+					<li id="li2" style=" display:none;"><!--<img src="{xiandian::RES}/images/img/banne1.jpg">--></li>
+					<li  id="li3" style="display:none;"><!--<img src="{xiandian::RES}/images/img/banner3.jpg">--></li>
+                    <li  id="li4"style="display:none;;"><!--<img src="{xiandian::RES}/images/img/banner5.jpg">--></li>
+				</ul>
+			</div>
+
+			<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+			<a class="prev" href="javascript:void(0)"></a>
+			<a class="next" href="javascript:void(0)"></a>
+
+		</div>
+        <script type="text/javascript">jQuery(".slideBox").slide({mainCell:".bd ul",effect:"fold",autoPlay:true,trigger:"click",delayTime:700}); </script>
+ 
+ 
+ </div>
+
+
+
+ <div class="nav">
+ <div class="top">
+ <div class="bodyer"> 
+   
+
+    <div class="preview"> 
+        <div class="scrolldoorFrame">
+       
+            <ul class="scrollUl"> 
+            <li class=" sd02 sd01" >最新</li> 
+                <li class="sd02" >重播</li> 
+                <li class="sd02" >直播</li> 
+                 <li style=" float:right; line-height:45px;">
+                    <a href="/field/" target="_blank" style=" font-size:14px; color:#278497; float:righ; text-decoration:none;">更多》</a>
+                 </li>
+            </ul> 
+            <div class="bor03 cont"> 
+                <div class="contentlist"> 
+             <!--list:{table="content"  order="inputtime desc" limit="6"}-->
+                    <div class="cnav">
+                    <div class="video">
+                     <a  href="{$list.aurl}" target="_blank" >
+                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $list['image'];} ?>" />
+                    </a>
+                     <?php if ($list['cid'] == 16) { ?>
+                    <!--
+                    <div class="videtext">
+                     <p>直播</p>
+                    </div>
+                    -->
+                    <?php } ?>
+                    </div>
+                    <div class=" mages">
+                    <p>{$list.titlex len='15'}</p>
+                    <p class="time"><?php echo date('Y-m-d', $list['updatetime']);?></p>
+                      <span style=" float:right; line-height:35px; color:#278497;">
+                        <img src="__TPL__new/images/1.jpg"  
+                        style="position: relative;top: 2px;"/>{$list.views}</span>
+                    </div>
+                    </div>
+                  
+              <!--/list-->    
+                    
+                    
+                     
+                    
+                  
+                  
+                    
+                    
+                 
+                </div> 
+                
+              <div  class="contentlist" style="display:none"> 
+                   
+                         <!--list:{table="content" cid="13"  order="inputtime desc" limit="6"}-->
+                    <div class="cnav">
+                    <div class="video">
+                     <a  href="{$list.aurl}" target="_blank" >
+                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $list['image'];} ?>" />
+                    </a>
+                  
+                    </div>
+                    <div class=" mages">
+                    <p>{$list.titlex len='15'}</p>
+                    <p class="time"><?php echo date('Y-m-d', $list['updatetime']);?></p>
+                      <span style=" float:right; line-height:35px; color:#278497;">
+                        <img src="__TPL__new/images/1.jpg" style="position: relative;top: 2px;" />{$list.views}</span>
+                    </div>
+                    </div>
+                  
+              <!--/list-->    
+                    
+                    
+                   
+                   
+                    
+                </div> 
+                <div  class=" contentlist" style="display:none"> 
+                    
+                    <?php if ($loops) {
+                    foreach ($loops as $k => $list) { ?>
+                    <div class="cnav">
+                    <div class="video">
+                     <a  href="{$list.aurl}" target="_blank" >
+                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $list['image'];} ?>" />
+                    </a>
+                   
+                    <div class="videtext">
+                     <p>
+                                    <?php if ($list['status'] == 0) {;?><span class='live red'>正在直播</span>
+                            <?php }elseif ($list['status'] == 1) {;?><span class='live blue'><?php echo date('m-d H:i', $list['starttime']);?> 开始</span>
+                            <?php }elseif ($list['status'] == 2){;?><span class='live white'>直播已结束</span>
+                            <?php }?> </p>
+                    </div>
+                  
+                    </div>
+                    <div class=" mages">
+                    <p>{$list.titlex len='15'}</p>
+                    <p class="time"><?php echo date('Y-m-d', $list['updatetime']);?></p>
+                      <span style=" float:right; line-height:35px; color:#278497;">
+                        <img src="__TPL__new/images/1.jpg" style="position: relative;top: 2px;" />{$list.views}</span>
+                    </div>
+                    </div>
+                  
+              <?php
+                }
+                }?> 
+                    
+                    
+                </div> 
+               
+            </div> 
+        </div> 
+    </div> 
+    
+    
+    <script>
+$('.sd02').bind('click',function(e){
+	$('.sd02').removeClass('sd01');
+	$(this).addClass('sd01');
+	$('.contentlist').hide();
+	$('.contentlist').eq($('.sd02').index($(this))).show();
+	});
+
+
+</script>  
+</div>
+
+</div>
+
+<div class="center">
+<div class="center-frist">
+<p>名校课程</p>
+ <span style=" float:right; margin-top:10px;">
+        <a href="/index/school.html" target="_blank" style=" font-size:14px; color:#278497; float:right; text-decoration:none;">更多》</a>
+     </span>
+</div>
+<div class="center-second">
+     <!--list:{table="content"  where="sid<>0"  order="updatetime desc" limit="6"}-->
+                    <div class="cnav">
+                    <div class="video">
+                     <a  href="{$list.aurl}" target="_blank" >
+                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $list['image'];} ?>" />
+                    </a>
+                     <?php if ($list['cid'] == 16) { ?>
+                   <!-- <div class="videtext">
+                     <p>直播</p>
+                    </div>-->
+                    <?php } ?>
+                    </div>
+                    <div class=" mages">
+                    <p>{$list.titlex len='15'}</p>
+                    <p class="time"><?php echo date('Y-m-d', $list['updatetime']);?></p>
+                      <span style=" float:right; line-height:35px; color:#278497;">
+                        <img src="__TPL__new/images/1.jpg" style="position: relative;top: 2px;"  />{$list.views}</span>
+                    </div>
+                    </div>
+                  
+              <!--/list-->  
+ </div>
+ 
+ <div class="teacher">
+<div class="teacher-frist">
+<p>主讲老师</p>
+ <span style=" float:right; margin-top:10px;">
+        <a  href="/index/teacher.html"target="_blank" style=" font-size:14px; color:#278497; float:right; text-decoration:none;">更多》</a>
+     </span>
+</div>
+<div class="teacher-second">
+  <!--list:{table="teacher"    order="sequence desc" limit="5"}-->
+<div class="teacher-second10">
+<a href="__APP__/field/teacher/tid-{$list['id']}" target="_blank">
+<div style="width:140px; height:140px; border-radius:50%; background:#999;opacity:0.4;position: relative; left:20px; top:5px;"></div>
+<img class="imges" src="{$list.image}" />
+<div class="videtext">
+     <p>{$list.name}<span>——{$list.title}</span></p>
+      <p>
+           {$school[$list['cid']]['name']}
+  	</p>
+                    </div>
+
+</a>
+</div>
+   <!--/list-->
+
+
+
+</div>
+
+ </div>
+ 
+  <div class="school">
+<div class="school-frist">
+<p>名校教学</p>
+ <span style=" float:right; margin-top:10px;">
+        <a href="/index/school.html" target="_blank" style=" font-size:14px; color:#278497; float:right; text-decoration:none;">更多》</a>
+     </span>
+</div>
+<div class=" school-second">
+<ul>
+  <!--list:{table="school"   order="sequence desc" limit="6"}-->
+<li><a href="/field/school/csid-{$list.id}" target="_blank"> <img src="{$list.image}" width="175px" height="85px" /></a></li>
+   <!--/list-->
+</ul>
+
+
+</div>
+
+ 
+ </div>
+ 
+ 
+ 
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ </div>
+ 
+ <!--#include file="foot.html"-->
+</body>
+
+</html>

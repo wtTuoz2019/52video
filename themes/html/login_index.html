@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>闪阅云微信直播系统</title>
+
+</head>
+
+<body>
+<!--#include file="head.html"-->
+<link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
+
+ <div class="havhome">
+ 
+<div class="hav-left">
+<div class="lef-tone"> 
+<p class="font">学校登录</p>
+<p>School Login</p>
+<div class="hacer">
+
+<a href="/userhome">登录</a>
+
+<a href="/userhome/index.php/login/reg.html">注册</a>
+
+</div>
+<div class="left-two">
+<p>发布直播、点播、设计个性化直播页面</p>
+</div>
+</div>
+
+
+</div>
+<!--用户界面-->
+ <div class="hav-right">
+
+<div class="right-tone">
+<p class="font">观众登录</p>
+<p>Viewer Login</p>
+<div class="hacer">
+
+<a  href="javascript:" onclick="toweixinLogin()">登录</a>
+
+<a href="javascript:" onclick="toweixinLogin()">注册</a>
+
+</div>
+<div class="left-two">
+<p>登录看直播、点播、参与互动。</p>
+</div>
+</div>
+
+
+</div>
+
+ <script>
+  var childWindow;
+	 
+	 function toweixinLogin()
+            {
+				
+                childWindow = window.open("https://open.weixin.qq.com/connect/qrconnect?appid={$sys.loginappid}&redirect_uri=<?php echo urlencode('http://live.shanyueyun.com/index.php/weixinlogin/login?url='.$_SERVER["HTTP_HOST"])?>&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect","weixinLogin");
+            } 
+                        
+            function closeChildWindow()
+            {
+                childWindow.close();
+            }
+ 
+ 
+ </script>
+ 
+ 
+ </div>
+ <!--#include file="foot.html"-->
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>闪阅云微信直播系统</title>
+
+</head>
+
+<body>
+<!--#include file="head.html"-->
+<link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
+<div class="frist" style="background:url(__TPL__/new/images/teacher.jpg) no-repeat center top;"></div>
+ <div class="nav">
+ 
+
+<div class="center">
+
+
+ 
+ 
+ 
+  <div class="school">
+<div class="school-frist"  style="background:url(__TPL__/new/images/teacherhead.jpg) no-repeat center top;height: 90px;">
+
+</div>
+<div class=" school-second1">
+<ul>
+    <!--foreach:{$loop $list}-->
+<li><div class="teacher-second11">
+<a href="__APP__/field/teacher/tid-{$list['id']}" target="_blank">
+<div style="width:140px; height:140px; border-radius:50%; background:#999;opacity:0.4;position: relative; left:20px; top:5px;"></div>
+<img class="imges" src="{$list.image}" />
+
+<div class="videtext">
+     <p>{$list.name}<span>——{$list.title}</span></p>
+     
+      <p>
+           {$school[$list['cid']]['name']}
+  	</p>
+                    </div>
+
+</a>
+</div></li>
+   <!--/list-->
+</ul>
+
+
+</div>
+<div class="page " style=" display: inline-block;"> 
+   <ul >{$page}</ul>
+   </div>
+ 
+ </div>
+ 
+ 
+ 
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ </div>
+ 
+ <!--#include file="foot.html"-->
+</body>
+
+</html>

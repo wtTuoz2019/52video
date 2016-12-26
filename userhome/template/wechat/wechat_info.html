@@ -1,0 +1,79 @@
+
+<div class="page_form">
+<form action="__URL__/wechat_info_add/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="box-body">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+    
+      <tr>
+        <td width="150" align="right">公众号名称</td>
+        <td width="300">
+        <input  type="text" class="form-control" id="name" value="{$info.wxname} " name="wxname" reg="\S" msg="名称不能为空" />
+        </td>
+        <td></td>
+      </tr>
+  
+       <tr>
+        <td width="150" align="right">AppID：</td>
+        <td width="300">
+        <input  type="text" class="form-control" value="{$info.appid}" name="appid"/>
+        </td>
+        <td></td>
+      </tr>
+        <tr>
+        <td width="150" align="right">AppSecret：</td>
+        <td width="300">
+        <input  type="text" class="form-control" value="{$info.appsecret}" name="appsecret"/>
+        </td>
+        <td></td>
+      </tr>
+     
+        <tr>
+		   <td width="150" align="right">二维码:</td>
+			 <td>
+											
+          		<input name="headerpic" type="text" class="form-control" id="image" value="{$info.image}"/> 
+          										&nbsp;&nbsp;
+											  </td> <td><input type="button" id="image1" class="button_small" value="选择图片" /></td>
+       </tr>
+         <tr>
+		  <td width="150" align="right">第三方平台API接口：</td>
+							                  <td><input type="text" name="api"  value="{$info.api}"   class="form-control"></td>
+                                              <td></td>
+						                </tr>
+                                        <tr>
+							                  <td width="150" align="right"> 您的接口URL：</td>
+							                  <td><font color="#FF0000">http://wap.shanyueyun.com/userhome/index.php/wechatapi?token={$token}</font></td>
+						                </tr>
+                                        <td></td>
+                                        <tr>
+							                  <td width="150" align="right">您的Token:</td>
+							                  <td><font color="#FF0000">{$token}</font></td>
+                                               <td></td>
+						                </tr>
+                						
+     
+     
+    </table>
+</div>
+
+<div class="form_submit">
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+       
+</div>
+</div>
+<script>
+//提交表单
+savelistform({addurl:"__URL__/wechat_info",listurl:"javascript:history.go(-1)"});
+        $(document).ready(function() {
+            $('#image1').click(function(){
+                urldialog({
+                    title:'图片上传',
+                    url:'__APP__/editor/image_upload?id=image&editor=editor_content',
+                    width:620,
+                    height:240
+                });
+            });
+        });
+        </script>

@@ -1,0 +1,83 @@
+<div class="page_function">
+  <div class="info">
+    <h3>学校管理</h3>
+    <small>将栏目与学校进行绑定来实现附加字段功能</small> </div>
+  <div class="exercise"> 
+   <a href="javascript:menuload('__URL__')">学校列表</a>
+   <?php if(model('user_group')->model_power('expand_model','add')){ ?>
+   <a href="javascript:;" onclick="add()">添加学校</a>
+   <?php } ?>
+  
+   </div>
+</div>
+<div class="page_main">
+<div class="page_menu">
+  搜索：
+  <input name="search" type="text" class="text_value" id="search" value="<?php echo urldecode($_GET['search']) ?>" />
+  &nbsp;&nbsp;<input type="button"  class="button_small" onclick="javascript:location.href='__URL__/index/search-'+$('#search').val();" value="搜索" />
+  </div>
+  <div class="page_table table_list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th width="10%"><center>ID</center></th>
+        <th width="40%">名称</th>
+          <th width="40%">LOGO</th>
+          
+          
+       
+        <th width="10%"><center>操作</center></th>
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr>
+        <td>{$vo.id}</td>
+        <td>{$vo.name}</td>
+       <td><img src="{$vo.image}" height="40px" /></td>
+       
+        <td><center>
+         
+         &nbsp;&nbsp;<a  href="javascript:void(0);" onclick="edit('{$vo.id}')">修改</a>
+       
+       
+         
+         &nbsp;&nbsp;<a href="javascript:void(0);" onclick="del('{$vo.id}',this)">删除</a>
+       
+         </center></td>
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+</div>
+
+<div class="page_tool">
+  <div class="page">{$page}</div>
+</div>
+<script>
+//添加
+function add() {
+	urldialog({
+	title:'学校添加',
+	url:'__URL__/add'
+	});
+};
+//修改
+function edit(url) {
+	urldialog({
+	title:'学校编辑',
+	url:'__URL__/edit/id-'+url
+	});
+};
+
+//删除
+function del(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'删除学校后会同时学校下级内容! ',
+		url:"__URL__/del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().remove();
+		}
+	});
+}
+</script>

@@ -1,0 +1,236 @@
+/*
+===================
+浏览器重置
+===================
+*/
+html, body { color: #666666; height: 100%; font-family: "微软雅黑"; background-color: #ffffff; background-image: url(../images/login_bg.jpg); }
+* html, * html body { background-attachment: fixed }
+a, a:hover { text-decoration: none }
+a { color: #2D6DA2 }
+a:hover { color: #F60 }
+ul, li { list-style: none }
+img { vertical-align:middle}
+/*
+===================
+公共元素
+===================
+*/
+
+h3 { font-size: 14px; font-weight: bold; }
+.warp { width: 980px; margin-left: auto; margin-right: auto }
+.red { color: #F00 }
+.blue { color:#1e7bb4}
+.sep5 { height:5px;}
+.sep10 { height:10px;}
+input { vertical-align:middle}
+.button { padding: 8px 30px; background-color: #1e7bb4; border: none; font-size: 14px; color: #fff !important; margin-right:10px;cursor: pointer; vertical-align: middle; }
+.button_small { padding: 5px 15px; background-color: #339900; border: none; font-size: 12px; color: #fff !important; margin-right: 10px; cursor: pointer; }
+.button_small:hover { background-color:#F90}
+/*
+===================
+头部
+===================
+*/
+/*#head { background-image: url(../images/ui-top-bg.jpg); background-repeat: repeat-x; height: 50px; }
+#head #logo { background-image: url(../images/logo.gif); background-repeat: no-repeat; width: 180px; height: 50px; float: left }
+#head #nav { float: right; height: 50px; }
+#head #nav ul { }
+#head #nav ul li { float: right; height: 50px; line-height: 50px; }
+#head #nav ul li a { color: #FFF; display: block; font-size: 14px; padding-left: 10px; padding-right: 10px; }
+#head #nav ul li a:hover { }
+#head #login { float: right }
+#head #login a { color: #FFF }*/
+/*
+===================
+中部样式
+===================
+*/
+#central { background-color: #fff; margin-top: 20px; background-image: url(../images/sidebar_bg.gif); background-repeat: repeat-y; background-position: left top; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: #efefef; border-right-color: #ddd; border-bottom-color: #ccc; border-left-color: #e3e3e3; box-shadow: 3px 3px 0px #eee }
+/*
+===================
+登录
+===================
+*/
+#login {  margin-top:30px;}
+#login #main,#user-index #main { float:none !important; margin-bottom: 20px; padding-bottom:0px !important;  width:950px; background-color: #fff; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: #efefef; border-right-color: #ddd; border-bottom-color: #ccc; border-left-color: #e3e3e3; box-shadow: 3px 3px 0px #eee; font-size:14px;}
+#login #foot {  }
+#login #main .login-l,#login #main .login-r { padding:15px; margin-top:30px;  }
+#login #main .login-l { float: left; width: 500px; border-right: 1px dotted #ccc; padding-bottom: 40px; }
+#login #main .login-r { float: right; width: 380px; height: 300px; padding-top: 45px; }
+#login #main .login-r .title { font-size:16px; text-align:center; line-height:35px; }
+#login #main .login-r .button { background-color: #F90;  }
+#login #main .login-r .button:hover { color: #fff; background-color: #FC0 }
+/*
+===================
+注册
+===================
+*/
+.reg { padding-bottom:30px !important;}
+.reg .text { width:230px !important;}
+.reg .content h1 img{ margin-right:20px;}
+#reg_head { padding-top:40px; padding-bottom:10px;font-weight:bold; border-bottom:1px solid #eee; margin-left:20px; margin-right:20px;}
+#reg_head ul {}
+#reg_head ul li { float:left; padding-right:100px;}
+#reg_head ul li .num { padding:1px 7px; text-align:center; background-color:#989898; color:#fff; }
+#reg_head ul li .title { font-size:16px; line-height:18px;}
+#reg_head .current {}
+#reg_head .current .num { background-color:#fe6d1e; }
+#reg_head .current .title { color:#fe6d1e; }
+/*
+===================
+边栏样式
+===================
+*/
+#sidebar { float: left; width: 151px; padding: 15px; font-size: 12px; }
+#sidebar .title { font-size: 14px; line-height: 30px; height: 30px; border-bottom: 1px solid #dadada; font-weight: bold; margin-bottom: 5px; }
+#sidebar .list { padding-bottom: 10px; }
+#sidebar .list li { background-image: url(../images/menu_ico.gif); background-repeat: no-repeat; height: 35px; padding-left: 20px; background-position: left center; }
+#sidebar .list li a { color: #666; line-height: 35px; display: block }
+#sidebar .list li a:hover { color: #06C }
+/*
+===================
+主体样式
+===================
+*/
+#main { float: left; padding: 15px; width: 768px; padding-bottom: 80px; }
+#main #header { height: 40px; line-height: 30px; border-bottom: 1px solid #eee; }
+#main #header .title { float: left; font-size: 18px; font-weight: bold }
+#main #header .title h1 { float: left; font-weight: bold }
+#main #header .title .small { float: left; font-size: 12px; font-weight: normal; padding-left: 10px; line-height: 22px; padding-top: 7px; color: #999 }
+#main #header .return { float: right }
+#main #header .return a { color: #999; }
+#main .box { padding-top: 10px; }
+#main .box ul { }
+#main .box ul li { float: left; width: 50%; line-height: 30px;  }
+#main .box-title { margin-top: 20px; }
+#main .box-title h2 { line-height: 45px; color: #06C; font-size: 14px; padding: 0px; border-bottom: 1px solid #eee; font-weight: bold }
+#main .content { font-size:14px; line-height:30px; padding:20px; padding-bottom:50px !important;}
+#main .content h1 { text-align:center; font-size:18px; font-weight:bold; padding:20px;}
+/*
+===================
+会员首页
+===================
+*/
+#user-index {  margin-top:30px;}
+#user-index-head { position:relative}
+#user-index-head .user-pic { background-color:#fff; padding:5px; position: absolute; width:120px; height:120px; bottom: -100px; left:20px; border:1px solid #ddd}
+#user-index-head .user-title { text-align:center; line-height:100px; font-size:24px;}
+#user-index #main .user-info { padding-left:160px; line-height:35px;}
+/*
+===================
+好友
+===================
+*/
+
+.friends-list { padding-top:20px; padding-bottom:20px;}
+.friends-list li { width:46%; float:left;  border:1px solid #fff; padding:10px;}
+.friends-list li:hover { border: 1px solid #FFBB8E; background-color: #FFF8F4 }
+.friends-list li .user-pic { float:left; width:80px;}
+.friends-list li .user-pic img { padding:2px; border:1px solid #eee}
+.friends-list li .user-menu { float:left; width:260px;}
+.friends-list li { line-height:35px;}
+.friends-list li .button_small { font-size:12px !important; padding:3px 7px !important;}
+/*
+===================
+表单
+===================
+*/
+.form { padding-top: 20px; }
+.form ul { }
+.form ul li { padding-bottom:15px;}
+.form .text { height: 28px; line-height: 25px; border: 1px solid #cacaca; padding-left: 10px; padding-right: 10px; width: 200px; border-radius: 3px; }
+.form .textarea { height: 100px; line-height: 25px; border: 1px solid #cacaca; padding-left: 10px; padding-right: 10px; width: 200px; border-radius: 3px; }
+.form label { width: 150px; text-align: right; padding-right: 10px; display: inline-block; }
+.form label { *display:inline; }
+.form .msg { border: 1px solid #F00 }
+.form .warning { padding-left: 22px; color: #F00; background-image: url(../images/ico1.png); background-repeat: no-repeat; background-position: left center; margin-left: 10px; }
+.form .success { padding-left: 22px; color: #F00; background-image: url(../images/ico2.png); background-repeat: no-repeat; background-position: left center; margin-left: 10px; }
+.form .form-foot { padding-top: 20px; text-align: center }
+.form #avatar { margin-left: 50px; width: 650px; }
+
+/*
+===================
+表格样式
+===================
+*/
+.page_main { padding: 20px; padding-top: 10px; }
+.page_main h3 { line-height: 35px;border-bottom: 1px solid #eee; text-shadow:0 1px 1px #ffffff; color: #2D6DA2; padding-bottom:5px; padding-top:5px;} 
+.page_table { margin-top:10px; }
+.page_table table { table-layout: fixed;  }
+.page_table table tr {}
+.page_table table td { padding:10px; background-image:url("../images/table_bg.jpg"); background-repeat:repeat-x; background-position:bottom left; height:25px;}
+.page_table tr:hover { background-color:#fafafa}
+.table_list { }
+.table_list table {}
+.table_list th { padding: 10px; background-color: #fafafa; border-top: 1px solid #eee; background-image: url("../images/table_bg.jpg"); background-repeat: repeat-x; background-position: bottom left; color: #666666; font-weight: bold }
+.table_list .odd { background-color:#fafafa}
+.table_list td {height:25px ;}
+.table_list td a { }
+.table_list td a:hover {  }
+.form_submit {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: center;
+}
+/*
+===================
+会员信息
+===================
+*/
+.user-box { }
+.user-box .user-pic { }
+.user-box .user-pic img { width: 120px; height: 120px; padding: 2px; border: 1px solid #efefef; float: left; }
+.user-box .user-info { float: left; margin-left: 20px; width: 620px; }
+.user-box .user-info h3 { }
+.user-box .user-info .info-list { padding-top: 15px; }
+.user-box .user-info .info-list ul { }
+.user-box .user-info .info-list ul li { float: left; width: 50%; line-height: 30px; height: 30px; }
+/*
+===================
+底部样式
+===================
+*/
+#foot { text-align: center; line-height: 50px; color: #ccc; }
+#foot a { color: #ccc; }
+/*
+===================
+消息提示
+===================
+*/
+#tips { float: left; }
+.duxnotice { height: 33px; line-height: 33px; text-align: center; font-size: 14px; left: 0; right: 0; zoom: 1; display: none }
+.duxnotice_success { background: url(../images/success_bg.gif) repeat-x; border-bottom: 1px solid #50c24e; color: #006633; }
+.duxnotice_warning { background: url(../images/warning_bg.gif) repeat-x; border-bottom: 1px solid #ffc237; color: #826200; }
+.duxnotice_failure { background: url(../images/failure_bg.gif) repeat-x; border-bottom: 1px solid #8b0000; color: #ffffff; }
+/*
+===================
+分页
+===================
+*/
+.pages {padding:20px; text-align:center}
+.pages a {border: 1px solid #FFFFFF;color: #999999;margin: 0 3px;padding: 3px 0; }
+.pages a:hover { color: #3e4e68 !important;}
+.pages .current {color: #3e4e68 !important;}
+.pages .firstPage,.pages .nextPage,.pages .prePage,.pages .lastPage {background-color: #F8F8F8; border: 1px solid #D9D9D9; color: #999999; height: 19px; line-height: 19px; padding: 3px 10px; width: 39px;}
+/*
+===================
+TAGS
+===================
+*/
+.tabs {height:35px; border-bottom:1px solid #dedede; margin-top:20px; }
+.tabs ul { float:left; }
+.tabs ul li { float:left; margin-left:10px; }
+.tabs ul li a { display:block; line-height:34px; padding-left:20px; padding-right:20px; color:#444; background-color:#f0f0f0; border:1px solid #ddd; }
+.tabs ul li .selected { background-color:#fff; border-bottom:0px; height:35px;}
+.tabs .menu { float:right; line-height:35px; font-size:12px;}
+/*
+===================
+内容列表
+===================
+*/
+.news-list { margin:0; padding:0; padding-top:10px; }
+.news-list table { table-layout:fixed}
+.news-list table td { border-bottom:1px solid #f3f3f3;padding:10px 10px;}
+.tools { padding-top:20px; padding-bottom:20px;}
+.tools { color:#999}
+.tools a { color:#666; margin-right:5px; margin-left:5px;}

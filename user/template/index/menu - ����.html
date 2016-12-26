@@ -1,0 +1,32 @@
+<div id="sidebar">
+	
+	<div class="title">会员中心</div>
+    <ul class="list">
+      <li><a href="__APP__/">会员首页</a></li>
+      <li><a href="__APP__/home/index/{$user_info.uid}.html" target="_blank">我的主页</a></li>
+      <!--hook-->
+      <?php module('common')->plus_hook('menu','index_tpl');  ?>
+      <!--hook end-->
+    </ul>
+    <?php $list=model('menu')->main_menu(); if(!empty($list)){ foreach ($list as $vo) { ?>
+	<div class="title">{$vo.name}</div>
+    <ul class="list">
+      <?php $sublist=model('menu')->menu_list($vo['id']); if(!empty($sublist)){ foreach ($sublist as $value) { ?>
+      <li><a href="__APP__/{$value.module}/index.html">{$value.name}</a></li>
+      <?php } } ?>
+    </ul>
+    <?php } } ?>
+    <!--hook-->
+    <?php module('common')->plus_hook('menu','box_tpl');  ?>
+    <!--hook end-->
+    <div class="title">基本资料</div>
+    <ul class="list">
+      <li><a href="__APP__/information/base.html">个人资料</a></li>
+      <li><a href="__APP__/information/avatar.html">头像设置</a></li>
+      <li><a href="__APP__/information/password.html">密码修改</a></li>
+      <!--hook-->
+      <?php module('common')->plus_hook('menu','information_tpl');  ?>
+      <!--hook end-->
+      <li><a href="__APP__/information/logout.html">退出登录</a></li>
+    </ul>
+  </div>

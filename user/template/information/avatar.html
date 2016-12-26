@@ -1,0 +1,29 @@
+<link href="__PUBLIC__/css/personal.css" type="text/css" rel="stylesheet">
+<!--start 中间-->
+<div class="personalBox clearfix">
+  {include file="index/menu"}
+    <div class="personalBody right">
+      <h3>我的好友</h3>
+          <div class="form">
+    <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"
+WIDTH="650" HEIGHT="450" id="myMovieName">
+<PARAM NAME=movie VALUE="__PUBLIC__/images/avatar.swf">
+<PARAM NAME=quality VALUE=high>
+<PARAM NAME=bgcolor VALUE=#FFFFFF>
+<param name="flashvars" value="imgUrl=<?php echo model('user')->picture($user_info['uid'],4); ?>&uploadUrl=__URL__/avatar_data.html?action=uploadavatar&uploadSrc=false" />
+<EMBED src="__PUBLIC__/images/avatar.swf" quality=high bgcolor=#FFFFFF WIDTH="650" HEIGHT="450" wmode="transparent" flashVars="imgUrl=<?php echo model('user')->picture($user_info['uid'],1); ?>&uploadUrl=__URL__/avatar_data.html?action=uploadavatar&uploadSrc=false"
+NAME="myMovieName" ALIGN="" TYPE="application/x-shockwave-flash" allowScriptAccess="always"
+PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer">
+</EMBED>
+</OBJECT>
+    </div>
+
+ </div>
+</div>
+<script type="text/javascript">
+function uploadevent(status) {
+    
+}
+
+</script>

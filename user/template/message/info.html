@@ -1,0 +1,33 @@
+<div id="central" class="warp"> {include file="index/menu"}
+  <div id="main" class="friends">
+    <div id="header">
+      <div class="title">
+        <h1>站内短信</h1>
+      </div>
+      <div class="return"><a href="__APP__/">中心首页</a></div>
+      <div class="fn-clear"></div>
+    </div>
+    <div id="tab" class="tabs">
+      <ul>
+        <li><a class="selected"  href="#">查看信息</a></li>
+        <li><a href="__URL__/index.html">返回收件箱</a></li>
+      </ul>
+      <div class="menu"> </div>
+      <div class="fn-clear"></div>
+    </div>
+    <div class="form">
+    <form action="__URL__/post_data.html" method="post" id="form">
+    	<ul>
+       	  <li><label>发件人：</label>  {$post_user.username} <a href="__URL__/post.html?user={$post_user.username}">[回复信息]</a></li>
+          <li><label>标题：</label>  {$info.title} </li>
+          <li><label>送达时间：</label>  {$info.time time='Y-m-d'} </li>
+          <li><label>内容：</label>
+            {$info.content} 
+          </li>
+        </ul>
+    </form>
+    </div>
+    <div class="fn-clear"></div>
+  </div>
+  <div class="fn-clear"></div>
+</div>

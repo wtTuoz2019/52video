@@ -1,0 +1,116 @@
+<div class="page_function">
+  <div class="info">
+    <h3>会员组{$action_name}</h3>
+    <small>使用以下功能进行会员组{$action_name}操作</small> 
+  </div>
+</div>
+<div class="tab" id="tab"> <a class="selected" href="#tab1">基本信息</a>
+<a href="#tab2">权限设置</a>
+<a href="#tab3">上传设置</a>
+<?php if(model('user_group')->model_power('user_group','visit')){ ?>
+ <a  href="javascript:menuload('__URL__')">返回会员组列表</a>
+ <?php } ?>
+ </div>
+<div class="page_form">
+<form action="__URL__/{$action}_save/time-<?php echo time() ?>-ajax-true" method="post" id="form">
+<div class="page_table form_table"  id="tab1">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      	<tr>
+          <td width="100" align="right">会员组名称</td>
+          <td width="300"><input name="name" type="text" class="text_value" id="name" value="{$info.name}" reg="\S" msg="会员组名称不能为空" /></td>
+          <td></td>
+        </tr>
+    </table>
+</div>
+<div class="page_table form_table"  id="tab2">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        
+        <tr>
+          <td width="100" align="right">主功能操作权限</td>
+          <td colspan="2">
+          <fieldset class="source">
+          <legend>基本菜单</legend>
+          <!--foreach:{$menu_list $vo}-->
+              <input class="sub" name="menu_power[]" type="checkbox" value="{$vo['id']}"  <!--if:{!empty($menu_power)&&in_array($vo['id'],(array)$menu_power)}--> checked="checked" <!--{/if}-->  /> {$vo.name}&nbsp;&nbsp;
+          <!--{/foreach}-->
+          </fieldset>
+          </td>
+        </tr>  
+        
+        <!--foreach:{$menu_list $vo}-->
+        <tr>
+          <td width="100" align="right">{$vo.name}操作权限</td>
+          <td colspan="2">
+          <?php $list=model('user_center_group')->menu_list($vo['id']); if(!empty($list)) foreach($list as $vo){?>
+          <fieldset class="source">
+          <legend><input class="sub" name="model_power[{$vo['id']}][]" type="checkbox" value="{$vo['id']}" <!--if:{!empty($model_power)&&in_array($vo['id'],(array)$model_power[$vo['id']])}--> checked="checked" <!--{/if}--> > {$vo['name']}</legend>
+          <?php $list=model('user_center_group')->user_power($vo['id']); if(!empty($list)) foreach($list as $val){?>
+              <input class="sub" name="model_power[{$vo['id']}][]" type="checkbox" value="{$val['action']}"  <!--if:{!empty($model_power)&&in_array($val['action'],(array)$model_power[$vo['id']])}--> checked="checked" <!--{/if}-->  /> {$val.name}&nbsp;&nbsp;
+          <?php } ?> 
+          </fieldset>
+          <?php } ?>
+          </td>
+        </tr>  
+        <!--{/foreach}-->
+        
+    </table>
+</div>
+<div class="page_table form_table"  id="tab3">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      	
+        <tr>
+          <td width="100" align="right">上传文件</td>
+          <td width="300">
+          <input type="radio" name="upload_status" value="1" <?php if($info['upload_status']==1){ ?>  checked="checked" <?php }?> />
+            <label>是</label>
+            <input type="radio" name="upload_status" value="0" <?php if($info['upload_status']==0){ ?>  checked="checked" <?php }?>  />
+            <label>否</label>
+            </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td width="100" align="right">上传格式</td>
+          <td width="300"><input name="upload_type" type="text" class="text_value" id="upload_type" value="{$info.upload_type isset='jpg|gif|png|jpeg'}" /></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td width="100" align="right">单个文件上传大小</td>
+          <td width="300"><input name="upload_size" type="text" class="text_value" id="upload_size" value="{$info.upload_size isset='1'}" reg="\S" msg="单个文件上传大小不能为空" /></td>
+          <td>单位:M</td>
+        </tr>
+        <tr>
+          <td width="100" align="right">总上传空间</td>
+          <td width="300"><input name="upload_total_size" type="text" class="text_value" id="upload_total_size" value="{$info.upload_total_size isset='100'}" reg="\S" msg="总上传空间不能为空" /></td>
+          <td>单位:M</td>
+        </tr>
+        
+        
+    </table>
+</div>
+<?php if(model('user_group')->model_power('user_center_group','add')||model('user_group')->model_power('user_center_group','edit')){ ?>
+<!--普通提交-->
+<div class="form_submit">
+<input name="gid" type="hidden" value="{$info.gid}" />
+<button type="submit" class="button">保存</button> 
+</div>
+<?php } ?>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+//tab菜单
+$("#tab").idTabs();
+$('.source input').click(function() {
+	var num=0;
+	$(this).parent().find(".sub").each(function(){
+		if($(this).attr("checked")){
+			num=num+1;
+    	}
+    })
+	if(num>0){
+		$(this).parent().find("legend input").removeAttr('checked');
+	}
+});
+//提交表单
+savelistform({addurl:"__URL__/add",listurl:"__URL__"});
+</script>

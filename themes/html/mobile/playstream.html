@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>测试观看页面-闪阅云</title>
+
+		<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
+		<!-- Css 样式-->
+	    <link rel="stylesheet" href="__TPL__mobile/music/css/style.css" />
+	    
+	    <!-- Javascript -->
+	    <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+
+        
+	</head>
+	<body>
+    	
+    
+		<header> 
+			<div class="logo-box">
+			 <img src="__TPL__/mobile/img/logo.png" />
+             <h1>测试观看页面-闪阅云</h1>
+			
+			</div>
+		</header>
+		<section>
+		<div class="play-box">
+				<div class="channels">
+        
+        <div class="show">
+  
+    
+       <div id="play" class="play" style="width:100%;">
+        	
+        </div>
+        
+<script type="text/javascript" src="__PUBLIC__/plays/players.js"></script>
+<script type="text/javascript">
+
+
+
+aodianPlayer({
+  container:'play',//播放器容器ID，必要参数
+ rtmpUrl:'rtmp://{$sys.ali}{$stream}',//控制台开通的APP rtmp地址，必要参数
+  hlsUrl:'http://{$sys.ali}{$stream}.m3u8',//控制台开通的APP rtmp地址，必要参
+
+  player:{
+    name:'lssplayer',//播放器名称，必要参数
+    /* 以下为可选参数*/
+    width: '100%',//播放器宽度，可用数字、百分比等
+    height: '100%',//播放器高度，可用数字、百分比等
+	 html5Width: '100%',//手机端浏览器，播放器宽度，可用数字、百分比等
+    html5Height: '200',//手机端浏览器，播放器高度，可用数字、百分比等
+    wmode:'Transparent',
+    autostart: true,//是否自动播放，默认为false
+    bufferlength: '3',//视频缓冲时间，默认为3秒
+    stretching: '1',//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1
+    controlbardisplay: 'disable'//是否显示控制栏，值为：disable、enable默认为disable
+  }
+});
+/* 以下为LSS Player支持的事件 */
+/* lssHandle.startPlay();//播放 */
+/* lssHandle.pause();//暂停 */
+/* lssHandle.stopPlayer();//停止 */
+/* lssHandle.closeConnect();//断开连接 */
+/* lssHandle.setMute(true);//静音或恢复音量，参数为true|false */
+/* lssHandle.setVolume(volume);//设置音量，参数为0-100数字 */
+/* lssHandle.setFullScreenMode(1);//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1 */
+
+
+			 
+	
+				 
+</script>
+
+
+    </div>
+</div>
+		</div>
+      
+		
+		</section>
+        <div class="jianjie">
+        	<span>
+            	闪阅云教育微直播平台简介
+            </span>
+        </div>
+        <div class="img_text">
+        <img src="__TPL__/mobile/img/shanyueyun.jpg" />
+        	<h1> 
+            	闪阅云系统
+            </h1>
+            <p class="name">LIVE EDUCATION LEADER</p>
+            <p class="textcontent">
+            	闪阅云系统教育平台用微信连接一切，帮助学校连接老师、学生和家长。通过 有效的推送，帮助学校实现移动互联化信息改造。通过一个学校微信公众号入口打造学校、老师 、学生、家长四位一体，全方位学校移动互联信息化管理平台，提供家校通平台，微直播，在 线论坛，融入OA功能，在线选课，在线
+投票功能，各功能模块简明扼要，操作便捷简单。关注者 能够利用碎片时间获取有效信息，化整为 零，又从零到一地制定有效的管理及教育实施方案。
+            </p>
+        </div>
+		
+	</body>
+</html>

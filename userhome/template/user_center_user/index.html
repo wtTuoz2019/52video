@@ -1,0 +1,137 @@
+<link href="/public/css/other.css" type="text/css" rel="stylesheet">
+
+<div class="page_function">
+  <div class="info">
+    <h3>会员管理</h3>
+    <small>使用以下功能进行会员管理操作</small> </div>
+  <div class="exercise"> <a href="javascript:menuload('__URL__')">会员列表</a> </div>
+</div>
+<div class="page_main">
+  <div class="page_menu"> 用户排序：
+    <select id="sequence" onchange="javascript:location.href=this.value;">
+      <option value="__URL__/index/sequence-1" <?php if($_GET['sequence']==1){ ?> selected="selected" <?php } ?> >注册时间 新->旧</option>
+      <option value="__URL__/index/sequence-2" <?php if($_GET['sequence']==2){ ?> selected="selected" <?php } ?> >注册时间 旧->新</option>
+    </select>
+    &nbsp;&nbsp;
+    状态：
+    <select id="status" onchange="javascript:location.href=this.value;">
+      <option value="__URL__/index/status-1" <?php if($_GET['status']==1){ ?> selected="selected" <?php } ?> >已审核</option>
+      <option value="__URL__/index/status-2" <?php if($_GET['status']==2){ ?> selected="selected" <?php } ?> >未审核</option>
+    </select>
+    &nbsp;&nbsp;
+    用户组：
+    <select id="gid" onchange="javascript:location.href=this.value;">
+      <option value="__URL__/index/gid-0">全部</option>
+      <!--foreach:{$group_list $vo}-->
+      <option value="__URL__/index/gid-{$vo.gid}"  <?php if($_GET['gid']==$vo['gid']){ ?> selected="selected" <?php } ?> >{$vo.name}</option>
+      <!--{/foreach}-->
+    </select>
+    &nbsp;&nbsp;
+    搜索：
+    <input style="width:100px" name="search" type="text" class="text_value" id="search" value="<?php echo urldecode($_GET['search']) ?>" />
+    &nbsp;&nbsp;
+    <input type="button"  class="button_small" onclick="javascript:location.href='__URL__/index/id-{$class_info.cid}-search-'+$('#search').val();" value="搜索" />
+  </div>
+  <div class="page_table table_list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+      	<th width="20"><center>选择</center></th>
+        <th width="10%"><center>
+            UID
+          </center></th>
+        <th width="20%">帐号</th>
+        <th width="20%">邮箱</th>
+        <th width="10%">昵称</th>
+        <th width="10%">用户组</th>
+        <th width="10%">状态</th>
+        <th width="20%"><center>
+            操作
+          </center></th>
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr>
+      	<td><center><input name="id[]" type="checkbox" class="cbitem" value="{$vo['uid']}" ></td>
+        <td><center>{$vo.uid}</center></td>
+        <td>{$vo.username}</td>
+        <td>{$vo.email}</td>
+        <td>{$vo.nicename}</td>
+        <td>{$vo.gname}</td>
+        <td><!--if:{$vo['status']==1}--> 
+          已审核 
+          <!--{else}--> 
+          未审核 
+          <!--{/if}--></td>
+        <td><center>
+            <?php if(model('user_group')->model_power('user','edit')){ ?>
+            <a href="__URL__/edit/uid-{$vo.uid}">设置</a> &nbsp;&nbsp;<a href="__URL__/edit_info/uid-{$vo.uid}">修改资料</a>
+            <?php } ?>
+            <?php if(model('user_group')->model_power('user','del')){ ?>
+            &nbsp;&nbsp;<a href="javascript:void(0);" onclick="del('{$vo.uid}',this)">删除</a>
+            <?php } ?>
+          </center></td>
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+</div>
+<div class="page_tool" style="margin-top:15px;">
+    <div class="function">
+      <input type="button" onclick="selectall();" additional="0" class="button_small" id="selectall" value="全选">
+      <input type="button" onclick="moredel();" class="button_small" value="删除">
+    </div>
+  </div>
+<ul class="dc_pagination dc_paginationA dc_paginationA06">{$page}</ul>
+
+<script>
+//删除
+function del(uid,obj) {
+	var obj;
+	ajaxpost({
+		name:'确定要删除此会员吗？',
+		url:"__URL__/del",
+		data:{uid: uid},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().remove();
+		}
+	});
+}
+function selectall(){
+ var checklist = $('.cbitem');
+ var check_box=$("#selectall");
+ var add = check_box.attr('additional');
+ if(add == 0){
+   for(var i=0;i<checklist.length;i++){
+      checklist[i].checked = 1;
+   }
+   check_box.attr("additional","1");
+ }else{
+  for(var j=0;j<checklist.length;j++){
+     checklist[j].checked = 0;
+  }
+  check_box.attr("additional","0");
+ }
+}
+
+//批量删除
+function moredel(id) {
+  var checkItems=$('.cbitem');
+  var arr=[];
+
+  checkItems.each(function(i, val){
+    if(checkItems[i].checked == true){
+      arr.push(checkItems.eq(i).val());
+    }
+  });
+  console.log(arr);
+  ajaxpost({
+    name:'删除评论后会同时评论下级内容! ',
+    url:"__URL__/moredeldel",
+    data:{id: arr},
+    tip:1,
+    success:function(){
+      window.location.reload()
+    }
+  });
+}
+</script>

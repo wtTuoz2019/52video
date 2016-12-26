@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+.tongBox{ width:1098px; border:1px solid #d6d6d6; margin:0 auto; text-align:left; box-shadow: 0 1px 2px rgba(0,0,0,.2);}
+ul.bjList li .txPic img{ width:100%; display:block;}
+
+.tongBox h5{height:55px; line-height:55px; font-size:18px; position:relative; border-bottom:1px solid #d6d6d6; text-align:center;}
+.tongBox h6{ font-size:18px; text-align:center; margin-top:20px;}
+
+ul.bjList{ margin:0 15px; width:1068px;}
+ul.bjList li{ border-bottom:1px solid #d6d6d6; padding:18px 0; display:block; overflow:hidden; position:relative;}
+ul.bjList li .txPic{ width:50px; overflow:hidden;}
+ul.bjList li .bjListCon{ padding-left:60px; line-height:1.8;}
+ul.bjList li .bjListCon p.jianjie,ul.bjList li .bjListCon p.time{ color:#888; font-size:13px;}
+.handle{ position:absolute; bottom:5px; right:20px;}
+.handle a{ margin-left:30px; color:#888; font-size:13px;}
+
+.addAnswerBox{ padding:60px 200px 20px 200px; width:698px; overflow:hidden; text-align:left;}
+.addAnswerBox p.tit{ font-size:16px; margin-bottom:10px;}
+.addAnswerBox textarea{border:1px solid #d6d6d6; padding:5px; width:686px; height:264px; margin-bottom:10px;}
+.addAnswerBox .handle2{ text-align:right;}
+.addAnswerBox .handle2 input.submit{ width:72px; height:32px; overflow:hidden; text-align:center; color:#fff; background:#00a0e9; border:0; cursor:pointer; vertical-align:middle; margin-left:15px;}
+.addAnswerBox input.wb{border:1px solid #d6d6d6; padding:5px; width:686px; height:38px; line-height:38px; margin-bottom:10px;}

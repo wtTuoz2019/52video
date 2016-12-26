@@ -1,0 +1,51 @@
+<div id="central" class="warp">
+  {include file="index/menu"}
+  <style>
+  .box .del { display:none}
+  </style>
+  <div id="main" class="friends">
+    <div id="header">
+      <div class="title">
+        <h1>我的收藏</h1>
+      </div>
+      <div class="return"><a href="__APP__/">中心首页</a></div>
+      <div class="fn-clear"></div>
+    </div>
+    <?php if(empty($list)){ echo '<div class="tools">暂时没有收藏内容</div>';} ?>
+    <div class="box">
+      <ul>
+      	<!--foreach:{$list $vo}-->
+        <li><span class="title"><a href="__APP__/collection/content/{$vo.aid}.html" target="_blank"><?php if($vo['remark']){ ?> {$vo.remark len='30'} <? }else{ ?> {$vo.title len='30'} <?php }  ?></a>
+        &nbsp;&nbsp;<a class="red del" href="javascript:;" onclick="del('{$vo.aid}',this)">删除</a>
+        </li>
+        <!--{/foreach}-->
+      </ul>
+      <div class="fn-clear"></div>
+    </div>
+    <div class="fn-clear"></div>
+  </div>
+  <div class="pages">{$page}</div>
+  <div class="fn-clear"></div>
+</div>
+<script>
+$('.box li').hover(function(){
+	$(this).find('a').next('a').show();
+},function(){
+	$(this).find('a').next('a').hide();
+});
+function del(aid,obj) {
+	var obj;
+	ajax_confirm({
+		name:'确认要删除本条收藏内容吗？',
+		url:"__URL__/del",
+		data:{aid: aid},
+		success:function(msg){
+			$.duxnotice.success(msg);
+			$(obj).parent().remove();
+		},
+		failure:function(msg){
+			$.duxnotice.failure(msg);
+		}
+	});
+}
+</script>

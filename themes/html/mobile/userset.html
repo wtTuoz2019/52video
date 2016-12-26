@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <title>{$common.title}</title>
+        
+        <link rel="stylesheet" href="__PUBLIC__/frozen/css/frozen.css">
+        <link rel="stylesheet" href="__PUBLIC__/frozen/style.css">
+        <script src="__PUBLIC__/frozen/lib/zepto.min.js"></script>
+        <script src="__PUBLIC__/frozen/js/frozen.js"></script>
+        <script type="text/javascript" src="__TPL__mobile/Scripts/jquery-1.10.2.js" ></script>
+           <script type=text/javascript src="__PUBLIC__/js/duxui.js"></script>
+        <script type=text/javascript src="__PUBLIC__/dialog/jquery.artDialog.js?skin=default"></script>
+        <script type=text/javascript src="__PUBLIC__/dialog/plugins/iframeTools.js"></script>
+        <script type=text/javascript src="__PUBLIC__/js/common.js"></script>
+    </head>
+    
+    <body ontouchstart>
+         <header class="ui-header ui-header-positive ui-border-b">
+            <a class="ui-icon-return" href="/user/index" ></a><h1>信息设置 </h1>
+        </header>
+     
+        <section class="ui-container">
+       	 <section id="layout">
+         <div class="item">
+            	
+            	
+            	<div class="ui-form ui-border-t">
+                <form action="" method="post">
+                    <div class="ui-form-item ui-form-item-pure ui-border-b">
+                        <input type="text" placeholder="昵称"  name="nicename" value="{$userinfo.nicename}" >
+                      
+                    </div>
+                     <div class="ui-form-item ui-form-item-pure ui-border-b">
+                        <input type="text" placeholder="手机号"  name="mobile" value="{$userinfo.mobile}" >
+                      
+                    </div>
+                      <div class="ui-form-item ui-form-item-pure ui-border-b">
+                          <label>医院</label> <div class="ui-select">
+                               <select name="sid"  reg="." id="sid" >
+              <option value="0">======全部医院======</option>
+              <!--foreach:{$school $vo}--> 
+              <option value="{$vo['id']}" <?php if($userinfo['sid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+                            </div>
+                      
+                    </div>
+                    
+                       <div class="ui-form-item ui-form-item-pure ui-border-b">
+                          <label>科室</label> <div class="ui-select">
+                            <select name="gradeid"  reg="." id="gradeid"  >
+              <option value="0">======全部科室======</option>
+              <!--foreach:{$grade $vo}--> 
+              <option value="{$vo['id']}" <?php if($userinfo['gradeid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+                            </div>
+                      
+                    </div>
+                  
+                      <div class="ui-btn-wrap">
+                      <input type="hidden" name="uid" value="{$userinfo.uid}">
+                <button class="ui-btn-lg">
+                    确定
+                </button>
+            </div>
+                  
+                </form>
+            </div>
+            		
+            	</div>
+       
+              </section>
+        </section>
+       
+       
+    </body>
+</html>

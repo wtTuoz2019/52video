@@ -1,0 +1,156 @@
+<link href="__PUBLICURL__/css/other.css" type="text/css" rel="stylesheet">
+<div class="page_function">
+  <div class="info">
+    <h3>评论管理</h3>
+    <small></small> </div>
+  <div class="exercise"> 
+   <a href="javascript:menuload('__URL__')">评论列表</a> <span><?php echo model('comment')->info_title($id); ?></span>
+  </div>
+</div>
+<div class="page_main">
+  <div class="page_table table_list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th width="20"><center>选择</center></th>
+        <th width="15%"><center>时间</center></th>
+       <th width="10%"><center>头像</center></th>
+        <th width="10%"><center>评论人</center></th>
+        <th width="30%"><center>内容</center></th>
+        <th width="10%"><center>审核状态</center></th>
+        <th width="10%"><center>操作</center></th>
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr>
+        <td><center><input name="id[]" type="checkbox" class="cbitem" value="{$vo['id']}" ></td>
+        <td><center>  {$php(echo date('Y-m-d H:i:s',$vo['time']))}</center></td>
+        <td>
+        <center>
+        <img src="<?php echo model('comment')->wetchheadpic($vo['uid']); ?>" width="40px">
+        </center>
+        </td>
+        
+        <td>
+          <center>
+       <?php echo model('comment')->info_user($vo['uid']); ?>
+         </center>
+       </td>
+       
+        <td>{$vo.message}</td>
+        <td class="flag">
+        <center>
+        <?php  echo $vo['flag']?'已审核':'未审核';  ?>
+        </center>
+        </td>
+        <td><center>
+        <?php if(!$vo['flag']){ ?>
+         &nbsp;&nbsp;<a  href="javascript:void(0);" onclick="examine('{$vo.id}',this)">审核</a> <?php } ?>
+             &nbsp;&nbsp;<a href="javascript:void(0);" onclick="edit('{$vo.id}',this)">转移</a>
+         &nbsp;&nbsp;<a href="javascript:void(0);" onclick="del('{$vo.id}',this)">删除</a>
+         </center></td>
+      </tr>
+      <!--{/foreach}-->
+
+    </table>
+
+  </div>
+  <div class="page_tool"  style="margin-top:15px;">
+    
+     <ul class="dc_pagination dc_paginationA dc_paginationA06">{$page}</ul>
+  </div>
+ 
+</div>
+
+<script>
+
+//修改
+function edit(url) {
+	urldialog({
+	title:'评论转移',
+	url:'__URL__/edit/id-'+url+'-fid-{$id}'
+	});
+};
+
+//审核
+function examine(id,obj) {
+  var obj;
+  ajaxpost({
+    name:'确定审核评论？ ',
+    url:"__URL__/examine",
+    data:{id: id},
+    tip:1,
+    success:function(){
+      window.location.reload()
+    }
+  });
+}
+
+//删除
+function del(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'确定删除评论？ ',
+		url:"__URL__/del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			 window.location.reload()
+		}
+	});
+}
+
+//选择反选
+//function selectrev() {
+//  var checkItems=$('.cbitem');
+//  var check_box=$("#check_box");
+//  $.each(checkItems, function(i,val){
+//	  if(checkItems.eq(i).prop("checked") == false){
+//		 checkItems.eq(i).prop("checked", true);
+//	  }
+//	  if(checkItems.eq(i).prop("checked") == true){
+//		checkItems.eq(i).prop("checked", false);  
+//	  } 
+//  });
+//}
+
+function selectall(){
+ var checklist = $('.cbitem');
+ var check_box=$("#selectall");
+ var add = check_box.attr('additional');
+ if(add == 0){
+   for(var i=0;i<checklist.length;i++){
+      checklist[i].checked = 1;
+   }
+   check_box.attr("additional","1");
+ }else{
+  for(var j=0;j<checklist.length;j++){
+     checklist[j].checked = 0;
+  }
+  check_box.attr("additional","0");
+ }
+}
+
+//批量删除
+function moredel(id) {
+  var checkItems=$('.cbitem');
+  var arr=[];
+
+  checkItems.each(function(i, val){
+    if(checkItems[i].checked == true){
+      arr.push(checkItems.eq(i).val());
+    }
+  });
+  ajaxpost({
+    name:'删除评论？! ',
+    url:"__URL__/moredeldel",
+    data:{id: arr},
+    tip:1,
+    success:function(){
+      window.location.reload()
+    }
+  });
+}
+
+
+
+
+</script>
