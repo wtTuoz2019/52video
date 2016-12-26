@@ -1,0 +1,62 @@
+<div id="login" class="warp">
+  <div id="main">
+   <div id="header">
+      <div class="title">
+        <h1>会员中心</h1>
+        <div class="small">login</div>
+      </div>
+      <div class="fn-clear"></div>
+    </div>
+  
+  <div class="fn-clear"></div>
+  <div class="login-l">
+  	<div class="form">
+    <form action="__URL__/data.html?url={$url}" method="post" id="form">
+    	<ul>
+            <li><label><span class="red">*</span> 用户名：</label> <input name="username" type="text" class="text" id="username"  reg="\S" msg="" > </li>
+            <li><label><span class="red">*</span> 密 码：</label> <input name="password" type="password" class="text" id="password" reg="\S" msg="" >  </li>
+            <?php echo model('verification')->verify_image('login'); ?>
+            <!--hook-->
+            <?php module('common')->plus_hook('login','login_tpl');  ?>
+            <!--hook end-->  
+            <li><label></label> <input name="remember" type="checkbox" value="1" id="remember"> <span class="red">一周内自动登录</span></li>
+            <li><label></label> <button class="button" type="submit">提交</button> <span class="blue"><a href="__APP__/forget/index.html">忘记密码？</a></span></li>
+        </ul>
+    </form>
+    </div>
+    <div class="fn-clear"></div>
+    <div class="sep10"></div>
+    <div class="sep10"></div>
+  </div>
+  <div class="login-r">
+  	<div class="title">
+    	<h1>我们诚挚地邀请您加入<br>{$user_config.base_welcome}</h1>
+    </div>
+    <div class="sep10"></div>
+    <div class="sep10"></div>
+    <div class="sep10"></div>
+    <center><span class="red">如果您还没有会员账户</span></center>
+    <div class="sep10"></div>
+    <div class="sep10"></div>
+    <center>
+    <a class="button" onclick="window.location.href='__APP__/register/index.html'">立即注册</a>
+    </center>
+    <!--hook-->
+    <?php module('common')->plus_hook('login','register_tpl');  ?>
+    <!--hook end-->  
+  </div>
+  <div class="fn-clear"></div>
+  </div>
+</div>
+<script>
+saveform({
+	success:function(url){
+		window.location.href=url;
+	},
+	failure:function(msg){
+		fleshVerify();
+		$.duxnotice.failure(msg);
+		
+	}
+});
+</script> 

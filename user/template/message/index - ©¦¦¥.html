@@ -1,0 +1,100 @@
+<link href="__PUBLIC__/css/personal.css" type="text/css" rel="stylesheet">
+<div id="central" class="warp"> {include file="index/menu"}
+  <div id="main" class="friends">
+    <div id="header">
+      <div class="title">
+        <h1>站内短信</h1>
+      </div>
+      <div class="return"><a href="__APP__/">中心首页</a></div>
+      <div class="fn-clear"></div>
+    </div>
+    <div id="tab" class="tabs">
+      <ul>
+        <li><a <?php if($_GET['action']==''){ ?>  class="selected" <?php } ?> href="__URL__/index.html">收件箱</a></li>
+        <li><a <?php if($_GET['action']=='system'){ ?>  class="selected" <?php } ?> href="__URL__/index/action-system.html">系统消息</a></li>
+        <li><a <?php if($_GET['action']=='post'){ ?>  class="selected" <?php } ?> href="__URL__/index/action-post.html">发件箱</a></li>
+      </ul>
+      <div class="menu"> <a href="__URL__/post.html">发送信息</a> </div>
+      <div class="fn-clear"></div>
+    </div>
+    <div class=news-list>
+    
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <!--foreach:{$list $vo}-->
+        <tr>
+          <td width="20" valign="middle">
+          <?php if($vo['view']||$vo['uid']==$user_info['uid']){ ?>
+          <img src="__PUBLIC__/images/ico4.png" />
+          <?php }else{ ?>
+          <img src="__PUBLIC__/images/ico3.png" />
+          <?php } ?>
+          
+          </td>
+          <td width="20" valign="middle"><input name="mid[]" type="checkbox" id="mid[]" value="{$vo.mid}" /></td>
+          <td valign="middle"><a href="__URL__/info/{$vo.mid}.html">{$vo.title}</a></td>
+          <td width="150" valign="middle">{$vo.time time="Y-m-d H:i:s"}</td>
+          <td width="60" align="center" valign="middle"><a href="javascript:;" onclick="del('{$vo.mid}',this)">删除</a></td>
+        </tr>
+        <!--{/foreach}-->
+      </table>
+    </div>
+    <div class="fn-clear"></div>
+    <div class="tools">
+    <?php if(empty($list)){ echo '暂时没有短信息';}else{ ?>
+    <a href="javascript:;" onclick="selectall()">全选</a> | <a href="javascript:;" onclick="batch_del()">删除</a>
+    <?php } ?>
+    </div>
+  </div>
+  <div class="pages">{$page}</div>
+  <div class="fn-clear"></div>
+</div>
+<script>
+//删除
+function del(mid,obj) {
+	var obj;
+	ajax_confirm({
+		name:'确认要删除本条信息吗？',
+		url:"__URL__/del",
+		data:{mid: mid,action:"{$_GET['action']}"},
+		success:function(msg){
+			$.duxnotice.success(msg);
+			$(obj).parent().parent().remove();
+		},
+		failure:function(msg){
+			$.duxnotice.failure(msg);
+		}
+	});
+}
+//选择
+function selectall(){   
+    $("[name='mid[]']").each(function(){//反选   
+    if($(this).attr("checked")){   
+          $(this).removeAttr("checked");   
+    }else{   
+          $(this).attr("checked",'true');   
+    }   
+    })  
+}
+//批量操作
+function batch_del(){
+	var str="";
+	$("[name='mid[]']").each(function(){
+    if($(this).attr("checked")){
+		  str+=$(this).val()+","; 
+    }
+    })
+	
+	ajax_confirm({
+		name:'确认要删除选择的信息吗？',
+		url:"__URL__/batch_del",
+		data:{mid:str,action:"{$_GET['action']}"},
+		tip:1,
+		success:function(){
+			window.location.reload();	
+		},
+		failure:function(msg){
+			$.duxnotice.success(msg);
+		}
+	});
+}
+</script>
