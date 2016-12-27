@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{$common.title}</title>
 
+
 </head>
 
 <body>
@@ -12,25 +13,92 @@
 <link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
 <!--END-->
 <!--start 中间-->
+<style>
+	*{
+		font-family:"微软雅黑";
+	}
+	.nav{
+		clear: both;
+    	overflow: hidden;
+		position:relative;
+		top:-34px;
+	}
+	.teacherbg{
+		height:405px;
+		background-image:url(/themes/html/images/teacherbg.jpg);
+		background-repeat:no-repeat;
+		background-size:100% 100%;
+		position: absolute;
+		top: 79px;
+		width: 100%;
+		z-index: 0;
+		left: 0;
+	}
+	.img{
+		margin:0;
+		width:100%;
+		height:100%;
+		padding:10px;
+	}
+	.imgone{
+		width:100%;
+		height:235px;
+		border-radius:0;
+		background:none;
+	}
+	.imgone>img{
+		height:100%;
+		width:100%;
+	}
+	.oneleft .img p{
+		float:none;
+		margin:0;
+		text-align:center;
+		font-size:24px;
+	}
+	.oneright{
+		width:650px;
+		height:100%;
+		position:relative;
+		padding-top:15px;
+		overflow:hidden;
+	}
+	.oneright .tschool{
+		font-size:24px;
+		position:absolute;
+		top:10px;
+		right:0;
+		font-weight:bold;
+		color:#000;
+	}
+	#cc01{
+		overflow:hidden;
+		padding-bottom:15px;
+	}
+</style> 
+<div class="teacherbg">
+	
+</div>
 <div class="nav">
 <div class="one"> 
 <div class=" oneleft">
 <div class="img">
 <div class="imgone">
-<img  style="width:140px; height:140px; margin: 5px; border-radius:50%;" src="{$teacher[$tid]['image']}" />
+<img   src="{$teacher[$tid]['image']}" />
 </div>
-<p>{$teacher[$tid]['name']} <span><!-- <a href="">关注</a>--></span></p>
+<p>{$teacher[$tid]['name']}<span><!-- <a href="">关注</a>--></span></p>
 </div>
 </div>
 <!---->
 <div class=" oneright">
-<p style=" font-size:20px; font-weight:bold;">{$teacher[$tid]['name']}</p>
+<a class="tschool" href="/field/school/csid-43" target="_blank">{$school[$teacher[$tid]['cid']]['name']}</a>
+<p style=" font-size:18px;padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid #D7D8D9;">{$teacher[$tid]['name']}:</p>
 <p style=" border-bottom:#C7C7C7 1px solid; padding-bottom:5px;">
 职称：{$teacher[$tid]['title']}</br>
-学校：{$school[$teacher[$tid]['cid']]['name']}</br>
+擅长：物理知识，社会应用和实践</br>
 
 </p>
-<p>{$teacher[$tid]['des']}<span> <!--<a href="">【查看更多】</a>--></span>
+<p style="margin-top:10px;line-height:25px;">{$teacher[$tid]['des']}<span> <!--<a href="">【查看更多】</a>--></span>
 </p>
 </div>
 
@@ -41,7 +109,7 @@
 
  <div class="top">
  <div class="bodyer"> 
-   
+    
      
     <div class="preview"> 
         <div class="scrolldoorFrame1">
@@ -123,7 +191,7 @@ $('#cid'+cid).addClass('sd011');
 
 
 
-
+ 
 </div>
 <!--end 中间-->
 <!--底部-->

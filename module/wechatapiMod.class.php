@@ -149,7 +149,7 @@ echo "</script>";
 	
 		$logHandler= new CLogFileHandler(__ROOTDIR__ . "/data/wechatapilog/".date('Y-m-d').'(authorize).log');
 	$log = Log::Init($logHandler, 15);
-	
+	 Log::DEBUG("接收:\n");
 	
 	$timeStamp  = empty($_GET['timestamp'])     ? ""    : trim($_GET['timestamp']) ;
 $nonce      = empty($_GET['nonce'])     ? ""    : trim($_GET['nonce']) ;

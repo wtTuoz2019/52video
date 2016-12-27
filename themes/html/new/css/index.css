@@ -715,3 +715,18 @@ a.login{
 .down .doo{
 	padding-top:45px;
 }
+.one{
+	overflow:hidden;
+	margin:0;
+	height: 280px;
+	background:rgba(255,255,255,0.5);
+	margin-top:45px;
+	margin-bottom:100px; 
+	padding-right:60px;
+}  
+.oneleft{
+	width:230px;
+	height:100%;
+	background:#fff;
+	margin-right:60px;
+}
