@@ -6,7 +6,7 @@ class cpApp {
 	private $appConfig = array(); //配置
     public function __construct( $config=array() ) {
 		
-		define('CP_VER', '2.0.2012.1203');//框架版本号,后两段表示发布日期
+		define('CP_VER', '2.0.2016.1203');//框架版本号,后两段表示发布日期
 		define('CP_CORE_PATH', dirname(__FILE__) );//当前文件所在的目录
 		
         require( CP_CORE_PATH . '/cpConfig.class.php' );//加载默认配置		

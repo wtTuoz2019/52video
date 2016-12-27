@@ -7,18 +7,52 @@
 </head>
 
 <body>
+
  <!--头部-->
 <!--#include file="head.html"-->
 <link href="__TPL__/new/css/style.css" rel="stylesheet" type="text/css" />
 <!--END-->
 <!--start 中间-->
+<style>
+	.bannercontent{
+		padding:0;
+		width:1000px;
+		height:225px;
+		box-shadow:none;
+		background: rgba(255,255,255,0.5);
+		margin-top: 75px;
+	}
+	.bannercontent p.school{
+		margin-top:52.5px;
+		padding-left:35px;
+		position:relative;
+	}
+	.bannercontent p.school img{
+		width:320px;
+		height:120px;
+	}
+	.bannercontent p.school span{
+		font-size:45px;
+		color:#3e3e3e;
+		font-weight:bold;
+		position:absolute;
+		right:35px;
+		top:50px;
+	}
+	
+</style>
 
-<div class="bannner" style="background: rgba(0, 0, 0, 0) url('__TPL__/new/images/banner.jpg') no-repeat scroll center top;">
+
+<div class="bannner" style="background: rgba(0, 0, 0, 0) url('__TPL__/images/schoolbg.jpg') no-repeat scroll center top;">
 <div class="bannerhead">
 <div class="bannercontent">
-<p  class="bannertitle">{$school[$csid]['name']}</p>
-<p>{$school[$csid]['des']}
+<p class="school">
+	<img src="/themes/html/images/schoollogo.jpg"/>
+    <span>{$school[$csid]['name']}</span>
 </p>
+<!--<p  class="bannertitle">{$school[$csid]['name']}</p>
+<p>{$school[$csid]['des']}
+</p>-->
 </div>
 </div>
 
@@ -185,5 +219,6 @@ $('#cid'+cid).addClass('cur');
 			}
 		});
 	});
+	
 </script>
 </html>

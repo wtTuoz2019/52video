@@ -144,9 +144,9 @@ echo "</script>";
 		 
 	}
 	public function authorize(){
-		$cache=new cpFileCache(array('DB_CACHE_PATH'=>'data/cache/','DB_CACHE_FILE'=>'authorize','DB_CACHE_SIZE'=>'200k'));
 		
-	var_dump($cache->get('component_verify_ticket')); die;
+	
+	
 		$logHandler= new CLogFileHandler(__ROOTDIR__ . "/data/wechatapilog/".date('Y-m-d').'(authorize).log');
 	$log = Log::Init($logHandler, 15);
 	
@@ -173,7 +173,7 @@ if ($errCode == 0) {
     $component_verify_ticket = $array_e->item(0)->nodeValue;
     Log::DEBUG('解密后的component_verify_ticket是：'.$component_verify_ticket);
     $dateline = time();
-	$cache=new cpFileCache(array('DB_CACHE_PATH'=>'data/cache/','DB_CACHE_FILE'=>'authorize','DB_CACHE_SIZE'=>'200k'));
+	$cache=new CacheFile();
 	$cache->set('component_verify_ticket',$component_verify_ticket); 
     
 
