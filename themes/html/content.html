@@ -326,7 +326,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 	}); 
 	
 	
-	
+	   <?php   if ($info['airtime']<time()) {  ?>
 	$(window).scroll(function () {
 		if ($(window).scrollTop() >= 690) {
 			 $('#a1').addClass('drag');
@@ -373,6 +373,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 			  }); 
 		 }
 	});
+	<?php }?>
 </script>
 </body>
 </html>

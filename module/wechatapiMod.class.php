@@ -1,4 +1,6 @@
 <?php
+require_once CP_CORE_PATH . "/../ext/wxpay/log.php";
+require_once CP_CORE_PATH . "/../lib/wxjm/wxBizMsgCrypt.php";
 //评论管理
 class wechatapiMod  extends commonMod {
 	
@@ -141,28 +143,58 @@ echo "</script>";
 		
 		 
 	}
+	public function authorize(){
+		$cache=new cpFileCache(array('DB_CACHE_PATH'=>'data/cache/','DB_CACHE_FILE'=>'authorize','DB_CACHE_SIZE'=>'200k'));
+		
+	var_dump($cache->get('component_verify_ticket')); die;
+		$logHandler= new CLogFileHandler(__ROOTDIR__ . "/data/wechatapilog/".date('Y-m-d').'(authorize).log');
+	$log = Log::Init($logHandler, 15);
 	
 	
-	public function curlGet($url,$method='get',$data=''){
-		$ch = curl_init();
-		$header = "Accept-Charset: utf-8";
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($method));
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-		//curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.0)');
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-		curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$temp = curl_exec($ch);
-		return $temp;
-	}
-		
+	$timeStamp  = empty($_GET['timestamp'])     ? ""    : trim($_GET['timestamp']) ;
+$nonce      = empty($_GET['nonce'])     ? ""    : trim($_GET['nonce']) ;
+$msg_sign   = empty($_GET['msg_signature']) ? ""    : trim($_GET['msg_signature']) ;
+$encryptMsg = file_get_contents('php://input');
+$pc = new WXBizMsgCrypt($this->config['kftoken'], $this->config['kfkey'], $this->config['kfappid']);
+$xml_tree = new DOMDocument();
+$xml_tree->loadXML($encryptMsg);
+$array_e = $xml_tree->getElementsByTagName_r('Encrypt');
+$encrypt = $array_e->item(0)->nodeValue;
+$format = "toUser%s";
+$from_xml = sprintf($format, $encrypt);
+//第三方收到公众号平台发送的消息
+$msg = '';
+$errCode = $pc->decryptMsg($msg_sign, $timeStamp, $nonce, $from_xml, $msg);
+if ($errCode == 0) {
+   Log::DEBUG("解密后: " . $msg . "\n");
+    $xml = new DOMDocument();
+    $xml->loadXML($msg);
+    $array_e = $xml->getElementsByTagName_r('ComponentVerifyTicket');
+    $component_verify_ticket = $array_e->item(0)->nodeValue;
+    Log::DEBUG('解密后的component_verify_ticket是：'.$component_verify_ticket);
+    $dateline = time();
+	$cache=new cpFileCache(array('DB_CACHE_PATH'=>'data/cache/','DB_CACHE_FILE'=>'authorize','DB_CACHE_SIZE'=>'200k'));
+	$cache->set('component_verify_ticket',$component_verify_ticket); 
+    
+
+    
+} else {
+    Log::DEBUG( '解密后失败：'.$errCode);
+}
 	
+	
+	echo 'success';
+		}
+	public function callback(){
 		
-		
+		$logHandler= new CLogFileHandler(__ROOTDIR__ . "/data/wechatapilog/".date('Y-m-d').'(callback).log');
+	$log = Log::Init($logHandler, 15);
+	Log::DEBUG('get:'.json_encode($_GET));
+	$data = file_get_contents("php://input");
+	Log::DEBUG('post:'.$data);
+		}
+	
+	
 		
 		
 	public function  vpost($url,$data=null){ // 模拟提交数据函数
