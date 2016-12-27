@@ -1,5 +1,5 @@
-<?php
-header("content-type:text/html; charset=utf-8"); //12/27
+﻿<?php
+header("content-type:text/html; charset=utf-8"); //12/27 9：20
 @date_default_timezone_set('PRC');
 
 if(!empty($_SERVER['HTTP_X_REWRITE_URL']) ){
