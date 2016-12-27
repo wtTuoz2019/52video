@@ -149,39 +149,41 @@ echo "</script>";
 	
 		$logHandler= new CLogFileHandler(__ROOTDIR__ . "/data/wechatapilog/".date('Y-m-d').'(authorize).log');
 	$log = Log::Init($logHandler, 15);
-	 Log::DEBUG("接收:\n");
-	Log::DEBUG('get:'.json_encode($_GET));
-	$data = file_get_contents("php://input");
-	Log::DEBUG('post:'.$data);
+	
+	 Log::DEBUG("jieshou:\n");
+$encryptMsg = file_get_contents('php://input');
 	$timeStamp  = empty($_GET['timestamp'])     ? ""    : trim($_GET['timestamp']) ;
 $nonce      = empty($_GET['nonce'])     ? ""    : trim($_GET['nonce']) ;
 $msg_sign   = empty($_GET['msg_signature']) ? ""    : trim($_GET['msg_signature']) ;
-$encryptMsg = file_get_contents('php://input');
+
 $pc = new WXBizMsgCrypt($this->config['kftoken'], $this->config['kfkey'], $this->config['kfappid']);
 $xml_tree = new DOMDocument();
 $xml_tree->loadXML($encryptMsg);
-$array_e = $xml_tree->getElementsByTagName_r('Encrypt');
+$array_e = $xml_tree->getElementsByTagName('Encrypt');
+
 $encrypt = $array_e->item(0)->nodeValue;
-$format = "toUser%s";
-$from_xml = sprintf($format, $encrypt);
+$format = "<xml><Encrypt><![CDATA[%s]]></Encrypt></xml>";
+ $from_xml = sprintf($format, $encrypt);
 //第三方收到公众号平台发送的消息
 $msg = '';
 $errCode = $pc->decryptMsg($msg_sign, $timeStamp, $nonce, $from_xml, $msg);
+
 if ($errCode == 0) {
-   Log::DEBUG("解密后: " . $msg . "\n");
+   Log::DEBUG("jiemihou: " . $msg . "\n");
+  
     $xml = new DOMDocument();
     $xml->loadXML($msg);
-    $array_e = $xml->getElementsByTagName_r('ComponentVerifyTicket');
+    $array_e = $xml->getElementsByTagName('ComponentVerifyTicket');
     $component_verify_ticket = $array_e->item(0)->nodeValue;
-    Log::DEBUG('解密后的component_verify_ticket是：'.$component_verify_ticket);
-    $dateline = time();
+    Log::DEBUG('component_verify_ticket is：'.$component_verify_ticket);
+   
 	$cache=new CacheFile();
 	$cache->set('component_verify_ticket',$component_verify_ticket); 
     
 
     
 } else {
-    Log::DEBUG( '解密后失败：'.$errCode);
+    Log::DEBUG( 'jiemi shibai：'.$errCode);
 }
 	
 	

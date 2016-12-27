@@ -23,22 +23,15 @@
 		margin-top: 75px;
 	}
 	.bannercontent p.school{
+		margin:0;
 		margin-top:52.5px;
-		padding-left:35px;
-		position:relative;
-	}
-	.bannercontent p.school img{
-		width:320px;
+		font-size:60px;
 		height:120px;
-	}
-	.bannercontent p.school span{
-		font-size:45px;
+		line-height:120px;
+		text-align:center;
 		color:#3e3e3e;
-		font-weight:bold;
-		position:absolute;
-		right:35px;
-		top:50px;
 	}
+	
 	
 </style>
 
@@ -47,8 +40,7 @@
 <div class="bannerhead">
 <div class="bannercontent">
 <p class="school">
-	<img src="/themes/html/images/schoollogo.jpg"/>
-    <span>{$school[$csid]['name']}</span>
+   {$school[$csid]['name']}
 </p>
 <!--<p  class="bannertitle">{$school[$csid]['name']}</p>
 <p>{$school[$csid]['des']}
