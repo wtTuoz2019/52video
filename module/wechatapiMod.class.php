@@ -150,7 +150,9 @@ echo "</script>";
 		$logHandler= new CLogFileHandler(__ROOTDIR__ . "/data/wechatapilog/".date('Y-m-d').'(authorize).log');
 	$log = Log::Init($logHandler, 15);
 	 Log::DEBUG("接收:\n");
-	
+	Log::DEBUG('get:'.json_encode($_GET));
+	$data = file_get_contents("php://input");
+	Log::DEBUG('post:'.$data);
 	$timeStamp  = empty($_GET['timestamp'])     ? ""    : trim($_GET['timestamp']) ;
 $nonce      = empty($_GET['nonce'])     ? ""    : trim($_GET['nonce']) ;
 $msg_sign   = empty($_GET['msg_signature']) ? ""    : trim($_GET['msg_signature']) ;
