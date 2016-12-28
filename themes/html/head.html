@@ -12,9 +12,8 @@
 <li id="field"><a href="/field/" >重播</a></li>
 <li id="live"><a href="/live/">直播</a></li>
    <?php 
-            session_start();
-          
-            $uid = $_SESSION['uid']; if($uid <= 0){
+  
+           if(!$userinfo){
         ?>
 <li id="login"><a href="/login">用户登录</a></li>
 <?php }?>
@@ -30,7 +29,7 @@
 </article></li>
 
 </ul>
-<?php if($uid){ ?>
+<?php if($userinfo){ ?>
 <div class="other right">
 <ul class="clearfix">
                 <li><img src="{$userinfo.headimgurl}" width="50px"></li>
