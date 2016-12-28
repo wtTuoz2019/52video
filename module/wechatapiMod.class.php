@@ -177,8 +177,8 @@ if ($errCode == 0) {
     $component_verify_ticket = $array_e->item(0)->nodeValue;
     Log::DEBUG('component_verify_ticket is：'.$component_verify_ticket);
    
-	$cache=new CacheFile();
-	$cache->set('component_verify_ticket',$component_verify_ticket); 
+	
+	S('component_verify_ticket',$component_verify_ticket); 
     
 
     
@@ -190,7 +190,7 @@ if ($errCode == 0) {
 	echo 'success';
 		}
 	public function callback(){
-		
+	 
 		$logHandler= new CLogFileHandler(__ROOTDIR__ . "/data/wechatapilog/".date('Y-m-d').'(callback).log');
 	$log = Log::Init($logHandler, 15);
 	Log::DEBUG('get:'.json_encode($_GET));

@@ -57,6 +57,7 @@
 </div>
 
 <div class="form_submit">
+<button type="button" class="button" onClick="tocomponentloginpage()">扫码授权</button> 
 <button type="submit" class="button">保存</button> 
 </div>
 </form>
@@ -76,4 +77,8 @@ savelistform({addurl:"__URL__/wechat_info",listurl:"javascript:history.go(-1)"})
                 });
             });
         });
+function tocomponentloginpage(){ 
+	window.location="https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid={$config.kfappid}&pre_auth_code=<?=getpre_auth_code($config['kfappid'])?>&redirect_uri=<?=urlencode('http://live.shanyueyun.com/userhome/index.php/wechat/componentlogin')?>";
+	
+	}
         </script>
