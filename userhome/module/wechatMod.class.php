@@ -37,7 +37,7 @@ class wechatMod extends commonMod {
 		$this->assign('token',$token);
 		$this->assign('info',$wechat_info);
 		
-	
+	 
 	
 			
 		 $this->show();
