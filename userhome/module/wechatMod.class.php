@@ -6,7 +6,7 @@ class wechatMod extends commonMod {
 	public function __construct()
     {
         parent::__construct();
-		$uid=$_SESSION[$this->config['SPOT'].'_user'];
+		$this->uid=$uid=$_SESSION[$this->config['SPOT'].'_user'];
 		$wxuser=$this->model->table('admin')->where(array('id'=>$uid))->find();
 		if(!$wxuser['token']){
 			$chars='abcdefghijklmnopqrstuvwxyz';
@@ -30,6 +30,7 @@ class wechatMod extends commonMod {
     public function wechat_info()
     {	$uid=$_SESSION[$this->config['SPOT'].'_user'];
 		
+		
 		$this->actionname='微信绑定';
 		$wechat_info=model('wechat')->wechat_info('wxuser',$uid);//微信信息
 	
@@ -42,15 +43,41 @@ class wechatMod extends commonMod {
     }
 	 
 	public function componentlogin(){
-		 
+		 $uid=$this->uid;
 		$get=$_GET;
 		$url='https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token='.getcomponent_access_token($this->config['kfappid'],$this->config['kfappsecret']);
 		$array=array('component_appid'=>$this->config['kfappid'],
 					 'authorization_code'=>$get['auth_code']);
 					 
 		$json=curlPost($url,json_encode($array));
-		var_dump($json);
+		$data=$json['authorization_info'];
+		S('authorizer_access_token_'.$uid,$data['authorizer_access_token'],$data['expires_in']);
+		foreach($data['func_info'] as $key=>$value){
+			$func_info[]=$value['funcscope_category']['id'];
+			}
+		$url='https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_info?component_access_token='.getcomponent_access_token($this->config['kfappid'],$this->config['kfappsecret']);
+		$array=array('component_appid'=>$this->config['kfappid'],
+					 'authorizer_appid'=>$data['authorizer_appid']);
+					 
+					 $json=curlPost($url,json_encode($array));
+		$wxinfo=$json['authorizer_info'];
+		$adddata=array('uid'=>$uid,
+						'wxname'=>$wxinfo['nick_name'],
+						'headerpic'=>$wxinfo['head_img'],
+						'authorizer_appid'=>$data['authorizer_appid'],
+						'authorizer_refresh_token'=>$data['authorizer_refresh_token'],
+						'func_info'=>serialize($func_info),
+						'service_type_info'=>$wxinfo['service_type_info']['id'],
+						'verify_type_info'=>$wxinfo['verify_type_info']['id'],
+						'user_name'=>$wxinfo['user_name'],
+						'principal_name'=>$wxinfo['principal_name'],
+						'oauth'=>1,
+						'token'=>$this->token);
+		$add=model('wechat')->save('wxuser',$adddata);
+		$this->redirect(__URL__.'/wechat_info');die;
 		}
+		
+		
 	
 	//自动回复  
 	public function set_reply(){

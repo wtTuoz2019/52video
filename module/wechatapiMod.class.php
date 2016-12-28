@@ -155,7 +155,7 @@ $encryptMsg = file_get_contents('php://input');
 	$timeStamp  = empty($_GET['timestamp'])     ? ""    : trim($_GET['timestamp']) ;
 $nonce      = empty($_GET['nonce'])     ? ""    : trim($_GET['nonce']) ;
 $msg_sign   = empty($_GET['msg_signature']) ? ""    : trim($_GET['msg_signature']) ;
-
+if($nonce){
 $pc = new WXBizMsgCrypt($this->config['kftoken'], $this->config['kfkey'], $this->config['kfappid']);
 $xml_tree = new DOMDocument();
 $xml_tree->loadXML($encryptMsg);
@@ -186,8 +186,20 @@ if ($errCode == 0) {
     Log::DEBUG( 'jiemi shibai：'.$errCode);
 }
 	
-	
-	echo 'success';
+}
+	if (ob_get_level() == 0) ob_start();
+
+ ob_implicit_flush(true);
+ ob_clean();
+ header("Content-type: text/plain");
+ #log_msg(headers_list());
+ echo("success");
+ ob_flush();
+ flush();
+ ob_end_flush();
+
+ die();
+ exit();
 		}
 	public function callback(){  
 	  

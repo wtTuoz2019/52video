@@ -56,20 +56,42 @@ function getcomponent_access_token($appid,$appsecret){
 	   
 	$json=curlPost($url_get,json_encode($array));
 	$component_access_token=$json['component_access_token'];
-	$cache->set('component_access_token',$component_access_token,$json['expires_in']-1);
+	S('component_access_token',$component_access_token,$json['expires_in']-1);
 	
 	
 	}
 	return $component_access_token;
 	}
-function getpre_auth_code($appid){
+function getauthorizer_access_token($appid,$authorizer_appid,$refresh_token_value,$uid){
+	
+	
+	 $authorizer_access_token=S('authorizer_access_token_'.$uid);
+	if(!$authorizer_access_token){
+	$url_get='https:// api.weixin.qq.com /cgi-bin/component/api_authorizer_token?component_access_token='.getcomponent_access_token($appid,$appsecret);
+	$array=array('component_appid'=>$appid,
+				'authorizer_appid'=>$authorizer_appid,
+				'authorizer_refresh_token'=>$refresh_token_value);
+	   
+	$json=curlPost($url_get,json_encode($array));
+	$authorizer_access_token=$json['authorizer_access_token'];
+	S('authorizer_access_token_'.$uid,$authorizer_access_token,$json['expires_in']-1);
+	S('authorizer_refresh_token_'.$uid,$json['authorizer_refresh_token'],0);
+	
+	}
+	return $authorizer_access_token;
+	}
+function getpre_auth_code($appid,$appsecret){
 	$pre_auth_code=S('pre_auth_code');
+	
 	if(!$pre_auth_code){
-	$component_access_token=S('component_access_token');
+
+	$component_access_token=getcomponent_access_token($appid,$appsecret);
+	
 	$url_get='https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token='.$component_access_token;
 	$array=array('component_appid'=>$appid);
 	
 	$json=curlPost($url_get,json_encode($array));
+		
 	$pre_auth_code=$json['pre_auth_code'];
 	S('pre_auth_code',$pre_auth_code,$json['expires_in']-1);
 	

@@ -7,33 +7,17 @@
       <tr>
         <td width="150" align="right">公众号名称</td>
         <td width="300">
-        <input  type="text" class="form-control" id="name" value="{$info.wxname} " name="wxname" reg="\S" msg="名称不能为空" />
+        {$info.wxname}
         </td>
         <td></td>
       </tr>
   
-       <tr>
-        <td width="150" align="right">AppID：</td>
-        <td width="300">
-        <input  type="text" class="form-control" value="{$info.appid}" name="appid"/>
-        </td>
-        <td></td>
-      </tr>
+      
         <tr>
-        <td width="150" align="right">AppSecret：</td>
-        <td width="300">
-        <input  type="text" class="form-control" value="{$info.appsecret}" name="appsecret"/>
-        </td>
-        <td></td>
-      </tr>
-     
-        <tr>
-		   <td width="150" align="right">二维码:</td>
+		   <td width="150" align="right">头像:</td>
 			 <td>
-											
-          		<input name="headerpic" type="text" class="form-control" id="image" value="{$info.image}"/> 
-          										&nbsp;&nbsp;
-											  </td> <td><input type="button" id="image1" class="button_small" value="选择图片" /></td>
+			<img src="{$info.headerpic}"  width="80"/>
+            </td>
        </tr>
          <tr>
 		  <td width="150" align="right">第三方平台API接口：</td>
@@ -78,7 +62,7 @@ savelistform({addurl:"__URL__/wechat_info",listurl:"javascript:history.go(-1)"})
             });
         });
 function tocomponentloginpage(){   
-	window.location="https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid={$config.kfappid}&pre_auth_code=<?=getpre_auth_code($config['kfappid'])?>&redirect_uri=<?=urlencode('http://live.shanyueyun.com/userhome/index.php/wechat/componentlogin')?>";
+	window.location="https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid={$config.kfappid}&pre_auth_code=<?=getpre_auth_code($config['kfappid'],$config['kfappsecret'])?>&redirect_uri=<?=urlencode('http://live.shanyueyun.com/userhome/index.php/wechat/componentlogin')?>";
 	
 	}
         </script>

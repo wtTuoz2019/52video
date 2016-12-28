@@ -27,14 +27,12 @@ class commonMod
 		$token=trim($_GET['token']);
 		if($token){
 			
-			$wxuser=model('user')->wxuser($token);	
+			$this->wxuser=model('user')->wxuser($token);	
+		
 			$this->config['token']=$token;
-			if($wxuser['appid']&&$wxuser['appsecret']){
-				$this->config['appid']=$wxuser['appid'];
-				$this->config['appsecret']=$wxuser['appsecret'];
-				}
-				
-		$admininfo=model('user')->admininfobytoken($token);
+			$this->urltoken='&token='.$token;
+		
+			$admininfo=model('user')->admininfobytoken($token);
 		
 		
 		}else{
@@ -52,15 +50,7 @@ class commonMod
 			if($admininfo['contact'])$this->config['contact']=$admininfo['contact'];
 			if($admininfo['copyright'])$this->config['copyright']=$admininfo['copyright'];
 			
-			}elseif($siteurl=='wap.heims.com.cn'){
-				
-				 $customeUrl = 'http://'.$this->config['MOBILE_DOMAIN'] . $_SERVER['REQUEST_URI'];
-				$this->redirect($customeUrl);die;
-				}elseif($siteurl!='live.shanyueyun.com'&&$siteurl!='wap.shanyueyun.com'){
-				
-				//$this->redirect('http://www.shanyueyun.com');die;
-				}
-		 
+			}
 
 	
 		if($config['LANG_OPEN']){
@@ -83,29 +73,83 @@ class commonMod
 		if($_GET['wang'])$_SESSION['uid']='26408';
 		
 		if(MOBILE){ 
-			
-			
-			if($_GET['openid']&&$_GET['openid']!=''&&!$_SESSION['uid']){
-				$uid = model('comment')->getuid($openid);
-				$_SESSION['uid']=$uid;
+			if(!$_SESSION['uid']){
+			if($this->wxuser&&$this->wxuser['oauth']){
+			 if (!isset($_GET['code']) ) {
+			  $customeUrl = 'http://'.$this->config['MOBILE_DOMAIN'] . $_SERVER['REQUEST_URI'];
+           $scope = 'snsapi_userinfo';
+				$oauthUrl='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$this->wxuser['authorizer_appid'].'&redirect_uri='.urlencode($customeUrl).'&response_type=code&scope='.$scope.'&state=STATE&component_appid='.$this->config['kfappid'].'#wechat_redirect';
+				
+			 header('Location:' . $oauthUrl);exit();
+				 }
+		if (isset($_GET['code']) && isset($_GET['state']) && isset($_GET['state']) == 'oauth'){	
+			 $rt = file_get_contents('https://api.weixin.qq.com/sns/oauth2/component/access_token?appid='.$this->wxuser['authorizer_appid'].'&code='.$_GET['code']. '&grant_type=authorization_code&component_appid='.$this->config['kfappid'].'&component_access_token='.getcomponent_access_token($this->config['kfappid'],$this->config['kfappsecret']));
+           $jsonrt = json_decode($rt, 1);
+			if($jsonrt['errcode'])
+			{	$url=parse_url($_SERVER['REQUEST_URI']);
+			$url='http://'.$this->config['MOBILE_DOMAIN'] . $url['path'].'?token='.$_GET['token'];
+			if($_GET['aid']){
+			$url.='&aid='.$_GET['aid'];
+			}
+			$this->redirect($url);die;
+			}
+		if($jsonrt){
+		  	$openid = $jsonrt['openid'];
+			 $access_token = $jsonrt['access_token'];
+			 $uid = model('comment')->getuid($openid);
+			}else{
+			$this->msg('授权出错', 0);	
 				}
 			
-		if(!$_SESSION['uid']){
-			
-				
+		
+		$user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
+		//转成对象
+		$user_info = file_get_contents($user_info_url);
+		if (isset($user_info->errcode)) {
+			$this->msg($user_info->errmsg, 0);
+		}
+		$data = json_decode($user_info, true);
+		
+		$res['openid']=$data['openid'];
+		$res['nicename']=$data['nickname'];
+		$res['headimgurl']=$data['headimgurl'];
+		$res['sex']=$data['sex'];
+		$res['city']=$data['city'];
+		$res['country']=$data['country'];
+		$res['province']=$data['province'];
+		$res['subscribe_time']=$data['subscribe_time'];
+		$res['unionid']=$data['unionid'];
+		$res['groupid']=$data['groupid'];
+		$res['type']=$data['wechat'];
+		$res['from']=$this->wxuser['wxname'];
+		
+		
+		if($uid){
+		model('comment')->wechat_add($res);	
+			}else{
+		$uid=model('comment')->wechat_add($res);
+		
+		}
+		
+		$_SESSION['uid'] = $uid; 
+         
+       	 } 	 
+				 
+			 
+		}else{		
 		 if (!isset($_GET['code']) ) {
            $customeUrl = 'http://'.$this->config['MOBILE_DOMAIN'] . $_SERVER['REQUEST_URI'];
            $scope = 'snsapi_userinfo';
            $oauthUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . $this->config['appid'] . '&redirect_uri=' . urlencode($customeUrl) . '&response_type=code&scope=' . $scope . '&state=oauth#wechat_redirect';
            header('Location:' . $oauthUrl);exit();
         }
-        if (isset($_GET['code']) && isset($_GET['state']) && isset($_GET['state']) == 'oauth') 											      {
+        if (isset($_GET['code']) && isset($_GET['state']) && isset($_GET['state']) == 'oauth'){
             $rt = file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid=' . $this->config['appid'] . '&secret=' . $this->config['appsecret'] . '&code=' . $_GET['code'] . '&grant_type=authorization_code');
 			$jsonrt = json_decode($rt, 1);
 			
 		
            if($jsonrt['errcode'])
-		{	$url=parse_url($_SERVER['REQUEST_URI']);
+			{	$url=parse_url($_SERVER['REQUEST_URI']);
 			$url='http://'.$this->config['MOBILE_DOMAIN'] . $url['path'].'?token='.$_GET['token'];
 			if($_GET['aid']){
 			$url.='&aid='.$_GET['aid'];
@@ -120,8 +164,7 @@ class commonMod
 			$this->msg('授权出错', 0);	
 				}
 			
-		if(1){
-			 
+		
 		$user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
 		//转成对象
 		$user_info = file_get_contents($user_info_url);
@@ -152,11 +195,14 @@ class commonMod
 		
 		
 		
-		}
+		
 		$_SESSION['uid'] = $uid; 
          
        	 } 
-	 } }else{
+		 
+	 } }
+	 
+	 }else{
 		if($_GET['frame']) return true;
 		if(!$_SESSION['uid']){
 				$this->redirect("http://live.shanyueyun.com/login/login.html?url=".urlencode($_SERVER['REQUEST_URI']));
@@ -166,8 +212,7 @@ class commonMod
 		
 		
 	if($_SESSION['uid']){	
-		$_SESSION['headpic']=model('comment')->get_pic($_SESSION['uid']);
-		$_SESSION['nickname']=model('comment')->getname($_SESSION['uid']);
+	
 		$this->userinfo=model('user')->info($_SESSION['uid']);
 		
 		
