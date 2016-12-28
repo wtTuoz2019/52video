@@ -43,74 +43,6 @@ function get_extension($file)
 { 
 return substr($file, strrpos($file, '.')+1); 
 } 
-
-function getcomponent_access_token($appid,$appsecret){
-	$url_get='https://api.weixin.qq.com/cgi-bin/component/api_component_token';
-	
-	 $component_access_token=S('component_access_token');
-	if(!$component_access_token){
-	$component_verify_ticket=S('component_verify_ticket');
-	$array=array('component_appid'=>$appid,
-				'component_appsecret'=>$appsecret,
-				'component_verify_ticket'=>$component_verify_ticket);
-	  
-	$json=curlPost($url_get,json_encode($array));
-	$component_access_token=$json['component_access_token'];
-	$cache->set('component_access_token',$component_access_token,$json['expires_in']-1);
-	
-	
-	}
-	return $component_access_token;
-	}
-function getpre_auth_code($appid){
-	$pre_auth_code=S('pre_auth_code');
-	if(!$pre_auth_code){
-	$component_access_token=S('component_access_token');
-	$url_get='https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token='.$component_access_token;
-	$array=array('component_appid'=>$appid);
-	
-	$json=curlPost($url_get,json_encode($array));
-	$pre_auth_code=$json['pre_auth_code'];
-	S('pre_auth_code',$pre_auth_code,$json['expires_in']-1);
-	
-	
-	}
-	return $pre_auth_code;
-	}
-/**
- * 全局缓存设置和读取
- * @param string $name 缓存名称
- * @param mixed $value 缓存值
- * @param integer $expire 缓存有效期（秒）
- * @param string $type 缓存类型
- * @param array $options 缓存参数
- * @return mixed
- */
-function S($name, $value='', $expire=1600, $type='',$options=null) {
-    static $_cache = array();
-    //取得缓存对象实例
-    $cache=new CacheFile();
-    if ('' !== $value) {
-        if (is_null($value)) {
-            // 删除缓存
-            if ($result)
-                unset($_cache[$type . '_' . $name]);
-            return $result;
-        }else {
-            // 缓存数据
-            $cache->set($name, $value, $expire);
-            $_cache[$type . '_' . $name] = $value;
-        }
-        return;
-    }
-    if (isset($_cache[$type . '_' . $name]))
-        return $_cache[$type . '_' . $name];
-    // 获取缓存数据
-    $value = $cache->get($name);
-    $_cache[$type . '_' . $name] = $value;
-    return $value;
-}
-
 function curlGet($url, $method = 'get', $data = ''){
     $ch = curl_init();
     $header = "Accept-Charset: utf-8";
@@ -129,7 +61,7 @@ function curlGet($url, $method = 'get', $data = ''){
     return $temp;
 }
 		
-function curlPost($url, $data){
+function api_notice_increment($url, $data){
 		$ch = curl_init();
 		$header = "Accept-Charset: utf-8";
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -148,9 +80,12 @@ function curlPost($url, $data){
 		if ($errorno) {
 			return array('rt'=>false,'errorno'=>$errorno);
 		}else{
-			
-			return json_decode($tmpInfo,1);
-			
+			$js=json_decode($tmpInfo,1);
+			if ($js['errcode']=='0'){
+				return array('rt'=>true,'errorno'=>0);
+			}else {
+				$this->msg('发生错误：错误代码'.$js['errcode'].',微信返回错误信息：'.$js['errmsg'],1);
+			}
 		}
 	}
 	
