@@ -43,17 +43,6 @@ class wechatMod extends commonMod {
 		 $this->show();
     }
 	
-	public function componentlogin(){
-		 
-		$get=$_GET;
-		$url='https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token='.getcomponent_access_token($this->config['kfappid'],$this->config['kfappsecret']);
-		$array=array('component_appid'=>$this->config['kfappid'],
-					 'authorization_code'=>$get['auth_code']);
-					 
-		$json=curlPost($url,json_encode($array));
-		var_dump($json);
-		}
-	
 	//自动回复  
 	public function set_reply(){
 		

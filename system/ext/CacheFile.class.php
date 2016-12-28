@@ -16,8 +16,8 @@ class CacheFile  {
     public function __construct($options=array()) {
         if(!empty($options)) {
             $this->options =  $options;
-        } 
-        $this->options['temp']      =   !empty($options['temp'])?   $options['temp']    :  __ROOTDIR__.'/data/cache/';
+        }
+        $this->options['temp']      =   !empty($options['temp'])?   $options['temp']    :  'data/cache/';
         $this->options['prefix']    =   isset($options['prefix'])?  $options['prefix']  :   '';
         $this->options['expire']    =   isset($options['expire'])?  $options['expire']  :   '1800';
         $this->options['length']    =   isset($options['length'])?  $options['length']  :   0;
