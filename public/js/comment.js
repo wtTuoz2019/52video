@@ -311,7 +311,7 @@ function commentHandle(){
 				 }
 				 
 				 
-				 var a=$(e).offset().top-770;
+				 var a=$(e).offset().top-720;
 				 $('.contentBox #mymodal').css('top',a+'px')
 				 
 				

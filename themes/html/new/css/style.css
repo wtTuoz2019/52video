@@ -113,8 +113,13 @@ fieldset.search {
 .clearfix:after{display:block; overflow:hidden; clear:both; height:0; visibility:hidden; content:".";}
 a.login{ color:#585858; background:#dcdcdc; line-height:23px; height:24px; margin-top:4px; padding:0 10px; display:inline-block; border-radius:5px;}
 .other li{ float:left; display:inline; margin-left:22px; line-height:30px;}
-
-
+.mages>p:first-child{
+	float:none;
+}
+.mages>span>img{
+	position: relative;
+    top: 2px;
+}
 
 
 

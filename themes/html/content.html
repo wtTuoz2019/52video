@@ -11,14 +11,7 @@
 
 
 
-<style>
-	.comment>div{
-		overflow:inherit!important;
-	}
-	.down{
-		top: 68px;
-	}
-</style>
+
 </head>
 
 <body>
@@ -312,9 +305,25 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 	  },
 	  function(d){
 		if(d.status == 1){
-			window.location.reload();
+			$('#message').val('');
+			           	flag=0;
+						automatic(arr);
+						
+						$('#modal_cance').click();
+						commentsucess(d.message);
 		}else{
-			mydialog('提示', '评论需先登录');
+			art.dialog({
+				title: '提示',
+				content: '评论需先登录',
+				button: [
+					{
+						name: '立即登录',
+						callback: function () {
+							toweixinLogin()
+						}
+					}
+				]
+			});
 		}
 	  },'json');
 	});
@@ -375,5 +384,35 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 	});
 	<?php }?>
 </script>
+<style>
+	.comment>div{
+		overflow:inherit!important;
+	}
+	.down{
+		top: 68px;
+	}
+	.aui_state_focus .aui_buttons{
+		text-align:center;
+	}
+	.aui_state_focus  .aui_buttons>button{
+		margin-left:0;
+		background:#fff;
+		border:1px solid #D6D6D6;
+		color:#333;
+	}
+	.aui_state_focus  .aui_border{
+		width:210px;
+	}
+	.aui_state_focus .aui_title{
+		background:#ADADAD;
+	}
+	.aui_state_focus .aui_content{
+		font-size:20px;
+	}
+	.aui_state_focus  .aui_buttons{
+		border:0;
+	}
+</style>
+
 </body>
 </html>

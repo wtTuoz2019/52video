@@ -3,16 +3,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{$common.title}</title>
+<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
+<link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
 <link href="css/base.css" type="text/css" rel="stylesheet">
 <link href="css/details.css" type="text/css" rel="stylesheet">
 
-<script type="text/javascript" src="js/jquery1.42.min.js"></script>
-<script type="text/javascript" src="/public/dialog/jquery.artDialog.js?skin=default"></script>
-<script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
+
+
 </head>
 <body>
  <!--头部-->
 <!--#include file="head.html"-->
+<script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
 <link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
 <!--END-->
 <!--start 中间部分-->
@@ -161,13 +168,11 @@ if(play=='false'){
     <div id="funcions{$vo.id}">
    
   
+                    
                      <?php if($vo['type']=='comment'){?>
-                      <div class="bjBox">
-        <ul class="bjList clearfix" id="comments_list">
-        </ul>
-    </div>
-	<div class="load_m tr" id="more">加载更多</div>
-  
+                      <!--#include file="menu_comment.html"-->
+      <?php }elseif($vo['type']=='jiaoyancomment'){?>
+                   <!--#include file="menu_jiaoyan.html"-->
 					
                           <?php }elseif($vo['type']=='content'){?>
                         	
@@ -238,6 +243,12 @@ if(play=='false'){
 <!--#include file="foot.html"-->
 <!--END-->
 <script type="text/javascript">
+
+$(function(){ 
+		
+	　　$("#modal_cance").text('X');
+	
+	}); 
 $(function(){
 	var t = '<?php echo intval($info[time]);?>'*60;
    timeid=  setInterval(function(){
@@ -354,115 +365,7 @@ $(function(){
 		},'json')
 	}
 	
-	function laud($id,_this){
-		var n = $(_this).find('.num').html();
-		$.post('__ROOT__/index.php/change/laud',{type:'comment',fid:$id},function(data){
-			console.log(data);
-			if(data.status==1){
-				n++;
-				 $(_this).find('.num').html(n);
-				mydialog('提示', data.message);
-			}else{
-				mydialog('提示', data.message);
-			}
-		},'json')
-	}
 	
-	function collection(){
-		$.post('__ROOT__/index.php/change/collection',{fid:'{$info.aid}'},function(data){
-			if(data.status=='1'){
-				$('#collection').html("已收藏")
-				mydialog('提示', data.message);
-			}else{
-				mydialog('提示', data.message);
-			}
-		},'json')
-	}
-	function escapes(data){
-		var strVar = "";
-		for(var i=0;i<data.length;i++){	
-			if(data[i]['status']=='0'){
-						continue;
-						}
-			strVar += "<li class=\"clearfix\">";
-			strVar += "<div class=\"txPic left\">";
-			strVar += "	<img src=\""+data[i]['pic']+"\">";
-			strVar += "<\/div>";
-			strVar += "<div class=\"bjListCon\">";
-			strVar += "	<p class=\"biaoti\">";
-			strVar += ""+data[i]['name']+"";
-			strVar += "	<\/p>";
-			strVar += "	<p style=\"display:block;float:right;\" class=\"time\">";
-			strVar += ""+data[i]['time']+"";
-			strVar += "	<\/p>";
-			strVar += "	<br>";
-			strVar += "	<p class=\"jianjie\">";
-			strVar += ""+data[i]['message']+"";
-			strVar += "	<\/p>";
-			strVar += "	<p class=\"f-detail\">";
-			strVar += "		<a style=\"display:inline;width:180px;\" onclick=\"laud("+data[i]['id']+",this)\" href=\"javascript:void(0);\">赞(<i class=\"num\">"+data[i]['praise']+"<\/i>)<\/a><a onclick=\"comment_m("+data[i]['uid']+", "+data[i]['id']+")\" href=\"javascript:void(0);\">回复("+data[i]['num']+")";
-			
-			if(data[i]['num']>0){
-				strVar += "<ul class=\"recomment clearfix\">";
-				var res = data[i]['res'];
-				for (var j = 0; j < res.length; j++) {
-					strVar += "<li class=\"clearfix commentbox\">";
-					strVar += "<div class=\"txPic left\">";
-					strVar += "<img src=\""+res[j]['pic']+"\" alt=\"\">";
-					strVar += "<\/div>";
-					strVar += "<div class=\"bjListCon\">";
-					strVar += "<p class=\"biaoti\">";
-					strVar += ""+res[j]['nickname']+"回复"+res[j]['rid']+"";
-					strVar += "<\/p>";
-					strVar += "<p style=\"display:block;float:right;\" class=\"time\">";
-					strVar += ""+res[j]['time']+"";
-					strVar += "<\/p>";
-					strVar += "<br>";
-					strVar += "<p class=\"jianjie\">";
-					strVar += ""+res[j]['message']+"";
-					strVar += "<\/p>";
-					strVar += "<\/div>";
-					strVar += "<\/li>";
-					if(res[j]['com'] && res[j]['com'].length > 0){
-						for (var g = 0; g < res[j]['com'].length; g++) {
-							strVar += "<li style=\"padding-left:30px\" class=\"clearfix commentbox\">";
-							strVar += "<div class=\"txPic left\">";
-							strVar += "<img src=\""+res[j]['com'][g]['pic']+"\" alt=\"\">";
-							strVar += "<\/div>";
-							strVar += "<div class=\"bjListCon\">";
-							strVar += "<p class=\"biaoti\">";
-							strVar += ""+res[j]['com'][g]['nickname']+"回复"+res[j]['com'][g]['rid']+"";
-							strVar += "<\/p>";
-							strVar += "<p style=\"display:block;float:right;\" class=\"time\">";
-							strVar += ""+res[j]['com'][g]['time']+"";
-							strVar += "<\/p>";
-							strVar += "<br>";
-							strVar += "<p class=\"jianjie\">";
-							strVar += ""+res[j]['com'][g]['message']+"";
-							strVar += "<\/p>";
-							strVar += "<\/div>";
-							strVar += "<\/li>";	
-						}
-					}
-					
-				}
-				
-				if(data[i]['num']>10){
-					strVar += "			<li class=\"more\"><a href=\"#\" id=\"morecomment\">加载更多<\/a><a id=\"talkword\" onclick=\"comment_m("+data[i]['uid']+", "+data[i]['id']+")\" href=\"javascript:void(0);\">   <\/a><\/li>";
-				}else{
-					strVar += "			<li class=\"more\"><a href=\"javascript:void(0);\" onclick=\"comment_m("+data[i]['uid']+", "+data[i]['id']+")\" id=\"talkword\">&nbsp 我也回复一下&nbsp <\/a><\/li>";
-				}
-				strVar += "		<\/ul>";
-			}
-			
-			strVar += "		<\/a>";
-			strVar += "	<\/p>";
-			strVar += "<\/div>";
-			strVar += "<\/li>";
-		}
-		return strVar;
-	}
-
 	function comment_m(id, pid){
 		var d = art.dialog({
 			title: '回复',
@@ -511,9 +414,25 @@ $(function(){
 	  },
 	  function(d){
 		if(d.status == 1){
-			window.location.reload();
+			$('#message').val('');
+			           	flag=0;
+						automatic(arr);
+						
+						$('#modal_cance').click(); 
+						commentsucess(d.message);
 		}else{
-			mydialog('提示', '评论需先登录');
+			art.dialog({
+				title: '提示',
+				content: '评论需先登录',
+				button: [
+					{
+						name: '立即登录',
+						callback: function () {
+							toweixinLogin()
+						}
+					}
+				]
+			});
 		}
 	  },'json');   
 	});
@@ -566,6 +485,36 @@ $(function(){
 	});
 	}
 </script>
+<style>
+	
+	.comment>div{
+		overflow:inherit!important;
+	}
+	.down{
+		top: 68px;
+	}
+	.aui_state_focus  .aui_buttons{
+		text-align:center;
+	}
+	.aui_state_focus  .aui_buttons>button{
+		margin-left:0;
+		background:#fff;
+		border:1px solid #D6D6D6;
+		color:#333;
+	}
+	.aui_state_focus  .aui_border{
+		width:210px;
+	}
+	.aui_state_focus .aui_title{
+		background:#ADADAD;
+	}
+	.aui_state_focus .aui_content{
+		font-size:20px;
+	}
+	.aui_state_focus  .aui_buttons{
+		border:0;
+	}
+</style>
 <?php require_once 'cs.php';echo '<img src="'._cnzzTrackPageView(1254194477).'" width="0" height="0"/>';?>
 </body>
 </html>
