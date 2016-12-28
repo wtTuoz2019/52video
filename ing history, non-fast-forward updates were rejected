@@ -1,0 +1,300 @@
+diff --git a/module/wechatapiMod.class.php b/module/wechatapiMod.class.php
+index 763e3e0..016aee4 100644
+--- a/module/wechatapiMod.class.php
++++ b/module/wechatapiMod.class.php
+@@ -144,9 +144,9 @@ echo "</script>";
+ 		 
+ 	}
+ 	public function authorize(){
++		$cache=new cpFileCache(array('DB_CACHE_PATH'=>'data/cache/','DB_CACHE_FILE'=>'authorize','DB_CACHE_SIZE'=>'200k'));
+ 		
+-	
+-	
++	var_dump($cache->get('component_verify_ticket')); die;
+ 		$logHandler= new CLogFileHandler(__ROOTDIR__ . "/data/wechatapilog/".date('Y-m-d').'(authorize).log');
+ 	$log = Log::Init($logHandler, 15);
+ 	
+@@ -173,7 +173,7 @@ if ($errCode == 0) {
+     $component_verify_ticket = $array_e->item(0)->nodeValue;
+     Log::DEBUG('解密后的component_verify_ticket是：'.$component_verify_ticket);
+     $dateline = time();
+-	$cache=new CacheFile();
++	$cache=new cpFileCache(array('DB_CACHE_PATH'=>'data/cache/','DB_CACHE_FILE'=>'authorize','DB_CACHE_SIZE'=>'200k'));
+ 	$cache->set('component_verify_ticket',$component_verify_ticket); 
+     
+ 
+diff --git a/system/core/cpApp.class.php b/system/core/cpApp.class.php
+index a5f3dac..b4bf0aa 100644
+--- a/system/core/cpApp.class.php
++++ b/system/core/cpApp.class.php
+@@ -6,7 +6,7 @@ class cpApp {
+ 	private $appConfig = array(); //配置
+     public function __construct( $config=array() ) {
+ 		
+-		define('CP_VER', '2.0.2016.1203');//框架版本号,后两段表示发布日期
++		define('CP_VER', '2.0.2012.1203');//框架版本号,后两段表示发布日期
+ 		define('CP_CORE_PATH', dirname(__FILE__) );//当前文件所在的目录
+ 		
+         require( CP_CORE_PATH . '/cpConfig.class.php' );//加载默认配置		
+diff --git a/system/ext/CacheFile.class.php b/system/ext/CacheFile.class.php
+deleted file mode 100644
+index 9ecc54b..0000000
+--- a/system/ext/CacheFile.class.php
++++ /dev/null
+@@ -1,153 +0,0 @@
+-<?php
+-
+-/**
+- * 文件类型缓存类
+- * @category   Cache
+- * @package  Cache
+- * @subpackage  Cache
+- * @author    308541105<308541105@qq.com>
+- */
+-class CacheFile  {
+-
+-    /**
+-     * 架构函数
+-     * @access public
+-     */
+-    public function __construct($options=array()) {
+-        if(!empty($options)) {
+-            $this->options =  $options;
+-        }
+-        $this->options['temp']      =   !empty($options['temp'])?   $options['temp']    :  'data/cache/';
+-        $this->options['prefix']    =   isset($options['prefix'])?  $options['prefix']  :   '';
+-        $this->options['expire']    =   isset($options['expire'])?  $options['expire']  :   '1800';
+-        $this->options['length']    =   isset($options['length'])?  $options['length']  :   0;
+-        if(substr($this->options['temp'], -1) != '/')    $this->options['temp'] .= '/';
+-        $this->connected = is_dir($this->options['temp']) && is_writeable($this->options['temp']);
+-        $this->init();
+-    }
+-
+-    /**
+-     * 初始化检查
+-     * @access private
+-     * @return boolen
+-     */
+-    private function init() {
+-        $stat = stat($this->options['temp']);
+-        $dir_perms = $stat['mode'] & 0007777; // Get the permission bits.
+-        $file_perms = $dir_perms & 0000666; // Remove execute bits for files.
+-
+-        // 创建项目缓存目录
+-        if (!is_dir($this->options['temp'])) {
+-            if (!  mkdir($this->options['temp']))
+-                return false;
+-             chmod($this->options['temp'], $dir_perms);
+-        }
+-    }
+-
+-  
+-
+-    /**
+-     * 取得变量的存储文件名
+-     * @access private
+-     * @param string $name 缓存变量名
+-     * @return string
+-     */
+-    private function filename($name) {
+-        $name	=	md5($name);
+-     
+-        $filename	=	$this->options['prefix'].$name.'.php';
+-        
+-        return $this->options['temp'].$filename;
+-    }
+-
+-    /**
+-     * 读取缓存
+-     * @access public
+-     * @param string $name 缓存变量名
+-     * @return mixed
+-     */
+-    public function get($name) {
+-        $filename   =   $this->filename($name);
+-        if ( !is_file($filename)) {
+-           return false;
+-        }
+-        
+-        $content    =   file_get_contents($filename);
+-        if( false !== $content) {
+-            $expire  =  (int)substr($content,8, 12);
+-			
+-            if($expire != 0 && time() > filemtime($filename) + $expire) {
+-                //缓存过期删除缓存文件
+-                unlink($filename);
+-                return false;
+-            }
+-          
+-            $content   =  substr($content,20, -3);
+-           
+-           
+-            $content    =   unserialize($content);
+-            return $content;
+-        }
+-        else {
+-            return false;
+-        }
+-    }
+-
+-    /**
+-     * 写入缓存
+-     * @access public
+-     * @param string $name 缓存变量名
+-     * @param mixed $value  存储数据
+-     * @param int $expire  有效时间 0为永久
+-     * @return boolen
+-     */
+-    public function set($name,$value,$expire=null) {
+-       
+-        if(is_null($expire)) {
+-            $expire =  $this->options['expire'];
+-        }
+-        $filename   =   $this->filename($name);
+-        $data   =   serialize($value);
+-       
+-            $check  =  '';
+-       
+-        $data    = "<?php\n//".sprintf('%012d',$expire).$check.$data."\n?>";
+-        $result  =   file_put_contents($filename,$data);
+-        if($result) {
+-            
+-            clearstatcache();
+-            return true;
+-        }else {
+-            return false;
+-        }
+-    }
+-	
+-    /**
+-     * 删除缓存
+-     * @access public
+-     * @param string $name 缓存变量名
+-     * @return boolen
+-     */
+-    public function rm($name) {
+-        return unlink($this->filename($name));
+-    }
+-
+-    /**
+-     * 清除缓存
+-     * @access public
+-     * @param string $name 缓存变量名
+-     * @return boolen
+-     */
+-    public function clear() {
+-        $path   =  $this->options['temp'];
+-        if ( $dir = opendir( $path ) ) {
+-            while ( $file = readdir( $dir ) ) {
+-                $check = is_dir( $file );
+-                if ( !$check )
+-                    unlink( $path . $file );
+-            }
+-            closedir( $dir );
+-            return true;
+-        }
+-    }
+-}
+diff --git a/themes/html/head.html b/themes/html/head.html
+index 69db6a6..3bbd440 100755
+--- a/themes/html/head.html
++++ b/themes/html/head.html
+@@ -6,7 +6,7 @@
+ <div class="navigation">
+ <a id="gw" href="http://shanyueyun.com">返回官网</a>
+ <ul class="head">
+-<li class="logo_img"><a href="http://shanyueyun.com"><img src="__TPL__/new/images/logo.png"  style=" height:79px;"/></a></li>
++<li class="logo_img"><a href="http://shanyueyun.com"><img src="__TPL__/new/images/logo.png"  style=" height:80px;"/></a></li>
+ 
+ <li id="index"><a href="/" >首页</a></li>
+ <li id="field"><a href="/field/" >重播</a></li>
+@@ -48,10 +48,6 @@
+ 		line-height: 80px;
+ 		margin-right: 40px;
+ 	}
+-	.navigation .logo_img{
+-		width:auto;
+-		min-width:120px;
+-	}
+ </style>
+ 
+ <script type="text/javascript"> 
+diff --git a/themes/html/images/schoolbg.jpg b/themes/html/images/schoolbg.jpg
+deleted file mode 100644
+index 3053709..0000000
+Binary files a/themes/html/images/schoolbg.jpg and /dev/null differ
+diff --git a/themes/html/images/schoollogo.jpg b/themes/html/images/schoollogo.jpg
+deleted file mode 100644
+index 3f4ecd7..0000000
+Binary files a/themes/html/images/schoollogo.jpg and /dev/null differ
+diff --git a/themes/html/images/teacherbg.jpg b/themes/html/images/teacherbg.jpg
+deleted file mode 100644
+index efff9dc..0000000
+Binary files a/themes/html/images/teacherbg.jpg and /dev/null differ
+diff --git a/themes/html/school.html b/themes/html/school.html
+index c33386a..5500802 100755
+--- a/themes/html/school.html
++++ b/themes/html/school.html
+@@ -7,52 +7,18 @@
+ </head>
+ 
+ <body>
+-
+  <!--头部-->
+ <!--#include file="head.html"-->
+ <link href="__TPL__/new/css/style.css" rel="stylesheet" type="text/css" />
+ <!--END-->
+ <!--start 中间-->
+-<style>
+-	.bannercontent{
+-		padding:0;
+-		width:1000px;
+-		height:225px;
+-		box-shadow:none;
+-		background: rgba(255,255,255,0.5);
+-		margin-top: 75px;
+-	}
+-	.bannercontent p.school{
+-		margin-top:52.5px;
+-		padding-left:35px;
+-		position:relative;
+-	}
+-	.bannercontent p.school img{
+-		width:320px;
+-		height:120px;
+-	}
+-	.bannercontent p.school span{
+-		font-size:45px;
+-		color:#3e3e3e;
+-		font-weight:bold;
+-		position:absolute;
+-		right:35px;
+-		top:50px;
+-	}
+-	
+-</style>
+-
+ 
+-<div class="bannner" style="background: rgba(0, 0, 0, 0) url('__TPL__/images/schoolbg.jpg') no-repeat scroll center top;">
++<div class="bannner" style="background: rgba(0, 0, 0, 0) url('__TPL__/new/images/banner.jpg') no-repeat scroll center top;">
+ <div class="bannerhead">
+ <div class="bannercontent">
+-<p class="school">
+-	<img src="/themes/html/images/schoollogo.jpg"/>
+-    <span>{$school[$csid]['name']}</span>
+-</p>
+-<!--<p  class="bannertitle">{$school[$csid]['name']}</p>
++<p  class="bannertitle">{$school[$csid]['name']}</p>
+ <p>{$school[$csid]['des']}
+-</p>-->
++</p>
+ </div>
+ </div>
+ 
+@@ -219,6 +185,5 @@ $('#cid'+cid).addClass('cur');
+ 			}
+ 		});
+ 	});
+-	
+ </script>
+ </html>
