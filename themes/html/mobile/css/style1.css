@@ -778,3 +778,8 @@ span.resdel { float:right; margin-top:0}
 	z-index:100;
 	opacity: 0;
 }
+.comment .commentdel{
+	cursor:pointer;
+	font-size:12px;
+	color:#e4393c;
+}

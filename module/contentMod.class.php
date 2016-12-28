@@ -8,7 +8,9 @@ class contentMod extends commonMod
     }
 
     public function index()
-    {  	$this->getuserinfo();
+    {  	
+	if(MOBILE)
+	$this->getuserinfo();
 		
 		if($_POST){
 		if($_POST['code']!=$_SESSION['mobilecode']){

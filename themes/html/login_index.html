@@ -51,22 +51,7 @@
 
 </div>
 
- <script>
-  var childWindow;
-	 
-	 function toweixinLogin()
-            {
-				
-                childWindow = window.open("https://open.weixin.qq.com/connect/qrconnect?appid={$sys.loginappid}&redirect_uri=<?php echo urlencode('http://live.shanyueyun.com/index.php/weixinlogin/login?url='.$_SERVER["HTTP_HOST"])?>&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect","weixinLogin");
-            } 
-                        
-            function closeChildWindow()
-            {
-                childWindow.close();
-            }
- 
- 
- </script>
+
  
  
  </div>
