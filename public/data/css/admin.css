@@ -3540,3 +3540,63 @@ fieldset[disabled] .btn-vk.active {
 body > .header{
 	margin:0;
 }
+#accredit{
+	font-family:"微软雅黑";
+	padding:40px 0 40px 0;
+}
+#accredit .actk{
+	padding:50px 0 80px 0; 
+	width:800px;
+	border:1px solid #3C8DBC;
+	border-radius:25px;
+	margin:0 auto;
+	text-align:center;
+}
+#accredit .actk h5{
+	font-size:22px;
+	color:#3C8DBC;
+	font-weight:bold;
+}
+#accredit .actk h5>img{
+	height:50px;
+	margin-right:15px;
+}
+#accredit .actk .headimg{
+	height:120px;
+	width:120px;
+	border-radius:50%;
+	margin:20px 0;
+}
+#accredit .actk>p{
+	font-size:16px;
+}
+#accredit .tochange{
+	display:block;
+	width:800px;
+	margin:0 auto;
+	font-size:16px;
+	text-decoration:underline;
+	color:#3C8DBC;
+	margin-top:10px;
+	cursor:pointer;
+}
+#unaccredit{
+	padding:150px 0;
+}
+#unaccredit .uactk{
+	margin:0 auto;
+	width:250px;
+	height:150px;
+	background-image: url(/public/data/img/denglubg.png);
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	text-align:center;
+	color:#fff;
+	padding-top:55px;
+	cursor:pointer;
+}
+#unaccredit .uactk>h5{
+	font-size:18px;
+	font-weight:700;
+	margin-bottom:10px;
+}

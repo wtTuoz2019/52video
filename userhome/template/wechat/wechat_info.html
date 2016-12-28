@@ -1,53 +1,26 @@
 
-<div class="page_form">
-<form action="__URL__/wechat_info_add/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
-<div class="box-body">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+	<div id="accredit" <?=!$info['oauth']?'style="display:none"':'';?>>
+    	<div class="actk">
+        	<h5>
+            	<img src="/public/data/img/succeed.png"/>
+            	您的公众号授权成功
+            </h5>
+            <img class="headimg" src="{$info.headerpic}"/>
+            <p>{$info.wxname}</p>
+        </div>
+        <span class="tochange">更改公众号</span>
+    </div>
     
-      <tr>
-        <td width="150" align="right">公众号名称</td>
-        <td width="300">
-        {$info.wxname}
-        </td>
-        <td></td>
-      </tr>
-  
-      
-        <tr>
-		   <td width="150" align="right">头像:</td>
-			 <td>
-			<img src="{$info.headerpic}"  width="80"/>
-            </td>
-       </tr>
-         <tr>
-		  <td width="150" align="right">第三方平台API接口：</td>
-							                  <td><input type="text" name="api"  value="{$info.api}"   class="form-control"></td>
-                                              <td></td>
-						                </tr>
-                                        <tr>
-							                  <td width="150" align="right"> 您的接口URL：</td>
-							                  <td><font color="#FF0000">http://wap.shanyueyun.com/userhome/index.php/wechatapi?token={$token}</font></td>
-						                </tr>
-                                        <td></td>
-                                        <tr>
-							                  <td width="150" align="right">您的Token:</td>
-							                  <td><font color="#FF0000">{$token}</font></td>
-                                               <td></td>
-						                </tr>
-                						
-     
-     
-    </table>
-</div>
+    
+    <div id="unaccredit" <?=$info['oauth']?'style="display:none"':'';?>>
+    	<div class="uactk" onClick="tocomponentloginpage()">
+        	<h5>安全模式</h5>
+            <p>登录公众号，一键授权</p>
+        </div>
+    	
+    </div>
 
-<div class="form_submit">
-<button type="button" class="button" onClick="tocomponentloginpage()">扫码授权</button> 
-<button type="submit" class="button">保存</button> 
-</div>
-</form>
-       
-</div>
-</div>
+
 <script>
 //提交表单
 savelistform({addurl:"__URL__/wechat_info",listurl:"javascript:history.go(-1)"});
@@ -65,4 +38,8 @@ function tocomponentloginpage(){
 	window.location="https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid={$config.kfappid}&pre_auth_code=<?=getpre_auth_code($config['kfappid'],$config['kfappsecret'])?>&redirect_uri=<?=urlencode('http://live.shanyueyun.com/userhome/index.php/wechat/componentlogin')?>";
 	
 	}
+	$('.tochange').click(function(e) {
+      $('#accredit').hide();  
+	  $('#unaccredit').show();  
+    });
         </script>
