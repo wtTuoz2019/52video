@@ -515,9 +515,9 @@ $(function(){
 		}else{
 			mydialog('提示', '评论需先登录');
 		}
-	  },'json');
+	  },'json'); 
 	});
-	
+	if(play==true){
 	$(window).scroll(function () {
 		if ($(window).scrollTop() >= 690) {
 			 $('#play').addClass('drag');
@@ -564,7 +564,7 @@ $(function(){
 			  }); 
 		 }
 	});
-
+	}
 </script>
 <?php require_once 'cs.php';echo '<img src="'._cnzzTrackPageView(1254194477).'" width="0" height="0"/>';?>
 </body>
