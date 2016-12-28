@@ -53,7 +53,7 @@ function getcomponent_access_token($appid,$appsecret){
 	$array=array('component_appid'=>$appid,
 				'component_appsecret'=>$appsecret,
 				'component_verify_ticket'=>$component_verify_ticket);
-	 
+	  
 	$json=curlPost($url_get,json_encode($array));
 	$component_access_token=$json['component_access_token'];
 	$cache->set('component_access_token',$component_access_token,$json['expires_in']-1);

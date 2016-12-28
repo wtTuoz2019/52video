@@ -37,10 +37,10 @@ class wechatMod extends commonMod {
 		$this->assign('token',$token);
 		$this->assign('info',$wechat_info);
 		
-	 	
+	  	
 		 $this->show();
     }
-	
+	 
 	public function componentlogin(){
 		 
 		$get=$_GET;

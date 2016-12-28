@@ -189,7 +189,7 @@ if ($errCode == 0) {
 	
 	echo 'success';
 		}
-	public function callback(){
+	public function callback(){ 
 	  
 		$logHandler= new CLogFileHandler(__ROOTDIR__ . "/data/wechatapilog/".date('Y-m-d').'(callback).log');
 	$log = Log::Init($logHandler, 15);
