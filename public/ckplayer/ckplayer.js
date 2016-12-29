@@ -20,9 +20,10 @@
 */
 function ckcpt() {
     var cpt = '';
-    cpt += 'right.swf,2,1,0,0,2,0|'; //右边开关灯，调整，分享按钮的插件
-    cpt += 'share.swf,1,1,-180,-100,3,0|'; //分享插件
+ //   cpt += 'right.swf,2,1,0,0,2,0|'; //右边开关灯，调整，分享按钮的插件
+//    cpt += 'share.swf,1,1,-180,-100,3,0|'; //分享插件
     cpt += 'adjustment.swf,1,1,-180,-100,3,0|'; //调整大小和颜色的插件
+	cpt += 'definition.swf,2,2,-260,-30,2,1|';//清晰度
     return cpt;
 }
 
@@ -243,6 +244,8 @@ function ckstyle() { //定义总的风格
         /*
 		默认右上角一直显示的logo，不使用设置成null，即logo='null';
 		*/
+		/*cpt_definition_text:'标清,高清,超清',*/
+cpt_definition:'0x656565,0x2c2c2c,80,20,0xFFFFFF,0x00b4ff,10,10,1,3,自动,12,MicrosoftYaHei|微软雅黑,0x505050,10,80,20,15,0,10,15,0x656565,0x2c2c2c,80,20,0xFFFFFF,0x00b4ff,10,10,1,3,12,MicrosoftYaHei|微软雅黑,50,0xb7b7b7,40,1,10,10',
         pm_logo: '2,0,-100,20',
         /*
 		播放器右上角的logo的位置
