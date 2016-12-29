@@ -77,7 +77,7 @@ class commonMod
 	
 	public  function getuserinfo(){
 		
-		
+	
 		if(MOBILE){ 
 			if(!$_SESSION['uid']){
 			if($this->wxuser&&$this->wxuser['oauth']){
