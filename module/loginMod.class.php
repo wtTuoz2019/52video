@@ -31,9 +31,10 @@ class loginMod extends commonMod {
 	public function scope(){
 		
 		$this->getuserinfo();
+		$userinfo=model('user')->info($_SESSION['uid']);
 		$res['logincode']=$_GET['logincode'];
 		$res['logintime']=time();
-		$res['openid']=$this->userinfo['openid'];
+		$res['openid']=$userinfo['openid'];
 	 
 		model('comment')->wechat_add($res);	
 		$this->display('login_sucess.html');
