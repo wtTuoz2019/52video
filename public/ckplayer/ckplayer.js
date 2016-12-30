@@ -27,7 +27,10 @@ function ckcpt() {
     return cpt;
 }
 
-
+	var idLoadHandler=false;
+	function loadHandler(){
+		idLoadHandler=true;
+	}
 	var endtime=0;var starttime=0;
 	var flag=false;	var startflag=false;
 	function ckplayer_status(str){

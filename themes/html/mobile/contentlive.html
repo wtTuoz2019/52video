@@ -1,70 +1,40 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content=""/>
-    <title>{$common.title}</title>
-    <link href="__TPL__mobile/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="__TPL__mobile/Content/style.css?a=1" rel="stylesheet" />
-    <!-- dialog -->
+	<head>
     
-     <script type="text/javascript" src="__TPL__mobile/Scripts/jquery-1.10.2.js" ></script>
-     <script src="__TPL__mobile/bootstrap-3.3.5-dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="__TPL__mobile/Scripts/countdown/jquery.countdown.js" ></script>
-    <link rel="stylesheet" href="__TPL__mobile/Scripts/countdown/jquery.countdown.css" />
-	<script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
-	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-     <!-- dialog -->
-       <link rel="stylesheet" href="__TPL__mobile/dialog/skins/default.css" type="text/css">
-	<script type="text/javascript" src="__TPL__mobile/dialog/jquery.artDialog.js"></script>
-     
-    <script>
-				jQuery(document).ready(function($){
-				// browser window scroll (in pixels) after which the "back to top" link is shown
-				var offset = 500,
-					//browser window scroll (in pixels) after which the "back to top" link opacity is reduced
-					offset_opacity = 300,
-					//duration of the top scrolling animation (in ms)
-					scroll_top_duration = 400,
-					//grab the "back to top" link
-					$back_to_top = $('.backTop');
-			
-				//hide or show the "back to top" link
-				$(window).scroll(function(){
-					( $(this).scrollTop() > offset ) ? $back_to_top.addClass('visited') : $back_to_top.removeClass('visited fade-out');
-					if( $(this).scrollTop() > offset_opacity ) { 
-						$back_to_top.addClass('fade-out');
-					}
-				});
-				$back_to_top.bind('click', function(event){
-					event.preventDefault();
-					$('body,html').animate({
-						scrollTop: 0 ,
-					 	}, 300
-					);
-				});
-			
-			    });
-
-            
-			</script>
-</head>
-
-
-<body>
-
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>{$common.title}</title>
+        <link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
+		<!-- Css 样式-->
+	    <link rel="stylesheet" href="__TPL__mobile/music/css/style.css" />
+	    
+	    <!-- Javascript -->
+	    <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+	    
+	    <!-- Plugin -->
+	  
+	    <script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <link rel="stylesheet" href="__TPL__mobile/Scripts/countdown/jquery.countdown.css" />
+        <script type="text/javascript" src="__TPL__mobile/Scripts/countdown/jquery.countdown.js" ></script>
+     	<link rel="stylesheet" href="__TPL__mobile/dialog/skins/default.css" type="text/css" />
+	    <script type="text/javascript" src="__TPL__mobile/dialog/jquery.artDialog.js"></script>
+    </head> 
 	
-
-
-<!-- 返回顶部 --><a href="#head" class="backTop"></a><!-- 返回顶部 -->
-
- 
-<!-- 视频区域 -->
-<div class="fixed-top" id="fixed-top">
-	<div class="channels">
-        <?php 
+	<body>
+    	<a id="usercenter" href="/myhome/index"><img height="55px" src="__PUBLIC__/images/usercenter.png" /></a>
+    
+		
+		<section>
+		<div class="play-box">
+				<div class="channels">
+        
+        <div class="show">
+   <?php   if ($info["cid"] == 16) {  ?>
+    
+     <?php 
 		 $end = $info['starttime'] + 60*$info['time'];
 		 if ($end <= time()) {
 		 ?>
@@ -72,31 +42,67 @@
         <div class="watchover">
             <img src="{$info.image}"  alt="" />
         	<div class="black-warp">
-                直播已经结束
+                直播已经结束，稍后即可点播回看
             </div>
         </div>
         <?php
          }
 		?>
-		<div id="play" class="play" style="width:100%; height:100%">
+        
+      
+    
+       <div id="play" class="play" style="width:100%;">
         	
         </div>
+        <div id="backdrop" class="backdrop">
+			<img src="{$info.image}"  alt="" />
+            <img src="__PUBLIC__/images/{$subscribe}.png" id="subscribe" onClick="subscribeclick({$info.aid})"  />
+            <button id="bsubscribe">点击预约</button>
+			<div class="counter">
+				<p>距离直播还有：</p>
+				<div id="countdown"></div>
+			</div>   
+		</div>
 <script type="text/javascript" src="__PUBLIC__/plays/players.js"></script>
 <script type="text/javascript">
+var play=true;
+var note = $('#note'),
+					newYear = true;
+					t1 = '{$info.starttime}'*1000;
+					t = '{$info.starttime}'*1000 + '{$info.time}'*60*1000;
+					ts = <?php echo time(); ?>*1000;	
+
+				if(ts < t1){
+					$("#play").hide();
+					$("#backdrop").show();
+					play=false;
+		        }else if(ts > t1 && ts < t){
+		        play=true;
+					$("#play").show();
+					$("#backdrop").hide();
+					newYear = false;
+				}else{
+					 play=false;
+					$("#play").hide();
+					$("#backdrop").show();
+					
+				}	
+
+
 aodianPlayer({
   container:'play',//播放器容器ID，必要参数
-  rtmpUrl:'rtmp://{$sys.play}/schoolvideo/{$channel.vMp4url}',//控制台开通的APP rtmp地址，必要参数
-  hlsUrl:'http://{$sys.ios}/schoolvideo/{$channel.vMp4url}.m3u8',//控制台开通的APP rtmp地址，必要参
+ rtmpUrl:'rtmp://{$sys.ali}{$channel.vMp4url}',//控制台开通的APP rtmp地址，必要参数
+  hlsUrl:'http://{$sys.ali}{$channel.vMp4url}.m3u8',//控制台开通的APP rtmp地址，必要参
 
   player:{
     name:'lssplayer',//播放器名称，必要参数
     /* 以下为可选参数*/
-    width: '720',//播放器宽度，可用数字、百分比等
-    height: '480',//播放器高度，可用数字、百分比等
+    width: '100%',//播放器宽度，可用数字、百分比等
+    height: '100%',//播放器高度，可用数字、百分比等
 	 html5Width: '100%',//手机端浏览器，播放器宽度，可用数字、百分比等
     html5Height: '200',//手机端浏览器，播放器高度，可用数字、百分比等
     wmode:'Transparent',
-    //autostart: flase,//是否自动播放，默认为false
+    autostart: play,//是否自动播放，默认为false
     bufferlength: '3',//视频缓冲时间，默认为3秒
     stretching: '1',//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1
     controlbardisplay: 'disable'//是否显示控制栏，值为：disable、enable默认为disable
@@ -110,244 +116,9 @@ aodianPlayer({
 /* lssHandle.setMute(true);//静音或恢复音量，参数为true|false */
 /* lssHandle.setVolume(volume);//设置音量，参数为0-100数字 */
 /* lssHandle.setFullScreenMode(1);//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1 */
-</script>
-
-		<div id="backdrop" class="backdrop">
-			<img src="{$info.image}"  alt="" />
-			<div class="counter">
-				<p>距离直播还有</p>
-				<div id="countdown"></div>
-				<div class="tsfm"><span>天</span><span>时</span><span>分</span><span>秒</span></div>
-			</div>   
-		</div>
-        
-	</div>
-</div>
-<!-- 视频区域结束 -->
-
-<!-- tab -->
-<div class="mian-content" >
-	<ul id="myTab">
-        <li><div class="look-zan view-look"><i class="look"></i><span>{$info.views}</span></div></li>
-        <li><!--<div class="look-zan view-look"><i class="look"></i><span>{$info.views}</span></div>--><a  href="#item1mobile" >详情</a></li>
-        <li><!--<div class="look-zan view-like"><i class="like"></i><span>{$info.laud}</span></div>--><a  href="#item2mobile" >评论</a></li>
-        <li><div class="look-zan view-like"><i class="like"></i><span>{$info.laud}</span></div></li>
-   </ul>
-<div id="myTabContent" class="tab-content" style="border-top:5px solid #333">
-	<div id="item1mobile" class="mui-control-content mui-active">
-		<div class="mui-table-view details clearfix">
-			<div style="text-align:left">
-	    		<h3>{$info.title}</h3>
-	    	</div>
-	    	<hr />
-    	<div >
-        
-    		<dl style="word-break:break-all;">
-				{$info.content}
-		    </dl>
-		
-    	</div>
-		</div>
-	</div>
-	<div id="item2mobile" class="mui-control-content">
-		<div class="mui-table-view atlas clearfix">
-			<ul class="comment" id="comment">
-			</ul>
-			<div id="comment-hint" class="comment-hint comment-wait">
-			
-				<div class="load"><a href="javascript:;">加载更多评论</a></div>
-				
-			</div>
-		</div>
-	</div>
-
-</div>
-<!--<div class="look-zan">
-				<div class="look-zan"><i class="look"></i><span>0</span></div>
-            	<div ><i class="like"></i><span id="like-count">{$info.laud}</span></div>
-			</div>-->
-</div>
-
-<script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
 
 
- 
-	<footer class="fixed-bottom">
-		<a href="javascript:;" id="interact-comment" class="interact-comment">我想说</a>
-		<a href="javascript:;" id="interact-like" class="interact-like">赞一下</a>
-		<script type="text/javascript">
-		 $("#myTab").idTabs();  
-			  var data = {
-			    fid: {$info.aid},
-			    pageSize: 10,
-			    pageIndex: 0,
-			  };
-			  var arr = {
-			    fid: {$info.aid},
-			    id: 0
-			  };
-			  var id = 0,
-			  flag=0;
-
-			jQuery(document).ready(function($) {
-				$(".interact-like").click(function(e){
-				var $i=$("#like-count"), $b=$("<b>").html("<div class='like-tips'><div class='like-tips-value'> +1</div> </div>"), n=parseInt($i.text());
-				$b.css({
-				"top":-15,
-				"position":'absolute',
-				"z-index":999,
-			});
-			$.post('/index.php/change',{type:'love',fid:'{$info.aid}',uid:'<?php echo $_SESSION["uid"];?>'},function(data){
-				if(data.status=='1'){
-					$i.text(n+1);
-					$('.view-like').find('span').text(parseInt($('.view-like').find('span').text())+1);
-					
-					$.dialog({content:data.msg});
-					//alert(data.msg)
-				}else{
-					$.dialog({content:data.msg});
-					//alert(data.msg)
-				}
-			},'json');
-
-			$(".interact-like").append($b);
-				$b.animate({"top":-100,"opacity":0},1000,function(){$b.remove();});
-				var d = setInterval(function(){
-				clearInterval(d);
-				if($(".interact-like b").length == 1){
-				$.post("",{zan:$i.text()})
-			}
-			},1000)
-			e.stopPropagation();
-			});
-			});
-
-			$(document).on('click', '#input-type-submit', function(){
-				var this_ = this;
-				var mes = $('#editors').val();
-				if(flag==1){
-					return false;
-				}
-				$('#editors').val('');
-				flag==1;
-				var uid='<?php echo $_SESSION["uid"];?>';
-				if(mes.length < 1){
-					$.dialog({content:'请输入大于1字符评论内'});
-					//alert('请输入大于1字符评论内')
-			    	return;
-			    }
-			   
-				$.ajax({
-				  url: "__ROOT__/index.php/comment/save",
-				  type: "POST",
-				  data: {
-					fid: data['fid'],
-					message: mes,
-			        uid: uid
-				  },
-				  dataType: "json",
-				  success: function( d ) {
-					$('#editors').val('');
-					if(d.status == 1){
-						$('#message').val('');
-			            $.dialog({content:'评论成功'});
-						//alert('评论成功')
-						flag=0;
-						
-						postcomment();
-						$('#modal_cance').click();
-						
-					}else{
-			            $.dialog({content:'评论失败'});
-						//alert('评论失败')
-							$('#editors').val(mes);
-						flag=0
-			        }
-				  }
-				});	
-			})
-			
-			function getcomment(){
-				$.post('__ROOT__/index.php/comment/pc_list',{data: data},function(d){
-					if(d.status==1){
-						var count = d.message.count;
-						if(d.message.pageindex != 0)
-						data['pageIndex']=d.message.pageindex;
-						
-							//alert(data['pageIndex'])
-						if (data['pageIndex'] == 0) {
-							if (count > 0) {
-								arr['id'] = d.message.info[0]['id'];
-							}
-						}
-						$('#num').html(count);
-						if(d.message.count == 0){
-							$('.load').hide();
-						
-						}else{
-							if(arr['id']==0)
-							arr['id'] = d.message.info[0]['id'];
-							
-								$('#comment').append(escapes(d.message.info));	
-							
-						}	
-					}else{
-						$.dialog({content:'操作失败'});	
-						//alert('操作失败')
-					}
-				},'json')
-			}
-			getcomment();
-			$(document).on("click", ".load", function(){
-			
-				getcomment();
-			});
-
-			function automatic(arr){
-				$.post('__ROOT__/index.php/comment/pc_auto',{data: arr},function(d){
-					if(d.status==1){
-						$('#comment').prepend(escapes(d.message.info));
-						arr['id'] = d.message.info[0]['id'];
-					}
-				},'json')
-			}
-
-			function escapes(data){
-				var strVar = "";
-				if(!data){
-					return '';
-				}
-				for(var i=0;i<data.length;i++){
-			    	 strVar += "<li class=\"comment-list\" id=\"comment-template\"><a href=\"#\"><img style=\"width:30px;height:30px;\" src=\""+data[i]['pic']+"\" alt=\"\"><\/a><dl><dt class=\"comment-user-other\">"+data[i]['name']+"<\/dt><dd class=\"comment-data\">"+data[i]['message']+"<\/dd><dd class=\"comment-tool\"><span class=\"time\">"+data[i]['time']+"<\/span> <\/dd><\/dl><\/li>";
-				}
-				return strVar;
-			}
-
-			function qwert(){
-				automatic(arr);
-			}setInterval("qwert()",5000);
-
-			$(function(){
-	
-				var note = $('#note'),
-					newYear = true;
-					t1 = {$info.starttime}*1000;
-					t = {$info.starttime}*1000 + {$info.time}*60*1000;
-					ts = <?php echo time(); ?>*1000;	
-
-				if(ts < t1){
-					$("#play").hide();
-					$("#backdrop").show();
-		        }else if(ts > t1 && ts < t){
-		        
-					$("#play").show();
-					$("#backdrop").hide();
-					newYear = false;
-				}else{
-					$("#play").hide();
-					$("#backdrop").show();
-					
-				}				 
+			 
 	
 				$('#countdown').countdown({
 					timestamp	: t1,
@@ -359,45 +130,419 @@ aodianPlayer({
 						message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
 						message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
 						message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
-						note.html(message);
+						
 						if(days==0&&hours==0&&minutes==0&&seconds==0){
 							$("#play").show();
 							$("#backdrop").hide();
+							
 						}
 					}
 				});
-
-			});
-		</script>
-	</footer>
-   <div class="sponsor">
-    <p style="color:orange">{$school[$info['csid']]['name']} © 视盛信息技术支持</p>
-   
-</div>
-    <div class="modal" id="mymodal">
-    <div class="modal-dialog">
-        <div class="modal-content" style="padding:10px">
-    		<div class="input-editor"><!--commentbox -->
-        			<!-- <input id="nickname" class="nickname" type="text" placeholder="请填写评论" /> -->
-        			<textarea id="editors" placeholder="我想说..."></textarea>
-        		</div><!-- commentbox -->
-			<div class="modal-footer input-type clearfix">
-            	
-				<button type="button" class="input-type-submit" id="input-type-submit">发送</button>
-                <button type="button" class="input-type-cancel" id="modal_cance" data-dismiss="modal">取消</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<script>
-  $(function(){
-    $("#interact-comment").click(function(){
-      $("#mymodal").modal();
-    });
-  });
+				 
 </script>
-<!-- 底部按钮结束  -->
-<!--#include file="common.html"-->
-</body>
+
+
+ <?php  }else{  ?>
+  <script type="text/javascript">
+var play=1;
+</script>
+   <?php   if ($info['airtime']>time()) {  ?>
+       
+   
+     
+        <div id="backdrop" class="backdrop">
+			<img src="{$info.image}"  />
+          
+			<div class="counter">
+				<p>距离开播还有：</p>
+				<div id="countdown"></div>
+			</div>   
+		</div>
+<script type="text/javascript">
+ play=0;
+</script> 
+        <?php
+         }
+		?>
+ 
+<div class="player">
+            <?php  if(strstr($info['videourl'],"qq.com")){ ?>
+<iframe frameborder="0" width="100%" height="200" src="{$info.videourl}" allowfullscreen></iframe> 
+
+<?php  }elseif(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"urren")||strstr($info['videourl'],"shanyueyun")){?>
+
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1" ></div>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "200";//视频高度 
+  var url = "{$info.videourl}";//视频地址
+  var image = "{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>
+
+
+
+<?php }else{  ?>
+          <div id="a1" ></div>
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+ 
+    <?php 
+		 if( @fopen('http://'.$config[out].'/video/'.$info[videourl].'/video.m3u8', 'r' )){  ?>
+         
+        <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "200";//视频高度
+  var url = "http://{$config.out}/video/{$info.videourl}/video.m3u8" 
+
+  var image = "{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>  
+         
+         <?php }else{  ?>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "200";//视频高度
+  var url = "http://{$config.out}/video/{$info.videourl}/1280/video.m3u8" 
+
+  var image = "{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script> <?php  }  ?>  
+              <?php  }  ?>  
+        </div>
+        <?php   if ($info['airtime']>time()) {  ?>
+        <script type="text/javascript">
+
+var note = $('#note'),
+					newYear = true;
+					t = '{$info.airtime}'*1000;
+					ts = <?php echo time(); ?>*1000;	
+
+				$("video").css({'height':'0px'});
+	$('#countdown').countdown({
+					timestamp	: t,
+					callback	: function(days, hours, minutes, seconds){
+						
+						var message = "";
+					
+						message += days + " day" + ( days==1 ? '':'s' ) + ", ";
+						message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
+						message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
+						message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+						note.html(message);
+						if(days==0&&hours==0&&minutes==0&&seconds==0){
+							$("video").css({'height':'200px'});
+							$("#play").show();
+							$("#backdrop").hide();
+							
+						}
+					}
+				});
+				 
+</script> 
+        <?php
+         }
+		?>
+        
+	 <?php  }?>
+    </div>
+</div>
+		</div>
+        <!--if:{$zidingyi['notice']}-->
+		<div class="scroll-bar">
+			<marquee style="color:#fff; font-size: 1.2rem; width: 100%; line-height: 25px;" scrollamount=1>{$zidingyi.notice}</marquee>	
+			
+		</div>
+         <!--/if-->
+		<div class="view-box clearfix">	
+				<span class="view" style=" display: inline-block; margin-top: 13px;">观看人次:{$info.views}人</span>
+				<div class="" style="float: right;">
+			    	<a href="{$config.addurl}" class="Focus" >
+                    <span style="font-size:2.5rem">+</span><span> 技术支持</span></a>
+			   
+				</div>
+		</div>
+		</section>
+		<section>
+			<div class="tab-box" id="tab-box">
+				<ul id="myTab" class="  clearfix" role="tablist">
+                	<!--foreach:{$functions $key $vo}-->
+                          <li class="funcions{$vo.id} <?php if(!$key) echo 'active'; ?>" ><a href="#funcions{$vo.id}"  role="tab" data-toggle="tab">{$vo.name}</a></li>		
+                           <!--/loop-->
+                    
+				</ul>
+				
+				<div id="myTabContent" class="tab-content">
+                	 <!--foreach:{$functions $key $vo}-->
+                     <div class="tab-pane <?php if(!$key) echo 'active'; ?>" id="funcions{$vo.id}">
+                     
+                     <?php if($vo['type']=='comment'){?>
+                     
+                      <!--#include file="menu_comment.html"-->
+					 <?php }elseif($vo['type']=='jiaoyancomment'){?>
+                          <!--#include file="menu_jiaoyan.html"-->
+                          <?php }elseif($vo['type']=='content'){?>
+                        	{$vo.content html}
+                         <?php }elseif($vo['type']=='url'){?>
+                         <script>
+						 $('.funcions{$vo.id}').bind('click',function(){
+							 
+							window.location="{$vo.content}"; 
+							 });
+						 </script>
+                          <?php }elseif($vo['type']=='linkaid'){?>
+                          <ul>
+     <?php  
+     $loop=array();
+     if($vo['content'])
+    $loop=model('content')->getlist($vo['content']);
+  
+      ?> <!--foreach:{$loop $val}-->    
+                <li   class="<?php echo $val['cid']==16?'live-class':'over-class';  ?> m_recommend">
+                    
+                   
+                   		<span class="quan"></span>
+						<span class="quan2"></span>
+						<div class="col-xs-6 cebian">
+                            <p>
+                       		<span><?php echo $val['cid']==16?date('Y-m-d',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?>&nbsp;&nbsp;<?php echo $val['cid']==16?'直播':'重播';  ?></span><img src="img/video.png"/></p>
+							<a href="{$val.aurl}">
+                            <img src="{$val.image}" class="img-responsive m_img"/>
+                            <img src="img/to_play.png" class="to_play"/>
+                            </a>
+							
+						</div>
+                        <div class="col-xs-6 r_text">
+                   		<p><a href="{$val.aurl}">{$val.title}</a></p>
+                   		</div>
+				</li>
+		<!--/loop-->
+		</ul>
+                             <?php }elseif($vo['type']=='looktimes'){?>
+     <ul  class="orderList">
+     <?php  
+     $loop=array();
+    $loop=model('content')->gettimes($info['videourl']);
+  
+      ?> 
+      
+      
+      <!--foreach:{$loop $val}-->    
+                <li  >
+
+                <div class="date">
+                	<i class="dian"></i>
+					<i class="datetime"><?=formartkandian($val[start])?></i>
+					
+				</div>
+                <div class="content">
+                    <a href="javascript:" onclick="playseek(this)" data-time="{$val.start}"  end-time="{$val.end}">{$val.name} </a>
+                  </div> 
+				</li>
+		<!--/loop-->
+		</ul>
+                           <?php }?>
+					</div>
+                           <!--/loop-->
+                
+				</div>
+			</div>
+		</section>
+		<script>
+		            var s =document.getElementById("tab-box");
+		            var uls = document.getElementById("myTab");
+					var as = uls.getElementsByTagName("a");
+					for(var i=0; i<as.length;i++){
+						var sum = parseInt(s.clientWidth/ as.length)
+						as[i].style.width = sum +"px";
+					}
+					
+					function zan(){
+						var counts = document.getElementById("zan-counts");
+						
+						$.post('/index.php/change',{type:'love',fid:'{$info.aid}',uid:'<?php echo $_SESSION["uid"];?>'},function(data){
+				if(data.status=='1'){
+				
+					 counts.innerHTML = counts.innerHTML*1+1;
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}else{
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}
+			},'json');
+						
+						   
+					}
+					
+		</script>
+      
+<!--Tabs.js-->
+<script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
+
+   <!--#include file="common.html"-->
+         <script>
+         var style="<?=$zidingyi[style]?>";
+		changecolor(style);
+			$('#mask').click(function(){
+		$('#mask,#register').hide();
+	});
+function changecolor(color){
+	if(color=='red')
+{
+	$('.view-box').addClass('backgroudCb');
+	$('.infos').addClass('chageCw');
+	$('#myTab').addClass('backgroudC')
+	}else{
+		$('#myTab').addClass('tab-nav')
+		}
+}	
+	function subscribeclick(aid){
+		$.post('__URL__/subscribe',{aid:aid,type:'aid'},function(data){
+			if(data.status=='1'){
+				
+				$('#subscribe').attr('src','__PUBLIC__/images/'+data.message+'.png');
+				if($('#subscribe').attr('src')=="/public/images/nosubscribe.png"){
+					$('#bsubscribe').html('取消预约');
+				}else{
+					$('#bsubscribe').html('点击预约');
+				}
+			}else if(data.status=='2'){
+					$.dialog('<div class="nosubscribe"><h1>恭喜，您已预约成功</h1><p>请关注‘闪阅云’公众号</p><p>将收到消息提醒</p><a href="{$config.addurl}">+关注</a></div>');
+				
+					$('#subscribe').attr('src','__PUBLIC__/images/'+data.message+'.png');
+					if($('#subscribe').attr('src')=="/public/images/nosubscribe.png"){
+						$('#bsubscribe').html('取消预约');
+					}else{
+						$('#bsubscribe').html('点击预约');
+					}
+			}
+			},'json');
+			
+		
+		}
+	$(function(){
+		if($('#subscribe').attr('src')=="/public/images/nosubscribe.png"){
+						$('#bsubscribe').html('取消预约');
+					}else{
+						$('#bsubscribe').html('点击预约');
+					}
+	})
+	
+         </script>
+         
+         <style>
+         	.times{
+				top: -7px;
+    			left: -8px;
+				padding: 0 12px;
+				font-size:12px;
+			}
+			
+			
+			
+			.m_recommend{
+				clear: both;
+				overflow: hidden;
+				padding: 0 20px;
+				
+				position: relative;
+			}
+			.m_recommend .m_img{
+				margin: 10px 0;
+			}
+			 .m_recommend .cebian{
+				border-left: 2px solid #aaa;
+				padding: 10px ;
+			}
+			.m_recommend .cebian p{
+				font-size:12px;
+				color:#576894;
+				margin:0;
+			}
+			#myTabContent .m_recommend .cebian .to_play{
+				position:absolute;
+				top:39%;
+				left:35%;
+				height:50px;
+				width:50px;
+			}
+			.m_recommend .cebian p span{
+				font-size:12px;
+			}
+			.m_recommend .r_text{
+				padding-top:50px;
+				text-align:center;
+			}
+			.m_recommend .r_text a{
+				color:#333;
+				font-size:12px;
+				
+			}
+			#myTabContent .m_recommend .cebian p>img{
+				height: 13px;
+				width: 20px;
+				position: relative;
+				top: -1px;
+				left: 5px;
+			}
+			 .m_recommend  span.quan{
+				width: 10px;
+				height: 10px;
+				display: block;
+				position: absolute;
+				border-radius: 50%;
+				background: #576894;
+				top: 14px;
+				left: 16px;
+				z-index: 10;
+			}
+			.m_recommend  span.quan2{ 
+				width: 16px;
+				height: 16px;
+				display: block;
+				position: absolute;
+				border-radius: 50%;
+				opacity: 0.4;
+				background: #576894;
+				top: 11px;
+				left: 13px;
+			}
+			#myTab li{
+				
+				float:left;
+			}
+			#usercenter{
+				position:fixed;
+				bottom:90px;
+				right:15px;
+				z-index:100;
+			}
+         </style>
+         <script>
+         	$('#countdown .countDiv0').html('天');
+			$('#countdown .countDiv0').addClass('times');
+			$('#countdown .countDiv1').html('时');
+			$('#countdown .countDiv1').addClass('times');
+			$('#countdown .countDiv2').html('分');
+			$('#countdown .countDiv2').addClass('times');
+			$('#countdown').append('<span class="countDiv countDiv3 times">秒</span>');
+			$('#countdown .countDiv3').addClass('times');
+         </script>
+	</body>
 </html>

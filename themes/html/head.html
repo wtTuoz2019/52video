@@ -73,7 +73,7 @@ $('#'+moudle).find('a').addClass('headcur')
 	 function toweixinLogin()
             { 
 				
-                childWindow = window.open("http://live.shanyueyun.com/login/login.html?url=<?php echo  urlencode($_SERVER['REQUEST_URI']);?>","weixinLogin");
+             window.location.href="http://live.shanyueyun.com/login/login.html?url=<?php echo  urlencode($_SERVER['REQUEST_URI']);?>";
             } 
                         
             function closeChildWindow()
