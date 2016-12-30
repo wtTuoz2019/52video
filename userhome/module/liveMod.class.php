@@ -214,7 +214,7 @@ class liveMod extends commonMod
 					$this->actionname='回看列表';
 				}
 		$this->assign('cateid',$id);
-		
+		$this->school=model('school')->school_list();
 		//所有栏目信息
 		
 		$cate=$this->model->table('category')->where(array('show'=>1))->select();

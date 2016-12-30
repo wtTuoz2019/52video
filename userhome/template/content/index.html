@@ -36,9 +36,7 @@
                               <div class="col-sm-9">
                              <img src="{$vo.image}" width="100%" height="170px"> 
                            
-                             <p >  <!--if:{$cateid==16}--><span class="fa  fa-video-camera">:<?php echo model('live')->get_url($vo['channel']);?></span>  <!--/if--><span class="glyphicon glyphicon-stats right">{$vo.views}</span></p>  
-                                      
-                              <p  class="timedate"> {$php(echo date('Y-m-d H:i:s',$vo['updatetime']))}</p>   
+                           
                             </div>
                             
                              <div class="col-sm-3 center">
@@ -54,6 +52,11 @@
                                          <a class="btn btn-default btn-sm" onclick="del('{$vo.aid}',this)" href="javascript:">删除</a>
                                          
                             </div>
+                               <p >  {$php(echo date('Y-m-d H:i',$vo['updatetime']))} <span class="glyphicon glyphicon-stats right">{$vo.views}</span></p>  
+                                      
+                         
+                            
+                             <p  class="timedate"> {$school[$vo['csid']]['name']}</p>  
                         </div><!-- ./col -->
                      
                     </div>

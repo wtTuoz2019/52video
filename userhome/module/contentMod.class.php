@@ -200,6 +200,7 @@ class contentMod extends commonMod
         //获取公共信息条件
         $where=$this->common_list_where();
         $this->view()->assign($this->common_list());
+		$this->school=model('school')->school_list();
         //栏目信息
         $this->class_info = model('category')->info($id);
         //分页信息
