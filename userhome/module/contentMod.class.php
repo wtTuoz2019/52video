@@ -197,6 +197,7 @@ class contentMod extends commonMod
     	$id=intval($_GET['id']);
 		$id=$id?$id:'13';
         $this->alert_str($id,'int');
+		$this->actionname='回看列表';
         //获取公共信息条件
         $where=$this->common_list_where();
         $this->view()->assign($this->common_list());

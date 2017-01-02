@@ -21,7 +21,7 @@
       <!--foreach:{$commentlist $v}-->
         <div class="commentarea clearfix">
         	<div class="commentarea_left left">
-        		<img  src="{$v.pic}" style="width: 34px;height: 34px;margin-top: 10px;"/>
+        		<img  src="{$v.pic}" style="width: 40px;height: 40px;margin-top: 10px; border-radius:50%;"/>
         	</div>
         	<div class="commentarea_right right">
         		<h6>{$v.name}</h6>
@@ -90,7 +90,7 @@
                               <?php foreach($v['res'] as $key=>$val){   ?>
         						<li>
         							<div class="left">
-        								<img src="{$val.pic}" style="width: 35px;height: 37px;"/>
+        								<img src="{$val.pic}" style="width: 30px;height: 30px; border-radius:50%;"/>
         							</div>
         							<div class="comlistarea right">
         								<div class="username">{$val.nickname}</div>
@@ -204,7 +204,7 @@
 					return '';
 				}
 				for(var i=0;i<data.length;i++){
-					 strVar +='<div class="commentarea clearfix"><div class="commentarea_left left"><img  src="'+data[i]['pic']+'" style="width: 34px;height: 34px;margin-top: 10px;"/></div><div class="commentarea_right right"><h6>'+data[i]['name']+'</h6><div class="comtop"><p id="comtopwben">'+data[i]['message']+'</p><h6 id="comtoph6">全文</h6></div><div class="commid"><div class="date" style="position: relative;"><date>'+data[i]['time']+'</date><div class="current" id="current"><ul><li> <span class="glyphicon glyphicon-heart-empty zan" onclick="goodplus('+data[i]['id']+',this)"><i>赞</i></span></li><li id="excom" pid="'+data[i]['id']+'" onClick="comment(this)"><span class="glyphicon glyphicon-comment"></span>评论</li></ul></div><span class="right" id="right" onClick="show(this)"><img src="img/comicon.png" style="width: 20px;"></span></div></div><div class="combtm">';
+					 strVar +='<div class="commentarea clearfix"><div class="commentarea_left left"><img  src="'+data[i]['pic']+'" style="width: 40px;height: 40px;margin-top: 10px;border-radius: 50%;"/></div><div class="commentarea_right right"><h6>'+data[i]['name']+'</h6><div class="comtop"><p id="comtopwben">'+data[i]['message']+'</p><h6 id="comtoph6">全文</h6></div><div class="commid"><div class="date" style="position: relative;"><date>'+data[i]['time']+'</date><div class="current" id="current"><ul><li> <span class="glyphicon glyphicon-heart-empty zan" onclick="goodplus('+data[i]['id']+',this)"><i>赞</i></span></li><li id="excom" pid="'+data[i]['id']+'" onClick="comment(this)"><span class="glyphicon glyphicon-comment"></span>评论</li></ul></div><span class="right" id="right" onClick="show(this)"><img src="img/comicon.png" style="width: 20px;"></span></div></div><div class="combtm">';
 					 strVar+='<div class="dianzan"><div class="left"><span class="glyphicon glyphicon-heart-empty"></span></div><div class="userlist right">';
                 if(data[i]['praiselist']){
 					for(var j=0;j<data[i]['praiselist'].length;j++){	
@@ -216,7 +216,7 @@
 					  if(data[i]['res']){
 						strVar+='<div class="left"><span class="glyphicon glyphicon-comment"></span></div><div class="commentlist right" id="orderList"><ul id="commentlist'+data[i]['id']+'">';  
 						for(var k=0;j<data[i]['res'].length;k++){	
-						strVar+='<li><div class="left"><img src="'+data[i]['res'][k]['pic']+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><div class="username">'+data[i]['res'][k]['nickname']+'</div><p>'+data[i]['res'][k]['message']+'</p></div></li>';
+						strVar+='<li><div class="left"><img src="'+data[i]['res'][k]['pic']+'" style="width: 30px;height: 30px;border-radius:50%;"/></div><div class="comlistarea right"><div class="username">'+data[i]['res'][k]['nickname']+'</div><p>'+data[i]['res'][k]['message']+'</p></div></li>';
 							}
 						strVar+='</ul><div class="showMore" style="display:none;"><a href="javascript:"><span>更多</span></a><p id="text">还有<span>0</span>条评论未显示</p></div></div>';  
 						  }
@@ -310,7 +310,7 @@
 	  function(d){
 		if(d.status == 1){
 			alert( d.message);
-			$('#commentlist'+pid).append('<li><div class="left"><img src="{$headpic}" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><div class="username">{$nickname}</div><p>'+mesage+'</p></div></li>');
+			$('#commentlist'+pid).append('<li><div class="left"><img src="{$headpic}" style="width: 30px;height: 30px;border-radius:50%;"/></div><div class="comlistarea right"><div class="username">{$nickname}</div><p>'+mesage+'</p></div></li>');
 			$('#message'+pid).val('');
 			$('#message'+pid).parent().hide();
 		  }

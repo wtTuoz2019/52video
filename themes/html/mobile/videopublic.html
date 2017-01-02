@@ -1,0 +1,147 @@
+<!--if:{$zidingyi['notice']}-->
+		<div class="scroll-bar">
+			<marquee style="color:#fff; font-size: 1.2rem; width: 100%; line-height: 25px;" scrollamount=1>{$zidingyi.notice}</marquee>	
+			
+		</div>
+         <!--/if-->
+		<div class="view-box clearfix">	
+        		<div class="schoolmessage">
+                	<img class="schoollogo" src="__PUBLIC__/images/schoollogo.jpg"/>
+                    <p>
+                        <span>上海闵行教育</span>
+                        <br/>
+                        <span><img  src="__PUBLIC__/images/usersee.png"/>{$info.views}人</span>
+                	</p>
+                </div>
+				<div class="" style="float: right;margin-top: 9px;margin-right:10px;">
+			    	<a href="{$config.addurl}" class="Focus" >
+                    <span style="font-size:2.5rem;position: relative;top: -2px;">+</span><span> 技术支持</span>
+                    </a>
+			   
+				</div>
+		</div>
+		</section>
+		<section>
+			<div class="tab-box" id="tab-box">
+				<ul id="myTab" class="  clearfix" role="tablist">
+                	<!--foreach:{$functions $key $vo}-->
+                          <li class="funcions{$vo.id} <?php if(!$key) echo 'active'; ?>" ><a href="#funcions{$vo.id}"  role="tab" data-toggle="tab">{$vo.name}</a></li>		
+                           <!--/loop-->
+                    
+				</ul> 
+				
+				<div id="myTabContent" class="tab-content">
+                	 <!--foreach:{$functions $key $vo}-->
+                     <div class="tab-pane <?php if(!$key) echo 'active'; ?>" id="funcions{$vo.id}">
+                     
+                     <?php if($vo['type']=='comment'){?>
+                     
+                      <!--#include file="menu_comment.html"-->
+					 <?php }elseif($vo['type']=='jiaoyancomment'){?>
+                          <!--#include file="menu_jiaoyan.html"-->
+                          <?php }elseif($vo['type']=='content'){?>
+                        	{$vo.content html}
+                         <?php }elseif($vo['type']=='url'){?>
+                         <script>
+						 $('.funcions{$vo.id}').bind('click',function(){
+							 
+							window.location="{$vo.content}"; 
+							 });
+						 </script>
+                          <?php }elseif($vo['type']=='linkaid'){?>
+                          <ul>
+     <?php  
+     $loop=array();
+     if($vo['content'])
+    $loop=model('content')->getlist($vo['content']);
+  
+      ?> <!--foreach:{$loop $val}-->    
+                <li   class="<?php echo $val['cid']==16?'live-class':'over-class';  ?> m_recommend">
+                    
+                   
+                   		<span class="quan"></span>
+						<span class="quan2"></span>
+						<div class="col-xs-6 cebian">
+                            <p>
+                       		<span><?php echo $val['cid']==16?date('Y-m-d',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?>&nbsp;&nbsp;<?php echo $val['cid']==16?'直播':'重播';  ?></span><img src="img/video.png"/></p>
+							<a href="{$val.aurl}">
+                            <img src="{$val.image}" class="img-responsive m_img"/>
+                            <img src="img/to_play.png" class="to_play"/>
+                            </a>
+							
+						</div>
+                        <div class="col-xs-6 r_text">
+                   		<p><a href="{$val.aurl}">{$val.title}</a></p>
+                   		</div>
+				</li>
+		<!--/loop-->
+		</ul>
+                             <?php }elseif($vo['type']=='looktimes'){?>
+     <ul  class="orderList">
+     <?php  
+     $loop=array();
+    $loop=model('content')->gettimes($info['videourl']);
+  
+      ?> 
+      
+      
+      <!--foreach:{$loop $val}-->    
+                <li  >
+
+                <div class="date">
+                	<i class="dian"></i>
+					<i class="datetime"><?=formartkandian($val[start])?></i>
+					
+				</div>
+                <div class="content">
+                    <a href="javascript:" onclick="playseek(this)" data-time="{$val.start}"  end-time="{$val.end}">{$val.name} </a>
+                  </div> 
+				</li>
+
+		<!--/loop-->
+		</ul>
+                           <?php }?>
+					</div>
+                           <!--/loop-->
+                
+				</div>
+			</div>
+		</section>
+		<script>
+		            var s =document.getElementById("tab-box");
+		            var uls = document.getElementById("myTab");
+					var as = uls.getElementsByTagName("a");
+					for(var i=0; i<as.length;i++){
+						var sum = parseInt(s.clientWidth/ as.length)
+						as[i].style.width = sum +"px";
+					}
+					
+					function zan(){
+						var counts = document.getElementById("zan-counts");
+						
+						$.post('/index.php/change',{type:'love',fid:'{$info.aid}',uid:'<?php echo $_SESSION["uid"];?>'},function(data){
+				if(data.status=='1'){
+				
+					 counts.innerHTML = counts.innerHTML*1+1;
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}else{
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}
+			},'json');
+						
+						   
+					}
+					
+		</script>
+      
+<!--Tabs.js-->
+<script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
+
+   <!--#include file="common.html"-->
+   
+   
+   
+   
+   

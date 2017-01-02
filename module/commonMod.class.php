@@ -31,7 +31,10 @@ class commonMod
 		
 			$this->config['token']=$token;
 			$this->urltoken='&token='.$token;
-		
+			if($wxuser['appid']&&$wxuser['appsecret']){
+				$this->config['appid']=$wxuser['appid'];
+				$this->config['appsecret']=$wxuser['appsecret'];
+				}
 			$admininfo=model('user')->admininfobytoken($token);
 		
 		

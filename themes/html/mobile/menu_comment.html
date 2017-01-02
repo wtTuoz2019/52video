@@ -77,14 +77,14 @@
       <div class="load_m tr" id="more">加载更多</div>
 	
       <div class="commentinput">
-			<img id="smile" src="__PUBLIC__/images/smile.png">
+			<img id="smile" src="__PUBLIC__/images/face.png">
             <?php if($info['hall']){ ?>
             	<input type="text" id="editors" placeholder="我来说两句" readonly onClick="comment(this)">
             <a  data-toggle="modal" data-target="#mymodal-data1"  href="javascript:"><img id="shang" src="__PUBLIC__/images/shang.png"></a>
             <?php }else{?>
-			<input type="text" style="width:80%;" id="editors" placeholder="" readonly onClick="comment(this)">
+			<input type="text" style="width:60%;" id="editors" placeholder="我来说两句..." readonly onClick="comment(this)">
           <?php }?>
-		
+			<img id="import" src="__PUBLIC__/images/import.png"/>
 		</div>
     <script>
 			$('#refresh').bind('click',function(e){

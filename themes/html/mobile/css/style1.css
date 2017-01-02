@@ -109,6 +109,7 @@ span.resdel { float:right; margin-top:0}
 .commentarea_right .dianzan,.commentarea_right .pinglun
 {
 	padding: 5px;
+	overflow: hidden;
 }
 .commentarea_right .dianzan span,.commentarea_right .pinglun span
 {
