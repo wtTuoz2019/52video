@@ -26,14 +26,15 @@ class commonMod
 		
 		$token=trim($_GET['token']);
 		if($token){
-			
+		
 			$this->wxuser=model('user')->wxuser($token);	
 		
 			$this->config['token']=$token;
 			$this->urltoken='&token='.$token;
-			if($wxuser['appid']&&$wxuser['appsecret']){
-				$this->config['appid']=$wxuser['appid'];
-				$this->config['appsecret']=$wxuser['appsecret'];
+			
+			if($this->wxuser['appid']&&$this->wxuser['appsecret']){
+				$this->config['appid']=$this->wxuser['appid'];
+				$this->config['appsecret']=$this->wxuser['appsecret'];
 				}
 			$admininfo=model('user')->admininfobytoken($token);
 		

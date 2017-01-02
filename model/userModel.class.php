@@ -131,7 +131,8 @@ class userModel extends commonModel
 	  //获取用户内容
     public function wxuser($token)
     {
-        return $this->model->table('wxuser')->where("token='".$token."'")->find();
+		
+        return $this->model->table('wxuser')->where(array('token'=>$token))->find();
     }
 	
 	  //添加直播预告
