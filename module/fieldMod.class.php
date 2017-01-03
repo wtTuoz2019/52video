@@ -110,6 +110,7 @@ class fieldMod extends commonMod {
 	
         //内容列表
         $loop=model('field')->field_index_list($where,$limit);
+	
 
         //统计总内容数量
        $this->count= $count=model('field')->field_index_count($where);

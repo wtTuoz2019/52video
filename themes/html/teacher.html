@@ -133,7 +133,7 @@ $('#cid'+cid).addClass('sd011');
                     <div class="cnav">
                     <div class="video">
                      <a  href="{$list.aurl}" target="_blank" >
-                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $list['image'];} ?>" />
+                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $sys['imageurl'].$list['image'];} ?>" />
                     </a>
                      <?php if($list['cid']==16){ ?>
                      <div class="videtext">

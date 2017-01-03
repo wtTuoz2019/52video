@@ -28,8 +28,8 @@
 <!--start 中间部分--> 
 <div class="volid">
 	<div class="contentBox">
-    		<img class="big_img" src="/upload/aidimage/{$info.aid}.png"  />
-				<h1><img src="/upload/aidimage/{$info.aid}.png"  />
+    		<img class="big_img" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
+				<h1><img src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
                 <p>
                 	<span>温馨提示：</span>
                 	<br/>
@@ -47,7 +47,7 @@
                 </script>
              
                   <?php   if ($info['airtime']>time()) {  ?>
-          <div style="background: #fff url('{$info.image}') no-repeat scroll 0 0 / cover ;" class="down" >
+          <div style="background: #fff url('{$sys['imageurl']}{$info.image}') no-repeat scroll 0 0 / cover ;" class="down" >
 			<div class="doo">
 				<div id="dao" class="endtime" value="{$info.airtime}"></div>
 			</div>
@@ -76,7 +76,7 @@
 	var w = "100%";//视频宽度
   var h = "400";//视频高度
   var url = "{$info.videourl}";//视频地址
-  var image = "{$info.image}";//封面图片
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
   var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
@@ -106,7 +106,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
   var h = "400";//视频高度
   var url = "http://{$config.out}/video/{$info.videourl}/video.m3u8" 
 
-  var image = "{$info.image}";//封面图片
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
   var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
@@ -121,7 +121,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
   var h = "400";//视频高度
   var url = "http://{$config.out}/video/{$info.videourl}/1280/video.m3u8" 
   var urlarray = "http://{$config.out}/video/{$info.videourl}/640/video.m3u8|http://{$config.out}/video/{$info.videourl}/1280/video.m3u8|http://{$config.out}/video/{$info.videourl}/1920/video.m3u8";//视频地址
-  var image = "{$info.image}";//封面图片
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
   var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,deft:'标清|高清|超清',defa:urlarray,c:0,s:4,i:image,lv:0,p:play};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];

@@ -89,7 +89,7 @@ h2{margin:0px 10px;background:#ccc;padding:5px;}
 .sd02{cursor:pointer;margin:2px;padding:4px; margin-left:10px;} 
 .cnav{ width:315px; height:293px;-webkit-box-shadow:0 0 10px #9C9C9C;-moz-box-shadow:0 0 10px #9C9C9C;box-shadow:0 0 10px #9C9C9C; float:left; margin-left:11px; margin-top:15px; position:relative;}
 .video{ width:301px; height:211px; margin:7px; float:left;position: relative;}
-.video img{width:301px; height:211px;}
+.video img{width:300px; height:210px;}
 .mages p{ float:left; margin:0; line-height:32px; color:#787878;font-family: "微软雅黑"; }
 .time{margin:0; line-height:32px; color:#787878;font-family: "Arial"!important; width:65%; }
 .mages{ width:95%; margin:0 auto; overflow:hidden;}

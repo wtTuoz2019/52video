@@ -48,7 +48,7 @@
 		 ?>
 		
         <div class="watchover">
-            <img src="{$info.image}"  alt="" />
+            <img src="{$sys['imageurl']}{$info.image}"  alt="" />
         	<div class="black-warp">
                 直播已经结束，稍后即可点播回看
             </div>
@@ -63,7 +63,7 @@
         	
         </div>
         <div id="backdrop" class="backdrop">
-			<img src="{$info.image}"  alt="" />
+			<img src="{$sys['imageurl']}{$info.image}"  alt="" />
           <!--  <img src="__PUBLIC__/images/{$subscribe}.png" id="subscribe" onClick="subscribeclick({$info.aid})"  />-->
            <!-- <button id="bsubscribe">点击预约</button>-->
 			<div class="counter">
@@ -99,7 +99,7 @@ var note = $('#note'),
 	var w = "100%";//视频宽度
   var h = "200";//视频高度 
   var url = "http://{$sys.ali}{$channel.vMp4url}.m3u8";//视频地址
-  var image = "{$info.image}";//封面图片
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
   var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:1,p:play};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
@@ -167,7 +167,7 @@ var play=1;
 	var w = "100%";//视频宽度
   var h = "200";//视频高度 
   var url = "{$info.videourl}";//视频地址
-  var image = "{$info.image}";//封面图片
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
   var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
@@ -190,7 +190,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
   var h = "200";//视频高度
   var url = "http://{$config.out}/video/{$info.videourl}/video.m3u8" 
 
-  var image = "{$info.image}";//封面图片
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
   var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
@@ -205,7 +205,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
   var h = "200";//视频高度
   var url = "http://{$config.out}/video/{$info.videourl}/1280/video.m3u8" 
 
-  var image = "{$info.image}";//封面图片
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
   var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
@@ -316,7 +316,7 @@ var note = $('#note'),
                             <p>
                        		<span><?php echo $val['cid']==16?date('Y-m-d',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?>&nbsp;&nbsp;<?php echo $val['cid']==16?'直播':'重播';  ?></span><img src="img/video.png"/></p>
 							<a href="{$val.aurl}">
-                            <img src="{$val.image}" class="img-responsive m_img"/>
+                            <img src="{$sys['imageurl']}{$val.image}" class="img-responsive m_img"/>
                             <img src="img/to_play.png" class="to_play"/>
                             </a>
 							

@@ -59,7 +59,7 @@
                     <div class="cnav">
                     <div class="video">
                      <a  href="{$list.aurl}" target="_blank" >
-                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $list['image'];} ?>" />
+                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $sys['imageurl'].$list['image'];} ?>" />
                     </a>
                      <?php if ($list['cid'] == 16) { ?>
                     <!--
@@ -96,7 +96,7 @@
                     <div class="cnav">
                     <div class="video">
                      <a  href="{$list.aurl}" target="_blank" >
-                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $list['image'];} ?>" />
+                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $sys['imageurl'].$list['image'];} ?>" />
                     </a>
                   
                     </div>
@@ -122,7 +122,7 @@
                     <div class="cnav">
                     <div class="video">
                      <a  href="{$list.aurl}" target="_blank" >
-                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $list['image'];} ?>" />
+                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $sys['imageurl'].$list['image'];} ?>" />
                     </a>
                    
                     <div class="videtext">
@@ -180,7 +180,7 @@ $('.sd02').bind('click',function(e){
                     <div class="cnav">
                     <div class="video">
                      <a  href="{$list.aurl}" target="_blank" >
-                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $list['image'];} ?>" />
+                    <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $sys['imageurl'].$list['image'];} ?>" />
                     </a>
                      <?php if ($list['cid'] == 16) { ?>
                    <!-- <div class="videtext">
@@ -211,7 +211,7 @@ $('.sd02').bind('click',function(e){
 <div class="teacher-second10">
 <a href="__APP__/field/teacher/tid-{$list['id']}" target="_blank">
 <div style="width:140px; height:140px; border-radius:50%; background:#999;opacity:0.4;position: relative; left:20px; top:5px;"></div>
-<img class="imges" src="{$list.image}" />
+<img class="imges" src="{$sys['imageurl']}{$list.image}" />
 <div class="videtext">
      <p>{$list.name}<span>——{$list.title}</span></p>
       <p>
@@ -239,7 +239,7 @@ $('.sd02').bind('click',function(e){
 <div class=" school-second">
 <ul>
   <!--list:{table="school"   order="sequence desc" limit="6"}-->
-<li><a href="/field/school/csid-{$list.id}" target="_blank"> <img src="{$list.image}" width="175px" height="85px" /></a></li>
+<li><a href="/field/school/csid-{$list.id}" target="_blank"> <img src="{$sys['imageurl']}{$list.image}" width="175px" height="85px" /></a></li>
    <!--/list-->
 </ul>
 

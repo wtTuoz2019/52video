@@ -25,9 +25,9 @@
 <!--start 中间部分-->
 <div class="volid">
 	<div class="contentBox">
-   			<img class="big_img" src="/upload/aidimage/{$info.aid}.png"/>
+   			<img class="big_img" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"/>
 			<h1>
-            	<img src="/upload/aidimage/{$info.aid}.png"  style="float:left; height:55px;"/>
+            	<img src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  style="float:left; height:55px;"/>
             	<p>
                 	<span>温馨提示：</span>
                 	<br/>
@@ -84,7 +84,7 @@ var play=1;
 	var w = "100%";//视频宽度
   var h = "400";//视频高度
   var url = "rtmp://{$sys.ali}{$channel.vMp4url}";//视频地址
-  var image = "{$info.image}";//封面图片
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
   var flashvars={f:url,c:0,s:0,i:image,lv:1,p:play,loaded:'loadHandler'};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
@@ -95,7 +95,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 </script>
         
            <?php } ?>
-       <div style="background: #fff url('{$info.image}') no-repeat scroll 0 0 / cover ;" class="down <?php 
+       <div style="background: #fff url('{$sys['imageurl']}{$info.image}') no-repeat scroll 0 0 / cover ;" class="down <?php 
 		 $end = $info['starttime'] + 60*$info['time'];
 		 if ($info['starttime'] <= time() && $end >= time()) {
 		 	echo 'noe';

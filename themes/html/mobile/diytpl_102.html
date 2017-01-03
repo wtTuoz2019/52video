@@ -52,7 +52,7 @@
                                     <a href="{$vo.aurl}">
                                        
                                         <div class="img-box">
-                                            <img src="{$vo.image}" alt="" />
+                                            <img src="{$sys['imageurl']}{$vo.image}" alt="" />
                                              
                                             <span class="star-icon"><img src="__TPL__diytpl/img/starticon.png" alt="" /></span>
                                         </div>
@@ -60,7 +60,7 @@
                                         <div class="person-box">
                                         <!--if:{$vo[teacher]}-->
                                             <span class="head-img">
-                                               <img src="{$vo.image}" />
+                                               <img src="{$sys['imageurl']}{$vo.image}" />
                                             </span>
                                             <span class="person-name">{$vo[teacher][name]}</span>
                                             <span>|</span>
