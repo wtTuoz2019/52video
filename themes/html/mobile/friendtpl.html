@@ -29,7 +29,7 @@
 			<div class="logo-box">
 			
                	<?php echo $zidingyi['logo']?'<div class="logo-img">
-					<img src="'.$zidingyi['logo'].'">
+					<img src="'.$sys['imageurl'].$zidingyi['logo'].'">
 				</div>':'<style>.logo-box{height:auto}</style>';  ?>
 				
 			
@@ -140,7 +140,7 @@ var play=1;
    
      
         <div id="backdrop" class="backdrop">
-			<img src="{$info.image}"  />
+			<img src="{$sys['imageurl']}{$info.image}"  />
           
 			<div class="counter">
 				<p>距离开播还有：</p>
@@ -278,7 +278,7 @@ var note = $('#note'),
 				 <?php if($zidingyi['titleimage']){ ?>
 				<div class="T-title">
 					
-					<a href="{$zidingyi.titleurl}"><img src="{$zidingyi.titleimage}" alt="" /></a>
+					<a href="{$zidingyi.titleurl}"><img src="{$sys['imageurl']}{$zidingyi.titleimage}" alt="" /></a>
 				</div>
                 <?php } ?>
 				<div id="myTabContent" class="tab-content">
