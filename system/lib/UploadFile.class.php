@@ -142,8 +142,20 @@ class UploadFile {
 			 }
 		}
 		if( move_uploaded_file($srcFileName, $destFileName) ) {
+require(CP_CORE_PATH . '/../ext/aliyun-oss-php-sdk-master/samples/Common.php');
+	$ossClient = Common::getOssClient();
+		if (is_null($ossClient)) exit(1);
+	$bucket = Common::getBucketName();
+	$temp=explode('upload',$destFileName);
+	$object='upload'.$temp[1];
+	
+	 $ossClient->uploadFile($bucket, $object, $destFileName);
+   
+			
 			return true;
 		} 
+
+
 		$this->errorMsg= '文件上传保存错误！';
 		return false;
 	}

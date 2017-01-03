@@ -35,7 +35,7 @@
         ?>" forhref="http://{$sys['MOBILE_DOMAIN']}/content/index?aid={$vo['aid']}" class="class_pic"><img align="AbsMiddle" src="__PUBLICURL__/images/ico/pic.png" width="14" height="14" alt="" /></a></h3>
                               <div class="col-sm-9">
                               	
-                             <img class="video_img" src="{$vo.image}" width="100%" height="170px"> 
+                             <img class="video_img" src="{$sys.imageurl}{$vo.image}" width="100%" height="170px"> 
                            	 <div class="mask" >
                              	<button class="end btn btn-default" onClick="endlive('{$vo.aid}')">结束直播</button>
                              </div>
@@ -76,6 +76,7 @@
                 </section>
                 
                  <script>
+				 
 	$(document).ready(function() {
 					$(".class_pic").powerFloat({
    					 targetMode: "ajax"

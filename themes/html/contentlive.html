@@ -95,7 +95,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 </script>
         
            <?php } ?>
-       <div style="background: #fff url('{$sys['imageurl']}{$info.image}') no-repeat scroll 0 0 / cover ;" class="down <?php 
+       <div style="background: #fff url('{$sys['imageurl']}{$info.image}') no-repeat scroll 0 0 / cover ;background-size:100% 100%;" class="down <?php 
 		 $end = $info['starttime'] + 60*$info['time'];
 		 if ($info['starttime'] <= time() && $end >= time()) {
 		 	echo 'noe';

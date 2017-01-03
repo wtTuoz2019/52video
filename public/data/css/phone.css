@@ -1,10 +1,14 @@
-button:focus{
+	button:focus{
 		outline:none;
-	}  
+	} 
+	#basic{
+		overflow:hidden;
+	}
 	.page_form{
 		width:60%;
 		display:inline-block;
 		border:1px solid #ddd;
+		float:left;
 	}
 	#phonetemplate{
 		display: inline-block;

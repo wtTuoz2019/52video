@@ -10,10 +10,10 @@ var urldomin='/content/functioninfo/id-';
 		$('#phonetemplate #myiframe').css('top',(h/2-290)+'px')
 		
 		
-		/*修改里面的内容*/
-		$('#fakehead .logo-img').append('<img src='+$('#logo').val()+' />');
-		$('#fakebody').append('<img src='+$('#image').val()+' />');
-		$('#fakeimg').append('<img src='+$('#titleimage').val()+' />');
+		/*修改里面的内容*/ 
+		$('#fakehead .logo-img').append('<img src="'+imageurl+''+$('#logo').val()+'" />');
+		$('#fakebody').append('<img src="'+imageurl+''+$('#image').val()+'"/>');
+		$('#fakeimg').append('<img src="'+imageurl+''+$('#titleimage').val()+'" />');
 		$('#myiframe .scroll-bar marquee').text($('#notice').val());
 		if($('#logo').val()==''){
 			//$('#fakehead .logo-img img').attr("src",'/themes/html/mobile/img/fakehead.jpg');
@@ -73,19 +73,19 @@ var urldomin='/content/functioninfo/id-';
 			if($(e).val()==''){
 				$('#fakebody img').attr("src",'/themes/html/mobile/img/fakebody.jpg');
 			}else{
-				$('#fakebody img').attr("src",$(e).val());
+				$('#fakebody img').attr("src",''+imageurl+''+$(e).val()+'');
 			}
 		}else if($(e).attr("name")=='zidingyi[logo]'){
 			if($(e).val()==''){
 				$('#fakehead .logo-img').empty();
 			}else{
-				$('#fakehead .logo-img').append('<img src='+$(e).val()+' />');
+				$('#fakehead .logo-img').append('<img src="'+imageurl+''+$(e).val()+'" />');
 			}
 		}else if($(e).attr("name")=='zidingyi[titleimage]'){
 			if($(e).val()==''){
 				$('#fakeimg').empty();
 			}else{
-				$('#fakeimg').append('<img src='+$(e).val()+' />');
+				$('#fakeimg').append('<img src="'+imageurl+''+$(e).val()+'" />');
 			}
 		}
 	}

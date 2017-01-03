@@ -333,6 +333,16 @@ class liveModel extends commonModel
         if(!file_exists($filename)){
             $qercode = new Qrcodes();
             $qr = $qercode->_Qrcode($url,$filename);
+		require(CP_CORE_PATH . '/../ext/aliyun-oss-php-sdk-master/samples/Common.php');
+	$ossClient = Common::getOssClient();
+		if (is_null($ossClient)) exit(1);
+	$bucket = Common::getBucketName();
+	$temp=
+	$object='upload/aidimage/'.$id.'.png';
+	
+	 $ossClient->uploadFile($bucket, $object, $filename);
+   
+			
         }
     }
 	 public function gsetQrcodecomment($url, $id){

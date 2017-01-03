@@ -34,7 +34,7 @@
                             <p>
                        		<span><?php echo $val['cid']==16?date('Y-m-d',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?>&nbsp;&nbsp;<?php echo $val['cid']==16?'直播':'重播';  ?></span><img src="/themes/html/mobile/img/video.png"/></p>
 							<a href="{$val.aurl}" target="_blank">
-                            <img src="{$val.image}" class="img-responsive m_img"/>
+                            <img src="{$sys.imageurl}{$val.image}" class="img-responsive m_img"/>
                             <img src="/themes/html/mobile/img/to_play.png" class="to_play"/>
                             </a>
 							
