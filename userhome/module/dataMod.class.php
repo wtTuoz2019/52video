@@ -42,12 +42,18 @@ class dataMod extends commonMod
 			
 			
 			$where[1]='starttime<'.$endtime.' and endtime>'.$starttime;
+		
 			$videoflow['date'].="'".date('m-d',$endtime)."',";
 			$videoflow['value'].=model('data')->looktimesum($where).',';
-			}
+			
+			$livenum['date'].="'".date('H:i',$endtime)."',";
+			$livenum['value'].=model('data')->getcount($where).',';
+			
+			}	
 			$this->assign('videoflow',$videoflow);
-	  
-	  
+	 	$this->assign('livenum',$livenum);
+	 
+		
 			$section=array(
 				//'0'=>array('name'=>'10分钟以下','where'=>'endtime-starttime<'.(10*60).''),
 //				'1'=>array('name'=>'10分钟至30分钟','where'=>'endtime-starttime between '.(10*60).' and '.(30*60).''),	
@@ -76,22 +82,8 @@ class dataMod extends commonMod
 		}
 	
 		
-		//在线人数
-		$live=model('data')->get_livestream($id);
-		if($live){
-		 $timestep=intval($live['time']*6);$livenum=array();
-		 $where=array('aid'=>$id);
-		for($i=1;$i<=10;$i++){
-			$starttime=$live['starttime']+($i-1)*$timestep;
-			$endtime=$live['starttime']+($i)*$timestep;
-			$where='starttime<'.$endtime.' and endtime>'.$starttime;
-			$livenum['date'].="'".date('H:i',$endtime)."',";
-			$livenum['value'].=model('data')->getcount($where).',';
-			}
-			$this->assign('livenum',$livenum);
-		}
-		
-		
+	
+		 
 		$data['city']=model('data')->city($id);
 	
 		$citydata1="";
