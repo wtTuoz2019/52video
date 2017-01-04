@@ -193,6 +193,172 @@
 <script type=text/javascript src=" __PUBLICURL__/js/highcharts-3d.js"></script>
 <script type=text/javascript src=" __PUBLICURL__/js/radialIndicator.min.js"></script>
 <script type="text/javascript">
+var id='{$id}';
+ 
+	$.post('__URL__/flowdata',{id:id},function(data){
+		$('#videoflow').highcharts({
+        chart: {
+            type: 'areaspline'
+        },
+        title: {
+            text: '流量曲线图'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 150,
+            y: 100,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: '#FFFFFF'
+        },
+        xAxis: {
+            categories: 
+               data.message.videoflow.date
+            
+        },
+        yAxis: {
+            title: {
+                text: '流量/M'
+            }
+        },
+        tooltip: {
+            shared: true,
+            valueSuffix: 'M'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            areaspline: {
+                fillOpacity: 0.5
+            }
+        },
+        series: [{
+            name: '流量/M',
+            data: data.message.videoflow.value
+        }]
+    });
+	
+	 $('#livenum').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '直播在线人数'
+        },
+        subtitle: {
+            text: '来源: 闪阅云'
+        },
+        xAxis: {
+            categories:data.message.livenum.date
+        },
+        yAxis: {
+            title: {
+                text: '人数'
+            }
+        },
+        tooltip: {
+            enabled: false,
+            formatter: function() {
+                return '<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y;
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: '在线人数',
+            data: data.message.livenum.value
+        }]
+    });
+  
+	
+		},'json')
+
+	$.post('__URL__/sectiondata',{id:id},function(data){
+ $('#line-chart').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '访客观看时间分区段统计'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories:
+                data.message.y
+           ,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '人数 '
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} 人</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: '总访客',
+            data: data.message.allcount
+        }, {
+            name: '点播访客',
+            data: data.message.coursecount
+        }, {
+            name: '直播访客',
+            data: data.message.livecount
+        }]
+    });
+},'json')
+$.post('__URL__/sexcity',{id:id},function(data){
+	
+	 $('#mobile-chart').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: '访客来源统计'
+        },
+        subtitle: {
+            text: '来源对比'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 20,
+                depth: 20
+            }
+        },
+        series: [{
+            name: '数量',
+            data: data.message.citydata    
+        }]
+    });
+},'json')
 $(function () {
 	var containerall = $('#flowall'),
     msgHolder = containerall.find('.rad-cntnt'),
@@ -224,166 +390,10 @@ $(function () {
         displayNumber: false
     }).data('radialIndicator');
  
+
 	
-	$('#videoflow').highcharts({
-        chart: {
-            type: 'areaspline'
-        },
-        title: {
-            text: '流量曲线图'
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            verticalAlign: 'top',
-            x: 150,
-            y: 100,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: '#FFFFFF'
-        },
-        xAxis: {
-            categories: [
-               {$videoflow.date}
-            ]
-        },
-        yAxis: {
-            title: {
-                text: '流量/M'
-            }
-        },
-        tooltip: {
-            shared: true,
-            valueSuffix: 'M'
-        },
-        credits: {
-            enabled: false
-        },
-        plotOptions: {
-            areaspline: {
-                fillOpacity: 0.5
-            }
-        },
-        series: [{
-            name: '流量/M',
-            data: [{$videoflow.value}]
-        }]
-    });
-	
-	
-   $('#line-chart').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '访客观看时间分区段统计'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
-                {$sectiondata.y}
-            ],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: '人数 '
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} 人</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: '总访客',
-            data: [{$sectiondata.allcount}]
-        }, {
-            name: '点播访客',
-            data: [{$sectiondata.coursecount}]
-        }, {
-            name: '直播访客',
-            data: [{$sectiondata.livecount}]
-        }]
-    });
-	
-    $('#mobile-chart').highcharts({
-        chart: {
-            type: 'pie',
-            options3d: {
-                enabled: true,
-                alpha: 45
-            }
-        },
-        title: {
-            text: '访客来源统计'
-        },
-        subtitle: {
-            text: '来源对比'
-        },
-        plotOptions: {
-            pie: {
-                innerSize: 20,
-                depth: 20
-            }
-        },
-        series: [{
-            name: '数量',
-            data: [
-                {$data.citydata}         ]
-        }]
-    });
-	  <?php if($livenum){ ?>
-	 $('#livenum').highcharts({
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: '直播在线人数'
-        },
-        subtitle: {
-            text: '来源: 闪阅云'
-        },
-        xAxis: {
-            categories: [{$livenum.date}]
-        },
-        yAxis: {
-            title: {
-                text: '人数'
-            }
-        },
-        tooltip: {
-            enabled: false,
-            formatter: function() {
-                return '<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y;
-            }
-        },
-        plotOptions: {
-            line: {
-                dataLabels: {
-                    enabled: true
-                },
-                enableMouseTracking: false
-            }
-        },
-        series: [{
-            name: '在线人数',
-            data: [{$livenum.value}]
-        }]
-    });
-	 <?php } ?>
+   
+	 
 });
 		</script>
         

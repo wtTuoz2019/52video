@@ -6,6 +6,9 @@
 /* ==========================================================================
 Base styles:opinionated defaults
 ========================================================================== */
+*{
+	box-sizing:border-box;
+}
 a:link, a:visited, a:hover, a:active {
     color: #333;
     text-decoration: none;

@@ -32,17 +32,40 @@
          <tr>
           <td width="100" align="right">所属学校</td>
           <td width="350" style="position:relative;"><select name="csid"  reg="." id="csid" >
-              <option value="0">======全部学校======</option>
+              <option value="0">======选择学校======</option>
               <!--foreach:{$school $vo}--> 
               <option value="{$vo['id']}" <?php if($info['csid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
                   {$vo['name']}
               </option>
               <!--{/foreach}-->
             </select>
-            <input class="allsc" style="position:absolute;height:28px;width:50%;left:8px;opacity:0;" />
             </td>
           <td></td>
         </tr>
+        
+   
+   <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
+   <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
+  <script type="text/javascript">
+	$(document).ready(function() {
+				$('#csid').multiselect({
+					includeSelectAllOption: true,
+					nonSelectedText:'未选择',
+					nSelectedText:'个已选',
+					selectAllText: '全选',
+					allSelectedText: '已全选',
+					enableClickableOptGroups: true,
+					enableFiltering: true,
+					numberDisplayed: 1,
+					maxHeight: 300
+					
+				});
+				
+			});
+		</script>
+        
+        
+        
          <?php } ?>
          <tr>
           <td width="100" align="right">所属科目</td>
@@ -100,14 +123,7 @@
 				},'json');
 			
 			}
-		$(function(){
-			$('.allsc').focus(function(){
-				$(this).css('opacity','1');
-			});
-			 $('.allsc').blur(function(){
-				$(this).css('opacity','0');	
-			});
-		});
+		
 		
           
         </script>

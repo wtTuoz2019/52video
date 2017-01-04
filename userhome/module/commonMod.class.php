@@ -11,6 +11,7 @@ class commonMod
     
     public function __construct(){
         global $config;
+		
          $session_name = session_name();
         if(!isset($_COOKIE[$session_name]))
         {
@@ -156,15 +157,14 @@ class commonMod
                 return true;
             }
         }
-        $uid=$_SESSION[$this->config['SPOT'].'_user'];
+        $userinfo=$_COOKIE[$this->config['SPOT'].'_adminuser'];
+    
+			  $user=model('login')->check_login($userinfo);
         //读取登录信息
-        if(empty($uid)){
-            $this->redirect(__APP__ . '/login');
-        }
-        $user=model('login')->user_info_id($uid);
         if(empty($user)){
             $this->redirect(__APP__ . '/login');
         }
+        
         $this->check_pw($user);
         return true;
     }

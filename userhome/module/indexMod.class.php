@@ -12,6 +12,7 @@ class indexMod extends commonMod
 		$this->lang=model('lang')->current_lang();
 		$this->lang_list=model('lang')->lang_list();
         $this->menu_list=model('menu')->main_menu();
+	
         $this->show();
     }
 

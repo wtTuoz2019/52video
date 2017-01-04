@@ -1023,3 +1023,17 @@ body{
 	width: 16px;
     height: 13px;
 }
+.orderList li .person img{
+	float:none;
+	margin:0;
+			
+}
+.orderList1 li .person img{
+	float:none;
+	margin:0;
+			
+}
+.orderList2 li .person img{
+	float:none;
+	margin:0;
+}

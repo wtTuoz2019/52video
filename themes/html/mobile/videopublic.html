@@ -6,9 +6,9 @@
          <!--/if-->
 		<div class="view-box clearfix">	
         		<div class="schoolmessage">
-                	<img class="schoollogo" src="__PUBLIC__/images/schoollogo.jpg"/>
+                	<img class="schoollogo" src="{$sys.imageurl}{$school[$info['csid']]['headimg']}"/>
                     <p>
-                        <span>上海闵行教育</span>
+                        <span>{$school[$info['csid']]['name']}</span>
                         <br/>
                         <span><img  src="__PUBLIC__/images/usersee.png"/>{$info.views}人</span>
                 	</p>
@@ -133,6 +133,24 @@
 						
 						   
 					}
+					
+					
+		
+		 var style="<?=$zidingyi[style]?>";
+		changecolor(style);
+			$('#mask').click(function(){
+		$('#mask,#register').hide();
+	});
+function changecolor(color){
+	if(color=='red')
+{
+	$('.view-box').addClass('backgroudCb');
+	$('.infos').addClass('chageCw');
+	$('#myTab').addClass('backgroudC')
+	}else{
+		$('#myTab').addClass('tab-nav')
+		}
+}	
 					
 		</script>
       

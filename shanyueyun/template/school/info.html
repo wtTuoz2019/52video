@@ -23,6 +23,16 @@
         <input name="name" type="text" class="text_value" id="name" value="{$info.name}" reg="\S" msg="学校名称不能为空" />
         </td>
       </tr>
+       <tr>
+        <td width="100">头像</td>
+        <td colspan="2">
+          <?php echo module('editor')->get_image_upload('headimg1','headimg',false,'editor_content') ?>
+          <input name="headimg" type="text" class="text_value" id="headimg" style="width:220px; float:left" value="{$info.headimg}"/> 
+          &nbsp;&nbsp;<input type="button" id="headimg1" class="button_small" value="选择图片" />
+       
+        </td>
+        </tr>
+        <tr>
         <tr>
         <td width="100">LOGO</td>
         <td colspan="2">

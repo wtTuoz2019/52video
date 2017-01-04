@@ -102,7 +102,7 @@ var win = art.dialog.open.origin;
 							case 'gif':
 							case 'bmp':
 							case 'png':
-								html='<img src="'+json.url+'" title="'+json.title+'" alt="'+json.title+'" />';
+								html='<img src="{$config.imageurl}'+json.url+'" title="'+json.title+'" alt="'+json.title+'" />';
 								 break;
 							case 'mp4':
 							case 'mp3':
@@ -112,14 +112,14 @@ var win = art.dialog.open.origin;
 							case 'mpeg':
 							case 'mpg':
 								
-								html='<embed src="'+json.url+'" type="video/x-ms-asf-plugin" width="550" height="400" autostart="false" loop="true" />';
+								html='<embed src="{$config.imageurl}'+json.url+'" type="video/x-ms-asf-plugin" width="550" height="400" autostart="false" loop="true" />';
 								break;
 							case 'flv':
 							case 'swf':
-								html='<embed src="'+json.url+'" type="application/x-shockwave-flash" width="550" height="400" quality="high" />';
+								html='<embed src="{$config.imageurl}'+json.url+'" type="application/x-shockwave-flash" width="550" height="400" quality="high" />';
 								break;
 							default:
-								html='内容附件: <a href=\"' + json.url + '\">' + json.title + '</a></div>';
+								html='内容附件: <a href=\"{$config.imageurl}' + json.url + '\">' + json.title + '</a></div>';
 						};
 					win.{$editor}.insertHtml(html);
 					$('#file_id',win.document).val($('#file_id',win.document).val()+json.id+',');

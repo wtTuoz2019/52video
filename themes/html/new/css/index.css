@@ -741,3 +741,10 @@ a.login{
 	width:170px;
 	height:80px;
 }
+.volid_bottom .usersee{
+	height:30px;
+	float:left;
+	position: relative;
+    top: 5px;
+    left: -7px;
+}

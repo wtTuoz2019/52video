@@ -42,7 +42,14 @@ class loginMod extends commonMod
         //更新登录记录
         model('log')->login_log($info);
         //设置登录信息
-        $_SESSION[$this->config['SPOT'].'_user']=$info['id'];
+       //设置登录信息
+        $cookie=$info['id'].'|'.sha1($info['user']).'|'.sha1($info['password']);
+        if($_POST['remember']){
+        	$expire = time() + 604800;
+        }else{
+        	$expire = time() + 7200;
+        }
+        setcookie($this->config['SPOT'].'_adminuser',$cookie,$expire,'/');
        $user= model('user')->current_user(false);
 		if($user['grade']==3){
            $this->msg('您没有权限登陆！',0);
@@ -58,6 +65,7 @@ class loginMod extends commonMod
         }
         model('user')->current_user(true,true);
         unset($_SESSION[$this->config['SPOT'].'_user']);
+		 setcookie($this->config['SPOT'].'_adminuser','',-1,'/');
         $this->msg('退出成功! ',0);
      }
 

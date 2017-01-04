@@ -125,21 +125,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 		</div>
        <!--#include file="videopublic.html"-->
          <script>
-         var style="<?=$zidingyi[style]?>";
-		changecolor(style);
-			$('#mask').click(function(){
-		$('#mask,#register').hide();
-	});
-function changecolor(color){
-	if(color=='red')
-{
-	$('.view-box').addClass('backgroudCb');
-	$('.infos').addClass('chageCw');
-	$('#myTab').addClass('backgroudC')
-	}else{
-		$('#myTab').addClass('tab-nav')
-		}
-}	
+        
 	function subscribeclick(aid){
 		$.post('__URL__/subscribe',{aid:aid,type:'aid'},function(data){
 			if(data.status=='1'){

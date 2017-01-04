@@ -3,7 +3,7 @@ $(function(){
         var self=$(this);
         self.addClass("active");
         self.stop().animate({
-            "width":"100px"
+            "width":"140px"
         });
     });
     $(".mod-tools a").mouseleave(function(){

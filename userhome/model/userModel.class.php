@@ -8,15 +8,23 @@ class userModel extends commonModel
 
     //当前用户信息
     public function current_user($cache=true,$del=false) {
-        $uid=$_SESSION[$this->config['SPOT'].'_user'];
-        if(empty($uid)){
+		
+         $userinfo=$_COOKIE[$this->config['SPOT'].'_adminuser'];
+       //读取登录信息
+        if(empty($userinfo)){
             return ;
         }
+        $user=model('login')->check_login($userinfo);
+        if(!$user){
+            return ;
+        }
+        $array=explode('|',$userinfo);
+		$uid=$array[0];
         if($del){
             $this->cache->del('current_user_'.$uid);
             return ;
         }
-		
+	
         $user=$this->cache->get('current_user_'.$uid);
         if(empty($user)||$cache==false){
             $user=$this->model->table('admin')->where('id='.$uid)->find();
