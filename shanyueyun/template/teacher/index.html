@@ -30,7 +30,7 @@
       </tr>
       <!--foreach:{$list $vo}-->
       <tr>
-        <td><center><img src="{$vo.image}" height="40px" /></center></td>
+        <td><center><img src="{$config.imageurl}{$vo.image}" height="40px" /></center></td>
         <td>{$vo.name}</td>
         <td>{$vo.title}</td>
           <td>{$school[$vo['cid']]['name']}</td>
