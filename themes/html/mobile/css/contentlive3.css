@@ -482,3 +482,34 @@ body
 		}
 		
 	}
+/*需要修改的jquery mobile样式  */
+.ui-table-columntoggle-btn {display:none;}
+#list{
+	position:absolute;
+	top:0px;
+	bottom:-260px;
+	overflow:hidden;
+	width:100%;
+}
+@media screen and (min-width:768px){#list{bottom:-460px}}
+@media screen and (min-width:568px){#list{bottom:-360px}}
+/**
+	*
+	* 下拉样式 Pull down styles
+	*
+	*/
+#pullDown, #pullUp {
+	background:transparent;
+	height:40px;
+	line-height:40px;
+	padding:5px 10px;
+	font-weight:bold;
+	font-size:14px;
+	color:#888;
+}
+
+#commentform{  margin-bottom: 10px;}
+         #commentform span{ font-size:8px;}
+       #item1mobile #commentform   input{width:55px; padding:2px 0px; font-size:8px; margin-left:5px;border-radius:8px;background:#4bd5ef;}
+		 #commentform .area{ width:120px; background:#000000;border-radius:4px; display: inline-flex;}
+          #commentform .progress1{ background:#4bd5ef; border-radius:4px; height:10px; text-align:center;  line-height:10px; display:inline-block;}

@@ -4,6 +4,7 @@ class apiMod extends commonMod
     public function __construct()
     {
         parent::__construct();
+		die;
     }
 
     public function index()

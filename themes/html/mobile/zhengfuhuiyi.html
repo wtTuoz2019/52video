@@ -3,8 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title></title>
-		
+		<title>{$common.title}</title>
+          <link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
 		<!-- Css 样式-->
 	    <link rel="stylesheet" href="__TPL__mobile/music/css/style.css" />
 	    
@@ -12,80 +13,26 @@
 	    <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
 	    
 	    <!-- Plugin -->
-	    <link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+	  
 	    <script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
         <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
         <link rel="stylesheet" href="__TPL__mobile/Scripts/countdown/jquery.countdown.css" />
         <script type="text/javascript" src="__TPL__mobile/Scripts/countdown/jquery.countdown.js" ></script>
-       
-       <!-- dialog -->
-        <link rel="stylesheet" href="__TPL__mobile/dialog/skins/default.css" type="text/css">
+     <link rel="stylesheet" href="__TPL__mobile/dialog/skins/default.css" type="text/css">
 	    <script type="text/javascript" src="__TPL__mobile/dialog/jquery.artDialog.js"></script>
-        <style>
-		#bodyb{
-		background:url(__TPL__mobile/music/img/body-bg.png) no-repeat 100% 100% !important;
-				background-size:100% 100% !important;
-				background-attachment:fixed !important;
-				width:100%;
-				height:100% !important;
-		}
-		body:before {
-		  content: ' ';
-		  position: fixed;
-		  z-index: -1;
-		  top: 0;
-		  right: 0;
-		  bottom: 0;
-		  left: 0;
-		  background: url(__TPL__mobile/music/img/body-bg.png) center 0 no-repeat;
-		  background-size: 100% 100%;
-		}
-		.tab-box .tab-nav li.active a{
-			border-bottom: 2px solid #fff;
-			color:#fff;
-		  }
-		.tab-box .tab-nav li a{
-			display: inline-block;
-			text-align: center;
-			height: 50px;
-			line-height: 50px;
-			color: #fff;
-			font-size: 1.9rem;
-			float: left;
-		}
-		.tab-box .tab-nav{
-			border-bottom: none;
-		}
-		.infos{
-			border-bottom:none;
-		}
-		.infos a{
-			color:#fff;
-			font-size:14px;
-			margin-right:0
-		}
-		.comment ul li{
-			border:none;
-			}
-		.view-box a{
-			padding-left:10px;
-			}
-		</style>
+        
 	</head>
-	<body id="bodyb">
+	<body>
+    	<a id="usercenter" href="/myhome/index"><img height="55px" src="__PUBLIC__/images/usercenter.png" /></a>
+    
 		<header>
-			<div class="title-box" >
-				<!--<div class="logo-img">
-					<img src="{$sys.logo}">
-				</div>
+			<div class="logo-box">
+			
                	<?php echo $zidingyi['logo']?'<div class="logo-img">
-					<img src="'.$zidingyi['logo'].'">
-				</div>':'';  ?>
-				 	<?php echo $zidingyi['logo1']?'<div class="logo-img">
-					<img src="'.$zidingyi['logo1'].'">
-				</div>':'';  ?>-->
-			    <!--<img src="__TPL__mobile/music/img/head-bg.png" alt="" />-->
-               <h1> 闵行区第五届人民代表大会第九次会议<br>第一次全体会议回看</h1>
+					<img src="'.$sys['imageurl'].$zidingyi['logo'].'">
+				</div>':'<style>.logo-box{height:auto}</style>';  ?>
+				
+			
 			</div>
 		</header>
 		<section>
@@ -101,77 +48,65 @@
 		 ?>
 		
         <div class="watchover">
-            <img src="{$info.image}"  alt="" />
+            <img src="{$sys['imageurl']}{$info.image}"  alt="" />
         	<div class="black-warp">
-                直播已经结束
+                直播已经结束，稍后即可点播回看
             </div>
         </div>
         <?php
          }
 		?>
+        
+      
     
        <div id="play" class="play" style="width:100%;">
         	
         </div>
         <div id="backdrop" class="backdrop">
-			<img src="{$info.image}"  alt="" />
+			<img src="{$sys['imageurl']}{$info.image}"  alt="" />
+          <!--  <img src="__PUBLIC__/images/{$subscribe}.png" id="subscribe" onClick="subscribeclick({$info.aid})"  />-->
+           <!-- <button id="bsubscribe">点击预约</button>-->
 			<div class="counter">
-				<p>距离直播还有</p>
+				<p>距离直播还有：</p>
 				<div id="countdown"></div>
-				<div class="tsfm"><span>天</span><span>时</span><span>分</span><span>秒</span></div>
 			</div>   
 		</div>
-<script type="text/javascript" src="__PUBLIC__/plays/players.js"></script>
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
 <script type="text/javascript">
-aodianPlayer({
-  container:'play',//播放器容器ID，必要参数
-  rtmpUrl:'rtmp://{$sys.play}/schoolvideo/{$channel.vMp4url}',//控制台开通的APP rtmp地址，必要参数
-  hlsUrl:'http://{$sys.ios}/schoolvideo/{$channel.vMp4url}.m3u8',//控制台开通的APP rtmp地址，必要参
-
-  player:{
-    name:'lssplayer',//播放器名称，必要参数
-    /* 以下为可选参数*/
-    width: '100%',//播放器宽度，可用数字、百分比等
-    height: '100%',//播放器高度，可用数字、百分比等
-	 html5Width: '100%',//手机端浏览器，播放器宽度，可用数字、百分比等
-    html5Height: '200',//手机端浏览器，播放器高度，可用数字、百分比等
-    wmode:'Transparent',
-    autostart: 'flase',//是否自动播放，默认为false
-    bufferlength: '3',//视频缓冲时间，默认为3秒
-    stretching: '1',//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1
-    controlbardisplay: 'disable'//是否显示控制栏，值为：disable、enable默认为disable
-  }
-});
-/* 以下为LSS Player支持的事件 */
-/* lssHandle.startPlay();//播放 */
-/* lssHandle.pause();//暂停 */
-/* lssHandle.stopPlayer();//停止 */
-/* lssHandle.closeConnect();//断开连接 */
-/* lssHandle.setMute(true);//静音或恢复音量，参数为true|false */
-/* lssHandle.setVolume(volume);//设置音量，参数为0-100数字 */
-/* lssHandle.setFullScreenMode(1);//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1 */
-
-
-
+var play=1;
 var note = $('#note'),
 					newYear = true;
-					t1 = {$info.starttime}*1000;
-					t = {$info.starttime}*1000 + {$info.time}*60*1000;
+					t1 = '{$info.starttime}'*1000;
+					t = '{$info.starttime}'*1000 + '{$info.time}'*60*1000;
 					ts = <?php echo time(); ?>*1000;	
 
 				if(ts < t1){
 					$("#play").hide();
 					$("#backdrop").show();
+					play=0;
 		        }else if(ts > t1 && ts < t){
-		        
+		        play=1;
 					$("#play").show();
 					$("#backdrop").hide();
 					newYear = false;
 				}else{
+					 play=0;
 					$("#play").hide();
 					$("#backdrop").show();
 					
-				}				 
+				}	
+
+	var w = "100%";//视频宽度
+  var h = "200";//视频高度 
+  var url = "http://{$sys.ali}{$channel.vMp4url}.m3u8";//视频地址
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:1,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,flashvars,video,params);
+
+
+			 
 	
 				$('#countdown').countdown({
 					timestamp	: t1,
@@ -183,10 +118,12 @@ var note = $('#note'),
 						message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
 						message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
 						message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
-						note.html(message);
+						
 						if(days==0&&hours==0&&minutes==0&&seconds==0){
+								CKobject.getObjectById('player_a1').videoPlay();
 							$("#play").show();
 							$("#backdrop").hide();
+							
 						}
 					}
 				});
@@ -195,137 +132,227 @@ var note = $('#note'),
 
 
  <?php  }else{  ?>
+  <script type="text/javascript">
+var play=1;
+</script>
+   <?php   if ($info['airtime']>time()) {  ?>
+       
+   
+     
+        <div id="backdrop" class="backdrop">
+			<img src="{$sys['imageurl']}{$info.image}"  />
+          
+			<div class="counter">
+				<p>距离开播还有：</p>
+				<div id="countdown"></div>
+			</div>   
+		</div>
+<script type="text/javascript">
+ play=0;
+</script> 
+        <?php
+         }
+		?>
+ 
 <div class="player">
             <?php  if(strstr($info['videourl'],"qq.com")){ ?>
 <iframe frameborder="0" width="100%" height="200" src="{$info.videourl}" allowfullscreen></iframe> 
 
-<?php  }elseif(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")){?>
+<?php  }elseif(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"urren")||strstr($info['videourl'],"shanyueyun")){?>
 
-<div id="videoPlayer"></div>
-<script type="text/javascript" charset="utf-8" src="__PUBLIC__/plays/player.js"></script>
-<script type="text/javascript">
-  var w = "100%";//视频宽度
-  var h = "200";//视频高度
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1" ></div>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "200";//视频高度 
   var url = "{$info.videourl}";//视频地址
-  var image = "{$info.image}";//封面图片
-  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0};
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
-  CKobject.embed('__PUBLIC__/plays/ckplayer.swf','videoPlayer','ckplayerFlashBox',w,h,false,flashvars,video,params);
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
 </script>
 
 
 
 <?php }else{  ?>
-        
-        
-            <div class="close_light_bg" id="close_light_bg"></div>
-         <div id="videoPlayer"></div>
-<script type="text/javascript" charset="utf-8" src="__PUBLIC__/plays/player.js"></script>
-<script type="text/javascript">
-  var w = "100%";//视频宽度
+          <div id="a1" ></div>
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+ 
+    <?php 
+		 if( @fopen('http://'.$config[out].'/video/'.$info[videourl].'/video.m3u8', 'r' )){  ?>
+         
+        <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
   var h = "200";//视频高度
-  var url = "http://{$config.out}/video/{$info.videourl}/video.m3u8";//视频地址
-  var image = "{$info.image}";//封面图片
-  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0};
+  var url = "http://{$config.out}/video/{$info.videourl}/video.m3u8" 
+
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
-  CKobject.embed('__PUBLIC__/plays/ckplayer.swf','videoPlayer','ckplayerFlashBox',w,h,false,flashvars,video,params);
-</script>
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>  
+         
+         <?php }else{  ?>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "200";//视频高度
+  var url = "http://{$config.out}/video/{$info.videourl}/1280/video.m3u8" 
+
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script> <?php  }  ?>  
               <?php  }  ?>  
         </div>
+        <?php   if ($info['airtime']>time()) {  ?>
+        <script type="text/javascript">
+
+var note = $('#note'),
+					newYear = true;
+					t = '{$info.airtime}'*1000;
+					ts = <?php echo time(); ?>*1000;	
+
+				$("video").css({'height':'0px'});
+	$('#countdown').countdown({
+					timestamp	: t,
+					callback	: function(days, hours, minutes, seconds){
+						
+						var message = "";
+					
+						message += days + " day" + ( days==1 ? '':'s' ) + ", ";
+						message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
+						message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
+						message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+						note.html(message);
+						if(days==0&&hours==0&&minutes==0&&seconds==0){
+							$("video").css({'height':'200px'});
+							$("#play").show();
+							$("#backdrop").hide();
+							
+						}
+					}
+				});
+				 
+</script> 
+        <?php
+         }
+		?>
+        
 	 <?php  }?>
     </div>
 </div>
 		</div>
+        <!--if:{$zidingyi['notice']}-->
 		<div class="scroll-bar">
-			<marquee style="color:#fff; font-size: 1.2rem; width: 100%; line-height: 25px;">{$zidingyi.notice}</marquee>	
+			<marquee style="color:#fff; font-size: 1.2rem; width: 100%; line-height: 25px;" scrollamount=1>{$zidingyi.notice}</marquee>	
 			
 		</div>
-		<div class="view-box clearfix" style="background:rgba(0,0,0,.4)">	
-				<span class="view" style=" display: inline-block; margin-top: 13px;">观看人次:{$info.views}人</span>
-				<div class="" style="float: right;">
-			    	<div  class="infos clearfix">
-						<!--	<span>共180条评论</span>-->
-							<a href="javascript:" class="btn-comment" data-toggle="modal" data-target="#mymodal-data" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-edit "></span><span>我要写评论</span></a>
-							<a href="javascript:" class="btn-zan" onclick="zan()"><span class="glyphicon glyphicon-heart"></span>+<span id="zan-counts">{$info.laud}</span></a>
-						</div>
-						<div class="modal fade bs-example-modal-sm" id="mymodal-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">						    
-								<div class="modal-content">
-									<div class="modal-body">
-										<textarea class="texta" placeholder="在此录入你的评论，长度不能超过100字符" id="editors"></textarea>
-									</div>
-									<div class="modal-footer">
-										<a  class="btn-cancel" data-dismiss="modal">取消</a>
-										<a  class="btn-send" id="btn">发送</a>
-									</div>
-								</div>
-						</div>
+         <!--/if-->
+		<div class="view-box clearfix">	
+				<span class="view" style=" display: inline-block; margin-top: 13px; color:#000">观看人次:{$info.views}人</span>
+				<div class="" style="float: right;margin-top: 9px;margin-right:10px;">
+			    	<a href="{$config.addurl}" class="Focus" >
+                    <span style="font-size:2.5rem">+</span><span> 技术支持</span></a>
+			   
 				</div>
 		</div>
 		</section>
 		<section>
-			<div class="tab-box" id="tab-box" style="background:none">
-				<ul id="myTab" class="tab-nav clearfix" role="tablist" style="background:rgba(0,0,0,.4)">
-                
-                 <?php if($zidingyi['content']['show']){ ?>
-				    <li class="active"><a href="#details" role="tab" data-toggle="tab">详情</a></li>
-                    	<?php } ?>
-                	<?php if($zidingyi['comment']['show']){ ?>
-				    <li ><a href="#comment" role="tab" data-toggle="tab">评论</a></li>				<?php } ?>
-                   
-                    <?php if($zidingyi['content1']['show']){ ?>
-                    <li><a href="#contents" role="tab" data-toggle="tab">内容</a></li>
-                    	<?php } ?>
-                    <?php if($zidingyi['content2']['show']){ ?>
-                    <li><a href="#contentt" role="tab" data-toggle="tab">信息</a></li>
-                    <?php } ?>
+			<div class="tab-box" id="tab-box">
+				<ul id="myTab" class="  clearfix" role="tablist">
+                	<!--foreach:{$functions $key $vo}-->
+                          <li class="funcions{$vo.id} <?php if(!$key) echo 'active'; ?>" ><a href="#funcions{$vo.id}"  role="tab" data-toggle="tab">{$vo.name}</a></li>		
+                           <!--/loop-->
+                    
 				</ul>
-				<!--
+				 <?php if($zidingyi['titleimage']){ ?>
 				<div class="T-title">
-					<!--<div class="h1">关爱生活，关爱美德</div>-->
-					<!--<a href="javascript:"><img src="{$zidingyi.titleimage}" aalt="" /></a>-->
-				<!--</div>-->
+					
+					<a href="{$zidingyi.titleurl}"><img src="{$sys['imageurl']}{$zidingyi.titleimage}" alt="" /></a>
+				</div>
+                <?php } ?>
 				<div id="myTabContent" class="tab-content">
-                
-					<div class="tab-pane " id="comment">
-						
-						<div class="comment">
-							<ul id="commentlist">
-                            
-								<!--<li class="clearfix">
-									<dl>
-										<dt >
-											<p class="user-img"><img src="img/tx.png"></p>
-										</dt>
-										<dd>
-											<p class="user-box">
-												<span class="user-name" style="color: #ff6b02;"></span>
-												<a href="#" style="float: right; color: #ff6b02;"><span class="ico-like"></span><span class="couts-zan">0</span></a>
-											</p>
-											<p class="time" style="color: #888888;"></p>
-											<p class="user-say"></p>
-										</dd>
-									</dl>
-								</li>-->
-								
-							</ul>
-							<div class="load">
-								<p><a href="javascript:" class="load-none">暂无评论</a></p>
-								<p><a href="javascript:" class="load-more load">加载更多评论</a></p>
-								<p><a href="javascript:" class="load-end">没有更多了</a></p>
-							</div>
+                	 <!--foreach:{$functions $key $vo}-->
+                     <div class="tab-pane <?php if(!$key) echo 'active'; ?>" id="funcions{$vo.id}">
+                     
+                     <?php if($vo['type']=='comment'){?>
+                     
+                      <!--#include file="menu_comment.html"-->
+					 <?php }elseif($vo['type']=='jiaoyancomment'){?>
+                          <!--#include file="menu_jiaoyan.html"-->
+                          <?php }elseif($vo['type']=='content'){?>
+                        	{$vo.content html}
+                         <?php }elseif($vo['type']=='url'){?>
+                         <script>
+						 $('.funcions{$vo.id}').bind('click',function(){
+							 
+							window.location="{$vo.content}"; 
+							 });
+						 </script>
+                          <?php }elseif($vo['type']=='linkaid'){?>
+                          <ul>
+     <?php  
+     $loop=array();
+     if($vo['content'])
+    $loop=model('content')->getlist($vo['content']);
+  
+      ?> <!--foreach:{$loop $val}-->    
+                <li   class="<?php echo $val['cid']==16?'live-class':'over-class';  ?> m_recommend">
+                    
+                   
+                   		<span class="quan"></span>
+						<span class="quan2"></span>
+						<div class="col-xs-6 cebian">
+                            <p>
+                       		<span><?php echo $val['cid']==16?date('Y-m-d',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?>&nbsp;&nbsp;<?php echo $val['cid']==16?'直播':'重播';  ?></span><img src="img/video.png"/></p>
+							<a href="{$val.aurl}">
+                            <img src="{$sys['imageurl']}{$val.image}" class="img-responsive m_img"/>
+                            <img src="img/to_play.png" class="to_play"/>
+                            </a>
+							
 						</div>
+                        <div class="col-xs-6 r_text">
+                   		<p><a href="{$val.aurl}">{$val.title}</a></p>
+                   		</div>
+				</li>
+		<!--/loop-->
+		</ul>
+                             <?php }elseif($vo['type']=='looktimes'){?>
+     <ul  class="orderList">
+     <?php  
+     $loop=array();
+    $loop=model('content')->gettimes($info['videourl']);
+  
+      ?> 
+      
+      
+      <!--foreach:{$loop $val}-->    
+                <li  >
+                <div class="date">
+                	<i class="dian"></i>
+					<i class="datetime"><?=formartkandian($val[start])?></i>
+					
+				</div>
+                <div class="content">
+                    <a href="javascript:" onclick="playseek(this)" data-time="{$val.start}"  end-time="{$val.end}">{$val.name} </a>
+                  </div> 
+				</li>
+		<!--/loop-->
+		</ul>
+                           <?php }?>
 					</div>
-					<div class="tab-pane active" id="details">
-						{$info.content}
-					</div>
-                    <div class="tab-pane" id="contents">
-						{$zidingyi[content1][content]}
-					</div>
-                    <div class="tab-pane" id="contentt">
-						{$zidingyi[content2][content]}
-					</div>
+                           <!--/loop-->
+                
 				</div>
 			</div>
 		</section>
@@ -357,155 +384,18 @@ var note = $('#note'),
 					}
 					
 		</script>
-       <!--#include file="common.html"-->
+      
 <!--Tabs.js-->
 <script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
 
-<script type="text/javascript"> 
-  
-	  var data = {
-			    fid: {$info.aid},
-				uid:'<?php echo $_SESSION["uid"];?>',
-			    pageSize: 10,
-			    pageIndex: 0,
-			  };
-			  var arr = {
-			    fid: {$info.aid},
-			    id: 0
-			  };
-			  var id = 0,
-			  flag=0;
-	$('#btn').click(function(){
-	  var this_ = this;
-				var mes = $('#editors').val();
-				if(flag==1){
-					return false;
-				}
-				flag==1;
-			
-				if(mes.length < 1){
-					
-					//alert('请输入大于1字符评论');
-					$.dialog({
-						        content: '请输入大于1字符评论',
-								top:'300px',
-								fixed:true,
-								width:200,
-								height:80
-					          });  
-			    	return;
-			    }
-				
-			   
-				$.ajax({
-				  url: "__ROOT__/index.php/comment/save",
-				  type: "POST",
-				  data: {
-					fid: data['fid'],
-					message: mes,
-			        uid: data['uid']
-				  },
-				  dataType: "json",
-				  success: function( d ) {
-					$('#editors').val('');
-					if(d.status == 1){
-						$('#editors').val('');
-			           		//alert('评论成功');
-							$.dialog({
-						        content: '评论成功',
-								top:'300px',
-								absolute:true,
-								width:200,
-								height:80
-					          });  
-							//postcomment();
-							$("#mymodal-data").hide();
-							$(".modal-backdrop").hide();
-						flag=0;
-						
-					
-					}else{
-			           //	alert('评论失败');
-						$.dialog({
-						        content: '评论失败',
-								top:'300px',
-								fixed:true,
-								width:200,
-								height:80
-					          });
-						flag=0
-			        }
-				  }
-				});	
-	});
-	
-	
-			function getcomment(){
-				
-				$.post('__ROOT__/index.php/comment/pc_list',{data: data},function(d){
-					if(d.status==1){
-						var count = d.message.count;
-						if(d.message.pageindex != 0)
-						data['pageIndex']=d.message.pageindex;
-						
-						if(d.message.count == 0){
-							$('.load').hide();
-							//$('#comments_list').html('暂无数据');
-						}else{
-								if(arr['id']==0)
-							arr['id'] = d.message.info[0]['id'];
-							
-							$('#commentlist').append(escapes(d.message.info));	
-							
-						}	
-					}else{
-						//alert ('操作失败');
-						$.dialog({
-						        content: '操作失败',
-								top:'300px',
-								fixed:true,
-								width:200,
-								height:80
-								
-					          });	
-					}
-				},'json')
-			}
-			getcomment();
-		
-			$(document).on("click", ".load", function(){
-			
-				getcomment();
-			});
-		function escapes(data){
-				var strVar = "";
-				if(!data){
-					return '';
-				}
-				for(var i=0;i<data.length;i++){
-			//		 strVar +='<div class="dialog"><div class="user"><dl><dt><img src="'+data[i]['pic']+'">  </dt> <dd> <P class="username">'+data[i]['name']+'</P><div class="info">'+data[i]['message']+'</div> </dd> </dl></div>';
-					 strVar+='<li class="clearfix"><dl><dt ><p class="user-img"><img src="'+data[i]['pic']+'"></p></dt><dd><p class="user-box"><span class="user-name">'+data[i]['name']+'</span></p><p class="time" style="color: #888888;">'+data[i]['time']+'</p><p class="user-say">'+data[i]['message']+'</p></dd></dl></li>';
-			    	
-				}
-				return strVar;
-			}
-		function automatic(arr){
-				$.post('__ROOT__/index.php/comment/pc_auto',{data: arr},function(d){
-					if(d.status==1){
-						$('#commentlist').prepend(escapes(d.message.info));
-						arr['id'] = d.message.info[0]['id'];
-					}
-				},'json')
-			}
-	function qwert(){
-				
-				automatic(arr);
-			}setInterval("qwert()",5000);
-
-	$('#mask').click(function(){
+   <!--#include file="common.html"-->
+         <script>
+         var style="<?=$zidingyi[style]?>";
+		changecolor(style);
+			$('#mask').click(function(){
 		$('#mask,#register').hide();
 	});
-/*function changecolor(color){
+function changecolor(color){
 	if(color=='red')
 {
 	$('.view-box').addClass('backgroudCb');
@@ -514,11 +404,51 @@ var note = $('#note'),
 	}else{
 		$('#myTab').addClass('tab-nav')
 		}
-}
-
-var style="<?=$zidingyi[style]?>";
-changecolor(style);*/
-</script>
-        
+}	
+	function subscribeclick(aid){
+		$.post('__URL__/subscribe',{aid:aid,type:'aid'},function(data){
+			if(data.status=='1'){
+				
+				$('#subscribe').attr('src','__PUBLIC__/images/'+data.message+'.png');
+				if($('#subscribe').attr('src')=="/public/images/nosubscribe.png"){
+					$('#bsubscribe').html('取消预约');
+				}else{
+					$('#bsubscribe').html('点击预约');
+				}
+			}else if(data.status=='2'){
+					$.dialog('<div class="nosubscribe"><h1>恭喜，您已预约成功</h1><p>请关注‘闪阅云’公众号</p><p>将收到消息提醒</p><a href="{$config.addurl}">+关注</a></div>');
+				
+					$('#subscribe').attr('src','__PUBLIC__/images/'+data.message+'.png');
+					if($('#subscribe').attr('src')=="/public/images/nosubscribe.png"){
+						$('#bsubscribe').html('取消预约');
+					}else{
+						$('#bsubscribe').html('点击预约');
+					}
+			}
+			},'json');
+			
+		
+		}
+	$(function(){
+		if($('#subscribe').attr('src')=="/public/images/nosubscribe.png"){
+						$('#bsubscribe').html('取消预约');
+					}else{
+						$('#bsubscribe').html('点击预约');
+					}
+	})
+	
+         </script>
+         
+         
+         <script>
+         	$('#countdown .countDiv0').html('天');
+			$('#countdown .countDiv0').addClass('times');
+			$('#countdown .countDiv1').html('时');
+			$('#countdown .countDiv1').addClass('times');
+			$('#countdown .countDiv2').html('分');
+			$('#countdown .countDiv2').addClass('times');
+			$('#countdown').append('<span class="countDiv countDiv3 times">秒</span>');
+			$('#countdown .countDiv3').addClass('times');
+         </script>
 	</body>
 </html>
