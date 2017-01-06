@@ -49,7 +49,7 @@ class  dataModel extends commonModel
 	public function sex($aid){
 		$aid=intval($aid);
 		
-	 	$sql="SELECT dc_user.sex, count(distinct dc_user.uid) as count FROM `dc_visit` LEFT join dc_user on dc_visit.uid=dc_user.uid  where `aid`=".$aid." and dc_user.uid is not null group by dc_user.sex";
+	 	$sql="SELECT dc_user.sex, count(distinct dc_user.uid) as count FROM `dc_visit` LEFT join dc_user on dc_visit.uid=dc_user.uid  where `aid`=".$aid."  group by dc_user.sex";
 		$data=$this->model->query($sql);
 		return $data;
 		

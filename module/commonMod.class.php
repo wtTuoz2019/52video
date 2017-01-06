@@ -220,7 +220,13 @@ class commonMod
 		
 		}
 		
+	if($_SESSION['uid']){	
+	
+		$this->userinfo=model('user')->info($_SESSION['uid']);
+		$_SESSION["headpic"]=$this->userinfo['headimgurl'];
+		$_SESSION["nickname"]=$this->userinfo['nicename'];
 		
+	}	
 	
 		
 		

@@ -240,6 +240,7 @@ class contentMod extends commonMod
 			echo "参数非法！";
             exit;
 		}
+		
 		if($this->userinfo['gid']!=3&&!$devicepeople){
 		 $this->msg('您暂无权限访问，请联系管理员修改权限');
 			}
