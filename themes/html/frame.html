@@ -54,7 +54,7 @@ if(play=='false'){
   hlsUrl:'http://{$sys.ali}{$channel.vMp4url}.m3u8',//控制台开通的APP rtmp地址，必要参
     /* 以下为可选参数*/
     width: '100%',//播放器宽度，可用数字、百分比等
-    height: '400',//播放器高度，可用数字、百分比等
+    height: '100%',//播放器高度，可用数字、百分比等
     autostart: false,//是否自动播放，默认为false
     bufferlength: '1',//视频缓冲时间，默认为3秒。hls不支持！手机端不支持
     maxbufferlength: '2',//最大视频缓冲时间，默认为2秒。hls不支持！手机端不支持
@@ -109,7 +109,7 @@ if(play=='false'){
 		 }
 		?>" >
         
-        <img style="width: 100%; height: 100%;position: absolute;left:0;top:0" src="{$info.image}">
+        <img style="width: 100%; height: 100%;position: absolute;left:0;top:0" src="{$sys.imageurl}{$info.image}">
 			<div class="doo" >
 				<div id="dao" class="endtime" value="{$info.starttime}"></div>
 			</div>
