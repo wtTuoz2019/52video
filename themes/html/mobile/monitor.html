@@ -69,37 +69,21 @@
 		<div id="play" class="play" style="width:100%;">
         	
         </div>
-<script type="text/javascript" src="__PUBLIC__/plays/players.js"></script>
-<script type="text/javascript">
-aodianPlayer({
-  container:'play',//播放器容器ID，必要参数
+    <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+        <script>
+        
+	var w = "100%";//视频宽度
+  var h = "200";//视频高度 
+  var url = "http://{$sys.ali}{$stream}.m3u8";//视频地址
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:1,p:0};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,flashvars,video,params);
 
- rtmpUrl:'rtmp://{$sys.ali}{$stream}',//控制台开通的APP rtmp地址，必要参数
-  hlsUrl:'http://{$sys.ali}{$stream}.m3u8',//控制台开通的APP rtmp地址，必要参
-  player:{
-    name:'lssplayer',//播放器名称，必要参数
-    /* 以下为可选参数*/
-    width: '720',//播放器宽度，可用数字、百分比等
-    height: '480',//播放器高度，可用数字、百分比等
-	 html5Width: '100%',//手机端浏览器，播放器宽度，可用数字、百分比等
-    html5Height: '200',//手机端浏览器，播放器高度，可用数字、百分比等
-    wmode:'Transparent',
-    //autostart: flase,//是否自动播放，默认为false
-    bufferlength: '3',//视频缓冲时间，默认为3秒
-    stretching: '1',//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1
-    controlbardisplay: 'disable'//是否显示控制栏，值为：disable、enable默认为disable
-  }
-});
-/* 以下为LSS Player支持的事件 */
-/* lssHandle.startPlay();//播放 */
-/* lssHandle.pause();//暂停 */
-/* lssHandle.stopPlayer();//停止 */
-/* lssHandle.closeConnect();//断开连接 */
-/* lssHandle.setMute(true);//静音或恢复音量，参数为true|false */
-/* lssHandle.setVolume(volume);//设置音量，参数为0-100数字 */
-/* lssHandle.setFullScreenMode(1);//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1 */
-</script>
 
+        
+        </script>
 		
         
 	</div>
