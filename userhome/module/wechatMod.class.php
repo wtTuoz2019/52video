@@ -6,7 +6,8 @@ class wechatMod extends commonMod {
 	public function __construct()
     {
         parent::__construct();
-		$this->uid=$uid=$_SESSION[$this->config['SPOT'].'_user'];
+		$user=model('user')->current_user();
+		$this->uid=$uid=$user['id'];die;
 		$wxuser=$this->model->table('admin')->where(array('id'=>$uid))->find();
 		if(!$wxuser['token']){
 			$chars='abcdefghijklmnopqrstuvwxyz';
