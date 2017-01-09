@@ -534,6 +534,7 @@ ul[id^="commentlist"]{
 	padding:17px; 
 	height:200px;
 	margin:0 auto;
+	overflow-y: hidden;
 }
 
 .contentBox #mymodal .modal-body{

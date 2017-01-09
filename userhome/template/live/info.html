@@ -66,7 +66,7 @@
         
         
         
-         <?php } ?>
+       
          <tr>
           <td width="100" align="right">所属科目</td>
           <td width="350"><select name="sid"  reg="." id="sid" onchange="changeteacher()" >
@@ -141,6 +141,7 @@
           <td></td>
         </tr>
           </tbody>
+           <?php } ?>
         <tr>
           <td width="100" align="right">标题</td>
           <td ><input name="title" type="text"class="form-control" id="title" value="{$info.title}" reg="\S" msg="标题不能为空" />
@@ -193,7 +194,7 @@
     <tr style="display:none">
         <td width="100" align="right">手机模板</td>
         <td width="350">
-        <input name="tpl" type="text"class="form-control" id="tpl" value="<!--if:{$info['tpl']}-->{$info.tpl}<!--{else}-->friendtpl.html<!--{/if}-->" />
+        <input name="tpl" type="text"class="form-control" id="tpl" value="{$info.tpl}" />
         </td>
         <td>留空采用栏目指定模板</td>
       </tr>
@@ -201,7 +202,7 @@
        
     
        
-        <tr>
+       <!-- <tr>
         <td width="100" align="right">顶部通栏</td>
         <td>
           <?php echo module('editor')->get_image_upload('logo1','logo',false,'editor_content') ?>
@@ -226,7 +227,7 @@
         <input name="zidingyi[titleurl]" type="text"class="form-control" id="titleurl" value="{$zidingyi[titleurl]}" />
         </td>
         <td>如：http://live.shanyueyun.com,必须带有http</td>
-      </tr> 
+      </tr> -->
       <tr>
         <td width="100" align="right">滚动字幕</td>
         <td ><textarea name="zidingyi[notice]" class="text_textarea" id="notice">{$zidingyi[notice]}</textarea>
@@ -247,16 +248,7 @@
         </td>
       <td> <button type="button" class="button" onClick="addfunctions()">添加</button></td>
       </tr>
-       
     
-      <tr >
-        <td width="100" align="right">发布状态</td>
-        <td width="350">
-        <?php if(!isset($info['status'])){ $info['status']=0; } ?>
-        <input name="status" type="radio" value="1"  <!--if:{$info['status']==1}-->checked="checked"<!--{/if}-->  /> 发布&nbsp;&nbsp;<input name="status" type="radio"  <!--if:{$info['status']==0}-->checked="checked"<!--{/if}-->  /> 草稿&nbsp;&nbsp;
-        </td>
-        <td></td>
-      </tr>
     
        <tr>
         <td width="100" align="right">评论审核</td>
@@ -266,14 +258,7 @@
         </td>
         <td></td>
       </tr>
-      <tr>
-        <td width="100" align="right">红包打赏</td>
-        <td width="350">
-       
-        <input name="hall" type="radio" value="1"  <!--if:{$info['hall']==1}-->checked="checked"<!--{/if}-->  /> 开启&nbsp;&nbsp;<input name="hall" type="radio"  <!--if:{!$info['hall']}-->checked="checked"<!--{/if}-->  /> 关闭&nbsp;&nbsp;
-        </td>
-        <td></td>
-      </tr>
+
        <?php if(model('user_group')->home_power('signup')){?>
        <tr>
         <td width="100" align="right">预约报名</td>
@@ -381,6 +366,19 @@
 		  }
 	  
       </script>
+      
+         
+     <?php if(!$user['cid']){ ?>
+      <tr >
+        <td width="100" align="right">发布状态</td>
+        <td width="350">
+        <?php if(!isset($info['status'])){ $info['status']=0; } ?>
+        <input name="status" type="radio" value="1"  <!--if:{$info['status']==1}-->checked="checked"<!--{/if}-->  /> 发布&nbsp;&nbsp;<input name="status" type="radio"  <!--if:{$info['status']==0}-->checked="checked"<!--{/if}-->  /> 草稿&nbsp;&nbsp;
+        </td>
+        <td></td>
+      </tr>
+      
+      <?php } ?>
       </table>
     </div>
     

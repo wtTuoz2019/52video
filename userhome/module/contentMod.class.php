@@ -296,7 +296,7 @@ class contentMod extends commonMod
 			$flag=model('live')->streamtime(array('aid'=>$id),$data);
 			
 			//阿里云
-		if(($content['tpl']=='alifriendtpl.html'|| $content['tpl']=='friendtpl.html')&&!$content['videourl']){
+		if(!$content['videourl']){
 		$live=model('live')->get_live($content['aid']);
 		if($live['starttime']&&$live['time']){
 			$stream= model('live')->get_url($content['channel']);
@@ -320,7 +320,9 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 			$response = $client->getAcsResponse($request); 
 
 			if($response->RecordInfo->RecordUrl){
-				$info['info']['videourl']=$response->RecordInfo->RecordUrl;
+				$info['info']['videourl']=$this->config['hk'].'live/'.$stream.'-'.$content['aid'].'.m3u8';
+			
+				
 				if(!model('content')->video_info(array('vurl'=>$info['info']['videourl']))){
 					$array=array(
 							'vurl'=>$info['info']['videourl'],
@@ -393,7 +395,7 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 			$response = $client->getAcsResponse($request); 
 
 			if($response->RecordInfo->RecordUrl){
-				$info['info']['videourl']=$response->RecordInfo->RecordUrl;
+				$info['info']['videourl']=$this->config['hk'].'live/'.$stream.'-'.$content['aid'].'.m3u8';
 				if(!model('content')->video_info(array('vurl'=>$info['info']['videourl']))){
 					$array=array(
 							'vurl'=>$info['info']['videourl'],

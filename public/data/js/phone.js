@@ -1,6 +1,7 @@
 var urldomin='/content/functioninfo/id-';
 	
 	$(function() {
+		
 		var h=$('#phonetemplate').parent().css('height')
 		$('#phonetemplate').css('height',h)
 		
@@ -11,21 +12,21 @@ var urldomin='/content/functioninfo/id-';
 		
 		
 		/*修改里面的内容*/ 
-		$('#fakehead .logo-img').append('<img src="'+imageurl+''+$('#logo').val()+'" />');
+		//$('#fakehead .logo-img').append('<img src="'+imageurl+''+$('#logo').val()+'" />');
 		$('#fakebody').append('<img src="'+imageurl+''+$('#image').val()+'"/>');
-		$('#fakeimg').append('<img src="'+imageurl+''+$('#titleimage').val()+'" />');
+		//$('#fakeimg').append('<img src="'+imageurl+''+$('#titleimage').val()+'" />');
 		$('#myiframe .scroll-bar marquee').text($('#notice').val());
-		if($('#logo').val()==''){
+		//if($('#logo').val()==''){
 			//$('#fakehead .logo-img img').attr("src",'/themes/html/mobile/img/fakehead.jpg');
-			$('#fakehead .logo-img').empty();
-		}
+			//$('#fakehead .logo-img').empty();
+		//}
 		if($('#image').val()==''){
 			$('#fakebody img').attr("src",'/themes/html/mobile/img/fakebody.jpg');
 		}
-		if($('#titleimage').val()==''){
+		//if($('#titleimage').val()==''){
 			//$('#fakeimg img').attr("src",'/themes/html/mobile/img/fakeimg.jpg');
-			$('#fakeimg').empty();
-		}
+			//$('#fakeimg').empty();
+		//}
 		if($('#notice').val()==''){
 			$('#myiframe .scroll-bar').hide();
 		}
@@ -55,6 +56,12 @@ var urldomin='/content/functioninfo/id-';
 			$(this).addClass('active').siblings('.active').removeClass('active');
 			$('#iframek>div').eq($(this).index()).addClass('active').siblings('.active').removeClass('active');
 		});
+		
+		
+		timename=setTimeout(function(){
+			$("#myiframe").mCustomScrollbar();
+			
+		},1000);
 	});
 	  
 	$(document).on('input propertychange', 'textarea', function() {
@@ -75,7 +82,7 @@ var urldomin='/content/functioninfo/id-';
 			}else{
 				$('#fakebody img').attr("src",''+imageurl+''+$(e).val()+'');
 			}
-		}else if($(e).attr("name")=='zidingyi[logo]'){
+		}/*else if($(e).attr("name")=='zidingyi[logo]'){
 			if($(e).val()==''){
 				$('#fakehead .logo-img').empty();
 			}else{
@@ -87,7 +94,7 @@ var urldomin='/content/functioninfo/id-';
 			}else{
 				$('#fakeimg').append('<img src="'+imageurl+''+$(e).val()+'" />');
 			}
-		}
+		}*/
 	}
 	/*$('#functions').on('DOMNodeInserted','button',function(){
 		
@@ -187,4 +194,8 @@ var urldomin='/content/functioninfo/id-';
 			
 			InterValObj = setInterval(SetRemainTime, 1000); //间隔函数，1秒执行 	
 				}
+		
+		
+		
+		
 		

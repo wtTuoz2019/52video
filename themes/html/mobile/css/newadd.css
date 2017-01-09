@@ -98,9 +98,7 @@
 		top: 0;
 		left: 0;
 	}
-	video {
-		background: #f0f0f0;
-	}
+
 	video {
 		max-width: 100%;
 		vertical-align: top;
