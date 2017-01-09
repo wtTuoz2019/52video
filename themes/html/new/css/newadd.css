@@ -77,7 +77,6 @@ body,html{
 	position:absolute;
 	bottom:0;
 	margin-left:-29%;
-	left:50%
 }
 #dao{
 	font-size:12px;
@@ -227,5 +226,5 @@ body,html{
 				right:-15px;
 			}
 			#dao>span {
-		font-size: 48px;
+		font-size: 26px;
 	}
