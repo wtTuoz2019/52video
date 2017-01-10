@@ -136,7 +136,8 @@ class liveMod extends commonMod
 		$grade=model('diyfield')->field_list(1);
 		$school=model('school')->school_list();
 		$teacher=model('teacher')->model_list();
-		$uid=$_SESSION[$this->config['SPOT'].'_user'];
+		$user=model('user')->current_user();
+		$uid==$user['id'];
 		$where=array();
 		if($uid&&$uid!=1){
 		$where=array('cid'=>$uid);	
