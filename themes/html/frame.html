@@ -177,18 +177,19 @@ $(function(){
 <iframe frameborder="0" width="100%" height="400" src="{$info.videourl}" allowfullscreen></iframe>
 
 <?php  }elseif(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"shanyueyun")||strstr($info['videourl'],"urren")){?>
-
-<div id="videoPlayer"></div>
-<script type="text/javascript" charset="utf-8" src="__PUBLIC__/plays/player.js"></script>
-<script type="text/javascript">
-  var w = "100%";//视频宽度
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1" ></div>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
   var h = "100%";//视频高度
   var url = "{$info.videourl}";//视频地址
-  var image = "{$info.image}";//封面图片
-  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0};
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:1};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
-  CKobject.embed('__PUBLIC__/plays/ckplayer.swf','videoPlayer','ckplayerFlashBox',w,h,false,flashvars,video,params);
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
 </script>
 
 

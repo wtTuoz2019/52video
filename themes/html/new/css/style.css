@@ -52,8 +52,10 @@ h2{margin:0px 10px;background:#ccc;padding:5px;}
  .bannerhead {
    margin: 0 auto;
     width: 1000px;
+	clear: both;
+    overflow: hidden;
 }
-.bannercontent{width: 940px;float:right; margin-top:38px; line-height:21px; background: rgba(255,251,251,0.4); padding:30px;box-shadow: 0 5px 15px #000; height:300px; }
+.bannercontent{float:right; }
 .bannercontent p{ color:#000000}
 .bannertitle{
 	font-size:18px; text-align:center; font-weight:bold;margin: 0;

@@ -890,10 +890,12 @@ p.allcomment span{
 			}
 			.commentinput{
 				text-align:center;
+				border-top:1px solid #B6B6B6; 
 			}
 			.commentinput input{
 				position:relative;
 				top:1.5px;
+				background:#F6F6F6;
 			}
 			.commentarea_right h6{
 				margin-bottom:3px;

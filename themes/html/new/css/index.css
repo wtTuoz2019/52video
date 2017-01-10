@@ -683,6 +683,7 @@ ul[id^="commentlist"]{
 		right: 100px;
 		z-index: 1500;
 		border: 10px solid #ddd;
+		cursor:move;
 }
 #dragto{
 	display:none;

@@ -2,9 +2,12 @@ var urldomin='/content/functioninfo/id-';
 	
 	$(function() {
 		
-		var h=$('#phonetemplate').parent().css('height')
+		var h=$('#phonetemplate').parent().css('height');
+		if(parseInt(h)<800){
+			h='800px';
+		}
 		$('#phonetemplate').css('height',h)
-		
+		 
 		var w=parseFloat($('#phonetemplate').css('width'));
 		h=parseFloat(h);
 		$('#phonetemplate #myiframe').css('left',(w/2-165)+'px')

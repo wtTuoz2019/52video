@@ -630,7 +630,7 @@ span.resdel { float:right; margin-top:0}
  .commentinput{
 	clear: both;
 	width: 100%;
-	background: #ffffff;
+	background: #F6F6F6;
 	position: fixed;
 	bottom: 0px;
 	z-index:9999;

@@ -165,6 +165,7 @@
 	}
 	.mCSB_container{
 		margin:0;
+		min-height:580px;
 	}
 	.mCustomScrollBox>.mCSB_scrollTools{
 		right:-4px;
@@ -176,6 +177,5 @@
 	.mCSB_scrollTools .mCSB_draggerRail{
 		width:8px;
 	}
-	 
 	
 	
