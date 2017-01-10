@@ -45,7 +45,7 @@
 var w = "100%";//视频宽度
   var h = "200";//视频高度 
   var url = "http://{$sys.ali}{$channel.vMp4url}.m3u8";//视频地址
-  var image = "{$info.image}";//封面图片
+  var image = "{$sys.imageurl}{$info.image}";//封面图片
   var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:1,p:play};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
