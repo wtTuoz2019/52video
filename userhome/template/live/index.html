@@ -39,7 +39,9 @@
                            	 <div class="mask" >
                              	<button class="end btn btn-default" onClick="endlive('{$vo.aid}')">结束直播</button>
                              </div>
-                            
+                             <p > <span class="fa  fa-video-camera">:<?php echo model('live')->get_url($vo['channel']);?></span> <span class="glyphicon glyphicon-stats right">{$vo.views}</span></p>  
+                                      
+                              <p  class="timedate">{$school[$vo['csid']]['name']}&nbsp;&nbsp; </p>
                             </div>
                             
                              <div class="col-sm-3 center">
@@ -55,9 +57,7 @@
                                          <a class="btn btn-default btn-sm" onclick="del('{$vo.aid}',this)" href="javascript:">删除</a>
                                          
                             </div>
-                             <p > <span class="fa  fa-video-camera">:<?php echo model('live')->get_url($vo['channel']);?></span> <span class="glyphicon glyphicon-stats right">{$vo.views}</span></p>  
-                                      
-                              <p  class="timedate">{$school[$vo['csid']]['name']}&nbsp;&nbsp; </p>   
+                               
                         </div><!-- ./col -->
                      
                     </div>

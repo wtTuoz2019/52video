@@ -174,7 +174,7 @@ class contentMod extends commonMod
 				}
 		if($info['tpl']&&MOBILE){
 			
-			
+		
 			$this->display($info['tpl']);
 			
 			}else{
@@ -186,6 +186,7 @@ class contentMod extends commonMod
 				$this->display('contentlive.html');	
 				exit();
 				}
+				
 			 $this->display($this->category['content_tpl']);	
 			}
         
