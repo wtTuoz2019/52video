@@ -296,7 +296,7 @@ class contentMod extends commonMod
 			$flag=model('live')->streamtime(array('aid'=>$id),$data);
 			
 			//阿里云
-		if(!$content['videourl']){
+	
 		$live=model('live')->get_live($content['aid']);
 		if($live['starttime']&&$live['time']){
 			$stream= model('live')->get_url($content['channel']);
@@ -337,7 +337,7 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 			
 			}
 		
-		}
+	
 		$data=array('aid'=>$content['aid'],'cid'=>13);
 		if($info['info']['videourl']){
 		$data['videourl']=$info['info']['videourl'];	

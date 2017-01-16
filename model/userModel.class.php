@@ -8,22 +8,14 @@ class userModel extends commonModel
 
     //获取当前用户登录信息
     public function current() {
-        $userinfo=$_COOKIE[$this->config['SPOT'].'_duxuser'];
+        $userinfo=$_COOKIE[$this->config['SPOT'].'_wxuser'];
         //读取登录信息
         if(empty($userinfo)){
             return ;
         }
-        $user=model('login')->check_login($userinfo);
-        if(!$user){
-            return ;
-        }
+       
         $array=explode('|',$userinfo);
-        return  $this->model
-                ->field('B.*,C.*,A.*,B.name as gname')
-                ->table('user','A')
-                ->add_table('user_group','B','A.gid=B.gid')
-                ->add_table('user_append','C','A.uid=C.uid')
-                ->where('A.uid='.$array[0])
+        return  $this->model->where('uid='.$array[0])
                 ->find();
     }
 

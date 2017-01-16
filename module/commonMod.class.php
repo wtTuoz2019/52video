@@ -56,6 +56,12 @@ class commonMod
 			
 			}
 	if($_GET['wang'])$_SESSION['uid']='26408';
+		$userinfo=$_COOKIE[$this->config['SPOT'].'_wxuser'];
+     
+		if($userinfo){
+			  $array=explode('|',$userinfo);
+			  $_SESSION['uid']=$array[0];
+			}
 	if($_SESSION['uid']){	
 	
 		$this->userinfo=model('user')->info($_SESSION['uid']);
@@ -221,11 +227,16 @@ class commonMod
 		}
 		
 	if($_SESSION['uid']){	
-	
+		
 		$this->userinfo=model('user')->info($_SESSION['uid']);
 		$_SESSION["headpic"]=$this->userinfo['headimgurl'];
 		$_SESSION["nickname"]=$this->userinfo['nicename'];
-		
+		   //设置登录信息
+        $cookie=$this->userinfo['uid'].'|'.sha1($this->userinfo['nicename']);
+       
+        $expire = time() + 7200;
+      
+        setcookie($this->config['SPOT'].'_wxuser',$cookie,$expire,'/');
 	}	
 	
 		
