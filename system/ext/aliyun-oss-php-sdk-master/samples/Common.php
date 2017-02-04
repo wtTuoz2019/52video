@@ -16,6 +16,8 @@ use OSS\Core\OssException;
  *
  * 示例程序【Samples/*.php】 的Common类，用于获取OssClient实例和其他公用方法
  */
+ if(class_exists('Common') != true)   
+{
 class Common
 {
     const endpoint = Config::OSS_ENDPOINT;
@@ -80,5 +82,5 @@ class Common
         }
     }
 }
-
+}
 //Common::createBucket();

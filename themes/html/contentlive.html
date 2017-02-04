@@ -20,7 +20,9 @@
 
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
 <script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
+<link href="__TPL__/new/css/style.css" rel="stylesheet" type="text/css" />
 <link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
+
 <!--END-->
 <!--start 中间部分-->
 <div class="volid">
@@ -91,6 +93,97 @@ var play=1;
 CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,flashvars,video,params);
 
 
+if(play==1){
+	$(window).scroll(function () {
+		if ($(window).scrollTop() >= 690) {  
+			 $('#play').addClass('drag');
+		}else{
+			$('#play').removeClass('drag');
+		}
+		
+		
+		if($('#play').hasClass("drag")){
+				var $div = $("#play");
+			  /* 绑定鼠标左键按住事件 */
+			  $div.bind("mousedown",function(event){
+				/* 获取需要拖动节点的坐标 */
+				var offset_x = $(this)[0].offsetLeft;//x坐标
+				var offset_y = $(this)[0].offsetTop;//y坐标
+				/* 获取当前鼠标的坐标 */
+				var mouse_x = event.pageX;
+				var mouse_y = event.pageY;
+				/* 绑定拖动事件 */
+				/* 由于拖动时，可能鼠标会移出元素，所以应该使用全局（document）元素 */
+				$(document).bind("mousemove",function(ev){
+				  /* 计算鼠标移动了的位置 */
+				  var _x = ev.pageX - mouse_x;
+				  var _y = ev.pageY - mouse_y;
+				  /* 设置移动后的元素坐标 */
+				  var now_x = (offset_x + _x ) + "px";
+				  var now_y = (offset_y + _y ) + "px";
+				  /* 改变目标元素的位置 */
+				  $div.css({
+					top:now_y,
+					left:now_x
+				  	});
+					});
+			  	});
+			  /* 当鼠标左键松开，接触事件绑定 */
+			  $(document).bind("mouseup",function(){
+				$(this).unbind("mousemove");
+			  });  
+		  
+			  $div.mouseenter( function() { 
+				$div.append("<div id='dragto'> 点击按住视频可拖动 </div>");
+			  }).mouseleave( function(){
+				  $div.find("#dragto").remove();
+			  }); 
+		 }
+	});
+	}
+	
+	$(function(){
+	var t = '<?php echo intval($info[time]);?>'*60;
+   timeid=  setInterval(function(){
+      $(".endtime").each(function(){
+        var obj = $(this);
+        var endTime = new Date(parseInt(obj.attr('value')) * 1000);
+        var nowTime = new Date();
+        var nMS=endTime.getTime() - nowTime.getTime();
+        var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+        var myH=Math.floor(nMS/(1000*60*60)) % 24; //小时 
+        var myM=Math.floor(nMS/(1000*60)) % 60; //分钟 
+        var myS=Math.floor(nMS/1000) % 60; //秒 
+        var myMS=Math.floor(nMS/100) % 10; //拆分秒
+		var x=nMS/1000;
+		var y = x+t;
+        if(nMS>= 0){
+            var str = "<span>离直播开始还有<\/span><br>" + myD+"<i>天</i>"+myH+"<i>小时</i>"+myM+"<i>分</i>"+myS+"<i>秒</i>";
+			obj.html(str);
+        }else{
+			if(y>0){
+			if(idLoadHandler){
+			CKobject.getObjectById('player_a1').videoPlay();
+				}
+				$('.down').hide();
+			}else{
+				if(idLoadHandler){
+			CKobject.getObjectById('player_a1').videoPause();
+				}
+				$('.down').show();
+				<?php if($info['videourl']){ ?>
+				var str = "<a href=\"{$info.aurl}\"><span style=\"color:#f00;\">直播已结束,点此回看<\/span></a>";
+					<?php }else{ ?>
+				var str = "<span style=\"color:#f00;\">直播已结束<\/span>";  
+					<?php }?>
+				clearInterval(timeid);
+				obj.html(str);
+				$('#CuPlayer').html('');
+			}
+        }
+      });
+    }, 100);
+});
 
 </script>
         
@@ -115,6 +208,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 		</div>
 	</div>
 </div>
+
 <div class="contentBox t100">
     <ul id="mainTabs">
     <!--foreach:{$functions $key $vo}-->
@@ -186,267 +280,11 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 <div class="contentBox">
 	<div class="mborder"></div>
 </div>
-<div class="contentBox">
-	<div class="addAnswerBox">
-		<form  id="form">					 
-			<p class="comment-form-comment" id="commentform" >
-				<textarea id="message" name="message" cols="45" rows="8" reg="\S" msg="评论不能为空" ></textarea>
-			</p>
-			<p class="form-submit handle2" id="commentform" >
-        <input id="fid" name="fid" value="{$info.aid}" type="hidden" />
-				<input id="content_" name="type" value="content" type="hidden" />
-	      <input name="submit" type="botton" id="submit" class="btn fr" value="立即评论">
-			</p>
-			<div class="clear"></div>
-	  </form>
-	</div>
-</div>
+
 <!--底部-->
 <!--#include file="foot.html"-->
 <!--END-->
-<script type="text/javascript">
 
-$(function(){ 
-		
-	　　$("#modal_cance").text('X');
-	
-	}); 
-$(function(){
-	var t = '<?php echo intval($info[time]);?>'*60;
-   timeid=  setInterval(function(){
-      $(".endtime").each(function(){
-        var obj = $(this);
-        var endTime = new Date(parseInt(obj.attr('value')) * 1000);
-        var nowTime = new Date();
-        var nMS=endTime.getTime() - nowTime.getTime();
-        var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
-        var myH=Math.floor(nMS/(1000*60*60)) % 24; //小时 
-        var myM=Math.floor(nMS/(1000*60)) % 60; //分钟 
-        var myS=Math.floor(nMS/1000) % 60; //秒 
-        var myMS=Math.floor(nMS/100) % 10; //拆分秒
-		var x=nMS/1000;
-		var y = x+t;
-        if(nMS>= 0){
-            var str = "<span>离直播开始还有<\/span><br>" + myD+"<i>天</i>"+myH+"<i>小时</i>"+myM+"<i>分</i>"+myS+"<i>秒</i>";
-			obj.html(str);
-        }else{
-			if(y>0){
-			if(idLoadHandler){
-			CKobject.getObjectById('player_a1').videoPlay();
-				}
-				$('.down').hide();
-			}else{
-				if(idLoadHandler){
-			CKobject.getObjectById('player_a1').videoPause();
-				}
-				$('.down').show();
-				<?php if($info['videourl']){ ?>
-				var str = "<a href=\"{$info.aurl}\"><span style=\"color:#f00;\">直播已结束,点此回看<\/span></a>";
-					<?php }else{ ?>
-				var str = "<span style=\"color:#f00;\">直播已结束<\/span>";  
-					<?php }?>
-				clearInterval(timeid);
-				obj.html(str);
-				$('#CuPlayer').html('');
-			}
-        }
-      });
-    }, 100);
-});
-
-	var data = {
-		fid: {$info.aid},
-		pageSize: 10,
-		pageIndex: 0,
-	};
-	var arr = {
-		fid: {$info.aid},
-		id: 0
-	};
-	var id = 0,
-	flag=0;
-
-	//弹窗
-	function mydialog(t, c) {
-		var d = art.dialog({
-		  title: t,
-		  content: c,	
-		  });
-		  d.show();
-		  setTimeout(function () {
-			d.close();
-		}, 1200);
-	}
-
-	getcomment();
-	
-	$("#more").click(function(){
-		data['pageIndex']++;
-			getcomment();
-	});
-	
-	function getcomment(){
-		$.post('__ROOT__/index.php/comment/pc_list',{data: data},function(d){
-			if(d.status==1){
-				var count = d.message.count;
-				var page1 = data['pageSize']*data['pageIndex'];
-				var page2 = data['pageSize']*data['pageIndex'] + data['pageSize'];
-				if (data['pageIndex'] == 0) {
-					if (count > 0) {
-						id = d.message.info[0]['id'];
-					}
-				}
-				$('#num').html(count);
-				if(d.message.count == 0){
-					$("#more").hide();
-					$('#jcpl').html('暂无数据');
-				}else{
-					 if(count > page1 && count <= page2){
-						$("#more").hide();
-						$('#comments_list').append(escapes(d.message.info));	
-					}else{
-						$('#comments_list').append(escapes(d.message.info));	
-						$("#more").show();
-					}
-				}
-				
-			}
-		},'json')
-	}
-
-	function praise(){
-		$.post('__ROOT__/index.php/change',{type:'love',fid:'{$info.aid}',uid:0},function(data){
-			if(data.status=='1'){
-				var num = $('.volid_bottom span').html();
-				num++;
-				$('#laud').html(num);
-				mydialog('提示', data.message);
-			}else{
-				mydialog('提示', data.message);
-			}
-		},'json')
-	}
-	
-	
-	function comment_m(id, pid){
-		var d = art.dialog({
-			title: '回复',
-			content: '<textarea id="reply" name="reply" cols="45" rows="4" reg="\S" msg="评论不能为空"></textarea>',
-			ok: function () {
-				var value = $('#reply').val();
-				var length_ = value.length;
-				if(length_ < 1){
-					mydialog('提示', '评论不可小于1个字符');
-				}else{
-					reply(id, value, pid);
-				}
-			}
-		});
-		d.show();
-	}
-
-	function reply(id, mesage, pid){
-	  $.post("__ROOT__/user/index.php/comment/reply_add",
-	  {	
-		id:id,
-		pid:pid,
-		mes:mesage
-	  },
-	  function(d){
-		if(d.status == 1){
-			window.location.reload();
-		  }else{
-			mydialog('提示', '评论需先登录');
-		 }
-	  },'json');
-	}
-
-	$("#submit").click(function(){
-		var length_ = $('#message').val().length;
-		if (length_<1) {
-			var myDialog = art.dialog();
-			mydialog('提示', '评论不可小于1个字符');
-			return false;
-		};
-	  $.post("__ROOT__/user/index.php/comment/data",
-	  {	
-		type:'content',
-		fid:$('#fid').val(),
-		message:$('#message').val()
-	  },
-	  function(d){
-		if(d.status == 1){
-			$('#message').val('');
-			           	flag=0;
-						automatic(arr);
-						
-						$('#modal_cance').click(); 
-						commentsucess(d.message);
-		}else{
-			art.dialog({
-				title: '提示',
-				content: '评论需先登录',
-				button: [
-					{
-						name: '立即登录',
-						callback: function () {
-							toweixinLogin()
-						}
-					}
-				]
-			});
-		}
-	  },'json');   
-	});
-	if(play==true){
-	$(window).scroll(function () {
-		if ($(window).scrollTop() >= 690) {  
-			 $('#play').addClass('drag');
-		}else{
-			$('#play').removeClass('drag');
-		}
-		
-		
-		if($('#play').hasClass("drag")){
-				var $div = $("#play");
-			  /* 绑定鼠标左键按住事件 */
-			  $div.bind("mousedown",function(event){
-				/* 获取需要拖动节点的坐标 */
-				var offset_x = $(this)[0].offsetLeft;//x坐标
-				var offset_y = $(this)[0].offsetTop;//y坐标
-				/* 获取当前鼠标的坐标 */
-				var mouse_x = event.pageX;
-				var mouse_y = event.pageY;
-				/* 绑定拖动事件 */
-				/* 由于拖动时，可能鼠标会移出元素，所以应该使用全局（document）元素 */
-				$(document).bind("mousemove",function(ev){
-				  /* 计算鼠标移动了的位置 */
-				  var _x = ev.pageX - mouse_x;
-				  var _y = ev.pageY - mouse_y;
-				  /* 设置移动后的元素坐标 */
-				  var now_x = (offset_x + _x ) + "px";
-				  var now_y = (offset_y + _y ) + "px";
-				  /* 改变目标元素的位置 */
-				  $div.css({
-					top:now_y,
-					left:now_x
-				  	});
-					});
-			  	});
-			  /* 当鼠标左键松开，接触事件绑定 */
-			  $(document).bind("mouseup",function(){
-				$(this).unbind("mousemove");
-			  });  
-		  
-			  $div.mouseenter( function() { 
-				$div.append("<div id='dragto'> 点击按住视频可拖动 </div>");
-			  }).mouseleave( function(){
-				  $div.find("#dragto").remove();
-			  }); 
-		 }
-	});
-	}
-</script>
 
 <!--<link href="__TPL__/new/css/newadd.css" rel="stylesheet" type="text/css" />-->
 <?php require_once 'cs.php';echo '<img src="'._cnzzTrackPageView(1254194477).'" width="0" height="0"/>';?>

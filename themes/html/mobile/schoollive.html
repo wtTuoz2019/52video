@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>{$common.title}</title>
+          <link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
+		<!-- Css 样式-->
+	    <link rel="stylesheet" href="__TPL__mobile/music/css/style.css" />
+	    
+	    <!-- Javascript -->
+	    <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+	    
+	    <!-- Plugin -->
+	  
+	    <script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <link rel="stylesheet" href="__TPL__mobile/Scripts/countdown/jquery.countdown.css" />
+        <script type="text/javascript" src="__TPL__mobile/Scripts/countdown/jquery.countdown.js" ></script>
+     <link rel="stylesheet" href="__TPL__mobile/dialog/skins/default.css" type="text/css">
+	    <script type="text/javascript" src="__TPL__mobile/dialog/jquery.artDialog.js"></script>
+        <script type="text/javascript">
+			if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+				var version = parseFloat(RegExp.$1);
+				if(version>2.3){
+					var phoneScale = parseInt(window.screen.width)/750;
+					document.write('<meta name="viewport" content="width=750, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+				}else{
+					document.write('<meta name="viewport" content="width=750, target-densitydpi=device-dpi">');
+				}
+			}else{
+				document.write('<meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">');
+			}
+		</script>
+        
+        <link rel="stylesheet" href="__TPL__mobile/css/schoollive.css" />
+	</head>
+	<body>
+    	<a id="usercenter" href="/myhome/index"><img height="100px" src="__PUBLIC__/images/usercenter.png" /></a>
+    	<div class="headbg">
+        	<div class="thisschool">
+            	
+                	<img src="{$sys.imageurl}{$school.headimg}">
+              
+            </div>
+        </div>
+		<div class="historylive">
+        	<a href="javascript:;">
+            	查看历史直播      
+            </a>
+        </div>
+        
+        
+		<section>
+		<div class="play-box">
+				<div class="channels">
+        
+        <div class="show">
+   <?php   if ($info["cid"] == 16) {  ?>
+    
+     <?php 
+		 $end = $info['starttime'] + 60*$info['time'];
+		 if ($end <= time()) {
+		 ?>
+		
+        <div class="watchover">
+            <img src="{$sys['imageurl']}{$info.image}"  alt="" />
+        	<div class="black-warp">
+                直播已经结束，稍后即可点播回看
+            </div>
+        </div>
+        <?php
+         }
+		?>
+        
+      
+     <!--if:{$info}-->
+       <div id="play" class="play" style="width:100%;">
+        	
+        </div>
+       
+        <div id="backdrop" class="backdrop">
+			<img src="{$sys['imageurl']}{$info.image}"  alt="" />
+          <!--  <img src="__PUBLIC__/images/{$subscribe}.png" id="subscribe" onClick="subscribeclick({$info.aid})"  />-->
+           <!-- <button id="bsubscribe">点击预约</button>-->
+			<div class="counter">
+				<p>距离直播还有：</p>
+				<div id="countdown"></div>
+			</div>   
+		</div>
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+<script type="text/javascript">
+var play=1;
+var note = $('#note'),
+					newYear = true;
+					t1 = '{$info.starttime}'*1000;
+					t = '{$info.starttime}'*1000 + '{$info.time}'*60*1000;
+					ts = <?php echo time(); ?>*1000;	
+
+				if(ts < t1){
+					$("#play").hide();
+					$("#backdrop").show();
+					play=0;
+		        }else if(ts > t1 && ts < t){
+		        play=1;
+					$("#play").show();
+					$("#backdrop").hide();
+					newYear = false;
+				}else{
+					 play=0;
+					$("#play").hide();
+					$("#backdrop").show();
+					
+				}	
+
+	var w = "100%";//视频宽度
+  var h = "395";//视频高度 
+  var url = "http://{$sys.ali}{$channel.vMp4url}.m3u8";//视频地址
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:1,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,flashvars,video,params);
+
+
+			 
+	
+				$('#countdown').countdown({
+					timestamp	: t1,
+					callback	: function(days, hours, minutes, seconds){
+						
+						var message = "";
+					
+						message += days + " day" + ( days==1 ? '':'s' ) + ", ";
+						message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
+						message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
+						message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+						
+						if(days==0&&hours==0&&minutes==0&&seconds==0){
+								CKobject.getObjectById('player_a1').videoPlay();
+							$("#play").show();
+							$("#backdrop").hide();
+							
+						}
+					}
+				});
+				 
+</script>
+
+
+ <?php  }else{  ?>
+  <script type="text/javascript">
+var play=1;
+</script>
+   <?php   if ($info['airtime']>time()) {  ?>
+       
+   
+     
+        <div id="backdrop" class="backdrop">
+			<img src="{$sys['imageurl']}{$info.image}"  />
+          
+			<div class="counter">
+				<p>距离开播还有：</p>
+				<div id="countdown"></div>
+			</div>   
+		</div>
+<script type="text/javascript">
+ play=0;
+</script> 
+        <?php
+         }
+		?>
+ 
+<div class="player">
+            <?php  if(strstr($info['videourl'],"qq.com")){ ?>
+<iframe frameborder="0" width="100%" height="395" src="{$info.videourl}" allowfullscreen></iframe> 
+
+<?php  }elseif(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"urren")||strstr($info['videourl'],"shanyueyun")){?>
+
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1" >
+   		
+   </div>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "395";//视频高度 
+  var url = "{$info.videourl}";//视频地址
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>
+
+
+
+<?php }else{  ?>
+          <div id="a1" ></div>
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+ 
+    <?php 
+		 if( @fopen('http://'.$config[out].'/video/'.$info[videourl].'/video.m3u8', 'r' )){  ?>
+         
+        <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "395";//视频高度
+  var url = "http://{$config.out}/video/{$info.videourl}/video.m3u8" 
+
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>  
+         
+         <?php }else{  ?>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "395";//视频高度
+  var url = "http://{$config.out}/video/{$info.videourl}/1280/video.m3u8" 
+
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script> <?php  }  ?>  
+              <?php  }  ?>  
+        </div>
+        <?php   if ($info['airtime']>time()) {  ?>
+        <script type="text/javascript">
+
+var note = $('#note'),
+					newYear = true;
+					t = '{$info.airtime}'*1000;
+					ts = <?php echo time(); ?>*1000;	
+
+				$("video").css({'height':'0px'});
+	$('#countdown').countdown({
+					timestamp	: t,
+					callback	: function(days, hours, minutes, seconds){
+						
+						var message = "";
+					
+						message += days + " day" + ( days==1 ? '':'s' ) + ", ";
+						message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
+						message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
+						message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+						note.html(message);
+						if(days==0&&hours==0&&minutes==0&&seconds==0){
+							$("video").css({'height':'395px'});
+							$("#play").show();
+							$("#backdrop").hide();
+							
+						}
+					}
+				});
+				 
+</script> 
+ <!--/if-->
+        <?php
+         }
+		?>
+        
+	 <?php  }?>
+    </div>
+    
+</div>
+
+		</div>
+        <!--if:{$zidingyi['notice']}-->
+		<div class="scroll-bar">
+			<marquee style="color:#fff; font-size: 1.2rem; width: 100%; line-height: 25px;" scrollamount=1>{$zidingyi.notice}</marquee>	
+			
+		</div>
+         <!--/if-->
+         <!--if:{$info}-->
+		<div class="view-box clearfix">	
+				<span class="view" style=" display: inline-block;margin-left:15px; color:#8c8c8c;font-size:19px;line-height:50px;">观看人次:{$info.views}人</span>
+				<div class="" style="float: right;margin-top: 9px;margin-right:10px;">
+			    	<a href="{$config.addurl}" class="Focus" >
+                    <span style="font-size:2.5rem">+</span><span> 技术支持</span></a>
+			   
+				</div>
+		</div>
+		</section>
+		<section>
+			<div class="tab-box" id="tab-box">
+				<ul id="myTab" class="  clearfix" role="tablist">
+                	<!--foreach:{$functions $key $vo}-->
+                          <li class="funcions{$vo.id} <?php if(!$key) echo 'active'; ?>" ><a href="#funcions{$vo.id}"  role="tab" data-toggle="tab">{$vo.name}</a></li>		
+                           <!--/loop-->
+                    
+				</ul>
+				 <?php if($zidingyi['titleimage']){ ?>
+				<div class="T-title">
+					
+					<a href="{$zidingyi.titleurl}"><img src="{$sys['imageurl']}{$zidingyi.titleimage}" alt="" /></a>
+				</div>
+                <?php } ?>
+				<div id="myTabContent" class="tab-content">
+                	 <!--foreach:{$functions $key $vo}-->
+                     <div class="tab-pane <?php if(!$key) echo 'active'; ?>" id="funcions{$vo.id}">
+                     
+                     <?php if($vo['type']=='comment'){?>
+                     
+                      <!--#include file="menu_comment.html"-->
+					 <?php }elseif($vo['type']=='jiaoyancomment'){?>
+                          <!--#include file="menu_jiaoyan.html"-->
+                          <?php }elseif($vo['type']=='content'){?>
+                        	{$vo.content html}
+                         <?php }elseif($vo['type']=='url'){?>
+                         <script>
+						 $('.funcions{$vo.id}').bind('click',function(){
+							 
+							window.location="{$vo.content}"; 
+							 });
+						 </script>
+                          <?php }elseif($vo['type']=='linkaid'){?>
+                          <ul>
+     <?php  
+     $loop=array();
+     if($vo['content'])
+    $loop=model('content')->getlist($vo['content']);
+  
+      ?> <!--foreach:{$loop $val}-->    
+                <li   class="<?php echo $val['cid']==16?'live-class':'over-class';  ?> m_recommend">
+                    
+                   
+                   		<span class="quan"></span>
+						<span class="quan2"></span>
+						<div class="col-xs-6 cebian">
+                            <p>
+                       		<span><?php echo $val['cid']==16?date('Y-m-d',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?>&nbsp;&nbsp;<?php echo $val['cid']==16?'直播':'重播';  ?></span><img src="img/video.png"/></p>
+							<a href="{$val.aurl}">
+                            <img src="{$sys['imageurl']}{$val.image}" class="img-responsive m_img"/>
+                            <img src="img/to_play.png" class="to_play"/>
+                            </a>
+							
+						</div>
+                        <div class="col-xs-6 r_text">
+                   		<p><a href="{$val.aurl}">{$val.title}</a></p>
+                   		</div>
+				</li>
+		<!--/loop-->
+		</ul>
+                             <?php }elseif($vo['type']=='looktimes'){?>
+     <ul  class="orderList">
+     <?php  
+     $loop=array();
+    $loop=model('content')->gettimes($info['videourl']);
+  
+      ?> 
+      
+      
+      <!--foreach:{$loop $val}-->    
+                <li  >
+                <div class="date">
+                	<i class="dian"></i>
+					<i class="datetime"><?=formartkandian($val[start])?></i>
+					
+				</div>
+                <div class="content">
+                    <a href="javascript:" onclick="playseek(this)" data-time="{$val.start}"  end-time="{$val.end}">{$val.name} </a>
+                  </div> 
+				</li>
+		<!--/loop-->
+		</ul>
+                           <?php }?>
+					</div>
+                           <!--/loop-->
+                
+				</div>
+			</div>
+		</section>
+        <script>
+		            var s =document.getElementById("tab-box");
+		            var uls = document.getElementById("myTab");
+					var as = uls.getElementsByTagName("a");
+					for(var i=0; i<as.length;i++){
+						var sum = parseInt(s.clientWidth/ as.length)
+						as[i].style.width = sum +"px";
+					}
+					
+					function zan(){
+						var counts = document.getElementById("zan-counts");
+						
+						$.post('/index.php/change',{type:'love',fid:'{$info.aid}',uid:'<?php echo $_SESSION["uid"];?>'},function(data){
+				if(data.status=='1'){
+				
+					 counts.innerHTML = counts.innerHTML*1+1;
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}else{
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}
+			},'json');
+						
+						   
+					}
+					
+		</script>
+        <!--{else}-->
+        	<style>
+            	#a1{
+					background-color: #efefef !important;
+				}
+            </style>
+        		<div class="tishi">
+                	<img  src="__PUBLIC__/images/video.png" />
+                    <p>很抱歉！暂无直播，请查看历史直播</p>
+                </div>
+        	
+			<div class="introduce">
+            	<span class="title">
+                	学校介绍
+                </span>
+                <p>
+                {$school.des}
+                </p>
+            </div>
+  		<!--/if-->
+         
+        <div id="tohistory">
+         <!--foreach:{$history $list}-->
+        	<a class="historyk" href="{$list.aurl}">
+            	<div class="schoolimg">
+                	   <img src="{$sys['imageurl']}{$list.image}">
+                </div>
+                <div class="livetext">
+                	<p>{$list.title}</p>
+                    <p class="time_see">
+                    	<span><?php echo date('Y-m-d', $list['updatetime']);?></span>
+                        <span><img  src="__PUBLIC__/images/see.png" />{$list.views}</span>    
+                    </p>
+                </div>
+            </a>
+            <!--/list-->
+           
+        </div>
+		
+      
+<!--Tabs.js-->
+<script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
+
+   <!--#include file="common.html"-->
+         <script>
+         var style="<?=$zidingyi[style]?>";
+		changecolor(style);
+			$('#mask').click(function(){
+		$('#mask,#register').hide();
+	});
+function changecolor(color){
+	if(color=='red')
+{
+	$('.view-box').addClass('backgroudCb');
+	$('.infos').addClass('chageCw');
+	$('#myTab').addClass('backgroudC')
+	}else{
+		$('#myTab').addClass('tab-nav')
+		}
+}	
+	
+	
+		 $('.historylive a').click(function(){
+			 if($("#tohistory").css('display')=='none'){
+				$('#play').css('height','0');
+			 }else{
+				$('#play').css('height','395px');
+			 }
+			 $("#tohistory").css('min-height','0');
+			$("#tohistory").slideToggle(500,function(){
+				$("#tohistory").css('min-height','1050px');
+			});
+		 });
+	
+	
+         </script>
+         
+         
+         <script>
+         	$('#countdown .countDiv0').html('天');
+			$('#countdown .countDiv0').addClass('times');
+			$('#countdown .countDiv1').html('时');
+			$('#countdown .countDiv1').addClass('times');
+			$('#countdown .countDiv2').html('分');
+			$('#countdown .countDiv2').addClass('times');
+			$('#countdown').append('<span class="countDiv countDiv3 times">秒</span>');
+			$('#countdown .countDiv3').addClass('times');
+         </script>
+         
+         
+        
+	</body>
+</html>

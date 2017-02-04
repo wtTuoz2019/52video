@@ -1,18 +1,4 @@
- <div class="contentBox">
-	<div class="addAnswerBox">
-		<form  id="form">					 
-			<p class="comment-form-comment" id="commentform" >
-				<textarea id="message" name="message" cols="45" rows="8" reg="\S" msg="评论不能为空" ></textarea>
-			</p>
-			<p class="form-submit handle2" id="commentform" >
-        <input id="fid" name="fid" value="{$info.aid}" type="hidden" />
-				<input id="content_" name="type" value="content" type="hidden" />
-	      <input name="submit" type="botton" id="submit" class="btn fr" value="立即评论">
-			</p>
-			<div class="clear"></div>
-	  </form>
-	</div>
-</div>
+ 
  
   <link rel="stylesheet" href="__PUBLIC__/data/css/font-awesome.min.css" />   
     <div class="modal" id="mymodal">
@@ -91,17 +77,30 @@
     
       <div class="load_m tr" id="more">加载更多</div>
 	
-     <!-- <div class="commentinput">
-			<img id="smile" src="__PUBLIC__/images/smile.png">
-            <?php if($info['hall']){ ?>
-            	<input type="text" id="editors" placeholder="我来说两句" readonly onClick="comment(this)">
-            <a  data-toggle="modal" data-target="#mymodal-data1"  href="javascript:"><img id="shang" src="__PUBLIC__/images/shang.png"></a>
-            <?php }else{?>
-			<input type="text" style="width:80%;" id="editors" placeholder="" readonly onClick="comment(this)">
-          <?php }?>
-		  
-		</div>--> 
-    <script>
+    
+   
+    
+    </div>
+    </div>
+    
+
+						</div>
+                        <div class="contentBox">
+	<div class="addAnswerBox">
+		<form  id="form">					 
+			<p class="comment-form-comment" id="commentform" >
+				<textarea id="message" name="message" cols="45" rows="8" reg="\S" msg="评论不能为空" ></textarea>
+			</p>
+			<p class="form-submit handle2" id="commentform" >
+        <input id="fid" name="fid" value="{$info.aid}" type="hidden" />
+				<input id="content_" name="type" value="content" type="hidden" />
+	      <input name="submit" type="botton" id="submit" class="btn fr" value="立即评论">
+			</p>
+			<div class="clear"></div>
+	  </form>
+	</div>
+</div>
+ <script>
 	
 	$(function(){ 
 		
@@ -114,6 +113,7 @@
 		  title: t,
 		  content: c,	
 		  });
+
 		  d.show();
 		  setTimeout(function () {
 			d.close();
@@ -216,6 +216,3 @@
 	});
   
     </script>
-    
-    </div>
-						</div>

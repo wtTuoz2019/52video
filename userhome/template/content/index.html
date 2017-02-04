@@ -27,7 +27,7 @@
                         
                             <!-- small box -->
                             <div class="small-box ">
-                            <h3><a href="http://live.shanyueyun.com<?php echo ROOTAPP ?>/content/index?aid={$vo['aid']}" target="_blank">{$vo.title len="16"}</a><a href="javascript:void(0);" rel="<?php 
+                            <h3><a href="<?php echo ROOTAPP ?>/content/index?aid={$vo['aid']}" target="_blank">{$vo.title len="16"}</a><a href="javascript:void(0);" rel="<?php 
          $url = "http://".$sys['MOBILE_DOMAIN']."/content/index?aid=".$vo['aid'];
           $id = $vo['aid'];
           model('live')->gsetQrcode($url, $id);

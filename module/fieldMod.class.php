@@ -223,11 +223,10 @@ class fieldMod extends commonMod {
         $nav=array(
             0=>array('name'=>'field','url'=>__INDEX__.'/fields/index'),
         );
-
-        $this->info=array('name'=>'学校信息');
+		$school=model('school')->info($csid);
 
         //MEDIA信息
-        $this->common=model('pageinfo')->media('学校信息',$field);
+        $this->common=model('pageinfo')->media($school['name'],$field);
 	
         //内容列表
         $loop=model('field')->field_index_list($where,$limit);

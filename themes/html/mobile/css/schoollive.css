@@ -1,0 +1,188 @@
+*{
+	font-size:19px;
+}
+.headbg{
+	height:250px;
+	background-image:url(../Images/headbg.jpg);
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	position:relative;
+	padding-top:45px;
+}
+.play-box{
+	height:395px;
+}
+.view-box.clearfix{
+	height:50px;
+	background:#313131;
+	padding:0;
+}
+.view-box.clearfix a>span{
+	color:#8c8c8c;
+	font-size:19px;
+}
+.tab-box .tab-nav li a{
+	height:60px;
+	font-size:29px;
+}
+p.allcomment{
+	font-size:24px;
+}
+p.allcomment span{
+	font-size:20px;
+}
+.commentarea_left>img {
+    width: 75px !important;
+    height: 75px !important;
+}
+.commentarea_right h6, .commentarea_right .comtop h6,.commentarea_right .comtop p, .commentarea_right .dianzan .userlist p{
+	font-size:24px;
+}
+.commentarea_right .commid .date,.comment .commentdel{
+	font-size:18px;
+}
+.current ul li{
+	width:80px;
+}
+.current ul li span i{
+	font-size:21px;
+}
+.date #right>img{
+	width:35px !important;
+}
+.current{
+	right:40px;
+}
+.commentinput #import, .commentinput #smile,.commentinput #import{
+	width:70px;
+}
+.commentinput input{
+	height:60px;
+	font-size: 29px;
+	line-height:60px;
+	margin-top: 5px;
+}
+#more{
+	font-size:24px;
+}
+#usercenter{
+	bottom:140px;
+}
+.introduce{
+	padding:15px;
+}
+.introduce .title{
+	font-size:29px;
+	color:#34aee1;
+	display:inline-block;
+	line-height:60px;
+	width:255px;
+	padding-left:50px;
+	border-bottom:1px solid #34aee1;
+}
+.introduce >p{
+	font-size:19px;
+	line-height:35px;
+	text-indent:2em;
+	padding:30px 20px 0 20px;
+}
+.tishi{
+	position:absolute;
+	width:100%;
+	text-align:center;
+	top:435px;
+}
+.tishi p{
+	font-size:18px;
+	margin-top:20px;
+	color:#adadad;
+}
+.historylive{
+	height:30px;
+	background:#31aee7;
+	overflow:hidden;
+	position:relative;
+	z-index:200;
+	clear:both;
+}
+.historylive a{
+	float:right;
+	color:#fff;
+	font-size:18px;
+	line-height:30px;
+	margin-right:10px;
+}
+.headbg .thisschool{
+	text-align:center;
+}
+
+.headbg .thisschool img{
+	height:160px;
+}
+#tohistory{
+	position:absolute;
+	top:280px;
+	min-height:1050px;
+	width:100%;
+	background:#fff;
+	z-index:200;
+	padding:40px 30px 0 30px;
+	display:none;
+}
+#tohistory .historyk{
+	display:block;
+	margin-bottom:50px;
+}
+#tohistory .historyk>div{
+	display:inline-block;
+}
+#tohistory .historyk>div.schoolimg,#tohistory .historyk>div.schoolimg>img{
+	width:345px;
+	height:195px;
+}
+#tohistory .historyk>div.livetext{
+	width:300px;
+	float:right;
+	height:195px;
+	position:relative;
+}
+#tohistory .historyk>div.livetext>p{
+	color:#000;
+	font-size:18px;
+}
+#tohistory .historyk>div.livetext>p.time_see{
+	position:absolute;
+	bottom:0;
+	overflow:hidden;
+	width:100%;
+}
+#tohistory .historyk>div.livetext>p.time_see span:first-child+span{
+	float:right;
+}
+#tohistory .historyk>div.livetext>p.time_see span:first-child+span img{
+	position:relative;
+	left:-5px;
+}
+.channels{
+	height:395px;
+}
+.counter p{
+	font-size:21px;
+}
+.position{
+	width:25px;
+	height:32px;
+}
+.digit{
+	width:25px;
+	font-size: 21px;
+}
+.countDiv{
+	font-size:18px;
+}
+.channels .show{
+	height:395px;
+}
+#myTabContent>div{
+	line-height:27px;
+}

@@ -191,6 +191,42 @@ class contentMod extends commonMod
 			}
         
     }
+	public function school(){
+		if(MOBILE)
+		$this->getuserinfo();
+		 $this->csid=$csid=intval($_GET['csid']);
+		 $this->school=$school=model('school')->info($csid);
+		 if(!$school){
+		if (empty($aid)) {
+            $this->error404();
+        	}
+		}
+		
+		
+		$where=' status=1';
+		$where.=" AND csid=".$school['id']."";
+		
+		$this->history=model('field')->field_index_list($where,6);
+		$this->historynum=model('field')->field_index_count($where);
+		$this->common=model('pageinfo')->media($school['name'],$field);
+		$this->info=$info=model('content')->get_livecontent($csid);
+		if($info){
+		$this->functions=model('content')->functions_list(array('aid'=>$info['aid']));
+		$this->channel=model('content')->channel($info['channel']);
+		$info_content=model('content')->info_content($info['aid']);
+		$zidingyi=unserialize($info_content['zidingyi']);
+		$this->zidingyi=$zidingyi;
+		  //更新访问计数
+        model('content')->views_content($info['aid'],$info['views']);
+        
+		}
+		
+		
+		
+		
+		$this->display('schoollive.html');
+		
+		}
 	public function functioninfo(){
 		$id=intval($_GET['id']);
 		$this->vo=model('content')->functions_info(array('id'=>$id));

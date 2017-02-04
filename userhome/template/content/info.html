@@ -44,7 +44,7 @@
    <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
    <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
   <script type="text/javascript">
-
+	$(document).ready(function() {
 				$('#csid').multiselect({
 					includeSelectAllOption: true,
 					nonSelectedText:'未选择',
@@ -58,8 +58,9 @@
 					
 				});
 				
-			
+			});
 		</script>
+        
         
         
        
@@ -254,7 +255,7 @@
       <?php } ?>
       
       </tbody>
- <script>
+<!-- <script>
       window.onload=function(){
 	 $('input[name="signup"]').parent().find('ins').click(function(){
 		   signupchange();
@@ -299,11 +300,11 @@
 			  $('#auditfield_lists').show();
 			  }else{
 			  $('#auditfield_lists').hide();	  
-				  }
+				  } 
 		  
 		  }
 	  
-      </script>
+      </script>-->
             
      <?php if(!$user['cid']){ ?>
       <tr >

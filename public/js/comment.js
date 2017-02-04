@@ -311,7 +311,7 @@ function commentHandle(){
 				 }
 				 
 				 
-				 var a=$(e).offset().top-720;
+				 var a=$(e).offset().top-730;
 				 $('.contentBox #mymodal').css('top',a+'px')
 				 
 				
@@ -337,7 +337,7 @@ function commentHandle(){
 		
 
 	function getcomment(){
-		$.post(url+'/index.php/comment/pc_list',{data: data},function(d){
+		$.post('/index.php/comment/pc_list',{data: data},function(d){
 			if(d.status==1){
 		
 				if(d.message.pageindex!=0){

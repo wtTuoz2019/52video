@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$common.title}</title>
+<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
+<link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+<link href="css/base.css" type="text/css" rel="stylesheet">
+<link href="css/details.css" type="text/css" rel="stylesheet">
+
+
+
+</head>
+<body>
+ <!--头部-->
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="js/jqthumb.min.js"></script>
+<script type="text/javascript" src="__TPL__new/js/main.js"></script>
+<link href="__TPL__/new/css/main.css" rel="stylesheet" type="text/css" />	
+<script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<link href="__TPL__/new/css/style.css" rel="stylesheet" type="text/css" />
+
+<link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
+<link href="__TPL__/new/css/schoollive.css" rel="stylesheet" type="text/css" />
+<!--END-->
+<!--start 中间部分-->
+
+<div class="bannner">
+	<img src="__TPL__/images/schoolbg.png">	
+    <div class="schoolname">
+   		<img src="{$sys.imageurl}{$school.headimg}">
+      
+   	</div>
+    <div class="qr">
+    	<p>扫一扫</p>
+        <img src="{$sys['imageurl']}/upload/school/{$school.id}.png"/>
+    </div>
+</div> 
+ 
+<div class="volid">
+	<div class="contentBox">
+   			
+					 
+		
+		  <!--#include file="playlive.html"-->
+	</div>
+</div>
+
+
+
+  
+<div class="historylive">
+	<p class="ptitle">
+    	<span>历史直播</span>
+    </p>
+     <!--foreach:{$history $list}-->
+    <div class="cnav">
+       <div class="video">
+          <a href="{$list.aurl}" target="_blank">
+             <img src="{$sys['imageurl']}{$list.image}">
+          </a>
+       </div>
+       <div class=" mages">
+          <p>{$list.title len='15'}</p>
+          <p><?php echo date('Y-m-d', $list['updatetime']);?></p>
+          <span style=" float:right; line-height:35px; color:#278497;">
+           <img src="/themes/html/new/images/1.jpg">311297
+          </span>
+       </div>
+     </div>
+     <!--/list-->
+  
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.idTabs.min.js"></script>
+<script>
+	$("#mainTabs").idTabs();
+</script>
+<!--<div class="contentBox">
+	<div class="mborder"></div>
+</div>-->
+
+<!--底部-->
+<!--END-->
+<script type="text/javascript">
+
+
+	　　$("#modal_cance").text('X');
+	
+	
+$(function(){
+	var t = '<?php echo intval($info[time]);?>'*60;
+   timeid=  setInterval(function(){
+      $(".endtime").each(function(){
+        var obj = $(this);
+        var endTime = new Date(parseInt(obj.attr('value')) * 1000);
+        var nowTime = new Date();
+        var nMS=endTime.getTime() - nowTime.getTime();
+        var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+        var myH=Math.floor(nMS/(1000*60*60)) % 24; //小时 
+        var myM=Math.floor(nMS/(1000*60)) % 60; //分钟 
+        var myS=Math.floor(nMS/1000) % 60; //秒 
+        var myMS=Math.floor(nMS/100) % 10; //拆分秒
+		var x=nMS/1000;
+		var y = x+t;
+        if(nMS>= 0){
+            var str = "<span>离直播开始还有<\/span><br>" + myD+"<i>天</i>"+myH+"<i>小时</i>"+myM+"<i>分</i>"+myS+"<i>秒</i>";
+			obj.html(str);
+        }else{
+			if(y>0){
+			if(idLoadHandler){
+			CKobject.getObjectById('player_a1').videoPlay();
+				}
+				$('.down').hide();
+			}else{
+				if(idLoadHandler){
+			CKobject.getObjectById('player_a1').videoPause();
+				}
+				$('.down').show();
+				<?php if($info['videourl']){ ?>
+				var str = "<a href=\"{$info.aurl}\"><span style=\"color:#fff;\">直播已结束,点此回看<\/span></a>";
+					<?php }else{ ?>
+				var str = "<span style=\"color:#fff;\">暂无直播，请耐心等待...<\/span>";  
+					<?php }?>
+				clearInterval(timeid);
+				obj.html(str);
+				$('#CuPlayer').html('');
+			}
+        }
+      });
+    }, 100);
+});
+
+	
+
+	//弹窗
+	function mydialog(t, c) {
+		var d = art.dialog({
+		  title: t,
+		  content: c,	
+		  });
+		  d.show();
+		  setTimeout(function () {
+			d.close();
+		}, 1200);
+	}
+
+
+	function praise(){
+		$.post('__ROOT__/index.php/change',{type:'love',fid:'{$info.aid}',uid:0},function(data){
+			if(data.status=='1'){
+				var num = $('.volid_bottom span').html();
+				num++;
+				$('#laud').html(num);
+				mydialog('提示', data.message);
+			}else{
+				mydialog('提示', data.message);
+			}
+		},'json')
+	}
+	
+
+	
+	
+	if(play==true){
+	$(window).scroll(function () {
+		if ($(window).scrollTop() >= 690) {  
+			 $('#play').addClass('drag');
+		}else{
+			$('#play').removeClass('drag');
+		}
+		
+		
+		if($('#play').hasClass("drag")){
+				var $div = $("#play");
+			  /* 绑定鼠标左键按住事件 */
+			  $div.bind("mousedown",function(event){
+				/* 获取需要拖动节点的坐标 */
+				var offset_x = $(this)[0].offsetLeft;//x坐标
+				var offset_y = $(this)[0].offsetTop;//y坐标
+				/* 获取当前鼠标的坐标 */
+				var mouse_x = event.pageX;
+				var mouse_y = event.pageY;
+				/* 绑定拖动事件 */
+				/* 由于拖动时，可能鼠标会移出元素，所以应该使用全局（document）元素 */
+				$(document).bind("mousemove",function(ev){
+				  /* 计算鼠标移动了的位置 */
+				  var _x = ev.pageX - mouse_x;
+				  var _y = ev.pageY - mouse_y;
+				  /* 设置移动后的元素坐标 */
+				  var now_x = (offset_x + _x ) + "px";
+				  var now_y = (offset_y + _y ) + "px";
+				  /* 改变目标元素的位置 */
+				  $div.css({
+					top:now_y,
+					left:now_x
+				  	});
+					});
+			  	});
+			  /* 当鼠标左键松开，接触事件绑定 */
+			  $(document).bind("mouseup",function(){
+				$(this).unbind("mousemove");
+			  });  
+		  
+			  $div.mouseenter( function() { 
+				$div.append("<div id='dragto'> 点击按住视频可拖动 </div>");
+			  }).mouseleave( function(){
+				  $div.find("#dragto").remove();
+			  }); 
+		 }
+	});
+	}
+	
+	 $("#collection").click(function() {
+
+                var ctrl = (navigator.userAgent.toLowerCase()).indexOf('mac') != -1 ? 'Command/Cmd' : 'Ctrl';
+                if (document.all) {
+                    window.external.addFavorite(window.location, document.title);
+                }
+                else if (window.sidebar) {
+                    window.sidebar.addPanel(document.title, window.location);
+                }
+                else {
+                    alert('添加失败，请用Ctrl+D进行添加');
+                }
+
+            });
+	
+</script>
+
+<!--<link href="__TPL__/new/css/newadd.css" rel="stylesheet" type="text/css" />-->
+<?php require_once 'cs.php';echo '<img src="'._cnzzTrackPageView(1254194477).'" width="0" height="0"/>';?>
+</body>
+</html>

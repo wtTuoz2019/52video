@@ -1,0 +1,188 @@
+.contentBox{
+	width:1120px;
+}
+.volid_main{
+	padding:10px;
+	height:559px;
+	background:rgba(0,0,0,0.2);
+}
+.down .doo{
+	background:transparent;
+}
+#dao>span{
+	font-size:18px;
+}
+.down .doo{
+	padding-top: 155px;
+}
+.bannner>img{
+	width:100%;
+}
+.bannner{
+	position:relative;
+	height:inherit;
+}
+.bannner .schoolname{
+	position:absolute;
+	top:10%;
+	left:10%;
+}
+.bannner .qr{
+	position:absolute;
+	top:10%;
+	right:10%;
+}
+.bannner .qr>img{
+	width:130px;
+	height:130px;
+}
+.bannner .qr>p{
+	font-size:20px;
+}
+.bannner .schoolname>img{
+	height:130px;
+	width:130px;
+}
+
+.volid{
+	background:transparent;
+}
+#play{
+	border:10px solid #414141;
+	position:relative;
+}
+.volid .down {
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.volid{
+	padding:0;
+	position:relative;
+	top:-150px;
+	height:inherit;
+}
+.volid_bottom{
+	position: relative;
+    top: -55px;
+}
+.historylive{
+	width:1090px;
+	margin:0 auto;
+	text-align:left;
+	position:relative;
+	top:-100px;
+}
+.historylive>.ptitle{
+	margin:0;
+	border-bottom:3px solid #52b2c6;
+}
+.historylive>.ptitle span{
+	font-size:18px;
+	display:inline-block;
+	background-image:url(../images/titlebg.png);
+	height:40px;
+	width:115px;
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	line-height:40px;
+	padding-left:13px;
+	color:#fff;
+}
+.mages>span>img{
+	top:10px;
+}
+.cnav{
+	margin-left: 35px;
+    margin-top: 25px;
+}
+.rightuser{
+		width:375px;
+		height:539px;
+		float:right;
+		margin:0;
+		background:#fff;
+		
+}
+.rightuser #mainTabs{
+	margin-top:0;
+	background:#313131;
+	border:0;
+	border-bottom:1px solid #636363;
+}
+.rightuser #mainTabs a{
+	color:#fff;
+}
+.rightuser #mainTabs a.selected{
+	background:#313131;
+	border:0;
+	border-bottom:1px solid #636363;
+}
+.rightuser .contentBox{
+	width:100%;
+    bottom: 0;
+	z-index:100;
+}
+.comment .commentarea_right{
+	width:80%;
+}
+
+#commentform{
+	width:100%;
+}
+.addAnswerBox textarea{
+	margin:0;
+	height:50px;
+	float:left;
+	border:1px solid #D5D4D4;
+	color:#000;
+	padding-right:80px;
+	border-left:0;
+}
+.rightuser  #submit{
+	position: absolute;
+    bottom: 0;
+    right: 0;
+	margin: 0;
+    height: 50px;
+    width: 80px;
+    padding: 0;
+}
+.allcomment{
+	border-bottom:1px solid #D5D4D4;
+	padding:7px;
+}
+.rightuser  .comment .commentarea .combtm{
+	background:#fff;
+}
+.rightuser  .comment .commentarea{
+	border-bottom:1px solid #D5D4D4;
+}
+.contentBox #mymodal{
+	top:360px !important;
+	width:100%;
+	padding:0 !important;
+}
+.contentBox #mymodal .modal-content{
+	height:80px;
+}
+.contentBox #mymodal .modal-body textarea{
+	width:80%;
+	height:40px;
+	color:#000;
+}
+.contentBox #mymodal  .modal-body #modal_cance{
+	top:-70px;
+}
+.contentBox #mymodal  .modal-body .btn-primary{
+	height:40px;
+	position:relative;
+	top: -50px;
+}
+.rightuser>div .commentkuang{
+	height:434px;
+	overflow-y:scroll;
+}
+.comment #container .date #current{
+	top:-24px;
+}

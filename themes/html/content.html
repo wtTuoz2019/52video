@@ -174,6 +174,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 		</div>
 	</div>
 </div>
+
 <div class="contentBox t100">
     <ul id="mainTabs">
     <!--foreach:{$functions $key $vo}-->
@@ -247,62 +248,15 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 <div class="contentBox">
 	<div class="mborder"></div>
 </div>
-<div class="contentBox">
-	<div class="addAnswerBox">
-		<form  id="form">					 
-			<p class="comment-form-comment" id="commentform" >
-				<textarea id="message" name="message" cols="45" rows="8" reg="\S" msg="评论不能为空" ></textarea>
-			</p>
-			<p class="form-submit handle2" id="commentform" >
-        <input id="fid" name="fid" value="{$info.aid}" type="hidden" />
-				<input id="content_" name="type" value="content" type="hidden" />
-	      <input name="submit" type="botton" id="submit" class="btn fr" value="立即评论">
-			</p>
-			<div class="clear"></div>
-	  </form>
-	</div>
-</div> 
+
 <!--底部-->
 <!--#include file="foot.html"-->
 <!--END-->
 <script type="text/javascript"> 
-  	var url='http://live.shanyueyun.com';
-	  var headpic='<?php echo $_SESSION["headpic"];?>';
-	 var nickname='<?php echo $_SESSION["nickname"];?>';
-	  var uid='<?php echo $_SESSION["uid"];?>';
-	  var data = {
-			    fid: '{$info.aid}',
-				uid:uid,
-			    pageSize: 10,
-			    pageIndex: 0,
-			  };  
-			  var arr = {
-			    fid: '{$info.aid}',
-			    id:'0'
-			  };
-			var listflag={
-			    fid: '{$info.aid}',
-			    id:'0'
-			  };
-			  var id = 0,
-			  flag=0;
-			  var commentflag='save';
-			  var newcommentflag=false;
-	
-	
+  	
 
 
-	//弹窗
-	function mydialog(t, c) {
-		var d = art.dialog({
-		  title: t,
-		  content: c,	
-		  });
-		  d.show();
-		  setTimeout(function () {
-			d.close();
-		}, 1200);
-	}
+	
 
 	
 	
@@ -317,49 +271,9 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 		},'json')
 	}
 	
-	$("#submit").click(function(){
-		var length_ = $('#message').val().length;
-		if (length_<1) {
-			
-			mydialog('提示', '评论不可小于1个字符');
-			return false;
-		};
-	  $.post("__ROOT__/user/index.php/comment/data",
-	  {	
-		type:'content',
-		fid:$('#fid').val(),
-		message:$('#message').val()
-	  },
-	  function(d){
-		if(d.status == 1){
-			$('#message').val('');
-			           	flag=0;
-						automatic(arr);
-						
-						$('#modal_cance').click();
-						commentsucess(d.message);
-		}else{
-			art.dialog({
-				title: '提示',
-				content: '评论需先登录',
-				button: [
-					{
-						name: '立即登录',
-						callback: function () {
-							toweixinLogin()
-						}
-					}
-				]
-			});
-		}
-	  },'json');
-	});
 	
-	$(function(){ 
-		
-	　　$("#modal_cance").text('X');
 	
-	}); 
+	
 	
 	
 	   <?php   if ($info['airtime']<time()) {  ?>

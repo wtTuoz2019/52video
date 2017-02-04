@@ -220,6 +220,18 @@ class contentModel extends commonMod
         $data=$this->model->query($sql);
         return $data[0]['aid'];
     }
+	
+	    public function get_livecontent($csid){
+       
+        $sql = "SELECT *
+            FROM dc_content
+            LEFT JOIN dc_expand_content_livestream
+            ON dc_expand_content_livestream.aid=dc_content.aid
+            WHERE dc_content.csid = $csid and dc_content.cid=16 and (dc_expand_content_livestream.starttime+dc_expand_content_livestream.time*60)>".time()." order by dc_expand_content_livestream.starttime asc limit 1";
+        $data=$this->model->query($sql);
+        return $data[0];
+    }
+	
 	public function get_starttime($aid){
 	 $data = $this->model->table('expand_content_livestream')->field('starttime')->where(array('aid'=>$aid))->find();
      return $data['starttime'];	

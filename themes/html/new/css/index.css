@@ -430,17 +430,17 @@ line-height:30px;
 	margin-right:10px;
 }
 .comment .commentarea{
-	margin-top:20px;
 	border-bottom:1px solid #ddd;
-    padding: 20px;
+    padding: 0 20px 10px 20px;
 } 
 .comment .commentarea .dianzan{
 	clear:both;
 	
 }
-.commid{
-	height:50px;
+#container .dianzan .userlist img{
+	margin-bottom:0;
 }
+
 .commid .date{
 	margin-top:10px;
 	font-size:12px;
@@ -462,8 +462,11 @@ ul[id^="commentlist"]{
 .comment .commentarea .combtm{
 	width:100%;
 	left:0;
-	padding:10px;
+	padding: 0 10px 0 10px;
 	background:#f5f5f5;
+}
+.commentarea_right .pinglun{
+	padding:0; 
 }
 .comment .commentarea .commentlist .comlistarea{
 	display: inline-block;
