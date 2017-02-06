@@ -125,7 +125,7 @@ p.allcomment span{
 	min-height:1050px;
 	width:100%;
 	background:#fff;
-	z-index:200;
+	z-index:9999;
 	padding:40px 30px 0 30px;
 	display:none;
 }
@@ -185,4 +185,23 @@ p.allcomment span{
 }
 #myTabContent>div{
 	line-height:27px;
+}
+#checkmore {
+    color: #55b0c3;
+    text-align: center;
+    clear: both;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 30px 0;
+}
+#checkmore span {
+    display: inline-block;
+    transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    position: relative;
+    top: 3px;
+    left: 10px;
+	font-size: 24px;
 }

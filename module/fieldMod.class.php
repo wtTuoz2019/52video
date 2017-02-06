@@ -358,7 +358,30 @@ class fieldMod extends commonMod {
 		$this->display();  
 	}
 	
-
+	public function getlist(){
+		 $listrows=6;
+        //分页处理
+        $url=__INDEX__.'/field/getlist/pages-{page}.html'; 
+        $limit=$this->pagelimit($url,$listrows);
+		$where=' status=1';
+		foreach($_POST as $key=>$val){
+		$where.=" AND ".$key."=".$val;
+			}
+		$loop=model('field')->field_index_list($where,$limit);
+		
+		if($loop){
+		foreach($loop as $key=>$val){
+			$loop[$key]['time']=date('Y-m-d', $val['updatetime']);
+			
+			}
+			
+		$this->msg($loop,1);
+		
+		}
+		else $this->msg($loop,0);
+		
+		
+		}
 	
 
 }

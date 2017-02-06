@@ -430,6 +430,7 @@ var note = $('#note'),
   		<!--/if-->
          
         <div id="tohistory">
+        	<div class="historys">
          <!--foreach:{$history $list}-->
         	<a class="historyk" href="{$list.aurl}">
             	<div class="schoolimg">
@@ -444,7 +445,10 @@ var note = $('#note'),
                 </div>
             </a>
             <!--/list-->
-           
+           </div>
+           <div id="checkmore" onClick="gethistorymore()">
+                查看更多<span>》</span>
+           </div>
         </div>
 		
       
@@ -482,6 +486,24 @@ function changecolor(color){
 			});
 		 });
 	
+	
+	var pages=2;  
+	function gethistorymore(){
+	$.post('__APP__/field/getlist/pages-'+pages+'.html',{csid:'{$school.id}'},function(data){
+		if(data.status=='1'){
+			for(var i=0;i<data['message'].length;i++){
+				
+				$('.historys').append('<a class="historyk" href="/content/index?aid='+data['message'][i]['aid']+'" ><div class="schoolimg"><img src="{$sys["imageurl"]}'+data['message'][i]['image']+'"> </div><div class="livetext"><p>'+data['message'][i]['title']+'</p><p class="time_see"><span>'+data['message'][i]['time']+'</span><span><img  src="__PUBLIC__/images/see.png" />'+data['message'][i]['views']+'</span></p></div></a>')	
+				}
+			pages=pages+1;
+			}else{
+			$('#checkmore').hide();	
+				}
+		
+		},'json');
+	
+	} 
+
 	
          </script>
          

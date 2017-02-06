@@ -5,14 +5,14 @@
 		    <div class="modal-dialog">
 		        <div class="modal-content">
 					<div class="modal-body">
-						<textarea id="editors" placeholder=""></textarea>
+						<input id="editors" placeholder=""></input>
 						<div class="icongroups">
 				
 						</div>
 						<div style="text-align: center;position:relative">
                         	<input name="pid" type="hidden" value="" id="pid">
                             <input name="toname" type="hidden" value="" id="toname">
-							<button id="input-type-submit" type="button" class="btn btn-primary">发布</button>
+							<button id="input-type-submit" type="button" class="btn btn-primary">评论</button>
 							<button id="modal_cance" type="button" class="btn btn-default"  data-dismiss="modal">返回</button>
                             <div id="messageto"></div>
 						</div>
@@ -38,7 +38,7 @@
 						</div>
      <script type="text/javascript">  
   	var url='http://{$config.MOBILE_DOMAIN}';
-	  var headpic='<?php echo $_SESSION["headpic"];?>';
+  var headpic='<?php echo $_SESSION["headpic"];?>';
 	 var nickname='<?php echo $_SESSION["nickname"];?>';
 	  var uid='<?php echo $_SESSION["uid"];?>';
 	  var data = {
@@ -87,14 +87,16 @@
 						</div>
                         <div class="contentBox">
 	<div class="addAnswerBox">
-		<form  id="form">					 
+		<form  id="form">
+        	<img id="userface" src="/themes/html/images/face.png"/>				 
 			<p class="comment-form-comment" id="commentform" >
-				<textarea id="message" name="message" cols="45" rows="8" reg="\S" msg="评论不能为空" ></textarea>
+				<input id="message" name="message" cols="45" rows="8" reg="\S" msg="评论不能为空" placeholder="来说两句吧..."></input>
 			</p>
 			<p class="form-submit handle2" id="commentform" >
         <input id="fid" name="fid" value="{$info.aid}" type="hidden" />
 				<input id="content_" name="type" value="content" type="hidden" />
-	      <input name="submit" type="botton" id="submit" class="btn fr" value="立即评论">
+	      <!--<input name="submit" type="botton" id="submit" class="btn fr" value="立即评论">-->
+          	<img name="submit" id="submit" src="/themes/html/images/submit.png" />
 			</p>
 			<div class="clear"></div>
 	  </form>
@@ -201,18 +203,61 @@
 		}else{
 			art.dialog({
 				title: '提示',
-				content: '评论需先登录',
+				content: '评论需先登录！',
 				button: [
 					{
-						name: '立即登录',
+						name: '登录',
 						callback: function () {
-							toweixinLogin()
+							window.open("http://live.shanyueyun.com/login/login.html");
 						}
+					},
+					{
+						name: '取消'
 					}
 				]
 			});
 		}
 	  },'json');
 	});
+	
+	//弹出评论
+			function comment(e){
+				
+				$("video").css({'height':'0px'});
+				$('#editors').attr('placeholder','');
+				 $("#mymodal").find('#toname').val('');
+				 commentflag='save';
+		     	 $("#mymodal").modal("toggle");
+				  if(typeof($(e).attr('pid'))!='undefined'){
+				 $("#mymodal").find('#pid').val($(e).attr('pid'))
+				  commentflag='reply';
+				   $('.comment-area').hide()
+				  }
+				 if(typeof($(e).attr('toname'))!='undefined'){
+					 
+				 $("#mymodal").find('#toname').val($(e).attr('toname'));
+				 $('#editors').attr('placeholder','回复'+$(e).attr('toname')+':');
+				 }
+				 
+				 $('.modal-backdrop').remove();
+				 var a=$(e).offset().top-420;
+				 $('.contentBox #mymodal').css('top',a+'px');
+				 
+				 $(e).parents('.commentarea').css('padding-bottom','20px');	
+			}
+		$(document).bind('click', function(e) {
+			if($('#mymodal').css('display')=='block'){
+					var e = e || window.event; 
+					var elem = e.target || e.srcElement;  
+					while (elem) {    
+						if (elem.id && (elem.id == 'mymodal' || elem.id=='excom')) {  
+							return;  
+						}  
+						elem = elem.parentNode;  
+					}  
+					$('#modal_cance').click();
+					$('.rightuser .comment .commentarea').css('padding-bottom','0');
+			}
+		}); 
   
     </script>

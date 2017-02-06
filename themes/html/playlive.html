@@ -20,7 +20,7 @@
  </script>
  <style>
  	#play{
-		border-bottom:50px solid #414141;
+		border-bottom:50px solid #ECECEC;
 		float:left;
 	}
 	
@@ -93,12 +93,12 @@
                            <?php }?>
 					</div>
                            <!--/loop-->
-  
+   
 </div>
 <div class="volid_bottom">
                 <ul>
-                    <li><a href="javascript:;"><img class="usersee" src="/themes/html/images/see.png"/><span id="laud">{$info.views}</span></a></li>
-                    <li style="border:none;"><a href="javascript:;" ><i class="blog_icon9"> </i><span id="collection">加入收藏</span></a></li>
+                    <li><a href="javascript:;"><img class="usersee" src="/themes/html/images/seeblack.png"/><span id="laud">{$info.views}</span></a></li>
+                    
                 </ul>
 			</div>
 <!--{else}-->
@@ -130,9 +130,9 @@ var play=1;
 	
 	var w = "100%";//视频宽度
   var h = "100%";//视频高度
-  var url = "rtmp://{$sys.ali}{$channel.vMp4url}";//视频地址
+  var playurl = "rtmp://{$sys.ali}{$channel.vMp4url}";//视频地址
   var image = "{$sys['imageurl']}{$info.image}";//封面图片
-  var flashvars={f:url,c:0,s:0,i:image,lv:1,p:play,loaded:'loadHandler'};
+  var flashvars={f:playurl,c:0,s:0,i:image,lv:1,p:play,loaded:'loadHandler'};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
 CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,flashvars,video,params);

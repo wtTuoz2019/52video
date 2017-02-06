@@ -1,10 +1,13 @@
+body{
+	background: #F2F3F4;
+}
 .contentBox{
 	width:1120px;
 }
 .volid_main{
 	padding:10px;
 	height:559px;
-	background:rgba(0,0,0,0.2);
+	background: rgba(188,188,188,0.4);
 }
 .down .doo{
 	background:transparent;
@@ -22,15 +25,24 @@
 	position:relative;
 	height:inherit;
 }
+.bannner .collectme{
+	position:absolute;
+	right:5%;
+	top:0;
+	cursor:pointer;
+}
+.bannner .collectme>img{
+	width:75px;
+}
 .bannner .schoolname{
 	position:absolute;
 	top:10%;
-	left:10%;
+	left:13%;
 }
 .bannner .qr{
 	position:absolute;
 	top:10%;
-	right:10%;
+	right:13%;
 }
 .bannner .qr>img{
 	width:130px;
@@ -48,7 +60,7 @@
 	background:transparent;
 }
 #play{
-	border:10px solid #414141;
+	border:10px solid #ECECEC;
 	position:relative;
 }
 .volid .down {
@@ -72,6 +84,20 @@
 	text-align:left;
 	position:relative;
 	top:-100px;
+}
+.historylive .novideo{
+	padding-top:100px;
+	text-align:center;
+}
+.historylive .novideo>img{
+	vertical-align:bottom;
+	position:relative;
+	top: 10px;
+    left: -5px;
+}
+.historylive>.videok{
+	overflow: hidden;
+	padding-bottom:10px;
 }
 .historylive>.ptitle{
 	margin:0;
@@ -106,83 +132,235 @@
 }
 .rightuser #mainTabs{
 	margin-top:0;
-	background:#313131;
+	background:#ECECEC;
 	border:0;
-	border-bottom:1px solid #636363;
+	border-bottom:1px solid #DCDCDC;
+	padding-top:10px;
 }
-.rightuser #mainTabs a{
-	color:#fff;
+.rightuser #mainTabs li{
+	height:35px;
+	float:left;
+	border-right:1px solid #888888;
+}
+.rightuser #mainTabs li a{
+	color:#919191;
+	height:45px;
+	line-height:35px;
+}
+.rightuser #mainTabs li:last-child{
+	border:0;
 }
 .rightuser #mainTabs a.selected{
-	background:#313131;
-	border:0;
-	border-bottom:1px solid #636363;
+	color:#5B678D;
+	background:#ECECEC;
+	border-bottom:1px solid #5B678D;
+}
+.rightuser #mainTabs a{
+	width:100%;
+	text-align:center;
 }
 .rightuser .contentBox{
 	width:100%;
     bottom: 0;
 	z-index:100;
+	padding:10px 0;
+	background:#F6F6F6;
+	height:55px;
 }
 .comment .commentarea_right{
 	width:80%;
 }
 
 #commentform{
-	width:100%;
+	display:inline-block;
+	width:70%;
 }
-.addAnswerBox textarea{
+.addAnswerBox input{
 	margin:0;
-	height:50px;
+	height:35px;
 	float:left;
 	border:1px solid #D5D4D4;
 	color:#000;
-	padding-right:80px;
-	border-left:0;
+	padding-left:10px;
+	border-radius:10px;
+	width:100%;
 }
 .rightuser  #submit{
 	position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 13px;
+    right: 8px;
 	margin: 0;
-    height: 50px;
-    width: 80px;
     padding: 0;
 }
 .allcomment{
 	border-bottom:1px solid #D5D4D4;
 	padding:7px;
+	margin-bottom:0;
 }
 .rightuser  .comment .commentarea .combtm{
 	background:#fff;
 }
 .rightuser  .comment .commentarea{
 	border-bottom:1px solid #D5D4D4;
+	padding: 0 10px 0 0;
+	line-height: initial;
 }
 .contentBox #mymodal{
-	top:360px !important;
+	
 	width:100%;
 	padding:0 !important;
 }
 .contentBox #mymodal .modal-content{
 	height:80px;
+	background: transparent;
+    border: 0;
+    box-shadow: none;
+	padding:20px;
 }
-.contentBox #mymodal .modal-body textarea{
+.contentBox #mymodal .modal-body input{
 	width:80%;
-	height:40px;
+	height:30px;
 	color:#000;
 }
 .contentBox #mymodal  .modal-body #modal_cance{
 	top:-70px;
 }
 .contentBox #mymodal  .modal-body .btn-primary{
-	height:40px;
+	height:30px;
 	position:relative;
-	top: -50px;
+	top: -35px;
+	width:75px;
+	background:#97AACB;
 }
 .rightuser>div .commentkuang{
-	height:434px;
+	height:429px;
 	overflow-y:scroll;
 }
 .comment #container .date #current{
-	top:-24px;
+	top:-5px;
+	position:absolute;
+}
+.contentBox #mymodal .modal-dialog,.contentBox #mymodal{
+	height:auto;
+}
+.volid_bottom ul li{
+	border:0;
+}
+.volid_bottom ul li span{
+	color:#000;
+}
+.volid_bottom .usersee{
+	height: 20px;
+    top: 10px;
+}
+#form img{
+	width:30px;
+}
+.rightuser .contentBox #form{
+	text-align:center;
+}
+#userface{
+	position:absolute;
+	bottom: 12px;
+    left: 10px;
+}
+.comment .load_m{
+	height:45px;
+}
+#checkmore{
+	color:#55b0c3;
+	text-align:center;
+	clear:both;
+	font-size:16px;
+	cursor:pointer;
+	padding:10px 0;
+	margin-top:50px;
+}
+#checkmore span{
+	display:inline-block;
+	transform: rotate(90deg); 
+	-o-transform: rotate(90deg); 
+	-webkit-transform: rotate(90deg); 
+	-moz-transform: rotate(90deg); 
+	position:relative;
+	top:3px;
+	left:10px;
+}
+.addAnswerBox input:focus{
+	outline: none;
+}
+.commid .date,.comment .commentarea_right h6{
+	margin:0;
+}
+
+.commentarea_right .dianzan, .commentarea_right .pinglun{
+	padding:0;
+}
+.rightuser>div{
+	font-size:15px;
+}
+.comment #container .dianzan .userlist,.comment #container .pinglun #orderList{
+	width:90%;
+}
+.comment .commentarea .commentlist .comlistarea{
+	width:80%;
+}
+.comment .commentarea .commentlist .comlistarea p{
+	margin:0;
+}
+#container .commentlist div.left>img{
+	width: 35px!important;
+    height: 35px!important;
+	margin-left: 5px;
+}
+.cnav .mages>span{
+	float: right;
+    line-height: 35px;
+    color: #278497;
+}
+.cnav .mages p:first-child{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#refresh{
+	height:auto;
+	line-height:inherit;
+}
+
+
+.aui_state_focus div.aui_inner{
+	width:300px;
+	height:205px;
+	border:5px solid #ddd;
+}
+.aui_state_focus .aui_title{
+	height:40px;
+	line-height:40px;
+	font-size:16px;
+}
+.aui_state_focus .aui_buttons{
+	border:0;
+}
+.aui_state_focus .aui_content{
+	font-size:16px;
+	height:90px;
+	line-height: 50px;
+}
+.aui_state_focus .aui_buttons{
+	text-align:center;
+	padding:0;
+}
+.aui_state_focus .aui_buttons button{
+	height:35px;
+	line-height:35px;
+	background:#97AACB;
+	border:0;
+	border-radius:5px;
+	width:90px;
+}
+.aui_state_focus .aui_buttons button:last-child{
+	background:#F1F1F1;
+	border:1px solid #CCCCCC;
+	color:#8A8A8A;
 }

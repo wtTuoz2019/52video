@@ -99,7 +99,7 @@ class weixinloginMod extends commonMod {
         }else{
         	$expire = time() + 7200;
         }
-        setcookie($this->config['SPOT'].'_duxuser',$cookie,$expire,'/');
+        setcookie($this->config['SPOT'].'_wxuser',$cookie,$expire,'/');
 
         //hook
         module('common')->plus_hook('index','data_stop',$data);
@@ -117,8 +117,8 @@ class weixinloginMod extends commonMod {
 		
 		session_unset();
 		session_destroy();
-
-	 $url=__APP__;
+		model('login')->logout();
+		 $url=__APP__;
 		$this->alert('退出成功');
 		 $this->redirect( $url);
 		}

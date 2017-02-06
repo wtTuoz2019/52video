@@ -44,7 +44,15 @@ class loginMod extends commonMod {
 		$code=$_POST['code'];
 		$uid=model('user')->getuidbylogincode($code);
 		if($uid){
-			$_SESSION['uid']=$uid;
+		$_SESSION['uid']=$uid;
+		$this->userinfo=model('user')->info($_SESSION['uid']);
+	
+		   //设置登录信息
+        $cookie=$this->userinfo['uid'].'|'.sha1($this->userinfo['nicename']);
+       
+        $expire = time() + 7200;
+      
+        setcookie($this->config['SPOT'].'_wxuser',$cookie,$expire,'/');
 		$this->msg($uid,1);	
 			}else{
 			$this->msg($uid,0);		
@@ -104,7 +112,7 @@ class loginMod extends commonMod {
         }else{
         	$expire = time() + 7200;
         }
-        setcookie($this->config['SPOT'].'_duxuser',$cookie,$expire,'/');
+        setcookie($this->config['SPOT'].'_wxuser',$cookie,$expire,'/');
 
         //hook
         module('common')->plus_hook('index','data_stop',$data);

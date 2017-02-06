@@ -91,10 +91,10 @@ var commenturl="http://comment.shanyueyun.net";
 					$('#messageto').html('请输入大于1字符评论').show(300).delay(3000).hide(300);
 			    	return;
 			    }
-			
+			$('.rightuser .comment .commentarea').css('padding-bottom','0');
 			   if(commentflag=='save'){
 				$.ajax({
-				  url: url+"/index.php/comment/save",
+				  url: "/index.php/comment/save",
 				  type: "POST",
 				  data: {
 					fid: data['fid'],
@@ -123,7 +123,7 @@ var commenturl="http://comment.shanyueyun.net";
 			   }else if(commentflag=='reply'){
 				 var  pid=$('input#pid').val();
 				  var  toname=$('input#toname').val();
-			$.post(url+"/index.php/comment/reply_add",
+			$.post("/index.php/comment/reply_add",
 	  	{	
 			id:arr['fid'],
 			pid:pid,
@@ -176,7 +176,7 @@ var commenturl="http://comment.shanyueyun.net";
 			
 				} );	
 			
-		//		$.post(url+'/index.php/comment/pc_auto',{data: arr},function(d){
+		//		$.post('/index.php/comment/pc_auto',{data: arr},function(d){
 //					if(d.status==1){
 //						$('#container').html(escapes(d.message.info));
 //						listflag['id'] = d.message.info[0]['id'];
@@ -224,18 +224,13 @@ var commenturl="http://comment.shanyueyun.net";
 			}
 			
 	function qwert(){
-			//	var url="http://comment.shanyueyun.net/index.php/comment/pc_auto";
-//			$.getJSON(url + "?callback=?", arr, function(data) { 
-//			
-//		
-//				} );	
-
+		
 				if(newcommentflag==false){
 					$.getJSON(commenturl + "/index.php/comment/pc_autoflag?callback=?",listflag, function(data) { 
 			
 				} );
 					
-				//getnewcommentflag(listflag);
+				
 				}
 			}
 function refreshflag(d){
@@ -459,7 +454,7 @@ function reply(e,pid){
 		var mesage=$('#message'+pid).val();
 		$('#message'+pid).val('');
 			$('#message'+pid).parent().hide();
-	  $.post(url+"/user/index.php/comment/reply_add",
+	  $.post("/user/index.php/comment/reply_add",
 	  {	
 		id:'{$fid}',
 		pid:pid,
@@ -470,13 +465,29 @@ function reply(e,pid){
 		//	alert( d.message);
 			$('#commentlist'+pid).append('<li><div class="left"><img src="'+headpic+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><div class="username">'+nickname+'</div><p>'+mesage+'</p></div></li>');
 			
-		  }
+		  }else{
+			art.dialog({
+				title: '提示',
+				content: '评论需先登录！',
+				button: [
+					{
+						name: '登录',
+						callback: function () {
+							window.open("http://live.shanyueyun.com/login/login.html");
+						}
+					},
+					{
+						name: '取消'
+					}
+				]
+			});
+		}
 	  },'json');
 	}
 function commentdel(e,id){
 	if(confirm('确定删除吗？')){
 		
-		 $.post(url+'/index.php/comment/commentdel',{type:'comment',id:id},function(data){
+		 $.post('/index.php/comment/commentdel',{type:'comment',id:id},function(data){
 			
 			if(data.status==1){
 				$(e).parent().parent().parent().parent().remove();
@@ -488,7 +499,7 @@ function commentdel(e,id){
 function resdel(e,id){
 	if(confirm('确定删除吗？')){
 		
-		 $.post(url+'/index.php/comment/resdel',{type:'comment',id:id},function(data){
+		 $.post('/index.php/comment/resdel',{type:'comment',id:id},function(data){
 			
 			if(data.status==1){
 				$(e).parent().parent().remove();
@@ -499,19 +510,36 @@ function resdel(e,id){
 	
 	}
  function goodplus(fid,e){ 
+
 		if($(e).find('i').text()=='赞'){
-		   $.post(url+'/index.php/change/laud',{type:'comment',fid:fid},function(data){
+		   $.post('/index.php/change/laud',{type:'comment',fid:fid},function(data){
 			
 			if(data.status==1){
 				$(e).find('i').text('取消');
 				
 				$('.userlist').eq($('.zan').index($(e))).append('<img src="'+headpic+'" id="img'+uid+'" />');		
 			   $('.dianzan').eq($('.zan').index($(e))).find('.left span').removeClass('hide');
-			}
+			}else{
+			art.dialog({
+				title: '提示',
+				content: '点赞需先登录！',
+				button: [
+					{
+						name: '登录',
+						callback: function () {
+							window.open("http://live.shanyueyun.com/login/login.html");
+						}
+					},
+					{
+						name: '取消'
+					}
+				]
+			});
+		}
 		},'json')
 		
 		}else{
-		 $.post(url+'/index.php/change/canselaud',{type:'comment',fid:fid},function(data){
+		 $.post('/index.php/change/canselaud',{type:'comment',fid:fid},function(data){
 			
 			if(data.status==1){
 				$(e).find('i').text('赞');

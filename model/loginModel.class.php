@@ -32,7 +32,7 @@ class loginModel extends commonModel
     //退出操作
     public function logout()
     {
-        setcookie($this->config['SPOT'].'_duxuser','',-1,'/');
+        setcookie($this->config['SPOT'].'_wxuser','',-1,'/');
     }
 	
 	  public function gsetloginQrcode($url, $code){
