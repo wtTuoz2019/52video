@@ -205,3 +205,13 @@ p.allcomment span{
     left: 10px;
 	font-size: 24px;
 }
+.modal .modal-body .btn-default, .modal .modal-body .btn-primary{
+	height:50px;
+	font-size:22px;
+}
+.modal-body textarea{
+	height:150px;
+}
+.modal .modal-body .btn-primary{
+	margin-bottom:20px;
+}

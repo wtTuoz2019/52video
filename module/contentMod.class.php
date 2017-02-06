@@ -196,6 +196,7 @@ class contentMod extends commonMod
 		$this->getuserinfo();
 		 $this->csid=$csid=intval($_GET['csid']);
 		 $this->school=$school=model('school')->info($csid);
+	
 		 if(!$school){
 		if (empty($aid)) {
             $this->error404();
