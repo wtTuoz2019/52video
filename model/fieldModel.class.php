@@ -32,6 +32,21 @@ class fieldModel extends commonMod {
         return $this->model->table('diyfield_value')->where(array('did'=>$did))->select();
     }
 	
+	  public function getlaterlive() {
+       
+            $loops="
+            SELECT A.*,B.starttime,B.time,C.sn
+            FROM {$this->model->pre}content A
+            ,{$this->model->pre}expand_content_livestream B ,{$this->model->pre}device C
+          	WHERE  A.aid=B.aid and    (B.starttime+B.time*60)>".time()." and A.channel=C.id
+            ORDER BY B.starttime asc ";
+        
+        $loop = $this->model->query($loops);
+       
+        return $loop;
+    }
+
+	
     public function video($limit,$cid=null) {
         session_start();
 			if($_SESSION['sid']){

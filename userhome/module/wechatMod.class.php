@@ -29,11 +29,11 @@ class wechatMod extends commonMod {
 
 	 //评论列表
     public function wechat_info()
-    {	$uid=$_SESSION[$this->config['SPOT'].'_user'];
+    {	
 		
 		
 		$this->actionname='微信绑定';
-		$wechat_info=model('wechat')->wechat_info('wxuser',$uid);//微信信息
+		$wechat_info=model('wechat')->wechat_info('wxuser',$this->uid);//微信信息
 	
 		$token=$this->token;
 		$this->assign('token',$token);
@@ -83,7 +83,7 @@ class wechatMod extends commonMod {
 	//自动回复  
 	public function set_reply(){
 		
-		$uid=$_SESSION[$this->config['SPOT'].'_user'];
+		$uid=$this->uid;
 		$token=$this->token;
 		$this->actionname='关注回复';
 		$info=model('wechat')->wechat_info('areply',$uid);//微信信息
@@ -99,7 +99,7 @@ class wechatMod extends commonMod {
 		}
 	public function save_reply(){
 		
-		$_POST['uid']=intval($_SESSION[$this->config['SPOT'].'_user']);
+		$_POST['uid']=$this->uid;
 		$_POST['token']=$this->token;
 		if(!$_POST['home']) $_POST['home']=0;
 		$add=model('wechat')->save('areply',$_POST);
@@ -118,7 +118,7 @@ class wechatMod extends commonMod {
 	
 	public function wechat_info_add(){
 		
-		$_POST['uid']=intval($_SESSION[$this->config['SPOT'].'_user']);
+		$_POST['uid']=$this->uid;
 		$_POST['token']=$this->token;
 		$add=model('wechat')->save('wxuser',$_POST);
 		
@@ -153,7 +153,7 @@ class wechatMod extends commonMod {
 		//ajax 文本回复保存
 	public function text_edit_save(){
 		
-		$_POST['uid']=intval($_SESSION[$this->config['SPOT'].'_user']);
+		$_POST['uid']=$this->uid;
 		$_POST['token']=$this->token;
 		
 		if($_POST['id']){
@@ -196,7 +196,7 @@ class wechatMod extends commonMod {
 		//ajax 文本回复保存
 	public function img_edit_save(){
 		
-		$_POST['uid']=intval($_SESSION[$this->config['SPOT'].'_user']);
+		$_POST['uid']=$this->uid;
 		$_POST['token']=$this->token;
 		
 		if($_POST['id']){
@@ -242,7 +242,7 @@ class wechatMod extends commonMod {
 	//菜单保存
 	public function menu_save(){
 		
-		$_POST['uid']=intval($_SESSION[$this->config['SPOT'].'_user']);
+		$_POST['uid']=$this->uid;
 		$_POST['token']=$this->token;
 		
 		if($_POST['id']){
@@ -760,7 +760,7 @@ class wechatMod extends commonMod {
 
 	public function diytpl()
 	{	$this->actionname='自定义模板';
-		$uid=intval($_SESSION[$this->config['SPOT'].'_user']);
+		$uid=$this->uid;
 		$list=$this->model->table('diytpl')->where(array('uid'=>$uid))->select();
 		$this->assign('list',$list);
 		
@@ -810,7 +810,7 @@ class wechatMod extends commonMod {
 	public function diytpl_edit_save(){
 	
 		$_POST['aid']=serialize($_POST['aid']);
-		$_POST['uid']=intval($_SESSION[$this->config['SPOT'].'_user']);
+		$_POST['uid']=$this->uid;
 		
 		
 		if($_POST['id']){
@@ -829,7 +829,7 @@ class wechatMod extends commonMod {
 		
 	public function menu_add_diytpl_list(){
 		
-		$uid=intval($_SESSION[$this->config['SPOT'].'_user']);
+		$uid=$this->uid;
 		$list=$this->model->table('diytpl')->where(array('uid'=>$uid))->select();
 		$this->assign('list',$list);
 	

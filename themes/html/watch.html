@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$common.title}</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/watch/css/main.css"/>
+         <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="bg">
+			<div class="title">
+				<img src="__PUBLIC__/watch/img/logo.png"/>
+				直播监控
+			</div>
+			<div class="lives">
+             <!--foreach:{$playlist $key $vo}-->
+				<div class="livek">
+                	<div class="video" id="{$vo.sn}"></div>
+					<div class="livetext">
+						<h5>
+							{$vo.status}：
+						</h5>
+						<p>
+							{$vo.title}
+						</p>
+					</div>
+				</div>
+                <script>
+  var url = "rtmp://{$sys.ali}{$vo.sn}";//视频地址
+  var image = "{$sys['imageurl']}{$vo.image}";//封面图片
+  var flashvars={f:url,c:0,s:0,i:image,lv:1,p:1,loaded:'loadHandler'};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','{$vo.sn}','player_{$vo.sn}','100%','100%',false,flashvars,video,params);
+
+                
+                </script>
+				    <!--/foreach-->
+				
+			</div>
+			
+			
+		</div>
+		
+		
+		<script type="text/javascript" src="__PUBLIC__/watch/js/jquery-1.11.3.js" ></script>
+	<script>
+    var h;
+
+$(function(){
+	var w=parseFloat($('.title').css('width'));
+	h=w/9*2+'px';
+	$('.livek').css('height',h);
+});
+
+function getlivelist(){
+	$.post('__URL__/getlivelist','',function(data){
+			
+		if(data.status==1){
+		$('.video').each(function(index, element) {
+			
+          if(typeof data['message'][$(element).attr('id')]=='undefined'){
+			  $(element).parent().remove();
+			  
+			  }else{
+				   $(element).parent().find('h5').text(data['message'][$(element).attr('id')]['status']+'：');
+				    $(element).parent().find('p').text(data['message'][$(element).attr('id')]['title']);
+				  
+				  };
+       		 });
+	for(i in data['message']){
+		if($('#'+i).length==0){
+		$('.lives').append('<div class="livek" style="height:'+h+';"><div class="video" id="'+data['message'][i]['sn']+'"></div><div class="livetext"><h5>'+data['message'][i]['status']+'：</h5><p>'+data['message'][i]['title']+'</p></div><img class="wait" src="__PUBLIC__/watch/img/timg.gif"/></div>')
+	
+		  var url = "rtmp://{$sys.ali}"+data['message'][i]['sn'];//视频地址
+  var image = "{$sys['imageurl']}"+data['message'][i]['image'];//封面图片
+  var flashvars={f:url,c:0,s:0,i:image,lv:1,p:1,loaded:'loadHandler'};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf',data['message'][i]['sn'],'player_'+data['message'][i]['sn'],'100%','100%',false,flashvars,video,params);
+
+		
+	setTimeout(function(){
+		$('.wait').remove();
+	},1800);
+			}
+		}
+		}else{
+			$('.lives').html('');
+			
+			}
+		
+		},'json')
+	
+	}
+	setInterval('getlivelist()',6000);
+
+    
+    </script>
+		
+	</body>
+</html>
