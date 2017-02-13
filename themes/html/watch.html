@@ -63,7 +63,7 @@ function getlivelist(){
 			  $(element).parent().remove();
 			  
 			  }else{
-				   $(element).parent().find('h5').text(data['message'][$(element).attr('id')]['status']+'：');
+				   $(element).parent().find('h5').text(data['message'][$(element).attr('id')]['status']+'：'+data['message'][i]['sn']);
 				    $(element).parent().find('p').text(data['message'][$(element).attr('id')]['title']);
 				  
 				  };

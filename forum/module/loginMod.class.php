@@ -10,7 +10,7 @@ class loginMod extends commonMod {
         //hook
         module('common')->plus_hook('index','index');
         //hook end
-		$this->display('login_index.html');
+		$this->display();
 	}
 	
 	public function login() {

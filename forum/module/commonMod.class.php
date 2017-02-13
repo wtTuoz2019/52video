@@ -42,7 +42,7 @@ class commonMod
 		
 		
 	
-		$user=model('user')->current_user();
+		$user=model('user')->current();
 	
 		$this->user=$user;
 			
@@ -140,7 +140,7 @@ class commonMod
 			  $user=model('login')->check_login($userinfo);
         //读取登录信息
         if(empty($user)){
-            $this->redirect(__APP__ . '/login');
+            $this->redirect(__ROOTURL__ . '/login');
         }
         
         $this->check_pw($user);
