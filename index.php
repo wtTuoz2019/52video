@@ -1,7 +1,6 @@
 ﻿<?php
 header("content-type:text/html; charset=utf-8"); //12/27 9：20
 @date_default_timezone_set('PRC');
-
 if(!empty($_SERVER['HTTP_X_REWRITE_URL']) ){
 	$_SERVER['REQUEST_URI'] = $_SERVER['HTTP_X_REWRITE_URL'];
 } else if (!isset($_SERVER['REQUEST_URI'])) {

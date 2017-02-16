@@ -1,5 +1,6 @@
 <?php
 //监看显示
+error_reporting(E_ALL^E_NOTICE^E_WARNING);
 use Cdn\Request\V20141111 as Cdn; 
 class watchMod extends commonMod {
 
@@ -10,7 +11,7 @@ class watchMod extends commonMod {
     } 
 	
 	public function index(){
-		 $this->common=model('pageinfo')->media('直播监看');
+		 $this->common=model('pageinfo')->media('云监播');
 		 
 		 	require(CP_CORE_PATH . '/../ext/aliyunsdk/aliyun-php-sdk-core/Config.php');
 					

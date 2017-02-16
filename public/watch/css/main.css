@@ -27,6 +27,7 @@
 	padding: 55px 0 15px 2%;
 	border-radius: 5px;
 	overflow: hidden;
+	min-height:400px;
 }
 .bg .lives .livek{
 	float: left;
