@@ -1,4 +1,4 @@
-<?php
+<?php 
 //公共类
 class commonMod
 {

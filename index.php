@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 header("content-type:text/html; charset=utf-8"); //12/27 9：20
 @date_default_timezone_set('PRC');
 if(!empty($_SERVER['HTTP_X_REWRITE_URL']) ){
@@ -17,6 +17,7 @@ foreach($_GET as $key=>$value){
 	}
 //定义框架目录
 define('CP_PATH', dirname(__file__) . '/system/'); //指定内核目录
+
 require (dirname(__file__) . '/inc/config.php');
 require (CP_PATH . 'core/cpApp.class.php');
 

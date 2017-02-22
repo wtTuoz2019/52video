@@ -69,7 +69,10 @@ class  schoolModel extends commonModel
         return $this->model->table('school')->data($data)->where('id='.$data['id'])->update();
     }
 
-
+	public function user($name){
+		
+		 return $this->model->table('school','A')->add_table('admin','B','A.id=B.cid')->where(array('name'=>$name,'status'=>1))->find();
+		}
 
 
     //字段删除
