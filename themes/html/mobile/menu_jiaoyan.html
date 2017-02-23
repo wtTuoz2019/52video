@@ -29,7 +29,7 @@
 		</div>
         
         
-        <div class="modal fade bs-example-modal-sm hongbao" id="mymodal-data1" style=" width:345px;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">					
+        <!--<div class="modal fade bs-example-modal-sm hongbao" id="mymodal-data1" style=" width:345px;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">					
                <a href="javascript:" data-toggle="modal" data-target="#mymodal-data1"> <div class="Closebutton"></div></a>
 
 								<div class="modal-content" id="modal" style=" background:none;">
@@ -42,7 +42,7 @@
 									</div>
 									
 								</div>
-						</div>
+						</div>-->
      <script type="text/javascript">  
   	var url='http://{$config.MOBILE_DOMAIN}';
 	  var headpic='<?php echo $_SESSION["headpic"];?>';
@@ -99,12 +99,9 @@
             <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
          </div>
 			<img id="smile" src="__PUBLIC__/images/smile.png">
-            <?php if($info['hall']){ ?>
-            	<input type="text" id="editors" placeholder="我来说两句" readonly onClick="jiaoyancomment(this)">
-            <a  data-toggle="modal" data-target="#mymodal-data1"  href="javascript:"><img id="shang" src="__PUBLIC__/images/shang.png"></a>
-            <?php }else{?>
+           
 			<input type="text" style="width:80%;" id="editors" placeholder="" readonly onClick="jiaoyancomment(this)">
-          <?php }?>
+      
 		
 		</div>
     <script>
