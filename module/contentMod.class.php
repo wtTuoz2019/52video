@@ -151,7 +151,9 @@ class contentMod extends commonMod
             $this->channel=model('content')->channel($info['channel']);
         }
 		if($info['signup']){
-		
+		if(!$_SESSION['uid']){
+				$this->getuserinfo();
+			}
 			
 		$this->userinfo=model('form_list')->infobyuser($_SESSION['uid'],'signup');
 		

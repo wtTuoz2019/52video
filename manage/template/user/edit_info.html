@@ -1,0 +1,30 @@
+<div id="usercenter">
+			<h4>
+				修改密码
+			</h4>
+			<div class="amendk">
+            <form action="__URL__/edit_save/time-<?php echo time() ?>-ajax-true" method="post" id="form">
+				<table width="100%">
+					<tr>
+						<td>新密码：</td>
+						<td>
+							<input type="password" name="password" type="password" id="password" />
+						</td>
+					</tr>
+					<tr>
+						<td>确认新密码：</td>
+						<td>
+							<input type="password" name="password2" type="password" id="password2" />
+						</td>
+					</tr>
+				</table>
+				<p>
+					注意：密码确认后，立即生效！ 不修改密码，请勿填写！
+				</p>
+				<button id="savepassword" type="submit">
+					确认
+				</button>
+            
+                </form>
+			</div>
+		</div>

@@ -1,0 +1,131 @@
+<div id="header">
+			<div class="head">
+				<div class="logo">
+					<img src="__PUBLICURL__/manage/img/logo2.png"/>
+					<span>
+						网站后台管理系统
+					</span>
+				</div>
+			</div>			
+		</div>
+		<div id="register">
+			<h4>
+				注册
+			</h4>
+              <form  method="post" id="form" action="__URL__/regaction/time-<?php echo time() ?>-ajax-true">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				
+				<tr>
+					<td>学校名称：</td>
+					<td>
+						<input type="text" name="nicename"   id="nicename" placeholder="学校名称" reg="\S" msg="学校名称必填" value="" />
+					</td>
+				</tr>
+				<tr>
+					<td>账号：</td>
+					<td>
+						<input type="text" name="user"  id="" value="" placeholder="账号" reg="\S" msg="账号称必填" />
+					</td>
+				</tr>
+				<tr>
+					<td><span>*</span>密码：</td>
+					<td>
+						<input type="password" name="password" placeholder="密码" reg="\S" msg="密码必填" value="" />
+					</td>
+				</tr>
+				<tr>
+					<td><span>*</span>确认密码：</td>
+					<td>
+						<input type="password" name="repassword" id="" value="" placeholder="再次输入密码" reg="\S" msg="请再次输入密码" />
+					</td>
+				</tr>
+				<tr>
+					<td>邮箱：</td>
+					<td>
+						<input type="emil" name="emil" placeholder="邮箱" reg="\S" msg="邮箱必填"/>
+					</td>
+				</tr>
+				<tr>
+					<td>手机号码：</td>
+					<td>
+						<input type="tel" name="mobile"  id="mobile" value="" placeholder="手机号" reg="\S" msg="手机号必填" />
+					</td>
+				</tr>
+				<tr>
+					<td>验证码：</td>
+					<td>
+						<input type="text"  name="code" id="" value="" placeholder="验证码" reg="\S" msg="验证码必填" />
+						<button class="tocode" id="jishi" onclick="huoqu(this)">获取验证码</button>
+					</td>
+				</tr>
+				<tr>
+					<td>营业执照：</td>
+					<td>
+  <?php echo module('login')->get_image_upload('image1','image',false,'editor_content') ?>
+          <input name="cardimage" type="hidden" class="form-control" id="image" style="width:220px; float:left" value="{$info.image}" /> 
+						<button class="business" id="image1" type="button">选择图片</button>
+                          <div id="forimage"></div>
+					</td>
+				</tr>
+			</table>
+			
+			
+			<button id="toregister" type="submit">
+				注册
+			</button>
+			<p>
+				已有账号，<a href="__URL__index.html">返回登录界面</a>
+			</p>
+		</div>
+        </form>
+  <script type="text/javascript">
+		  var timerID;
+		  var cishu=0;
+		  function daojishi(miao){
+			  var button=jQuery('button#jishi');
+			  miao=miao-cishu;
+			if(miao){
+			  button.text(miao+'s后可再次获取');
+			  button.attr('disabled',true);
+			   cishu++;
+			}else{
+				
+				button.text('重新获取验证码');
+				button.attr('disabled',false);
+				 cishu=0;
+				}
+				 
+			  }
+		  
+         function huoqu(ele){
+			 
+			 var button=jQuery(ele);
+			 if(jQuery('#mobile').val()==''){
+				 alert('手机号不能为空！');
+				 return false;
+				 }
+			 
+			jQuery.post("/index.php/sms",{mobile:jQuery('#mobile').val()},function(data){
+				
+				if(data=='1'){
+				alert('验证码发送成功。由于网络有可能存在延时，请稍等。');
+				var miao=180;
+				 timerID=setInterval("daojishi("+miao+")",1000);
+				}else{
+					alert('发送失败，请稍后重试。');	
+					}
+		
+				},'json');
+			 
+			 
+			 }
+		//提交表单
+		saveform({
+			success:function(){
+				window.location.href="__APP__/index";
+			},
+			failure:function(msg){
+				tip({msg:msg});
+			}}
+		);
+</script>

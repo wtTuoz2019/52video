@@ -1,0 +1,79 @@
+	<div class="indexcontent">
+			<div class="loginshow">
+				<div>
+					<img src="__PUBLICURL__/manage/img/backstage.png"/>
+					<span>
+						{$user.user} [{$user.nicename}]
+					</span>
+				</div>
+				<p>
+					<span>
+						您好！欢迎使用闪阅云管理系统后台！
+					</span>
+					<span>
+						您上次登录时间为：{$php( echo date('Y-m-d H:i:s',$user['logintime']))}
+					</span>
+				</p>
+				<p>
+					登录IP为： {$user.ip}
+                </p>
+				
+			</div>
+			<div class="serve">
+            
+				<div class="videoserve" onclick="jump(1)">
+					<div>
+						<img src="__PUBLICURL__/manage/img/video.png"/>
+					</div>
+					<p>
+						视频服务
+					</p>
+					<button>
+						管理
+					</button>
+				</div>
+              
+				<div class="xkserve" onclick="jump(3)">
+					<div>
+						<img src="__PUBLICURL__/manage/img/xuanke.png"/>
+					</div>
+					<p>
+						选课服务
+					</p>
+					<button>
+						管理
+					</button>
+				</div>
+				<div class="forumserve" onclick="jump(4)">
+					<div>
+						<img src="__PUBLICURL__/manage/img/forum.png"/>
+					</div>
+					<p>
+						论坛服务
+					</p>
+					<button>
+						管理
+					</button>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		 
+		
+		
+		<script type="text/javascript">
+			//导航点击跳出退出
+			$('#header .headuser').mouseenter(function(){
+				$('#header .exit').fadeIn(500);
+			}).mouseleave(function (){
+			    $('#header .exit').fadeOut(500);
+			});
+			
+			
+			function jump(e){
+				var iframe=parent.document.getElementById("main");
+				$(iframe).parent().find('#headnav>a').eq(e)[0].click();
+			}
+		</script>

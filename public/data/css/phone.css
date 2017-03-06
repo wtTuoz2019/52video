@@ -177,5 +177,44 @@
 	.mCSB_scrollTools .mCSB_draggerRail{
 		width:8px;
 	}
-	
-	
+	.view-box {
+    	padding: 5px 0; 
+		background: #ECECEC;
+	}
+	.schoolmessage {
+		float: left;
+		margin-left: 10px;
+	}
+	.schoollogo {
+		height: 50px;
+		width: 50px;
+		border-radius: 5px;
+		border: 1px solid #E0E0E0;
+		vertical-align: top;
+	}
+	.schoolmessage>p {
+		display: inline-block;
+		color: #353535;
+		padding-left: 10px;
+	}
+	.schoolmessage>p>span:first-child {
+		font-size: 14px;
+	}
+	.schoolmessage>p>span:last-child {
+		font-size: 12px;
+	}
+	.schoolmessage>p img {
+		height: 13px;
+		margin-right: 3px;
+		position: relative;
+		top: -2px;
+	}
+	.view-box a span {
+		vertical-align: middle;
+		 margin-right: 3px; 
+	}
+	.scroll-bar {
+		background: #2a2c38;
+		height: 25px;
+		color: #fff;
+	}

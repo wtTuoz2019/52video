@@ -1,0 +1,75 @@
+
+<div class="page_form">
+<form action="__URL__/menu_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="box-body">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+    
+      <tr>
+        <td width="150" align="right">父级菜单：</td>
+        <td width="300">
+       <select name="pid" id="pid">
+                                                <option  value="0">请选择菜单</option>
+                                                <!--foreach:{$p_menu $vo}-->
+                                                    <option value="{$vo.id}" <?php if($vo['id']==$info['pid']) echo 'selected'?>>{$vo.title}</option>
+                                                <!--{/foreach}-->
+                                            </select>
+        </td>
+        <td></td>
+      </tr>
+  
+       <tr>
+        <td width="150" align="right">菜单名称：</td>
+        <td width="300">
+        <input  type="text" class="form-control" value="{$info.title}" name="title" reg="\S" msg="名称不能为空"/>
+        </td>
+        <td></td>
+      </tr>
+        <tr>
+        <td width="150" align="right">关联关键词：</td>
+        <td width="300">
+        <input  type="text" class="form-control" value="{$info.keyword}" name="keyword" />
+        </td>
+        <td></td>
+      </tr>
+     
+        <tr>
+		   <td width="150" align="right">关联文章:</td>
+			 <td>
+				<input type="input" name="url" value="{$info.url}" id="url" class="px" style="width:415px">  
+											 
+											 	<input type="input" name="contentid" value="" id="contentid" class="px" style="width:415px"  hidden> </td>
+                                                   <td>	<a class="btnGrayS"  onClick="content_add('url','contentid')">选择</a> </td>
+       </tr>
+         <tr>
+        <td width="150" align="right">排序：</td>
+        <td width="300">
+        <input  type="text" class="form-control" value="{$info.sort}" name="sort" />
+        </td>
+        <td>越大越前面</td>
+      </tr>
+                						
+     
+     
+    </table>
+</div>
+
+<div class="form_submit">
+<input name="id" type="hidden" value="{$info.id}" />
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+       
+</div>
+</div>
+<script>
+//提交表单
+   savelistform({addurl:"__URL__/menu_add",listurl:"__URL__/menu"});
+     function content_add(domid,domida){
+			
+		art.dialog.data('domid', domid);
+		art.dialog.data('domida', domida);
+		art.dialog.open('__URL__/menu_add_content',{lock:true,title:'关联文章',width:600,height:400,yesText:'关闭',background: '#000', top:'5%',opacity: 0.45});
+	
+        
+		}
+        </script>

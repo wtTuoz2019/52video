@@ -1,0 +1,98 @@
+<div id="header">
+			<div class="head">
+				<div class="logo">
+					<img src="__PUBLICURL__/manage/img/logo2.png"/>
+					<span>
+						网站后台管理系统
+					</span>
+				</div>
+				
+				<div class="headuser">
+					<img src="__PUBLICURL__/manage/img/backstage.png"/>
+					<a href="javascript:;" class="headname">
+						 {$user.user}
+					</a>
+					<div class="exit" onClick="logout()">
+						退出
+					</div>
+				</div>
+			</div>
+			
+			<div class="nav">
+				
+				<div id="headnav">
+                    <a class="backindex" href="__URL__/home.html">
+                        主页
+                    </a>
+					<a class="headvideo" href="__URL__/nav_video.html">
+						 视频服务
+					</a>
+					<a class="headWeChat" href="__URL__/nav_wechat.html">
+						 绑定微信
+					</a>
+					<a class="headxk" href="__URL__/nav_selectclass.html">
+						选课服务
+					</a>
+					<a class="headforum" href="__URL__/nav_forum.html">
+						 论坛服务
+					</a>
+					<a class="headset" href="__URL__/nav_userset.html">
+						个人设置
+					</a>
+					
+					
+				</div>
+			</div>
+			
+		</div>
+        
+        <div id="nav">
+			
+		</div>
+		
+		
+		<iframe id="main" src="__URL__/home.html"  frameborder="0" scrolling="no" marginwidth="0" marginheight="0">
+			
+		</iframe>
+	 <script src="__PUBLICURL__/manage/js/homepage.js" type="text/javascript" charset="utf-8"></script>
+     
+     
+     
+     <script type="text/javascript" language="javascript"> 
+			
+				
+				//退出
+				function logout(){
+					dialog({
+						title: '退出确认',
+						content: '是否退出网站管理系统？ ',
+						button: [{
+							name: '退出',
+							callback: function() {
+								$.ajax({
+									type: 'POST',
+									url: '__APP__/login/logout',
+									data: {
+										'out':'true' 
+									},
+									dataType: 'json',
+									success: function(json) {
+										window.location.reload();
+									}
+				
+								});
+				
+							}
+						},
+						{
+							name: '取消'
+						}]
+						
+					});
+				}
+				
+				
+				
+
+</script>
+     

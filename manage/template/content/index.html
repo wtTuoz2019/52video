@@ -1,0 +1,171 @@
+<div id="v_back" class="videolist">
+			<div class="search">
+            	<a href="__ROOT__/index.php/content/add/cid-{$class_info.cid}" class="sendback">发布回看</a>
+				<input type="" name="" id="" value="" placeholder="数据关键词"/>
+				<button>
+					
+				</button>
+			</div>
+			<div class="videos">
+            <!--foreach:{$list $vo}-->
+				<div class="videok">
+					<div class="img">
+						<img src="{$sys.imageurl}{$vo.image}" />
+						<div class="overlay">
+							<div class="editmenu">
+								<a class="videok_yl" href="<?php echo ROOTAPP ?>/content/index?aid={$vo['aid']}" target="_blank">
+									<span>
+										
+									</span>
+									观看
+								</a>
+								<a class="videok_bj" href="__APP__/content/edit/id-{$vo.aid}">
+									<span>
+										
+									</span>
+									编辑
+								</a>
+								  
+							</div>
+						</div>
+					</div>
+					<div class="title">
+						<p>
+							<a href="<?php echo ROOTAPP ?>/content/index?aid={$vo['aid']}" target="_blank">{$vo.title len="16"}</a>
+						</p>
+						<p>
+							{$school[$vo['csid']]['name']}
+						</p>
+						<p class="video_data">
+							<span>
+								<img src="__PUBLICURL__/manage/img/videok_gk.png"/>
+								{$vo.views}
+							</span>
+							<span>
+								  {$php(echo date('Y-m-d H:i',$vo['updatetime']))}
+							</span>
+						</p>
+						<div class="buttons">
+							
+							<a href="__APP__/comment/person/id-{$vo.aid}">
+								评论审核
+							</a>
+							<a href="<?php echo ROOTAPP ?>/comment/list_/id-{$vo.aid}"  target="_blank">
+								评论樯
+							</a>
+							<a href="__APP__/data/index/id-{$vo.aid}">
+								数据详情
+							</a>
+							<a href="javascript:;" onclick="del('{$vo.aid}',this)">
+								删除
+							</a>
+							<img src="__PUBLICURL__/manage/img/videok_qr.jpg" class="videok_qr"/>
+						</div>
+					</div>
+					<div class="Qr">
+						<img src="/upload/aidimage/{$vo['aid']}.png"/>
+						<input type="" name="" id="" value="http://{$sys['MOBILE_DOMAIN']}/content/index?aid={$vo['aid']}" />
+						<div class="btns">
+							<button  onclick="copyUrl('aidurl')">
+								复制链接
+							</button>
+							<button onclick="downloadpic('/upload/aidimage/{$vo['aid']}.png');return false;">
+								下载二维码
+							</button>
+						</div>
+						<span class="close">
+							&Chi;
+						</span>
+					</div>
+				</div>
+				 <!--{/foreach}-->
+				
+			</div>
+			<div class="page">
+				<ul>
+					{$page}
+				</ul>
+			</div>
+		</div>
+        
+        
+        
+         <script>
+				 
+	$(document).ready(function() {
+					$(".class_pic").powerFloat({
+   					 targetMode: "ajax"
+});
+     		
+                });
+        	//删除
+function del(aid,obj) {
+	var obj;
+	ajaxpost({
+		name:'确认要删除本内容吗?删除无法恢复！',
+		url:"__URL__/del",
+		data:{aid: aid,cid: '{$class_info.cid}'},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().remove();
+		}
+	});
+}
+
+function downloadpic(pic){
+	
+	window.location='__URL__/downpic?pic='+pic;
+	
+	}
+function search(){
+	window.location="";
+	
+	}
+	
+function endlive(aid){
+	art.dialog.through({
+	    content: '是否要转成回看？',
+	    lock: true,
+	    icon: 'warning',
+	    button: [{
+			name: '转回看',
+			callback: function() {
+		urldialog({
+		title:'直播转回看',
+		url:'__APP__/content/livetime/id-'+aid
+		});
+	
+		
+		},
+		focus: true
+		},
+		{
+			name: '结束直播',
+			callback: function() {
+				if(!confirm('您确定要结束直播吗？')){
+					return false;
+					}
+	
+	$.post("__APP__/content/streamend", { aid: aid},
+	function(d){
+	
+		
+		if (d.status == 1) { 
+	   $.dialog({content:'结束成功'});
+		}
+	}, "json");
+			}
+		},
+		{
+			name: '取消',
+			callback: function() {
+				  
+			}
+		}]
+	});
+	
+	
+	}	
+		
+        </script>
+        
