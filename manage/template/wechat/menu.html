@@ -1,18 +1,20 @@
+<form action="__URL__/menu_send" method="post" id="form" autocomplete="off">
 <div id="menuset">
 			<h4>
 					菜单设置
 			</h4>
 			<div class="addmenuk borderk">
-				<a href="javascript:;">
+				<a href="__URL__/menu_add">
 					添加主菜单
 				</a>
-				<a href="javascript:;">
+				<button type="submit">
 					生成自定义菜单
-				</a>
+				</button>
 				<p>
 					注意：1级菜单最多只能开启3个，2级子菜单最多开启5个！
 				</p>
 			</div>
+            
 			<table width="100%" cellspacing="0">
 				<tr class="bgth">
 					<th>菜单名称</th>
@@ -21,54 +23,59 @@
 					<th>显示顺序</th>
 					<th>操作</th>
 				</tr>
+                <!--foreach:{$class $vo}-->
 				<tr>
 					<td>
-						在线直播
+						{$vo.title}
 					</td>
 					<td>
-						直播
+						{$vo.keyword}
 					</td>
 					<td>
-						http://hk.urren.net/live/a163-1218.m3u8
+						{$vo.url}
 					</td>
 					<td>
-						0
+						{$vo.sort}
 					</td>
 					<td>
-						<a href="javascript:;">
+						<a href="__URL__/menu_add/id-{$vo.id}">
 							修改
 						</a>
-						<a href="javascript:;">
+						<a href="javascript:;" onclick='del({$vo.id},this)'>
 							删除
 						</a>
 					</td>
 				</tr>
+                <!--foreach:{$vo['class'] $v}-->
 				<tr>
 					<td>
-						在线直播
+						{$vo.title}
 					</td>
 					<td>
-						直播
+						{$vo.keyword}
 					</td>
 					<td>
-						http://hk.urren.net/live/a163-1218.m3u8
+						{$vo.url}
 					</td>
 					<td>
-						0
+						{$vo.sort}
 					</td>
 					<td>
-						<a href="javascript:;">
+						<a href="__URL__/menu_add/id-{$vo.id}">
 							修改
 						</a>
-						<a href="javascript:;">
+						<a href="javascript:;" onclick='del({$vo.id},this)'>
 							删除
 						</a>
 					</td>
 				</tr>
+                <!--{/foreach}-->
+                <!--{/foreach}-->
 			</table>
+       
 			<div class="tishi">
 				<p>
-					生成自定义菜单 注：
+					注：
 					<br /> (使用前提是已经拥有了自定义菜单的用户才能够使用，)
 					<br /> 第一步:必须先填写【AppId】【 AppSecret】！
 					<br /> 第二步:添加菜单，
@@ -79,3 +86,75 @@
 			</div>
 
 		</div>
+             </form>
+   <script>
+        function del(id,obj) {
+			var obj;
+			ajaxposta({
+				name:'确认要删除本内容吗?删除无法恢复！',
+				url:"__URL__/del",
+				data:{id: id,table:'diymen_class' },
+				tip:1,
+				success:function(){
+					window.location.reload();
+					//window.location.href=window.location.href;
+				}
+			});
+		}
+		
+		function ajaxposta(config,url,data,tip,success,failure,cancel){
+			if(!config.name){
+				var config = {
+					name:config,
+					url:url,
+					data:data,
+					tip:tip,
+					success:success,
+					failure:failure,
+					cancel:cancel
+				};
+			}
+			art.dialog.through({
+				content: config.name,
+				lock: true,
+				icon: 'warning',
+				button: [{
+					name: '确认操作',
+					callback: function() {
+					//window.top.sub_lock();
+					$.ajax({
+					type: 'POST',
+					url: config.url,
+					data: config.data,
+					dataType: 'json',
+					success: function(json) {
+						//window.top.sub_lock_close();
+						if(config.tip){
+						art.dialog.tips(json.message, 3);
+						}
+						if (json.status == 1) {
+							if(typeof config.success == "function"){
+								config.success(json.message);
+							}
+						} else {
+							if(typeof config.failure == "function"){
+								config.failure(json.message);
+							}
+						}
+					}
+				});
+				},
+				focus: true
+				},
+				{
+					name: '取消',
+					callback: function() {
+						  if(typeof config.cancel == "function"){
+							config.cancel();
+						}
+					}
+				}]
+			});
+			
+		}
+		</script>

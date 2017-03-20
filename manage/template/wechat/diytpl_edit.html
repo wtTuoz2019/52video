@@ -1,0 +1,135 @@
+<style>
+	#myModal input{
+		display:inline-block;
+		margin-left: 45px;
+		position: relative;
+		left: -5px;
+		top: -3px;
+	}
+	#myModal .modal-body>div:first-child{
+		margin-bottom:20px;
+	}
+	#myModal .modal-footer{
+		margin:0;
+	}
+</style>
+<div id="editmodel">
+			<h4>
+				模版编辑
+			</h4>
+			<div class="modelk">
+				<table width="100%">
+					<tr>
+						<td>
+							模板名称：
+						</td>
+						<td>
+							<input type="text" id="title" name="title" value="{$info.title}" reg="\S" msg="名称不能为空"  class="modelname" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							栏目：
+						</td>
+						<td>
+							<select name="cid" id="cid" onChange="location.href='__URL__/diytpl_edit/id-{$_GET['id']}-cid-'+this.value">    
+                                       		              
+								       		<option value="16" <?php if($cid==16){ echo "selected";}?>>直播</option>
+								            <option value="13" <?php if($cid==13){ echo "selected";}?>>回播</option>
+								         </select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							文章：
+						</td>
+						<td>
+							<select id="example-dropUp" multiple="multiple" name="aid[]">
+                                             <!--foreach:{$list $vo}-->
+                                            <option value="{$vo.aid}" <?php if(in_array($vo['aid'],$info['aid'])){echo 'selected';}?>>{$vo.title}</option>
+                                             <!--{/foreach}-->
+                                        </select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							内容模板：
+						</td>
+						<td>
+							<input type="" name="" id="nowmb" value="模板1"  class="choosemodel"/>
+							<button class="cmodel" data-toggle="modal" data-target="#myModal">
+								选择
+							</button>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    
+                                    <h4 class="modal-title" id="myModalLabel">内容模板</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                  <div>
+                                    <input checked class="radio" type="radio" name="tplid" value="101" <?php if($info['tplid']==101){echo 'checked';} ?>>模板1
+                                        <img src="__PUBLICURL__/home/images/1.jpg"  width="140" height="266"  class="img" />
+                                        <input class="radio gap" type="radio" name="tplid" value="102" <?php if($info['tplid']==102){echo 'checked';} ?>>模板2
+                                       <img src="__PUBLICURL__/home/images/2.jpg"  width="140" height="266"  class="img" />
+                                       </div>
+                                       <div>
+                                         <input class="radio gapo" type="radio" name="tplid" value="103" <?php if($info['tplid']==103){echo 'checked';} ?>>模板3
+                                       <img src="__PUBLICURL__/home/images/3.jpg"  width="140" height="266"  class="img" />
+
+<input class="radio gapo" type="radio" name="tplid" value="104" <?php if($info['tplid']==104){echo 'checked';} ?>>模板4
+                                       <img src="__PUBLICURL__/home/images/4.jpg"  width="140" height="266"  class="img" />
+                                        </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                  	<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="mbxz()">确定</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+						</td>
+					</tr>
+				</table>
+                <input name="id" type="hidden" value="{$info.id}" />
+				<button id="savemodel" type="submit">
+					保存
+				</button>
+			</div>
+		</div>
+          <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
+            <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
+<script>
+function mbxz(){
+	if($('input:radio[name="tplid"]:checked').val()=='101'){
+		$('#nowmb').val('模板1')
+	}else if($('input:radio[name="tplid"]:checked').val()=='102'){
+		$('#nowmb').val('模板2')
+	}else if($('input:radio[name="tplid"]:checked').val()=='103'){
+		$('#nowmb').val('模板3')
+	}else if($('input:radio[name="tplid"]:checked').val()=='104'){
+		$('#nowmb').val('模板4')
+	}
+}
+
+
+
+//提交表单
+savelistform({addurl:"__URL__/diytpl_edit",listurl:"__URL__/diytpl"});
+      	$(document).ready(function() {
+				$('#example-dropUp').multiselect({
+					includeSelectAllOption: true,
+					nonSelectedText:'未选择',
+					nSelectedText:'个已选',
+					selectAllText: '全选',
+					allSelectedText: '已全选',
+					enableClickableOptGroups: true,
+					enableFiltering: true,
+					numberDisplayed: 1,
+					maxHeight: 300
+					
+				});
+			});
+        </script>

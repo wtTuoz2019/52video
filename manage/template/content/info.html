@@ -165,9 +165,6 @@
 								<p>
 									（微信分享时介绍）
 								</p>
-								<button class="editor">
-									编辑
-								</button>
 							</td>
 						</tr>
                         
@@ -184,20 +181,18 @@
 							<td>滚动字幕：</td>
 							<td>
 								<textarea name="zidingyi[notice]" class="text_textarea" id="notice">{$zidingyi[notice]}</textarea>
-								<button class="editor">
-									编辑
-								</button>
 							</td>
 						</tr>
 						<tr>
 							<td>附加功能：</td>
 							<td>
-								<div class="additional" >
-                                <div id="functions">
+								<div class="additional">
+                                
 									<div>
 										功能：
 									</div>
 									<div>
+                                    <div id="functions">
                                     <!--foreach:{$functions $vo}-->
         
                                       <div id="button{$vo.id}"><button type="button" class="button">{$vo.name}</button><input type="hidden" value="{$vo.id}" name="functions[{$vo.id}]">
@@ -217,11 +212,12 @@
 												
 											</a>
 										</button>--> 
+                                        </div>
 										<button class="addgn" onClick="addfunctions()">
 											+添加
 										</button>
 									</div>
-                                   </div>
+                                    
 									<div class="choose">
 										<p>
 											评论审核：
@@ -270,29 +266,30 @@
 											<input name="noaudit" type="radio"   value="0" onchange="hidediv(this)" <!--if:{$info['noaudit']==0}-->checked="checked"<!--{/if}--> />关闭
 											</p>
                                             <div class="comment">
-                                                <p>
+                                                
                                                 自动审核：
                                                 <input name="autoaudit" type="radio" value="1" onchange="showdiv(this)" <!--if:{$info['autoaudit']==1}-->checked="checked"<!--{/if}-->/>开启
                                                 <input name="autoaudit" type="radio"   value="0" onchange="hidediv(this)" <!--if:{$info['autoaudit']==0}-->checked="checked"<!--{/if}--> />关闭
-                                                </p>
                                                 
-                                                <div class="comment">
+                                                
+                                                
+                                                
+                                                
+                                            
+                                            
+										</div>
+                                        <div class="comment">
                                                     <div>
                                                         自动审核匹配项
                                                     </div>
                                                     <div>
                                                         <!--foreach:{$field_list $vo}-->
                                                          <!--if:{$vo['field']!='aid'}-->
-                                                           <input name="auditfield_lists[]"  type="checkbox" value="{$vo['field']}"  <!--if:{in_array($vo['field'],$info['auditfield_lists'])}-->checked="checked"<!--{/if}-->  /> {$vo['name']}&nbsp;&nbsp;
+                                                           <input name="auditfield_lists[]"  type="checkbox" value="{$vo['field']}"  <!--if:{in_array($vo['field'],$info['auditfield_lists'])}-->checked="checked"<!--{/if}-->  /> {$vo['name']}
                                                            <!--{/if}--> 
                                                            <!--{/foreach}-->
                                                     </div>
                                                 </div>
-                                                
-                                                
-                                            
-                                            
-										</div>
 										<p>
 											发布状态：
 											<input name="status" type="radio" value="1"  <!--if:{$info['status']==1}-->checked="checked"<!--{/if}-->/>开启

@@ -1,14 +1,55 @@
-<div id="WeChat">
+
+ 
+ <div id="WeChat" class="WeChat"  <?=!$info['oauth']?'style="display:none"':'';?>>
+			<p>
+				<img src="__PUBLICURL__/manage/img/tishi.png"/>
+				您的公众号授权成功
+			</p>
+			<div>
+				<img class="userimg yuan" src="__PUBLICURL__/manage/img/backstage.png"/>
+				<img class="link" src="__PUBLICURL__/manage/img/link.png"/>
+				<img class="yuan" src="__PUBLICURL__/manage/img/WeChathead.png"/>
+			</div>
+			<button id="binding" class="tochange">
+				更改公众号
+			</button>
+ </div>
+ 
+ 
+ <div id="WeChat2" class="WeChat" <?=$info['oauth']?'style="display:none"':'';?>>
 			<p>
 				<img src="__PUBLICURL__/manage/img/tishi.png"/>
 				安全模式，登录公众号，一键授权
 			</p>
 			<div>
-				<img class="userimg yuan" src="__PUBLICURL__/manage/img/headimg.jpg"/>
+				<img class="userimg yuan" src="__PUBLICURL__/manage/img/backstage.png"/>
 				<img class="link" src="__PUBLICURL__/manage/img/link.png"/>
 				<img class="yuan" src="__PUBLICURL__/manage/img/WeChathead.png"/>
 			</div>
-			<button id="binding">
+			<button id="binding" onclick="tocomponentloginpage()">
 				绑定
 			</button>
 		</div>
+ 
+<script>
+//提交表单
+savelistform({addurl:"__URL__/wechat_info",listurl:"javascript:history.go(-1)"});
+        $(document).ready(function() {
+            $('#image1').click(function(){
+                urldialog({
+                    title:'图片上传',
+                    url:'__APP__/editor/image_upload?id=image&editor=editor_content',
+                    width:620,
+                    height:240
+                });
+            });
+        });
+function tocomponentloginpage(){   
+	window.location="https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid={$config.kfappid}&pre_auth_code=<?=getpre_auth_code($config['kfappid'],$config['kfappsecret'])?>&redirect_uri=<?=urlencode('http://live.shanyueyun.com/userhome/index.php/wechat/componentlogin')?>";
+	
+	}
+	$('.tochange').click(function(e) {
+      $('#WeChat').hide();  
+	  $('#WeChat2').show();  
+    });
+        </script>

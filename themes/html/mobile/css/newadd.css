@@ -312,10 +312,15 @@
 }
 	#list img.jiantou{
 		position: fixed;
-		top: 32px;
+		bottom: 33px;
 		left: 73%;
 		z-index: 1700;
 		width: 15px;
+		transform:rotate(180deg);
+-ms-transform:rotate(180deg); 	/* IE 9 */
+-moz-transform:rotate(180deg); 	/* Firefox */
+-webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+-o-transform:rotate(180deg); 	/* Opera */
 	}
 .classlist { 
 			margin:10px 10px 0px 10px;

@@ -1,0 +1,102 @@
+<div id="community">
+			<h4>
+				社区配置
+			</h4>
+			<div class="communityk">
+            <form method="POST" role="form"  id="form" action="__URL__/config_save/time-<?php echo time() ?>-ajax-true">
+				<table border="0" cellspacing="0" cellpadding="0" width="100%">
+					
+					<tr>
+						<td>
+							讨论社区名字：
+						</td>
+						<td>
+							<input type="text" name="forumname" id="" reg='.' msg="名字必填" value="{$info.forumname}" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							讨论社区logo：
+						</td>
+						<td>
+						
+							
+                            	<?php echo module('editor')->get_image_upload('logo1','logo',false,'editor_content') ?>
+         							 <input name="logo" type="text" id="logo" value="{$info.logo}" /> 
+								
+								<button id="logo1" type="button"> 
+								上传
+							</button>
+							
+							
+						</td>
+					</tr>
+					<tr>
+						<td>
+							自定义背景：
+						</td>
+						<td>
+                        
+                            	<?php echo module('editor')->get_image_upload('bgurl1','bgurl',false,'editor_content') ?>
+							<input type="text" name="bgurl" id="bgurl" value="{$info.bgurl}" />
+							<button id="bgurl1"  type="button">
+								上传
+							</button>
+							
+						</td>
+					</tr>
+				
+					<tr>
+						<td>
+							是否需要审核新帖：
+						</td>
+						<td>
+							<div>
+								<input type="radio" name="ischeck" id="" value="0" <?php if(!$info['ischeck']){ ?> checked <?php } ?> />不需要
+								<input type="radio" name="ischeck" id="" value="1" <?php if($info['ischeck']){ ?> checked <?php } ?> />需要
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							是否需要审核新评论：
+						</td>
+						<td>
+							<div>
+								<input type="radio" name="comcheck" id="" value="0" <?php if(!$info['comcheck']){ ?> checked <?php } ?>  />不需要
+								<input type="radio" name="comcheck" id="" value="1" <?php if($info['comcheck']){ ?> checked <?php } ?> />需要
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							开启/关闭讨论社区：
+						</td>
+						<td>
+							<div>
+								<input type="radio" name="isopen" id="" value="0" <?php if(!$info['isopen']){ ?> checked <?php } ?>  />关闭
+								<input type="radio" name="isopen" id="" value="1"<?php if($info['isopen']){ ?> checked <?php } ?> />开启
+								<p class="tishi">
+									（*选择关闭将不能打开讨论社区）
+								</p>
+							</div>
+							
+						</td>
+					</tr>
+				</table>
+				
+				<div class="btns">
+					<button type="submit">
+						保存
+					</button>
+					
+				</div>
+                </form>
+			</div>
+		</div>
+<script type="text/javascript">
+		
+//提交表单
+saveform({success:function(msg){tip({msg:msg})},failure:function(msg){tip({msg:msg})}});
+</script>	

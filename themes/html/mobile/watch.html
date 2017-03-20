@@ -69,7 +69,6 @@ function getlivelist(){
 				  };
        		 });
 	for(i in data['message']){
-		
 		if($('#'+i).length==0){
 		$('.lives').append('<div class="livek" style="height:'+h+';"><div class="video" id="'+data['message'][i]['sn']+'"></div><div class="livetext"><h5>'+data['message'][i]['status']+'：'+data['message'][i]['sn']+'</h5><p>'+data['message'][i]['title']+'</p></div><img class="wait" src="__PUBLIC__/watch/img/timg.gif"/></div>')
 	

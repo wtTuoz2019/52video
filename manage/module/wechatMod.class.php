@@ -6,25 +6,7 @@ class wechatMod extends commonMod {
 	public function __construct()
     {
         parent::__construct();
-		$user=model('user')->current_user();
-		$this->uid=$uid=$user['id'];
-		$wxuser=$this->model->table('admin')->where(array('id'=>$uid))->find();
-		if(!$wxuser['token']){
-			$chars='abcdefghijklmnopqrstuvwxyz';
-			$len=strlen($chars);
-			$randStr='';
-			for ($i=0;$i<6;$i++){
-				$randStr.=$chars[rand(0,$len-1)];
-			}
-			$this->token=$randStr.time();
-			$this->model->table('admin')->data(array('token'=>$this->token))->where(array('id'=>$uid))->update();
-			}else{
-				
-			$this->token=$wxuser['token'];
-				
-				}
 		
-		$this->assign('token',$this->token);
     }
 
 	 //评论列表

@@ -13,12 +13,21 @@ class forumMod extends commonMod {
 		}
 	public function config(){
 		
-		
+		$this->info= model('forum')->forum_config(array('token'=>$this->user['token']));
 		$this->show();
+		}
+	public function config_save(){
+		
+		$_POST['token']=$this->user['token'];
+        model('forum')->forum_config_save($_POST);
+       
+        /*hook end*/
+        $this->msg('配置成功！',1);
 		}
 	public function comment(){
 		
 		$this->show();
 		}
+	
 }
 ?>

@@ -342,33 +342,34 @@ button{
 
 /*微信绑定模块下的内容*/
 
-  #WeChat{
+  .WeChat{
 	width: 400px;
 	height: 445px;
 	border: 1px solid #BABABA;
 	margin: 170px auto;
 	text-align: center;
 }
-  #WeChat p{
+  .WeChat p{
 	font-size: 12px;
 	margin: 45px 0 85px 0;
 }
-  #WeChat p>img{
+  .WeChat p>img{
 	position: relative;
     left: -5px;
 }
-  #WeChat>div>img{
+  .WeChat>div>img{
 	vertical-align: middle;
 }
-  #WeChat>div>img.link{
+  .WeChat>div>img.link{
 	margin: 0 25px;
 }
-  #WeChat>div>img.yuan{
+  .WeChat>div>img.yuan{
 	height: 105px;
 	width: 105px;
 	border-radius: 50%;
+	background-color:#E5E5E5;
 }
-  #WeChat #binding{
+  .WeChat #binding{
 	width: 330px;
 	height: 45px;
 	border: 0;
@@ -390,8 +391,8 @@ button{
 
   #autoreply .replycontent{
 	width: 625px;
-	height: 735px;
-	margin: 80px auto;
+	height: 560px;
+	margin: 50px auto;
 	border:1px solid #BABABA;
 	padding: 45px 30px;
 }
@@ -403,7 +404,7 @@ button{
 }
   #autoreply .replycontent>textarea{
 	width: 100%;
-	height: 225px;
+	height: 150px;
 	resize:none;
 	outline:none;
 	padding: 10px;
@@ -431,7 +432,7 @@ button{
 	margin-top: 10px;
 	padding-right:55px;
 }
-  #autoreply .replycontent>div button.choose{
+  #autoreply .replycontent>div a.choose{
 	height: 35px;
 	width: 55px;
 	border: 0;
@@ -446,6 +447,8 @@ button{
 	padding-left: 8px;
 	border: 1px solid #B5B5B5;
 	background-color:#fff;
+	line-height:35px;
+	cursor:pointer;
 }
   #autoreply .replycontent #save{
 	height: 40px;
@@ -454,7 +457,7 @@ button{
 	display: block;
 	border: 1px solid #B8B8B8;
 	background: #E5E5E5;
-	margin-top: 110px;
+	margin-top: 50px;
 }
   #menuset,#extendclass,#postmanage,.videolist,#commentmanage,#messagemanage{
 	width: 1080px;
@@ -482,9 +485,9 @@ button{
 }
 .borderk>button>img{
 	position: relative;
-	top: 3px;
+	top: -1px;
 }
-  #menuset .addmenuk>a{
+  #menuset .addmenuk>a,#menuset .addmenuk>button{
 	display: inline-block;
 	height: 40px;
 	width: 175px;
@@ -504,6 +507,7 @@ table tr.bgth th{
 	height: 45px;
 	background: #B9B9B9;
 	font-weight: normal;
+	text-align:center;
 }
   #menuset table td{
 	font-size: 14px;
@@ -531,7 +535,7 @@ table tr.bgth th{
 #editmodel .modelk{
 	width: 670px;
 	height: 515px;
-	margin: 75px auto;
+	margin: 50px auto;
 	border: 1px solid #BABABA;
 	padding: 25px;
 }
@@ -698,7 +702,7 @@ iframe{
 	border-top: 0;
 	position: absolute;
 	top: 67px;
-    left: 8px;
+    left: 7px;
     background: #fff;
     display: none;
     z-index: 100;
@@ -725,7 +729,8 @@ iframe{
 #postmanage .postk>div>button{
 	position: relative;
     border-left: 0;
-    left: -4px;
+    left: -3px;
+	top:-1px; 
 }
 #postmanage .postk  button{
 	width: 70px;
@@ -918,7 +923,7 @@ iframe{
 }
 .videolist .videos .videok .title .buttons>a:hover{
 	background: #009BD4;
-	width:70px;
+	width:75px;
 	text-align: center;
 	color: #fff;
 }
@@ -1083,6 +1088,9 @@ iframe{
 	padding-left: 5px;
 	margin-right: 10px;
 }
+#outvideo .videocontent>div.page_form table td>textarea{
+	resize:none;	
+}
 #outvideo .videocontent>div.page_form table tr{
 	margin-bottom: 30px;
 	display: block;
@@ -1100,15 +1108,6 @@ iframe{
 	margin:0;
 	text-align:center;
 	cursor:pointer;
-}
-#outvideo .videocontent>div.page_form table tr td button.editor{
-	width: 70px;
-	height: 40px;
-	position: absolute;
-	border: 1px solid #BABABA;
-	background-color: #fff;
-	top: 0;
-	left: 240px;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional{
 	width: 315px;
@@ -1132,15 +1131,18 @@ iframe{
 }
 #outvideo .videocontent>div.page_form table tr td div.additional #functions>div{
 	float:left;
+	margin-right: 20px;
+	text-align:center;
+	margin-bottom:10px;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div button{
-	padding: 0 25px 0 5px;
+	padding: 0 15px 0 15px;
 	height: 30px;
-	background: transparent;
+	background: #55B0C3;
 	border: 1px solid #BABABA;
 	position: relative;
-	margin-right: 20px;
-	margin-bottom: 10px;
+	color:#fff;
+	border:0;   
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div button>a{
 	position: absolute;
@@ -1155,6 +1157,7 @@ iframe{
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div button.addgn{
 	padding: 5px 15px;
+	margin-bottom:10px;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div.choose{
 	display: block;
@@ -1165,7 +1168,7 @@ iframe{
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div.choose .comment,#outvideo .videocontent>div.page_form table tr td div.additional>div.choose .signup{
 	overflow: hidden;
-    padding: 20px 0;
+	padding:5px 0;
     display: none;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div.choose .comment>div,#outvideo .videocontent>div.page_form table tr td div.additional>div.choose .signup>div{
@@ -1194,7 +1197,7 @@ iframe{
 
 #community .communityk{
 	width: 750px;
-	height: 910px;
+	height: 520px;
 	margin: 40px auto;
 	border: 1px solid #BABABA;
 	padding-top: 65px;
@@ -1248,8 +1251,8 @@ iframe{
 	margin-left: 10px;
 }
 #community .communityk .btns{
-	padding: 0 140px;
-	margin-top: 90px;
+	margin-top: 40px;
+	text-align:center;
 }
 #community .communityk .btns button{
 	width: 200px;
@@ -1413,4 +1416,10 @@ iframe{
 #register >p a{
 	color: #55b0c3;
 	text-decoration: underline;
+}
+#outvideo .videocontent>div.page_form table td>input#image,#outvideo .videocontent>div.page_form table td>input#videourl{
+	padding-right:85px;
+}
+.no-print{
+	display:none !important;
 }

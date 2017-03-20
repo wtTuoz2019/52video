@@ -16,6 +16,9 @@
     /*width: 200px;*/
    width: 192px;
 }
+.data-statistic  .rad-cntnt{
+	padding: 20px 0px 22px 12px;
+}
 .data-statistic .data-statistic-title {
     color: #fff;
     font-size: 14px;

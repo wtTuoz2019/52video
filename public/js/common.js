@@ -425,7 +425,7 @@ function savebutton(type,id){
 	var type;
 	var id;
 	if(!id){
-		id=":submit";
+	id="[type=submit]";
 	}
 	if(type==1){
 		txt=$(id).text();

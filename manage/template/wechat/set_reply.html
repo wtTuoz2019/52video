@@ -16,7 +16,7 @@
 					关联文章：
 				</p>
 				<p>
-					<input id="focuson" name="home" type="checkbox"  value="1" <?php if($info['home']==1) echo 'checked';?> /> 若想关注回复文章，此项必须勾选
+					 <input name="home" type="checkbox"  value="1" <?php if($info['home']==1) echo 'checked';?>  /> 若想关注回复文章，此项必须勾选
 				</p>
 				<div>
 					<p>
@@ -25,11 +25,12 @@
 					</p>
 					
                     <input type="input" name="url" value="{$info.url}" id="url" class="px" >  
-					<button class="choose"  onClick="content_add('url','contentid')">
+					<a class="choose"  onClick="content_add('url','contentid')">
 								选择
-					</button>
+					</a>
                     <input type="input" name="contentid" value="{$info.contentid}" id="contentid" class="px" style="width:415px"  hidden>
 				</div>
+                <input name="id" type="hidden" value="{$info.id}" />
 				<button id="save">
 						保存
 				</button>

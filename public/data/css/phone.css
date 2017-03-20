@@ -199,6 +199,11 @@
 	}
 	.schoolmessage>p>span:first-child {
 		font-size: 14px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width:140px;
+		display: inline-block;
 	}
 	.schoolmessage>p>span:last-child {
 		font-size: 12px;

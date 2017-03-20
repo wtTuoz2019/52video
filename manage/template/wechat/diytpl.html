@@ -1,75 +1,129 @@
-<div id="editmodel">
-			<h4>
-				模版编辑
-			</h4>
-			<div class="modelk">
-				<table width="100%">
-					<tr>
-						<td>
-							模板名称：
-						</td>
-						<td>
-							<input type="text" id="title" name="title" value="{$info.title}" reg="\S" msg="名称不能为空"  class="modelname" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							栏目：
-						</td>
-						<td>
-							<select name="cid" id="cid" onChange="location.href='__URL__/diytpl_edit/id-{$_GET['id']}-cid-'+this.value">    
-                                       		              
-								       		<option value="16" <?php if($cid==16){ echo "selected";}?>>直播</option>
-								            <option value="13" <?php if($cid==13){ echo "selected";}?>>回播</option>
-								         </select>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							文章：
-						</td>
-						<td>
-							<select id="example-dropUp" multiple="multiple" name="aid[]">
-                                             <!--foreach:{$list $vo}-->
-                                            <option value="{$vo.aid}" <?php if(in_array($vo['aid'],$info['aid'])){echo 'selected';}?>>{$vo.title}</option>
-                                             <!--{/foreach}-->
-                                        </select>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							内容模板：
-						</td>
-						<td>
-							<input type="" name="" id="" value="模板1"  class="choosemodel"/>
-							<button class="cmodel">
-								选择
-							</button>
-						</td>
-					</tr>
-				</table>
-				<button id="savemodel">
-					保存
-				</button>
-			</div>
-		</div>
-          <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
-            <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
-<script>
-//提交表单
-savelistform({addurl:"__URL__/diytpl_edit",listurl:"__URL__/diytpl"});
-      	$(document).ready(function() {
-				$('#example-dropUp').multiselect({
-					includeSelectAllOption: true,
-					nonSelectedText:'未选择',
-					nSelectedText:'个已选',
-					selectAllText: '全选',
-					allSelectedText: '已全选',
-					enableClickableOptGroups: true,
-					enableFiltering: true,
-					numberDisplayed: 1,
-					maxHeight: 300
-					
-				});
+
+<style>
+	.allmain{
+		width:1080px;
+		margin:40px auto;
+	}
+	.allmain .exercise a{
+		display: inline-block;
+		height: 40px;
+		width: 175px;
+		border: 1px solid #B9B9B9;
+		background: #EEEEEE;
+		font-size: 12px;
+		text-align: center;
+		line-height: 40px;
+		margin-bottom:40px;
+	}
+</style>
+
+
+<div class="allmain">
+
+<div class="page_function">
+
+  <div class="exercise"> 
+  
+   <a href="__URL__/diytpl_edit">添加主菜单</a>
+  
+   </div>
+</div>
+<div class="page_main">
+  <div class="box-body">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+      <tr>
+     
+        <th><center>标题</center></th>
+        <th><center>模板链接</center></th>
+      
+      
+        <th><center>操作</center></th>
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr>
+       
+      
+      
+        <td><center>{$vo.title} </center></td>
+       
+         <td><center>{$sys['MOBILE_DOMAIN']}/index.php/diytpl/index/tid-{$vo.id}-token-{$token}</center></td>
+       
+         <td><center>	<a title="编辑图文自定义回复" href="__URL__/diytpl_edit/id-{$vo.id}" class="v-gray">编辑</a>
+	<a href="javascript:" onclick="del('{$vo.id}',this)" class="v-gray">删除</a></center></td>
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+</div>
+</div>
+  <script>
+        function del(id,obj) {
+			var obj;
+			ajaxposta({
+				name:'确认要删除本内容吗?删除无法恢复！',
+				url:"__URL__/diytpl_del",
+				data:{id: id,table:'diymen_class' },
+				tip:1,
+				success:function(){
+					window.location.reload();
+					//window.location.href=window.location.href;
+				}
 			});
-        </script>
+		}
+		
+		function ajaxposta(config,url,data,tip,success,failure,cancel){
+			if(!config.name){
+				var config = {
+					name:config,
+					url:url,
+					data:data,
+					tip:tip,
+					success:success,
+					failure:failure,
+					cancel:cancel
+				};
+			}
+			art.dialog.through({
+				content: config.name,
+				lock: true,
+				icon: 'warning',
+				button: [{
+					name: '确认操作',
+					callback: function() {
+					//window.top.sub_lock();
+					$.ajax({
+					type: 'POST',
+					url: config.url,
+					data: config.data,
+					dataType: 'json',
+					success: function(json) {
+						//window.top.sub_lock_close();
+						if(config.tip){
+						art.dialog.tips(json.message, 3);
+						}
+						if (json.status == 1) {
+							if(typeof config.success == "function"){
+								config.success(json.message);
+							}
+						} else {
+							if(typeof config.failure == "function"){
+								config.failure(json.message);
+							}
+						}
+					}
+				});
+				},
+				focus: true
+				},
+				{
+					name: '取消',
+					callback: function() {
+						  if(typeof config.cancel == "function"){
+							config.cancel();
+						}
+					}
+				}]
+			});
+			
+		}
+		</script>

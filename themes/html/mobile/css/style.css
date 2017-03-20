@@ -465,9 +465,9 @@ a{text-decoration: none;}
 	color:#333;
 	text-shadow:none;
 }
-.btngroups{
+.btngroups{  
 	position: fixed;
-    top: 0;
+    bottom: 0;
     margin: 0;
     width: 100%;
     z-index: 1500;
@@ -482,9 +482,6 @@ a{text-decoration: none;}
 }
 .btngroups button:first-child{
 	border-right:1px solid #025769;
-}
-#list{
-	margin-top:45px;
 }
 .orderList li .person p>span>img{
 	height:13px;
@@ -567,10 +564,15 @@ a{text-decoration: none;}
 
 	#list img.jiantou{
 		position: fixed;
-		top: 32px;
+		bottom: 33px;
 		left: 22%;
 		z-index: 1700;
 		width: 15px;
+		transform:rotate(180deg);
+-ms-transform:rotate(180deg); 	/* IE 9 */
+-moz-transform:rotate(180deg); 	/* Firefox */
+-webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+-o-transform:rotate(180deg); 	/* Opera */
 	}
 .hongbao{ bottom:20%; width:50%; left:25%}						
 .hongbao input { width:80%; margin-left:10%}

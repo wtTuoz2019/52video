@@ -63,7 +63,25 @@ class commonMod
 		$user=model('user')->current_user();
 		if($user&&$user['id']!=1){
 		
-		$user['devices']=model('device')->model_list('cid='.$user['id']);		
+		$user['devices']=model('device')->model_list('cid='.$user['id']);	
+		$this->uid=$uid=$user['id'];
+		$wxuser=$this->model->table('admin')->where(array('id'=>$uid))->find();
+		if(!$wxuser['token']){
+			$chars='abcdefghijklmnopqrstuvwxyz';
+			$len=strlen($chars);
+			$randStr='';
+			for ($i=0;$i<6;$i++){
+				$randStr.=$chars[rand(0,$len-1)];
+			}
+			$this->token=$randStr.time();
+			$this->model->table('admin')->data(array('token'=>$this->token))->where(array('id'=>$uid))->update();
+			}else{
+				
+			$this->token=$wxuser['token'];
+				
+				}
+		
+		$this->assign('token',$this->token);	
 			
 			}
 		$this->user=$user;

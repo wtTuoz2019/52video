@@ -152,7 +152,7 @@ class contentMod extends commonMod
         }
 		if($info['signup']){
 		if(!$_SESSION['uid']){
-				$this->getuserinfo();
+			$this->getuserinfo();
 			}
 			
 		$this->userinfo=model('form_list')->infobyuser($_SESSION['uid'],'signup');

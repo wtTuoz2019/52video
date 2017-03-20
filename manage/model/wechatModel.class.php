@@ -14,7 +14,7 @@ class wechatModel extends commonModel
 			}else{
 		 	return $this->model->table($table)->data($data)->insert(); 
 			}
-		}
+	 }
 	
 	public function wechat_info($table,$uid){
 		

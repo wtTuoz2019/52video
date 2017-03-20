@@ -1,13 +1,48 @@
+<style>
+	.page_form{
+		width:1080px;
+		margin:40px auto;
+	}
+	.form_submit{
+		text-align:center;
+	}
+	.form_submit button{
+		height:40px;
+		width:220px;
+		border: 1px solid #B8B8B8;
+    	background: #E5E5E5;
+	}
+	.page_form>h4{
+		font-size: 16px;
+		padding: 15px 7px;
+		border-bottom: 1px solid #B5B5B5;
+		width:1080px;
+		margin:0 auto;
+		margin-bottom:20px;
+	}
+	.page_form .tablek{
+		width:700px;
+		margin:30px auto;
+		padding:30px 0;
+		border:1px solid #B5B5B5;
+	}
+	.page_form .tablek table td{
+		border:0;
+	}
+</style>
 
 <div class="page_form">
+
+	<h4>菜单添加</h4>
 <form action="__URL__/menu_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
 <div class="box-body">
+<div class="tablek">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
     
       <tr>
         <td width="150" align="right">父级菜单：</td>
         <td width="300">
-       <select name="pid" id="pid">
+       <select name="pid" id="pid" class="form-control">
                                                 <option  value="0">请选择菜单</option>
                                                 <!--foreach:{$p_menu $vo}-->
                                                     <option value="{$vo.id}" <?php if($vo['id']==$info['pid']) echo 'selected'?>>{$vo.title}</option>
@@ -18,31 +53,31 @@
       </tr>
   
        <tr>
-        <td width="150" align="right">菜单名称：</td>
-        <td width="300">
+        <td  align="right">菜单名称：</td>
+        <td>
         <input  type="text" class="form-control" value="{$info.title}" name="title" reg="\S" msg="名称不能为空"/>
         </td>
         <td></td>
       </tr>
         <tr>
-        <td width="150" align="right">关联关键词：</td>
-        <td width="300">
+        <td align="right">关联关键词：</td>
+        <td>
         <input  type="text" class="form-control" value="{$info.keyword}" name="keyword" />
         </td>
         <td></td>
       </tr>
      
         <tr>
-		   <td width="150" align="right">关联文章:</td>
+		   <td align="right">关联文章：</td>
 			 <td>
-				<input type="input" name="url" value="{$info.url}" id="url" class="px" style="width:415px">  
+				<input type="input" name="url" value="{$info.url}" id="url" class="px form-control" style="width:415px">  
 											 
 											 	<input type="input" name="contentid" value="" id="contentid" class="px" style="width:415px"  hidden> </td>
                                                    <td>	<a class="btnGrayS"  onClick="content_add('url','contentid')">选择</a> </td>
        </tr>
          <tr>
-        <td width="150" align="right">排序：</td>
-        <td width="300">
+        <td align="right">排序：</td>
+        <td>
         <input  type="text" class="form-control" value="{$info.sort}" name="sort" />
         </td>
         <td>越大越前面</td>
@@ -51,12 +86,14 @@
      
      
     </table>
+    <div class="form_submit">
+    <input name="id" type="hidden" value="{$info.id}" />
+    <button type="submit" class="button">保存</button> 
+    </div>
+</div>
 </div>
 
-<div class="form_submit">
-<input name="id" type="hidden" value="{$info.id}" />
-<button type="submit" class="button">保存</button> 
-</div>
+
 </form>
        
 </div>
