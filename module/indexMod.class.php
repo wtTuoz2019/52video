@@ -74,6 +74,10 @@ public function wenlai(){
 		model('common')->addvisit();
 		
 		}
+	public function  addstreamvisit(){
+		model('common')->addstreamvisit();
+		
+		}
 	public function login(){
 		$this->display('login.html');
 		

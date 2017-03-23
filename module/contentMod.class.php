@@ -256,7 +256,16 @@ class contentMod extends commonMod
         return $data;
     }
 		public function playstream(){
-		$this->stream=$_GET['stream'];
+		$this->getuserinfo();
+		$where['stream']=$this->stream=$_GET['stream'];
+		$nowtime=time();
+		$where['endtime']=array('<',$nowtime);
+		$where['uid']=array('<>',$this->userinfo['uid']);
+		$count=model('data')->streamvisitnum($where);
+		if($count>=10){
+			$this->alert('观看人数已满，请联系管理员');
+			}
+		
 		 $this->display('playstream.html');	
 		
 		}	

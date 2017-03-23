@@ -21,6 +21,11 @@ class  dataModel extends commonModel
         return $data['staytime'];
     }
 	
+	 public function streamvisitnum($where=array()){
+        $data=$this->model->table('streamvisit')->where($where)->count();
+        return $data;
+    }
+	
 	 public function looktimesum($where=array()){
         $data=$this->model->table('visit')->where($where)->field('sum(endtime-starttime) as staytime')->find();
         return $data['staytime'];

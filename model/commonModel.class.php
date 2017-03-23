@@ -134,7 +134,47 @@ public function addvisit(){
 		
 		
 		}
+public function addvisit(){
 		
+		
+		if($_SESSION['uid']){
+		$stream=$_POST['stream'];
+		
+		$uid=$_SESSION['uid'];
+	
+		$dateline=time();
+	
+		$data=$where=array(
+				'uid'=>$uid
+				);
+	
+		if($stream){
+			$data['stream']=$where['stream']=$stream;
+			}
+		if(MOBILE){
+			$data['from']=$where['from']='mobile';
+			}else{
+				$data['from']=$where['from']='pc';
+				}
+			$where['endtime']=array('>',($dateline-60));
+		
+			$visit=$this->model->table('streamvisit')->where($where)->find();
+		
+			if($visit){
+				$this->model->table('streamvisit')->where(array('id'=>$visit['id']))->data(array('endtime'=>$dateline))->update();
+				}else{
+				$data['starttime']=$dateline;
+				$data['endtime']=$dateline;
+				$this->model->table('streamvisit')->data($data)->insert();
+					}
+			
+			}
+		
+		return true;
+		
+		
+		}
+				
 		
 
 }
