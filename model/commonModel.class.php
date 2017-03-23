@@ -134,7 +134,7 @@ public function addvisit(){
 		
 		
 		}
-public function addvisit(){
+public function addstreamvisit(){
 		
 		
 		if($_SESSION['uid']){
