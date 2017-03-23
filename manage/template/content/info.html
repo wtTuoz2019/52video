@@ -196,7 +196,7 @@
                                     <!--foreach:{$functions $vo}-->
         
                                       <div id="button{$vo.id}"><button type="button" class="button">{$vo.name}</button><input type="hidden" value="{$vo.id}" name="functions[{$vo.id}]">
-                                      <p><a href="javascript:" onClick="editfunctions('{$vo.id}')">编辑</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" onClick="delfunctions('{$vo.id}',this)">删除</a></p>
+                                      <p><a href="javascript:" onClick="editfunctions('{$vo.id}')">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:" onClick="delfunctions('{$vo.id}',this)">删除</a></p>
                                       </div>
                                     
                                     <!--{/foreach}-->
@@ -221,26 +221,10 @@
 									<div class="choose">
 										<p>
 											评论审核：
-											<input onchange="showdiv(this)" name="comment" type="radio" value="1"  <!--if:{$info['comment']==1}-->checked="checked"<!--{/if}-->   />开启
-											<input type="radio" name="comment" onchange="hidediv(this)" <!--if:{!$info['comment']}-->checked="checked"<!--{/if}--> />关闭
+											<input name="comment" type="radio" value="1"  <!--if:{$info['comment']==1}-->checked="checked"<!--{/if}-->   />开启
+											<input type="radio" name="comment" <!--if:{!$info['comment']}-->checked="checked"<!--{/if}--> />关闭
 										</p>
-										<div class="comment">
-											<div>
-												自动审核匹配项
-											</div>
-											<div>
-												<input type="checkbox" name="auditcomment" id="" value="" />姓名
-												<input type="checkbox" name="auditcomment" id="" value="" />手机
-												<input type="checkbox" name="auditcomment" id="" value="" />师训号
-												<input type="checkbox" name="auditcomment" id="" value="" />学校
-												<input type="checkbox" name="auditcomment" id="" value="" />学科
-												<input type="checkbox" name="auditcomment" id="" value="" />学段
-												<input type="checkbox" name="auditcomment" id="" value="" />性别
-												<input type="checkbox" name="auditcomment" id="" value="" />身份证
-												<input type="checkbox" name="auditcomment" id="" value="" />职位
-												<input type="checkbox" name="auditcomment" id="" value="" />单位
-											</div>
-										</div>
+										
                                         <?php if(model('user_group')->home_power('signup')){?>
                                         
 										<p>
@@ -265,7 +249,7 @@
 											<input name="noaudit" type="radio" value="1" onchange="showdiv(this)" <!--if:{$info['noaudit']==1}-->checked="checked"<!--{/if}-->/>开启
 											<input name="noaudit" type="radio"   value="0" onchange="hidediv(this)" <!--if:{$info['noaudit']==0}-->checked="checked"<!--{/if}--> />关闭
 											</p>
-                                            <div class="comment">
+                                            <div class="comment" style="background: none;box-shadow: none;text-align: center;">
                                                 
                                                 自动审核：
                                                 <input name="autoaudit" type="radio" value="1" onchange="showdiv(this)" <!--if:{$info['autoaudit']==1}-->checked="checked"<!--{/if}-->/>开启

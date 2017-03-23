@@ -31,7 +31,40 @@
 		color:#000;
 		position: relative;
     	top: -10px;
-	}  
+	}
+	.box-body div.batch{
+		height:60px;
+		padding:0;
+		line-height:60px;
+		border:0;
+		padding-left:13px;
+		background:#EEEEEE;
+		border-left: 1px solid #ddd;
+    	border-right: 1px solid #ddd;
+	}
+	.box-body div.batch a{
+		width:88px;
+		height:30px;
+		text-align:center;
+		line-height:28px;
+		border:1px solid #AAAAAA;
+		background:#fff;
+		color:#777777;
+	}
+	table td{
+		position:relative;
+	}
+	table td .comment-content>a{
+		width:115px;
+		height:25px;
+		border:1px solid #BABABA;
+		text-align:center;
+		line-height:23px;
+		color:#000;
+		position:absolute;
+		right:0;
+		top:45px;
+	}
    </style>
    
   
@@ -41,6 +74,12 @@
 </h4>
                 
                 	<div class="box-body" style="display:block">
+                    	<div class="batch">
+                    	<input type="checkbox" value="all" id="all" onclick="allchoose(this)"/>全选
+                        <a href="javascript:;" class="delete" onclick="audit(2)">删除</a>
+                        <a href="javascript:;" class="audit" onClick="audit(1)">审核</a>
+                       <!-- <a href="javascript:;" class="manage">批量管理</a>-->
+                    </div>
 	                	<table border="0" cellspacing="0" cellpadding="0" class="table" >
                         
                         	<!--foreach:{$list $vo}-->
@@ -66,12 +105,7 @@
 							 <!--{/foreach}-->
 						</table>
 						
-	               	<div class="batch">
-                    	<input type="checkbox" value="all" id="all" onclick="allchoose(this)"/>全选
-                        <a href="javascript:;" class="delete" onclick="audit(2)">删除</a>
-                        <a href="javascript:;" class="audit" onClick="audit(1)">审核</a>
-                        <a href="javascript:;" class="manage">批量管理</a>
-                    </div>
+	               
             	</div>
         	
   <div class="row">
