@@ -261,7 +261,7 @@ class contentMod extends commonMod
 		$nowtime=time();
 		$where['endtime']=array('<',$nowtime);
 		$where['uid']=array('<>',$this->userinfo['uid']);
-		$count=model('data')->streamvisitnum($where);
+		 $count=model('data')->streamvisitnum($where);
 		if($count>=10){
 			$this->alert('观看人数已满，请联系管理员');
 			}

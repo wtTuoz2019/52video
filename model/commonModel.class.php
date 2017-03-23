@@ -142,7 +142,7 @@ public function addstreamvisit(){
 		
 		$uid=$_SESSION['uid'];
 	
-		$dateline=time();
+		$dateline=time()+60;
 	
 		$data=$where=array(
 				'uid'=>$uid
@@ -156,14 +156,14 @@ public function addstreamvisit(){
 			}else{
 				$data['from']=$where['from']='pc';
 				}
-			$where['endtime']=array('>',($dateline-60));
+			
 		
 			$visit=$this->model->table('streamvisit')->where($where)->find();
 		
 			if($visit){
 				$this->model->table('streamvisit')->where(array('id'=>$visit['id']))->data(array('endtime'=>$dateline))->update();
 				}else{
-				$data['starttime']=$dateline;
+				
 				$data['endtime']=$dateline;
 				$this->model->table('streamvisit')->data($data)->insert();
 					}
