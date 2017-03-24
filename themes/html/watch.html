@@ -18,8 +18,10 @@
                 	<div class="video" id="{$vo.sn}"></div>
 					<div class="livetext">
 						<h5>
-							{$vo.status}：{$vo.sn}
+						 {$vo.school}【{$vo.status}：{$vo.sn}】
+                      
 						</h5>
+                      
 						<p>
 							{$vo.title}
 						</p>
@@ -63,7 +65,7 @@ function getlivelist(){
 			  $(element).parent().remove();
 			  
 			  }else{
-				   $(element).parent().find('h5').text(data['message'][$(element).attr('id')]['status']+'：'+data['message'][$(element).attr('id')]['sn']);
+				   $(element).parent().find('h5').text(data['message'][$(element).attr('id')]['school']+'【'+data['message'][$(element).attr('id')]['status']+'：'+data['message'][$(element).attr('id')]['sn']+'】');
 				    $(element).parent().find('p').text(data['message'][$(element).attr('id')]['title']);
 				  
 				  };
@@ -71,7 +73,7 @@ function getlivelist(){
 	for(i in data['message']){
 		
 		if($('#'+i).length==0){
-		$('.lives').append('<div class="livek" style="height:'+h+';"><div class="video" id="'+data['message'][i]['sn']+'"></div><div class="livetext"><h5>'+data['message'][i]['status']+'：'+data['message'][i]['sn']+'</h5><p>'+data['message'][i]['title']+'</p></div><img class="wait" src="__PUBLIC__/watch/img/timg.gif"/></div>')
+		$('.lives').append('<div class="livek" style="height:'+h+';"><div class="video" id="'+data['message'][i]['sn']+'"></div><div class="livetext"><h5>'+data['message'][$(element).attr('id')]['school']+'【'+data['message'][i]['status']+'：'+data['message'][i]['sn']+'】'+'</h5><p>'+data['message'][i]['title']+'</p></div><img class="wait" src="__PUBLIC__/watch/img/timg.gif"/></div>')
 	
 		  var url = "rtmp://{$sys.ali}"+data['message'][i]['sn'];//视频地址
   var image = "{$sys['imageurl']}"+data['message'][i]['image'];//封面图片

@@ -24,11 +24,13 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 			$response = $client->getAcsResponse($request); 
 			$livelist=model('field')->getlaterlive();
 			$playlist=array();
+				$school=model('school')->school_list();
 			if($response->OnlineInfo->LiveStreamOnlineInfo){
 				foreach($response->OnlineInfo->LiveStreamOnlineInfo as $key=>$val){
 					foreach($livelist as $k=>$v){
 						if($val->StreamName==$v['sn']&&!$playlist[$val->StreamName]){
 							$v['status']=$v['starttime']>time()?'未开始':'正在直播';
+							$v['school']=$school[$v['csid']]['name'];
 							$playlist[$val->StreamName]=$v;
 							
 							}
@@ -52,11 +54,13 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 			$response = $client->getAcsResponse($request); 
 			$livelist=model('field')->getlaterlive();
 			$playlist=array();
+			$school=model('school')->school_list();
 			if($response->OnlineInfo->LiveStreamOnlineInfo){
 				foreach($response->OnlineInfo->LiveStreamOnlineInfo as $key=>$val){
 					foreach($livelist as $k=>$v){
 						if($val->StreamName==$v['sn']&&!$playlist[$val->StreamName]){
 							$v['status']=$v['starttime']>time()?'未开始':'正在直播';
+							$v['school']=$school[$v['csid']]['name'];
 							$playlist[$val->StreamName]=$v;
 							
 							}
