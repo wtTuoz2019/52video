@@ -375,9 +375,11 @@ button{
 	border: 0;
 	font-size: 18px;
 	color: #fff;
-	background: #29A0CB;
+	background: #29A0CB; 
 	border-radius: 3px;
 	margin-top: 70px;
+	display:inline-block;
+	line-height:45px;
 }
   #autoreply,  #editmodel ,#usercenter,#outvideo,#community{
 	width: 1080px;

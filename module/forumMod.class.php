@@ -1,10 +1,18 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>无标题文档</title>
-</head>
+<?php
+class forumMod extends commonMod {
 
-<body>
-</body>
-</html>
+	public function __construct()
+    {
+        parent::__construct();
+		
+		//$this->getuserinfo();
+    }
+
+	public function index(){
+	  $this->common=model('pageinfo')->media();
+	  
+	  $this->display('forum_index.html');
+		
+		}
+}
+?>

@@ -1,0 +1,655 @@
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+a{
+	text-decoration: none;
+	color: #3fa4e6;
+}
+#header{
+	height: 70px;
+	border-bottom: 1px solid #E0E0E0;
+}
+#header .headk{
+	width: 1000px;
+	margin: 0 auto;
+	height: 70px;
+}
+#header .headk>div{
+	display: inline-block;
+	height: 70px;
+}
+#header .schoollogo{
+	line-height: 70px;
+}
+#header .schoollogo>img{
+	height: 45px;
+	width: 45px;
+	border-radius: 50%;
+	vertical-align: middle;
+	border: 1px solid #BFBFBF;
+}
+#header .search{
+	width: 310px;
+	padding: 15px 0;
+	position: relative;
+	margin-left: 60px;
+}
+#header .search>input{
+	height: 40px;
+	width: 100%;
+	background: #F2F1F6;
+	padding-left: 15px;
+	border: 1px solid #C2C2C3;
+}
+#header .search>button{
+	height: 40px;
+	width: 40px;
+	position: absolute;
+	background-image: url(../img/search.png);
+	background-repeat: no-repeat;
+	background-size: 70% 70%;
+	top: 15px;
+	right: 0;
+	background-color: transparent;
+	border: 0;
+	background-position: center;
+	cursor: pointer;
+}
+#header .useroperation{
+	float: right;
+}
+#header .useroperation>a{
+	display: inline-block;
+	height: 70px;
+	line-height: 76px;
+	padding-left: 30px;
+	color: #000;
+	float: left;
+	margin-left: 45px;
+	background-repeat: no-repeat;
+}
+#header .useroperation>a.active{
+	color: #51afed;
+}
+#header .useroperation>a.homepage{
+	background-image: url(../img/homepage.png);
+	background-position: left 26px;
+}
+#header .useroperation>a.message{
+	background-image: url(../img/message.png);
+	background-position: left 30px;
+}
+#header .useroperation>a.personal{
+	background-image: url(../img/user.png);
+	background-position: 8px 28px;
+}
+#header .useroperation>a.exit{
+	width: 50px;
+	height: 25px;
+	padding: 0;
+	background: #E9E9E9;
+	line-height: 25px;
+	margin: 25.5px 0 0 20px;
+	border-radius: 3px;
+	text-align: center;
+	font-size: 12px;
+}
+#header .useroperation>a.login{
+	padding: 20px 0;
+	line-height: inherit;
+}
+#header .useroperation>a.login span{
+	padding-left: 30px;
+	border-left: 1px solid #CDCDCD;
+	line-height: 35px;
+}
+
+.bg{
+	min-height: 1140px;
+	background-image: url(../img/bg.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	background-color: #6BC4EC;
+}
+.bg .container{
+	width: 1000px;
+	margin: 0 auto;
+}
+.bg .container .chead>img{
+	width: 130px;
+	height: 130px;
+	border: 3px solid #fff;
+	vertical-align: middle;
+}
+.bg .container .chead>div{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 20px;
+}
+.bg .container .chead>div h5{
+	font-size: 24px;
+	color: #fff;
+	margin-bottom: 20px;
+}
+.bg .container .chead>div p span{
+	font-size: 14px;
+	color: #fff;
+	padding-right: 40px;
+}
+.bg .container .cmain{
+	margin-top: 30px;
+	overflow: hidden;
+	padding: 10px;
+	background: rgba(140,207,236,0.7);
+}
+.bg .container .cmain .cleft{
+	float: left;
+	width: 685px;
+}
+.bg .container .cmain .cleft .postbox{
+	height: 175px;
+	background: #fff;
+	padding: 25px 10px 10px 10px;
+}
+.bg .container .cmain .cleft .postbox #text{
+	height: 90px;
+	border: 1px solid #C3C3C3;
+	padding: 10px;
+	font-size: 14px;
+	color: #505050;
+}
+.bg .container .cmain .cleft .postbox .use{
+	height: 30px;
+	margin-top: 15px;
+}
+.bg .container .cmain .cleft .postbox .use button{
+	width: 90px;
+	height: 30px;
+	float: right;
+	color: #fff;
+	border: 0;
+	background: #51AFED;
+}
+.bg .container .cmain .cleft .postbox .use a{
+	display: inline-block;
+	line-height: 30px;
+	margin-right: 35px;
+	font-size: 14px;
+	color: #505050;
+}
+.bg .container .cmain .cleft .postbox .use a img{
+	position: relative;
+	top: 5px;
+	margin-right: 5px;
+}
+.bg .container .cmain .cleft .postbox .use a:first-child+a img{
+	top: 3px;
+}
+.bg .container .cmain .cright{
+	float: right;
+	width: 285px;
+}
+.bg .container .cmain .cright .qr{
+	height:250px;
+	background: #fff;
+	text-align: center;
+}
+.bg .container .cmain .cright .qr h4{
+	font-size: 16px;
+	margin-bottom: 15px;
+	padding-top: 15px;
+}
+.bg .container .cmain .cright .qr img{
+	width: 165px;
+	height: 165px;
+	border: 1px solid #D0D0D0;
+	padding: 20px;
+}
+.bg .container .cmain .cright .qr p{
+	font-size: 12px;
+	margin-top: 5px;
+}
+.bg .container .cmain .cright .qr .userhead{
+	display: inline-block;
+	padding-top: 35px;
+}
+.bg .container .cmain .cright .qr .userhead>img{
+	height: 80px;
+	width: 80px;
+	border-radius: 50%;
+	border: 0;
+	padding: 0;
+}
+.bg .container .cmain .cright .qr .userhead>p{
+	font-size: 16px;
+	color: #505050;
+	margin-top: 10px;
+}
+.bg .container .cmain .cright .qr .userdetail{
+	margin-top: 30px;
+}
+.bg .container .cmain .cright .qr .userdetail>a{
+	display: inline-block;
+	padding: 5px 20px;
+	color: #030303;
+}
+.bg .container .cmain .cright .qr .userdetail>a p{
+	color: #505050;
+}
+.bg .container .cmain .cright .qr .userdetail>a:first-child+a{
+	border-left: 1px solid #BFBFBF;
+	border-right: 1px solid #BFBFBF;
+}
+.bg .container .cmain .cright .hot{
+	margin-top: 10px;
+	background: #fff;
+	padding: 0 10px;
+}
+.bg .container .cmain .cright .hot .title{
+	color: #e22102;
+	line-height: 40px;
+	border-bottom: 1px solid #CDCDCD;
+	padding-left: 5px;
+}
+.bg .container .cmain .cright .hot .title>img{
+	position: relative;
+	top: 3px;
+	left: -5px;
+}
+.bg .container .cmain .cright .hot .hotk .hottitle{
+	height: 80px;
+	padding: 15px 0;
+}
+.bg .container .cmain .cright .hot .hotk .hottitle img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+.bg .container .cmain .cright .hot .hotk .hottitle>div{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+.bg .container .cmain .cright .hot .hotk .hottitle>div h4{
+	font-size: 16px;
+	font-weight: normal;
+}
+.bg .container .cmain .cright .hot .hotk .hottitle>div p{
+	font-size: 12px;
+	color: #505050;
+}
+.bg .container .cmain .cright .hot .hotk .hottext{
+	font-size: 12px;
+	line-height: 22px;
+	padding: 0 10px;
+}
+.bg .container .cmain .cright .hot .hotk .hottext a{
+	text-decoration: underline;
+	float: right;
+}
+.bg .container .cmain .cright .hot .hotk .reply_zan{
+	overflow: hidden;
+	padding: 20px 10px;
+	border-bottom: 1px solid #E9E9E9;
+}
+.bg .container .cmain .cright .hot .hotk .reply_zan>a{
+	display: inline-block;
+	float: left;
+	width: 50%;
+	color: #000;
+	font-size: 12px;
+}
+.bg .container .cmain .cright .hot .hotk .reply_zan>a>img{
+	vertical-align: top;
+	margin-right: 3px;
+}
+.bg .container .cmain .cright .hot .hotk .reply_zan>a:first-child+a{
+	text-align: right;
+	border-left: 1px solid #CDCDCD;
+}
+.bg .container .cmain .cright .hot #tomore{
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+	text-align: center;
+}
+.postdetail .postk{
+	margin-top: 0;
+}
+
+.postk{
+	background: #fff;
+	margin-top: 15px;
+	padding-top: 25px;
+}
+.postk .posthead>img{
+	height: 50px;
+	width: 50px;
+	border-radius: 50px;
+	margin: 0 15px 0 15px;
+	vertical-align: middle;
+}
+.postk .posthead>div{
+	display: inline-block;
+	vertical-align: middle;
+}
+.postk .posthead>div>span{
+	font-size: 12px;
+	color: #505050;
+}
+.postk .postcontent{
+	padding: 15px 20px 10px 80px;
+	border-bottom: 1px solid #CDCDCD;
+}
+.postk .postcontent .postimg{
+	max-width: 500px;
+}
+.postk .postcontent p{
+	font-size: 12px;
+	line-height: 22px;
+	margin-bottom: 15px;
+}
+.postk .postcontent .postimg>img{
+	margin: 0 10px 10px 0;
+}
+.postk .reply_zan{
+	padding: 15px;
+}
+.postk .reply_zan>a.zan{
+	background-image: url(../img/zan.png);
+	padding-left: 52px;
+	background-repeat: no-repeat;
+	background-position: 30px 0px;
+}
+.postk .reply_zan>a{
+	display: inline-block;
+	font-size: 12px;
+	color: #000000;
+	padding-right: 30px;
+	padding-left: 30px;
+	border-left: 1px solid #CDCDCD;
+}
+.postk .reply_zan>a.yzan{
+	color: #0389e1;
+	background-image: url(../img/zan2.png);
+}
+.postk .reply_zan>a:first-child{
+	padding-left: 0;
+	border: 0;
+}
+.postk .reply_zan>a>img{
+	vertical-align: top;
+	margin-right: 3px;
+}
+
+
+.minehead .minebg{
+	background-image: url(../img/minebg.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height: 290px;
+	text-align: center;
+}
+.minehead .minebg>div{
+	display: inline-block;
+	margin-top: 40px;
+}
+.minehead .minebg>div img{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: 2px solid #fff;
+	margin-bottom: 10px;
+}
+.minehead .minebg>div p{
+	font-size: 24px;
+	color: #fff;
+	position: relative;
+}
+.minehead .minebg>div p span{
+	font-size: 12px;
+	padding: 3px 7px;
+	background: #51AFED;
+	border-radius: 3px;
+	position: absolute;
+	right: -38px;
+    top: 8px;
+}
+.minehead #nav{
+	height: 45px;
+	background: #fff;
+	text-align: center;
+}
+.minehead #nav>a{
+	display: inline-block;
+	padding: 0 35px 0 65px;
+	height: 45px;
+	line-height: 45px;
+	color: #505050;
+	background-repeat: no-repeat;
+	background-position: 35px center;
+	margin-left: 25px;
+}
+.minehead #nav>a.active{
+	border-bottom: 3px solid #51AFED;
+}
+.minehead #nav>a:first-child{
+	margin: 0;
+}
+.minehead #nav>a.minepost{
+	background-image: url(../img/post.png);
+}
+.minehead #nav>a.minemessage{
+	background-image: url(../img/message.png);
+}
+.minehead #nav>a.minezan{
+	background-image: url(../img/zan.png);
+}
+.minesk>div{
+	display: none;
+}
+.minesk>div.active{
+	display: block;
+}
+
+#minemessages .messagenav,#minezans .zannav{
+	height: 40px;
+	padding: 5px 0;
+	margin-top: 10px;
+	background: #fff;
+}
+#minemessages .messagenav>a,#minezans .zannav a{
+	display: inline-block;
+	line-height: 30px;
+	font-size: 14px;
+	color: #000000;
+	padding: 0 30px;
+	border-left: 1px solid #E5E5E5;
+	position: relative;
+}
+#minemessages .messagenav>a:first-child,#minezans .zannav a:first-child{
+	border:0;
+}
+#minemessages .messagenav>a>img,#minezans .zannav>a>img{
+	position: absolute;
+	top: 25px;
+    left: 55px;
+    display: none;
+}
+#minemessages .messagenav>a.active>img,#minezans .zannav>a.active>img{
+	display: block;
+}
+#minemessages .replys>div{
+	display: none;
+}
+#minemessages .replys>div.active{
+	display: block;
+}
+#minemessages .replys .replyk{
+	background: #fff;
+	padding: 20px 85px 10px 85px;
+	position: relative;
+	margin-top: 10px;
+}
+#minemessages .replys .replyk .userreply>img{
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	position: absolute;
+	top: 15px;
+	left: 20px;
+}
+#minemessages .replys .replyk .userreply>h4,#minemessages .replys .replyk .before .beforehead h4{
+	font-size: 16px;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+#minemessages .replys .replyk p{
+	font-size: 12px;
+}
+#minemessages .replys .replyk .before{
+	margin-top: 15px;
+	padding: 10px 20px 15px 70px;
+	position: relative;
+	background: #F2F2F5;
+}
+#minemessages .replys .replyk .before .beforehead{
+	margin-bottom: 10px;
+}
+#minemessages .replys .replyk .before .beforehead>img{
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	position: absolute;
+	top: 5px;
+	left: 10px;
+}
+#minemessages .replys .replyk .before .beforehead h4{
+	margin-bottom: 5px;
+}
+#minemessages .replys .replyk .before>p{
+	line-height: 25px;
+}
+#minemessages .replys .replyk .before>a{
+	font-size: 12px;
+	color: #35a3ec;
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+}
+#minemessages .replys .replyk .replytime{
+	color: #505050;
+	margin-top: 10px;
+}
+#minemessages .replys .toreply{
+	color: #2c98e0;
+	position: absolute;
+	right: 85px;
+	top: 20px;
+}
+
+.postreply{
+	padding: 0 15px;
+	background: #fff;
+}
+.postreply .import>input{
+	width: 555px;
+	height: 35px;
+	border: 1px solid #D0D0D0;
+	padding-left: 10px;
+	font-size: 12px;
+	color: #505050;
+}
+.postreply .import>button{
+	float: right;
+	width: 95px;
+	height: 35px;
+	background: #51AFED;
+	color: #fff;
+	font-size: 14px;
+	border: 0;
+}
+.postreply .userreplyk{
+	padding: 15px 0;
+	border-bottom: 1px solid #E8E8E8;
+}
+.postreply .userreplyk>div>div{
+	display: inline-block;
+	vertical-align: middle;
+}
+.postreply .userreplyk .userhead>img{
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	margin: 0 5px;
+}
+.postreply .userreplyk .usertext p{
+	font-size: 12px;
+}
+.postreply .userreplyk .usertext p>a{
+	font-size: 14px;
+}
+.postreply .userreplyk .usertext>span{
+	color: #505050;
+	font-size: 9.65px;
+}
+.postreply .userreplyk .afterreply{
+	padding: 15px 10px;
+    margin-left: 54px;
+    background: #F5F5F5;
+    margin-top: 15px;
+}
+.postreply #morereply{
+	font-size: 12px;
+	display: block;
+	text-align: center;
+	padding: 10px 0;
+}
+
+
+#pop_up{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	background: rgba(0,0,0,0.5);
+	text-align: center;
+	padding-top: 260px;
+}
+#pop_up>div{
+	display: inline-block;
+	width: 490px;
+	height: 360px;
+	background: #fff;
+	position: relative;
+}
+#pop_up>div h4{
+	font-size: 20px;
+	font-weight: normal;
+	padding-top: 20px;
+	margin-bottom: 20px;
+}
+#pop_up>div img{
+	height: 250px;
+	width: 250px;
+	border: 1px solid #D0D0D0;
+	padding: 20px;
+}
+#pop_up>div p{
+	font-size: 14px;
+	margin-top: 8px;
+}
+#pop_up>div a{
+	position: absolute;
+	font-size: 18px;
+	top: 20px;
+	right: 20px;
+	color: #a8a8a8;
+}

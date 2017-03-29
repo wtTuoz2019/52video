@@ -26,11 +26,12 @@
 				<img class="link" src="__PUBLICURL__/manage/img/link.png"/>
 				<img class="yuan" src="__PUBLICURL__/manage/img/WeChathead.png"/>
 			</div>
-			<button id="binding" onclick="tocomponentloginpage()">
+			<button id="binding"   onclick="tocomponentloginpage()">
 				绑定
 			</button>
 		</div>
- 
+
+
 <script>
 //提交表单
 savelistform({addurl:"__URL__/wechat_info",listurl:"javascript:history.go(-1)"});
@@ -44,8 +45,8 @@ savelistform({addurl:"__URL__/wechat_info",listurl:"javascript:history.go(-1)"})
                 });
             });
         });
-function tocomponentloginpage(){   
-	window.location="https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid={$config.kfappid}&pre_auth_code=<?=getpre_auth_code($config['kfappid'],$config['kfappsecret'])?>&redirect_uri=<?=urlencode('http://live.shanyueyun.com/userhome/index.php/wechat/componentlogin')?>";
+function tocomponentloginpage(){ 
+	 document.frames["#main"].location.href="https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid={$config.kfappid}&pre_auth_code=<?=getpre_auth_code($config['kfappid'],$config['kfappsecret'])?>&redirect_uri=<?=urlencode('http://live.shanyueyun.com/userhome/index.php/wechat/componentlogin')?>";
 	
 	}
 	$('.tochange').click(function(e) {
