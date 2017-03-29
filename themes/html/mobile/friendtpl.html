@@ -296,7 +296,7 @@ var note = $('#note'),
                          <script>
 						 $('.funcions{$vo.id}').bind('click',function(){
 							 
-							window.location="<?=urlencode({$vo['content'])?>"; 
+							window.location="<?=urlencode($vo['content'])?>"; 
 							 });
 						 </script>
                           <?php }elseif($vo['type']=='linkaid'){?>
