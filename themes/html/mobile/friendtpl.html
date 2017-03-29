@@ -294,9 +294,15 @@ var note = $('#note'),
                         	{$vo.content html}
                          <?php }elseif($vo['type']=='url'){?>
                          <script>
+						 
+						 var re = /amp;/g; 
+var str = "{$vo[content]}"; 
+
+str=str.replace(re,""); 
+
 						 $('.funcions{$vo.id}').bind('click',function(){
 							 
-							window.location="<?=urlencode($vo['content'])?>"; 
+							window.location.href=str; 
 							 });
 						 </script>
                           <?php }elseif($vo['type']=='linkaid'){?>
