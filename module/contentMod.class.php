@@ -259,7 +259,7 @@ class contentMod extends commonMod
 		$this->getuserinfo();
 		$where['stream']=$this->stream=$_GET['stream'];
 		$nowtime=time();
-		$where['endtime']=array('<',$nowtime);
+		$where['endtime']=array('>',$nowtime);
 		$where['uid']=array('<>',$this->userinfo['uid']);
 		 $count=model('data')->streamvisitnum($where);
 		if($count>=10){
