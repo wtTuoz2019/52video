@@ -57,7 +57,22 @@
             
             
             
+            <script>
             
+            	var lastscript;
+				var h = document.getelementsbytagname("head")[0];
+				function loadscript(url) {
+					var f = document.createelement("script");
+					var d = new date().gettime();
+					f.type = "text/javascript";
+					f.id = d;
+					f.src = url + '?' + d;
+					h.appendchild(f);
+					if (lastscript && g(lastscript)) g(lastscript).parentnode.removechild(g(lastscript));
+					lastscript = d;
+				}
+				function g(x) { return document.getelementbyid(x) };
+            </script>
 		</iframe>
 	 <script src="__PUBLICURL__/manage/js/homepage.js" type="text/javascript" charset="utf-8"></script>
      
