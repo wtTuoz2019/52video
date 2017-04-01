@@ -862,8 +862,8 @@ p.allcomment span{
 				height: 40px !important;
 				border-radius:50%;
 			}
-			.commentarea_right .dianzan{
-				border-bottom:1px solid #D5D4D4;
+			.commentarea{
+				
 			}
 			.tab-box{
 				background:#fff;
@@ -873,12 +873,14 @@ p.allcomment span{
 			}
 			.commentarea{
 				border:0;
+				border-bottom:1px solid #D5D4D4;
 			}
 			.commentinput #import,.commentinput #smile{
 				width:35px;
 				float:left;
 				margin-left:10px;
 			}
+			
 			.commentinput #import{
 				height: 30;
 				width: 30px;
@@ -920,7 +922,21 @@ p.allcomment span{
 			.commentarea_right h6{
 				margin-top:8px;
 			}
-
+			.commentarea_right .pinglun{
+				background:#eee;
+				padding:0; 
+			}
+			#orderList  ul li{
+				padding:3px 0;
+				overflow:hidden;
+			}
+			.commentarea_right .pinglun span.glyphicon {
+				margin-top:3px;
+				margin-left:3px;
+			}
+			.combtm{
+				padding-bottom:5px;
+			}
 
 
 
