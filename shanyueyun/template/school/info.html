@@ -23,6 +23,18 @@
         <input name="name" type="text" class="text_value" id="name" value="{$info.name}" reg="\S" msg="学校名称不能为空" />
         </td>
       </tr>
+      <tr>
+          <td width="120" >所属城市</td>
+          <td width="300"><select name="cid"  reg="." id="cid"  >
+              <!--foreach:{$citys $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['cid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
        <tr>
         <td width="100">头像</td>
         <td colspan="2">
@@ -50,6 +62,12 @@
          
           <textarea name="des" style="width:100%; height:100px;" id="des">{$info.des}</textarea>
          
+        </td>
+      </tr>
+        <tr>
+        <td width="120">坐标</td>
+        <td width="300">
+        <input name="coordinate" type="text" class="text_value" id="sequence" value="{$info.coordinate}" placeholder="116.371211,39.927109"/>
         </td>
       </tr>
       <tr>

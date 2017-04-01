@@ -5,6 +5,7 @@ class schoolMod extends commonMod {
 	public function __construct()
     {
         parent::__construct();
+		$this->citys=model('diyfield')->field_list_data(6);
     }
 
 	 //列表
