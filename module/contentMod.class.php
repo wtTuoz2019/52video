@@ -9,7 +9,7 @@ class contentMod extends commonMod
 
     public function index()
     {  	
-	if(MOBILE)
+	 
 	$this->getuserinfo();
 		
 		if($_POST){

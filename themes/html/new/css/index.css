@@ -757,3 +757,32 @@ body{
 .havhome .hacer a{
 	line-height:20px;
 }
+.introduction{
+	width:1000px;
+	margin:0 auto;
+	padding:80px 0;
+}
+.introduction .jianjie{
+	overflow:hidden;
+	font-family:"Hiragino Sans GB","Microsoft Yahei",sans-serif;
+}
+.introduction .jianjie .jleft{
+	float:left;
+	width:50%;
+}
+.introduction .jianjie .jright{
+	float:right;
+	width:50%;
+}
+.introduction .jianjie .ttitle{
+	font-size:24px;
+}
+.introduction .jianjie .etitle{
+	font-size:14px;
+	margin:15px 0 25px 0;
+}
+.introduction .jianjie .atext{
+	font-size:14px;
+	line-height:30px;
+	margin-bottom:30px;
+}

@@ -4,20 +4,21 @@
 <link href="__TPL__/new/css/main.css" rel="stylesheet" type="text/css" />	
 
 <div class="navigation">
-<a id="gw" href="http://shanyueyun.com">返回官网</a>
-<ul class="head">
-<li class="logo_img"><a href="http://shanyueyun.com"><img src="__TPL__/new/images/logo.png"  style=" height:79px;"/></a></li>
-
-<li id="index"><a href="/" >首页</a></li>
-<li id="field"><a href="/field/" >重播</a></li>
-<li id="live"><a href="/live/">直播</a></li>
-   <?php 
+<?php 
   
            if(!$userinfo){
         ?>
-<li id="login"><a href="/login">用户登录</a></li>
+<a href="/login" id="gw"><img src="__TPL__/new/images/userindex.png"  style=" height:25px;position: relative;top: 4px;left: -3px;"/>用户登录</a>
 <?php }?>
- <li class="li3"><div>
+<ul class="head">
+<li class="logo_img"><a href="http://shanyueyun.com"><img src="__TPL__/new/images/logo.png"  style=" height:79px;"/></a></li>
+
+<!--<li id="index"><a href="/" >首页</a></li>
+<li id="field"><a href="/field/" >重播</a></li>
+<li id="live"><a href="/live/">直播</a></li>-->
+<li><a  href="http://shanyueyun.com" style="font-size:18px;"><img src="__TPL__/new/images/indexindex.png"  style=" height:25px;position: relative;top: 4px;left: -3px;"/>进入官网</a></li>
+   
+ <!--<li class="li3"><div>
 
     <fieldset class="search">
          <input type="text" class="box" name="s" id="s" class="inputText" placeholder="请输入您要搜索的名称" x-webkit-speech>
@@ -26,7 +27,7 @@
 
 </div>
 <article class="article">
-</article></li>
+</article></li>-->
 
 </ul>
 <?php if($userinfo){ ?>
@@ -43,7 +44,6 @@
 	.navigation #gw{
 		float: right;
 		color: #fff;
-		text-decoration: underline;
 		line-height: 80px;
 		margin-right: 40px;
 		font-family:SimSun;

@@ -36,9 +36,46 @@
  
  </div>
 
+<div class="introduction">
+	<div class="jianjie">
+        <div class="jleft" style="padding-top:40px;">
+            <img src="__TPL__new/images/jianjie1.jpg"/>
+        </div>
+    	<div class="jright" style="padding-left:30px;">
+        	<p class="ttitle">
+            	闪阅云系统
+            </p>
+            <p class="etitle">
+            	LIVE EDUCATION LEADER
+            </p>
+            <p class="atext">
+            	闪阅云系统教育平台用微信连接一切，帮助学校连接老师、学生和家长。 通过 有效的推送，帮助学校实现移动互联化信息改造。通过一个学校微信公众号入口打造学校、老师 、学生、家长四位一体，全方位学校移动互联信息化管理平台，提供家校通平台，微直播，在 线论坛，融入OA功能，在线选课，在线投票功能，各功能模块简明扼要，操作便捷简单。关注者 能够利用碎片时间获取有效信息，化整为 零，又从零到一地制定有效的管理及教育实施方案。
+            </p>
+            <p class="ttitle">
+            	微校通
+            </p>
+            <p class="etitle">
+            	MICRO CHANNEL
+            </p>
+            <p class="atext">
+            	微校通通过接入学校微信公众号，提供信息校园OA、 营销培训、校园信息管理与整合的第三方平台。其主要 功能是针对学校微信公众号提供学校、家长信息互通的服务。
+            </p>
+        </div>
+    </div>
+	<div class="jianjie" style="margin-top:60px;">
+    	<img src="__TPL__new/images/jianjie2.jpg" style="width:100%;"/>
+    
+    </div>
+</div>
 
 
- <div class="nav">
+
+
+
+
+
+
+ <!--<div class="nav">
  <div class="top">
  <div class="bodyer"> 
    
@@ -56,18 +93,14 @@
             </ul> 
             <div class="bor03 cont"> 
                 <div class="contentlist"> 
-             <!--list:{table="content"  order="inputtime desc" limit="6"}-->
+             <!--list:{table="content"  order="inputtime desc" limit="6"}
                     <div class="cnav">
                     <div class="video">
                      <a  href="{$list.aurl}" target="_blank" >
                     <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $sys['imageurl'].$list['image'];} ?>" />
                     </a>
                      <?php if ($list['cid'] == 16) { ?>
-                    <!--
-                    <div class="videtext">
-                     <p>直播</p>
-                    </div>
-                    -->
+                    
                     <?php } ?>
                     </div>
                     <div class=" mages">
@@ -79,7 +112,7 @@
                     </div>
                     </div>
                   
-              <!--/list-->    
+              <!--/list    
                     
                     
                      
@@ -93,7 +126,7 @@
                 
               <div  class="contentlist" style="display:none"> 
                    
-                         <!--list:{table="content" cid="13"  order="inputtime desc" limit="6"}-->
+                         <!--list:{table="content" cid="13"  order="inputtime desc" limit="6"}--
                     <div class="cnav">
                     <div class="video">
                      <a  href="{$list.aurl}" target="_blank" >
@@ -109,7 +142,7 @@
                     </div>
                     </div>
                   
-              <!--/list-->    
+              <!--/list--    
                     
                     
                    
@@ -177,16 +210,14 @@ $('.sd02').bind('click',function(e){
      </span>
 </div>
 <div class="center-second">
-     <!--list:{table="content"  where="sid<>0"  order="updatetime desc" limit="6"}-->
+     <!--list:{table="content"  where="sid<>0"  order="updatetime desc" limit="6"}--
                     <div class="cnav">
                     <div class="video">
                      <a  href="{$list.aurl}" target="_blank" >
                     <img src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $sys['imageurl'].$list['image'];} ?>" />
                     </a>
                      <?php if ($list['cid'] == 16) { ?>
-                   <!-- <div class="videtext">
-                     <p>直播</p>
-                    </div>-->
+                 
                     <?php } ?>
                     </div>
                     <div class=" mages">
@@ -197,7 +228,7 @@ $('.sd02').bind('click',function(e){
                     </div>
                     </div>
                   
-              <!--/list-->  
+              <!--/list--  
  </div>
  
  <div class="teacher">
@@ -208,7 +239,7 @@ $('.sd02').bind('click',function(e){
      </span>
 </div>
 <div class="teacher-second">
-  <!--list:{table="teacher"    order="sequence desc" limit="5"}-->
+  <!--list:{table="teacher"    order="sequence desc" limit="5"}--
 <div class="teacher-second10">
 <a href="__APP__/field/teacher/tid-{$list['id']}" target="_blank">
 <div style="width:140px; height:140px; border-radius:50%; background:#999;opacity:0.4;position: relative; left:20px; top:5px;"></div>
@@ -222,7 +253,7 @@ $('.sd02').bind('click',function(e){
 
 </a>
 </div>
-   <!--/list-->
+   <!--/list--
 
 
 
@@ -239,9 +270,9 @@ $('.sd02').bind('click',function(e){
 </div>
 <div class=" school-second">
 <ul>
-  <!--list:{table="school"   order="sequence desc" limit="6"}-->
+  <!--list:{table="school"   order="sequence desc" limit="6"}--
 <li><a href="/field/school/csid-{$list.id}" target="_blank"> <img src="{$sys['imageurl']}{$list.image}" width="175px" height="85px" /></a></li>
-   <!--/list-->
+   <!--/list--
 </ul>
 
 
@@ -259,7 +290,7 @@ $('.sd02').bind('click',function(e){
  
  
  
- </div>
+ </div>-->
  
  <!--#include file="foot.html"-->
 </body>
