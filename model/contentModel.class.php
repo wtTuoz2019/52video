@@ -68,7 +68,7 @@ class contentModel extends commonMod
     }
 
     //完整内容
-    public function model_content($aid,$ext_id)
+    public function model_content($aid,$ext_id=0)
     {
         $data = model('content')->info_source($aid);
         if(!empty($ext_id)){
