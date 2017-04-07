@@ -670,17 +670,20 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 		}
 
 	public function functions_save(){
-		if($_POST['type']=='linkaid')
+		if($_POST['type']=='linkaid'){
 		$_POST['content']=implode(',',$_POST['content']);
+		
+		}
 		$id=model('content')->functions_add($_POST);
 		 $this->msg($id,1);
 		}
 	public function functionsedit_save(){
-		if($_POST['type']=='linkaid')
+		if($_POST['type']=='linkaid'){
 		$_POST['content']=implode(',',$_POST['content']);
+		}
 		$id=model('content')->functions_save($_POST);
 		 $this->msg($id,1);
-		}
+		} 
 	public function functionsdel(){
 		 $id=intval($_POST['id']);
         $this->alert_str($id,'int',true);

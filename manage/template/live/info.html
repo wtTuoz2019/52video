@@ -4,7 +4,7 @@
 			</h4>
 			<div class="videocontent">
 				<div class="page_form">
-                 
+                 <form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form" autocomplete="off">
 					<table cellspacing="0" width="100%">
 						<tr>
 							<td>栏目：</td>
@@ -218,7 +218,7 @@
 									<div>
 										功能：
 									</div>
-									<div>
+									<div style="padding:0;">
                                     <div id="functions">
                                     <!--foreach:{$functions $vo}-->
         
@@ -240,7 +240,7 @@
 											</a>
 										</button>--> 
                                         </div>
-										<button class="addgn" onClick="addfunctions()">
+										<button type="button" class="addgn" onClick="addfunctions()">
 											+添加
 										</button>
 									</div>
@@ -266,7 +266,7 @@
 											<div>
                                             <!--foreach:{$field_list $vo}-->
          										<!--if:{$vo['field']!='aid'}-->
-												<input name="field_lists[]"  type="checkbox" value="{$vo['field']}"  <!--if:{in_array($vo['field'],$info['field_lists'])}-->checked="checked"<!--{/if}-->  /> {$vo['name']}
+												<span><input name="field_lists[]"  type="checkbox" value="{$vo['field']}"  <!--if:{in_array($vo['field'],$info['field_lists'])}-->checked="checked"<!--{/if}-->  /> {$vo['name']}</span>
                                              	 <!--{/if}--> 
           							 		<!--{/foreach}-->
 											</div>
@@ -276,12 +276,13 @@
 											<input name="noaudit" type="radio" value="1" onchange="showdiv(this)" <!--if:{$info['noaudit']==1}-->checked="checked"<!--{/if}-->/>开启
 											<input name="noaudit" type="radio"   value="0" onchange="hidediv(this)" <!--if:{$info['noaudit']==0}-->checked="checked"<!--{/if}--> />关闭
 											</p>
-                                            <div class="comment" style="background: none;box-shadow: none;text-align: center;">
+                                            <div class="comment" style="background: none;box-shadow: none;text-align: left; padding-left:0; width:100%;">
+                                           
                                                 自动审核：
                                                 <input name="autoaudit" type="radio" value="1" onchange="showdiv(this)" <!--if:{$info['autoaudit']==1}-->checked="checked"<!--{/if}-->/>开启
                                                 <input name="autoaudit" type="radio"   value="0" onchange="hidediv(this)" <!--if:{$info['autoaudit']==0}-->checked="checked"<!--{/if}--> />关闭
                                                 
-                                                
+                                              
                                                 
                                             
                                             
@@ -293,7 +294,7 @@
                                                     <div>
                                                         <!--foreach:{$field_list $vo}-->
                                                          <!--if:{$vo['field']!='aid'}-->
-                                                           <input name="auditfield_lists[]"  type="checkbox" value="{$vo['field']}"  <!--if:{in_array($vo['field'],$info['auditfield_lists'])}-->checked="checked"<!--{/if}-->  /> {$vo['name']}
+                                                          <span> <input name="auditfield_lists[]"  type="checkbox" value="{$vo['field']}"  <!--if:{in_array($vo['field'],$info['auditfield_lists'])}-->checked="checked"<!--{/if}-->  /> {$vo['name']}</span>
                                                            <!--{/if}--> 
                                                            <!--{/foreach}-->
                                                     </div>
@@ -316,7 +317,7 @@
                       <button type="submit" id="savevideo">保存</button>
                     </div>
                     
-                   
+                   </form>
 				</div>
 				{include file="phone"}
 			</div>

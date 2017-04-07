@@ -13,7 +13,7 @@ class contentMod extends commonMod
 	$this->getuserinfo();
 		
 		if($_POST){
-		if($_POST['code']!=$_SESSION['mobilecode']){
+		if($_POST['code']!=$_COOKIE['mobilecode']){
 			
 			 $this->msg('手机验证码不对！',0);
 			}
@@ -97,7 +97,38 @@ class contentMod extends commonMod
 
         //读取完整内容信息
         $info=model('content')->model_content($info['aid'],$this->category['expand']);
-
+		if($info['activity_id']){
+			$activity==model('content')->model_content($info['activity_id']);
+			if($activity['signup']){
+				$this->userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
+		
+		$this->field_list=model('form')->field_list(4);
+		
+		$this->signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$activity['aid']));
+		
+		if($this->signinfo['status']==0){
+		$this->redirect(__URL__.'/index?aid='.$activity['aid']);	
+		}
+				
+				}
+			}
+		if($info['signup']){
+		if(!$this->userinfo['uid']){
+			$this->getuserinfo();
+			}
+			
+		$this->userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
+		
+		$this->field_list=model('form')->field_list(4);
+		
+		$this->signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$info['aid']));
+		
+		if($this->signinfo['status']==0){
+		$this->display('signup.html');	die;	
+		}
+			} 
+		
+		
         //更新访问计数
         model('content')->views_content($info['aid'],$info['views']);
         
@@ -133,38 +164,12 @@ class contentMod extends commonMod
         /*hook end*/
         $info['field_lists']=unserialize($info['field_lists']);
         $this->info=$info;
-		
-        //上下篇
-        $prev=model('content')->prev_content($aid,$this->category['cid'],$this->category['expand']);
-        $this->assign('prev', $prev);
-        //下一篇
-        $next=model('content')->next_content($aid,$this->category['cid'],$this->category['expand']);
-        		
-		$this->assign('next', $next);
+
         if ($info["cid"] == 16) {
-		
-		//	$user=model('user')->adminuser(1);
-//			if($user['overtime']&&$user['overtime']<time()){
-//            $this->alert('链接过期! 请联系管理员!');
-//       		 }
-           
+
             $this->channel=model('content')->channel($info['channel']);
         }
-		if($info['signup']){
-		if(!$_SESSION['uid']){
-			$this->getuserinfo();
-			}
-			
-		$this->userinfo=model('form_list')->infobyuser($_SESSION['uid'],'signup');
 		
-		$this->field_list=model('form')->field_list(4);
-		
-		$this->signinfo=model('form_list')->signinfo(array('uid'=>$_SESSION['uid'],'aid'=>$info['aid']));
-		
-		if($this->signinfo['status']==0||$info['aid']=='942'){
-		$this->display('signup.html');	die;	
-		}
-			} 
 		$data=array('uid'=>$_SESSION['uid'],
 					'aid'=>$info['aid'],
 					'type'=>'aid'

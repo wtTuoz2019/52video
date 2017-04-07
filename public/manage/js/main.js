@@ -36,9 +36,37 @@ $('.videok').mouseleave(function(){
 
 //开启关闭
 function showdiv(e){
-	console.log($(e).parent().next().eq(0));
 	$(e).parent().next().show();
 }
 function hidediv(e){
 	$(e).parent().next().hide();
 }
+
+//页面加载是判断是非点击开启
+$(function(){
+	$('.choose p input').each(function() {
+		
+        if($(this).val()=='1'){
+			if($(this).is(':checked')){
+				showdiv(this);
+			}
+		}
+    });
+
+	$('.choose .comment>input').each(function() {
+		
+        if($(this).val()=='1'){
+			if($(this).is(':checked')){
+				showdiv(this);
+			}
+		}
+    });
+});
+
+
+
+
+
+
+
+

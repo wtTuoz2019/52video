@@ -55,17 +55,20 @@
 							</span>
 						</p>
 						<div class="buttons">
-							
-							<a href="__APP__/comment/person/id-{$vo.aid}">
+							 <!--if:{$vo['signup']<>0}-->
+                                  
+                             <a href="__APP__/form_list/signup/aid-{$vo.aid}">报名审核</a>
+                                  <!--{/if}-->	
+							<a class="effect1" href="__APP__/comment/person/id-{$vo.aid}">
 								评论审核
 							</a>
-							<a href="<?php echo ROOTAPP ?>/comment/list_/id-{$vo.aid}"  target="_blank">
+							<a class="effect2" href="<?php echo ROOTAPP ?>/comment/list_/id-{$vo.aid}"  target="_blank">
 								评论樯
 							</a>
-							<a href="__APP__/data/index/id-{$vo.aid}">
+							<a class="effect3" href="__APP__/data/index/id-{$vo.aid}">
 								数据详情
 							</a>
-							<a href=onclick="del('{$vo.aid}',this)">
+							<a class="effect4" href=onclick="del('{$vo.aid}',this)">
 								删除
 							</a>
 							<img src="__PUBLICURL__/manage/img/videok_qr.jpg" class="videok_qr"/>

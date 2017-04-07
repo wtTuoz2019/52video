@@ -11,7 +11,9 @@ class smsMod extends commonMod {
 	public function index() {
 		
 $mobile =$_POST['mobile'];
-$_SESSION['mobilecode']=$rand=rand(1000,9999);
+$rand=rand(1000,9999);
+  $expire = time() + 7200;
+   setcookie('mobilecode',$rand,$expire,'/');
 require(CP_CORE_PATH . '/../ext/TopSdk.php');
  $c = new TopClient;
 $c ->appkey = $this->appkey ;

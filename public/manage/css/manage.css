@@ -461,14 +461,29 @@ button{
 	background: #E5E5E5;
 	margin-top: 50px;
 }
-  #menuset,#extendclass,#postmanage,.videolist,#commentmanage,#messagemanage{
+  #menuset,#extendclass,#postmanage,.videolist,#commentmanage,#messagemanage,#signup{
 	width: 1080px;
 	margin: 40px auto;
 }
-  #menuset>h4,#extendclass>h4,#postmanage>h4,#outvideo>h4,#commentmanage>h4,#messagemanage>h4{
+  #menuset>h4,#extendclass>h4,#postmanage>h4,#outvideo>h4,#commentmanage>h4,#messagemanage>h4,#signup>h4{
 	font-size: 16px;
 	font-weight: normal;
 	margin-bottom: 20px;
+}
+#signup .borderk a,#signup .function input{
+	width:90px;
+	height:30px;
+	background: #eee;
+    border: 1px solid #C3C3C3;
+	line-height: 30px;
+    font-size: 12px; 
+	display:inline-block;
+	text-align:center;
+	margin-right:20px;
+}
+#signup .function input{
+	width:70px;
+	margin-right:10px;
 }
 .borderk{
 	padding: 20px 30px;
@@ -683,6 +698,7 @@ iframe{
 	width: 20px;
 	vertical-align: middle;
 	margin-right: 15px;
+	margin-top: 0;
 }
 .oftentable tr td.operation{
 	position: relative;
@@ -922,6 +938,7 @@ iframe{
 	line-height: 30px;
 	-webkit-transition: background-color .3s,color .3s,width .3s;
     transition: background-color .3s,color .3s,width .3s;
+	background-position: -4px -1px;
 }
 .videolist .videos .videok .title .buttons>a:hover{
 	background: #009BD4;
@@ -946,16 +963,13 @@ iframe{
 .videolist .videos .videok .title .video_data span:first-child+span{
 	float: right;
 }
-.videolist .videos .videok .title .buttons>a:first-child{
-	    background-position: -4px -1px;
-}
-.videolist .videos .videok .title .buttons>a:first-child+a{
+.videolist .videos .videok .title .buttons>a.effect2{
 	    background-position: -39px -1px;
 }
-.videolist .videos .videok .title .buttons>a:first-child+a+a{
+.videolist .videos .videok .title .buttons>a.effect3{
 	    background-position: -70px -1px;
 }
-.videolist .videos .videok .title .buttons>a:first-child+a+a+a{
+.videolist .videos .videok .title .buttons>a.effect4{
 	    background-position: -104px -1px;
 }
 .videolist .videos .videok .Qr{
@@ -1188,10 +1202,14 @@ iframe{
 	box-shadow:0px 2px 6px -2px inset;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div.choose .comment>div:first-child,#outvideo .videocontent>div.page_form table tr td div.additional>div.choose .signup>div:first-child{
-	padding:5px 15px;
+	padding:5px 0;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div.choose input{
-	margin: 0 5px 0 15px;
+	margin: 0 5px 0 0;
+}
+#outvideo .videocontent>div.page_form table tr td div.additional>div.choose span{
+	display:inline-block;
+	width:65px;
 }
 #outvideo #savevideo{
 	width: 260px;

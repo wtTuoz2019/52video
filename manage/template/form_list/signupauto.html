@@ -1,0 +1,174 @@
+<link href="__PUBLICURL__/data/css/admin.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLICURL__/data/js/AdminLTE/app.js" type="text/javascript"></script>
+ <script src="__PUBLICURL__/data/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
+<style>
+	#signup .oftentable tr td,#signup .oftentable tr th{
+		vertical-align:middle;
+	}
+	#signup .borderk{
+		position:relative;
+	}
+    #signup #form{
+		display:inline-block;
+	}
+	#signup .borderk #form input{
+		width:110px;
+		height:30px;
+		border:1px solid #C3C3C3;
+		float:left;
+		border-right:0;
+		border-radius:3px 0 0 3px;
+		padding-left:10px;
+	}
+	#signup .borderk #form input.shangc{
+		opacity:0;
+		position:absolute;
+		top:0;
+		left:0;
+	}
+	#signup .borderk #form a{
+		width:70px;
+	}
+	#signup .borderk #form{
+		position:relative;
+	}
+	#signup .oftentable tr td .icheckbox_minimal{
+		margin-right:5px;
+		top:-2px;
+	}
+	body{
+		background:#fff !important;
+	}
+</style>
+
+<div id="signup">
+
+<h4>预审核列表</h4>
+<div class="page_function">
+ 
+  <div class="exercise borderk"> 
+   <a href="__URL__/signup/aid-{$aid}">报名列表</a>	
+   <?php if($info['autoaudit']){?>
+   <a href="__URL__/signupauto/aid-{$aid}">预审核列表</a>
+    <?php }?>
+    <form  method="post"  enctype="multipart/form-data" id="form"> 
+   	<input  type="text" placeholder="请选择文件" value=""/>
+     <input class="shangc" type="file" name="excel">  <a  type="submit" onClick="$('#form').submit();" >导入</a>
+     </form>
+   <a href="__ROOT__/excel/signup.xls">模板下载</a>
+   </div>
+</div>
+
+<script>
+	$("#form .shangc").change(function(){
+		var file=$(this).val();
+		var strFileName=file.replace(/^.+?\\([^\\]+?)(\.[^\.\\]*?)?$/gi,"$1");//文件名
+		var FileExt=file.replace(/.+\./,""); //后缀名
+		$(this).prev('input').val(strFileName+'.'+FileExt);
+		
+		if($(this).prev('input').val()=='.'){
+			$(this).prev('input').val('请选择文件');
+		}
+	});
+	
+	
+
+</script>
+
+
+<div class="page_main">
+  <div class="box-body">
+                     
+                                    
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table oftentable">
+      <tr class="bgth">
+        <th width="10%"><center>ID</center></th>
+        <!--foreach:{$field_list $vo}-->
+        <?php  if(in_array($vo['field'],$info['field_lists'])){ ?>
+        <th><center>{$vo.name}</center></th>
+        <?php } ?>
+        <!--{/foreach}-->
+       
+      </tr>
+      <!--foreach:{$list $vo}-->
+      <tr>
+        <td><center><input name="id[]" type="checkbox" id="id[]" value="{$vo['id']}" >{$vo.id}</center></td>
+        <!--foreach:{$field_list $model}-->
+        <?php  if(in_array($model['field'],$info['field_lists'])){ ?>
+        <td><center>
+        <?php
+        if($model['admin_html']<>''){
+        eval(html_out(str_replace('{content}', $vo[$model['field']] ,$model['admin_html'])));
+        }else{
+        echo model('expand_model')->get_list_model($model['type'],$vo[$model['field']],$model['config']);
+        }
+        ?>
+        </center></td>
+          <?php } ?>
+        <!--{/foreach}-->
+      
+      </tr>
+      <!--{/foreach}-->
+    </table>
+  </div>
+</div>
+
+<div class="page_tool">
+	<div class="function">
+  <input type="button" onclick="javascript:selectall('id[]');" class="button_small" value="全选" />
+ 
+
+ <input type="button" onclick="javascript:audit(2);"  class="button_small" value="删除" />
+
+  
+  </div>			<div class="page">
+     					 <ul class="pagination">
+                                           {$page}
+                                        </ul>
+ </div>	
+</div>
+
+                                  
+                                    
+<script>
+//选择
+function selectall(name){   
+    $("[name='"+name+"']").each(function(){//反选   
+
+    if($(this).parent().hasClass("checked")){   
+          $(this).parent().removeClass("checked"); 
+		   $(this).removeAttr("checked");   
+   
+    }else{  
+			
+          $(this).attr("checked",'true');     
+          $(this).parent().addClass("checked");   
+    }   
+    })  
+}
+
+//批量操作
+function audit(status){
+	var str="";
+	$("[name='id[]']").each(function(){//反选   
+    if($(this).attr("checked")){
+		  str+=$(this).val()+","; 
+    }
+    })
+	
+	ajaxpost({
+		name:'您确认要继续进行操作吗？操作将无法撤销！',
+		url:"__URL__/batchauto",
+		data:{status: status, id:str, aid:'{$aid}'},
+		tip:1,
+		success:function(){
+			window.location.reload();	
+		}
+	});
+}
+
+
+</script>
+
+</div>

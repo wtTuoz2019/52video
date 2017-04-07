@@ -184,6 +184,8 @@ class contentModel extends commonModel
     {
         return $this->model->table('content')->where('aid='.$aid)->find();
     }
+	
+
 
     //获取附加内容
     public function info_content($aid)
@@ -390,6 +392,26 @@ class contentModel extends commonModel
         $id=$this->model->table('functions')->data($data)->where($where)->find(); 
       
         return $id;
+    }
+	
+		public function activityupdate($aid)
+    {	
+		if($this->getaids(array('activity_id'=>$aid))){
+			$this->model->table('content')->data(array('activity_id'=>0))->where(array('activity_id'=>$aid))->update(); 
+			}
+		
+		$functions=$this->functions_list(array('aid'=>$aid,'type'=>'linkaid'));
+		if($functions){
+			foreach($functions as $key=>$val){
+				
+				 $this->model->table('content')->data(array('activity_id'=>$aid))->where("aid in (".$val['content'].")")->update(); 
+				}
+			
+			}
+		
+         return ;
+      
+       
     }
 
 	public function functions_list($where)

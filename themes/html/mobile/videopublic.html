@@ -4,6 +4,7 @@
 			
 		</div>
          <!--/if-->
+         <!--if:{$info['cid']<>'17'}-->
 		<div class="view-box clearfix">	
         		<div class="schoolmessage">
                 	<img class="schoollogo" src="{$sys.imageurl}{$school[$info['csid']]['headimg']}"/>
@@ -13,14 +14,14 @@
                         <span><img  src="__PUBLIC__/images/usersee.png"/>{$info.views}</span>
                 	</p>
                 </div>
-				<div class="" style="float: right;margin-top: 9px;margin-right:10px;">
+				<!--<div class="" style="float: right;margin-top: 9px;margin-right:10px;">
 			    	<a href="{$config.addurl}" class="Focus" >
                     <span style="font-size:2.5rem;position: relative;top: -2px;">+</span><span> 技术支持</span>
                     </a>
 			   
-				</div>
+				</div>-->
 		</div>
-		</section>
+	  <!--/if-->
 		<section>
 			<div class="tab-box" id="tab-box">
 				<ul id="myTab" class="  clearfix" role="tablist">
@@ -156,6 +157,66 @@ function changecolor(color){
       
 <!--Tabs.js-->
 <script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
+
+<!-- 修改 -->
+<style>
+	#usercenter .menus{
+		transform:rotate(90deg);
+		opacity:0;
+		position:absolute;
+		top: -55px;
+    	left: -53px;
+		width:150px;
+		background-image:url(__PUBLIC__/usermenu.png);
+		height:54px;
+		background-repeat:no-repeat;
+		background-size:100% 100%;
+		background-position:center 0;
+		-webkit-transform-origin: 25% 90%;
+		-moz-transform-origin: 25% 90%;
+		-o-transform-origin: 25% 90%;
+		-ms-transform-origin: 25% 90%;
+		transform-origin: 81px 76px;
+		-webkit-transition: -webkit-transform .5s ease;
+		-moz-transition: -moz-transform 1.5s ease;
+		-o-transition: -o-transform .5s ease;
+		transition: transform .5s ease;
+	}
+	#usercenter .menus>a{
+		float:left;
+		display:block;
+		width:50%;
+		height:100%;
+	}
+</style>
+
+<div id="usercenter">
+	<div class="menubtn"><img height="55px" src="__PUBLIC__/usercenter.png" /></div>
+    <div class="menus">
+    	<a class="menubtn" href="/myhome/index"></a>
+        <a class="menubtn" href="{$config.addurl}"></a>
+    </div>
+</div>
+
+
+<script>
+ 
+	$('#usercenter .menubtn').click(function(){
+		if($('.menus').css('opacity')=='0'){
+			$('.menus').stop().animate({opacity:'1'},500);
+			$('.menus').css('transform','rotate(-90deg)');
+		}else{
+			$('.menus').css('transform','rotate(90deg)');
+			$('.menus').stop().animate({opacity:'0'},500);
+		}
+		
+		
+	});
+	
+
+</script>
+
+
 
    <!--#include file="common.html"-->
    
