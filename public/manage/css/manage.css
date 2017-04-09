@@ -339,7 +339,12 @@ button{
 #nav>a.active div.nav_WeChat4{
 	background-image: url(../img/nav_WeChat4_.png);
 }
-
+#nav>a div.nav_function1{
+	background-image: url(../img/nav_function1.png);
+}
+#nav>a.active div.nav_function1{
+	background-image: url(../img/nav_function1_.png);
+}
 /*微信绑定模块下的内容*/
 
   .WeChat{
@@ -1105,7 +1110,8 @@ iframe{
 	margin-right: 10px;
 }
 #outvideo .videocontent>div.page_form table td>textarea{
-	resize:none;	
+	resize:none;
+	height: 80px;	
 }
 #outvideo .videocontent>div.page_form table tr{
 	margin-bottom: 30px;
@@ -1143,6 +1149,7 @@ iframe{
 }
 #outvideo .videocontent>div.page_form table tr td div.additional #functions{
 	overflow:hidden;
+	padding-top:20px;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional #functions>div{
 	float:left;
@@ -1154,7 +1161,7 @@ iframe{
 	margin-top:5px;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div button{
-	padding: 5px 35px;
+	padding: 5px 10px;
 	height: 35px;
 	background: #F9F7F8;
 	border: 1px solid #BABABA;
@@ -1448,4 +1455,16 @@ iframe{
 }
 .no-print{
 	display:none !important;
+}
+#postmanage .sendlive{
+	width: 70px;
+    height: 30px;
+    background: #eee;
+    border: 1px solid #C3C3C3;
+	display:inline-block;
+	line-height:30px;
+	text-align:center;
+	position:relative;
+	top:1px;
+	float:right;
 }

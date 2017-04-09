@@ -652,6 +652,10 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
             $this->action='functions';
 			 $where=$this->common_list_where();
 		 $this->list=model('live')->content_list(null,null,$where['where'],$where['order'],true);	 
+		 
+		 if($this->user['gid']!=1)
+			$whereform['uid']= $this->user['id'];
+		 $this->form_list=model('selfform')->form_list($whereform,$limit);
 		 $this->display('content/functions');
 		}
 	public function functionsedit(){
@@ -662,6 +666,9 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 			 $where=$this->common_list_where();
 		 $this->list=model('live')->content_list(null,null,$where['where'],$where['order'],true);	
 		$this->info=model('content')->functions_info(array('id'=>$id));	
+		 if($this->user['gid']!=1)
+		$whereform['uid']= $this->user['id'];
+		 $this->form_list=model('selfform')->form_list($whereform,$limit);
 		if($this->info['type']=='linkaid'){ 
 	
 		$this->content=explode(",",$this->info['content']);

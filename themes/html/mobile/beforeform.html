@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{$info.title}</title>
+<meta name="viewport" content="width=750, user-scalable=no">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" href="__TPL__mobile/css/newstyle.css" type="text/css" />
+<script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+</head>
+<body>
+<div class="header" style=" background-image:url({$sys.imageurl}{$info.image})">
+	
+</div>
+<div class="interval" >
+	
+</div>
+
+<div class="main">
+	<div class="borderk">
+    	<img  src="img/topb.jpg" style="vertical-align:middle;"/>
+    </div>
+    
+    <div class="wcontent">
+    	<div class="texts">
+   			{$info.content}
+        </div>
+        
+        <h4>
+        	在进入平台观摩活动前，先请您判断几个问题.
+        </h4>
+        <form action="__INDEX__/selfform/post" method="post" id="form">
+        	<div class="problems">
+            
+             <!--foreach:{$form_inputs $vo}-->
+      {$php( echo model('selfform')->get_field_html($vo,$info[$vo['field']]))}
+      <!--{/foreach}-->
+           
+            </div>
+            <input type="hidden" name="aid"  value="{$info.aid}"/>
+            <input type="hidden" name="fid" value="{$info.beforeid}"/>
+            <button type="submit" class="tijiao">提交</button>
+        </form>
+        
+        
+    </div>
+    
+    <div class="borderk">
+    	<img  src="img/bottomb.jpg"/>
+    </div>
+</div>
+
+<script type=text/javascript src="/public/js/duxui.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+<script type=text/javascript src="/public/kindeditor/kindeditor-min.js"></script>
+<script type=text/javascript src="/public/kindeditor/lang/zh_CN.js"></script>
+<script type=text/javascript src="/public/js/common.js"></script>
+<script type="text/javascript">
+saveform({
+	success:function(){
+		window.location.reload();
+  
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+
+</script>
+
+</body>
+</html>

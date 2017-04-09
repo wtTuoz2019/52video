@@ -77,10 +77,11 @@ var commenturl="http://comment.shanyueyun.net";
 		    }); 
 		$('#modal_cance').click(function(e) {
             $("video").css({'height':'200px'});
-        });
+        });$(document).ready(function(){ 
 		   $('#input-type-submit').click(function(){
+			 
 				var this_ = this;
-				var mes = $('#editors').val();
+				var mes = $('.modal-body #editors').val();
 				if(flag==1){
 					return false;
 				}
@@ -93,6 +94,16 @@ var commenturl="http://comment.shanyueyun.net";
 			    }
 			$('.rightuser .comment .commentarea').css('padding-bottom','0');
 			   if(commentflag=='save'){
+				   
+				   var formdata='';
+				   formdata['fid']
+if($('.choosep :input').length){
+ 
+ $('.choosep :input').each(function(index, element) {
+  formdata+=$(element).attr('name')+'_'+$(element).val()+'|';
+		
+    }); 
+}console.log(formdata);
 				$.ajax({
 				  url: "/index.php/comment/save",
 				  type: "POST",
@@ -101,7 +112,8 @@ var commenturl="http://comment.shanyueyun.net";
 					message: mes,
 					progress:$('#progressinput').val(),
 					progressend:$('#progressendinput').val(),
-			        uid: data['uid']
+			        uid: data['uid'],
+					formdata:formdata
 				  },
 				  dataType: "json",
 				  success: function( d ) {
@@ -136,7 +148,7 @@ var commenturl="http://comment.shanyueyun.net";
 		if(toname!=''){
 			namestring='回复<span>'+toname+'：</span>';
 			}
-			$('#commentlist'+pid).append('<li><div class="left"><img src="'+headpic+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><span class="username">'+nickname+'</span><span class="resdel" onClick="resdel(this,'+d.message+')">删除</span><p>'+namestring+mes+'</p></div></li>');
+			$('ul #commentlist'+pid).append('<li><div class="left"><img src="'+headpic+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><span class="username">'+nickname+'</span><span class="resdel" onClick="resdel(this,'+d.message+')">删除</span><p>'+namestring+mes+'</p></div></li>');
 			
 		  }
 	  },'json');
@@ -146,7 +158,7 @@ var commenturl="http://comment.shanyueyun.net";
 						
 						$('#modal_cance').click();
 			}) 
-	
+		});
 	function commentsucess(d){return false;};	
 	function currentshow(){
 		$('span#right').unbind();
@@ -171,6 +183,7 @@ var commenturl="http://comment.shanyueyun.net";
 //				}
 //				return strVar;
 //			}
+	
 		function automatic(arr){
 		$.getJSON(commenturl + "/index.php/comment/pc_auto?callback=?",arr, function(data) { 
 			
@@ -191,8 +204,28 @@ var commenturl="http://comment.shanyueyun.net";
 //						}
 //				},'json')
 			}
+			function commentshow(){
+				
+		$.getJSON(commenturl + "/index.php/comment/pc_show?mobile="+mobile+"&callback=?",arr, function(data) { 
+			
+				} );	
+			
+	
+			}
 		automatic(arr);
-		
+		function showhandle(d){
+			if(d.status==1){
+						//if(typeof(d.count)!="undefined"){
+//							$('#commentnum').text(d.count);
+//							}
+						$('#container_show').html(escapes(d.message));
+					
+						
+						commentHandle();
+						currentshow();
+						
+					}
+			}
 		function autohandle(d){
 		
 			if(d.status==1){
@@ -288,7 +321,7 @@ function commentHandle(){
             });
 			//弹出评论
 			function comment(e){
-				
+				$('.choosep').show();
 				$("video").css({'height':'0px'});
 				$('#editors').attr('placeholder','');
 				 $("#mymodal").find('#toname').val('');
@@ -298,6 +331,7 @@ function commentHandle(){
 				 $("#mymodal").find('#pid').val($(e).attr('pid'))
 				  commentflag='reply';
 				   $('.comment-area').hide()
+				   	$('.choosep').hide();
 				  }
 				 if(typeof($(e).attr('toname'))!='undefined'){
 					 

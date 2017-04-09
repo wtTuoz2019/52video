@@ -1,0 +1,69 @@
+
+ 
+<div id="postmanage">
+			<h4>
+				自定义表单
+			</h4>
+			<div class="borderk postk">
+				
+				<div>
+					 
+					<input type="" name="" id="" value="" placeholder="请输入关键字"/>
+					<button>
+						查询
+					</button>
+				</div>
+			<a href="__URL__/add"  class="sendlive">添加</a>
+			</div>
+			<table width="100%" cellspacing="0" class="oftentable">
+				<tr class="bgth">
+					<th style="text-align:left; padding-left:20px;" width="20%">名称</th>
+					
+					<th>创建时间</th>
+					
+					<th width="130px">操作</th>
+				</tr>
+                  <!--foreach:{$list $vo}-->
+				<tr>
+					
+					<td style="text-align:left; padding-left:20px;">
+						{$vo.name}
+					</td>
+					
+					<td>
+							 {$php(echo date('Y-m-d H:i',$vo['time']))}
+						
+					</td>
+					
+					<td class="operation">
+						<button>
+							操作
+						</button>
+						<ul>
+                        	<li>
+								<a href="__URL__/infos/id-{$vo.id}">
+									信息管理
+								</a>
+							</li>
+                            <li>
+								<a href="__URL__/inputs/id-{$vo.id}">
+									输入项管理
+								</a>
+							</li>
+							<li>
+								<a href="__URL__/edit/id-{$vo.id}">
+									编辑
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;"  onClick="del({$vo.id},this)">
+									删除
+								</a>
+							</li>
+							
+						</ul>
+					</td>
+				</tr>
+				 <!--{/foreach}-->
+			</table>
+		</div>

@@ -852,7 +852,7 @@ p.allcomment span{
 			.tab-box .tab-nav{
 				border:0;
 			}
-			#container .dianzan .userlist img,#container .commentlist .left>img{
+			 .dianzan .userlist img, .commentlist .left>img{
 				width: 30px  !important;
 				height: 30px !important;
 				border-radius:50%;
@@ -937,6 +937,8 @@ p.allcomment span{
 			.combtm{
 				padding-bottom:5px;
 			}
-
+			#myTabContent div[id^="funcions"] p{
+				    text-indent: inherit !important;
+			}
 
 

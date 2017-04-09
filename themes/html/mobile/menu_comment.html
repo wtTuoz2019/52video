@@ -1,40 +1,8 @@
 <p class="allcomment">全部评论<span>（<font id="commentnum">0</font>）</span></p>
   <link rel="stylesheet" href="__PUBLIC__/data/css/font-awesome.min.css" />   
-    <div class="modal" id="mymodal">
-		    <div class="modal-dialog">
-		        <div class="modal-content">
-					<div class="modal-body">
-						<textarea id="editors" placeholder=""></textarea>
-						<div class="icongroups">
-				
-						</div>
-						<div style="text-align: center;position:relative">
-                        	<input name="pid" type="hidden" value="" id="pid">
-                            <input name="toname" type="hidden" value="" id="toname">
-							<button id="input-type-submit" type="button" class="btn btn-primary">发布</button>
-							<button id="modal_cance" type="button" class="btn btn-default"  data-dismiss="modal">返回</button>
-                            <div id="messageto"></div>
-						</div>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
-        
-        
-        <!--<div class="modal fade bs-example-modal-sm hongbao" id="mymodal-data1" style=" width:345px;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">					
-               <a href="javascript:" data-toggle="modal" data-target="#mymodal-data1"> <div class="Closebutton"></div></a>
 
-								<div class="modal-content" id="modal" style=" background:none;">
-									<div class="modal-body" style=" background:none;">
-									<div class="list" style=" background:none;">
-<input   name="price" placeholder="输入金额，1-1000元" value="" id="price">
-<input name="desc" placeholder="很精彩，赞一个" value="" id="desc">
-<input  type="submit" value=""  onClick="pay()" id="pay" style=" width:228px; background:none; height:50px; border:none;">
-									</div>
-									</div>
-									
-								</div>
-						</div>-->
+        
+  
      <script type="text/javascript">  
   	var url='http://{$config.MOBILE_DOMAIN}';
 	  var headpic='<?php echo $_SESSION["headpic"];?>';
@@ -76,7 +44,14 @@
     
       <div class="load_m tr" id="more">加载更多</div>
 	
+
       <div class="commentinput">
+          <?php  if(($activity['signup']||$info['signup'])&&!$signinfo['status']){ ?>
+          <div class="logintishi">
+          	 温馨提示：您还没有实名认证，暂时无法进行评论。<a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=no">立即验证</a>
+          </div>
+   
+    <?php }  ?> 
 			<img id="smile" src="__PUBLIC__/images/face.png">
            
 			<input type="text" style="width:60%;" id="editors" placeholder="我来说两句..." readonly onClick="comment(this)">

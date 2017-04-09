@@ -33,17 +33,30 @@ class commentMod extends commonMod {
 	
 	 public function save() {
 		 $this->getuserinfo();
+		 
+		if($_POST['formdata']){
+			$formstring=explode('|',$_POST['formdata']);
+			foreach($formstring as $k=>$v){
+				if($v){
+					$temp=explode('_',$v);
+					$formdata[$temp[0]]=$temp[1];
+					
+					}
+				}
+			
+			}
+			
  		$data['fid']=$_POST['fid']; 
 		$data['message']=$_POST['message'];
 		$data['images']=$_POST['images']; 
 		$data['progress']=floatval($_POST['progress']);
 		$data['progressend']=floatval($_POST['progressend']);
 		$data['time']=time();
-		$uid=$_SESSION['uid'];//通过微信获取用户id
-		if ($uid>0) {
+		$uid=$this->userinfo['uid'];//通过微信获取用户id
+		
 	 		$data['uid']=$uid;
 			$data['type']='wechat';
-			$data['nicename']=$_SESSION['nicename'];
+			$data['nicename']=$this->userinfo['nicename'];
 			if(model('comment')->contentinfo($data['fid'])){
 			$data['flag']=0;
 				}else{
@@ -52,6 +65,7 @@ class commentMod extends commonMod {
 			$res=model('comment')->comment($data);
 			
 			if($res>0){
+				module('selfform')->formin($formdata);
 				$content=model('content')->info($data['fid']);
 				if($content['redpacket']&&!$content['comment']){
 					$priceall=model('comment')->priceall($content['aid']);
@@ -68,9 +82,7 @@ class commentMod extends commonMod {
 			}else{
 				$this->msg('评论失败', 0);
 			}	
-	 	}else{
-	 		$this->msg('未授权', 0);
-	 	}
+	 	
 	 }
 	 public function reply_add(){
 		$data['time']=time();

@@ -1,0 +1,75 @@
+
+  
+<div id="postmanage">
+			<h4>
+				{$info.name}表单输入项管理
+			</h4>
+		<div class="borderk postk" style="overflow:hidden;">
+				
+			<a href="javascript:" onClick="add()"  class="sendlive">添加</a>
+			</div>
+			<table width="100%" cellspacing="0" class="oftentable">
+				<tr class="bgth">
+					<th>名称</th>
+					<th>字段名称</th>
+					<th>字段类型</th>
+					
+					<th width="130px">操作</th>
+				</tr>
+                  <!--foreach:{$list $vo}-->
+				<tr>
+					
+					<td style="text-align:left" width="60%">
+						{$vo.name}
+					</td>
+					
+					<td>
+					{$vo.field}
+						
+					</td>
+                    <td>
+				
+					{$field_type[$vo['type']]['name']}	
+					</td>
+					
+					<td class="operation">
+						<button>
+							操作
+						</button>
+						<ul>
+                        	
+							<li>
+								<a href="javascript:" onClick="edit({$vo.id})">
+									编辑
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;"  onClick="del({$vo.id},this)">
+									删除
+								</a>
+							</li>
+							
+						</ul>
+					</td>
+				</tr>
+				 <!--{/foreach}-->
+			</table>
+		</div>
+ <script>
+ function add(){
+	urldialog({
+		width:600,
+	height:500,
+	title:'字段操作',
+	url:'__URL__/inputs_add/fid-{$info.id}'
+	});
+	}
+  function edit(id){
+	urldialog({
+		width:600,
+	height:500,
+	title:'字段操作',
+	url:'__URL__/inputs_edit/fid-{$info.id}-id-'+id,
+	});
+	}
+ </script>

@@ -784,3 +784,57 @@ span.resdel { float:right; margin-top:0}
 	font-size:12px;
 	color:#e4393c;
 }
+.commentinput .logintishi{
+	position:absolute;
+	height:50px;
+	line-height:50px;
+	color:#fff;
+	width:100%;
+	bottom:0;
+	left:0;
+	z-index:9999;
+	background:rgba(0,0,0,0.7);
+}
+.commentinput .logintishi a{ 
+	padding:5px 15px;
+	background:#f00;
+	color:#fff;
+	border-radius:3px;
+	font-size:12px;
+}
+.modal-body .choosep{
+	width:90%;
+	margin:0 auto;
+	margin-bottom:10px;
+	background:#fff;
+	border-radius:3px;
+	padding:20px;
+	padding-top:20px;
+}
+.modal-body .choosep select{
+	width:80%;
+	height:30px;
+	border-radius:3px;
+	display:block;
+	margin:0 auto;
+	margin-top:5px;
+	font-size:12px;
+}
+.modal-body .choosep li.title{
+	margin-top:10px !important;
+	padding-left:10%;
+	font-size:12px;
+}
+#myTabContent .modal-body .choosep p{
+	padding-bottom:10px;
+}
+#myTabContent .modal-body .choosep p>img{
+	height:20px;
+	width:inherit;
+	position: relative;
+    top: -3px;
+}
+.modal-body textarea{
+	border:0;
+	border-radius:3px;
+}

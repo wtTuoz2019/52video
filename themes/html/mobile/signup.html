@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
-        <title>{$common.title}</title>
+        <title>{$info.title}</title>
         
         <link rel="stylesheet" href="__PUBLIC__/frozen/css/frozen.css">
         <link rel="stylesheet" href="__PUBLIC__/frozen/style.css">
@@ -19,6 +19,11 @@
         
       
         <link rel="stylesheet" href="__TPL__mobile/css/newadd.css" />
+        <style>
+        	.form_submit .tishi{
+				font-size:12px; color:#e4393c;
+			}
+        </style>
     </head>
     
     <body ontouchstart>
@@ -62,7 +67,9 @@
                        
                     </div>
        <div class="form_submit">
-		<a class="button" href=" {$php( echo module('label')->get_aurl($info['aid']))}&sign=yes" >修改报名信息</a>
+		<a class="button" href=" {$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes" >修改报名信息</a>
+           <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes">进入观看</a>
+                <p class="tishi">温馨提示：身份严重未通过，无法参与评论</p>
 		</div>
           
           
@@ -96,6 +103,9 @@
        <button class="ui-btn ui-btn-primary" type="submit">
                   报名
                 </button>
+                
+                <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes" style="height:30px; line-height:30px; font-size:12px;">忽略</a>
+                <p class="tishi">温馨提示：不验证身份，将无法参与评论</p>
 	
 		</div>
         <script>

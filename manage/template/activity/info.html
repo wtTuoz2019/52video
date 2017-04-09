@@ -77,7 +77,19 @@
 								<input class="chooseimg" id="image1" value="选择图片"></input>
 							</td>
 						</tr>
-                        
+                               <tr>
+        <td width="100" align="right">内容</td>
+        <td colspan="2">
+          <?php echo module('editor')->get_editor('content'); ?>
+          <textarea name="content" style="width:100%; height:250px;" id="content">{$info_data.content html}</textarea>
+          <input type="button" onclick="javascript:get_remote_image()" style="margin-top:10px; width:100px !important;padding:0;" class="button_small" value="远程图片本地化" />
+          <?php echo module('editor')->get_editor_upload('editor_upload','editor_content') ?>
+          <input type="button" id="editor_upload" class="button_small" style="margin-top:10px; width:145px !important;padding:0;" value="上传图片和文件到编辑器" />
+          <!--hook-->
+          <?php module('common')->plus_hook('content','tools',$info);  ?>
+          <!--hook end-->
+          </td>
+      </tr>
                     
 						<tr>
 							<td>描述：</td>
@@ -97,15 +109,15 @@
                             <td>留空采用栏目指定模板</td>
                           </tr>
                         
-                        
+                    
 					
 						<tr>
 							<td>附加功能：</td>
 							<td>
 								<div class="additional">
                                 
-								
-											<div>
+								   
+									<div>
 										功能：
 									</div>
 									<div style="padding:0;">
@@ -187,6 +199,21 @@
 								</div>
 							</td>
 						</tr>
+                         <tr>
+							<td>前置表单：</td>
+							<td>
+								<select name="beforeid"  id="beforeid"  >
+									<option value="">======选择表单======</option>
+                                      <!--foreach:{$form_list $vo}--> 
+                                      <option value="{$vo['id']}" <?php if($info['beforeid']==$vo['id']) { ?> selected="selected" <?php } ?> 
+                                         
+                                      >
+                                          {$vo['name']}
+                                      </option> 
+                                      <!--{/foreach}-->
+								</select>
+							</td>
+						</tr>
 					</table>
                     
                      <div class="form_submit">
@@ -196,7 +223,7 @@
                     </div>
                     </form>
 				</div>
-				{include file="phone"}
+				{include file="newphone"}
 			</div>
 			
 			

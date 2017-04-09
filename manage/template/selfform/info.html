@@ -1,0 +1,59 @@
+<div id="outvideo">
+			<h4>
+				{$actionname}
+			</h4>
+			<div class="videocontent">
+				<div class="page_form">
+               <form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form" autocomplete="off">
+					
+                       <table cellspacing="0" width="100%">
+						<tr>
+							<td>名称：</td>
+							<td>
+								<input name="name" type="text" class="form-control" id="name"  value="{$info.name}" reg="\S" msg="名称不能为空" />
+							</td>
+						</tr>
+                        
+                        <tr>
+							<td>形象图：</td>
+							<td>
+          	                  	<?php echo module('editor')->get_image_upload('image1','image',false,'editor_content') ?>
+         							 <input name="image" type="text"class="form-control" id="image" value="{$info.image}" onchange="imagechange(this)"/> 
+								
+								<p>
+									
+								</p>
+								<input class="chooseimg" id="image1" value="选择图片"></input>
+							</td>
+						</tr>
+                        
+                    
+						<tr>
+							<td>描述：</td>
+							<td>
+								<textarea name="intro" class="text_textarea" id="intro">{$info.intro}</textarea>
+								<p>
+									
+								</p>
+							</td>
+						</tr>
+                        
+                       
+					</table>
+                    
+                     <div class="form_submit">
+                    
+      <input name="id" id="id" type="hidden" value="{$info.id}" />
+                      <button type="submit" id="savevideo">保存</button>
+                    </div>
+                    </form>
+				</div>
+				
+			</div>
+			
+			
+		</div>
+   <script>
+   savelistform({addurl:"__URL__/add",listurl:"__URL__/index"});
+   
+   </script>     

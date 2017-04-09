@@ -11,7 +11,7 @@ class contentMod extends commonMod
     {  	
 	 
 	$this->getuserinfo();
-		
+	
 		if($_POST){
 		if($_POST['code']!=$_COOKIE['mobilecode']){
 			
@@ -21,7 +21,7 @@ class contentMod extends commonMod
 		$_POST['fid']=4;
         $data=$this->data_check($_POST);
         //处理完毕后交由模型处理数据
-		$data['uid']=$_SESSION['uid'];
+		$data['uid']=$this->userinfo['uid'];
 	
 		$info=model('form_list')->infobyuser($data['uid'],'signup');
 		if($info){
@@ -67,7 +67,19 @@ class contentMod extends commonMod
 			
             $this->error404();
         }
+		if($_GET['nosign']=='yes'){
+		  $expire = time() + 7200;
+  		 setcookie('nosign','yes',$expire,'/');
+			
+			}
+			
+		if($_GET['nosign']=='no'){
+			
+		setcookie("nosign", null, time() - 3600,'/');
 
+			
+			}
+	
         //判断跳转
         if (!empty($info['url']))
         {
@@ -97,54 +109,57 @@ class contentMod extends commonMod
 
         //读取完整内容信息
         $info=model('content')->model_content($info['aid'],$this->category['expand']);
+		
+	
+		
 		if($info['activity_id']){
-			$activity==model('content')->model_content($info['activity_id']);
+			$this->activity=$activity=model('content')->model_content($info['activity_id']);
 			if($activity['signup']){
-				$this->userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
 		
-		$this->field_list=model('form')->field_list(4);
+		$this->signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$activity['aid']));	
+		if($activity['beforeid']){
+			
+			if(!model('selfform')->input_value(array('fid'=>$activity['beforeid'],'aid'=>$activity['aid'],'uid'=>$this->userinfo['uid']))){
+				$noactivity=true;
+				}
+			}
 		
-		$this->signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$activity['aid']));
+		if(($this->signinfo['status']==0||$noactivity)&&$_COOKIE['nosign']!='yes'){
 		
-		if($this->signinfo['status']==0){
+		
 		$this->redirect(__URL__.'/index?aid='.$activity['aid']);	
 		}
+	
 				
 				}
 			}
+		 $info['field_lists']=unserialize($info['field_lists']);
 		if($info['signup']){
 		if(!$this->userinfo['uid']){
 			$this->getuserinfo();
 			}
 			
-		$this->userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
 		
-		$this->field_list=model('form')->field_list(4);
 		
 		$this->signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$info['aid']));
 		
-		if($this->signinfo['status']==0){
+		if($this->signinfo['status']==0&&$_COOKIE['nosign']!='yes'){
+		$this->userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
+		
+		$this->field_list=model('form')->field_list(4);
+		$this->info=$info;
 		$this->display('signup.html');	die;	
 		}
-			} 
+	
+	
+		
+		} 
 		
 		
-        //更新访问计数
-        model('content')->views_content($info['aid'],$info['views']);
-        
-        //读取内容信息
+	    //读取内容信息
         $info_content=model('content')->info_content($info['aid']);
-		$zidingyi=unserialize($info_content['zidingyi']);
-		$this->zidingyi=$zidingyi;
-	 	$this->functions=model('content')->functions_list(array('aid'=>$info['aid']));
-		if(empty($info_content['content'])){
-			$info_content['content']='暂无内容';
-		}
-        $content=$info_content['content'];
-        //读取点赞数量
-        $this->num = model('change')->collection_number($aid);
-
-        //读取内容替换
+		 $content=$info_content['content'];
+		   //读取内容替换
         if(!empty($content)){
             $content=model('content')->format_content($content);
         }
@@ -153,16 +168,41 @@ class contentMod extends commonMod
             $content=model('content')->tag_link($content,$info['aid']);
         }
 		
+			 $info['content']=$content;
+			 
+			if($info['beforeid']){
+			if(!model('selfform')->input_value(array('fid'=>$info['beforeid'],'aid'=>$info['aid'],'uid'=>$this->userinfo['uid']))){
+			  $this->info=$info;
+			$this->form_inputs=model('selfform')->form_inputs_list(array('fid'=>$info['beforeid']));
+			
+			$this->display('beforeform.html');	die;
+			}
+			}
+		
+        //更新访问计数
+        model('content')->views_content($info['aid'],$info['views']);
+        
+    
+		$zidingyi=unserialize($info_content['zidingyi']);
+		$this->zidingyi=$zidingyi;
+	 	$this->functions=model('content')->functions_list(array('aid'=>$info['aid']));
+		
+       
+        //读取点赞数量
+        $this->num = model('change')->collection_number($aid);
+
+     
+		
 
         //MEDIA信息
         $this->common=model('pageinfo')->media($info['title'].' - '.$this->category['name'],$info['keywords'],$info['description']);
         
     
-		 $info['content']=$content;
+	
         $this->plus_hook('content','index',$this->info);
         $this->info=$this->plus_hook_replace('content','index_replace',$this->info);
         /*hook end*/
-        $info['field_lists']=unserialize($info['field_lists']);
+       
         $this->info=$info;
 
         if ($info["cid"] == 16) {

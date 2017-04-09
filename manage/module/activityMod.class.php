@@ -140,7 +140,10 @@ class activityMod extends commonMod
 		
         $position_list=model('position')->position_list();
         $tpl_list=model('category')->tpl_list();
-
+		if($this->user['gid']!=1)
+		$where['uid']= $this->user['id'];
+		 $data['form_list']=model('selfform')->form_list($where,$limit);
+	
         $data['info']=$info;
         $data['info_data']=$info_data;
 		$data['zidingyi']=unserialize($info_data['zidingyi']);
@@ -197,7 +200,7 @@ class activityMod extends commonMod
     	$id=intval($_GET['id']);
 		$id=$id?$id:'17';
         $this->alert_str($id,'int');
-		$this->actionname='回看列表';
+		$this->actionname='活动列表';
         //获取公共信息条件
         $where=$this->common_list_where();
         $this->view()->assign($this->common_list());
@@ -292,7 +295,7 @@ class activityMod extends commonMod
 		$content=$info['info'];
 		 $where=$this->common_list_where();
 		 $this->list=model('live')->content_list(null,null,$where['where'],$where['order'],true);	
-		
+	
         $this->view()->assign($info);
         $this->view()->assign($this->common_data_info($cid));
 		$this->field_list=model('form')->field_list(4);

@@ -63,6 +63,12 @@ class indexMod extends commonMod
 	
         $this->show();
     }
+		  // 显示管理后台首页
+    public function nav_function()
+    {	
+	
+        $this->show();
+    }
 
 
     //环境信息

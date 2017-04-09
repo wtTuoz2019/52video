@@ -42,6 +42,8 @@
               </option>
                 <option value="jiaoyancomment" <?php if($info['type']=='jiaoyancomment') { ?> selected="selected" <?php } ?>  >	打点评论（限回看使用）
               </option>
+             	 <option value="commentshow" <?php if($info['type']=='commentshow') { ?> selected="selected" <?php } ?>  >	个人评论
+              </option>
                <option value="content" <?php if($info['type']=='content') { ?> selected="selected" <?php } ?>  >	内容
               </option>
             	
@@ -52,6 +54,7 @@
               </option>
                <option value="looktimes" <?php if($info['type']=='looktimes') { ?> selected="selected" <?php } ?>  >	视频看点
               </option>
+              
             </select>
             </td>
           <td></td>
@@ -70,6 +73,7 @@
           </td>
         
         </tr>
+  
         <tr id="linksbody"  style="display:none">
           <td width="100" align="right">关联文章</td>
          <td colspan="2">
@@ -99,8 +103,27 @@
 <input name="id" type="hidden" value="{$info.id}" />
 <button type="submit" class="button">保存</button> 
 </div>
-</form>
-       
+</form>  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr id="comment" style="display:none" >
+          <td width="100" align="right">关联调查</td>
+         <td colspan="2">
+         <select  name="content">
+         <option value="0">选择量表</option>
+                  <!--foreach:{$form_list $vo}-->
+                <option value="{$vo.id}" <?php  if($vo['id']==$info['content']){echo 'selected';}?>>{$vo.name len="20"}</option>
+                                             <!--{/foreach}-->
+                                        </select>
+          </td>
+        
+        </tr>
+             <tr id="commentshow"  style="display:none" >
+          <td width="100" align="right">关联手机</td>
+         <td colspan="2">
+        <input name="content" type="text" class="form-control" id="content" value="{$info.content}" />
+          </td>
+        
+        </tr>   
+        </table>
 </div>
 </div> 
  <script src="__PUBLICURL__/data/js/bootstrap.min.js" type="text/javascript"></script>
@@ -150,8 +173,13 @@ function typechange(){
 	var type=$('#type').val();
 	$('#contentbody').hide();
 	$('#linksbody').hide();
+	
 	if(type=='comment'||type=='jiaoyancomment'){
-		$('#otherbody').html('');
+		$('#otherbody').html($('#comment').html());
+			
+		}else if(type=='commentshow'){
+		
+		$('#otherbody').html($('#commentshow').html());
 		}else if(type=='content'){
 		$('#contentbody').show();
 		$('#otherbody').html('');
