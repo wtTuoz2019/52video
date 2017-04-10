@@ -69,7 +69,7 @@
        <div class="form_submit">
 		<a class="button" href=" {$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes" >修改报名信息</a>
            <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes">进入观看</a>
-                <p class="tishi">温馨提示：身份严重未通过，无法参与评论</p>
+                <p class="tishi">温馨提示：身份验证未通过，无法参与评论</p>
 		</div>
           
           
@@ -101,11 +101,11 @@
        <div class="form_submit">
        <input type="hidden" name="aid" value="{$info.aid}">
        <button class="ui-btn ui-btn-primary" type="submit">
-                  报名
+                  提交报名
                 </button>
                 
-                <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes" style="height:30px; line-height:30px; font-size:12px;">忽略</a>
-                <p class="tishi">温馨提示：不验证身份，将无法参与评论</p>
+                <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes" style="height:30px; line-height:30px; font-size:12px;">忽略报名</a>
+                <p class="tishi">温馨提示：未收到活动通知的用户，请忽略报名</p>
 	
 		</div>
         <script>

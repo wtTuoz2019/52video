@@ -6,7 +6,16 @@
           </div>
    
     <?php }  ?> 
-		<form  id="form">					 
+    
+    
+    <input type="text" style="width:60%;" id="editors" placeholder="我来说两句..." readonly onClick="comment(this)">
+    
+    
+    
+    
+    
+    
+		<!--<form  id="form">					 
 			<p class="comment-form-comment" id="commentform" >
 				<textarea id="message" name="message" cols="45" rows="8" reg="\S" msg="评论不能为空" ></textarea>
 			</p>
@@ -16,12 +25,12 @@
 	      <input name="submit" type="botton" id="submit" class="btn fr" value="立即评论">
 			</p>
 			<div class="clear"></div>
-	  </form>
+	  </form>-->
 	</div>
 </div>
  
   <link rel="stylesheet" href="__PUBLIC__/data/css/font-awesome.min.css" />   
-    <div class="modal" id="mymodal">
+    <!--<div class="modal" id="mymodal">
 		    <div class="modal-dialog">
 		        <div class="modal-content">
                 	<p>留下你想说的话</p>
@@ -38,9 +47,9 @@
                             <div id="messageto"></div>
 						</div>
 					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
+				</div>
+			</div>
+		</div>-->
         
         
         <div class="modal fade bs-example-modal-sm hongbao" id="mymodal-data1" style=" width:345px;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">					
@@ -110,11 +119,7 @@
 		</div>--> 
     <script>
 	
-	$(function(){ 
-		
-	　　$("#modal_cance").text('X');
 	
-	}); 
 		//弹窗
 	function mydialog(t, c) {
 		var d = art.dialog({

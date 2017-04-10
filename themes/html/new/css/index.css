@@ -511,8 +511,8 @@ ul[id^="commentlist"]{
 }
 .comment  #container .date #current{
 	float: right;
-    position: relative;
-    top: -9px;
+    position: absolute;
+    top: -1px;
 	height:35px;
 	line-height:35px;
 	padding:9px 0;
@@ -807,7 +807,6 @@ body{
 	position:relative;
 }
 .addAnswerBox .logintishi{
-	position:absolute;
 	width:100%;
 	height:141px;
 	text-align:center;
