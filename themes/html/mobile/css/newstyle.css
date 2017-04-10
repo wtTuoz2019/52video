@@ -34,7 +34,7 @@ body * { max-height: 999999px; }
 	padding:10px 45px;
 }
 .main .wcontent p{
-	font-size:18px;
+	font-size:20px;
 }
 .main .wcontent h4{
 	font-size:24px;
@@ -55,7 +55,7 @@ body * { max-height: 999999px; }
 }
 .main .wcontent .problems li{
 	margin-bottom:14px;
-	font-size:18px;
+	font-size:20px;
 }
 .main .wcontent .problems li.table{
 	text-align:center;

@@ -805,6 +805,17 @@ body{
 }
 .addAnswerBox{
 	position:relative;
+	overflow:hidden;
+	clear:both;
+}
+.addAnswerBox #editors{
+	float:right;
+	padding:8px 15px;
+	background:#55B0C3;
+	color:#fff;
+	border:0;
+	border-radius:3px;
+	margin:10px 10px 0 0;
 }
 .addAnswerBox .logintishi{
 	width:100%;
