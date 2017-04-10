@@ -825,6 +825,10 @@ span.resdel { float:right; margin-top:0}
 	padding-left:10%;
 	font-size:12px;
 }
+.modal-body .choosep li.table{
+	font-size:12px;
+	text-align:center;
+}
 #myTabContent .modal-body .choosep p{
 	padding-bottom:10px;
 }

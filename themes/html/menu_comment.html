@@ -1,5 +1,11 @@
  <div class="contentBox">
 	<div class="addAnswerBox">
+    <?php  if(($activity['signup']||$info['signup'])){ ?>
+          <div class="logintishi">
+          	 该视频暂不支持电脑评论，请到手机端观看。
+          </div>
+   
+    <?php }  ?> 
 		<form  id="form">					 
 			<p class="comment-form-comment" id="commentform" >
 				<textarea id="message" name="message" cols="45" rows="8" reg="\S" msg="评论不能为空" ></textarea>
@@ -18,6 +24,7 @@
     <div class="modal" id="mymodal">
 		    <div class="modal-dialog">
 		        <div class="modal-content">
+                	<p>留下你想说的话</p>
 					<div class="modal-body">
 						<textarea id="editors" placeholder=""></textarea>
 						<div class="icongroups">

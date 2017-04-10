@@ -1,27 +1,4 @@
-<!--if:{$zidingyi['notice']}-->
-		<div class="scroll-bar">
-			<marquee style="color:#fff; font-size: 1.2rem; width: 100%; line-height: 25px;" scrollamount=1>{$zidingyi.notice}</marquee>	
-			
-		</div>
-         <!--/if-->
-         <!--if:{$info['cid']<>'17'}-->
-		<div class="view-box clearfix">	
-        		<div class="schoolmessage">
-                	<img class="schoollogo" src="{$sys.imageurl}{$school[$info['csid']]['headimg']}"/>
-                    <p>
-                        <span>{$school[$info['csid']]['name']}</span>
-                        <br/>
-                        <span><img  src="__PUBLIC__/images/usersee.png"/>{$info.views}</span>
-                	</p>
-                </div>
-				<!--<div class="" style="float: right;margin-top: 9px;margin-right:10px;">
-			    	<a href="{$config.addurl}" class="Focus" >
-                    <span style="font-size:2.5rem;position: relative;top: -2px;">+</span><span> 技术支持</span>
-                    </a>
-			   
-				</div>-->
-		</div>
-	  <!--/if-->
+
 		<section>
 			<div class="tab-box" id="tab-box">
 				<ul id="myTab" class="  clearfix" role="tablist">
@@ -69,7 +46,7 @@
 							
 						</div>
                         <div class="col-xs-6 r_text">
-                        <p class="videotitle"><a href="{$val.aurl}">{$val.title len="12"}</a><img class="videoimg2" src="img/to_play2.png"/></p>  
+                        <p class="videotitle"><a href="{$val.aurl}">{$val.title}</a><!--<img class="videoimg2" src="img/to_play2.png"/>--></p>  
                        
                        <p class="schoolname">{$school[$val['csid']]['name']}</p>
                        <p class="now"> <?php echo $val['cid']==16?'直播':'重播';  ?></p>

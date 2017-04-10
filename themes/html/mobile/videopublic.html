@@ -36,13 +36,14 @@
                      <div class="tab-pane <?php if(!$key) echo 'active'; ?>" id="funcions{$vo.id}">
                      
                      <?php if($vo['type']=='comment'){  
-                  $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
-                
+                 
+                  $commentinputs=model('selfform')->form_inputs_list($vo['content']);
+              
                      ?>
                      
                       <!--#include file="menu_comment.html"-->
 					 <?php }elseif($vo['type']=='jiaoyancomment'){
-                      $commentinputs==model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                      $commentinputs==model('selfform')->form_inputs_list($vo['content']);
                      ?>
                           <!--#include file="menu_jiaoyan.html"-->
                         <?php }elseif($vo['type']=='commentshow'){?>
