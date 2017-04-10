@@ -105,11 +105,11 @@
                 </button>
                 
                 <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes" style="height:30px; line-height:30px; font-size:12px;">忽略报名</a>
-                <p class="tishi">温馨提示：未收到活动通知的用户，请忽略报名</p>
+                <p class="tishi">温馨提示：未收到活动通知的用户请忽略报名</p>
 	
 		</div>
         <script>
-savesignupform({addurl:'{$php( echo module('label')->get_aurl($info['aid']))}'});
+savesignupform({addurl:'{$php( echo module("label")->get_aurl($info["aid"]))}'});
 
 		
           var timerID;

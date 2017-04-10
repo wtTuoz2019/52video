@@ -70,15 +70,14 @@ class contentMod extends commonMod
 		if($_GET['nosign']=='yes'){
 		  $expire = time() + 7200;
   		 setcookie('nosign','yes',$expire,'/');
-		 echo 'yes';
-				var_dump($_COOKIE);
+		$this->redirect(module('label')->get_aurl($info['aid']));
+				
 			}
 			
 		if($_GET['nosign']=='no'){
-			 echo 'no';
+		
 		setcookie("nosign", NULL, time() - 3600,'/');
-	
-				var_dump($_COOKIE);
+		$this->redirect(module('label')->get_aurl($info['aid']));
 			}
 
         //判断跳转
