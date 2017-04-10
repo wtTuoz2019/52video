@@ -79,7 +79,7 @@ class contentMod extends commonMod
 	
 			
 			}
-	var_dump($_COKKIE);
+	var_dump($_COOKIE);
         //判断跳转
         if (!empty($info['url']))
         {
