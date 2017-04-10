@@ -396,7 +396,7 @@ function commentHandle(){
 						continue;
 						}
 					 strVar +='<div class="commentarea clearfix"><div class="commentarea_left left"><img  src="'+string[i]['pic']+'" style="width: 34px;height: 34px;margin-top: 10px;"/></div><div class="commentarea_right right"><h6>'+string[i]['name']+'</h6>';
-					  if(string[i]['school']!=''){
+					  if(typeof(string[i]['school'])!="undefined"&&string[i]['school']!=''){
 						   strVar +='<p class="school">'+string[i]['school']+'</p>';
 					  }
 					 
