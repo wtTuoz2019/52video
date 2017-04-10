@@ -12,10 +12,10 @@ class selfformModel extends commonModel {
 		
 		}
     //字段列表
-    public function form_inputs_list($fid)
+    public function form_inputs_list($where)
     {
 		
-        return $this->model->table('selfform_input')->where(array('fid'=>$fid))->order('sequence asc,id asc')->select();
+        return $this->model->table('selfform_input')->where($where)->order('sequence asc,id asc')->select();
     }
       //获取字段HTML
     public function get_field_html($info,$data=null){
