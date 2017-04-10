@@ -388,38 +388,32 @@ public function getlaudnum($where){
 		return $num;
 	}
 		
-	public function comment_reply($pid,$fid){
-		$result = model('comment')->getList($pid,$fid);
+	public function comment_reply($pid,$signup=false,$aid=0){
+			
+	$where = " A.pid=".$pid;
+		
 	
-		if($result){
-			foreach ($result as $k => $v) {
-				if(empty($v['uid'])) continue;
-				if($v['time']){
-					$result[$k]['time'] = model('comment')->get_time($v['time']);
-				}	
-				
-				if($v['uid']){
+	$where.=' AND A.flag=1';
+		
+		$list=$this->model->field('A.*,B.nicename as name,headimgurl as pic')->table('comment','A')
+            ->add_table('user','B','B.uid=A.uid')->where($where)->limit(10)->order('A.time ASC')->select();
+		if(is_array($list)){
+			foreach($list as $k=>$v){
+				if($signup){
+					$userinfo=model('form_list')->infobyuser($v['uid'],'signup');
+				$list[$k]['name']=$userinfo['name']?$userinfo['name']:$list[$k]['name'];
+				$list[$k]['nickname']=$userinfo['name']?$userinfo['name']:$list[$k]['nickname'];
+			
 					
-					$result[$k]['pic'] = model('comment')->get_pic($v['uid']);	
-				}
+					}
 				
-				if($v['rid']){
-					$result[$k]['rid'] = model('comment')->getname($v['rid']);
 				}
-				if($v['com']){
-					foreach($v['com'] as $key => $value){	
-						if(is_array($value)){
-							if($value['time']){
-								$result[$k]['com'][$key]['pic'] = model('comment')->get_pic($value['uid']);
-								$result[$k]['com'][$key]['time'] =model('comment')->get_time($value['time']);
-								$result[$k]['com'][$key]['rid'] =model('comment')->getname($value['rid']);
-							}
-						}	
-					}		
-				}
-			}		
-		}
-		return $result;
+			}	
+			
+			
+		return $list;
+
+
 	 }
 	
 	public function getz($id,$fid){

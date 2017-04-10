@@ -395,6 +395,10 @@ function commentHandle(){
 						continue;
 						}
 					 strVar +='<div class="commentarea clearfix"><div class="commentarea_left left"><img  src="'+string[i]['pic']+'" style="width: 34px;height: 34px;margin-top: 10px;"/></div><div class="commentarea_right right"><h6>'+string[i]['name']+'</h6>';
+					  if(string[i]['school']!=''){
+						   strVar +='<p class="school">'+string[i]['school']+'</p>';
+					  }
+					 
 					 if(string[i]['progress']!=0){
 				
 			strVar += "<a  onclick=\"playseek(this) \" class=\"playseek\" data-time=\""+string[i]['progress']+"\"  end-time=\""+string[i]['progressend']+"\" style=\"float:right\"><span class=\"fa  fa-video-camera\"></span><span class=\"f-ib\">"+formatDate(new Date(string[i]['progress']*1000))+"</span></a>";

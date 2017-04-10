@@ -411,6 +411,27 @@ public function commentdel() {
 		if(!is_numeric($fid)){
             $this->msg('参数非法', 0);
         }
+		 $content=model('content')->info($fid);
+        if (!is_array($content)) {
+			
+            $this->error404();
+        }else{
+			
+			if($content['signup']){
+			$aid=$fid;
+				$signup=true;		
+				
+				}
+		if($content['activity_id']){
+			$activity=model('content')->info($content['activity_id']);
+			if($activity['signup']){
+				$aid=$activity['aid'];
+				$signup=true;		
+				
+				}
+				}	
+			
+			}
 		
 		$info = model('comment')->pc_info($fid, $_POST['data']['pageSize'],$_POST['data']['pageIndex']);		
 		
@@ -420,8 +441,21 @@ public function commentdel() {
 			
 			$info[$k]['time'] = model('comment')->get_time($v['time']);
 			$info[$k]['num'] = 0;
-			$info[$k]['res'] = model('comment')->comment_reply($v['id'],$fid);
-		$info[$k]['praiselist'] = model('comment')->laud_list($v['id']);
+			$info[$k]['res'] = model('comment')->comment_reply($v['id'],$signup,$aid);
+			$info[$k]['praiselist'] = model('comment')->laud_list($v['id']);
+				if($signup){
+				
+				$signinfo=model('form_list')->signinfo(array('uid'=>$v['uid'],'aid'=>$aid));
+				
+				if($signinfo['status']){
+				$userinfo=model('form_list')->infobyuser($v['uid'],'signup');
+				$info[$k]['name']=$userinfo['name']?$userinfo['name']:$info[$k]['name'];
+				$info[$k]['school']=$userinfo['school']?$userinfo['school']:$info[$k]['school'];
+				$info[$k]['school']=$userinfo['company']?$userinfo['company']:$info[$k]['school'];
+					
+					}
+				}
+			
 			foreach($fkeywords as $key=>$value){
 				if((string)strpos($v['message'],$value)=='0'||strpos($v['message'],$value)>0){
 					$info[$k]['status']=0;
