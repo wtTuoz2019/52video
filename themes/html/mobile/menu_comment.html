@@ -5,9 +5,9 @@
   
      <script type="text/javascript">  
   	var url='http://{$config.MOBILE_DOMAIN}';
-	  var headpic='<?php echo $_SESSION["headpic"];?>';
-	 var nickname='<?php echo $_SESSION["nickname"];?>';
-	  var uid='<?php echo $_SESSION["uid"];?>';
+	  var headpic='{$userinfo["headimgurl"]}';
+	 var nickname='<?php echo $_SESSION["name"]?$_SESSION["name"]:$_SESSION["nickname"];?>';
+	  var uid='{$userinfo["uid"]}';
 	  var data = {
 			    fid: '{$info.aid}',
 				uid:uid,

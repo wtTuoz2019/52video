@@ -148,7 +148,8 @@ if($('.choosep :input').length){
 		if(toname!=''){
 			namestring='回复<span>'+toname+'：</span>';
 			}
-			$('ul #commentlist'+pid).append('<li><div class="left"><img src="'+headpic+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><span class="username">'+nickname+'</span><span class="resdel" onClick="resdel(this,'+d.message+')">删除</span><p>'+namestring+mes+'</p></div></li>');
+		
+			$('ul#commentlist'+pid).append('<li><div class="left"><img src="'+headpic+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><span class="username">'+nickname+'</span><span class="resdel" onClick="resdel(this,'+d.message+')">删除</span><p>'+namestring+mes+'</p></div></li>');
 			
 		  }
 	  },'json');

@@ -128,16 +128,18 @@ class contentMod extends commonMod
 		
 		
 		$this->redirect(__URL__.'/index?aid='.$activity['aid']);	
-		}
+		}else{
+		
+			$userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
+	 	$_SESSION["name"]=$userinfo['name']?$userinfo['name']:$_SESSION["nickname"];
+			}
 	
 				
 				}
 			}
 		 $info['field_lists']=unserialize($info['field_lists']);
 		if($info['signup']){
-		if(!$this->userinfo['uid']){
-			$this->getuserinfo();
-			}
+	
 			
 		
 		
@@ -149,7 +151,11 @@ class contentMod extends commonMod
 		$this->field_list=model('form')->field_list(4);
 		$this->info=$info;
 		$this->display('signup.html');	die;	
-		}
+		}else{
+			
+			$userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
+			$_SESSION["name"]=$userinfo['name']?$userinfo['name']:$_SESSION["nickname"];
+			}
 	
 	
 		
@@ -187,10 +193,7 @@ class contentMod extends commonMod
 		$this->zidingyi=$zidingyi;
 	 	$this->functions=model('content')->functions_list(array('aid'=>$info['aid']));
 		
-       
-        //读取点赞数量
-        $this->num = model('change')->collection_number($aid);
-
+      
      
 		
 
@@ -219,6 +222,8 @@ class contentMod extends commonMod
 			}else{
 			$this->subscribe='subscribe';	
 				}
+				
+			
 		if($info['tpl']&&MOBILE){
 			
 		
