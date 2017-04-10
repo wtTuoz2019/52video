@@ -198,9 +198,9 @@ class selfformModel extends commonModel {
                 foreach ($list as $key) {
                     $value=explode('|',$key);
                     $select_list.='<input name="'.$info['field'].'" type="radio" value="'.$value[1].'" ';
-                    if($info['default']==''){
-                        $info['default']=1;
-                    }
+                   // if($info['default']==''){
+//                        $info['default']=1;
+//                    }
                     if($info['default']==$value[1]){
                         $select_list.='checked="checked" ';
                     }
