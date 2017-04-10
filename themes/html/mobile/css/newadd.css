@@ -400,7 +400,7 @@ dd{ margin-left:10%; height:40px; padding:5px;}
 				top: 2.5px;
 				text-align: center;
 				color: #000;
-				width: 85px;
+				width: 70px;
 			}
 			#form .ui-form-item input{
 				padding:0;
@@ -437,7 +437,7 @@ dd{ margin-left:10%; height:40px; padding:5px;}
 				font-size:13px;
 				border-radius:3px;
 				border:1px solid #c2c2c2;
-				padding-left: 110px;
+				padding-left: 75px;
     			color: #000;
 				line-height:40px;
 			}

@@ -117,18 +117,19 @@ class contentMod extends commonMod
 			if($activity['signup']){
 		
 		$this->signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$activity['aid']));	
-		if($activity['beforeid']){
-			
-			if(!model('selfform')->input_value(array('fid'=>$activity['beforeid'],'aid'=>$activity['aid'],'uid'=>$this->userinfo['uid']))){
-				$noactivity=true;
-				}
-			}
 		
-		if(($this->signinfo['status']==0||$noactivity)&&$_COOKIE['nosign']!='yes'){
+		if(($this->signinfo['status']==0)&&$_COOKIE['nosign']!='yes'){
 		
 		
 		$this->redirect(__URL__.'/index?aid='.$activity['aid']);	
 		}else{
+			if($activity['beforeid']){
+			
+			if(!model('selfform')->input_value(array('fid'=>$activity['beforeid'],'aid'=>$activity['aid'],'uid'=>$this->userinfo['uid']))){
+				$this->redirect(__URL__.'/index?aid='.$activity['aid']);	
+				}
+			}
+		
 		
 			$userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
 	 	$_SESSION["name"]=$userinfo['name']?$userinfo['name']:$_SESSION["nickname"];

@@ -815,3 +815,6 @@ body{
 	font-weight:bold;
 	background:#fff;
 }
+.contentBox div[id^="funcions"]>p{
+	text-indent: inherit !important;
+}

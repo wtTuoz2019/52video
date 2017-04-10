@@ -68,8 +68,8 @@
                     </div>
        <div class="form_submit">
 		<a class="button" href=" {$php( echo module('label')->get_aurl($info['aid']))}&sign=yes" >修改报名信息</a>
-           <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes">进入观看</a>
-                <p class="tishi">温馨提示：身份验证未通过，无法参与评论</p>
+           <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes">进入活动</a>
+                
 		</div>
           
           
@@ -177,12 +177,11 @@ savesignupform({addurl:'{$php( echo module("label")->get_aurl($info["aid"]))}'})
         });
 		$(function(){
 			var text=$('div.form_submit').prev().children('span').html();
-			console.log(text);
 			if(text=='审核中'){
 				$('div.form_submit').prev().empty();
-				$('div.form_submit').prev().html('<b></b>审核中<b></b>');
+				$('div.form_submit').prev().html('<b></b>报名审核中<b></b>');
 				$('div.form_submit').prev().addClass('bottom')
-				$('div.discrption').html('信息核实');
+				$('div.discrption').html('报名信息');
 			}
 		})
 		
