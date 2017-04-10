@@ -10,7 +10,7 @@ ul,ol,li{
 }
 body * { max-height: 999999px; }
 .header{
-	height:455px;
+	height:450px;
 	background-repeat:no-repeat;
 	background-size:100% 100%;
 }

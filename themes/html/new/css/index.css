@@ -537,8 +537,8 @@ ul[id^="commentlist"]{
 }
 .contentBox #mymodal{
 	position:absolute;
-	width: 90%;
-	padding:17px; 
+	width: 490px;
+	padding:0; 
 	height:200px;
 	margin:0 auto;
 	overflow-y: hidden;
@@ -584,9 +584,11 @@ ul[id^="commentlist"]{
 .contentBox #mymodal .modal-content{
 	height:140px;
 	border-radius:0;
-	padding:5px 10px;
+	padding:0;
 }
-
+.contentBox #mymodal .modal-title{
+	height:45px;
+}
 .contentBox #mymodal .modal-content>p{
 	margin-bottom:5px;
 	font-size:14px;
@@ -829,4 +831,5 @@ body{
 }
 .contentBox div[id^="funcions"]>p{
 	text-indent: inherit !important;
+	clear:both;
 }
