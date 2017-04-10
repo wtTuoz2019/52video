@@ -34,10 +34,10 @@ body * { max-height: 999999px; }
 	padding:10px 45px;
 }
 .main .wcontent p{
-	font-size:22px;
+	font-size:23px;
 }
 .main .wcontent h4{
-	font-size:25px;
+	font-size:26px;
 	color:#fff;
 	text-shadow:#000 2px 0 0,#000 0 2px 0,#000 -2px 0 0,#000 0 -2px 0;
 	text-align:center;
@@ -55,7 +55,7 @@ body * { max-height: 999999px; }
 }
 .main .wcontent .problems li{
 	margin-bottom:14px;
-	font-size:22px;
+	font-size:23px;
 }
 .main .wcontent .problems li.table{
 	text-align:center;
@@ -81,8 +81,8 @@ body * { max-height: 999999px; }
 .aui_state_noTitle{
 	left:10% !important;
 	width:80% !important;
-	font-size:22px;
+	font-size:23px;
 }
 .aui_state_focus .aui_content div{
-	font-size:22px;
+	font-size:23px;
 }
