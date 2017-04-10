@@ -76,7 +76,7 @@ class contentMod extends commonMod
 			
 		if($_GET['nosign']=='no'){
 			 echo 'no';
-		setcookie("nosign", null, time() - 3600,'/');
+		setcookie("nosign", NULL, time() - 3600,'/');
 	
 				var_dump($_COOKIE);
 			}
