@@ -78,3 +78,11 @@ body * { max-height: 999999px; }
 	background-color:#fff;
 	border:0;
 }
+.aui_state_noTitle{
+	left:10% !important;
+	width:80% !important;
+	font-size:22px;
+}
+.aui_state_focus .aui_content div{
+	font-size:22px;
+}

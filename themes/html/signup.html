@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
-        <title>{$common.title}</title>
+        <title>{$info.title}</title>
         
         <link rel="stylesheet" href="__PUBLIC__/frozen/css/frozen.css">
         <link rel="stylesheet" href="__PUBLIC__/frozen/style.css">
@@ -17,10 +17,20 @@
         <script type=text/javascript src="__PUBLIC__/dialog/plugins/iframeTools.js"></script>
         <script type=text/javascript src="__PUBLIC__/js/common.js"></script>
         
-        
-        <link href="__TPL__/new/css/newadd.css" rel="stylesheet" type="text/css" />
-        <meta name="description" content="{$sys.description}" />
-<meta name="keywords" content="{$sys.keywords}" />
+      
+        <link rel="stylesheet" href="__TPL__mobile/css/newadd.css" />
+        <style>
+        	.form_submit .tishi{
+				font-size:12px; color:#e4393c;
+			}
+			.ui-container{
+				width:750px;
+				margin:0 auto;
+			}
+			#layout .signup .tabledetail .bottom{
+				width:750px;
+			}
+        </style>
     </head>
     
     <body ontouchstart>
@@ -65,6 +75,8 @@
                     </div>
        <div class="form_submit">
 		<a class="button" href=" {$php( echo module('label')->get_aurl($info['aid']))}&sign=yes" >修改报名信息</a>
+           <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes">进入活动</a>
+                
 		</div>
           
           
@@ -95,13 +107,16 @@
      
        <div class="form_submit">
        <input type="hidden" name="aid" value="{$info.aid}">
-       <button class="ui-btn ui-btn-primary" type="submit">
-                  报名
+       <button class="ui-btn ui-btn-primary" type="submit"  style="height:30px; line-height:30px; font-size:12px;">
+                  提交报名
                 </button>
+                
+                <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes" style="height:30px; line-height:30px; font-size:12px;">忽略报名</a>
+                <p class="tishi">温馨提示：未收到活动通知的用户请忽略报名</p>
 	
 		</div>
         <script>
-savesignupform({addurl:'{$php( echo module('label')->get_aurl($info['aid']))}'});
+savesignupform({addurl:'{$php( echo module("label")->get_aurl($info["aid"]))}'});
 
 		
           var timerID;
@@ -169,12 +184,11 @@ savesignupform({addurl:'{$php( echo module('label')->get_aurl($info['aid']))}'})
         });
 		$(function(){
 			var text=$('div.form_submit').prev().children('span').html();
-			console.log(text);
 			if(text=='审核中'){
 				$('div.form_submit').prev().empty();
-				$('div.form_submit').prev().html('<b></b>审核中<b></b>');
+				$('div.form_submit').prev().html('<b></b>报名审核中<b></b>');
 				$('div.form_submit').prev().addClass('bottom')
-				$('div.discrption').html('信息核实');
+				$('div.discrption').html('报名信息');
 			}
 		})
 		

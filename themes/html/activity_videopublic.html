@@ -1,0 +1,282 @@
+
+		<section>
+			<div class="tab-box" id="tab-box">
+				<ul id="myTab" class="  clearfix" role="tablist">
+                	<!--foreach:{$functions $key $vo}-->
+                          <li class="funcions{$vo.id} <?php if(!$key) echo 'active'; ?>" ><a href="#funcions{$vo.id}"  role="tab" data-toggle="tab">{$vo.name}</a></li>		
+                           <!--/loop-->
+                    
+				</ul> 
+				
+				<div id="myTabContent" class="tab-content">
+                	 <!--foreach:{$functions $key $vo}-->
+                     <div class="tab-pane <?php if(!$key) echo 'active'; ?>" id="funcions{$vo.id}">
+                     
+                     <?php if($vo['type']=='comment'){?>
+                     
+                      <!--#include file="menu_comment.html"-->
+					 <?php }elseif($vo['type']=='jiaoyancomment'){?>
+                          <!--#include file="menu_jiaoyan.html"-->
+                          <?php }elseif($vo['type']=='content'){?>
+                        	{$vo.content html}
+                         <?php }elseif($vo['type']=='url'){?>
+                         <script>
+						 $('.funcions{$vo.id}').bind('click',function(){
+							 
+							window.location="{$vo.content}"; 
+							 });
+						 </script>
+                          <?php }elseif($vo['type']=='linkaid'){?>
+                          <ul>
+     <?php  
+     $loop=array();
+     if($vo['content'])
+    $loop=model('content')->getlist($vo['content']);
+  
+      ?> <!--foreach:{$loop $val}-->    
+                <li   class="<?php echo $val['cid']==16?'live-class':'over-class';  ?> m_recommend">
+                    
+                   
+						<div class="col-xs-6">
+                           
+							<a href="{$val.aurl}">
+                            <img src="{$sys.imageurl}{$val.image}" class="img-responsive m_img"/>
+                             
+                            </a>
+							
+						</div>
+                        <div class="col-xs-6 r_text">
+                        <p class="videotitle"><a href="{$val.aurl}">{$val.title}</a><!--<img class="videoimg2" src="img/to_play2.png"/>--></p>  
+                       
+                       <p class="schoolname">{$school[$val['csid']]['name']}</p>
+                       <p class="now"> <?php echo $val['cid']==16?'直播':'重播';  ?></p>
+                         <p class="videotime">
+                       		<?php echo $val['cid']==16?date('Y-m-d',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?><span><img src="__TPL__mobile/img/see.png" class="to_play"/>{$val.views}</span></p>
+                   		
+                   		</div>
+				</li>
+		<!--/loop-->
+		</ul>
+                             <?php }elseif($vo['type']=='looktimes'){?>
+     <ul  class="orderList">
+     <?php  
+     $loop=array();
+    $loop=model('content')->gettimes($info['videourl']);
+  
+      ?> 
+      
+      
+      <!--foreach:{$loop $val}-->    
+                <li  >
+
+                <div class="date">
+                	<i class="dian"></i>
+					<i class="datetime"><?=formartkandian($val[start])?></i>
+					
+				</div>
+                <div class="content">
+                    <a href="javascript:" onclick="playseek(this)" data-time="{$val.start}"  end-time="{$val.end}">{$val.name} </a>
+                  </div> 
+				</li>
+
+		<!--/loop-->
+		</ul>
+                           <?php }?>
+					</div>
+                           <!--/loop-->
+                
+				</div>
+			</div>
+		</section>
+		<script>
+		            var s =document.getElementById("tab-box");
+		            var uls = document.getElementById("myTab");
+					var as = uls.getElementsByTagName("a");
+					for(var i=0; i<as.length;i++){
+						var sum = parseInt(s.clientWidth/ as.length)
+						as[i].style.width = sum +"px";
+					}
+					
+					function zan(){
+						var counts = document.getElementById("zan-counts");
+						
+						$.post('/index.php/change',{type:'love',fid:'{$info.aid}',uid:'<?php echo $_SESSION["uid"];?>'},function(data){
+				if(data.status=='1'){
+				
+					 counts.innerHTML = counts.innerHTML*1+1;
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}else{
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}
+			},'json');
+						
+						   
+					}
+					
+					
+		
+		 var style="<?=$zidingyi[style]?>";
+		changecolor(style);
+			$('#mask').click(function(){
+		$('#mask,#register').hide();
+	});
+function changecolor(color){
+	if(color=='red')
+{
+	$('.view-box').addClass('backgroudCb');
+	$('.infos').addClass('chageCw');
+	$('#myTab').addClass('backgroudC')
+	}else{
+		$('#myTab').addClass('tab-nav')
+		}
+}	
+					
+		</script>
+      
+<!--Tabs.js-->
+<script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
+
+<!-- 修改 -->
+<style>
+	#myTabContent .m_recommend{
+		width:1000px;
+		margin:15px auto !important;
+		background:#fff;
+		border:1px solid #DCDCDC;
+		border-radius:3px;
+		padding:0;
+	}
+	#myTabContent .m_recommend .r_text{
+		padding:10px 10px;
+		padding-left:0;
+		text-align:left;
+	}
+	#myTabContent  .m_recommend .m_img{
+		height:215px;
+	}
+	#myTabContent .m_recommend .r_text .schoolname{
+		font-size:12px;
+		color:#585858;
+	}
+	#myTabContent .m_recommend .r_text .now{
+		color:#f00;
+		padding-top:15px;
+		font-size:12px;
+	}
+	#myTabContent .m_recommend .r_text .videotime{
+		font-size:12px;
+		padding-top:2px;
+		color:#585858;
+	}
+	#myTabContent .m_recommend .r_text .videotime span{
+		float:right;
+		font-size:12px;
+	}
+	#myTabContent .m_recommend .r_text .videotime span img{
+		position:relative;
+		top:-1px;
+		left:-2px;
+	}
+	#myTabContent .m_recommend .r_text .videotitle{
+		overflow:hidden;
+	}
+	#myTabContent .m_recommend .r_text .videotitle a{
+		color:#000;
+		float:left;
+	}
+	#myTabContent .m_recommend .r_text .videoimg2{
+		float:right;
+		margin-top:3px;
+	}
+	#myTabContent .m_recommend .r_text img{
+		height:12px;
+		width:initial;
+	}
+	.tab-box{
+		background:#F6F6F6;
+	} 
+	#usercenter .menus{
+		transform:rotate(90deg);
+		opacity:0;
+		position:absolute;
+		top: -55px;
+    	left: -53px;
+		width:150px;
+		background-image:url(__PUBLIC__/usermenu.png);
+		height:54px;
+		background-repeat:no-repeat;
+		background-size:100% 100%;
+		background-position:center 0;
+		-webkit-transform-origin: 25% 90%;
+		-moz-transform-origin: 25% 90%;
+		-o-transform-origin: 25% 90%;
+		-ms-transform-origin: 25% 90%;
+		transform-origin: 81px 76px;
+		-webkit-transition: -webkit-transform .5s ease;
+		-moz-transition: -moz-transform 1.5s ease;
+		-o-transition: -o-transform .5s ease;
+		transition: transform .5s ease;
+	}
+	#usercenter .menus>a{
+		float:left;
+		display:block;
+		width:50%;
+		height:100%;
+	}
+	#myTab{
+		background:#E5E5E5;
+	}
+	#myTab li.only a{
+		text-align: left;
+		height: 35px;
+		line-height: 35px;
+		font-size: 13px;
+		padding-left: 10px;
+		border: 0;
+	}
+</style>
+
+<div id="usercenter">
+	<div class="menubtn"><img height="55px" src="__PUBLIC__/usercenter.png" /></div>
+    <div class="menus">
+    	<a class="menubtn" href="/myhome/index"></a>
+        <a class="menubtn" href="{$config.addurl}"></a>
+    </div>
+</div>
+
+
+<script>
+ 
+	$('#usercenter .menubtn').click(function(){
+		if($('.menus').css('opacity')=='0'){
+			$('.menus').stop().animate({opacity:'1'},500);
+			$('.menus').css('transform','rotate(-90deg)');
+		}else{
+			$('.menus').css('transform','rotate(90deg)');
+			$('.menus').stop().animate({opacity:'0'},500);
+		}
+		
+		
+	});
+	
+	$(function(){
+		
+		if($('#myTab').children('li').length=='1'){
+				$('#myTab').children('li').addClass('only');
+		}
+		
+	});
+	
+
+</script>
+
+
+
+   <!--#include file="common.html"-->
+   
+   
+   
+   
+   
