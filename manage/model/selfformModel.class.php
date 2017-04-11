@@ -47,5 +47,8 @@ class  selfformModel extends commonModel
 	public function form_value_count($where){
 		return $this->model->table('selfform_value')->where($where)->count();
 		}
+	public function form_value_del($id,$fid){
+		return $this->model->table('selfform_value')->where(array('id'=>$id,'fid'=>$fid))->delete();
+		}
 }
 ?>

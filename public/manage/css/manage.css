@@ -946,7 +946,7 @@ iframe{
 	background-position: -4px -1px;
 }
 .videolist .videos .videok .title .buttons>a:hover{
-	background: #009BD4;
+	background: #009BD4 !important;
 	width:75px;
 	text-align: center;
 	color: #fff;
@@ -1486,4 +1486,8 @@ iframe{
 }
 .page li{
 	list-style:none;
+}
+.icheckbox_minimal{
+	top: -1px;
+    left: -4px;
 }

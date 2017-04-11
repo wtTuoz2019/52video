@@ -112,14 +112,16 @@ function audit(status){
 
 //删除
 function del(id,obj) {
-	var obj;
+	
+	
+
 	ajaxpost({
 		name:'确定要删除此记录？',
 		url:"__URL__/value_del",
 		data:{id: id,fid: {$info.id}},
 		tip:1,
 		success:function(){
-			$(obj).parent().parent().parent().remove();
+			$(obj).parent().parent().parent().parent().remove();
 		}
 	});
 }

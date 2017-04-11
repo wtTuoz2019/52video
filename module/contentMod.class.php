@@ -44,7 +44,7 @@ class contentMod extends commonMod
 			{	
 				$where[$val]=$data[$val];
 				}
-				
+				$where['aid']=$_POST['aid'];
 				if(model('form_list')->signautoinfo($where)){
 					$sign['status']=1;
 					
@@ -140,12 +140,36 @@ class contentMod extends commonMod
 			}
 		 $info['field_lists']=unserialize($info['field_lists']);
 		if($info['signup']){
-	
 			
+			$signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$info['aid']));
+			
+			
+			if($info['autoaudit']&&$info['noaudit']&&$this->signinfo['status']==0){
+		$info['auditfield_lists']=unserialize($info['auditfield_lists']);
+		$userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
+				$where=array();
+			foreach($info['auditfield_lists'] as $key=>$val)
+			{	
+				$where[$val]=$userinfo[$val];
+				}
+				$where['aid']=$aid;
+				
+				$userinfo=model('form_list')->signautoinfo($where);
+				
+				if($userinfo){
+					$signinfo['status']=1;
+			
+					model('form_list')->editsign($signinfo);
+					
+					
+					}
+				
+				
+			}
+			
+		$this->signinfo=$signinfo;
 		
-		
-		$this->signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$info['aid']));
-		
+	
 		if($this->signinfo['status']==0&&$_COOKIE['nosign']!='yes'){
 		$this->userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
 		

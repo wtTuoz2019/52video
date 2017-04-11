@@ -26,6 +26,7 @@
                
       
      		<?php if($vo['type']=='comment'){  
+            $selfform=model('selfform')->info($vo['content']);
                   $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
                 
                      ?>
@@ -35,6 +36,7 @@
                      
                       <!--#include file="menu_comment.html"-->
       <?php }elseif($vo['type']=='jiaoyancomment'){
+      $selfform=model('selfform')->info($vo['content']);
       $commentinputs==model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
       ?>
       
@@ -98,9 +100,9 @@
 		        <div class="modal-content">
                 	<div class="modal-title">评论</div>
 					<div class="modal-body" style="position:static;">
-                 <?php if($commentinputs){ ?>
+                 <?php if($commentinputs&&$selfform){ ?>
                  <div class="choosep">
-                 	<p><img src="__TPL__mobile/img/tongji.jpg"/>评论量表</p>
+                 	<p><img src="__TPL__mobile/img/tongji.jpg"/>{$selfform.name}</p>
                  
                  
                       <!--foreach:{$commentinputs $v}-->

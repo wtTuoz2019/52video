@@ -69,6 +69,16 @@ class form_listModel extends commonModel {
         return $id;
     }
 	
+		  //添加内容
+    public function editsign($sign){
+       
+		 $condition=array('aid'=>$sign['aid'],'uid'=>$sign['uid']);
+  
+		 $id=$this->model->table('signup')->where($condition)->data($sign)->update();	
+			
+        return $id;
+    }
+	
 	    public function signinfo($where){
         if(empty($where)){
             return;

@@ -105,7 +105,7 @@ class selfformMod extends commonMod
 		$this->info=model('selfform')->form_info(array('id'=>$id));	
 		 $this->formlist=model('selfform')->inputs_list(array('fid'=>$id));
 		  $listRows=9;
-        $url = __URL__ . '/infos/page-{page}.html'; //分页基准网址
+        $url = __URL__ . '/infos/id-'.$id.'-page-{page}.html'; //分页基准网址
         $limit=$this->pagelimit($url,$listRows);
 		$where=array('fid'=>$id);
 		$list=model('selfform')->form_value_list($where,$limit);
@@ -120,5 +120,15 @@ class selfformMod extends commonMod
         $count=model('selfform')->form_value_count($where);
         $this->page=$this->page($url, $count, $listRows);
 		$this->show();
+		}
+	public function value_del(){
+		 $id=$_POST['id'];
+        $fid=$_POST['fid'];
+        $this->alert_str($_POST['fid'],'int',true);
+        $this->alert_str($_POST['id'],'int',true);
+        model('selfform')->form_value_del($id,$fid);
+      
+        $this->msg('删除成功！',1);
+		
 		}
 }
