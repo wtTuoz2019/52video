@@ -37,6 +37,16 @@ $('#nav').delegate('a','click',function(e){
 				
 });
 
+function loadFrame(obj){  
+    var url = obj.contentWindow.location.href;
+	console.log(url);
+    if(url.indexOf("login")!=-1){  
+        window.location.reload;  
+    }  
+}  
+
+
+
 //导航点击跳出退出
 $('#header .headuser').mouseenter(function(){
 	$('#header .exit').fadeIn(500);

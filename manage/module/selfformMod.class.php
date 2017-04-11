@@ -104,10 +104,58 @@ class selfformMod extends commonMod
         $this->alert_str($id,'int');
 		$this->info=model('selfform')->form_info(array('id'=>$id));	
 		 $this->formlist=model('selfform')->inputs_list(array('fid'=>$id));
+		 $where=array('fid'=>$id);
+		 if($_GET['download']){
+			$list=model('form_list')->form_signuplist($aid);
+		header("Content-Type: text/html; charset=utf-8");
+		header("Content-type:application/vnd.ms-execl");
+		header("Content-Disposition:filename=signup.xls");
+		foreach($this->formlist as $k=>$v){
+			echo iconv('utf-8','gbk',$v['name'])."\t";
+			}
+		
+		echo iconv('utf-8','gbk','总时长(分钟)')."\n";
+		echo iconv('utf-8','gbk','分时长')."\n";
+			$list=model('selfform')->form_value_list($where);
+		if(is_array($list)){
+			foreach($list as $key=>$val){
+				$list[$key]['values']=unserialize($val['values']);
+				}
+		
+			}
+			foreach($list as $key=>$value){
+				 foreach($this->field_list  as $key1=> $model){
+        
+      	  if($model['admin_html']<>''){
+        eval(html_out(str_replace('{content}', $value[$model['field']] ,$model['admin_html'])));
+       		 }else{
+        $string= model('expand_model')->get_list_model($model['type'],$value[$model['field']],$model['config']);
+		
+		echo  "\"".iconv('utf-8','gbk',  $string)."\r\n \""."\t";
+      		  }
+     	   }
+				
+				$sumtime=model('data')->getdatatime(array('aid'=>$aid,'uid'=>$value['uid']));
+				echo iconv('utf-8','gbk',intval($sumtime))."\t";
+				$times=model('data')->getdatalist(array('aid'=>$aid,'uid'=>$value['uid']));
+				$timestring='';
+				if(is_array($times)){
+				 foreach($times as  $key2=>$time){
+					 if($key2>0)$timestring.='###';
+					$timestring.=date('Y-m-d H:i',$time['starttime']).'--'.date('Y-m-d H:i',$time['endtime']);	
+					 }
+				}
+				echo iconv('utf-8','gbk',$timestring)."\n";
+				}
+			die;
+			}
+		
+		 
+		 
 		  $listRows=9;
         $url = __URL__ . '/infos/id-'.$id.'-page-{page}.html'; //分页基准网址
         $limit=$this->pagelimit($url,$listRows);
-		$where=array('fid'=>$id);
+		
 		$list=model('selfform')->form_value_list($where,$limit);
 		if(is_array($list)){
 			foreach($list as $key=>$val){
@@ -131,4 +179,30 @@ class selfformMod extends commonMod
         $this->msg('删除成功！',1);
 		
 		}
+		  //批量操作
+    public function value_batch(){
+        if(empty($_POST['status'])||empty($_POST['id'])){
+            $this->msg('请先选择内容！',0);
+        }
+        $id_array=substr($_POST['id'],0,-1);
+        $id_array=explode(',', $id_array);
+		$fid=intval($_POST['fid']);
+        switch ($_POST['status']) {
+            case '1':
+                //审核
+                foreach ($id_array as $value) {
+                    model('form_list')->status($value,$aid,1);
+                }
+				break;
+			 case '2':
+                //审核
+                foreach ($id_array as $value) {
+                    model('selfform')->form_value_del($value,$fid);
+                }
+                break;
+           
+        }
+        $this->msg('操作成功！',1);
+
+    }
 }

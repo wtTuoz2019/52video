@@ -494,6 +494,7 @@ button{
 	padding: 20px 30px;
 	border: 1px solid #BABABA;
 	border-bottom: 0;
+	overflow:hidden;
 }
 .borderk>button{
 	width: 130px;
@@ -1458,8 +1459,12 @@ iframe{
 }
 .no-print{
 	display:none !important;
+	height:0 !important;
+	padding:0 !important;
+	border:0 !important;
+	margin:0 !important;
 }
-#postmanage .sendlive{
+#postmanage .borderk a{
 	width: 70px;
     height: 30px;
     background: #eee;
@@ -1493,4 +1498,14 @@ iframe{
 .icheckbox_minimal{
 	top: -1px;
     left: -4px;
+}
+.page{
+	float:right;
+}
+.pagination{
+	margin-top:0;
+}
+.function{
+	display:inline-block;
+	padding-top: 5px;
 }

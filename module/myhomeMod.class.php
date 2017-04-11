@@ -17,7 +17,8 @@ class myhomeMod extends commonMod
 				
 				$list[$k]['videourl']=model('content')->getvideourl($list[$k]['aid']);	
 				if($list[$k]['videourl']){
-				if(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"urren")||strstr($info['videourl'],"shanyueyun")){
+					
+				if(strstr($list[$k]['videourl'],"heims")||strstr($list[$k]['videourl'],"aodianyun")||strstr($list[$k]['videourl'],"urren")||strstr($list[$k]['videourl'],"shanyueyun")){
 				}else{
 				$list[$k]['videourl']="http://".$this->config['out']."/video/".$list[$k]['videourl']."/video.m3u8";	
 					}
@@ -74,7 +75,7 @@ class myhomeMod extends commonMod
 				
 				$list[$k]['videourl']=model('content')->getvideourl($list[$k]['aid']);	
 				if($list[$k]['videourl']){
-				if(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"urren")||strstr($info['videourl'],"shanyueyun")){
+				if(strstr($list[$k]['videourl'],"heims")||strstr($list[$k]['videourl'],"aodianyun")||strstr($list[$k]['videourl'],"urren")||strstr($list[$k]['videourl'],"shanyueyun")){
 				}else{
 				$list[$k]['videourl']="http://".$this->config['out']."/video/".$list[$k]['videourl']."/video.m3u8";	
 					}

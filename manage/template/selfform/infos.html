@@ -6,13 +6,9 @@
 			</h4>
 			<div class="borderk postk">
 				
-				<div>
-					 
-					<input type="" name="" id="" value="" placeholder="请输入关键字"/>
-					<button>
-						查询
-					</button>
-				</div>
+			
+				 <a href="__URL__/infos/id-{$info.id}-download-true" >导出</a>
+				
 			
 			</div>
 			<table width="100%" cellspacing="0" class="oftentable">
@@ -102,7 +98,7 @@ function audit(status){
 	ajaxpost({
 		name:'您确认要继续进行操作吗？操作将无法撤销！',
 		url:"__URL__/value_batch",
-		data:{status: status, uid:str, aid:'{$aid}'},
+		data:{status: status, id:str, fid:'{$info.id}'},
 		tip:1,
 		success:function(){
 			window.location.reload();	
