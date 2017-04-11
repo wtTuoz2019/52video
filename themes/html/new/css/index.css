@@ -398,10 +398,10 @@ line-height:30px;
 	z-index:100;
 }
 /*评论区域的修改*/
-.comment .right{
+.comment .right,.comment_show .right{
 	float:none;
 }
-.comment .commentarea_right{
+.comment .commentarea_right,.comment_show .commentarea_right{
 	position: relative;
     left: 25px;
 	top:6px;
@@ -409,15 +409,15 @@ line-height:30px;
     width: 93%;
 	margin:0;
 }
-.comment .commentarea_right h6{
+.comment .commentarea_right h6,.comment_show .commentarea_right h6{
 	margin-bottom:0;
 	color:#576B95;
 }
-.comment .commentarea_right .playseek{
+.comment .commentarea_right .playseek,.comment_show .commentarea_right .playseek{
 	position: relative;
     top: -35px;
 }
-.comment #right{
+.comment #right,.comment_show #right{
 	position:absolute;
 	right:-10px;
 	margin: 0;
@@ -429,15 +429,15 @@ line-height:30px;
 	height:40px;
 	margin-right:10px;
 }
-.comment .commentarea{
+.comment .commentarea,.comment_show .commentarea{
 	border-bottom:1px solid #ddd;
     padding: 0 20px 10px 20px;
 } 
-.comment .commentarea .dianzan{
+.comment .commentarea .dianzan,.comment_show .commentarea .dianzan{
 	clear:both;
 	
 }
-#container .dianzan .userlist img{
+#container .dianzan .userlist img,#container_show .dianzan .userlist img{
 	margin-bottom:0;
 }
 
@@ -449,7 +449,7 @@ line-height:30px;
 	position:relative;
 	display:inline-block;
 }
-.comment .commentarea .commentarea_left img{
+.comment .commentarea .commentarea_left img,.comment_show .commentarea .commentarea_left img{
 	height:50px !important;width:50px!important;
 }
 ul[id^="commentlist"]{
@@ -459,7 +459,7 @@ ul[id^="commentlist"]{
 	color:#337AB7;
 }
 
-.comment .commentarea .combtm{
+.comment .commentarea .combtm,.comment_show .commentarea .combtm{
 	width:100%;
 	left:0;
 	padding: 0 10px 0 10px;
@@ -468,7 +468,7 @@ ul[id^="commentlist"]{
 .commentarea_right .pinglun{
 	padding:0; 
 }
-.comment .commentarea .commentlist .comlistarea{
+.comment .commentarea .commentlist .comlistarea,.comment_show .commentarea .commentlist .comlistarea{
 	display: inline-block;
     margin: 0;
     margin-left: 10px;
@@ -481,35 +481,35 @@ ul[id^="commentlist"]{
 #smile{
 	width:inherit;
 }
-#container .commentlist div.left>img{
+#container .commentlist div.left>img,#container_show .commentlist div.left>img{
 	width:40px!important; height:40px!important;
 	margin-left: 4px;
 }
- #container .commentlist ul li{
+ #container .commentlist ul li,#container_show .commentlist ul li{
 	margin-top:10px;
 	}
 
-.comment  #container{
+.comment  #container,.comment_show  #container_show{
 	width:100%;
 }
-.comment  #container .pinglun #orderList{
+.comment  #container .pinglun #orderList,.comment_show  #container_show .pinglun #orderList{
 	display: block;
     margin: 0;
     width: 95%;
 	float:right;
 }
-.comment .commentarea_right>p.school{
+.comment .commentarea_right>p.school,.comment_show .commentarea_right>p.school{
 	margin:0;
 	font-size:12px;
 	color:#9FB3D7;
 }
-.comment  #container .dianzan .userlist{
+.comment  #container .dianzan .userlist,.comment_show  #container_show .dianzan .userlist{
 	display: block;
     margin: 0;
     float: right;
     width: 95%;
 }
-.comment  #container .date #current{
+.comment  #container .date #current,.comment_show  #container_show .date #current{
 	float: right;
     position: absolute;
     top: -1px;
@@ -518,20 +518,20 @@ ul[id^="commentlist"]{
 	padding:9px 0;
 	display:none;
 }
-.comment  #container .commentarea_left{
+.comment  #container .commentarea_left,.comment_show  #container_show .commentarea_left{
 	width:auto;
 }
-.comment  #container .date #current{
+.comment  #container .date #current,.comment_show  #container_show .date #current{
 	
 }
-.comment  #container .date #current ul{
+.comment  #container .date #current ul,.comment_show  #container_show .date #current ul{
 	padding:0;
 }
-.comment  #container .dianzan .left span{
+.comment  #container .dianzan .left span,.comment_show  #container_show .dianzan .left span{
 	position: relative;
     top: 7px;
 }
-.comment  #container .pinglun .left span{
+.comment  #container .pinglun .left span,.comment_show  #container_show .pinglun .left span{
 	position:relative;
 	top:10px;
 }
@@ -619,7 +619,7 @@ ul[id^="commentlist"]{
 /*顶部logo修改*/
 
 
-#container  .dianzan .userlist img{
+#container  .dianzan .userlist img,#container_show  .dianzan .userlist img{
 	margin-left:0;
 }
 
@@ -780,7 +780,7 @@ a.login{
     left: -7px;
 }
 
-.comment>div{
+.comment>div,.comment_show>div{
 	clear:both;
 }
 body{

@@ -40,6 +40,12 @@
       
       
                    <!--#include file="menu_jiaoyan.html"-->
+                        <?php }elseif($vo['type']=='commentshow'){?>
+                          <script>
+						   var mobile='{$vo.content}';
+   							
+ 						  </script> 
+                          <!--#include file="menu_commentshow.html"-->
 					
                           <?php }elseif($vo['type']=='content'){?>
                         	

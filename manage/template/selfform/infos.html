@@ -66,21 +66,61 @@
 
   
   </div>
-  <div class="page">{$page}</div>
+  	<div class="page">
+     					 <ul class="pagination">
+                                 {$page}
+                                        </ul>
+					 </div>	
 </div>
 
 <script>
-////删除
-//function del(id,obj) {
-//	var obj;
-//	ajaxpost({
-//		name:'确定要删除此记录？',
-//		url:"__URL__/del",
-//		data:{id: id,fid: {$info.id}},
-//		tip:1,
-//		success:function(){
-//			$(obj).parent().parent().parent().remove();
-//		}
-//	});
-//}
+//选择
+function selectall(name){   
+    $("[name='"+name+"']").each(function(){//反选   
+
+    if($(this).parent().hasClass("checked")){   
+          $(this).parent().removeClass("checked"); 
+		   $(this).removeAttr("checked");   
+   
+    }else{  
+			
+          $(this).attr("checked",'true');     
+          $(this).parent().addClass("checked");   
+    }   
+    })  
+}
+
+//批量操作
+function audit(status){
+	var str="";
+	$("[name='id[]']").each(function(){
+    if($(this).parent().hasClass("checked")){
+		  str+=$(this).val()+","; 
+    }
+    })
+	
+	ajaxpost({
+		name:'您确认要继续进行操作吗？操作将无法撤销！',
+		url:"__URL__/value_batch",
+		data:{status: status, uid:str, aid:'{$aid}'},
+		tip:1,
+		success:function(){
+			window.location.reload();	
+		}
+	});
+}
+
+//删除
+function del(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'确定要删除此记录？',
+		url:"__URL__/value_del",
+		data:{id: id,fid: {$info.id}},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().remove();
+		}
+	});
+}
 </script>

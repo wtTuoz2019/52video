@@ -52,7 +52,7 @@ body * { max-height: 999999px; }
 }
 .main .wcontent .problems li{
 	margin-bottom:14px;
-	font-size:23px;
+	font-size:24px;
 }
 .main .wcontent .problems li.table{
 	text-align:center;
@@ -78,8 +78,8 @@ body * { max-height: 999999px; }
 .aui_state_noTitle{
 	left:10% !important;
 	width:80% !important;
-	font-size:23px;
+	font-size:24px;
 }
 .aui_state_focus .aui_content div{
-	font-size:23px;
+	font-size:24px;
 }
