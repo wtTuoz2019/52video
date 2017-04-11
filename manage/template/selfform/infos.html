@@ -1,0 +1,86 @@
+<div class="page_main">
+ 
+<div id="postmanage">
+			<h4>
+			{$info.name}数据列表
+			</h4>
+			<div class="borderk postk">
+				
+				<div>
+					 
+					<input type="" name="" id="" value="" placeholder="请输入关键字"/>
+					<button>
+						查询
+					</button>
+				</div>
+			
+			</div>
+			<table width="100%" cellspacing="0" class="oftentable">
+				<tr class="bgth">
+                	<th style="text-align:left; padding-left:20px;" width="10%">ID</th>
+					    <!--foreach:{$formlist $vo}-->
+                        <th>{$vo.name len="10"}</th>
+                        
+					 <!--{/foreach}-->
+					
+					
+					<th width="130px">操作</th>
+				</tr>
+                  <!--foreach:{$list $vo}-->
+				<tr>
+					
+					<td style="text-align:left; padding-left:20px;">
+						<input name="id[]" type="checkbox" id="id[]" value="{$vo['id']}" >{$vo.id}
+					</td>
+					 <!--foreach:{$formlist $model}-->
+					<td>
+					<?php  echo model('expand_model')->get_list_model($model['type'],$vo['values'][$model['field']],$model['options']); ?>	
+						
+					</td>
+						 <!--{/foreach}-->
+					<td class="operation">
+						<button>
+							操作
+						</button>
+						<ul>
+                        	
+							<li>
+								<a href="javascript:;"  onClick="del({$vo.id},this)">
+									删除
+								</a>
+							</li>
+							
+						</ul>
+					</td>
+				</tr>
+				 <!--{/foreach}-->
+			</table>
+		</div>
+       <div class="page_tool">
+	<div class="function">
+  <input type="button" onclick="javascript:selectall('id[]');" class="button_small" value="全选" />
+ 
+
+
+ <input type="button" onclick="javascript:audit(2);"  class="button_small" value="删除" />
+
+  
+  </div>
+  <div class="page">{$page}</div>
+</div>
+
+<script>
+////删除
+//function del(id,obj) {
+//	var obj;
+//	ajaxpost({
+//		name:'确定要删除此记录？',
+//		url:"__URL__/del",
+//		data:{id: id,fid: {$info.id}},
+//		tip:1,
+//		success:function(){
+//			$(obj).parent().parent().parent().remove();
+//		}
+//	});
+//}
+</script>

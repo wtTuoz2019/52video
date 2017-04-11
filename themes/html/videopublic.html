@@ -87,14 +87,14 @@
                     
                    <?php if($vo['type']=='comment'||$vo['type']=='jiaoyancomment'){  ?>
                     
-                        <div class="modal" id="mymodal">
+                        <div class="modal pcmodal" id="mymodal">
 		    <div class="modal-dialog">
 		        <div class="modal-content">
-                	<div class="modal-title">评论框</div>
-					<div class="modal-body" style="padding-top:10px;">
+                	<div class="modal-title">评论</div>
+					<div class="modal-body" style="position:static;">
                  <?php if($commentinputs){ ?>
                  <div class="choosep">
-                 	<p><img src="img/tongji.jpg"/>评论量表</p>
+                 	<p><img src="__TPL__mobile/img/tongji.jpg"/>评论量表</p>
                  
                  
                       <!--foreach:{$commentinputs $v}-->
@@ -108,14 +108,15 @@
             <input type="hidden" name="fid" value="{$v.fid}"/>
              </div>
               <?php } ?>
-						<textarea id="editors" placeholder=""></textarea>
+						<textarea id="editors" placeholder="我的评论..."></textarea>
 						<div class="icongroups">
 				
 						</div>
-						<div style="text-align: center;position:relative">
+						<div style="text-align: center; margin-bottom:20px;">
                         	<input name="pid" type="hidden" value="" id="pid">
                             <input name="toname" type="hidden" value="" id="toname">
 							<button id="input-type-submit" type="button" class="btn btn-primary">发布</button>
+                            <button  type="button" class="btn toback" data-dismiss="modal">取消</button>
 							<button id="modal_cance" type="button" class="btn btn-default"  data-dismiss="modal">X</button>
                             <div id="messageto"></div>
 						</div>

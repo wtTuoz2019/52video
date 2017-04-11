@@ -99,4 +99,26 @@ class selfformMod extends commonMod
     	$this->msg('编辑成功！',1);
 		
 		}
+	public function infos(){
+		 $id=intval($_GET['id']);
+        $this->alert_str($id,'int');
+		$this->info=model('selfform')->form_info(array('id'=>$id));	
+		 $this->formlist=model('selfform')->inputs_list(array('fid'=>$id));
+		  $listRows=9;
+        $url = __URL__ . '/infos/page-{page}.html'; //分页基准网址
+        $limit=$this->pagelimit($url,$listRows);
+		$where=array('fid'=>$id);
+		$list=model('selfform')->form_value_list($where,$limit);
+		if(is_array($list)){
+			foreach($list as $key=>$val){
+				$list[$key]['values']=unserialize($val['values']);
+				}
+		
+			}
+			
+		 $this->list=$list;
+        $count=model('selfform')->form_value_count($where);
+        $this->page=$this->page($url, $count, $listRows);
+		$this->show();
+		}
 }

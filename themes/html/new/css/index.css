@@ -538,28 +538,32 @@ ul[id^="commentlist"]{
 .contentBox #mymodal{
 	position:absolute;
 	width: 490px;
-	padding:0; 
-	height:200px;
+	padding:0 !important; 
 	margin:0 auto;
 	overflow-y: hidden;
+	border-radius:5px;
 }
 
 .contentBox #mymodal .modal-body{
 	padding:0;
 }
 .contentBox #mymodal .modal-body textarea{
-	width:100%;
-	margin:0;
+	width:450px;
+	display:block;
+	margin:30px auto;
 	height:65px;
-	border:1px solid #ddd;
-	
+	border:1px solid #DFDFDF;
+	background:#F9F9F9;
+	font-size:12px;
+	padding: 5px;
 }
 .contentBox #mymodal  .modal-body #modal_cance{
 	width:30px;
 	height:20px;
 	position: absolute;
-    top: -96px;
-    right: -8px;
+    top: 12px;
+    right: 4px;
+    border: 0;
     padding: 0;
     margin: 0;
     font-weight: bold;
@@ -572,29 +576,42 @@ ul[id^="commentlist"]{
 .contentBox #mymodal  .modal-body #modal_cance:hover{
 	color:#D24445;
 }
-.contentBox #mymodal  .modal-body .btn-primary{
-	width: 60px;
-    border-radius: 0;
-    background: #55B0C3;
-    text-align: center;
-    padding: 0;
-	float: right;
+.contentBox #mymodal  .modal-body .btn{
+	width:100px;
+	height:38px;
 	margin:0;
+	padding: 0;
+	border-radius: 0;
+	color:#6d6d6d;
+	border:1px solid #E0E0E0;
+	background:-moz-linear-gradient(top,#FBFBFB,#E0DFDF);
+	background:-o-linear-gradient(top,#FBFBFB,#E0DFDF);
+	background:-webkit-linear-gradient(top,#FBFBFB,#E0DFDF);
+	background:linear-gradient(top,#FBFBFB,#E0DFDF);
+}
+.contentBox #mymodal  .modal-body .btn-primary{
+	margin-right:18px;
 }
 .contentBox #mymodal .modal-content{
-	height:140px;
-	border-radius:0;
+	border-radius:3px;
 	padding:0;
+	border:1px solid #D1D2D4;
+	height: initial;
+	position:relative;
 }
 .contentBox #mymodal .modal-title{
 	height:45px;
+	background:#F4F5F9;
+	font-size:16px;
+	line-height:45px;
+	border-bottom:1px solid #E9E9E9;
+	padding-left:15px;
 }
 .contentBox #mymodal .modal-content>p{
 	margin-bottom:5px;
 	font-size:14px;
 }
 .contentBox #mymodal .modal-dialog{
-	height:140px;
 }
 .contentBox #mymodal .icongroups{
 	margin-top:2px;
@@ -829,7 +846,36 @@ body{
 	background:#fff;
 	position:absolute;
 }
+.addAnswerBox .logintishi>a{
+	font-size: 18px;
+    font-weight: bold;
+    padding: 8px 15px;
+    background: #E43339;
+    color: #fff;
+    border-radius: 5px;
+}
 .contentBox div[id^="funcions"]>p{
 	text-indent: inherit !important;
 	clear:both;
+}
+.pcmodal .modal-body .choosep{
+	width:450px;
+    border: 1px solid #DFDFDF;
+	padding:10px;
+	margin-top:20px;
+	margin-bottom:0;
+}
+.pcmodal .modal-body .choosep p>img{
+	width:26px;
+	margin-right: 5px;
+    position: relative;
+    top: 3px;
+}
+.pcmodal .modal-body .choosep li.title{
+	border:0;
+	padding-bottom:0;
+	height: initial;
+}
+.pcmodal .modal-body .choosep li.table{
+	margin-bottom:10px;
 }

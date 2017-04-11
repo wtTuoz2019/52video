@@ -41,5 +41,11 @@ class  selfformModel extends commonModel
 		return $this->model->table('selfform_input')->where(array('id'=>$data['id']))->data($data)->update();
 		
 		}
+	public function form_value_list($where,$limit){
+		return $this->model->table('selfform_value')->where($where)->limit($limit)->select();
+		}
+	public function form_value_count($where){
+		return $this->model->table('selfform_value')->where($where)->count();
+		}
 }
 ?>
