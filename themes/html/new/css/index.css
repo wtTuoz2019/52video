@@ -879,3 +879,6 @@ body{
 .pcmodal .modal-body .choosep li.table{
 	margin-bottom:10px;
 }
+.modal-open{
+	padding:0 !important;
+}
