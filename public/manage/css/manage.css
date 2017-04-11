@@ -943,7 +943,7 @@ iframe{
 	line-height: 30px;
 	-webkit-transition: background-color .3s,color .3s,width .3s;
     transition: background-color .3s,color .3s,width .3s;
-	background-position: -4px -1px;
+	background-position: -151px -1px;
 }
 .videolist .videos .videok .title .buttons>a:hover{
 	background: #009BD4 !important;
@@ -968,14 +968,17 @@ iframe{
 .videolist .videos .videok .title .video_data span:first-child+span{
 	float: right;
 }
+.videolist .videos .videok .title .buttons>a.effect1{
+	background-position: -18px -1px;
+}
 .videolist .videos .videok .title .buttons>a.effect2{
-	    background-position: -39px -1px;
+	    background-position: -53px -1px;
 }
 .videolist .videos .videok .title .buttons>a.effect3{
-	    background-position: -70px -1px;
+	    background-position: -84px -1px;
 }
 .videolist .videos .videok .title .buttons>a.effect4{
-	    background-position: -104px -1px;
+	    background-position: -118px -1px;
 }
 .videolist .videos .videok .Qr{
 	position: absolute;

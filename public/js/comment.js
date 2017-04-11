@@ -77,7 +77,9 @@ var commenturl="http://comment.shanyueyun.net";
 		    }); 
 		$('#modal_cance').click(function(e) {
             $("video").css({'height':'200px'});
-        });$(document).ready(function(){ 
+        });
+		
+		$(document).ready(function(){ 
 		   $('#input-type-submit').click(function(){
 			 
 				var this_ = this;
@@ -103,7 +105,7 @@ if($('.choosep :input').length){
   formdata+=$(element).attr('name')+'_'+$(element).val()+'|';
 		
     }); 
-}console.log(formdata);
+}
 				$.ajax({
 				  url: "/index.php/comment/save",
 				  type: "POST",
@@ -158,6 +160,7 @@ if($('.choosep :input').length){
 			           	flag=0;
 						
 						$('#modal_cance').click();
+						return;
 			}) 
 		});
 	function commentsucess(d){return false;};	
