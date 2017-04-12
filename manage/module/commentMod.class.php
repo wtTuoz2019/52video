@@ -86,6 +86,59 @@ class commentMod extends commonMod {
         $this->show();
     }
 	
+	 //评论列表
+    public function selfform()
+    {	
+		$this->actionname='评论调查';
+	$this->id=$aid=isset($_GET['id']) ? intval($_GET['id']) : 0;
+        $url = __URL__ . '/selfform/id-'.$aid.'page-{page}'; //分页基准网址
+        $listRows = 10;
+        $page = new Page();
+        $cur_page = $page->getCurPage($url);
+        $limit_start = ($cur_page - 1) * $listRows;
+        $limit = $limit_start . ',' . $listRows;
+		
+		
+		$where=' fid ='.$aid;
+		
+        
+        $count=model('comment')->count($where);
+        $this->assign('page', $this->page($url, $count, $listRows));
+		
+        $this->list=model('comment')->model_list($limit,$where);
+        $this->subject=model('diyfield')->field_list_data(2);
+        $this->grade=model('diyfield')->field_list_data(1);
+		
+		
+		if(isset($_GET['download'])){
+				$list=model('comment')->get_list($where);
+				foreach($list as $k=>$v){
+					
+					$list[$k]['name']=model('comment')->info_user($v['uid']);
+					
+					}
+					
+				
+		header("Content-Type: text/html; charset=utf-8");
+		header("Content-type:application/vnd.ms-execl");
+		header("Content-Disposition:filename=employee.xls");
+		echo iconv('utf-8','gbk','评论')."\t";
+		echo iconv('utf-8','gbk','评论人')."\t";
+		
+		echo iconv('utf-8','gbk','时间')."\n";
+		foreach($list as $k=>$v){
+		echo iconv('utf-8','gbk',str_replace("\n","",$v['message']))."\t";
+		echo iconv('utf-8','gbk',$v['name'])."\t";
+		
+		echo iconv('utf-8','gbk',date("Y/m/d H:i",$v['time']))."\n";
+		
+		}
+			die;
+			}
+		
+        $this->show();
+    }
+	
 	
     //评论添加
     public function add()

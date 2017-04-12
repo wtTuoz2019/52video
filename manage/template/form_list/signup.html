@@ -29,21 +29,21 @@
   <div class="box-body">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="oftentable table">
       <tr class="bgth">
-        <th width="10%"><center>ID</center></th>
+        <th width="10%">ID</th>
         <!--foreach:{$field_list $vo}-->
         <?php  if(in_array($vo['field'],$info['field_lists'])){ ?>
-        <th><center>{$vo.name}</center></th>
+        <th>{$vo.name}</th>
         <?php } ?>
         <!--{/foreach}-->
-        <th><center>状态</center></th>
-        <th><center>报名时间</center></th>
+        <th width="10%">状态</th>
+        <th width="22%">报名时间</th>
       </tr>
       <!--foreach:{$list $vo}-->
       <tr>
         <td style="text-align:left;"><input name="id[]" type="checkbox" id="id[]" value="{$vo['uid']}" >{$vo.id}</td>
         <!--foreach:{$field_list $model}-->
         <?php  if(in_array($model['field'],$info['field_lists'])){ ?>
-        <td><center>
+        <td>
         <?php
         if($model['admin_html']<>''){
         eval(html_out(str_replace('{content}', $vo[$model['field']] ,$model['admin_html'])));
@@ -51,15 +51,15 @@
         echo model('expand_model')->get_list_model($model['type'],$vo[$model['field']],$model['config']);
         }
         ?>
-        </center></td>
+        </td>
           <?php } ?>
         <!--{/foreach}-->
-         <td><center>
+         <td>
          <?php  echo $vo['status']?'已通过':'未通过';  ?>
-        </center></td>
-        <td><center>
+        </td>
+        <td>
        {$php(echo date('Y-m-d H:i:s',$vo['dateline']))}
-        </center></td>
+        </td>
       </tr>
       <!--{/foreach}-->
     </table>
