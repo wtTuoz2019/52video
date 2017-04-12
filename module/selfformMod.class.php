@@ -27,7 +27,7 @@ class selfformMod extends commonMod
     		$this->error404();
     	}
     	//获取所有字段
-    	$field_list=model('selfform')->form_inputs_list($info['id']);
+    	$field_list=model('selfform')->form_inputs_list(array('fid'=>$info['id']));
     	if(empty($field_list)){
             
                 $this->msg('未发现表单信息！',0);
@@ -66,6 +66,8 @@ class selfformMod extends commonMod
 	//提交表单
     public function formin($formdata)
     {
+		
+	
     	$fid=in($formdata['fid']);
     	if(empty($fid)){
     		$this->error404();
@@ -77,7 +79,7 @@ class selfformMod extends commonMod
     		$this->error404();
     	}
     	//获取所有字段
-    	$field_list=model('selfform')->form_inputs_list($info['id']);
+    	$field_list=model('selfform')->form_inputs_list(array('fid'=>$info['id']));
     	if(empty($field_list)){
             
             return;
@@ -88,8 +90,9 @@ class selfformMod extends commonMod
         foreach ($field_list as $value) {
             if($value['must']==1){
 				
-                if(empty($formdata[$value['field']])){
 				
+                if(empty($formdata[$value['field']])){
+			
                     return;
                    
                 }
@@ -106,10 +109,10 @@ class selfformMod extends commonMod
 				  'commentid'=>$formdata['commentid'],
 				  'values'=>serialize($data),
 				  'time'=>time());
+				 	
         //过滤完后提交表单
         model('selfform')->add_value($valuedata);
     
-      
        
          return true;
        
