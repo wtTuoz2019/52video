@@ -39,11 +39,15 @@ $('#nav').delegate('a','click',function(e){
 
 function loadFrame(obj){  
     var url = obj.contentWindow.location.href;
-	console.log(url);
     if(url.indexOf("login")!=-1){  
-        window.location.reload;  
+        window.location.href="http://kf.shanyueyun.com/manage/index.php/login";
     }  
 }  
+
+
+
+
+
 
 
 

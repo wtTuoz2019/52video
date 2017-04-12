@@ -12,7 +12,7 @@ class  selfformModel extends commonModel
 		}
 	public function form_list($where,$limit=null){
 		
-		return $this->model->table('selfform')->where($where)->limit($limit)->select();
+		return $this->model->table('selfform')->where($where)->limit($limit)->order('id desc')->select();
 		}
 	public function count($where){
 		
@@ -49,6 +49,12 @@ class  selfformModel extends commonModel
 		}
 	public function form_value_del($id,$fid){
 		return $this->model->table('selfform_value')->where(array('id'=>$id,'fid'=>$fid))->delete();
+		}
+	public function form_input_del($id,$fid){
+		return $this->model->table('selfform_input')->where(array('id'=>$id,'fid'=>$fid))->delete();
+		}
+	public function del($id){
+		return $this->model->table('selfform')->where(array('id'=>$id))->delete();
 		}
 }
 ?>

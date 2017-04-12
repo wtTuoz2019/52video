@@ -103,6 +103,7 @@ class selfformMod extends commonMod
      $valuedata=array('fid'=>$fid,
 	 			  'uid'=>$this->userinfo['uid'],
 				  'aid'=>$formdata['aid'],
+				  'commentid'=>$formdata['commentid'],
 				  'values'=>serialize($data),
 				  'time'=>time());
         //过滤完后提交表单

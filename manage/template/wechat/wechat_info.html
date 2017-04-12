@@ -45,20 +45,7 @@ savelistform({addurl:"__URL__/wechat_info",listurl:"javascript:history.go(-1)"})
                 });
             });
         });
-function tocomponentloginpage(){
-	//$.getJSON("https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid={$config.kfappid}&pre_auth_code=<?=getpre_auth_code($config['kfappid'],$config['kfappsecret'])?>&redirect_uri=<?=urlencode('http://live.shanyueyun.com/userhome/index.php/wechat/componentlogin')?>?callback=callback",function(data){
-//		console.log(data);
-//		
-//	})
-	
-	 var iframe = parent.document.getElementById("main");  
-	 
-	console.log($(iframe)[0].contentWindow);
-	$(iframe)[0].contentWindow.location.href="https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid={$config.kfappid}&pre_auth_code=<?=getpre_auth_code($config['kfappid'],$config['kfappsecret'])?>&redirect_uri=<?=urlencode('http://live.shanyueyun.com/userhome/index.php/wechat/componentlogin')?>";
-	 
-	//window.location.href="https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid={$config.kfappid}&pre_auth_code=<?=getpre_auth_code($config['kfappid'],$config['kfappsecret'])?>&redirect_uri=<?=urlencode('http://live.shanyueyun.com/userhome/index.php/wechat/componentlogin')?>";
-	
-	}
+
 	$('.tochange').click(function(e) {
       $('#WeChat').hide();  
 	  $('#WeChat2').show();  

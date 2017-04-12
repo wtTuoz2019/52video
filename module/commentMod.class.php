@@ -62,9 +62,10 @@ class commentMod extends commonMod {
 				}else{
 			$data['flag']=1;
 					}
-			$res=model('comment')->comment($data);
+			$formdata['commentid']=$res=model('comment')->comment($data);
 			
 			if($res>0){
+				
 				module('selfform')->formin($formdata);
 				$content=model('content')->info($data['fid']);
 				if($content['redpacket']&&!$content['comment']){

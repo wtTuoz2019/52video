@@ -10,6 +10,9 @@ class selfformMod extends commonMod
 		  $listRows=9;
         $url = __URL__ . '/index/page-{page}.html'; //分页基准网址
         $limit=$this->pagelimit($url,$listRows);
+		if($_GET['s']){
+			$where['name']=array('like',"'%".$_GET['s']."%'");
+			} 
 		if($this->user['gid']!=1)
 		$where['uid']= $this->user['id'];
 		 $this->list=model('selfform')->form_list($where,$limit);
@@ -51,6 +54,15 @@ class selfformMod extends commonMod
     	$this->msg('编辑成功！',1);
 		
 		}
+	public function del(){
+		 $id=$_POST['id'];
+      
+        $this->alert_str($_POST['id'],'int',true);
+        model('selfform')->del($id);
+      
+        $this->msg('删除成功！',1);
+		
+		}
 	public function inputs(){
 		  $this->action='edit';
 		 $id=intval($_GET['id']);
@@ -90,6 +102,16 @@ class selfformMod extends commonMod
 		 $this->info=model('selfform')->form_inputs_info(array('id'=>$id));
 		 $this->show('selfform/inputs_info');
 		}
+	public function input_del(){
+		 $id=$_POST['id'];
+        $fid=$_POST['fid'];
+        $this->alert_str($_POST['fid'],'int',true);
+        $this->alert_str($_POST['id'],'int',true);
+        model('selfform')->form_input_del($id,$fid);
+      
+        $this->msg('删除成功！',1);
+		
+		}
 	public function inputs_edit_save(){
 		
 	
@@ -114,39 +136,25 @@ class selfformMod extends commonMod
 			echo iconv('utf-8','gbk',$v['name'])."\t";
 			}
 		
-		echo iconv('utf-8','gbk','总时长(分钟)')."\n";
-		echo iconv('utf-8','gbk','分时长')."\n";
+		echo "\n";
 			$list=model('selfform')->form_value_list($where);
 		if(is_array($list)){
 			foreach($list as $key=>$val){
-				$list[$key]['values']=unserialize($val['values']);
+				$value=unserialize($val['values']);
+				
+				foreach($this->formlist as $k=>$model){
+				
+						
+			 $string=model('expand_model')->get_list_model($model['type'],$value[$model['field']],$model['options']);
+		
+				echo iconv('utf-8','gbk',  $string)."\t";
+						
+					}
+					echo "\n";
+				
 				}
 		
 			}
-			foreach($list as $key=>$value){
-				 foreach($this->field_list  as $key1=> $model){
-        
-      	  if($model['admin_html']<>''){
-        eval(html_out(str_replace('{content}', $value[$model['field']] ,$model['admin_html'])));
-       		 }else{
-        $string= model('expand_model')->get_list_model($model['type'],$value[$model['field']],$model['config']);
-		
-		echo  "\"".iconv('utf-8','gbk',  $string)."\r\n \""."\t";
-      		  }
-     	   }
-				
-				$sumtime=model('data')->getdatatime(array('aid'=>$aid,'uid'=>$value['uid']));
-				echo iconv('utf-8','gbk',intval($sumtime))."\t";
-				$times=model('data')->getdatalist(array('aid'=>$aid,'uid'=>$value['uid']));
-				$timestring='';
-				if(is_array($times)){
-				 foreach($times as  $key2=>$time){
-					 if($key2>0)$timestring.='###';
-					$timestring.=date('Y-m-d H:i',$time['starttime']).'--'.date('Y-m-d H:i',$time['endtime']);	
-					 }
-				}
-				echo iconv('utf-8','gbk',$timestring)."\n";
-				}
 			die;
 			}
 		

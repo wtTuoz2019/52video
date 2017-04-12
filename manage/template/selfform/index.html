@@ -7,11 +7,12 @@
 			<div class="borderk postk">
 				
 				<div>
-					 
-					<input type="" name="" id="" value="" placeholder="请输入关键字"/>
-					<button>
+					 <form  method="get" >
+					<input type="text" name="s" id="" value="" placeholder="请输入关键字"/>
+					<button type="submit">
 						查询
 					</button>
+                    </form>
 				</div>
 			<a href="__URL__/add"  class="sendlive">添加</a>
 			</div>
@@ -66,4 +67,28 @@
 				</tr>
 				 <!--{/foreach}-->
 			</table>
+               <div class="page">
+     					 <ul class="pagination">
+                                 {$page}
+                                        </ul>
+					 </div>		
 		</div>
+     
+   <script>
+   
+   //删除
+function del(id,obj) {
+	
+	
+
+	ajaxpost({
+		name:'确定要删除此记录？',
+		url:"__URL__/del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().parent().remove();
+		}
+	});
+}
+</script>

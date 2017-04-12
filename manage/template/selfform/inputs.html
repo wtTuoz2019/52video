@@ -72,4 +72,20 @@
 	url:'__URL__/inputs_edit/fid-{$info.id}-id-'+id,
 	});
 	}
+//删除
+function del(id,obj) {
+	
+	
+
+	ajaxpost({
+		name:'确定要删除此记录？',
+		url:"__URL__/input_del",
+		data:{id: id,fid: {$info.id}},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().parent().remove();
+		}
+	});
+}
+</script>
  </script>
