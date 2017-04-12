@@ -476,7 +476,7 @@ button{
 	margin-bottom: 20px;
 }
 .borderk a{
-	width:90px;
+	padding:0 20px;
 	height:30px;
 	background: #eee;
     border: 1px solid #C3C3C3;
@@ -905,6 +905,12 @@ body .oftentable tr td{
 	color: #fff;
 	margin-top: 60px;
 }
+#v_live  .videos .videok .overlay .editmenu>a{
+	margin-top:30px;
+}
+#v_live .videos .videok .overlay .editmenu>a.videok_js,#v_live .videos .videok .overlay .editmenu>a.videok_sq{
+	margin-top:0;
+}
 .videolist .videos .videok .overlay .editmenu>a span{
 	display: block;
 	width: 60px;
@@ -928,6 +934,9 @@ body .oftentable tr td{
 }
 .videolist .videos .videok .overlay .editmenu>a.videok_js span{
 	background-image: url(../img/videok_js.png);
+}
+.videolist .videos .videok .overlay .editmenu>a.videok_sq span{
+	background-image: url(../img/videok_sq.png);
 }
 
 .videolist .videos .videok .title .buttons{
@@ -1487,7 +1496,6 @@ body .oftentable tr td{
 	margin:0 !important;
 }
 #postmanage .borderk a{
-	width: 70px;
     height: 30px;
     background: #eee;
     border: 1px solid #C3C3C3;
@@ -1496,7 +1504,6 @@ body .oftentable tr td{
 	text-align:center;
 	position:relative;
 	top:1px;
-	float:right;
 }
 .page_tool{
 	width:1080px;
@@ -1548,4 +1555,33 @@ ul.pagination{
 }
 .comment-content p{
 		width:82%;
-	}
+}
+.page_form{
+	background:#fff;
+}
+.borderk .tosearch input{
+	height:30px;
+	border:1px solid #C3C3C3;
+	width:120px;
+}
+.borderk .tosearch{
+	float:right;
+}
+.borderk .tosearch input{
+	font-size:12px;
+	padding-left:5px;
+}
+.borderk .tosearch button{
+	height:30px;
+	width:50px;
+	background-image:url(../img/tosearch.png);
+	background-size:20px 20px;
+	background-position:center center;
+	background-color:#EEEEEE;
+	border:1px solid #C3C3C3;
+	background-repeat:no-repeat;
+	border-left:0;
+}
+.borderk form>*{
+	float:left;
+}

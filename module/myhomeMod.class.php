@@ -37,7 +37,10 @@ class myhomeMod extends commonMod
 					}
 			}
 			
-			$this->myarticle=model('comment')->mycommentarticle($_SESSION['uid']);
+			$myarticle=model('comment')->mycommentarticle($_SESSION['uid']);
+		
+			$this->myarticle=$myarticle;
+			
 			$mycommentid=model('comment')->mycommentid($_SESSION['uid']);
 			$wherec="id in (".implode(",",$mycommentid).")";
 			$wherel="cid in (".implode(",",$mycommentid).")";
