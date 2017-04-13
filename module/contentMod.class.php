@@ -116,16 +116,46 @@ class contentMod extends commonMod
 			$this->activity=$activity=model('content')->model_content($info['activity_id']);
 			if($activity['signup']){
 		
-		$this->signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$activity['aid']));	
+		$signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$activity['aid']));	
 		
+		
+				
+		
+			if($activity['autoaudit']&&$activity['noaudit']&&$signinfo['status']==0){
+		$activity['auditfield_lists']=unserialize($activity['auditfield_lists']);
+		$userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
+				$where=array();
+			foreach($activity['auditfield_lists'] as $key=>$val)
+			{	
+				$where[$val]=$userinfo[$val];
+				}
+				$where['aid']=$aid;
+				
+				$userinfo=model('form_list')->signautoinfo($where);
+				
+				if($userinfo){
+					$signinfo['status']=1;
+			
+					model('form_list')->editsign($signinfo);
+					
+					
+					}
+				
+				
+			}
+			
+		$this->signinfo=$signinfo;
+		
+	
 		if(($this->signinfo['status']==0)&&$_COOKIE['nosign']!='yes'){
-		
+			
 		
 		$this->redirect(__URL__.'/index?aid='.$activity['aid']);	
 		}else{
 			if($activity['beforeid']){
 			
 			if(!model('selfform')->input_value(array('fid'=>$activity['beforeid'],'aid'=>$activity['aid'],'uid'=>$this->userinfo['uid']))){
+			
 				$this->redirect(__URL__.'/index?aid='.$activity['aid']);	
 				}
 			}
@@ -139,6 +169,7 @@ class contentMod extends commonMod
 				}
 			}
 		 $info['field_lists']=unserialize($info['field_lists']);
+		 	
 		if($info['signup']){
 			
 			$signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$info['aid']));
@@ -170,7 +201,7 @@ class contentMod extends commonMod
 		$this->signinfo=$signinfo;
 		
 	
-		if($this->signinfo['status']==0&&$_COOKIE['nosign']!='yes'){
+		if($this->signinfo['status']==0&&($_COOKIE['nosign']!='yes')){
 		$this->userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
 		
 		$this->field_list=model('form')->field_list(4);

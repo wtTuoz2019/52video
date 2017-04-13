@@ -35,18 +35,18 @@
   
       ?> <!--foreach:{$loop $val}-->    
                 <li   class="<?php echo $val['cid']==16?'live-class':'over-class';  ?> m_recommend">
-                    
+                    <a href="{$val.aurl}">
                    
 						<div class="col-xs-6">
                            
-							<a href="{$val.aurl}">
+							
                             <img src="{$sys.imageurl}{$val.image}" class="img-responsive m_img"/>
                              
-                            </a>
+                           
 							
 						</div>
                         <div class="col-xs-6 r_text">
-                        <p class="videotitle"><a href="{$val.aurl}">{$val.title}</a><!--<img class="videoimg2" src="img/to_play2.png"/>--></p>  
+                        <p class="videotitle">{$val.title}<!--<img class="videoimg2" src="img/to_play2.png"/>--></p>  
                        
                        <p class="schoolname">{$school[$val['csid']]['name']}</p>
                        <p class="now"> <?php echo $val['cid']==16?'直播':'重播';  ?></p>
@@ -54,6 +54,7 @@
                        		<?php echo $val['cid']==16?date('Y-m-d',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?><span><img src="__TPL__mobile/img/see.png" class="to_play"/>{$val.views}</span></p>
                    		
                    		</div>
+                         </a>
 				</li>
 		<!--/loop-->
 		</ul>

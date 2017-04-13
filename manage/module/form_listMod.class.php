@@ -29,8 +29,13 @@ class form_listMod extends commonMod {
 		$id=4;
         $this->aid=$aid=intval($_GET['aid']);
         $this->alert_str($aid,'int');
-		
-		
+		$where='aid='.$aid;
+			
+		if($_GET['s']){
+			$s=$_GET['s'];
+			 $where.=" and  ( name = '".$s."' or mobile = '".$s."' )";
+			}
+	
         //分页处理
         $url = __URL__ . '/signup/aid-' . $aid . '-page-{page}.html';
         $listRows = 20;
@@ -44,13 +49,13 @@ class form_listMod extends commonMod {
         $this->info=$info;
 		
         //内容列表
-		$this->list=model('form_list')->form_signuplist($aid,$limit);
-        $count=model('form_list')->signupcount($aid);
+		$this->list=model('form_list')->form_signuplist($where,$limit);
+        $count=model('form_list')->signupcount($where);
         
         $this->field_list=model('form_list')->field_list($id);
 	
 		if($_GET['download']){
-			$list=model('form_list')->form_signuplist($aid);
+			$list=model('form_list')->form_signuplist($where);
 		header("Content-Type: text/html; charset=utf-8");
 		header("Content-type:application/vnd.ms-execl");
 		header("Content-Disposition:filename=signup.xls");
@@ -98,7 +103,12 @@ class form_listMod extends commonMod {
 		$id=4;
         $this->aid=$aid=intval($_GET['aid']);
         $this->alert_str($aid,'int');
-		
+		$where='aid='.$aid;
+			
+		if($_GET['s']){
+			$s=$_GET['s'];
+			 $where.=" and  ( name = '".$s."' or mobile = '".$s."' )";
+			}
 		
         //分页处理
         $url = __URL__ . '/signupauto/aid-' . $aid . '-page-{page}.html';
@@ -150,8 +160,8 @@ class form_listMod extends commonMod {
 		
 		
         //内容列表
-		$this->list=model('form_list')->form_signupautolist($aid,$limit);
-        $count=model('form_list')->signupautocount($aid);
+		$this->list=model('form_list')->form_signupautolist($where,$limit);
+        $count=model('form_list')->signupautocount($where);
         
         
 	

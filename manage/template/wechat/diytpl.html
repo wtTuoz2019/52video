@@ -4,17 +4,7 @@
 		width:1080px;
 		margin:40px auto;
 	}
-	.allmain .exercise a{
-		display: inline-block;
-		height: 40px;
-		width: 175px;
-		border: 1px solid #B9B9B9;
-		background: #EEEEEE;
-		font-size: 12px;
-		text-align: center;
-		line-height: 40px;
-		margin-bottom:40px;
-	}
+	
 </style>
 
 
@@ -22,7 +12,7 @@
 
 <div class="page_function">
 
-  <div class="exercise"> 
+  <div class="borderk"> 
   
    <a href="__URL__/diytpl_edit">添加主菜单</a>
   
@@ -31,25 +21,25 @@
 <div class="page_main">
   <div class="box-body">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
-      <tr>
+      <tr class="bgth">
      
-        <th><center>标题</center></th>
-        <th><center>模板链接</center></th>
+        <th>标题</th>
+        <th>模板链接</th>
       
       
-        <th><center>操作</center></th>
+        <th>操作</th>
       </tr>
       <!--foreach:{$list $vo}-->
       <tr>
        
       
       
-        <td><center>{$vo.title} </center></td>
+        <td>{$vo.title}</td>
        
-         <td><center>{$sys['MOBILE_DOMAIN']}/index.php/diytpl/index/tid-{$vo.id}-token-{$token}</center></td>
+         <td>{$sys['MOBILE_DOMAIN']}/index.php/diytpl/index/tid-{$vo.id}-token-{$token}</td>
        
-         <td><center>	<a title="编辑图文自定义回复" href="__URL__/diytpl_edit/id-{$vo.id}" class="v-gray">编辑</a>
-	<a href="javascript:" onclick="del('{$vo.id}',this)" class="v-gray">删除</a></center></td>
+         <td>	<a title="编辑图文自定义回复" href="__URL__/diytpl_edit/id-{$vo.id}" class="v-gray">编辑</a>
+	<a href="javascript:" onclick="del('{$vo.id}',this)" class="v-gray">删除</a></td>
       </tr>
       <!--{/foreach}-->
     </table>

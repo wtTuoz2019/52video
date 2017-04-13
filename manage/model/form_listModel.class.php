@@ -28,17 +28,17 @@ class form_listModel extends commonModel {
     }
 	
 	 //表单内容列表
-    public function form_signuplist($aid,$limit='')
+    public function form_signuplist($where,$limit='')
     {
    
-		 $where['aid']=$aid;
+		
         return $this->model->field('A.*,B.status,B.dateline')->table('form_data_signup','A')->add_table('signup','B','A.uid=B.uid')->where($where)->order('B.id desc')->limit($limit)->select();
     }
 	
-	  public function form_signupautolist($aid,$limit='')
+	  public function form_signupautolist($where,$limit='')
     {
    
-		 $where['aid']=$aid;
+		
         return $this->model->table('signupauto')->where($where)->limit($limit)->select();
     }
 	
@@ -69,15 +69,15 @@ class form_listModel extends commonModel {
     }
 	
 	//表单内容统计
-    public function signupcount($aid)
+    public function signupcount($where)
     {
-         $where['aid']=$aid;
+        
         return $this->model->table('form_data_signup','A')->add_table('signup','B','A.uid=B.uid')->where($where)->count();
     }
 	//表单内容统计
-    public function signupautocount($aid)
+    public function signupautocount($where)
     {
-         $where['aid']=$aid;
+      
         return $this->model->table('signupauto')->where($where)->count();
     }
 
