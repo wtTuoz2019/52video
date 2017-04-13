@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{$css}
+{$js}
+</head>
+<body scroll="no">
+<div class="page_function">
+  <div class="info">
+    <h3>直播转回看</h3>
+    <small>使用以下功能进行应用修改直播时间</small> 
+  </div>
+</div>
+<div class="page_form">
+<form action="__URL__/livetime_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="page_table form_table">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    
+      <tr>
+        <td width="120" align="right">名称</td>
+        <td width="300">
+      {$info.title}
+        </td>
+        <td></td>
+      </tr>
+         <tr>
+        <td width="120" align="right">开始时间</td>
+        <td width="300">
+        <input name="starttime"  id="starttime" type="text" class="text_value" style="width:150px; float:left" value="<?php echo date('Y-m-d H:i:s',$live['starttime']); ?>" reg="\S" msg="开始时间不能为空" /><div id="starttime_button" class="time"></div>
+        <script>$('#starttime_button').calendar({ id:'#starttime',format:'yyyy-MM-dd HH:mm:ss'});</script>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td width="120" align="right">结束时间</td>
+        <td width="300">
+        <input name="endtime"  id="endtime" type="text" class="text_value" style="width:150px; float:left" value="<?php echo date('Y-m-d H:i:s',($live['starttime']+$live['time']*60)); ?>" reg="\S" msg="结束时间不能为空" /><div id="endtime_button" class="time"></div>
+        <script>$('#endtime_button').calendar({ id:'#endtime',format:'yyyy-MM-dd HH:mm:ss'});</script>
+        </td>
+        <td></td>
+      </tr>
+      
+       
+     
+    </table>
+</div>
+
+<div class="form_submit">
+ <input name="aid" type="hidden" value="{$info.aid}" />
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+       
+</div>
+</div>
+<style>
+.page_table table td{
+	height:50px;
+	
+	}
+
+</style>
+
+<script type="text/javascript">
+var win = art.dialog.open.origin;
+saveform({
+	success:function(data){
+	  $.dialog({content:data.message});
+	win.document.location.reload();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+
+</script>
+</body>

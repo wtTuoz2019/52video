@@ -159,7 +159,7 @@ function selectall(name){
 function audit(status){
 	var str="";
 	$("[name='id[]']").each(function(){//反选   
-    if($(this).attr("checked")){
+    if($(this).parent().hasClass("checked")){
 		  str+=$(this).val()+","; 
     }
     })

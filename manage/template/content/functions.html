@@ -54,6 +54,8 @@
               </option>
                <option value="looktimes" <?php if($info['type']=='looktimes') { ?> selected="selected" <?php } ?>  >	视频看点
               </option>
+             	 <option value="selfform" <?php if($info['type']=='selfform') { ?> selected="selected" <?php } ?>  >	调查表单
+              </option>
               
             </select>
             </td>
@@ -180,6 +182,9 @@ function typechange(){
 		}else if(type=='commentshow'){
 		
 		$('#otherbody').html($('#commentshow').html());
+		}else if(type=='selfform'){
+		
+		$('#otherbody').html($('#comment').html());
 		}else if(type=='content'){
 		$('#contentbody').show();
 		$('#otherbody').html('');

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{$css}
+{$js}
+</head>
+<body scroll="no">
+<div class="page_function">
+  <div class="info">
+    <h3>应用{$action_name}</h3>
+    <small>使用以下功能进行应用修改{$action_name}</small> 
+  </div>
+</div>
+<div class="page_form">
+<form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
+<div class="page_table form_table">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    
+      <tr>
+        <td width="120" align="right">名称</td>
+        <td width="300">
+        <input name="name" type="text" class="text_value" id="name" value="{$info.name}" reg="\S" msg="名称不能为空" />
+        </td>
+        <td></td>
+      </tr>
+      
+       <tr>
+          <td width="100" align="right">类型</td>
+          <td width="350"><select name="type"  reg="." id="type" onchange="typechange()" >
+             
+              
+              <option value="comment" <?php if($info['type']=='comment') { ?> selected="selected" <?php } ?>  >	评论
+              </option>
+               <option value="content" <?php if($info['type']=='content') { ?> selected="selected" <?php } ?>  >	内容
+              </option>
+            	
+               <option value="url" <?php if($info['type']=='url') { ?> selected="selected" <?php } ?>  >	链接
+              </option>
+              
+               <option value="linkaid" <?php if($info['type']=='linkaid') { ?> selected="selected" <?php } ?>  >	关联文章
+              </option>
+            </select>
+            </td>
+          <td></td>
+        </tr>
+		<tr id="contentbody" style="display:none">
+          <td width="100" align="right">内容</td>
+         <td colspan="2">
+          <?php echo module('editor')->get_editor('content'); ?>
+          <textarea name="content" style="width:100%; height:350px;" id="content">{$info_data.content html}</textarea>
+          <input type="button" onclick="javascript:get_remote_image()" style="margin-top:10px;" class="button_small" value="远程图片本地化" />
+          <?php echo module('editor')->get_editor_upload('editor_upload','editor_content') ?>
+          <input type="button" id="editor_upload" class="button_small" style="margin-top:10px;" value="上传图片和文件到编辑器" />
+          <!--hook-->
+          <?php module('common')->plus_hook('content','tools',$info);  ?>
+          <!--hook end-->
+          </td>
+        
+        </tr>
+       
+         <tr  id="otherbody">
+         
+        </tr>
+       <tr>
+        <td width="120" align="right">排序</td>
+        <td width="300">
+        <input name="sequence" type="text" class="text_value" id="sequence" value="<!--if:{empty($info[sequence])}-->100<!--{else}-->{$info.sequence}<!--/if-->" reg="[0-9]" msg="排序只能为数字" />
+        </td> <td></td>
+      </tr>
+     
+    </table>
+</div>
+
+<div class="form_submit">
+<input name="id" type="hidden" value="{$info.id}" />
+<button type="submit" class="button">保存</button> 
+</div>
+</form>
+       
+</div>
+</div>
+
+
+<script type="text/javascript">
+var win = art.dialog.open.origin;
+saveform({
+	success:function(data){
+	
+		$('#functions',win.document).append('<div id="button"'+data+'><button type="button" class="button">'+$('#name').val()+'</button><input type="hidden" value="'+data+'" name="functions['+data+']"></div>');
+		
+		art.dialog.close();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+
+function typechange(){
+	var type=$('#type').val();
+	$('#contentbody').hide();
+	if(type=='comment'){
+		$('#otherbody').html('');
+		}else if(type=='content'){
+		$('#contentbody').show();
+		$('#otherbody').html('');
+		}else if(type=='linkaid'){
+	
+		$('#otherbody').html('<td width="100" align="right">关联文章</td><td width="350"><input name="content" type="text" class="text_value" id="aids" value="{$info.content}" /> </td><td>填入文章ID，以英文下逗号隔开，列如：1,2,3</td>');
+		}else if(type=='url'){
+		
+		$('#otherbody').html('<td width="100" align="right">链接</td><td width="350"><input name="content" type="text" class="text_value" id="aids" value="{$info.content}" /> </td><td>填入文章ID，以英文下逗号隔开，列如：1,2,3</td>');
+		}
+	
+	
+	}
+
+</script>
+</body>

@@ -32,6 +32,8 @@ class commentMod extends commonMod {
 	}
 	
 	 public function save() {
+		 
+	
 		 $this->getuserinfo();
 		 
 		if($_POST['formdata']){
@@ -62,11 +64,13 @@ class commentMod extends commonMod {
 				}else{
 			$data['flag']=1;
 					}
-			$formdata['commentid']=$res=model('comment')->comment($data);
+			$res=model('comment')->comment($data);
 			
 			if($res>0){
-				
+				if($formdata){
+				$formdata['commentid']=$res;
 				module('selfform')->formin($formdata);
+				}
 				$content=model('content')->info($data['fid']);
 				if($content['redpacket']&&!$content['comment']){
 					$priceall=model('comment')->priceall($content['aid']);

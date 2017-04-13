@@ -1,10 +1,11 @@
-
-<div class="page_form">
+<div class="allmain">
+<h4 class="bottomb">视频添加</h4>
+<div class="page_form amendk">
 <form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
 <div class="box-body">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
     
-      <tr>
+      <tr class="tr1">
         <td width="120" align="right">名称</td>
         <td width="300">
         <input name="name" type="text" class="form-control" id="name" value="{$info.name}" reg="\S" msg="名称不能为空" />
@@ -12,7 +13,7 @@
         <td></td>
       </tr>
   
-         <tr>
+         <tr class="tr2">
         <td width="120" align="right">地址</td>
         <td width="300">
         <input name="vurl" type="text" class="form-control" id="vurl" value="{$info.vurl}" reg="\S" msg="地址" />
@@ -23,7 +24,7 @@
       <script type="text/javascript" src="__PUBLICURL__/ckplayer/js/offlights.js"></script>
    <script type="text/javascript" src="__PUBLICURL__/ckplayer/ckplayer.js" charset="utf-8"></script>
          <tr>
-        <td  colspan="2"><div id="a1"></div>
+        <td  colspan="2"  style=" width:550px;"><div id="a1"></div>
         <script type="text/javascript">
 	//如果你不需要某项设置，可以直接删除，注意var flashvars的最后一个值后面不能有逗号
 	function loadedHandler(){
@@ -119,15 +120,15 @@ if (i<10)
         		 
 			<p  >
           
-           <input name="progress" id="progress" value="00:00:00" class="form-control"  type="text" style="width:100px" ><input type="button" value="获取开始时间点" class="button"  onclick="getprogress()"/> 
+           <input name="progress" id="progress" value="00:00:00" class="form-control"  type="text"  ><input type="button" value="获取开始时间点" class="button"  onclick="getprogress()" style="border-top:0;"/> 
             <input name="progress"  id="progressinput" value="0"   type="hidden" >
             
              </p>
-            <p><input name="progressend" id="progressend" value="00:00:00" style="width:100px"  class="form-control" type="text" ><input type="button" value="获取结束时间点" class="button"  onclick="getprogressend()"/>
+            <p><input name="progressend" id="progressend" value="00:00:00"  class="form-control" type="text" ><input type="button" value="获取结束时间点" class="button"  onclick="getprogressend()" style="border-top:0;"/>
             <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
 				
 			</p>
-             <p><input name="title" id="title" value="" style="width:300px"  class="form-control" type="text" placeholder="看点介绍" >
+             <p><input name="title" id="title" value=""  class="form-control" type="text" placeholder="看点介绍" >
 			</p>
 			<p >
 	      <input type="button" onClick="addtime()" id="button" class="button" value="添加">
@@ -145,6 +146,18 @@ if (i<10)
       </tr>
       
       
+      <script>
+      	$('.tr1').css('text-align','left');
+		$('.tr1>td:first-child').css('width','200px');
+		$('.tr2').css('text-align','left');
+		$('.tr2>td:first-child').css('width','200px');
+      	
+      </script>
+      
+      
+      
+      
+      
       
        <?php } ?> 
      
@@ -160,7 +173,7 @@ if (i<10)
        
 </div>
 </div>
-
+</div>
 <script>
 
 
