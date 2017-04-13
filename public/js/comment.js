@@ -119,9 +119,9 @@ if($('.choosep :input').length){
 				  },
 				  dataType: "json",
 				  success: function( d ) {
-					$('#editors').val('');
+					$('textarea#editors').val('');
 					if(d.status == 1){
-						$('#editors').val('');
+					
 			           	flag=0;
 						automatic(arr);
 						
@@ -156,7 +156,7 @@ if($('.choosep :input').length){
 		  }
 	  },'json');
 				   }
-				  $('#editors').val('');
+				$('textarea#editors').val('');
 			           	flag=0;
 						
 						$('#modal_cance').click();
