@@ -925,7 +925,7 @@ body{
 				font-size:12px;
 				background:#EEEEEE;
 				border:1px solid #c3c3c3;
-				display:block;
-				padding-left:35px;
-				margin-top:20px;
+				display:block; 
+				margin-left:35px;   
+				margin-top:20px; 
 			}

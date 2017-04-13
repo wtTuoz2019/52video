@@ -30,10 +30,11 @@ saveform({
 	success:function(msg){
 		tip({msg:msg});
 		document.getElementById("form").reset();
-  
+  		$('.tijiao').text('提交中');
 	},
 	failure:function(msg){
 		tip({msg:msg});
+		$('.tijiao').text('重新提交');
 	}}
 );
 
