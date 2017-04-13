@@ -43,7 +43,7 @@
                       <!--#include file="menu_comment.html"-->
       <?php }elseif($vo['type']=='jiaoyancomment'){
       $selfform=model('selfform')->info($vo['content']);
-      $commentinputs==model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+      $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
       ?>
       
       
@@ -54,11 +54,17 @@
    							
  						  </script> 
                           <!--#include file="menu_commentshow.html"-->
-					
+                             <?php }elseif($vo['type']=='selfform'){
+                               $this->selfform=model('selfform')->info($vo['content']);
+                    	  $this->commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                             
+                             ?>
+                          
+                          <!--#include file="menu_selfform.html"-->
+                          
+                         
                           <?php }elseif($vo['type']=='content'){?>
-                        	
-    						{$vo.content html}
-  
+                        	{$vo.content html}
                          <?php }elseif($vo['type']=='url'){?>
                          <script>
 						 $('.funcions{$vo.id}').bind('click',function(){

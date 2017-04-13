@@ -331,12 +331,14 @@ function commentHandle(){
 				 $("#mymodal").find('#toname').val('');
 				 commentflag='save';
 		     	 $("#mymodal").modal("toggle");
-				  if(typeof($(e).attr('pid'))!='undefined'){
-				 $("#mymodal").find('#pid').val($(e).attr('pid'))
-				  commentflag='reply';
-				   $('.comment-area').hide()
+				 if(typeof($(e).attr('pid'))!='undefined'){
+				 	$("#mymodal").find('#pid').val($(e).attr('pid'))
+				  	commentflag='reply';
+				   	$('.comment-area').hide()
 				   	$('.choosep').hide();
+					$('.nosie').show();
 				  }
+				 
 				 if(typeof($(e).attr('toname'))!='undefined'){
 					 
 				 $("#mymodal").find('#toname').val($(e).attr('toname'));
@@ -357,7 +359,8 @@ function commentHandle(){
 				 $("#mymodal").find('#toname').val('');
 				 commentflag='save';
 		     	 $("#mymodal").modal("toggle");
-				 $('.comment-area').show()
+				 $('.comment-area').show();
+				 $('.choosep').show();
 				
 				}
 		   $("li#excom").click(function(){

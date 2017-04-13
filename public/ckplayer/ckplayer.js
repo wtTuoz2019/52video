@@ -49,6 +49,11 @@ function ckcpt() {
 		
 	}
 	function getprogress(){
+		if(cid='16'){
+				alert('该功能只能在回看中实现');
+				return false;
+		}
+		
 		
 		var statusarray=CKobject.getObjectById('ckplayer_a1').getStatus();
 

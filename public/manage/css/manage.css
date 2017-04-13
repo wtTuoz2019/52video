@@ -16,6 +16,7 @@ a{
 }
 a:hover, a:focus {
     text-decoration: none;
+	color: #5a5a5a;
 }
 button{
 	cursor: pointer;
@@ -483,7 +484,6 @@ button{
 .borderk a{
 	padding:0 20px;
 	height:30px;
-	background: #eee;
     border: 1px solid #C3C3C3;
 	line-height: 30px;
     font-size: 12px; 
@@ -491,17 +491,30 @@ button{
 	text-align:center;
 	color:#000;
 	margin-right:20px;
+	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
+	background:linear-gradient(top,#ffffff,#d5d2d2);
+	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
+	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
+}
+.borderk a:hover{
+	border-color:#000;
 }
 #signup .function input{
 	width:70px;
 	height:30px;
-	background: #eee;
+	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
+	background:linear-gradient(top,#ffffff,#d5d2d2);
+	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
+	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
     border: 1px solid #C3C3C3;
 	line-height: 30px;
     font-size: 12px; 
 	display:inline-block;
 	text-align:center;
 	margin-right:10px;
+}
+#signup .function input:hover{
+	border-color:#000;
 }
 .borderk{
 	padding: 20px 30px;
@@ -660,6 +673,19 @@ iframe{
 	border: 1px solid #B9B9B9;
 	background: #eee;
 	font-size: 12px;
+}
+.amendk #functions{
+	position:absolute;
+	left: 157px;
+    top: 320px;
+	width: 790px;
+}
+.amendk #functions>div{
+	float:left;
+	margin-right: 27px;
+}
+.amendk #functions>div button{
+	margin-top:10px;
 }
 #extendclass .selectclassk>div{
 	display: inline-block;
@@ -1603,4 +1629,33 @@ ul.pagination{
 }
 #functions{
 	margin:0;
+}
+.comment-content a.delete-comment:hover{
+	text-decoration:none;
+}
+.container div.batch{
+	padding:0;
+	border:0;
+	padding-left:20px;
+	float:left;
+}
+.container div.batch a{
+	width: 70px;
+	height:30px;
+	text-align:center;
+	line-height:28px;
+	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
+	background:linear-gradient(top,#ffffff,#d5d2d2);
+	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
+	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
+	border:1px solid #C3C3C3;
+	display:inline-block;
+	color:#000;
+	margin-right: 10px;
+}
+.container div.batch a:hover{
+	border-color:#000;
+}
+.container div.batch a.delete{
+	margin-left:10px;
 }

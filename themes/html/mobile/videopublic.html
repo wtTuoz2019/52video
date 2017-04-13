@@ -44,7 +44,9 @@
                       <!--#include file="menu_comment.html"-->
 					 <?php }elseif($vo['type']=='jiaoyancomment'){
                      $selfform=model('selfform')->info($vo['content']);
-                      $commentinputs==model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                      $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                      
+                    
                      ?>
                           <!--#include file="menu_jiaoyan.html"-->
                         <?php }elseif($vo['type']=='commentshow'){?>
@@ -53,6 +55,13 @@
    							
  						  </script> 
                           <!--#include file="menu_commentshow.html"-->
+                             <?php }elseif($vo['type']=='selfform'){
+                               $this->selfform=model('selfform')->info($vo['content']);
+                    	  $this->commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                             
+                             ?>
+                          
+                          <!--#include file="menu_selfform.html"-->
                           
                          
                           <?php }elseif($vo['type']=='content'){?>
@@ -124,7 +133,9 @@
 		    <div class="modal-dialog">
 		        <div class="modal-content">
 					<div class="modal-body" style="padding-top:10px;">
-                 <?php if($commentinputs&&$selfform){ ?>
+                 <?php  if($commentinputs&&$selfform){
+                
+                  ?>
                  <div class="choosep">
                  	<p><img src="img/tongji.jpg"/>{$selfform.name}</p>
                  
@@ -140,6 +151,18 @@
             <input type="hidden" name="fid" value="{$v.fid}"/>
              </div>
               <?php } ?>
+              
+              <?php if($vo['type']=='jiaoyancomment'){ ?>
+              <div class="comment-area" id="commentform"  >
+          
+           <span id="start2">开始:00:00</span>
+            <div class="area"><div class="progress1" id="progress2"></div></div>
+             <span id="end2">结束:00:00</span>
+          
+          
+         </div>  <?php } ?>
+         
+         
 						<textarea id="editors" placeholder="输入评论..." style="padding:5px;"></textarea>
 						<div class="icongroups">
 				

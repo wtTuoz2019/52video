@@ -960,4 +960,47 @@ p.allcomment span{
 			span.resdel{
 				margin-right:5px;
 			}
+			.nosie .title{
+				float:inherit;
+			}
+			.nosie li{
+				text-align:left;
+				padding:0 20px;
+				font-size:12px;
+				padding-top:13px;
+				color:#000;
+			}
+			.nosie p{
+				padding:0 20px;
+				font-size:12px;
+				color:#757474;
+			}
+			.nosie p.headtitle{
+				padding:15px 20px;
+				border-bottom:1px solid #D2D2D2;
+			}
+			.nosie li.table{
+				padding-bottom:13px;
+				border-bottom: 1px dashed #D4D4D4;
+				padding-top:10px;
+			}
+			.nosie li.table input{
+				margin:0;
+				margin-left: 15px;
+				position: relative;
+				top: 2px;
+			}
+			.nosie{
+				padding-bottom:20px;
+			}
+			.nosie button{
+				height:30px;
+				padding:0 20px;
+				font-size:12px;
+				background:#EEEEEE;
+				border:1px solid #c3c3c3;
+				display:block;
+				margin:0 auto;
+				margin-top:20px;
+			}
 

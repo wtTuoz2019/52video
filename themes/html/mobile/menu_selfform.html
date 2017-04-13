@@ -1,0 +1,42 @@
+  <?php  if(  $this->commentinputs&& $this->selfform){
+              
+                  ?>
+                 <div class="choosep nosie">
+                 <p class="headtitle"><?=$this->selfform['intro']?></p>
+                   <form action="__INDEX__/selfform/post" method="post" id="form" >
+                 
+                      <!--foreach:{$this->commentinputs $v}-->
+                     
+      					{$php( echo model('selfform')->get_field_html($v,''))}
+                       
+      				  <!--{/foreach}-->
+           
+           
+            <input type="hidden" name="aid"  value="{$info.aid}"/>
+            <input type="hidden" name="fid" value="{$v.fid}"/>
+            <button type="submit" class="tijiao">提交</button>
+        </form>
+        
+             </div>
+             
+       <script type=text/javascript src="/public/js/duxui.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+<script type=text/javascript src="/public/kindeditor/kindeditor-min.js"></script>
+<script type=text/javascript src="/public/kindeditor/lang/zh_CN.js"></script>
+<script type=text/javascript src="/public/js/common.js"></script>
+<script type="text/javascript">
+saveform({
+	success:function(msg){
+		tip({msg:msg});
+		document.getElementById("form").reset();
+  
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+
+</script>
+              <?php } ?>
+              
