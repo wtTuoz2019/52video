@@ -121,7 +121,7 @@ class contentMod extends commonMod
 		
 				
 		
-			if($activity['autoaudit']&&$activity['noaudit']&&$signinfo['status']==0){
+			if($activity['autoaudit']&&$activity['noaudit']&&$signinfo['status']==0&&$signinfo){
 		$activity['auditfield_lists']=unserialize($activity['auditfield_lists']);
 		$userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
 				$where=array();
@@ -175,7 +175,7 @@ class contentMod extends commonMod
 			$signinfo=model('form_list')->signinfo(array('uid'=>$this->userinfo['uid'],'aid'=>$info['aid']));
 			
 			
-			if($info['autoaudit']&&$info['noaudit']&&$this->signinfo['status']==0){
+			if($info['autoaudit']&&$info['noaudit']&&$signinfo['status']==0&&$signinfo){
 		$info['auditfield_lists']=unserialize($info['auditfield_lists']);
 		$userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
 				$where=array();
@@ -199,7 +199,7 @@ class contentMod extends commonMod
 			}
 			
 		$this->signinfo=$signinfo;
-		
+	
 	
 		if($this->signinfo['status']==0&&($_COOKIE['nosign']!='yes')){
 		$this->userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
