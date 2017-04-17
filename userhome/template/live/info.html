@@ -25,17 +25,14 @@
             </td>
           <td></td>
         </tr>
-        
-       <?php if($user['cid']){ ?>
-          <input name="csid" type="hidden" value="{$user.cid}" />
-         <?php }else{ ?>
+      
          <tr>
-          <td width="100" align="right">所属学校</td>
-          <td width="350" style="position:relative;"><select name="csid"  reg="." id="csid" >
-              <option value="0">======选择学校======</option>
-              <!--foreach:{$school $vo}--> 
-              <option value="{$vo['id']}" <?php if($info['csid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
-                  {$vo['name']}
+          <td width="100" align="right">所属学校通道</td>
+          <td width="350" style="position:relative;"><select name="channel"  reg="." id="channel" msg="学校通道必选" >
+              <option value="0">======选择学校通道======</option>
+              <!--foreach:{$channel $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['channel']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}({$vo.sn})
               </option>
               <!--{/foreach}-->
             </select>
@@ -141,7 +138,7 @@
           <td></td>
         </tr>
           </tbody>
-           <?php } ?>
+         
         <tr>
           <td width="100" align="right">标题</td>
           <td ><input name="title" type="text"class="form-control" id="title" value="{$info.title}" reg="\S" msg="标题不能为空" />
@@ -170,18 +167,7 @@
          <td>宽1000px,高550px</td>
         </tr>
         
-        <tr>
-          <td width="100" align="right">直播通道</td>
-          <td width="350"><select name="channel"  reg=".">
-              <?php 
-              foreach ($channel as $k => $vo) {
-              ?>
-              <option value="{$vo['id']}" <?php if($info['channel']==$vo['id']) { ?> selected="selected" <?php } ?> >{$vo['name']}</option>
-              <?php };?>
-            </select>
-            </td>
-          <td></td>
-        </tr>
+ 
      
       <tr>
         <td width="100" align="right">描述</td>
@@ -270,9 +256,9 @@
       </tr>
        <tbody id="field_list"  >
        
-          <tr >
+          <tr>
         <td width="100" align="right">报名选项</td>
-        <td width="350">
+        <td colspan="2">
        
          <!--foreach:{$field_list $vo}-->
          <!--if:{$vo['field']!='aid'}-->
@@ -281,7 +267,6 @@
            <!--{/foreach}-->
       
         </td>
-        <td></td>
       </tr>
         <tr>
         <td width="100" align="right">报名审核</td>
@@ -291,7 +276,7 @@
         </td>
         <td></td>
       </tr>
-       <tbody id="autosign"  >
+       <tbody id="autosign">
         <tr>
         <td width="100" align="right">自动审核</td>
         <td width="350" >
@@ -303,20 +288,19 @@
       
       <tr id="auditfield_lists">
         <td width="100" align="right">自动审核匹配项</td>
-        <td width="350" >
+        <td  colspan="2">
         <!--foreach:{$field_list $vo}-->
          <!--if:{$vo['field']!='aid'}-->
            <input name="auditfield_lists[]"  type="checkbox" value="{$vo['field']}"  <!--if:{in_array($vo['field'],$info['auditfield_lists'])}-->checked="checked"<!--{/if}-->  /> {$vo['name']}&nbsp;&nbsp;
            <!--{/if}--> 
            <!--{/foreach}-->
         </td>
-        <td></td>
       </tr>
       <?php } ?>
       </tbody>
       
       </tbody>
-  <!--<script>
+  <script>
       window.onload=function(){
 	 $('input[name="signup"]').parent().find('ins').click(function(){
 		   signupchange();
@@ -366,7 +350,7 @@
 		  }
 	  
       </script>
-      -->
+    
          
      <?php if(!$user['cid']){ ?>
       <tr >

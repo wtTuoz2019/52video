@@ -36,6 +36,8 @@ class userMod extends commonMod {
 	//用户添加
 	public function add() {
         $this->user_group=model('user_group')->admin_list();
+		$this->user_dai=model('user')->admin_list(' AND gid=6');
+
 		$this->action_name='添加';
         $this->action='add';
 		$this->school=model('school')->school_list();
@@ -66,6 +68,8 @@ class userMod extends commonMod {
         $id=$_GET['id'];
         $this->alert_str($id,'int');
         $this->user_group=model('user_group')->admin_list();
+		$this->user_dai=model('user')->admin_list(' AND gid=6');
+	
         $this->info=model('user')->info($id);
 		$this->school=model('school')->school_list();
         $this->info_group=model('user_group')->info($this->info['gid']);
@@ -125,6 +129,10 @@ class userMod extends commonMod {
 				$this->msg('学校必选！',0);
 				}
 			}
+		if(!$_POST['cid']){
+			$_POST['cid']=0;
+			}
+		
         //录入模型处理
         model('user')->edit($_POST);
         $this->msg('用户修改成功! ',1);

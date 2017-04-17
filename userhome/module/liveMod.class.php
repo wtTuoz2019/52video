@@ -134,16 +134,36 @@ class liveMod extends commonMod
         $category_list=model('category')->category_list();
         $subject=model('diyfield')->field_list(2);
 		$grade=model('diyfield')->field_list(1);
-		$school=model('school')->school_list();
-		$teacher=model('teacher')->model_list();
 		$user=model('user')->current_user();
 		$uid=$user['id'];
-		
-		$where=array();
-		if($uid&&$uid!=1){
-		$where=array('cid'=>$uid);	
+		if($user['gid']==6){
+			$temp;
+			if($user['cid']){
+				$temp[]=$user['id'];
+				}
+			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['id'];
+				}
 			}
-        $channel = model('device')->channel_list($where);
+			
+			if($temp){
+				$where='B.id in ('.implode(',',$temp).')  AND (B.overtime>'.time().' or B.overtime=0)';	
+				}
+			}else	{
+		
+			
+			if($uid&&$uid!=1){
+			$where='B.id='.$uid.' AND　B.overtime>'.time();	
+				}
+		
+     
+			}
+		$teacher=model('teacher')->model_list();
+		
+		   $channel = model('device')->channel_list($where);
+	
 		
         $position_list=model('position')->position_list();
         $tpl_list=model('category')->tpl_list();
@@ -274,6 +294,7 @@ class liveMod extends commonMod
     {	$this->actionname='直播发布';
         $cid=intval($_GET['cid']);
 		$user=model('user')->current_user();
+		
 		if($user['overtime']&&$user['overtime']<time()){
          $this->alert('直播服务已到期! 请联系管理员!');
        		 }
@@ -293,6 +314,10 @@ class liveMod extends commonMod
         $this->common_data_check($_POST);
 		$user=model('user')->current_user();
 		$_POST['uid']=$user['id'];
+		if($_POST['channel']){
+			$_POST['csid']=model('device')->getcsid($_POST['channel']);
+			}
+	
 			$_POST['field_lists']=serialize($_POST['field_lists']);
 			$_POST['auditfield_lists']=serialize($_POST['auditfield_lists']);
     	//保存内容信息
@@ -326,6 +351,10 @@ class liveMod extends commonMod
         //保存内容信息
 		$_POST['field_lists']=serialize($_POST['field_lists']);
 		$_POST['auditfield_lists']=serialize($_POST['auditfield_lists']);
+		if($_POST['channel']){
+			$_POST['csid']=model('device')->getcsid($_POST['channel']);
+			}
+	
         $status=model('live')->edit_save($_POST);
         model('live')->edit_content_save($_POST);
 		$time= $_POST['starttime'];

@@ -65,6 +65,12 @@ $(function(){
 
 
 
+$('.commentnav a').click(function(){
+	event.preventDefault();	
+	var id=$(this).attr('href');
+	$(id).addClass('active').siblings('.active').removeClass('active');
+});
+
 
 
 

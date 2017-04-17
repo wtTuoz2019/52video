@@ -77,6 +77,7 @@
             </td>
           <td></td>
         </tr>
+        <tbody id="teacherfield" style="display:none">
          <tr>
           <td width="100" align="right">所属年级</td>
           <td width="350"><select name="gid"  reg="." id="gid" onchange="changeteacher()" >
@@ -91,9 +92,24 @@
           <td></td>
         </tr>
         <script>
+        var sids=eval('<?php echo json_encode($subject);?>');
+		
         function changeteacher(){
 			var sid=$('#sid').val();
 			var gid=$('#gid').val();
+			$('#teacherfield').hide();
+			for(var i=0;i<sids.length;i++){
+					
+				if(sid==sids[i]['id']){
+				
+					if(sids[i]['pid']==66){
+						$('#teacherfield').show();
+						}
+					
+					}
+				
+				}
+			
 			$.post('__URL__/teacher/',{sid:sid,gid:gid},function(data){
 				var html=' <option value="0">======全部老师======</option>';
 				$.each(data,function(index,vo){
@@ -103,7 +119,7 @@
 				},'json');
 			
 			}
-        
+		
         </script>
           <tr>
           <td width="100" align="right">所属老师</td>
@@ -119,6 +135,7 @@
           <td></td>
         </tr>
           <?php } ?>
+          </tbody>
         <tr>
           <td width="100" align="right">标题</td>
           <td ><input name="title" type="text" class="form-control" id="title"  value="{$info.title}" reg="\S" msg="标题不能为空" />
@@ -212,7 +229,7 @@
        
           <tr >
         <td width="100" align="right">报名选项</td>
-        <td width="350">
+        <td colspan="2">
        
          <!--foreach:{$field_list $vo}-->
          <!--if:{$vo['field']!='aid'}-->
@@ -221,7 +238,6 @@
            <!--{/foreach}-->
       
         </td>
-        <td></td>
       </tr>
         <tr>
         <td width="100" align="right">报名审核</td>
@@ -243,19 +259,18 @@
       
       <tr id="auditfield_lists">
         <td width="100" align="right">自动审核匹配项</td>
-        <td width="350" >
+        <td colspan="2">
         <!--foreach:{$field_list $vo}-->
          <!--if:{$vo['field']!='aid'}-->
            <input name="auditfield_lists[]"  type="checkbox" value="{$vo['field']}"  <!--if:{in_array($vo['field'],$info['auditfield_lists'])}-->checked="checked"<!--{/if}-->  /> {$vo['name']}&nbsp;&nbsp;
            <!--{/if}--> 
            <!--{/foreach}-->
         </td>
-        <td></td>
       </tr>
       <?php } ?>
       
       </tbody>
-<!-- <script>
+ <script>
       window.onload=function(){
 	 $('input[name="signup"]').parent().find('ins').click(function(){
 		   signupchange();
@@ -304,7 +319,7 @@
 		  
 		  }
 	  
-      </script>-->
+      </script>
             
      <?php if(!$user['cid']){ ?>
       <tr >

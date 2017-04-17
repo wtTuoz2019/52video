@@ -492,7 +492,7 @@ button{
 	color:#000;
 	margin-right:20px;
 	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
-	background:linear-gradient(top,#ffffff,#d5d2d2);
+	background:linear-gradient(to bottom,#ffffff,#d5d2d2);
 	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
 	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
 }
@@ -503,7 +503,7 @@ button{
 	width:70px;
 	height:30px;
 	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
-	background:linear-gradient(top,#ffffff,#d5d2d2);
+	background:linear-gradient(to bottom,#ffffff,#d5d2d2);
 	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
 	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
     border: 1px solid #C3C3C3;
@@ -1617,6 +1617,7 @@ ul.pagination{
 .allmain{
 	width:1080px;
 	margin:0 auto;
+	margin-top:40px;
 }
 .allmain>h4{
 	font-size: 16px;
@@ -1645,7 +1646,7 @@ ul.pagination{
 	text-align:center;
 	line-height:28px;
 	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
-	background:linear-gradient(top,#ffffff,#d5d2d2);
+	background:linear-gradient(to bottom,#ffffff,#d5d2d2);
 	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
 	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
 	border:1px solid #C3C3C3;
@@ -1658,4 +1659,100 @@ ul.pagination{
 }
 .container div.batch a.delete{
 	margin-left:10px;
+}
+div.batch{
+	padding:0;
+	border:0;
+	padding-left:20px;
+	float:left;
+}
+div.batch a{
+	width: 70px;
+	height:30px;
+	text-align:center;
+	line-height:28px;
+	background: #eee;
+	border:1px solid #C3C3C3;
+	display:inline-block;
+	color:#000;
+	margin-right: 10px;
+}
+div.batch a.delete{
+	margin-left:10px;
+}
+.commentnav{
+	height:45px;
+	background:#B9B9B9;
+	line-height:45px;
+	padding-left:31px;
+}
+.commentnav a{
+    padding: 0 20px;
+    height: 30px;
+    border: 1px solid #C3C3C3;
+    line-height: 30px;
+    font-size: 12px;
+    display: inline-block;
+    text-align: center;
+    color: #000;
+    margin-right: 20px;
+    background: -moz-linear-gradient(top,#ffffff,#d5d2d2);
+    background: linear-gradient(to bottom,#ffffff,#d5d2d2);
+    background: -webkit-linear-gradient(top,#ffffff,#d5d2d2);
+    background: -o-linear-gradient(top,#ffffff,#d5d2d2);
+}
+.commentnav a:hover{
+	border-color:#000;
+}
+#surveylist .batch{
+	float:inherit;
+	overflow:hidden;
+	padding:10px;
+	padding-right:0;
+	line-height:30px;
+}
+#surveylist .batch .toexport{
+	float:right;
+	margin-right:0;
+}
+.commen-header .user_time{
+	float:right !important;
+}
+.problems .problem{
+	color:#919191;
+}
+.problems .problem:last-child{
+	padding-bottom:25px;
+}
+#surveydata {
+	overflow:hidden;
+	padding-top:40px;
+}
+.problemfigures {
+	float:left;
+	border:1px solid #D5D5D5;
+	margin-bottom:40px;
+}
+.problemfigures .figuretitle{
+	background:#EEEEEE;
+	text-align:center;
+	font-size:12px;
+	height:45px;
+	border-bottom:1px solid #D5D5D5;
+	line-height:45px;
+}
+.problemfigures:nth-child(even){
+	float:right;
+}
+.commentmain>div{
+	display:none;
+}
+.commentmain>div.active{
+	display:block;
+}
+#surveylist .table {
+	margin-bottom:25px;
+}
+#surveylist .table tr:last-child td{
+	border-bottom:1px solid #ddd;
 }

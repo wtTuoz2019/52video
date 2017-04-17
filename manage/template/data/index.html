@@ -23,36 +23,81 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
         <style>
-        	.htitle{
+        	.allmain .htitle{
 				font-size: 16px;
 				padding: 15px 7px;
 				border-bottom: 1px solid #B5B5B5;
 				width:1080px;
 				margin:0 auto;
-				margin-bottom:20px;
+				margin-bottom:15px;
+			}
+			.commentnav{
+				background:#fff;
+				padding-left: 5px;
+				margin-bottom:30px;
+			}
+			.datatitle{
+				height:45px;
+				background:#EEEEEE;
+				padding-left:15px;
+				border-bottom:1px solid #D4D4D4;
+				line-height:45px;
+			}
+			.data-statistic{
+				border:1px solid #d4d4d4;
+				padding-bottom:50px;
+			}
+			.data-statistic>div{
+				width:260px;
+				height:150px;
+				text-align:center;
+				padding:0;
+				padding-top:55px;
+			}
+			.data-statistic  div i.icon{
+				top: -40px;
+				left: 95px;
+			}
+			.data-statistic  div.data-statistic-title,.data-statistic .data-statistic-count{
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				height: initial;
+			}
+			{
+				
 			}
         </style>
     </head>
    <body style="background:#fff">
-
+<div class="allmain">
 <h4 class="htitle">数据详情</h4>
 
-<div class="container" style="width:720px;padding:20px; background:#E5E5E5;">
-       		<div class="row">
+
+<div class="commentnav">
+  <a href="#basisdata">基础数据</a>
+  <a href="#surveydata2">调查数据</a>
+</div>
+<div class="commentmain">
+<div class="container active" id="basisdata" style="width:1080px; padding:0;">
+       		<div>
        			<div class="data-statistic clearfix">
-		        	  <div class="data-statistic-currentcount" style="margin-left:40px;margin-right: 20px;">
+                	<p class="datatitle" style="margin-bottom:70px;">访问量次数</p>
+                
+                
+		        	  <div class="data-statistic-currentcount" style="margin-left:100px;margin-right: 50px;">
 					        <div class="data-statistic-title">总访问量</div>
-					        <div id="now1Online" class="data-statistic-count">{$data.allcount}<span class="postfix ml-15"></span></div>
+					        <div id="now1Online" class="data-statistic-count">{$data.allcount}</div>
 					        <i class="icon"></i>
 				      </div>
-				      <div class="data-statistic-daikuan" style="margin-right: 36px;">
+				      <div class="data-statistic-daikuan" style="margin-right: 50px; margin-left:0">
 					        <div class="data-statistic-title">点播</div>
-					        <div id="now5Bw" class="data-statistic-count">{$data.coursecount}<span class="postfix ml-15"></span></div>
+					        <div id="now5Bw" class="data-statistic-count">{$data.coursecount}</div>
 					        <i class="icon"></i>
 				      </div>
-				      <div class="data-statistic-totalcount" style="margin:0;">
+				      <div class="data-statistic-totalcount"  style="margin-left:0;">
 					        <div class="data-statistic-title">直播</div>
-					        <div id="datOnline" class="data-statistic-count">{$data.livecount}<span class="postfix ml-15"></span></div>
+					        <div id="datOnline" class="data-statistic-count">{$data.livecount}</div>
 					        <i class="icon"></i>
 				      </div>
 				    <!--  <div class="data-statistic-todydaikuan">
@@ -61,68 +106,53 @@
 					        <i class="icon"></i>
 				      </div>-->
 			    </div>
+                <div class="data-statistic clearfix" style="margin-top:20px; padding-bottom:20px;">
+                <p class="datatitle">流量统计图</p>
+		        	  <div id="flowall" style="margin:0; margin-left:190px; padding:40px 0; width:inherit; background:#fff;">
+					       <div class="rad-cntnt"><p>总流量</p><p style="color:#0EE196">{$data.allflow}M</p></div>
+				      </div>
+				      <div id="flowlive" style="margin:0; margin-left:100px; padding:40px 0; width:inherit;background:#fff;">
+					       <div class="rad-cntnt"><p>直播流量</p><p style="color:#F7E542">{$data.liveflow}M</p>  </div>
+				      </div>
+				      <div id="flowfield" style="margin:0; margin-left:100px; padding:40px 0; width:inherit;background:#fff;">
+					      <div class="rad-cntnt"><p>点播流量</p><p style="color:#EC5255">{$data.courseflow}M</p>  </div>
+				      </div>
+				 
+			    </div>
+                <div style="margin:20px 0">
+                <div style="display:inline-block;border:1px solid #d4d4d4; height:362px;">
+                <p class="datatitle">流量曲线图</p>
+                
+                <div class="chart" id="videoflow" style="width: 645px; height: 315px; display:inline-block;">
+                </div>
+                </div>
+                
+                <div style="display:inline-block; float:right;border:1px solid #d4d4d4;">
+                <p class="datatitle">访客来源统计</p>
+                <div class="chart pull-left" id="mobile-chart" style="height: 315px;width:395px; float:right !important;margin-right: 17px;"> 
+                    
+                   </div>
+                 </div>
+                 
+                </div>
+                
 			      <?php if($livenum){ ?>
                 <div class="chart" id="livenum" style="width: 675px; height: 300px;margin-left: 19px;"></div>
                  <?php } ?>
                   
 			  
-			    <div class="chart" id="line-chart" style="width: 675px; height: 300px;margin-left: 19px;"></div>
-               <div class="panel-heading" style="margin-top:20px;">
-			        <h3 class="panel-title stop-time">流量统计</h3>
-		        </div>
-                <style>
-     #flowall,#flowlive,#flowfield{
-    position: relative;
-    display: inline-block;
-	height:auto;
-
-}
- #flowall{
-	 margin-left:0px;	 
-	 }
- 
-.rad-cntnt{
-    position: absolute !important;
-	margin:auto !important;
-	height:auto !important;
-    display: table;
-    vertical-align: middle;
-    text-align: center;
-    width: 160px !important;
-    top:50%;
-	
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
-    font-size:20px;
-    line-height: 24px;
-}
-.rad-cntnt p{ line-height:30px;}
-                </style>
-			    <div class="data-statistic clearfix" style="margin-top:20px; padding-bottom:20px;">
-		        	  <div id="flowall" style="margin:0; margin-left:20px; padding:20px; width:inherit; background:#fff;">
-					       <div class="rad-cntnt"><p>总流量</p><p style="color:#0EE196">{$data.allflow}M</p></div>
-				      </div>
-				      <div id="flowlive" style="margin:0; margin-left:22px; padding:20px; width:inherit;background:#fff;">
-					       <div class="rad-cntnt"><p>直播流量</p><p style="color:#F7E542">{$data.liveflow}M</p>  </div>
-				      </div>
-				      <div id="flowfield" style="margin:0; margin-left:22px; padding:20px; width:inherit;background:#fff;">
-					      <div class="rad-cntnt"><p>点播流量</p><p style="color:#EC5255">{$data.courseflow}M</p>  </div>
-				      </div>
-				 
-			    </div>
-                   <div class="chart" id="videoflow" style="width: 675px; height: 300px;margin-left: 19px;"></div>
               
-			   
-		        <div class="panel-body ledata-home-userface clearfix" style="margin-top:20px;">
-			        <div class="box pull-left" style="width:325px;">
-                    <div class="panel-heading" style="margin:0; width:inherit;">
-			        <h3 class="panel-title">用户性别</h3>
-		        </div>
-			        	<div class="con sex clearfix pull-left" style="height:232px; width:325px;">
-                				<div style="margin-bottom: 30px" >
+              <div style="display:inline-block;border:1px solid #d4d4d4;">
+               <p class="datatitle">访客观看时间分区段统计</p>
+			    <div class="chart" id="line-chart" style="width: 645px; height: 315px;"></div>
+              
+              </div>
+               <div class="panel-body ledata-home-userface clearfix" style="display:inline-block;border:1px solid #d4d4d4; float:right;">
+                <p class="datatitle">用户性别图</p>
+			        <div class="box pull-left" style="height: 315px;width:395px; margin:0; border:0;">
+                    
+			        	<div class="con sex clearfix pull-left" style="height:100%; width:100%;border:0; padding-top:65px;">
+                				<div style="margin-bottom: 30px; text-align:center;padding: 0 40px;" >
                                     <p id="man_title" data-placement="bottom" data-toggle="tooltip"  class="pull-left" data-original-title="" title="">
                                             <i class="icon-data-user-man-wj" > </i>
                                             <i id="man_pic"></i>
@@ -132,7 +162,7 @@
                                     </div>
                                     <span> {$data.man}% </span>
                                 </div>
-                                <div style="margin-bottom: 30px" >
+                                <div style="margin-bottom: 30px; text-align:center; padding: 0 40px;" >
                                       <p id="woman_title" data-placement="bottom" data-toggle="tooltip" class="pull-left" data-original-title="" title="">
                                             <i class="icon-data-user-woman-wj"></i>
                                             <i id="woman_pic"></i>
@@ -142,7 +172,7 @@
                                     </div>
                                      <span> {$data.woman}% </span>
                                 </div>
-                                <div >
+                                <div  style="text-align:center; padding: 0 40px;">
                                    <p id="human_title" data-placement="bottom" data-toggle="tooltip"  class="pull-left" data-original-title="" title="">
                                             <i class="icon-data-user-human-wj"></i>
                                             <i id="human_pic"></i>
@@ -192,21 +222,148 @@
 				        </div>        -->
 			        </div>
                      
-               		<div class="chart pull-left" id="mobile-chart" style="height: 270px;width:325px; float:right !important;margin-right: 17px;"> 
-                    
-                   </div>
+               		
 		        </div>
+
+
+
+
+
+</div>
+
+
+
+                <style>
+     #flowall,#flowlive,#flowfield{
+    position: relative;
+    display: inline-block;
+	height:auto;
+
+}
+ #flowall{
+	 margin-left:0px;	 
+	 }
+ 
+.rad-cntnt{
+    position: absolute !important;
+	margin:auto !important;
+	height:auto !important;
+    display: table;
+    vertical-align: middle;
+    text-align: center;
+    width: 160px !important;
+    top:50%;
+	
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size:20px;
+    line-height: 24px;
+}
+.rad-cntnt p{ line-height:30px;}
+                </style>
+			    
+                   
+              
+			   
+		        
        			
 		        
     		</div>
+            <div id="surveydata2">
+            	<div class="problemfigures">
+                    <div class="figuretitle">问题1 : 合理处理知识技能与过程方法、情感态度的关系？</div>
+                    <div id="container1"  class="figure" style=" width:485px; height:330px;">
+                        
+                    </div>
+                 </div>
+                
+                 <div class="problemfigures">
+                    <div class="figuretitle">问题2 : 合理处理知识技能与过程方法、情感态度的关系？</div>
+                    <div id="container"  class="figure" style=" width:485px; height:330px;">
+                        
+                    </div>
+                 </div>
+                 
+                  <div class="problemfigures">
+                    <div class="figuretitle">问题3 : 合理处理知识技能与过程方法、情感态度的关系？</div>
+                    <div id="container"  class="figure" style=" width:485px; height:330px;">
+                        
+                    </div>
+                 </div>
+                 
+                  <div class="problemfigures">
+                    <div class="figuretitle">问题4 : 合理处理知识技能与过程方法、情感态度的关系？</div>
+                    <div id="container"  class="figure" style=" width:485px; height:330px;">
+                        
+                    </div>
+                 </div>
+            
+            
+            
+            </div>
+
     	</div>
 
  <!--<div class="chart" id="line-chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
  
  <div class="chart" id="mobile-chart" style="height: 400px;"></div>-->
+ </div>
 <script type=text/javascript src=" __PUBLICURL__/js/highcharts.js"></script>
 <script type=text/javascript src=" __PUBLICURL__/js/highcharts-3d.js"></script>
 <script type=text/javascript src=" __PUBLICURL__/js/radialIndicator.min.js"></script>
+
+
+<script>
+	$(function () {
+    $('#container1').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: '调查情况占比',
+			verticalAlign:'bottom',
+			style:{
+				fontSize:'14px'	
+			}
+        },
+        tooltip: {
+            headerFormat: '{series.name}<br>',
+            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '调查情况占比',
+            data: [
+                ['A',   45.0],
+                ['B',       55.0]
+            ]
+        }]
+    });
+});
+
+
+</script>
+
+
+
 <script type="text/javascript">
 var id='{$id}';
  
@@ -216,7 +373,7 @@ var id='{$id}';
             type: 'areaspline'
         },
         title: {
-            text: '流量曲线图'
+            text: ''
         },
         legend: {
             layout: 'vertical',
@@ -303,7 +460,7 @@ var id='{$id}';
             type: 'column'
         },
         title: {
-            text: '访客观看时间分区段统计'
+            text: ''
         },
         subtitle: {
             text: ''
@@ -357,10 +514,10 @@ $.post('__URL__/sexcity',{id:id},function(data){
             }
         },
         title: {
-            text: '访客来源统计'
+            text: ''
         },
         subtitle: {
-            text: '来源对比'
+            text: ''
         },
         plotOptions: {
             pie: {

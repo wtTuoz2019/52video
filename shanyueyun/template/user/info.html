@@ -33,6 +33,16 @@
       </select></td>
       <td></td>
     </tr>
+   <tr>
+      <td width="100" align="right">所属代理</td>
+      <td width="300"><select name="pid" id="pid">
+       <option value="0" >选择代理</option>
+        <!--foreach:{$user_dai $vo}-->
+        <option value="{$vo.id}" <?php if($info['pid']==$vo['id']) { ?> selected="selected" <?php } ?>>{$vo.nicename}</option>
+        <!--{/foreach}-->
+      </select></td>
+      <td></td>
+    </tr>
        
     <tr>
       <td width="100" align="right">帐号</td>
@@ -106,7 +116,7 @@
     
        <tr>
       <td width="100" align="right">营业执照</td>
-      <td width="300"><img src="{$info.cardimage}" height="500px;"></td>
+      <td width="300"><img src="{$info.cardimage}" height="200px;"></td>
       <td></td>
     </tr>
    	<?php if($action=='add'){ ?>

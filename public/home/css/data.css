@@ -6,6 +6,9 @@
 .data-statistic .data-statistic-currentcount {
     background: #1073c2 none repeat scroll 0 0;
 }
+.allmain .data-statistic .data-statistic-currentcount{
+	background:#3B5999;
+}
 .data-statistic  div {
     float: left;
     height: 110px;
@@ -38,6 +41,12 @@
 .data-statistic  div.data-statistic-currentcount .icon {
     background-position: -100px 0;
 }
+.allmain .data-statistic  div.data-statistic-currentcount .icon{
+	background:url(/public/home/images/usersee1.png) no-repeat scroll 0 0;
+	background-position:inherit;
+	height:77px;
+	width:77px;
+}
 .data-statistic  div i.icon {
     background: rgba(0, 0, 0, 0) url(/public/home/images/icon-data-home.png) no-repeat scroll 0 0;
     display: block;
@@ -53,14 +62,32 @@ em, i {
 .data-statistic  div.data-statistic-daikuan {
     background: #299ed9 none repeat scroll 0 0;
 }
+.allmain .data-statistic  div.data-statistic-daikuan{
+	background:#F86230;
+}
 .data-statistic  div.data-statistic-daikuan .icon {
    background-position: -100px -76px;
+}
+.allmain .data-statistic  div.data-statistic-daikuan .icon{
+	background:url(/public/home/images/usersee2.png) no-repeat scroll 0 0;
+	background-position:inherit;
+	height:77px;
+	width:77px;
 }
 .data-statistic  div.data-statistic-totalcount {
     background: #38b8e8 none repeat scroll 0 0;
 }
+.allmain .data-statistic  div.data-statistic-totalcount{
+	background:#55ACEF;
+}
 .data-statistic  div.data-statistic-totalcount .icon {
     background-position: 0 -76px;
+}
+.allmain .data-statistic  div.data-statistic-totalcount .icon{
+	background:url(/public/home/images/usersee3.png) no-repeat scroll 0 0;
+	background-position:inherit;
+	height:77px;
+	width:77px;
 }
 .data-statistic  div.data-statistic-todydaikuan {
     background: #56ceec none repeat scroll 0 0;

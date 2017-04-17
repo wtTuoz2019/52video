@@ -19,26 +19,7 @@
 		border-bottom: 1px solid #B5B5B5;
 	}
 	
-	.container div.batch{
-		padding:0;
-		border:0;
-		padding-left:20px;
-		float:left;
-	}
-	.container div.batch a{
-		width: 70px;
-		height:30px;
-		text-align:center;
-		line-height:28px;
-		background: #eee;
-		border:1px solid #C3C3C3;
-		display:inline-block;
-		color:#000;
-		margin-right: 10px;
-	}
-	.container div.batch a.delete{
-		margin-left:10px;
-	}
+	  
 	table td{
 		position:relative;
 		padding:20px 8px !important;
@@ -73,10 +54,27 @@
              <div class="borderk"> 
              <a href="__URL__/person/id-{$id}">评论列表</a>
              <a href="__URL__/selfform/id-{$id}">评论调查</a>
-  <a class="toexport" href="__URL__/person/id-{$id}-download-yes">评论导出</a>
+  
   
    </div>
              
+                <div class="commentnav">
+                	<a href="#surveylist">调查列表</a>
+                	<a href="#surveydata">调查数据</a>
+                </div>
+                
+                
+             <div class="commentmain">
+             
+                
+                
+           <div id="surveylist" class="active">   
+                
+                	<div class="batch">
+                    	<input type="checkbox" value="all" id="all" onclick="allchoose(this)"/>全选
+                       <!-- <a href="javascript:;" class="manage">批量管理</a>-->
+                       <a class="toexport" href="__URL__/person/id-{$id}-download-yes">导出</a>
+                   </div>
                 
                 	<div class="box-body" style="display:block">
                     	
@@ -90,15 +88,41 @@
                                     	<input type="checkbox" name="id[]" onclick="mychoose(this)" value="{$vo.id}" />
 										<p class="pull-left floor">ID:{$vo['id']}</p>
 										<p class="pull-left user-name">用户名：&nbsp;&nbsp;<span><?php echo model('comment')->info_user($vo['uid']); ?></span></p>
-										<p class="pull-left date-time">评论时间: &nbsp;&nbsp;<span>{$php(echo date('Y-m-d H:i:s',$vo['time']))}</span></p>
+										<p class="pull-left date-time user_time">评论时间: &nbsp;&nbsp;<span>{$php(echo date('Y-m-d H:i:s',$vo['time']))}</span></p>
 									</div>
 									<div class="comment-content clearfix">
+                                    	<div class="problems">
+                                        
+                                        	<div class="problem">
+                                            	<p>
+                                                	问题 1: 目标制定：目标清晰、准确，突出重点？
+                                                </p>
+                                                <p>
+                                                	回答：A
+                                                </p>
+                                       		</div>
+                                            
+                                            <div class="problem">
+                                            	<p>
+                                                	问题 2:目标制定：目标清晰、准确，突出重点？ 
+                                                </p>
+                                                <p>
+                                                	回答：B
+                                                </p>
+                                       		</div>
+                                            
+                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                    
 										<p>{$vo.message}</p>
-										<a href="javascript:;" class="delete-comment pull-right f-14" onclick="del('{$vo.id}',this)">删除</a>
+										<!--<a href="javascript:;" class="delete-comment pull-right f-14" onclick="del('{$vo.id}',this)">删除</a>
                                         
                                         <?php if(!$vo['flag']){ ?>
                                         <a href="javascript:;" class="delete-comment pull-right f-14" onclick="examine('{$vo.id}',this)">审核</a>
-                                        <?php } ?>
+                                        <?php } ?>-->
 									</div>
 								</td>
 							</tr>
@@ -109,12 +133,7 @@
             	</div>
         	
   <div class="row">
-  <div class="batch">
-                    	<input type="checkbox" value="all" id="all" onclick="allchoose(this)"/>全选
-                        <a href="javascript:;" class="delete" onclick="audit(2)">删除</a>
-                        <a href="javascript:;" class="audit" onClick="audit(1)">审核</a>
-                       <!-- <a href="javascript:;" class="manage">批量管理</a>-->
-                    </div>
+  
   
   
   
@@ -122,8 +141,100 @@
                                            {$page}
                                         </ul>
                                     </div>
+                                    
+ </div>  
+ <div id="surveydata">
+     <div class="problemfigures">
+        <div class="figuretitle">问题1 : 合理处理知识技能与过程方法、情感态度的关系？</div>
+        <div id="container"  class="figure" style=" width:455px; height:315px;">
+            
+        </div>
+     </div>
+ 	
+     <div class="problemfigures">
+        <div class="figuretitle">问题2 : 合理处理知识技能与过程方法、情感态度的关系？</div>
+        <div id="container"  class="figure" style=" width:455px; height:315px;">
+            
+        </div>
+     </div>
+     
+      <div class="problemfigures">
+        <div class="figuretitle">问题3 : 合理处理知识技能与过程方法、情感态度的关系？</div>
+        <div id="container"  class="figure" style=" width:455px; height:315px;">
+            
+        </div>
+     </div>
+     
+      <div class="problemfigures">
+        <div class="figuretitle">问题4 : 合理处理知识技能与过程方法、情感态度的关系？</div>
+        <div id="container"  class="figure" style=" width:455px; height:315px;">
+            
+        </div>
+     </div>
+ 	
+ </div>                                   
+                                    
+                                    
+</div>  
+                                    
  
 </div>
+
+
+<script type=text/javascript src=" __PUBLICURL__/js/highcharts.js"></script>
+<script type=text/javascript src=" __PUBLICURL__/js/highcharts-3d.js"></script>
+<script type=text/javascript src=" __PUBLICURL__/js/radialIndicator.min.js"></script>
+<script>
+	$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+        title: {
+            text: '调查情况占比',
+            align: 'center',
+            verticalAlign: 'middle',
+            y: 50,
+			style:{fontSize:'12px'}
+        },
+        tooltip: {
+            headerFormat: '{series.name}<br>',
+            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: true,
+                    distance: -50,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'white',
+                        textShadow: '0px 1px 2px black'
+                    }
+                },
+                startAngle: -90,
+                endAngle: 90,
+                center: ['50%', '75%']
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '浏览器占比',
+            innerSize: '50%',
+            data: [
+                ['A',   45.7],
+                ['B',       26.8],
+                ['C', 15.8],
+                ['D',    11.7],
+                
+            ]
+        }]
+    });
+});
+
+</script>
 
 
 
@@ -334,6 +445,11 @@ function ajaxposta(config,url,data,tip,success,failure,cancel){
 			});
 			
 		}
+
+
+//
+
+
 
 
 
