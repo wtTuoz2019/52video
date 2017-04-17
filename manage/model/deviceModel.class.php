@@ -100,7 +100,7 @@ class  deviceModel extends commonModel
        
         return $status;
        
-    }
+    } 
 
  
     
