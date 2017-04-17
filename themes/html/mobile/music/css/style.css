@@ -926,7 +926,7 @@ p.allcomment span{
 				padding:0; 
 				background:#eee;
 				overflow: inherit;
-				max-height: 45px;
+				margin-bottom: 3px;
 			}
 			#orderList  ul li{
 				padding:3px 0;
@@ -949,9 +949,6 @@ p.allcomment span{
 			}
 			.commentarea_right .commid{
 				margin-top:10px;
-			}
-			.commentarea_right .commentlist>ul[id^="commentlist"]>li{
-				margin-bottom:5px !important;
 			}
 			.commentarea_right .commentlist>ul[id^="commentlist"]>li .left>img{
 				margin-left: 7px;

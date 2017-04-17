@@ -155,7 +155,7 @@ class liveMod extends commonMod
 		
 			
 			if($uid&&$uid!=1){
-			$where='B.id='.$uid.' AND　B.overtime>'.time();	
+			$where='B.id='.$uid.' AND B.overtime>'.time();	
 				}
 		
      
