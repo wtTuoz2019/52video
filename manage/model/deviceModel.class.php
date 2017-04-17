@@ -24,7 +24,12 @@ class  deviceModel extends commonModel
 	
 	public function channel_list($where=null){
 		
-		return  $this->model->field('id,sn as name')->table('device')->where($where)->select();
+		return  $this->model->field('A.id,A.sn,C.name')->table('device','A')->add_table('admin','B','A.cid=B.id')->add_table('school','C','B.cid=C.id')->where($where)->select();
+		}
+		public function getcsid($snid){
+		
+		$data=$this->model->field('C.id')->table('device','A')->add_table('admin','B','A.cid=B.id')->add_table('school','C','B.cid=C.id')->where('A.id='.$snid)->find();
+		return $data['id'];
 		}
     //获取科室树形列表
     public function teacher_list($id = 0) {
