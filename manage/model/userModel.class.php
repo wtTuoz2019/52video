@@ -44,7 +44,7 @@ class userModel extends commonModel
     }
 
     //获取用户列表
-    public function admin_list()
+    public function admin_list($where=null)
     {
         $user=$this->current_user();
         if(model('user_group')->model_power('user','current')&&$user['keep']<>1){

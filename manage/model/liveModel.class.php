@@ -32,9 +32,22 @@ class liveModel extends commonModel
         }
 		 $user=model('user')->current_user();
 		 
+		 if($user['gid']==6){
+				$temp;
+			if($user['cid']){
+				$temp[]=$user['cid'];
+				}
+			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['cid'];
+				}
+			} 
+			$whereuid=" AND A.csid  in (".implode(',',$temp).") ";
+			 }else{
 		if($user['cid'])	
 	 	$whereuid=" AND A.csid =".$user['cid'];
-		
+			 }
         if(!empty($where)||!empty($where_cid)){
             $where="WHERE {$where_cid}{$where}";
         }else{
@@ -74,8 +87,22 @@ class liveModel extends commonModel
             $position_sql=" LEFT JOIN {$this->model->pre}position_relation D ON D.aid = A.aid ";
         }
 		 $user=model('user')->current_user();
+		 if($user['gid']==6){
+				$temp;
+			if($user['cid']){
+				$temp[]=$user['cid'];
+				}
+			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['cid'];
+				}
+			} 
+			$whereuid=" AND A.csid  in (".implode(',',$temp).") ";
+			 }else{
 		if($user['cid'])	
-		$whereuid=" AND A.csid =".$user['cid'];
+	 	$whereuid=" AND A.csid =".$user['cid'];
+			 }
         if(!empty($where)||!empty($where_cid)){
             $where="WHERE {$where_cid}{$where}";
         }
