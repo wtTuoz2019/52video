@@ -286,8 +286,10 @@ class contentMod extends commonMod
     //内容保存
     public function add_save()
     {
-//        model('content')->move($_POST['videourl']);
-//        $_POST['videourl'] = str_replace('/video/', '/move/', $_POST['videourl']); 
+
+		if(!$_POST['csid']){
+			$this->msg('学校通道必选！',0);
+			}
         /*hook*/
         $_POST=$this->plus_hook_replace('content','add_replace',$_POST);
         /*hook end*/
@@ -575,7 +577,9 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
     //内容保存
     public function edit_save()
     {
-
+	if(!$_POST['csid']){
+			$this->msg('学校通道必选！',0);
+			}
         /*hook*/
         $_POST=$this->plus_hook_replace('content','edit_replace',$_POST);
         /*hook end*/

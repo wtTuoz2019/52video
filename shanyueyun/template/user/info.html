@@ -68,7 +68,7 @@
    	 <tr>
           <td width="100" align="right">所属学校</td>
           <td width="300">
-               <select id="example-dropUp" multiple="multiple" reg="\S" msg="通道必选" name="cid">
+               <select id="example-dropUp" multiple="multiple"  name="cid">
                 <!--foreach:{$school $vo}--> 
               <option value="{$vo['id']}" <?php if($info['cid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
                   {$vo['name']}
@@ -109,8 +109,13 @@
         </td>
       </tr>
        <tr>
-      <td width="100" align="right">学校名称</td>
-      <td width="300"><input name="nicename" type="text" class="text_value" id="nicename" value="{$info.nicename}" reg="\S" msg="学校名称不能为空" /></td>
+      <td width="100" align="right">账号名称</td>
+      <td width="300"><input name="nicename" type="text" class="text_value" id="nicename" value="{$info.nicename}" reg="\S" msg="名称不能为空" /></td>
+      <td></td>
+    </tr>
+     <tr>
+      <td width="100" align="right">手机号码</td>
+      <td width="300"><input name="mobile" type="text" class="text_value" id="mobile" value="{$info.mobile}" /></td>
       <td></td>
     </tr>
     

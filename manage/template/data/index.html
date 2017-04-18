@@ -25,12 +25,39 @@
         <style>
         	.allmain .htitle{
 				font-size: 16px;
-				padding: 15px 7px;
-				width:1080px;
-				margin:0 auto;
+				font-weight: normal;
+				margin-bottom: 20px;
 			}
 			.commentnav{
 				margin-bottom:30px;
+				background:none;
+				padding: 20px 30px;
+				border: 1px solid #BABABA;
+				overflow: hidden;
+				height: initial;
+    			line-height: normal;
+			}
+			.commentnav a{
+				padding: 0 20px;
+				height: 30px;
+				border: 1px solid #C3C3C3;
+				line-height: 30px;
+				font-size: 12px;
+				display: inline-block;
+				text-align: center;
+				color: #000;
+				margin-right: 20px;
+				background: -moz-linear-gradient(top,#ffffff,#d5d2d2);
+				background: linear-gradient(to bottom,#ffffff,#d5d2d2);
+				background: -webkit-linear-gradient(top,#ffffff,#d5d2d2);
+				background: -o-linear-gradient(top,#ffffff,#d5d2d2);
+			}
+			.commentnav a.active{
+				background: #fff;
+				background: -moz-linear-gradient(top,#ffffff,#d5d2d2);
+				background: linear-gradient(to bottom,#ffffff,#d5d2d2);
+				background: -webkit-linear-gradient(top,#ffffff,#d5d2d2);
+				background: -o-linear-gradient(top,#ffffff,#d5d2d2);
 			}
 			.datatitle{
 				height:45px;
@@ -70,7 +97,7 @@
 <h4 class="htitle">数据详情</h4>
 
 
-<div class="commentnav">
+<div class="commentnav borderk">
   <a href="#basisdata" class="active">基础数据</a>
   <a href="#surveydata2">调查数据</a>
 </div>

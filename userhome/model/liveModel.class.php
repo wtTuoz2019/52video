@@ -33,7 +33,7 @@ class liveModel extends commonModel
 		 $user=model('user')->current_user();
 		 
 		 if($user['gid']==6){
-				$temp;
+					$temp;$temp[]=0;
 			if($user['cid']){
 				$temp[]=$user['cid'];
 				}
@@ -88,7 +88,7 @@ class liveModel extends commonModel
         }
 		 $user=model('user')->current_user();
 		 if($user['gid']==6){
-				$temp;
+				$temp;$temp[]=0;
 			if($user['cid']){
 				$temp[]=$user['cid'];
 				}

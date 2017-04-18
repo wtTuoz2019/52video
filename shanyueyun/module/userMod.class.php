@@ -53,6 +53,11 @@ class userMod extends commonMod {
             $this->msg('帐号不能重复！',0);
             return;
         }
+		if(($_POST['gid']==2||$_POST['gid']==4)&&!$_POST['cid']){
+			 $this->msg('所属学校必选！',0);
+            return;
+			}
+		
         $_POST['password']=md5($_POST['password']);
 		if($_POST['overtime']){
 			 $_POST['overtime']=strtotime($_POST['overtime']);
