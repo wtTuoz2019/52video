@@ -75,11 +75,13 @@ var commenturl="http://comment.shanyueyun.net";
 				$('#editors').attr('placeholder','');
 		      $("#mymodal").modal("toggle");
 		    }); 
-		$('#modal_cance').click(function(e) {
+	
+		$(document).ready(function(){ 
+			$('#modal_cance').click(function(e) {
             $("video").css({'height':'200px'});
+		
         });
 		
-		$(document).ready(function(){ 
 		   $('#input-type-submit').click(function(){
 			 
 				var this_ = this;

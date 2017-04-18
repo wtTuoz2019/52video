@@ -136,7 +136,7 @@ class apiMod extends commonMod
 //	}
 	public function getstatus(){
 		
-		$schoolname=urldecode($_GET['name']);
+	echo 	$schoolname=urldecode($_GET['name']);
 		$user=model('school')->user($schoolname);
 		if($user){
 			if($user['overtime'])
