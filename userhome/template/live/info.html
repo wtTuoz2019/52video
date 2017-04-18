@@ -31,7 +31,7 @@
           <td width="350" style="position:relative;"><select name="channel"  reg="." id="csid" msg="学校通道必选" >
               <option value="0">======选择学校通道======</option>
               <!--foreach:{$channel $vo}--> 
-              <option value="{$vo['id']}" <?php if($info['channel']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+              <option value="{$vo['id']}" <?php if($vo['overtime']>0&&$vo['overtime']<time()) { ?> disabled <?php } ?>   <?php if($info['channel']==$vo['id']) { ?> selected="selected" <?php } ?>  >
                   {$vo['name']}({$vo.sn})
               </option>
               <!--{/foreach}-->

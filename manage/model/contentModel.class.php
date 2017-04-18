@@ -58,12 +58,11 @@ class contentModel extends commonModel
         }
        $user=model('user')->current_user();
 		 if($user['gid']==6){
-				$temp;
+				$temp;$temp[]=0;
 			if($user['cid']){
 				$temp[]=$user['cid'];
 				}
 			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
-			
 			if($nextuser){
 			foreach($nextuser as $key=>$val){
 				$temp[]=$val['cid'];
@@ -105,7 +104,7 @@ class contentModel extends commonModel
         }
        $user=model('user')->current_user();
 		 if($user['gid']==6){
-				$temp;
+				$temp;$temp[]=0;
 			if($user['cid']){
 				$temp[]=$user['cid'];
 				}
@@ -115,7 +114,7 @@ class contentModel extends commonModel
 				$temp[]=$val['cid'];
 				}
 			} 
-			$whereuid=" AND A.csid  in (".implode(',',$temp).") ";
+		 	$whereuid=" AND A.csid  in (".implode(',',$temp).") ";
 			 }else{
 		if($user['cid'])	
 	 	$whereuid=" AND A.csid =".$user['cid'];

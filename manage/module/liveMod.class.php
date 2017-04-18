@@ -137,7 +137,8 @@ class liveMod extends commonMod
 		$user=model('user')->current_user();
 		$uid=$user['id'];
 		if($user['gid']==6){
-			$temp;$temp[]=0;
+			$temp;
+			$temp[]=0;
 			if($user['cid']){
 				$temp[]=$user['id'];
 				}
@@ -307,7 +308,9 @@ class liveMod extends commonMod
 
     //内容保存
     public function add_save()
-    {
+    {	if(!$_POST['csid']){
+			$this->msg('学校通道必选！',0);
+			}
         /*hook*/
         $_POST=$this->plus_hook_replace('live','add_replace',$_POST);
         /*hook end*/
@@ -343,7 +346,9 @@ class liveMod extends commonMod
 
     //内容保存
     public function edit_save()
-    {	
+    {	if(!$_POST['csid']){
+			$this->msg('学校通道必选！',0);
+			}
         /*hook*/
         $_POST=$this->plus_hook_replace('live','edit_replace',$_POST);
         /*hook end*/

@@ -1000,11 +1000,10 @@ p.allcomment span{
 				margin:0 auto;
 				margin-top:20px;
 			}
-.aui_state_noTitle{
-	left:10% !important;
-	width:80% !important;
-	font-size:12px;
-}
-.aui_state_focus .aui_content div{
-	font-size:12px;
-}
+			.support{
+				font-size:14px;
+				color:#353535;
+				float:right;
+				line-height:50px;
+				margin-right:10px;
+			}

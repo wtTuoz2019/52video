@@ -24,7 +24,7 @@ class  deviceModel extends commonModel
 	
 	public function channel_list($where=null){
 		
-		return  $this->model->field('A.id,A.sn,C.name')->table('device','A')->add_table('admin','B','A.cid=B.id')->add_table('school','C','B.cid=C.id')->where($where)->select();
+		return  $this->model->field('A.id,A.sn,C.name,B.overtime')->table('device','A')->add_table('admin','B','A.cid=B.id')->add_table('school','C','B.cid=C.id')->where($where)->select();
 		}
 		public function getcsid($snid){
 		

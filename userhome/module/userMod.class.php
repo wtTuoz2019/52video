@@ -12,6 +12,12 @@ class userMod extends commonMod {
 	}
 
 
+	public function set() {
+		 $this->info=model('user')->current_user();
+		$this->show('user/set');
+	}
+
+
 
 
 	  public function password() {
