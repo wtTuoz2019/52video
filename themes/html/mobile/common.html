@@ -36,7 +36,7 @@ setInterval("addvisit()",60000);
 					wx.onMenuShareTimeline({
 						title: '<?php echo $info["title"];?>', // 分享标题
 						link: 'http://<?php echo $data["MOBILE_DOMAIN"];?>{$info.aurl}', // 分享链接
-						imgUrl: 'http://<?php echo $data['MOBILE_DOMAIN'].$sys['logo'];?>', // 分享图标
+						imgUrl: '{$sys.imageurl}{$sys['logo']}', // 分享图标
 						success: function () { 
 							//alert('分享成功');
 						},
@@ -49,7 +49,7 @@ setInterval("addvisit()",60000);
 						title: '<?php echo $info['title'];?>', // 分享标题
 						desc: '<?php echo $str = str_replace(PHP_EOL, '', $info['description']);?>', // 分享描述
 						link: 'http://<?php echo $data['MOBILE_DOMAIN'];?>{$info.aurl}', // 分享链接
-						imgUrl: 'http://<?php echo $data['MOBILE_DOMAIN'].$sys['logo'];?>', // 分享图标
+						imgUrl: '{$sys.imageurl}{$sys['logo']}', // 分享图标
 						type: '', // 分享类型,music、video或link，不填默认为link
 						dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 						success: function () { 
