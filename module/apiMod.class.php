@@ -133,7 +133,7 @@ class apiMod extends commonMod
 //        $this->plus_hook('live','edit');
 //        /*hook end*/
 //        $this->msg('内容编辑成功！',1);
-//	}
+//	} 
 	public function getstatus(){
 		
 	 	$schoolname=urldecode($_GET['name']);
