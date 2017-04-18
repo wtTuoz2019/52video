@@ -66,7 +66,7 @@ $(function(){
 
 
 $('.commentnav a').click(function(){
-	event.preventDefault();	
+	
 	$(this).addClass('active').siblings('.active').removeClass('active');
 	
 	

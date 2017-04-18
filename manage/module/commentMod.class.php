@@ -113,10 +113,8 @@ class commentMod extends commonMod {
 		if(isset($_GET['download'])){
 				$list=model('comment')->get_list($where);
 				foreach($list as $k=>$v){
-					
-					$list[$k]['name']=model('comment')->info_user($v['uid']);
-					
-					}
+				$list[$k]['name']=model('comment')->info_user($v['uid']);
+				}
 					
 				
 		header("Content-Type: text/html; charset=utf-8");
@@ -138,7 +136,12 @@ class commentMod extends commonMod {
 		
         $this->show();
     }
+	 //评论列表
+    public function selfformdata()
+    {	
 	
+	 $this->show();
+	}
 	
     //评论添加
     public function add()
