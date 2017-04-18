@@ -149,7 +149,7 @@ class liveMod extends commonMod
 			}
 			
 			if($temp){
-				$where='B.id in ('.implode(',',$temp).')  AND (B.overtime>'.time().' or B.overtime=0)';	
+			 	$where='B.id in ('.implode(',',$temp).')  AND (B.overtime>'.time().' or B.overtime=0)';	
 				}
 			}else{
 		

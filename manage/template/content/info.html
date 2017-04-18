@@ -21,7 +21,9 @@
 								</select>
 							</td>
 						</tr>
-                        
+                         <?php if($user['cid']&&$user['gid']<>6){ ?>
+          <input name="csid" type="hidden" value="{$user.cid}" />
+         <?php }else{ ?>
 						<tr>
 							<td>所属学校：</td>
 							<td>
@@ -116,7 +118,7 @@
                             </td>                       
                            </tr>
                        
-                       
+                         <?php } ?>
                        
 						<tr>
 							<td>标题：</td>

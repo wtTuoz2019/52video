@@ -824,7 +824,7 @@ body .oftentable tr td{
 }
 .videolist>.search{
 	padding-bottom: 15px;
-	border-bottom: 1px solid #707070;
+	border-bottom: 3px solid #B5B5B5;
 	text-align: right;
 	position: relative;
 }
@@ -1688,24 +1688,25 @@ div.batch a.delete{
 .commentnav{
 	height:45px;
 	line-height:45px;
-	border-bottom:3px solid #e8e9e9;
+	padding: 5px 0 0 5px;
 	background:#B9B9B9;
 }
 .commentnav a{
     padding: 0 20px;
-    line-height: 38px;
+    line-height: 35px;
     font-size: 12px;
     display: inline-block;
     text-align: center;
     color: #000;
     margin-right: 20px;
+	color:#fff;
 }
 .commentnav a:hover{
 	border-color:#000;
 }
 .commentnav a.active{
-	border-bottom:3px solid #55b0c3;
-	color:#3297ac;
+	background:#fff;
+	color:#0D0D0D;
 }
 #surveylist .batch{
 	float:inherit;

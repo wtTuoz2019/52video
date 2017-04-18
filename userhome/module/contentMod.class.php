@@ -135,7 +135,36 @@ class contentMod extends commonMod
         $category_list=model('category')->category_list();
         $subject=model('diyfield')->field_list(2);
 		$grade=model('diyfield')->field_list(1);
-		$school=model('school')->school_list();
+		
+		$user=model('user')->current_user();
+		$uid=$user['id'];
+		if($user['gid']==6){
+			$temp;
+			if($user['cid']){
+				$temp[]=$user['cid'];
+				}
+			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['cid'];
+				}
+			}
+			
+			if($temp){
+			 	$where='id in ('.implode(',',$temp).')';	
+				}
+			}else{
+		
+			
+			if($user['cid']){
+			$where='id='.$uid;	
+				}
+		
+     
+			}
+		
+		$school=model('school')->school_list($where);
+		
 		$teacher=model('teacher')->model_list();
 		
         $position_list=model('position')->position_list();

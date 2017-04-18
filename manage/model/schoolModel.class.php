@@ -29,9 +29,22 @@ class  schoolModel extends commonModel
     }
 	
     //获取科室树形列表
-    public function school_list() {
+    public function school_list($where=null) {
        
-       $data= $this->model->table('school')->select();
+       $data= $this->model->table('school')->where($where)->select();
+		$temp=array();
+		if($data){
+		foreach($data as $k=>$v){
+			$temp[$v['id']]=$v;
+			}
+		}
+        return $temp;
+    }
+
+	    //获取科室树形列表
+    public function userschool_list($where=null) {
+       
+       $data= $this->model->field('A.*')->table('admin','A')->add_table('school','B','A.cid=B.id')->where($where)->select();
 		$temp=array();
 		if($data){
 		foreach($data as $k=>$v){

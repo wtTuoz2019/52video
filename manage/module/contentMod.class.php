@@ -135,7 +135,36 @@ class contentMod extends commonMod
         $category_list=model('category')->category_list();
         $subject=model('diyfield')->field_list(2);
 		$grade=model('diyfield')->field_list(1);
-		$school=model('school')->school_list();
+		
+		$user=model('user')->current_user();
+		$uid=$user['id'];
+		if($user['gid']==6){
+			$temp;
+			if($user['cid']){
+				$temp[]=$user['cid'];
+				}
+			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['cid'];
+				}
+			}
+			
+			if($temp){
+			 	$where='id in ('.implode(',',$temp).')';	
+				}
+			}else{
+		
+			
+			if($user['cid']){
+			$where='id='.$uid;	
+				}
+		
+     
+			}
+		
+		$school=model('school')->school_list($where);
+		
 		$teacher=model('teacher')->model_list();
 		
         $position_list=model('position')->position_list();
@@ -652,10 +681,6 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
             $this->action='functions';
 			 $where=$this->common_list_where();
 		 $this->list=model('live')->content_list(null,null,$where['where'],$where['order'],true);	 
-		 
-		 if($this->user['gid']!=1)
-			$whereform['uid']= $this->user['id'];
-		 $this->form_list=model('selfform')->form_list($whereform,$limit);
 		 $this->display('content/functions');
 		}
 	public function functionsedit(){
@@ -666,9 +691,6 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 			 $where=$this->common_list_where();
 		 $this->list=model('live')->content_list(null,null,$where['where'],$where['order'],true);	
 		$this->info=model('content')->functions_info(array('id'=>$id));	
-		 if($this->user['gid']!=1)
-		$whereform['uid']= $this->user['id'];
-		 $this->form_list=model('selfform')->form_list($whereform,$limit);
 		if($this->info['type']=='linkaid'){ 
 	
 		$this->content=explode(",",$this->info['content']);
@@ -677,20 +699,17 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 		}
 
 	public function functions_save(){
-		if($_POST['type']=='linkaid'){
+		if($_POST['type']=='linkaid')
 		$_POST['content']=implode(',',$_POST['content']);
-		
-		}
 		$id=model('content')->functions_add($_POST);
 		 $this->msg($id,1);
 		}
 	public function functionsedit_save(){
-		if($_POST['type']=='linkaid'){
+		if($_POST['type']=='linkaid')
 		$_POST['content']=implode(',',$_POST['content']);
-		}
 		$id=model('content')->functions_save($_POST);
 		 $this->msg($id,1);
-		} 
+		}
 	public function functionsdel(){
 		 $id=intval($_POST['id']);
         $this->alert_str($id,'int',true);

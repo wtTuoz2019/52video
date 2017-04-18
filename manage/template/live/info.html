@@ -25,12 +25,12 @@
 						<tr>
 							<td>所属学校：</td>
 							<td>
-								<select name="csid"  reg="." id="csid" >
+								<select name="channel"  reg="." id="csid" >
 									<option value="0">======选择学校======</option>
-                                      <!--foreach:{$school $vo}--> 
-                                      <option value="{$vo['id']}" <?php if($info['csid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
-                                          {$vo['name']}
-                                      </option>
+                                      <!--foreach:{$channel $vo}--> 
+                                     <option value="{$vo['id']}" <?php if($info['channel']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}({$vo.sn})
+              </option>
                                       <!--{/foreach}-->
 								</select>
 							</td>
