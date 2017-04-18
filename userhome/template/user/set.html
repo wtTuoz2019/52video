@@ -6,15 +6,15 @@
     
       <tr>
         <td width="120">名称</td>
-        <td width="300">
+        <td width="150">
         <input name="name" type="text" class="form-control" id="name" value="{$info.nicename}" reg="\S" msg="名称不能为空" />
         </td>
         <td></td>
       </tr>
       
        <tr>
-        <td width="100">LOGO</td>
-        <td colspan="2">
+        <td width="120">LOGO</td>
+        <td >
           <?php echo module('editor')->get_image_upload('image1','image',false,'editor_content') ?>
           <input name="logo" type="text" class="form-control" id="image" style="width:220px; float:left" value="{$info.logo}"/> 
           &nbsp;&nbsp;<input type="button" id="image1" class="button_small" value="选择图片" />
@@ -23,17 +23,17 @@
         <td></td>
         </tr>
         <tr>
-        <td width="100">介绍图片</td>
-        <td colspan="2">
+        <td width="120">介绍图片</td>
+        <td >
           <?php echo module('editor')->get_image_upload('desimage1','desimage',false,'editor_content') ?>
           <input name="desimage" type="text" class="form-control" id="desimage" style="width:220px; float:left" value="{$info.desimage}"/> 
-          &nbsp;&nbsp;<input type="button" id="desimage1" class="button_small" value="选择图片" />
+          &nbsp;&nbsp;<input type="button" id="desimage1" class="button_small" value="选择图片" />播放页面技术支持使用
        
         </td>
-        <td></td>
+        <td  align="left" ></td>
         </tr>
              <tr>
-      <td width="100" align="right">关于我们</td>
+      <td width="120" >关于我们</td>
       <td width="300">
         <?php echo module('editor')->get_editor('about'); ?>
       <textarea name="about" class="text_textarea" id="about">{$info.about}</textarea></td>

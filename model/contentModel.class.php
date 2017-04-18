@@ -297,6 +297,14 @@ class contentModel extends commonMod
 		return $this->model->table('device_peoples')->where($where)->find();
 		
 		}
-  
+  public function getdesimage($csid){
+	 $data= $this->model->field('pid')->table('admin')->where('cid='.$csid)->find();
+	
+	 if($data['pid']){
+		$data=$this->model->field('desimage')->table('admin')->where('id='.$data['pid'])->find();
+		
+	 }
+	 return $data['desimage'];
+	  }
 
 }

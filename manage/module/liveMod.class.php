@@ -150,13 +150,13 @@ class liveMod extends commonMod
 			}
 			
 			if($temp){
-			 	$where='B.id in ('.implode(',',$temp).')  AND (B.overtime>'.time().' or B.overtime=0)';	
+			 	$where='B.id in ('.implode(',',$temp).') ';	
 				}
 			}else{
 		
 			
 			if($user['cid']){
-			$where='B.id='.$uid.' AND B.overtime>'.time();	
+			$where='B.id='.$uid;	
 				}
 		
      
@@ -308,9 +308,7 @@ class liveMod extends commonMod
 
     //内容保存
     public function add_save()
-    {	if(!$_POST['csid']){
-			$this->msg('学校通道必选！',0);
-			}
+    {	
         /*hook*/
         $_POST=$this->plus_hook_replace('live','add_replace',$_POST);
         /*hook end*/
@@ -320,7 +318,9 @@ class liveMod extends commonMod
 		if($_POST['channel']){
 			$_POST['csid']=model('device')->getcsid($_POST['channel']);
 			}
-	
+	if(!$_POST['csid']){
+			$this->msg('学校通道必选！',0);
+			}
 			$_POST['field_lists']=serialize($_POST['field_lists']);
 			$_POST['auditfield_lists']=serialize($_POST['auditfield_lists']);
     	//保存内容信息
@@ -346,9 +346,7 @@ class liveMod extends commonMod
 
     //内容保存
     public function edit_save()
-    {	if(!$_POST['csid']){
-			$this->msg('学校通道必选！',0);
-			}
+    {
         /*hook*/
         $_POST=$this->plus_hook_replace('live','edit_replace',$_POST);
         /*hook end*/
@@ -359,7 +357,9 @@ class liveMod extends commonMod
 		if($_POST['channel']){
 			$_POST['csid']=model('device')->getcsid($_POST['channel']);
 			}
-	
+		if(!$_POST['csid']){
+			$this->msg('学校通道必选！',0);
+			}
         $status=model('live')->edit_save($_POST);
         model('live')->edit_content_save($_POST);
 		$time= $_POST['starttime'];

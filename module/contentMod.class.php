@@ -261,7 +261,9 @@ class contentMod extends commonMod
         $this->plus_hook('content','index',$this->info);
         $this->info=$this->plus_hook_replace('content','index_replace',$this->info);
         /*hook end*/
-       
+       $this->desimage=model('content')->getdesimage($info['csid']);
+	   
+	   
         $this->info=$info;
 
         if ($info["cid"] == 16) {

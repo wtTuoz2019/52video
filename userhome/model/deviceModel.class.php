@@ -29,6 +29,8 @@ class  deviceModel extends commonModel
 		public function getcsid($snid){
 		
 		$data=$this->model->field('C.id')->table('device','A')->add_table('admin','B','A.cid=B.id')->add_table('school','C','B.cid=C.id')->where('A.id='.$snid)->find();
+		
+		
 		return $data['id'];
 		}
     //获取科室树形列表

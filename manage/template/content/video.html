@@ -28,7 +28,7 @@
            <th>名称</th>
              
         <th>地址</th>
-        <th>操作</th>
+        <th width="15%">操作</th>
       </tr>
       <!--foreach:{$list $vo}-->
       <tr>
@@ -58,7 +58,23 @@
 </div>
 
                                   
- </div>                                  
+ </div>  
+ 
+<style>
+	.oftentable td a{
+		width: 115px;
+		height: 35px;
+		border: 1px solid #BABABA;
+		text-align: center;
+		line-height: 33px;
+		display:inline-block;
+	}
+	.oftentable td a:first-child{
+		margin-bottom:10px;
+	}
+	
+</style> 
+                                
 <script>
 
 //审核
