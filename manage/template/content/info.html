@@ -73,7 +73,7 @@
                             </td>
                          
                         </tr>
-                       
+                       <tbody id="teacherfield" style="display:none">
                         <tr>
                           <td>所属年级</td>
                           <td>
@@ -89,19 +89,33 @@
                           
                         </tr>
                        <script>
-						function changeteacher(){
-							var sid=$('#sid').val();
-							var gid=$('#gid').val();
-							$.post('__URL__/teacher/',{sid:sid,gid:gid},function(data){
-								var html=' <option value="0">======全部老师======</option>';
-								$.each(data,function(index,vo){
-									html+='<option value='+vo.id+' >'+vo.name+'</option>';
-									})
-								$('#tid').html(html);
-								},'json');
-							
-							}
-						
+						var sids=eval('<?php echo json_encode($subject);?>');
+		
+        function changeteacher(){
+			var sid=$('#sid').val();
+			var gid=$('#gid').val();
+			$('#teacherfield').hide();
+			for(var i=0;i<sids.length;i++){
+					
+				if(sid==sids[i]['id']){
+				
+					if(sids[i]['pid']==66){
+						$('#teacherfield').show();
+						}
+					
+					}
+				
+				}
+			
+			$.post('__URL__/teacher/',{sid:sid,gid:gid},function(data){
+				var html=' <option value="0">======全部老师======</option>';
+				$.each(data,function(index,vo){
+					html+='<option value='+vo.id+' >'+vo.name+'</option>';
+					})
+				$('#tid').html(html);
+				},'json');
+			
+			}
 						</script>
                        
                        <tr>
@@ -119,7 +133,7 @@
                            </tr>
                        
                          <?php } ?>
-                       
+                      </tbody>  
 						<tr>
 							<td>标题：</td>
 							<td>

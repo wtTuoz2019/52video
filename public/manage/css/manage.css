@@ -16,7 +16,7 @@ a{
 }
 a:hover, a:focus {
     text-decoration: none;
-	color: #5a5a5a;
+	color:inherit !important;
 	outline: none;
 }
 button{
@@ -1688,8 +1688,9 @@ div.batch a.delete{
 .commentnav{
 	height:45px;
 	line-height:45px;
-	padding: 5px 0 0 5px;
+	padding: 5px 0 0 15px;
 	background:#B9B9B9;
+	margin-top:15px;
 }
 .commentnav a{
     padding: 0 20px;

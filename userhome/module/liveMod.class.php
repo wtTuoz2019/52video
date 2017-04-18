@@ -138,6 +138,7 @@ class liveMod extends commonMod
 		$uid=$user['id'];
 		if($user['gid']==6){
 			$temp;
+			$temp[]=0;
 			if($user['cid']){
 				$temp[]=$user['id'];
 				}

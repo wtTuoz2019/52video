@@ -139,7 +139,7 @@ class contentMod extends commonMod
 		$user=model('user')->current_user();
 		$uid=$user['id'];
 		if($user['gid']==6){
-			$temp;
+			$temp;$temp[]=0;
 			if($user['cid']){
 				$temp[]=$user['cid'];
 				}
