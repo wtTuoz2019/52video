@@ -12,6 +12,12 @@ class userMod extends commonMod {
 	}
 
 
+	public function set() {
+		 $this->info=model('user')->current_user();
+		$this->show('user/set');
+	}
+
+
 
 
 	  public function password() {
@@ -58,7 +64,7 @@ class userMod extends commonMod {
         }else{
             unset($_POST['password']);
         }
-        $_POST['id']=$this->user['id'];
+        
         //录入模型处理
         model('user')->edit($_POST);
         $this->msg('密码修改成功! ',1);

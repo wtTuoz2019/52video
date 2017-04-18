@@ -321,7 +321,12 @@ button{
 #nav>a.active div.nav_userset1{
 	background-image: url(../img/nav_userset1_.png);
 }
-
+#nav>a div.nav_userset2{
+	background-image: url(../img/nav_userset2.png);
+}
+#nav>a.active div.nav_userset2{
+	background-image: url(../img/nav_userset2_.png);
+}
 #nav>a div.nav_WeChat1{
 	background-image: url(../img/nav_WeChat1.png);
 }
@@ -669,12 +674,12 @@ iframe{
     background: #eee;
     font-size: 12px;
 }
-.amendk #savepassword{
-	width: 220px;
+.amendk #savepassword,#save{
+	width: 170px;
 	height: 36px;
 	display: block;
 	margin: 0 auto;
-	margin-top: 90px;
+	margin-top: 40px;
 	border: 1px solid #B9B9B9;
 	background: #eee;
 	font-size: 12px;
@@ -833,15 +838,15 @@ body .oftentable tr td{
 	height:35px;
 	width:100px;
 	line-height:35px;
-	background:#64B7C8;
-	border-radius:5px;
+	background: -moz-linear-gradient(top,#ffffff,#d5d2d2);
+    background: linear-gradient(to bottom,#ffffff,#d5d2d2);
+    background: -webkit-linear-gradient(top,#ffffff,#d5d2d2);
+    background: -o-linear-gradient(top,#ffffff,#d5d2d2);
 	text-align:center;
 	margin-top:2.5px;
-	color:#fff;
+	color:#000;
 	font-size:14px;
-}
-.videolist>.search>a.sendlive{
-	background:#009BD4;
+	border: 1px solid #C3C3C3;
 }
 .videolist>.search input{
 	width: 275px;
