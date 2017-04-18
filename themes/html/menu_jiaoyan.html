@@ -1,5 +1,28 @@
   <link rel="stylesheet" href="__PUBLIC__/data/css/font-awesome.min.css" />   
  
+
+ <div class="contentBox">
+	<div class="addAnswerBox">
+    <?php  if(($activity['signup']||$info['signup'])&&!$signinfo['status']){ ?>
+          <div class="logintishi">
+          	 温馨提示：您还没有实名认证，暂时无法进行评论。<a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=no">立即验证</a>
+          </div>
+   
+    <?php }  ?> 
+    
+    
+    
+    <button id="editors" onClick="comment(this)">我要评论</button>
+    
+    
+    
+    
+		
+	</div>
+</div>
+
+
+
         
         <div class="modal fade bs-example-modal-sm hongbao" id="mymodal-data1" style=" width:345px;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">					
                <a href="javascript:" data-toggle="modal" data-target="#mymodal-data1"> <div class="Closebutton"></div></a>
@@ -55,17 +78,7 @@
 	</div>	
     
       <div class="load_m tr" id="more">加载更多</div>
-	
-   <!--   <div class="commentinput">
-			<img id="smile" src="__PUBLIC__/images/smile.png">
-            <?php if($info['hall']){ ?>
-            	<input type="text" id="editors" placeholder="我来说两句" readonly onClick="comment(this)">
-            <a  data-toggle="modal" data-target="#mymodal-data1"  href="javascript:"><img id="shang" src="__PUBLIC__/images/shang.png"></a>
-            <?php }else{?>
-			<input type="text" style="width:80%;" id="editors" placeholder="" readonly onClick="comment(this)">
-          <?php }?>
-		
-		</div>-->
+
     <script>
 			$('#refresh').bind('click',function(e){
 				automatic(arr);

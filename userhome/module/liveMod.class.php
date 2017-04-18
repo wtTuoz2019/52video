@@ -151,10 +151,10 @@ class liveMod extends commonMod
 			if($temp){
 				$where='B.id in ('.implode(',',$temp).')  AND (B.overtime>'.time().' or B.overtime=0)';	
 				}
-			}else	{
+			}else{
 		
 			
-			if($uid&&$uid!=1){
+			if($user['cid']){
 			$where='B.id='.$uid.' AND B.overtime>'.time();	
 				}
 		

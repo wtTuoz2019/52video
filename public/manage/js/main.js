@@ -67,6 +67,9 @@ $(function(){
 
 $('.commentnav a').click(function(){
 	event.preventDefault();	
+	$(this).addClass('active').siblings('.active').removeClass('active');
+	
+	
 	var id=$(this).attr('href');
 	$(id).addClass('active').siblings('.active').removeClass('active');
 });
