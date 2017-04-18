@@ -28,7 +28,7 @@
       
          <tr>
           <td width="100" align="right">所属学校通道</td>
-          <td width="350" style="position:relative;"><select name="channel"  reg="." id="channel" msg="学校通道必选" >
+          <td width="350" style="position:relative;"><select name="channel"  reg="." id="csid" msg="学校通道必选" >
               <option value="0">======选择学校通道======</option>
               <!--foreach:{$channel $vo}--> 
               <option value="{$vo['id']}" <?php if($info['channel']==$vo['id']) { ?> selected="selected" <?php } ?>  >
