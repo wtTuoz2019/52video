@@ -49,9 +49,9 @@ function ckcpt() {
 		
 	}
 	function getprogress(){
-		if(cid='16'){
-				alert('该功能只能在回看中实现');
-				return false;
+		if(cid=='16'){
+				
+				tip({"time":1,"msg":"该功能只能在回看中实现"});
 		}
 		
 		
@@ -64,7 +64,10 @@ function ckcpt() {
 		
 		}
 	function getprogressend(){
-		
+		if(cid=='16'){
+				
+		tip({"time":1,"msg":"该功能只能在回看中实现"});
+		}
 		var statusarray=CKobject.getObjectById('ckplayer_a1').getStatus();
 
 		var a=new   Date(statusarray.time*1000);
