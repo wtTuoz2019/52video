@@ -2,11 +2,11 @@
 <h4 class="bottomb">视频添加</h4>
 <div class="page_form amendk">
 <form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
-<div class="box-body">
+<div class="box-body   setsee" style="width:710px; margin:0 auto; border:1px solid #BABABA; padding:30px;">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
     
       <tr class="tr1">
-        <td width="120" align="right">名称</td>
+        <td>名称</td>
         <td width="300">
         <input name="name" type="text" class="form-control" id="name" value="{$info.name}" reg="\S" msg="名称不能为空" />
         </td>
@@ -14,7 +14,7 @@
       </tr>
   
          <tr class="tr2">
-        <td width="120" align="right">地址</td>
+        <td>地址</td>
         <td width="300">
         <input name="vurl" type="text" class="form-control" id="vurl" value="{$info.vurl}" reg="\S" msg="地址" />
         </td>
@@ -24,7 +24,7 @@
       <script type="text/javascript" src="__PUBLICURL__/ckplayer/js/offlights.js"></script>
    <script type="text/javascript" src="__PUBLICURL__/ckplayer/ckplayer.js" charset="utf-8"></script>
          <tr style="position:relative; display:block;">
-        <td  colspan="2"  style=" width:550px; vertical-align:top;"><div id="a1"></div>
+        <td  colspan="3"  style=" width:648px; padding:0;"><div id="a1"></div>
         <script type="text/javascript">
 	//如果你不需要某项设置，可以直接删除，注意var flashvars的最后一个值后面不能有逗号
 	function loadedHandler(){
@@ -62,7 +62,7 @@
 		};
 	var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always'};
 	var video=['{$info.vurl}'];
-	CKobject.embed('__PUBLICURL__/ckplayer/ckplayer.swf','a1','ckplayer_a1','100%','300',false,flashvars,video,params);
+	CKobject.embed('__PUBLICURL__/ckplayer/ckplayer.swf','a1','ckplayer_a1','100%','355',false,flashvars,video,params);
 	
 
 	function getprogress(){
@@ -116,54 +116,78 @@ if (i<10)
 </script>
         
         </td>
-      	 <td>
-        		 
-			<p  >
+      	 
+      </tr>
+      
+      <tr>
+      	<td colspan="3" style="padding:0; width:100%; text-align:left">
+        	
+            <div class="dot">
+            <p class="dottitle">
+            截取时间
+            	
+            </p>
+            
+            
+            <div class="dottime">
+            	<p  >
+                开始时间：
+           </p>
           
-           <input name="progress" id="progress" value="00:00:00" class="form-control"  type="text"  ><input type="button" value="获取开始时间点" class="button"  onclick="getprogress()" style="border-top:0;"/> 
+          
+           <input name="progress" id="progress" value="00:00:00" class="form-control"  type="text"  ><input type="button" value="获取" class="button"  onclick="getprogress()" /> 
             <input name="progress"  id="progressinput" value="0"   type="hidden" >
             
-             </p>
-            <p><input name="progressend" id="progressend" value="00:00:00"  class="form-control" type="text" ><input type="button" value="获取结束时间点" class="button"  onclick="getprogressend()" style="border-top:0;"/>
+            
+            </div>	 
+			
+            
+             <div class="dottime">
+             
+            <p>
+            结束时间：
+            </p>
+            <input name="progressend" id="progressend" value="00:00:00"  class="form-control" type="text" ><input type="button" value="获取" class="button"  onclick="getprogressend()" />
             <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
 				
-			</p>
-             <p><input name="title" id="title" value=""  class="form-control" type="text" placeholder="看点介绍" >
-			</p>
-			<p >
-	      <input type="button" onClick="addtime()" id="button" class="button" value="添加">
-			</p>
+			
+            
+            </div>
+            <div class="dottime" style="margin-bottom:25px;">
+            
+             <p>
+             	看点介绍：
+             </p>
+             <input name="title" id="title" value=""  class="form-control" type="text" placeholder="看点介绍" >
+			<input type="button" onClick="addtime()" id="button" class="button" value="添加" style="margin-left:2px;">
+            </div>
+			
 			<div class="clear" id="functions">
              <!--foreach:{$times $vo}-->
-        <div id="button{$vo.id}"><button type="button" class="button" data-time="{$vo.start}" end-time="{$vo.end}" onClick="playseek(this)">{$vo.name}</button>
-          <p><a href="javascript:" onClick="edittimes('{$vo.id}',this)">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:" onClick="deltimes('{$vo.id}',this)">删除</a></p>
+        <div id="button{$vo.id}"><button type="button" class="button" data-time="{$vo.start}" end-time="{$vo.end}" onClick="playseek(this)">{$vo.name len="4"}</button>
+          <p><a href="javascript:" onClick="edittimes('{$vo.id}',this)">编辑</a>
+          	<br />
+          <a href="javascript:" onClick="deltimes('{$vo.id}',this)">删除</a></p>
           </div>
         
-       
+       	<style>
+        	#functions{
+				border-top:1px solid #D1D1D1;
+				padding-bottom:25px;
+			}
+        	
+        </style>
         
         
            <!--{/foreach}-->
             </div>
 		
+        </div>
+        
          </td>
       </tr>
-      
       	
-      <script>
-      	$('.tr1').css('text-align','left');
-		$('.tr1>td:first-child').css('width','200px');
-		$('.tr2').css('text-align','left');
-		$('.tr2>td:first-child').css('width','200px');
-		
-		$(function(){
-			if($('#functions').children('div').length>0){
-				$('.form_submit button').css('margin-top','160px');
-			}
-		})
-		
-		
-		
-      </script>
+      
       
       
       
@@ -174,11 +198,12 @@ if (i<10)
      
      
     </table>
-</div>
-<div class="form_submit">
+    <div class="form_submit">
 <input name="id" type="hidden" value="{$info.id}" />
 <button type="submit" class="button">保存</button> 
 </div>
+</div>
+
 </form>
        
 </div>

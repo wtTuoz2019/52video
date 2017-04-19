@@ -19,6 +19,23 @@ class  commentModel extends commonModel
 		}
 		 return $temp;
     }
+	
+    //列表
+    public function selfform_list($where=null,$limit=null) {
+	
+      $data= $this->model->table('comment','A')->field('A.*,B.values,B.fid as formid')->add_table('selfform_value','B','A.id=B.commentid')->where($where)->limit($limit)->order('A.time desc,A.id desc')->select();
+		
+		
+		 return $data;
+    }
+	   //列表
+    public function selfform_count($where=null) {
+	
+      $data= $this->model->table('comment','A')->add_table('selfform_value','B','A.id=B.commentid')->where($where)->count();
+		
+		
+		 return $data;
+    }
 
     public function count($where=null)
     {

@@ -38,82 +38,46 @@ class commentMod extends commonMod {
     {	
 		$this->actionname='评论列表';
 	$this->id=$aid=isset($_GET['id']) ? intval($_GET['id']) : 0;
-        $url = __URL__ . '/person/id-'.$aid.'page-{page}'; //分页基准网址
+        $url = __URL__ . '/person/id-'.$aid.'-page-{page}'; //分页基准网址
         $listRows = 10;
         $page = new Page();
         $cur_page = $page->getCurPage($url);
         $limit_start = ($cur_page - 1) * $listRows;
         $limit = $limit_start . ',' . $listRows;
-		
-		
+	
+			
 		$where=' fid ='.$aid;
-		
-        
-        $count=model('comment')->count($where);
-        $this->assign('page', $this->page($url, $count, $listRows));
-		
-        $this->list=model('comment')->model_list($limit,$where);
-        $this->subject=model('diyfield')->field_list_data(2);
-        $this->grade=model('diyfield')->field_list_data(1);
-		
-		
+			
+		$content=model('content')->info($aid);
+		if($content['signup']){
+			$signup=true;		
+				
+				}
+		if($content['activity_id']){
+			$activity=model('content')->info($content['activity_id']);
+			if($activity['signup']){
+				$aid=$activity['aid'];
+				$signup=true;		
+				
+				}
+				}	
+      	
 		if(isset($_GET['download'])){
 				$list=model('comment')->get_list($where);
-				foreach($list as $k=>$v){
-					
-					$list[$k]['name']=model('comment')->info_user($v['uid']);
+						foreach($list as $k=>$v){
+			if($signup){
+				
+				$signinfo=model('form_list')->signinfo(array('uid'=>$v['uid'],'aid'=>$aid));
+				
+				if($signinfo['status']){
+				$userinfo=model('form_list')->infobyuser($v['uid'],'signup');
+				$list[$k]['name']=$userinfo['name']?$userinfo['name']:model('comment')->info_user($v['uid']);
+				
 					
 					}
-					
-				
-		header("Content-Type: text/html; charset=utf-8");
-		header("Content-type:application/vnd.ms-execl");
-		header("Content-Disposition:filename=employee.xls");
-		echo iconv('utf-8','gbk','评论')."\t";
-		echo iconv('utf-8','gbk','评论人')."\t";
-		
-		echo iconv('utf-8','gbk','时间')."\n";
-		foreach($list as $k=>$v){
-		echo iconv('utf-8','gbk',str_replace("\n","",$v['message']))."\t";
-		echo iconv('utf-8','gbk',$v['name'])."\t";
-		
-		echo iconv('utf-8','gbk',date("Y/m/d H:i",$v['time']))."\n";
-		
-		}
-			die;
-			}
-		
-        $this->show();
-    }
-	
-	 //评论列表
-    public function selfform()
-    {	
-		$this->actionname='评论调查';
-	$this->id=$aid=isset($_GET['id']) ? intval($_GET['id']) : 0;
-        $url = __URL__ . '/selfform/id-'.$aid.'page-{page}'; //分页基准网址
-        $listRows = 10;
-        $page = new Page();
-        $cur_page = $page->getCurPage($url);
-        $limit_start = ($cur_page - 1) * $listRows;
-        $limit = $limit_start . ',' . $listRows;
-		
-		
-		$where=' fid ='.$aid;
-		
-        
-        $count=model('comment')->count($where);
-        $this->assign('page', $this->page($url, $count, $listRows));
-		
-        $this->list=model('comment')->model_list($limit,$where);
-        $this->subject=model('diyfield')->field_list_data(2);
-        $this->grade=model('diyfield')->field_list_data(1);
-		
-		
-		if(isset($_GET['download'])){
-				$list=model('comment')->get_list($where);
-				foreach($list as $k=>$v){
+				}else{
 				$list[$k]['name']=model('comment')->info_user($v['uid']);
+				}
 				}
 					
 				
@@ -133,13 +97,177 @@ class commentMod extends commonMod {
 		}
 			die;
 			}
+        $count=model('comment')->count($where);
+        $this->assign('page', $this->page($url, $count, $listRows));
+		
+        $list=model('comment')->model_list($limit,$where);
+				foreach($list as $k=>$v){
+			if($signup){
+				
+				$signinfo=model('form_list')->signinfo(array('uid'=>$v['uid'],'aid'=>$aid));
+				
+				if($signinfo['status']){
+				$userinfo=model('form_list')->infobyuser($v['uid'],'signup');
+				$list[$k]['name']=$userinfo['name']?$userinfo['name']:model('comment')->info_user($v['uid']);
+				
+					
+					}
+				}else{
+				$list[$k]['name']=model('comment')->info_user($v['uid']);
+				}
+				}
+		$this->list=$list;
+		
+      
+		
+	
+		
+        $this->show();
+    }
+	
+	 //评论列表
+    public function selfform()
+    {	
+		$this->actionname='评论调查';
+	    $this->id=$aid=isset($_GET['id']) ? intval($_GET['id']) : 0;
+		
+		$where=' A.fid ='.$aid;
+		   $url = __URL__ . '/selfform/id-'.$aid.'-page-{page}'; //分页基准网址
+		$content=model('content')->info($aid);
+		if($content['signup']){
+			$signup=true;		
+				
+				}
+		if($content['activity_id']){
+			$activity=model('content')->info($content['activity_id']);
+			if($activity['signup']){
+				$aid=$activity['aid'];
+				$signup=true;		
+				
+				}
+				}	
+			
+			
+		
+		if(isset($_GET['download'])){
+			$list=model('comment')->selfform_list($where);
+				foreach($list as $k=>$v){
+			if($signup){
+				
+				$signinfo=model('form_list')->signinfo(array('uid'=>$v['uid'],'aid'=>$aid));
+				
+				if($signinfo['status']){
+				$userinfo=model('form_list')->infobyuser($v['uid'],'signup');
+				$list[$k]['name']=$userinfo['name']?$userinfo['name']:model('comment')->info_user($v['uid']);
+				
+					
+					}
+				}else{
+				$list[$k]['name']=model('comment')->info_user($v['uid']);
+				}
+				}
+				
+    	if($list){
+			
+		 $formlist=model('selfform')->inputs_list(array('fid'=>$list[0]['formid']));	
+		foreach($list as $key=>$value){
+			$list[$key]['values']=unserialize($value['values']);
+			}
+			}	
+				
+		header("Content-Type: text/html; charset=utf-8");
+		header("Content-type:application/vnd.ms-execl");
+		header("Content-Disposition:filename=selfform.xls");
+		foreach($formlist as $key=>$value){
+			echo iconv('utf-8','gbk',$value['name'])."\t";
+			}
+		
+		echo iconv('utf-8','gbk','评论')."\t";
+		echo iconv('utf-8','gbk','评论人')."\t";
+		
+		echo iconv('utf-8','gbk','时间')."\n";
+		foreach($list as $k=>$v){
+		foreach($formlist as $key=>$model){
+			echo iconv('utf-8','gbk',model('expand_model')->get_list_model($model['type'],$v['values'][$model['field']],$model['options']))."\t";
+			}	
+			
+		echo iconv('utf-8','gbk',str_replace("\n","",$v['message']))."\t";
+		echo iconv('utf-8','gbk',$v['name'])."\t";
+		
+		echo iconv('utf-8','gbk',date("Y/m/d H:i",$v['time']))."\n";
+		
+		}
+			die;
+			}
+		
+  
+        $listRows = 10;
+        $page = new Page();
+        $cur_page = $page->getCurPage($url);
+        $limit_start = ($cur_page - 1) * $listRows;
+        $limit = $limit_start . ',' . $listRows;
+		
+		
+		
+        
+        $count=model('comment')->selfform_count($where);
+        $this->assign('page', $this->page($url, $count, $listRows));
+		
+        $list=model('comment')->selfform_list($where,$limit);
+    	if($list){
+			
+		 $this->formlist=model('selfform')->inputs_list(array('fid'=>$list[0]['formid']));	
+		foreach($list as $key=>$value){
+			$list[$key]['values']=unserialize($value['values']);
+			
+				
+			if($signup){
+				
+				$signinfo=model('form_list')->signinfo(array('uid'=>$value['uid'],'aid'=>$aid));
+			
+				if($signinfo['status']){
+				$userinfo=model('form_list')->infobyuser($value['uid'],'signup');
+				$list[$key]['name']=$userinfo['name']?$userinfo['name']:model('comment')->info_user($value['uid']);
+				
+					
+					}
+				}else{
+				$list[$key]['name']=model('comment')->info_user($value['uid']);
+				}
+				}
+			
+			}
+		$this->list=$list;
+		
+
 		
         $this->show();
     }
 	 //评论列表
     public function selfformdata()
     {	
-	
+		$this->actionname='评论调查';
+	    $this->id=$aid=isset($_GET['id']) ? intval($_GET['id']) : 0;
+		$where=' commentid>0 and  aid ='.$aid;
+		$list=model('selfform')->form_value_list($where);
+			
+    	if($list){
+			
+		 $this->formlist=model('selfform')->inputs_list(array('fid'=>$list[0]['fid']));	
+		
+		$data=array();
+		foreach($list as $key=>$value){
+			$values=unserialize($value['values']);
+			$data[$values['qusetion']][$values['ans']]+=1;
+			
+			$list[$key]['values']=$values;
+			
+			
+				}
+			
+			
+		$this->data=$data;	
+			}	
 	 $this->show();
 	}
 	

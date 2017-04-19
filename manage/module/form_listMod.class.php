@@ -60,7 +60,9 @@ class form_listMod extends commonMod {
 		header("Content-type:application/vnd.ms-execl");
 		header("Content-Disposition:filename=signup.xls");
 		foreach($this->field_list as $k=>$v){
+			if(in_array($v['field'],$info['field_lists'])){ 
 			echo iconv('utf-8','gbk',$v['name'])."\t";
+			}
 			}
 		
 		echo iconv('utf-8','gbk','总时长(分钟)')."\n";
@@ -68,7 +70,7 @@ class form_listMod extends commonMod {
 			
 			foreach($list as $key=>$value){
 				 foreach($this->field_list  as $key1=> $model){
-        
+        if(in_array($model['field'],$info['field_lists'])){ 
       	  if($model['admin_html']<>''){
         eval(html_out(str_replace('{content}', $value[$model['field']] ,$model['admin_html'])));
        		 }else{
@@ -76,11 +78,23 @@ class form_listMod extends commonMod {
 		
 		echo  "\"".iconv('utf-8','gbk',  $string)."\r\n \""."\t";
       		  }
+		}
      	   }
-				
+				if($info['cid']==17){
+					
+					 $aids=model('content')->getaids(array('activity_id'=>$aid));
+					 if($aids){
+				$sumtime=model('data')->getdatatime(array('aid'=>array('in','('.$aids.')'),'uid'=>$value['uid']));
+			
+				$times=model('data')->getdatalist(array('aid'=>array('in','('.$aids.')'),'uid'=>$value['uid']));
+					 }
+					
+				}else{
 				$sumtime=model('data')->getdatatime(array('aid'=>$aid,'uid'=>$value['uid']));
-				echo iconv('utf-8','gbk',intval($sumtime))."\t";
+			
 				$times=model('data')->getdatalist(array('aid'=>$aid,'uid'=>$value['uid']));
+				
+				}
 				$timestring='';
 				if(is_array($times)){
 				 foreach($times as  $key2=>$time){
@@ -88,6 +102,7 @@ class form_listMod extends commonMod {
 					$timestring.=date('Y-m-d H:i',$time['starttime']).'--'.date('Y-m-d H:i',$time['endtime']);	
 					 }
 				}
+				echo iconv('utf-8','gbk',intval($sumtime))."\t";
 				echo iconv('utf-8','gbk',$timestring)."\n";
 				}
 			die;

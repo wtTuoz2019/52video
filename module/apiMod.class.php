@@ -138,15 +138,16 @@ class apiMod extends commonMod
 		
 	 	$schoolname=urldecode($_GET['name']);
 		$user=model('school')->user($schoolname);
+		$return['code']=1;
 		if($user){
 			if($user['overtime'])
-			$return=array('overtime'=>$user['overtime']);
+			$return['overtime']=$user['overtime'];
 			else
-			$return=array('overtime'=>'');
+			$return['overtime']='';
 			}else{
-				$return=array('overtime'=>time()-1000);
+				$return['overtime']=time()-1000;
 				}
-		echo $return['overtime'];
+		echo json_encode($return);
 		}
-}
+} 
 ?>

@@ -506,8 +506,9 @@ button{
 	border-color:#000;
 }
 .borderk a.active{
-	border-color: #777;
-    box-shadow: 3px 3px 2px 0px;
+	border-color: #C3C3C3;
+	color:#518DB9;
+	
 }
 #signup .function input{
 	width:70px;
@@ -529,7 +530,6 @@ button{
 .borderk{
 	padding: 20px 30px;
 	border: 1px solid #BABABA;
-	border-bottom: 0;
 	overflow:hidden;
 }
 .borderk>button{
@@ -683,19 +683,6 @@ iframe{
 	border: 1px solid #B9B9B9;
 	background: #eee;
 	font-size: 12px;
-}
-.amendk #functions{
-	position:absolute;
-	left: 157px;
-    top: 320px;
-	width: 790px;
-}
-.amendk #functions>div{
-	float:left;
-	margin-right: 27px;
-}
-.amendk #functions>div button{
-	margin-top:10px;
 }
 #extendclass .selectclassk>div{
 	display: inline-block;
@@ -1644,13 +1631,13 @@ ul.pagination{
 .comment-content a.delete-comment:hover{
 	text-decoration:none;
 }
-.container div.batch{
+.containera div.batch{
 	padding:0;
 	border:0;
 	padding-left:20px;
 	float:left;
 }
-.container div.batch a{
+.containera div.batch a{
 	width: 70px;
 	height:30px;
 	text-align:center;
@@ -1664,10 +1651,10 @@ ul.pagination{
 	color:#000;
 	margin-right: 10px;
 }
-.container div.batch a:hover{
+.containera div.batch a:hover{
 	border-color:#000;
 }
-.container div.batch a.delete{
+.containera div.batch a.delete{
 	margin-left:10px;
 }
 div.batch{
@@ -1808,4 +1795,151 @@ div.batch a.delete{
 .aui_outer .aui_icon{
 	position: relative;
     left: 85px;
+}
+.setsee .table{
+	text-align:left;
+}
+.amendk .setsee .table tr  td:first-child{
+	width:inherit;
+}
+.setsee .table td input{
+	width:245px;
+	height:32px;
+}
+.setsee .table td .dot{
+	border:1px solid #BABABA;
+	font-size:12px;
+	margin-top:20px;
+	overflow:hidden;
+}
+.setsee .table td .dot p{
+	font-size:12px;
+	color:#222222;
+	margin:0;
+}
+.setsee .table td .dot .dottitle{
+	height:45px;
+	line-height:45px;
+	border-bottom:1px solid #bababa;
+	padding: 0 15px;
+}
+.setsee .table td .dot .dottime{
+	float:left;
+	width:50%;
+	padding:15px 0 0 15px;
+}
+.setsee .table td .dot .dottime p{
+	margin-bottom:12px;
+}
+.setsee .table td .dot .dottime input{
+	vertical-align:middle;
+}
+.setsee .table td .dot .dottime input[type="text"]{
+	width:192px;
+	margin:0;
+	display:inline-block;
+}
+.setsee .table td .dot .dottime input[type="button"]{
+	background: -moz-linear-gradient(top,#ffffff,#d5d2d2);
+    background: linear-gradient(to bottom,#ffffff,#d5d2d2);
+    background: -webkit-linear-gradient(top,#ffffff,#d5d2d2);
+    background: -o-linear-gradient(top,#ffffff,#d5d2d2);
+	padding:0 20px;
+	border:1px solid #BABABA;
+	width:62px;
+	height:32px;
+	line-height:10px;
+	margin-left:5px;
+}
+.setsee .table td .dot #functions{
+	clear:both;
+	overflow:hidden;
+}
+.setsee .table td .dot #functions>div{
+	float:left;
+	width:25%;
+	margin-top:25px;
+	text-align:center;
+}
+.setsee .table td .dot #functions>div button{
+	width:70px;
+	height:95px;
+	padding-top:80px;
+	background-image:url(../img/kandian.png);
+	background-repeat:no-repeat;
+	background-position:top center;
+	margin:0;
+	background-color:transparent;
+	border:0;
+	display:inline-block;
+}
+.setsee .table td .dot #functions>div p{
+	display:inline-block;
+}
+.setsee .table td .dot #functions>div p a{
+	display:inline-block;
+	width:53px;
+	height:22px;
+	border:1px solid #BABABA;
+	background: -moz-linear-gradient(top,#ffffff,#d5d2d2);
+    background: linear-gradient(to bottom,#ffffff,#d5d2d2);
+    background: -webkit-linear-gradient(top,#ffffff,#d5d2d2);
+    background: -o-linear-gradient(top,#ffffff,#d5d2d2);
+	text-align:center;
+	line-height:22px;
+}
+.setsee .table td .dot #functions>div p a:first-child{
+	position:relative;
+	top:-5px;
+	left: 2px;
+}
+.setsee .table td .dot #functions>div>*{
+	vertical-align:middle;
+}
+.setsee .form_submit .button{
+	width:130px;
+	height:35px;
+	background: -moz-linear-gradient(top,#ffffff,#d5d2d2);
+    background: linear-gradient(to bottom,#ffffff,#d5d2d2);
+    background: -webkit-linear-gradient(top,#ffffff,#d5d2d2);
+    background: -o-linear-gradient(top,#ffffff,#d5d2d2);
+	margin-top:25px;
+}
+.form_table td .form-control{
+	width:150px;
+	}
+
+.allmain .box-body .table td{
+	position:relative;
+}
+table td .commentoperation>a{
+	width:115px;
+	height:30px;
+	border:1px solid #BABABA;
+	text-align:center;
+	line-height:28px;
+	color:#000;
+	position:absolute;
+	right:0;
+	top:50px;
+}
+table td .commentoperation>a+a{
+	top:10px;
+}
+.borderk a.toexport{
+	float:right;
+	margin:0;
+}
+.table>tbody>tr:first-child>td{
+	border-top:0;
+}
+body{
+	background:#fff !important; 
+}
+#videos .aui_content{ 
+	height:300px;
+	overflow:auto
+}
+ #functions > div {
+    float: left;
 }

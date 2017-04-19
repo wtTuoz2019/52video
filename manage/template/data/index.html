@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>直播平台</title>
+        <title></title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="__PUBLICURL__/home/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -99,7 +99,9 @@
 
 <div class="commentnav borderk">
   <a href="#basisdata" class="active">基础数据</a>
+    <!--if:{$dataform}-->
   <a href="#surveydata2">调查数据</a>
+  <!--{/if}-->
 </div>
 <div class="commentmain">
 <div class="container active" id="basisdata" style="width:1080px; padding:0;">
@@ -295,53 +297,22 @@
        			
 		        
     		</div>
-            <div id="surveydata2">
-            	<div class="problemfigures">
-                    <div class="figuretitle">问题1 : 合理处理知识技能与过程方法、情感态度的关系？</div>
-                    <div id="container1"  class="figure" style=" width:485px; height:330px;">
-                        
-                    </div>
-                 </div>
-                
-                 <div class="problemfigures">
-                    <div class="figuretitle">问题2 : 合理处理知识技能与过程方法、情感态度的关系？</div>
-                    <div id="container"  class="figure" style=" width:485px; height:330px;">
-                        
-                    </div>
-                 </div>
-                 
-                  <div class="problemfigures">
-                    <div class="figuretitle">问题3 : 合理处理知识技能与过程方法、情感态度的关系？</div>
-                    <div id="container"  class="figure" style=" width:485px; height:330px;">
-                        
-                    </div>
-                 </div>
-                 
-                  <div class="problemfigures">
-                    <div class="figuretitle">问题4 : 合理处理知识技能与过程方法、情感态度的关系？</div>
-                    <div id="container"  class="figure" style=" width:485px; height:330px;">
-                        
-                    </div>
-                 </div>
-            
-            
-            
-            </div>
-
-    	</div>
-
- <!--<div class="chart" id="line-chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
- 
- <div class="chart" id="mobile-chart" style="height: 400px;"></div>-->
- </div>
-<script type=text/javascript src=" __PUBLICURL__/js/highcharts.js"></script>
+            <script type=text/javascript src=" __PUBLICURL__/js/highcharts.js"></script>
 <script type=text/javascript src=" __PUBLICURL__/js/highcharts-3d.js"></script>
 <script type=text/javascript src=" __PUBLICURL__/js/radialIndicator.min.js"></script>
-
-
+              <!--if:{$dataform}-->
+            <div id="surveydata2">
+            <!--foreach:{$formlist $key $vo}-->
+            	<div class="problemfigures">
+                    <div class="figuretitle">{$vo.name}</div>
+                    <div id="container{$key}"  class="figure" style=" width:485px; height:330px;">
+                        
+                    </div>
+                    
+                    
 <script>
-	$(function () {
-    $('#container1').highcharts({
+
+    $('#container{$key}').highcharts({
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -356,7 +327,7 @@
         },
         tooltip: {
             headerFormat: '{series.name}<br>',
-            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+            pointFormat: '{point.name}: <b>{point.y}</b>'
         },
         plotOptions: {
             pie: {
@@ -375,15 +346,30 @@
             type: 'pie',
             name: '调查情况占比',
             data: [
-                ['A',   45.0],
-                ['B',       55.0]
+              <!--foreach:{$dataform[$vo['field']] $k $v}-->
+			 
+                ['<?php  echo model('expand_model')->get_list_model($vo['type'],$k,$vo['options']); ?>',   {$v}],
+				
+				 	<!--{/foreach}-->
             ]
         }]
     });
-});
+
 
 
 </script>
+                 </div>
+                <!--{/foreach}-->
+              
+            </div>	
+              <!--{/if}-->
+
+    	</div>
+
+ </div>
+
+
+
 
 
 

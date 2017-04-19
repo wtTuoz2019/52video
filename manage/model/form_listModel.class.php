@@ -17,7 +17,21 @@ class form_listModel extends commonModel {
     {
         return $this->model->table('form_field')->where('fid='.$id)->select();
     }
-
+    public function signinfo($where){
+        if(empty($where)){
+            return;
+        }
+		
+        $signinfo=$this->model->table('signup')->where($where)->find();
+		
+        return $signinfo;
+    }
+	  //内容信息
+    public function infobyuser($uid,$table){
+        //读取模型表
+        $aid=$this->model->table('form_data_'.$table)->where('uid='.$uid)->find();
+        return $aid;
+    }
     //表单内容列表
     public function form_list($id,$limit,$order)
     {

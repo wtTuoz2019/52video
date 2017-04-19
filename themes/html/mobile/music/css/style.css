@@ -895,7 +895,7 @@ p.allcomment span{
 			}
 			.commentinput input{
 				position:relative;
-				top:1.5px;
+				left:-1%;
 				background:#F6F6F6;
 			}
 			.commentarea_right h6{

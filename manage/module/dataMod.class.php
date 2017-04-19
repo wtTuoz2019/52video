@@ -12,6 +12,7 @@ class dataMod extends commonMod
     {$this->actionname='数据详情';
     	$this->id=$id=intval($_GET['id']);
         $this->alert_str($id,'int');
+		 $info=model('content')->info($id);
 		$kbs='1';
 		$sectiondata=$wherestoptime=$where=$data=array();
        	$wherestoptime['aid']=$where['aid']=$id;
@@ -46,11 +47,27 @@ class dataMod extends commonMod
 		$data['woman']=round($sexnum[2]/$data['allcount'], 4)*100;
 		}
 		
-	
+		if($info['beforeid']){
+			 $this->formlist=$formlist=model('selfform')->inputs_list(array('fid'=>$info['beforeid']));	
+			
+			 $list=model('selfform')->form_value_list(array('aid'=>$info['aid'],'fid'=>$info['beforeid']));
+			 
+			 $dataform=array();
+		foreach($list as $key=>$value){
+			$values=unserialize($value['values']);
+			foreach($formlist as $k=>$v){
+				$dataform[$v['field']][$values[$v['field']]]+=1;
+				
+				}
+		
+				}
+		
+			$this->assign('dataform',$dataform);
+			}
 		
 	
 		 
-
+		
 		$this->assign('data',$data);
 		
 	
