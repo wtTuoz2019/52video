@@ -7,18 +7,18 @@
     
       <tr class="tr1">
         <td>名称</td>
-        <td width="300">
+        <td>
         <input name="name" type="text" class="form-control" id="name" value="{$info.name}" reg="\S" msg="名称不能为空" />
         </td>
-        <td></td>
+        
       </tr>
   
          <tr class="tr2">
         <td>地址</td>
-        <td width="300">
+        <td >
         <input name="vurl" type="text" class="form-control" id="vurl" value="{$info.vurl}" reg="\S" msg="地址" />
         </td>
-        <td></td>
+        
       </tr>
       <?php if($info) { ?> 
       <script type="text/javascript" src="__PUBLICURL__/ckplayer/js/offlights.js"></script>
@@ -159,7 +159,7 @@ if (i<10)
              	看点介绍：
              </p>
              <input name="title" id="title" value=""  class="form-control" type="text" placeholder="看点介绍"  style="width:100%;">
-			<input type="button" onClick="addtime()" id="button" class="button" value="添加" style="margin-left:2px; display:block; margin:0 auto; margin-top:20px; padding:0 30px;width: initial;">
+			<input type="button" onClick="addtime()" id="button" class="button" value="提交" style="margin-left:2px; display:block; margin:0 auto; margin-top:20px; padding:0 30px;width: initial;">
             </div>
 			
 			<div class="clear" id="functions">

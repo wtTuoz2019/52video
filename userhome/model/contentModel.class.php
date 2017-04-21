@@ -68,7 +68,7 @@ class contentModel extends commonModel
 				$temp[]=$val['cid'];
 				}
 			} 
-			$whereuid=" AND A.csid  in (".implode(',',$temp).") ";
+		$whereuid=" AND A.csid  in (".implode(',',$temp).") ";
 			 }else{
 		if($user['cid'])	
 	 	$whereuid=" AND A.csid =".$user['cid'];

@@ -788,12 +788,12 @@ class wechatMod extends commonMod {
 		$this->assign('info',$tpldata);
 		}
 		$this->assign('cid',$cid);
-		 $user=model('user')->current_user();
-		 $where['cid']=$cid;
-		if($user['cid'])	 $where['sid']=$user['cid'];
 		
 		
-		$list=$this->model->table('content')->where($where)->select();
+	
+		
+		
+		$list=model('content')->content_list($cid,1000,$where);
 		
 		$this->assign('list',$list);
 		$this->show();

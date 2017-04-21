@@ -296,6 +296,16 @@ class commonMod
             }
         }
 		$school=model('school')->school_list();
+		
+		//foreach($school as $k=>$v){
+//			if($v['coordinate']){
+//			$temp=explode(",", $v['coordinate']);
+//	
+//			$data[]=array('lat'=>$temp[1],'lng'=>$temp[0],'value'=>1,'type'=>2);
+//			}
+//			}
+//			echo json_encode($data);die;
+//		var_dump($data);die;
 		$subject=model('diyfield')->field_list_data(2);
 		$grade=model('diyfield')->field_list_data(1);
 		$teacher=model('teacher')->model_list();
