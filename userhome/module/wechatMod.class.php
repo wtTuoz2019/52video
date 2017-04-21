@@ -774,8 +774,6 @@ class wechatMod extends commonMod {
 			$thiscate=$this->model->table('category')->where(array('show'=>1))->find();
 			$cid=$thiscate['cid'];
 			
-		}else{
-			$cid=intval($_GET['cid']);
 		}
 		$tpldata['aid']=array();
 		$this->assign('cateid',$cid);
@@ -786,6 +784,10 @@ class wechatMod extends commonMod {
 		$tpldata['aid']=unserialize($tpldata['aid']);
 		$cid=$tpldata['cid'];
 		$this->assign('info',$tpldata);
+		}
+		
+		if($_GET['cid']){
+			$cid=intval($_GET['cid']);
 		}
 		$this->assign('cid',$cid);
 		

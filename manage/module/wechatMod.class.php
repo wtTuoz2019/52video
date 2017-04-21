@@ -751,13 +751,11 @@ class wechatMod extends commonMod {
 		}
 	public function diytpl_edit()
 	{	error_reporting(0);
-	$this->actionname='模板编辑';
+		$this->actionname='模板编辑';
 		if(!$_GET['cid']){
 			$thiscate=$this->model->table('category')->where(array('show'=>1))->find();
 			$cid=$thiscate['cid'];
 			
-		}else{
-			$cid=intval($_GET['cid']);
 		}
 		$tpldata['aid']=array();
 		$this->assign('cateid',$cid);
@@ -769,7 +767,12 @@ class wechatMod extends commonMod {
 		$cid=$tpldata['cid'];
 		$this->assign('info',$tpldata);
 		}
+		
+		if($_GET['cid']){
+			$cid=intval($_GET['cid']);
+		}
 		$this->assign('cid',$cid);
+		
 	$list=model('content')->content_list($cid,1000,$where);
 		
 		$this->assign('list',$list);

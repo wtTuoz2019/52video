@@ -606,7 +606,7 @@ iframe{
 	font-size: 12px;
 }
 #editmodel .modelk table tr>td .checkbox input{
-	height:inherit;
+	height: initial;
 }
 #editmodel .modelk table tr>td input.modelname{
 	width: 210px;
@@ -1553,7 +1553,6 @@ body .oftentable tr td{
 }
 .icheckbox_minimal{
 	top: -1px;
-    left: -4px;
 }
 .page{
 	float:right;
