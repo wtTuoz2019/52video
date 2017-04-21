@@ -54,23 +54,31 @@
             </div>
         </div>
         <?php
-         }
+         }else{
 		?>
-        
-      
-    
-       <div id="play" class="play" style="width:100%;">
-        	
-        </div>
-        <div id="backdrop" class="backdrop">
+          <div id="backdrop" class="backdrop">
 			<img src="{$sys['imageurl']}{$info.image}"  alt="" />
-          <!--  <img src="__PUBLIC__/images/{$subscribe}.png" id="subscribe" onClick="subscribeclick({$info.aid})"  />-->
-           <!-- <button id="bsubscribe">点击预约</button>-->
+
 			<div class="counter">
 				<p>距离直播还有：</p>
 				<div id="countdown"></div>
 			</div>   
 		</div>
+      
+     <?php
+         }
+		?>
+       <div id="play" class="play" style="width:100%;">
+        	
+        </div>
+      
+            <?php 
+		 $end = $info['starttime'] + 60*$info['time'];
+         
+        
+		 if ($end > time()) {
+		 ?>
+		
    <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
 <script type="text/javascript">
 var play=1;
@@ -129,7 +137,9 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 				});
 				 
 </script>
-
+ <?php
+         }
+		?>
 
  <?php  }else{  ?>
   <script type="text/javascript">
