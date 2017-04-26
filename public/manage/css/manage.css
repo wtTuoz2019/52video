@@ -2048,6 +2048,9 @@ body{
 #signup #form{
 	display:inline-block;
 }
+.huodongsh #form{
+	position:relative;
+}
 #signup.huodongsh .borderk #form input{
 	width:110px;
 	height:30px;
