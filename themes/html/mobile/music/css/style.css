@@ -1014,10 +1014,10 @@ p.allcomment span{
 			.imgk{
 				width:90%;
 				margin-left:5%;
-				height:50px;
 				padding:10px;
 				border-top:1px solid #E8E8E8;
 				background:#fff;
+				overflow:hidden;
 			}
 			.imgk #smiles{
 				width:30px;
@@ -1080,4 +1080,8 @@ p.allcomment span{
 #myTabContent div[id^="funcions"] p.MsoNormal span,#myTabContent div[id^="funcions"] div.jiaoyantishi span{
 	color:#888888;
 	font-size:12px !important;
+}
+#comtopwben img{
+	height:24px;
+	width:24px;
 }

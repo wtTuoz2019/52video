@@ -83,7 +83,6 @@ span.resdel { float:right; margin-top:0}
 .commentarea_right .comtop span
 {
 	font-size: 10px;
-	background: #1E90FF;
 	color: #fff;
 	padding: 1px 3px;	
 }
@@ -102,7 +101,9 @@ span.resdel { float:right; margin-top:0}
 	padding: 4px 0;
 	color: #737373;
 }
-
+.commentarea_right .commid .date date{
+	font-size:12px;
+}
 .combtm{
 	width:100%;
 	background:#EAEAEA;}
@@ -243,7 +244,7 @@ span.resdel { float:right; margin-top:0}
 	background:#fff;
 }
 .modal-body #editors img{
-	width:30px;
+	width:24px;
 }
 .modal-body .biaoqing span{
 	color:#A9A9A9;

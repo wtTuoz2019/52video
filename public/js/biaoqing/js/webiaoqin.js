@@ -1,4 +1,5 @@
 // 原 swipe.js文件
+ 
   window.Swipe = function(element, options) {
     if (!element) return null;
     var _this = this;
@@ -287,7 +288,7 @@
               keyCode: -10,
               srcElement: document.getElementsByClassName("biaoqing")[0],
               value: val[2],
-              imgUrl: 'images/arclist/' + val[0] + ".gif"
+              imgUrl: '../public/js/biaoqing/images/arclist/' + val[0] + ".gif"
             });
             this.focus()
           }
@@ -296,3 +297,4 @@
     }
     return new fe()
   })();
+  

@@ -22,7 +22,6 @@
 	background-image:url(img/del.png);
 }
 .nav_emotion{
-	padding:10px 0;
 	text-align: center;
 }
 .nav_emotion span{
@@ -35,4 +34,19 @@
 }
 .nav_emotion span.on{
 	background-color:#bbb;
+}
+#page_emotion{
+	display:none;
+	visibility: visible;
+}
+#list_emotion{
+	list-style: none;
+    transition-duration: 0ms;
+    width: 500%;
+    transform: translate3d(0px, 0px, 0px);
+}
+#list_emotion>div{
+	width: 20%;
+display: table-cell;
+    vertical-align: top;
 }

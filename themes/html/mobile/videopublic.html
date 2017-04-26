@@ -1,6 +1,4 @@
-<script type="text/javascript" src="__PUBLIC__/js/comment.js"></script> 
-<link href="__PUBLIC__/js/biaoqing/css/webiaoqing.css" rel="stylesheet" type="text/css">
-<script src="__PUBLIC__/js/biaoqing/js/webiaoqin.js" ></script> 
+<script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>  
 <script>
 $(function(){ 
 	$('span#right').bind('click',function(e){
@@ -191,7 +189,7 @@ var cid='{$info.id}';
            <?php } ?>
          
          
-						<div contenteditable="true" id="editors"  style="padding:5px;" class="biaoqing" onfocus="hidespan(this)" onblur="showspan(this)"><span>输入评论...</span></div>
+						<div contenteditable="true" id="editors"  style="padding:5px;" class="biaoqing" onfocus="hidespan(this)" onblur="showspan(this)" onkeydown="myInput.listen(this, event);"><span>输入评论...</span></div>
                         <div class="imgk">
                         	 <img id="smiles" src="__PUBLIC__/images/face.png" >
                              <div class="page_emotion box_swipe" id="page_emotion">
@@ -199,6 +197,7 @@ var cid='{$info.id}';
                                 <dt><ol id="nav_emotion" class="nav_emotion"></ol></dt><!-- 分页提示点 -->
                             </div>
                         </div>
+                        
 						<div class="icongroups">
 				
 						</div>
@@ -314,12 +313,13 @@ $('.support').click(function(e){
 </script>
 
 <!--表情--> 
-
-<link rel="stylesheet" href="__PUBLIC__/js/jQuery-emoji-master/lib/css/jquery.mCustomScrollbar.min.css"/>
+<!--<link rel="stylesheet" href="__PUBLIC__/js/jQuery-emoji-master/lib/css/jquery.mCustomScrollbar.min.css"/>
 <link rel="stylesheet" href="__PUBLIC__/js/jQuery-emoji-master/dist/css/jquery.emoji.css"/>
 <script src="__PUBLIC__/js/jQuery-emoji-master/lib/script/jquery.mousewheel-3.0.6.min.js"></script>
 <script src="__PUBLIC__/js/jQuery-emoji-master/lib/script/jquery.mCustomScrollbar.min.js"></script>
-<script src="__PUBLIC__/js/jQuery-emoji-master/dist/js/jquery.emoji.min.js"></script>
+<script src="__PUBLIC__/js/jQuery-emoji-master/dist/js/jquery.emoji.min.js"></script>-->
+<link href="__PUBLIC__/js/biaoqing/css/webiaoqing.css" rel="stylesheet" type="text/css">
+<script src="__PUBLIC__/js/biaoqing/js/webiaoqin.js" ></script> 
 
 <script>
 //div默认文字显示隐藏
@@ -333,12 +333,19 @@ function showspan(ele) {
 		ele.innerHTML = "<span>输入评论...</span>";
 	}
 }
+$("#page_emotion  dd span").click(function(){
+     $(".biaoqing").html( $(".biaoqing").text().replace('输入评论...', '') );
+});
 
+
+$('#smiles').click(function(){
+	$('#page_emotion').toggle();
+});
 
 
 
 			//表情
-$(".biaoqing").emoji({
+/*$(".biaoqing").emoji({
 	button: "#smiles",
 	showTab: false,
 	animation: 'slide',
@@ -350,7 +357,7 @@ $(".biaoqing").emoji({
 		file: ".gif",
 		placeholder: "#qq_{alias}#"
 	}]
-});
+});*/
 </script>
 
 
