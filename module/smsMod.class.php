@@ -27,7 +27,7 @@ $req ->setSmsTemplateCode( "SMS_9545056" );
 $resp = $c ->execute( $req );
 if($resp->code){
 	echo 0;	
-	}else{
+	}else{ 
 		
 echo 1;	
 		}
