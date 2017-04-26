@@ -1082,6 +1082,6 @@ p.allcomment span{
 	font-size:12px !important;
 }
 #comtopwben img{
-	height:24px;
-	width:24px;
+	height:24px !important;
+	width:24px !important;
 }
