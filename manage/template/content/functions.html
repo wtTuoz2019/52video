@@ -101,17 +101,19 @@
 </div>
 </form>  <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr id="comment" style="display:none" >
-          <td width="100" align="right">关联调查</td>
+            <td width="100" align="right">说明</td>
          <td colspan="2">
-         <select  name="content">
-         <option value="0">选择量表</option>
-                  <!--foreach:{$form_list $vo}-->
-                <option value="{$vo.id}" <?php  if($vo['id']==$info['content']){echo 'selected';}?>>{$vo.name len="20"}</option>
-                                             <!--{/foreach}-->
-                                        </select>
+          <?php echo module('editor')->get_editor('content2'); ?>
+          <textarea name="content" style="width:100%; height:350px;" id="content2">{$info.content html}</textarea>
+     
+   
           </td>
         
+        
         </tr>
+        
+        
+        
              <tr id="commentshow"  style="display:none" >
           <td width="100" align="right">关联手机</td>
          <td colspan="2">

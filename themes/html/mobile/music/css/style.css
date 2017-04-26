@@ -1029,7 +1029,7 @@ p.allcomment span{
 		top: -55px;
     	left: -53px;
 		width:150px;
-		background-image:url(__PUBLIC__/usermenu.png);
+		background-image:url(../../../../../public/usermenu.png);
 		height:54px;
 		background-repeat:no-repeat;
 		background-size:100% 100%;
