@@ -1,3 +1,18 @@
+<script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>   
+<script>
+$(function(){ 
+	$('span#right').bind('click',function(e){
+	e.stopPropagation();
+  	$(this).prev("#current").slideToggle();	
+	})
+
+});
+
+var cid='{$info.id}';
+	
+</script>
+
+
 <!--if:{$zidingyi['notice']}-->
 		<div class="scroll-bar" style="width: 1100px; margin: 0 auto;">
 			<marquee style="color:#fff; font-size: 14px; width: 100%; line-height: 25px;" scrollamount=3>{$zidingyi.notice}</marquee>	
@@ -33,8 +48,8 @@
       
      		<?php if($vo['type']=='comment'){  
             $selfform=model('selfform')->info($vo['content']);
-                  $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
-                
+           $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                  $commentflag=true;
                      ?>
   
   
@@ -44,6 +59,7 @@
       <?php }elseif($vo['type']=='jiaoyancomment'){
       $selfform=model('selfform')->info($vo['content']);
       $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+        $jiaoyancommentflag=true;
       ?>
       
       
@@ -105,10 +121,17 @@
                            <?php }?>
 					</div>
                     
-                   <?php if($vo['type']=='comment'||$vo['type']=='jiaoyancomment'){  ?>
+                  
                     
-                        <div class="modal pcmodal" id="mymodal">
-		    <div class="modal-dialog">
+                    
+                           <!--/loop-->
+                           
+                 <?php if($commentflag||$jiaoyancommentflag){  ?>
+                   
+                    
+                    
+                        <div class="modal pcmodal" id="mymodal"> 
+		    <div class="modal-dialog" id="movediv">
 		        <div class="modal-content">
                 	<div class="modal-title">评论</div>
 					<div class="modal-body" style="position:static;">
@@ -128,6 +151,22 @@
             <input type="hidden" name="fid" value="{$v.fid}"/>
              </div>
               <?php } ?>
+              
+                <?php if($jiaoyancommentflag){ ?>
+              <div class="comment-area" id="commentform" style="display:none"  >
+          
+           <span id="start2">开始:00:00</span>
+            <div class="area"><div class="progress1" id="progress2"></div></div>
+             <span id="end2">结束:00:00</span>
+           
+             <input type="button" value="获取开始" class="btn btn-primary"  onclick="getprogress()" />
+            
+            <input type="button" value="获取结束" class="btn btn-primary"   onclick="getprogressend()"  style=" "/>
+            <input name="progress"  id="progressinput" value="0"  type="hidden" >
+            <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
+            
+           </div>  
+           <?php } ?>
 						<textarea id="editors" placeholder="我的评论..."></textarea>
 						<div class="icongroups">
 				
@@ -145,10 +184,8 @@
 			</div><!-- /.modal-dialog -->
 		</div>
         
+      
                       <?php }?> 
-                    
-                    
-                           <!--/loop-->
   
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/jquery.idTabs.min.js"></script>

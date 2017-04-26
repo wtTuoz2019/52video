@@ -412,7 +412,7 @@ public function commentdel() {
 	public function pc_list() {
 		$fid=intval($_POST['data']['fid']);
 		$id = isset($_POST['data']['id']) ? $_POST['data']['id'] : 0;
-		
+		$type=$_POST['data']['type'];
 		if(!is_numeric($fid)){
             $this->msg('参数非法', 0);
         }
@@ -438,7 +438,7 @@ public function commentdel() {
 			
 			}
 		
-		$info = model('comment')->pc_info($fid, $_POST['data']['pageSize'],$_POST['data']['pageIndex']);		
+		$info = model('comment')->pc_info($fid, $_POST['data']['pageSize'],$_POST['data']['pageIndex'],$type);		
 		
 		$fkeywords=explode('，',$this->config['fkeywords']);
 		if($info)

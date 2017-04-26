@@ -30,8 +30,8 @@
 	
 		
 </script>
-         <script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>   
-						<div class="comment">
+        
+						<div class="comment" id="comment">
 							<div style=" -webkit-overflow-scrolling: touch; overflow:auto;"> <div class="load_m tr" id="refresh">有新评论，刷新看看</div>
    <div class="container" id="container">
     
@@ -52,28 +52,24 @@
           </div>
    
     <?php }  ?> 
-			<!--<img id="smile" src="__PUBLIC__/images/face.png">-->
+			<img id="smile" src="__PUBLIC__/images/face.png" onClick="comment(this)">
            
-			<input type="text" style="width:80%;" id="editors" placeholder="我的评论..." readonly onClick="comment(this)">
+			<input type="text" style="width:70%;" id="editors" placeholder="我的评论..." readonly onClick="comment(this)">
     
 			<img id="import" src="__PUBLIC__/images/import.png" onClick="comment(this)"/>
 		</div>
     <script>
-			$('#refresh').bind('click',function(e){
+			$('#comment #refresh').bind('click',function(e){
 				automatic(arr);
 				
 				});
 			$(function(){ 
-　			
+　			automatic(arr);
 				setInterval("qwert()",5000);
 		}); 
 			
-			$('span#right').bind('click',function(e){
-				 e.stopPropagation();
-  				$(this).prev("#current").slideToggle();	
-				})
-	
-		$("#more").click(function(){
+		
+		$("#comment #more").click(function(){
 			getcomment();
 			
 		});

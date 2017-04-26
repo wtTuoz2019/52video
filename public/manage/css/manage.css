@@ -1729,6 +1729,7 @@ div.batch a.delete{
 	float:left;
 	border:1px solid #D5D5D5;
 	margin-bottom:40px;
+	margin-right:106px;
 }
 .problemfigures .figuretitle{
 	background:#EEEEEE;
@@ -1739,9 +1740,6 @@ div.batch a.delete{
 	line-height:45px;
 	width:485px;
 	padding:0 20px;
-}
-.problemfigures:nth-child(even){
-	float:right;
 }
 .commentmain>div{
 	display:none;
@@ -2082,4 +2080,10 @@ body{
 }
 body .userset .oftentable tr td{
 	border-bottom:0;
+}
+#postmanage .scrolldiv{
+	overflow-x: scroll;
+}
+#postmanage .scrolldiv th{
+    word-break: keep-all;
 }

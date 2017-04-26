@@ -1,13 +1,16 @@
 
 <script type="text/javascript">
 //tab菜单
-//$("#tab").idTabs();
+
 $(document).ready(function(){ 
+//tplchange();
+
+
 	$("#cid").change(function(){
 	 var qid = $("#cid option:selected").val();
 	 var wid = '{$info.aid}';
-			if(wid==''){
-			var url = "__APP__/live/add/cid-16";
+		if(wid==''){
+			var url = "__APP__/content/add/cid-13";
 						window.location.href=url;  
 			
 			}
@@ -21,7 +24,7 @@ $(document).ready(function(){
 				dataType: "json",
 				success: function(d) {
 					if(d.status == 1){
-						var url = "__APP__/live/edit/id-"+wid;
+						var url = "__APP__/content/edit/id-"+wid;
 						window.location.href=url;  
 					}
 					
@@ -32,7 +35,7 @@ $(document).ready(function(){
 　　get_fields(); 
 });
 //提交表单
-savelistform({addurl:"__URL__/add/cid-{$class_info.cid}",listurl:"__URL__/index"});
+savelistform({addurl:"__URL__/add/cid-{$class_info.cid}",listurl:"__APP__/live/index"});
 //TAG
 $('#keywords').tagsInput(
 {
@@ -118,9 +121,18 @@ function get_fields() {
 		dataType: "html",
 		success: function(data) {
 			if(data==''){
-				var data='<tr><td width="100" align="left">暂无扩展信息</td><td width="350"></td><td></td></tr>';
+				
 			}
-			$('#expand').html(data);
+			
+		$('#expand').html(data);
+		daojishi();
+		$('#starttime').change(function(e) {
+			
+           	daojishi(); 
+        });
+		$('#time').change(function(e) {
+           	daojishi(); 
+        });
 		}
 	})
 }
@@ -134,15 +146,18 @@ function get_fields() {
 //模板列表
 function tpl_list(id){
 	var list = [ 
-	
 
 	{
-		href: "javascript:;\" onclick=\"tpl_val('"+id+"','friendtpl.html');\"",
-		text: "模板一"
+		href: "javascript:;\" onclick=\"tpl_val('"+id+"','');\"",
+		text: "默认"
 	},
 	{
-		href: "javascript:;\" onclick=\"tpl_val('"+id+"','timestpl.html');\"",
-		text: "模板二（看点）"
+		href: "javascript:;\" onclick=\"tpl_val('"+id+"','friendtpl.html');\"",
+		text: "自定义模板"
+	},
+	{
+		href: "javascript:;\" onclick=\"tpl_val('"+id+"','alifriendtpl.html');\"",
+		text: "阿里"
 	},
 	
 	{
@@ -155,7 +170,7 @@ function tpl_list(id){
 function tpl_val(id,val){
 	$('#'+id).val(val);
 	$.powerFloat.hide();
-	tplchange();
+	
 	return false;
 }
 //内容来源列表
@@ -211,8 +226,7 @@ $(document).ready(function() {
 				data=eval('['+data+']');
 				data=data[0];
 					mydialog =  art.dialog({
-					id:"my2",
-				    title: '视频列表',
+				    title: '音视频',
 				    content: arg(data['file_list']),
 				    follow: document.getElementById('btn2'),
 				    ok: function(){
@@ -231,10 +245,10 @@ $(document).ready(function() {
     for (var i = 0; i < data.length; i++) {
     	strVar += "<tr class=\"zeego\" style=\"cursor: pointer;\">";
 	    strVar += "<td class=\"ke-cell ke-name\" title=\"\">";
-	    strVar += "<img src=\"/public/kindeditor/plugins/filemanager/images/file-16.gif\" width=\"16\" height=\"16\" alt=\""+data[i]['name']+"\" align=\"absmiddle\"> "+data[i]['name']+"";
+	    strVar += "<img src=\"http://video.tuoz.net/public/kindeditor/plugins/filemanager/images/file-16.gif\" width=\"16\" height=\"16\" alt=\""+data[i]['filename']+"\" align=\"absmiddle\"> "+data[i]['filename']+"";
 	    strVar += "<\/td>";
-	    strVar += "<td class=\"ke-cell ke-size ke-vn\" style=\"display:none\">"+data[i]['vurl']+"<\/td>";
-	    strVar += "<td class=\"ke-cell ke-datetime\"><\/td>";
+	    strVar += "<td class=\"ke-cell ke-size ke-vn\" style=\"display:none\">"+data[i]['filedir']+"<\/td>";
+	    strVar += "<td class=\"ke-cell ke-datetime\">"+getLocalTime(data[i]['datetime'])+"<\/td>";
 	    strVar += "<\/tr>";
     };
     strVar += "<\/tbody>";
@@ -254,12 +268,13 @@ $(document).ready(function() {
 
 	$(document).on('click', '.zeego', function(){
 		var msg = $(this).find('.ke-vn').html();
-		$('#videourl').val(msg);
+		$('.content').val(msg);
 		mydialog.close();
 	})
 
 	
 });
+
 function tplchange(){
 	
 	var tpl=$('#tpl').val();
@@ -273,19 +288,19 @@ function tplchange(){
 	}
 function addfunctions(){
 	urldialog({
-		width:1000,
+	width:1000,
 	height:500,
 	title:'功能编辑',
-	url:'__URL__/functions'
+	url:'__APP__/content/functions'
 	});
 	
 	}
 function editfunctions(id){
 	urldialog({
-		width:1000,
-	height:500, 
+	width:1000,
+	height:500,
 	title:'功能编辑',
-	url:'__URL__/functionsedit/id-'+id
+	url:'__APP__/content/functionsedit/id-'+id
 	});
 	
 	}
@@ -294,19 +309,13 @@ function delfunctions(id,obj) {
 	var obj;
 	ajaxpost({
 		name:'确定删除？ ',
-		url:"__URL__/functionsdel",
+		url:"__APP__/content/functionsdel",
 		data:{id: id},
 		tip:1,
 		success:function(){
-			$('#fakebutton button').eq($(obj).parent().parent().index()).remove();
-			$('#fakebutton button').eq(0).addClass('active');
-			$('#iframek>div').eq($(obj).parent().parent().index()).remove();
-			$('#iframek>div').eq(0).addClass('active');
-			$('#fakebutton>button').css('width',100/$('#fakebutton>button').length+'%');
+			
 			$(obj).parent().parent().remove();
 		}
 	});
 }
-
-
 </script>

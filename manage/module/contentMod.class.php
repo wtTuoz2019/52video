@@ -685,7 +685,10 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 		 $this->action_name='添加';
             $this->action='functions';
 			 $where=$this->common_list_where();
-		 $this->list=model('live')->content_list(null,null,$where['where'],$where['order'],true);	 
+		 $this->list=model('live')->content_list(null,null,$where['where'],$where['order'],true);	
+		 if($this->user['gid']!=1)
+			$wheretemp['uid']= $this->user['id'];
+		 $this->form_list=model('selfform')->form_list($wheretemp); 
 		 $this->display('content/functions');
 		}
 	public function functionsedit(){
@@ -700,6 +703,9 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 	
 		$this->content=explode(",",$this->info['content']);
 		}
+		if($this->user['gid']!=1)
+		$wheretemp['uid']= $this->user['id'];
+		 $this->form_list=model('selfform')->form_list($wheretemp); 
 		 $this->display('content/functions');
 		}
 

@@ -242,6 +242,19 @@ class contentModel extends commonModel
         /*hook end*/
         return $aid;
     }
+	
+	public function activityupdate($aid){
+		$functions=$this->functions_list(array('aid'=>$aid,'type'=>'linkaid'));
+		if($functions){
+			foreach($functions as $key=>$val){
+				if($key)
+				$aids.=','.$val['content'];
+				else
+				$aids=$val['content'];
+				}
+			}
+		$this->model->table('content')->data(array('activity_id'=>$aid))->where('aid in ('.$aids.')')->update();
+		}
 
     //内容表信息
     public function edit_content_save($data)

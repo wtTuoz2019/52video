@@ -435,12 +435,14 @@ line-height:30px;
 } 
 .comment .commentarea .dianzan,.comment_show .commentarea .dianzan{
 	clear:both;
-	
+	padding-left:0px;
 }
 #container .dianzan .userlist img,#container_show .dianzan .userlist img{
 	margin-bottom:0;
 }
-
+.comment .commentarea_right .fa  {
+	color:#566a95;
+}
 .commid .date{
 	margin-top:10px;
 	font-size:12px;
@@ -540,7 +542,7 @@ ul[id^="commentlist"]{
 	width: 490px;
 	padding:0 !important; 
 	margin:0 auto;
-	overflow-y: hidden;
+	overflow: initial;
 	border-radius:5px;
 }
 
@@ -550,7 +552,7 @@ ul[id^="commentlist"]{
 .contentBox #mymodal .modal-body textarea{
 	width:450px;
 	display:block;
-	margin:30px auto;
+	margin:20px auto;
 	height:65px;
 	border:1px solid #DFDFDF;
 	background:#F9F9F9;
@@ -925,7 +927,41 @@ body{
 				font-size:12px;
 				background:#EEEEEE;
 				border:1px solid #c3c3c3;
-				display:block; 
-				margin-left:35px;   
+				display:block;
+				margin:0 auto;  
 				margin-top:20px; 
 			}
+#commentform .area {
+    width: 100px;
+    background: #A8A3A3;
+    border-radius: 4px;
+    display: inline-flex;
+	height:12px;
+}
+#commentform{
+	width:100%;
+	text-align:center;
+	margin-top:20px;
+}
+#commentform span{
+	font-size:12px;
+}
+.contentBox #mymodal  .modal-body #commentform .btn{
+	margin-right: 0;
+    font-size: 12px;
+    height: 30px;
+    width: 80px;
+	margin-left:5px;
+}
+#movediv{
+	position:relative;
+}
+#commentform>div{
+	margin-top:10px;
+}
+.contentBox .biaogek{
+	border:3px solid #e5e5e5;
+	width:70%;
+	margin:0 auto;
+	margin-top:37px;
+}

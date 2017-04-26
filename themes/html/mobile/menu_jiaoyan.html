@@ -1,53 +1,42 @@
-   <p class="allcomment">所有教研<span>（<font id="commentnum">0</font>）</span></p>
+   <p class="allcomment">所有教研<span>（<font id="jiaoyancommentnum">0</font>）</span></p>
       <link rel="stylesheet" href="__PUBLIC__/data/css/font-awesome.min.css" />   
     
-        
-        
-        <!--<div class="modal fade bs-example-modal-sm hongbao" id="mymodal-data1" style=" width:345px;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">					
-               <a href="javascript:" data-toggle="modal" data-target="#mymodal-data1"> <div class="Closebutton"></div></a>
-
-								<div class="modal-content" id="modal" style=" background:none;">
-									<div class="modal-body" style=" background:none;">
-									<div class="list" style=" background:none;">
-<input   name="price" placeholder="输入金额，1-1000元" value="" id="price">
-<input name="desc" placeholder="很精彩，赞一个" value="" id="desc">
-<input  type="submit" value=""  onClick="pay()" id="pay" style=" width:228px; background:none; height:50px; border:none;">
-									</div>
-									</div>
-									
-								</div>
-						</div>-->
+       
      <script type="text/javascript">  
   	var url='http://{$config.MOBILE_DOMAIN}';
 	  var headpic='<?php echo $_SESSION["headpic"];?>';
 	 var nickname='<?php echo $_SESSION["nickname"];?>';
 	  var uid='<?php echo $_SESSION["uid"];?>';
-	  var data = {
+	  var jiaoyandata = {
 			    fid: '{$info.aid}',
 				uid:uid,
 			    pageSize: 10,
 			    pageIndex: 0,
+				type:'dadian'
 			  };  
-			  var arr = {
+			  var jiaoyanarr = {
 			    fid: '{$info.aid}',
-			    id:'0'
+			    id:'0',
+				type:'dadian'
+				
 			  };
-			var listflag={
+			var jiaoyanlistflag={
 			    fid: '{$info.aid}',
-			    id:'0'
+			    id:'0',
+				type:'dadian'
 			  };
 			  var id = 0,
 			  flag=0;
 			  var commentflag='save';
-			  var newcommentflag=false;
+			  var newjiaoyancommentflag=false;
 	
 	
 		
 </script>
-         <script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>   
-						<div class="comment">
+        
+						<div class="comment" id="jiaoyan">
 							<div style=" -webkit-overflow-scrolling: touch; overflow:auto;"> <div class="load_m tr" id="refresh">有新评论，刷新看看</div>
-   <div class="container" id="container">
+   <div class="container" id="jiaoyancontainer">
     
     
       	
@@ -72,29 +61,27 @@
             <input name="progress"  id="progressinput" value="0"  type="hidden" >
             <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
          </div>
-			<!--<img id="smile" src="__PUBLIC__/images/smile.png">-->
+			<img id="smile" src="__PUBLIC__/images/face.png" onClick="jiaoyancomment(this)">
            
-			<input type="text" style="width:80%;" id="editors" placeholder="" readonly onClick="jiaoyancomment(this)">
-      		<img id="import" src="__PUBLIC__/images/import.png" onClick="comment(this)"/>
+			<input type="text" style="width:70%;" id="editors" placeholder="" readonly onClick="jiaoyancomment(this)">
+      		<img id="import" src="__PUBLIC__/images/import.png" onClick="jiaoyancomment(this)"/>
 		
 		</div>
     <script>
-			$('#refresh').bind('click',function(e){
-				automatic(arr);
+			$('#jiaoyan #refresh').bind('click',function(e){
+				jiaoyanautomatic(jiaoyanarr);
 				
 				});
 			$(function(){ 
-　			
-				setInterval("qwert()",5000);
+　				
+		jiaoyanautomatic(jiaoyanarr);
+				setInterval("jiaoyanqwert()",5000);
 		}); 
 			
-			$('span#right').bind('click',function(e){
-				 e.stopPropagation();
-  				$(this).prev("#current").slideToggle();	
-				})
+		
 	
-		$("#more").click(function(){
-			getcomment();
+		$("#jiaoyan #more").click(function(){
+			getjiaoyancomment();
 			
 		});
 			function tocomment(){

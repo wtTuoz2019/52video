@@ -237,7 +237,7 @@ class  commentModel extends commonMod
     }
 	
 //获取评论内容
-    public function pc_info($fid, $limit, $id=0)
+    public function pc_info($fid, $limit, $id=0,$type=null)
     {   
 		$where = "A.fid=".$fid." and A.pid=0 ";
 		if($id){
@@ -246,6 +246,7 @@ class  commentModel extends commonMod
 		if($this->contentinfo($fid)){
 		$where.=' AND A.flag=1';
 		}
+		if($type)$where.=' AND progress>0';else $where.=' AND progress=0';
 		$list=$this->model->field('A.*,B.nicename as name,headimgurl as pic')->table('comment','A')
             ->add_table('user','B','B.uid=A.uid')->where($where)->limit(10)->order('A.time desc')->select();
 			return $list;

@@ -1,3 +1,18 @@
+<script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>   
+<script>
+$(function(){ 
+	$('span#right').bind('click',function(e){
+	e.stopPropagation();
+  	$(this).prev("#current").slideToggle();	
+	})
+
+});
+
+var cid='{$info.id}';
+	
+</script>
+
+
 <!--if:{$zidingyi['notice']}-->
 		<div class="scroll-bar">
 			<marquee style="color:#fff; font-size: 1.2rem; width: 100%; line-height: 25px;" scrollamount=3>{$zidingyi.notice}</marquee>	
@@ -39,14 +54,14 @@
                      <?php if($vo['type']=='comment'){  
                    $selfform=model('selfform')->info($vo['content']);
                   $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
-              
+               $commentflag=true;
                      ?>
                      
                       <!--#include file="menu_comment.html"-->
 					 <?php }elseif($vo['type']=='jiaoyancomment'){
                      $selfform=model('selfform')->info($vo['content']);
                       $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
-                      
+                      $jiaoyancommentflag=true;
                     
                      ?>
                           <!--#include file="menu_jiaoyan.html"-->
@@ -128,9 +143,12 @@
 		</ul>
                            <?php }?>
 					</div>
-                      <?php if($vo['type']=='comment'||$vo['type']=='jiaoyancomment'){  ?>
                     
-                        <div class="modal" id="mymodal">
+                           <!--/loop-->
+                           
+                             <?php if($commentflag||$jiaoyancommentflag){  ?>
+                    
+                        <div class="modal dbg" id="mymodal">
 		    <div class="modal-dialog">
 		        <div class="modal-content">
 					<div class="modal-body" style="padding-top:10px;">
@@ -153,18 +171,20 @@
              </div>
               <?php } ?>
               
-              <?php if($vo['type']=='jiaoyancomment'){ ?>
-              <div class="comment-area" id="commentform"  >
+              <?php if($jiaoyancommentflag){ ?>
+              <div class="comment-area" id="commentform" style="display:none"  >
           
            <span id="start2">开始:00:00</span>
             <div class="area"><div class="progress1" id="progress2"></div></div>
              <span id="end2">结束:00:00</span>
-          
-          
-         </div>  <?php } ?>
+           </div>  
+           <?php } ?>
          
          
-						<textarea id="editors" placeholder="输入评论..." style="padding:5px;"></textarea>
+						<div contenteditable="true" id="editors"  style="padding:5px;" class="biaoqing" onfocus="hide(this)" onblur="show(this)"><span>输入评论...</span></div>
+                        <div class="imgk">
+                        	 <img id="smiles" src="__PUBLIC__/images/face.png" >
+                        </div>
 						<div class="icongroups">
 				
 						</div>
@@ -181,7 +201,6 @@
 		</div>
         
                       <?php }?>
-                           <!--/loop-->
                 
 				</div>
 			</div>
@@ -236,60 +255,7 @@ function changecolor(color){
 <!--Tabs.js-->
 <script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
 
-<!-- 修改 -->
-<style>
-	#usercenter .menus{
-		transform:rotate(90deg);
-		opacity:0;
-		position:absolute;
-		top: -55px;
-    	left: -53px;
-		width:150px;
-		background-image:url(__PUBLIC__/usermenu.png);
-		height:54px;
-		background-repeat:no-repeat;
-		background-size:100% 100%;
-		background-position:center 0;
-		-webkit-transform-origin: 25% 90%;
-		-moz-transform-origin: 25% 90%;
-		-o-transform-origin: 25% 90%;
-		-ms-transform-origin: 25% 90%;
-		transform-origin: 81px 76px;
-		-webkit-transition: -webkit-transform .5s ease;
-		-moz-transition: -moz-transform 1.5s ease;
-		-o-transition: -o-transform .5s ease;
-		transition: transform .5s ease;
-	}
-	#usercenter .menus>a{
-		float:left;
-		display:block;
-		width:50%;
-		height:100%;
-	}
-		#Qr{
-		position:fixed;
-		width:75%;
-		top:220px;
-		left:12.5%;
-		z-index:99999;
-		display:none;
-	}
-	#Qr img.qr{
-		width:100%;
-	}
-	#Qr span{
-		position:absolute;
-		top:0;
-		right:0;
-		height: 50px;
-		width: 50px;
-		padding:10px;
-	}
-	#Qr span>img {
-    width: 100%;
-    height: 100%;
-}
-</style>
+
 
 <div id="usercenter">
 	<div class="menubtn"><img height="55px" src="__PUBLIC__/usercenter.png" /></div>
@@ -328,6 +294,46 @@ $('.support').click(function(e){
 
 
 </script>
+
+<!--表情--> 
+<link rel="stylesheet" href="__PUBLIC__/js/jQuery-emoji-master/lib/css/jquery.mCustomScrollbar.min.css"/>
+<link rel="stylesheet" href="__PUBLIC__/js/jQuery-emoji-master/dist/css/jquery.emoji.css"/>
+<script src="__PUBLIC__/js/jQuery-emoji-master/lib/script/jquery.mousewheel-3.0.6.min.js"></script>
+<script src="__PUBLIC__/js/jQuery-emoji-master/lib/script/jquery.mCustomScrollbar.min.js"></script>
+<script src="__PUBLIC__/js/jQuery-emoji-master/dist/js/jquery.emoji.min.js"></script>
+
+<script>
+//div默认文字显示隐藏
+function hide(ele) {
+	if(ele.innerHTML == "<span>输入评论...</span>") {
+		ele.innerHTML = "";
+	}
+}
+function show(ele) {
+	if(ele.innerHTML == "") {
+		ele.innerHTML = "<span>输入评论...</span>";
+	}
+}
+
+
+
+
+			//表情
+$(".biaoqing").emoji({
+	button: "#smiles",
+	showTab: false,
+	animation: 'slide',
+	icons: [{
+		name: "QQ表情",
+		path: "__PUBLIC__/js/jQuery-emoji-master/dist/img/qq/",
+		maxNum: 91,
+		excludeNums: [41, 45, 54],
+		file: ".gif",
+		placeholder: "#qq_{alias}#"
+	}]
+});
+</script>
+
 
 
    <!--#include file="common.html"-->

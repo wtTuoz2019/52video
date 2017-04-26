@@ -99,7 +99,14 @@ function ckcpt() {
                  
               var   hour=checkTime(now.getHours()-8);     
               var   minute=checkTime(now.getMinutes());     
-              var   second=checkTime(now.getSeconds());   
+              var   second=checkTime(now.getSeconds()); 
+			  if(isNaN( hour )){
+				return "未播放"; 
+			  }
+			  
+			  
+			  
+			    
 			  if(hour!='00')  
               return   hour+":"+minute+":"+second; 
 			  else    

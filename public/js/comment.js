@@ -73,6 +73,7 @@ var commenturl="http://comment.shanyueyun.net";
 			$("#btn").click(function(){
 				 commentflag='save';
 				$('#editors').attr('placeholder','');
+				$('.biaoqing').html('');
 		      $("#mymodal").modal("toggle");
 		    }); 
 	
@@ -85,7 +86,18 @@ var commenturl="http://comment.shanyueyun.net";
 		   $('#input-type-submit').click(function(){
 			 
 				var this_ = this;
+				
+				
 				var mes = $('.modal-body #editors').val();
+				if($('.modal-body #editors').hasClass('biaoqing')){
+					if($('.biaoqing').html()=="<span>输入评论...</span>"){
+						mes = '';
+					}else{
+						mes = $('.biaoqing').html();
+					}
+					
+				}
+				
 				if(flag==1){
 					return false;
 				}
@@ -122,6 +134,7 @@ if($('.choosep :input').length){
 				  dataType: "json",
 				  success: function( d ) {
 					$('textarea#editors').val('');
+					$('.biaoqing').html('');
 					if(d.status == 1){
 					
 			           	flag=0;
@@ -159,6 +172,7 @@ if($('.choosep :input').length){
 	  },'json');
 				   }
 				$('textarea#editors').val('');
+				$('biaoqing').val('');
 			           	flag=0;
 						
 						$('#modal_cance').click();
@@ -175,40 +189,19 @@ if($('.choosep :input').length){
 		
 		}
 			
-		
-	//	
-//		function escapes(data){
-//				var strVar = "";
-//				if(!data){
-//					return '';
-//				}
-//				for(var i=0;i<data.length;i++){
-//			//		 strVar +='<div class="dialog"><div class="user"><dl><dt><img src="'+string[i]['pic']+'">  </dt> <dd> <P class="username">'+string[i]['name']+'</P><div class="info">'+string[i]['message']+'</div> </dd> </dl></div>';
-//					 strVar+='<li class="clearfix"><dl><dt ><p class="user-img"><img src="'+string[i]['pic']+'"></p></dt><dd><p class="user-box"><span class="user-name">'+string[i]['name']+'</span></p><p class="time" style="color: #888888;">'+string[i]['time']+'</p><p class="user-say">'+string[i]['message']+'</p></dd></dl></li>';
-//			    	
-//				}
-//				return strVar;
-//			}
+
 	
 		function automatic(arr){
 		$.getJSON(commenturl + "/index.php/comment/pc_auto?callback=?",arr, function(data) { 
 			
 				} );	
 			
-		//		$.post('/index.php/comment/pc_auto',{data: arr},function(d){
-//					if(d.status==1){
-//						$('#container').html(escapes(d.message.info));
-//						listflag['id'] = d.message.info[0]['id'];
-//						$('#more').show();
-//						$('#refresh').hide();
-//						newcommentflag=false;
-//						commentHandle();
-//						currentshow();
-//						
-//					}else{
-//						$('#refresh').hide();
-//						}
-//				},'json')
+			}
+		function jiaoyanautomatic(arr){
+		$.getJSON(commenturl + "/index.php/comment/pc_auto?callback=?",arr, function(data) { 
+			
+				} );	
+			
 			}
 			function commentshow(){
 				
@@ -218,7 +211,7 @@ if($('.choosep :input').length){
 			
 	
 			}
-		automatic(arr);
+	
 		function showhandle(d){
 			if(d.status==1){
 						//if(typeof(d.count)!="undefined"){
@@ -231,6 +224,25 @@ if($('.choosep :input').length){
 						currentshow();
 						
 					}
+			}
+		function jiaoyanautohandle(d){
+		
+			if(d.status==1){
+						if(typeof(d.count)!="undefined"){
+							$('#jiaoyancommentnum').text(d.count);
+							}
+						$('#jiaoyancontainer').html(escapes(d.message));
+						jiaoyanlistflag['id'] = d.message[0]['id'];
+						$('#jiaoyan #more').show();
+						$('#refresh').hide();
+						newjiaoyancommentflag=false;
+						commentHandle();
+						currentshow();
+						
+					}else{
+						$('#refresh').hide();
+						}
+			
 			}
 		function autohandle(d){
 		
@@ -266,12 +278,26 @@ if($('.choosep :input').length){
 		
 				if(newcommentflag==false){
 					$.getJSON(commenturl + "/index.php/comment/pc_autoflag?callback=?",listflag, function(data) { 
-			
-				} );
-					
-				
+			} );
 				}
 			}
+	function jiaoyanqwert(){
+		
+				if(newjiaoyancommentflag==false){
+					$.getJSON(commenturl + "/index.php/comment/pc_autoflag?callback=?",jiaoyanlistflag, function(data) { 
+			} );
+				}
+			}
+	function jiaoyanrefreshflag(d){
+
+	if(d.status==1){
+						newjiaoyancommentflag=true;
+						$('#jiaoyan #refresh').show();
+					}else{
+						$('#jiaoyan refresh').hide();
+						}
+	
+	}
 function refreshflag(d){
 	
 	if(d.status==1){
@@ -328,8 +354,10 @@ function commentHandle(){
 			//弹出评论
 			function comment(e){
 				$('.choosep').show();
+				 $('.comment-area').hide();
 				$("video").css({'height':'0px'});
 				$('#editors').attr('placeholder','');
+				$('.biaoqing').html(''); 
 				 $("#mymodal").find('#toname').val('');
 				 commentflag='save';
 		     	 $("#mymodal").modal("toggle");
@@ -345,26 +373,74 @@ function commentHandle(){
 					 
 				 $("#mymodal").find('#toname').val($(e).attr('toname'));
 				 $('#editors').attr('placeholder','回复'+$(e).attr('toname')+':');
+				  $('.biaoqing').html('回复'+$(e).attr('toname')+':');
 				 }
 				 
 				 
 				 var a=$(e).offset().top-730;
 				 $('.contentBox #mymodal').css('top',a+'px')
 				 
-				
+				$('.contentBox #mymodal #movediv').css('top','0');
+				$('.contentBox #mymodal #movediv').css('left','0');
 				}
 				//教研评论
 			function jiaoyancomment(e){
 				$("video").css({'height':'0px'});
 				
 				$('#editors').attr('placeholder','');
+				$('.biaoqing').html('');
 				 $("#mymodal").find('#toname').val('');
 				 commentflag='save';
 		     	 $("#mymodal").modal("toggle");
 				 $('.comment-area').show();
 				 $('.choosep').show();
+				 $('body,html').animate({scrollTop:'200px'}, 500);
+				 $('.contentBox #mymodal').css('top','-100px')
+				 
+				$('.contentBox #mymodal #movediv').css('top','0');
+				$('.contentBox #mymodal #movediv').css('left','0');
+				 
 				
 				}
+		
+		
+		$(function(){
+			var $pl = $("#movediv");
+			  /* 绑定鼠标左键按住事件 */
+			  $pl.bind("mousedown",function(event){
+				/* 获取需要拖动节点的坐标 */
+				var offset_x = $(this)[0].offsetLeft;//x坐标
+				var offset_y = $(this)[0].offsetTop;//y坐标
+				/* 获取当前鼠标的坐标 */
+				var mouse_x = event.pageX;
+				var mouse_y = event.pageY;
+				/* 绑定拖动事件 */
+				/* 由于拖动时，可能鼠标会移出元素，所以应该使用全局（document）元素 */
+				$(document).bind("mousemove",function(ev){
+				  /* 计算鼠标移动了的位置 */
+				  var _x = ev.pageX - mouse_x;
+				  var _y = ev.pageY - mouse_y;
+				  /* 设置移动后的元素坐标 */
+				  var now_x = (offset_x + _x ) + "px";
+				  var now_y = (offset_y + _y ) + "px";
+				  /* 改变目标元素的位置 */
+				  $pl.css({
+					top:now_y,
+					left:now_x
+				  	});
+					});
+			  	});
+			  /* 当鼠标左键松开，接触事件绑定 */
+			  $(document).bind("mouseup",function(){
+				$(this).unbind("mousemove");
+			  });
+			
+		});
+		
+		
+		
+		
+		
 		   $("li#excom").click(function(){
 				showMask();
 				$(this).closest(".commentarea").find("#excomment").show()
@@ -381,6 +457,24 @@ function commentHandle(){
 				if(d.message.pageindex!=0){
 					//	console.log(d.message.pageindex);
 				$('#container').append(escapes(d.message.info));	
+					commentHandle();
+					currentshow();
+						
+				}else{
+				
+					$('#more').text('没有更多评论');
+					}
+			}
+		},'json')
+		
+		}
+		function getjiaoyancomment(){
+		$.post('/index.php/comment/pc_list',{data: jiaoyandata},function(d){
+			if(d.status==1){
+		
+				if(d.message.pageindex!=0){
+					//	console.log(d.message.pageindex);
+				$('#jiaoyancontainer').append(jiaoyanescapes(d.message.info));	
 					commentHandle();
 					currentshow();
 						
@@ -455,6 +549,67 @@ function commentHandle(){
 			}
 		
 		
+		function jiaoyanescapes(string){
+				var strVar = "";
+				if(!jiaoyandata){
+					return '';
+				}
+				for(var i=0;i<string.length;i++){
+					jiaoyandata['pageIndex']=string[i]['id'];
+					
+					if(string[i]['status']=='0'){
+						continue;
+						}
+					 strVar +='<div class="commentarea clearfix"><div class="commentarea_left left"><img  src="'+string[i]['pic']+'" style="width: 34px;height: 34px;margin-top: 10px;"/></div><div class="commentarea_right right"><h6>'+string[i]['name']+'</h6>';
+					  if(typeof(string[i]['school'])!="undefined"&&string[i]['school']!=''){
+						   strVar +='<p class="school">'+string[i]['school']+'</p>';
+					  }
+					 
+					 if(string[i]['progress']!=0){
+				
+			strVar += "<a  onclick=\"playseek(this) \" class=\"playseek\" data-time=\""+string[i]['progress']+"\"  end-time=\""+string[i]['progressend']+"\" style=\"float:right\"><span class=\"fa  fa-video-camera\"></span><span class=\"f-ib\">"+formatDate(new Date(string[i]['progress']*1000))+"</span></a>";
+					}
+					 if(parseFloat(string[i]['price'])>0){
+						  strVar+='<div class="talk-content"><div class="talk-gave"><i class="mlinkfont talk-gave-i"><img src="/public//images/redpack.png" style="width:45px;height:45px;"></i><span class="talk-gave-span">'+string[i]['message']+'</span></div><div class="talk-your">打赏了一个<font color="#d7493d">'+string[i]['price']+'</font>元红包</div></div>';
+					 }else{
+					strVar+='<div id="mirror" class="comtop"><p id="comtopwben">'+string[i]['message']+'</p></div>';					 
+						 }	
+					 
+					  strVar+='<div id="comtoph6"></div><div class="commid"><div class="date" style="position: relative;"><date>'+string[i]['time']+'</date>';
+					if(string[i]['uid']==uid){
+                    strVar+= '<span class="commentdel" onClick="commentdel(this,'+string[i]['id']+')">删除</span>';
+					}
+					 strVar+='<div class="current" id="current"><ul><li> <span class="glyphicon white-heart zan" onclick="goodplus('+string[i]['id']+',this)"><i>赞</i></span></li><li id="excom" pid="'+string[i]['id']+'" onClick="comment(this)"><span class="glyphicon white-comment"><i>评论</i></span></li></ul></div><span class="right" id="right"><img src="/themes/html/mobile/img/comicon.png" style="width: 20px;"></span></div></div></div><div class="commentarea_right  right combtm">';	
+					 var praiseflag=string[i]['praiselist']?"":"hide";
+					 strVar+='<div class="dianzan"><div class="left"><span class="glyphicon blue-heart '+praiseflag+'"></span></div><div class="userlist right">';
+                if(string[i]['praiselist']){
+					for(var j=0;j<string[i]['praiselist'].length;j++){	
+						strVar+='<img src="'+string[i]['praiselist'][j]['picture']+'" id="img'+string[i]['praiselist'][j]['uid']+'" />';
+					}
+                    }
+	strVar+='</div></div>';
+        			strVar+='<div class="pinglun clearfix"  style="clear: both;">';
+					 var resflag=string[i]['res'].length?"":"hide";
+						strVar+='<div class="left"><span class="glyphicon blue-comment '+resflag+'"></span></div><div class="commentlist right" id="orderList"><ul id="commentlist'+string[i]['id']+'">'; 
+					  if(string[i]['res']){
+					
+						var		namestring='';
+						for(var k=0;k<string[i]['res'].length;k++){	
+							if(string[i]['res'][k]['toname']!=''){
+						namestring='回复<span>'+string[i]['res'][k]['toname']+'：</span>';
+								}
+					 var delstring='';
+					if(string[i]['res'][k]['uid']==uid){
+                      delstring='<span class="resdel" onClick="resdel(this,'+string[i]['res'][k]['id']+')">删除</span>';}
+						strVar+='<li><div class="left"><img src="'+string[i]['res'][k]['pic']+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><span class="username">'+string[i]['res'][k]['nickname']+'</span>'+delstring+'<p pid="'+string[i]['id']+'" toname="'+string[i]['res'][k]['nickname']+'" onclick="comment(this)">'+namestring+string[i]['res'][k]['message']+'</p></div></li>';
+							}
+						 
+						  }
+					strVar+='</ul>'; 
+					strVar+='</div></div></div> </div>';
+					}
+				return strVar;
+			}
 		
 		
 					

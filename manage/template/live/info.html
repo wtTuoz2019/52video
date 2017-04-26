@@ -174,7 +174,7 @@
 						<tr>
 							<td>直播通道：</td>
 							<td>
-								<select name="channel"  reg=".">
+								<select name="channel"  reg="." id="livetd">
                                   <?php 
                                   foreach ($channel as $k => $vo) {
                                   ?>
@@ -183,6 +183,26 @@
                                 </select>
 							</td>
 						</tr>
+                        
+                         <script type="text/javascript">
+	$(document).ready(function() {
+				$('#livetd').multiselect({
+					includeSelectAllOption: true,
+					nonSelectedText:'未选择',
+					nSelectedText:'个已选',
+					selectAllText: '全选',
+					allSelectedText: '已全选',
+					enableClickableOptGroups: true,
+					enableFiltering: true,
+					numberDisplayed: 1,
+					maxHeight: 300
+					
+				});
+				
+			});
+		</script>
+                        
+                        
 						<tr>
 							<td>描述：</td>
 							<td>

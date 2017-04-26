@@ -145,7 +145,7 @@ p{
 	width: 100%;
 	margin: 0 auto;
 	height: 100%;
-	z-index:10000
+	z-index:4000;
 }
 .show{
 	height: 100%;
@@ -882,7 +882,7 @@ p.allcomment span{
 			}
 			
 			.commentinput #import{
-				height: 30;
+				height: 30px;
 				width: 30px;
 				margin-top: 2.5px;
 				float:right;
@@ -893,9 +893,10 @@ p.allcomment span{
 				text-align:center;
 				border-top:1px solid #B6B6B6; 
 			}
+			.commentinput>*{
+				vertical-align:middle;
+			}
 			.commentinput input{
-				position:relative;
-				left:-1%;
 				background:#F6F6F6;
 			}
 			.commentarea_right h6{
@@ -1007,3 +1008,68 @@ p.allcomment span{
 				line-height:50px;
 				margin-right:10px;
 			}
+			.dbg .modal-content{
+				background:#f0eff5;
+			}
+			.imgk{
+				width:90%;
+				margin-left:5%;
+				height:50px;
+				padding:10px;
+				border-top:1px solid #E8E8E8;
+				background:#fff;
+			}
+			.imgk #smiles{
+				width:30px;
+			}
+#usercenter .menus{
+		transform:rotate(90deg);
+		opacity:0;
+		position:absolute;
+		top: -55px;
+    	left: -53px;
+		width:150px;
+		background-image:url(__PUBLIC__/usermenu.png);
+		height:54px;
+		background-repeat:no-repeat;
+		background-size:100% 100%;
+		background-position:center 0;
+		-webkit-transform-origin: 25% 90%;
+		-moz-transform-origin: 25% 90%;
+		-o-transform-origin: 25% 90%;
+		-ms-transform-origin: 25% 90%;
+		transform-origin: 81px 76px;
+		-webkit-transition: -webkit-transform .5s ease;
+		-moz-transition: -moz-transform 1.5s ease;
+		-o-transition: -o-transform .5s ease;
+		transition: transform .5s ease;
+	}
+	#usercenter .menus>a{
+		float:left;
+		display:block;
+		width:50%;
+		height:100%;
+	}
+		#Qr{
+		position:fixed;
+		width:75%;
+		top:220px;
+		left:12.5%;
+		z-index:99999;
+		display:none;
+	}
+	#Qr img.qr{
+		width:100%;
+	}
+	#Qr span{
+		position:absolute;
+		top:0;
+		right:0;
+		height: 50px;
+		width: 50px;
+		padding:10px;
+	}
+	#Qr span>img {
+    width: 100%;
+    height: 100%;
+}
