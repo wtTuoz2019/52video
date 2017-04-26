@@ -1,7 +1,8 @@
-// 原 swipe.js文件
- 
+// 原 Swipe.js文件
   window.Swipe = function(element, options) {
+	  console.log(1);
     if (!element) return null;
+	console.log(2);
     var _this = this;
     this.options = options || {};
     this.index = this.options.startSlide || 0;
@@ -137,6 +138,7 @@
         this.setup();
         break
       }
+	  this.setup();
     },
     transitionEnd: function(e) {
       e.preventDefault();
@@ -154,6 +156,7 @@
       this.element.style.MozTransitionDuration = this.element.style.webkitTransitionDuration = 0
     },
     onTouchMove: function(e) {
+	 console.log(1);
       if (e.touches.length > 1 || e.scale && e.scale !== 1) return;
       this.deltaX = e.touches[0].pageX - this.start.pageX;
       if (typeof this.isScrolling == 'undefined') {
@@ -298,3 +301,4 @@
     return new fe()
   })();
   
+ 

@@ -38,6 +38,7 @@
 #page_emotion{
 	display:none;
 	visibility: visible;
+	    z-index: 9999;
 }
 #list_emotion{
 	list-style: none;

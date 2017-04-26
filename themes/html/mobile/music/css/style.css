@@ -1073,7 +1073,7 @@ p.allcomment span{
     width: 100%;
     height: 100%;
 }
-#myTabContent div[id^="funcions"] p.MsoNormal,#myTabContent div[id^="funcions"] div.jiaoyantishi{
+#myTabContent div[id^="funcions"] div.jiaoyantishi{
 	padding:15px 20px;
 	padding-bottom:0px;
 }
@@ -1081,7 +1081,7 @@ p.allcomment span{
 	color:#888888;
 	font-size:12px !important;
 }
-#comtopwben img{
+#comtopwben img,.comlistarea>p>img{
 	height:24px !important;
 	width:24px !important;
 }

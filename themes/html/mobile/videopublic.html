@@ -56,7 +56,7 @@ var cid='{$info.id}';
                    $selfform=model('selfform')->info($vo['content']);
                   $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
                   }elseif($vo['content']!='0'){?>
-               	 <div>{$vo.content html}</div>
+               	 <div class="jiaoyantishi">{$vo.content html}</div>
                  <?php }
                $commentflag=true;
                      ?>
