@@ -68,7 +68,9 @@
                     </div>
        <div class="form_submit">
 		<a class="button" href=" {$php( echo module('label')->get_aurl($info['aid']))}&sign=yes" >修改报名信息</a>
+           <!--if:{$info['ignore']}-->
            <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes">进入活动</a>
+            <!--{/if}-->
                 
 		</div>
           
@@ -103,9 +105,10 @@
        <button class="ui-btn ui-btn-primary" type="submit"  style="height:30px; line-height:30px; font-size:12px;">
                   提交报名
                 </button>
-                
+                 <!--if:{$info['ignore']}-->
                 <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes" style="height:30px; line-height:30px; font-size:12px;">忽略报名</a>
                 <p class="tishi">温馨提示：未收到活动通知的用户请忽略报名</p>
+                 <!--{/if}-->
 	
 		</div>
         <script>
