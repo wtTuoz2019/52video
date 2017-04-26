@@ -333,9 +333,14 @@ function showspan(ele) {
 		ele.innerHTML = "<span>输入评论...</span>";
 	}
 }
-$("#page_emotion  dd span").click(function(){
-     $(".biaoqing").html( $(".biaoqing").text().replace('输入评论...', '') );
+$(function(){
+	$("#page_emotion  dd").click(function(){
+	console.log(1);
+     $(".biaoqing").html( $(".biaoqing").html().replace('输入评论...', '') );
 });
+});
+
+
 
 
 $('#smiles').click(function(){

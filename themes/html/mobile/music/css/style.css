@@ -1085,3 +1085,7 @@ p.allcomment span{
 	height:24px !important;
 	width:24px !important;
 }
+#myTabContent div[id^="funcions"] p#comtopwben>span{
+	background:transparent !important;
+	font-size:14px !important;
+}

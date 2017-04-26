@@ -362,7 +362,7 @@ dd{ margin-left:10%; height:40px; padding:5px;}
 				text-align:center;
 			}
 			.discrption {
-				margin-top:5px;
+				margin: 5px 60px;
 			}
 			.tabledetail{
 				
@@ -371,7 +371,7 @@ dd{ margin-left:10%; height:40px; padding:5px;}
 				border-radius:3px;
 				padding:0px;
 				margin:0 30px;
-				margin-top:20px;
+				margin-top:15px;
 			}
 			.tabledetail>div{
 				background-image:none;

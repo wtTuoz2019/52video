@@ -83,7 +83,6 @@ span.resdel { float:right; margin-top:0}
 .commentarea_right .comtop span
 {
 	font-size: 10px;
-	color: #fff;
 	padding: 1px 3px;	
 }
 .commentarea_right .comtop p,.commentarea_right .dianzan .userlist p
@@ -233,7 +232,7 @@ span.resdel { float:right; margin-top:0}
 .modal-body .biaoqing
 {
 	width:90%;
-	height:95px;
+	min-height:95px;
 	margin-top: 10px;
 	resize: none;
 	font-size:16px;
