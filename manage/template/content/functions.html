@@ -113,7 +113,18 @@
         </tr>
         
         
+            <tr id="sellform" style="display:none" >
+          <td width="100" align="right">关联调查</td>
+         <td colspan="2">
+         <select  name="content">
+         <option value="0">选择量表</option>
+                  <!--foreach:{$form_list $vo}-->
+                <option value="{$vo.id}" <?php  if($vo['id']==$info['content']){echo 'selected';}?>>{$vo.name len="20"}</option>
+                                             <!--{/foreach}-->
+                                        </select>
+          </td>
         
+        </tr>
              <tr id="commentshow"  style="display:none" >
           <td width="100" align="right">关联手机</td>
          <td colspan="2">
@@ -180,7 +191,7 @@ function typechange(){
 		$('#otherbody').html($('#commentshow').html());
 		}else if(type=='selfform'){
 		
-		$('#otherbody').html($('#comment').html());
+		$('#otherbody').html($('#sellform').html());
 		}else if(type=='content'){
 		$('#contentbody').show();
 		$('#otherbody').html('');
