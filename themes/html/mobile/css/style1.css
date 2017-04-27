@@ -885,3 +885,10 @@ span.resdel { float:right; margin-top:0}
 	height:24px !important;
 	width:24px !important;
 }
+#myTabContent img{
+	width:100%;
+}
+#mirror img{
+	height:24px !important;
+	width:24px !important;
+}
