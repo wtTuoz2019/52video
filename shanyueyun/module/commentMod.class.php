@@ -36,7 +36,7 @@ class commentMod extends commonMod {
 	 //评论列表
     public function person()
     {	$this->id=$aid=isset($_GET['id']) ? intval($_GET['id']) : 0;
-        $url = __URL__ . '/person/id-'.$aid.'page-{page}'; //分页基准网址
+        $url = __URL__ . '/person/id-'.$aid.'-page-{page}'; //分页基准网址
         $listRows = 10;
         $page = new Page();
         $cur_page = $page->getCurPage($url);
@@ -102,7 +102,7 @@ class commentMod extends commonMod {
     {
         
 
-     echo    model('comment')->edit_save($_POST);die;
+        model('comment')->edit_save($_POST);
        
         /*hook end*/
         $this->msg('评论编辑成功！',1);
