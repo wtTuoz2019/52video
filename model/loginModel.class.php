@@ -37,9 +37,18 @@ class loginModel extends commonModel
 	
 	  public function gsetloginQrcode($url, $code){
         $filename = __ROOTDIR__.'/upload/login/'.$code.'.png';  
-        if(!file_exists($filename)){
+        if(!file_exists($this->config['imageurl'].'/upload/login/'.$code.'.png')){
             $qercode = new Qrcodes();
             $qr = $qercode->_Qrcode($url,$filename);
+			require(CP_CORE_PATH . '/../ext/aliyun-oss-php-sdk-master/samples/Common.php');
+	$ossClient = Common::getOssClient();
+		if (is_null($ossClient)) exit(1);
+	$bucket = Common::getBucketName();
+	$temp=explode('upload',$filename);
+	 $object='upload'.$temp[1];
+	
+	 $ossClient->uploadFile($bucket, $object, $filename);
+	 unlink($filename);
         }
 	
     }

@@ -248,9 +248,6 @@ span.resdel { float:right; margin-top:0}
 .modal-body .biaoqing span{
 	color:#A9A9A9;
 }
-.emoji_icon{
-width:30px !important;
-}
 .icongroups
 {
 	margin-top:10px;
@@ -883,4 +880,8 @@ width:30px !important;
 .modal-body textarea{
 	border:0;
 	border-radius:3px;
+}
+#comtopwben img,.comlistarea>p>img{
+	height:24px !important;
+	width:24px !important;
 }

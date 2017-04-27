@@ -291,7 +291,7 @@
               keyCode: -10,
               srcElement: document.getElementsByClassName("biaoqing")[0],
               value: val[2],
-              imgUrl: '../public/js/biaoqing/images/arclist/' + val[0] + ".gif"
+              imgUrl: '/public/js/biaoqing/images/arclist/' + val[0] + ".gif"
             });
             this.focus()
           }
