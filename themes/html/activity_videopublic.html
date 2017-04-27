@@ -51,7 +51,7 @@
                        <p class="schoolname">{$school[$val['csid']]['name']}</p>
                        <p class="now"> <?php echo $val['cid']==16?'直播':'重播';  ?></p>
                          <p class="videotime">
-                       		<?php echo $val['cid']==16?date('Y-m-d',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?><span><img src="__TPL__mobile/img/see.png" class="to_play"/>{$val.views}</span></p>
+                       		<?php echo $val['cid']==16?date('Y-m-d H:i',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?><span><img src="__TPL__mobile/img/see.png" class="to_play"/>{$val.views}</span></p>
                    		
                    		</div>
                          </a>
