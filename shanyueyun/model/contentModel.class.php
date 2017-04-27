@@ -347,7 +347,14 @@ class contentModel extends commonModel
             return false;
         }
     }
+	public function functions_info($where)
+    {	
 	
+		
+       return $this->model->table('functions')->where($where)->find(); 
+      
+      
+    }
 	public function cid_change($cid, $aid){
 		$data['cid'] = $cid;
 		return $this->model->table('content')->data($data)->where('aid='.$aid)->update();

@@ -91,7 +91,10 @@ class commentMod extends commonMod {
      
         $this->info=model('comment')->info($id);
 		$article=model('content')->info($fid);
-		$this->list=model('content')->getlist($article['aids']);
+		
+		$functions=model('content')->functions_info(array('type'=>'linkaid','aid'=>$article['activity_id']));
+	
+		$this->list=model('content')->getlist($functions['content']);
         $this->display('comment/info');
     }
   //评论保存
