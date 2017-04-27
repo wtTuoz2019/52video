@@ -2086,6 +2086,8 @@ body .userset .oftentable tr td{
 }
 #postmanage .scrolldiv{
 	overflow-x: scroll;
+	transform: rotate(180deg);
+	margin-top: 20px;
 }
 #postmanage .scrolldiv th{
     word-break: keep-all;

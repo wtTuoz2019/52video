@@ -112,7 +112,7 @@ var cid='{$info.id}';
 						<span class="quan2"></span>
 						<div class="col-xs-6 cebian">
                             <p>
-                       		<span><?php echo $val['cid']==16?date('Y-m-d',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?>&nbsp;&nbsp;<?php echo $val['cid']==16?'直播':'重播';  ?></span><img src="img/video.png"/></p>
+                       		<span><?php echo $val['cid']==16?date('Y-m-d H:i',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?>&nbsp;&nbsp;<?php echo $val['cid']==16?'直播':'重播';  ?></span><img src="img/video.png"/></p>
 							<a href="{$val.aurl}">
                             <img src="{$sys.imageurl}{$val.image}" class="img-responsive m_img"/>
                             <img src="img/to_play.png" class="to_play"/>
