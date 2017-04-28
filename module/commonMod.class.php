@@ -125,7 +125,9 @@ class commonMod
 			$this->msg($user_info->errmsg, 0);
 		}
 		$data = json_decode($user_info, true);
-		
+		if(!$data['openid']){
+				$this->msg('授权出错', 0);	
+			}
 		$res['openid']=$data['openid'];
 		$res['nicename']=$data['nickname'];
 		$res['headimgurl']=$data['headimgurl'];
