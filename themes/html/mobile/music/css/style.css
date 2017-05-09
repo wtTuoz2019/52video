@@ -841,7 +841,7 @@ p.allcomment span{
 			p.allcomment{
 				font-weight:normal;
 				color:#353535;
-				padding-top: 15px;
+				padding-top: 10px;
 				border-bottom:1px solid #D8D8D8;
 			}
 			p.allcomment span{
@@ -1079,7 +1079,7 @@ p.allcomment span{
     height: 100%;
 }
 #myTabContent div[id^="funcions"] div.jiaoyantishi{
-	padding:15px 20px;
+	padding:10px 20px;
 	padding-bottom:0px;
 }
 #myTabContent div[id^="funcions"] p.MsoNormal span,#myTabContent div[id^="funcions"] div.jiaoyantishi span{
