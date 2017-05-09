@@ -45,8 +45,12 @@
 		?>
          <div id="backdrop" class="backdrop">
 			<img src="{$sys.imageurl}{$info.image}"  alt="" />
+            <?php if(!$_GET['token']){?>
             <img src="__PUBLIC__/images/{$subscribe}.png" id="subscribe" onClick="subscribeclick({$info.aid})"  />
             <button id="bsubscribe">点击预约</button>
+            	 <?php
+         }
+		?>
 			<div class="counter">
 				<p>距离直播还有：</p>
 				<div id="countdown"></div>
