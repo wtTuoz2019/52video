@@ -49,6 +49,15 @@
 	    
          <link rel="stylesheet" href="__TPL__mobile/css/newadd.css" />
       <div class="commentinput">
+      
+      <?php  if(($activity['signup']||$info['signup'])&&!$signinfo['status']){ ?>
+          <div class="logintishi">
+          	 温馨提示：您还没有实名认证，无法进行评析。<a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=no">立即验证</a>
+          </div>
+   
+    <?php }  ?> 
+      
+      
       <div class="comment-form-comment" id="commentform" >
           
            <span id="start">开始:00:00</span>

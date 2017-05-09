@@ -2,6 +2,16 @@
               
                   ?>
                  <div class="choosep nosie">
+                 
+                 
+                 <?php  if(($activity['signup']||$info['signup'])&&!$signinfo['status']){ ?>
+          <div class="logintishi pingding">
+          	 温馨提示：您还没有实名认证，无法进行评定。<a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=no">立即验证</a>
+          </div>
+   
+    <?php }  ?> 
+                 
+                 
                  <p class="headtitle"><?=$this->selfform['intro']?></p>
                    <form action="__INDEX__/selfform/only_post" method="post" id="form" >
                  

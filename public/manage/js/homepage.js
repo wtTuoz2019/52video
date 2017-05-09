@@ -29,7 +29,9 @@ $('#headnav>a').click(function(e){
 });
 	
 $('#nav').delegate('a','click',function(e){
+	$('#content_loading').show();
 	e.preventDefault();
+	$('#main').html(1);
 	$('#main').attr('src',$(this).attr('href'));
 				
 		//给当前a添加active
@@ -38,6 +40,7 @@ $('#nav').delegate('a','click',function(e){
 });
 
 function loadFrame(obj){  
+$('#content_loading').hide();
     var url = obj.contentWindow.location.href;
     if(url.indexOf("login")!=-1){  
         window.location.href="http://kf.shanyueyun.com/manage/index.php/login";

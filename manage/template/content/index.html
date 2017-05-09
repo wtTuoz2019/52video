@@ -76,7 +76,7 @@
 						<img src="/upload/aidimage/{$vo['aid']}.png"/>
 						<input type="" name="" id="" value="http://{$sys['MOBILE_DOMAIN']}/content/index?aid={$vo['aid']}" />
 						<div class="btns">
-							<button  onclick="copyUrl('aidurl')">
+							<button  onclick="copyUrl(this)">
 								复制链接
 							</button>
 							<button onclick="downloadpic('/upload/aidimage/{$vo['aid']}.png');return false;">
@@ -176,6 +176,14 @@ function endlive(aid){
 	
 	
 	}	
-		
+
+
+function copyUrl(e)
+{
+	var Url2=$(e).parents('.Qr').find('input')[0];
+	Url2.select(); // 选择对象
+	document.execCommand("Copy"); // 执行浏览器复制命令
+	alert("已复制");
+}
         </script>
         

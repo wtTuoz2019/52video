@@ -847,6 +847,7 @@ body{
 	font-weight:bold;
 	background:#fff;
 	position:absolute;
+	color:#333;
 }
 .addAnswerBox .logintishi>a{
 	font-size: 18px;
@@ -894,6 +895,7 @@ body{
 				font-size:12px;
 				padding-top:13px;
 				color:#000;
+				height:40px;
 			}
 			.nosie p{
 				padding:0 20px;
@@ -960,8 +962,27 @@ body{
 	margin-top:10px;
 }
 .contentBox .biaogek{
-	border:3px solid #e5e5e5;
-	width:70%;
+	border:6px solid #e5e5e5;
+	width:66%;
 	margin:0 auto;
 	margin-top:37px;
+}
+.logintishi.pingding{
+	font-size:18px;
+	font-weight:bold;
+}
+.logintishi.pingding a{
+	font-size: 18px;
+    font-weight: bold;
+    padding: 8px 15px;
+    background: #E43339;
+    color: #fff;
+    border-radius: 5px;
+}
+.contentBox .biaogek .pingdingimg{
+	width:256px;
+	height:166px;
+	position:absolute;
+	bottom: -45px;
+    right: -123px;
 }

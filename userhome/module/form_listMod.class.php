@@ -111,7 +111,7 @@ class form_listMod extends commonMod {
 		$this->field_list=model('form_list')->field_list($id);
 		
 		
-		if($_FILES){
+		if($_FILES['file']['name']){
 		$return=module('editor_upload')->upload();
 			
 			if($return['error'])$this->error($return['msg']);

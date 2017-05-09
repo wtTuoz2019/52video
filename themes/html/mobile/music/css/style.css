@@ -1050,11 +1050,18 @@ p.allcomment span{
 	}
 		#Qr{
 		position:fixed;
-		width:75%;
-		top:220px;
-		left:12.5%;
+		width:100%;
+		top:200px;
+		padding-top:20px;
+		height:100%;
 		z-index:99999;
 		display:none;
+		background:rgba(0,0,0,0.6);
+	}
+	#Qr .qrk{
+		width:75%;
+		margin:0 auto;
+		position:relative;
 	}
 	#Qr img.qr{
 		width:100%;

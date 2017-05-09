@@ -73,7 +73,8 @@
 			
 			
 			function jump(e){
+				
 				var iframe=parent.document.getElementById("main");
-				$(iframe).parent().find('#headnav>a').eq(e)[0].click();
+				$(iframe).parents('body').find('#headnav>a').eq(e)[0].click();
 			}
 		</script>

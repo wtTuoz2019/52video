@@ -46,12 +46,7 @@
 	
 
       <div class="commentinput">
-          <?php  if(($activity['signup']||$info['signup'])&&!$signinfo['status']){ ?>
-          <div class="logintishi">
-          	 温馨提示：您还没有实名认证，暂时无法进行评论。<a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=no">立即验证</a>
-          </div>
-   
-    <?php }  ?> 
+          
     	<div onClick="comment(this)">
 			<img id="smile" src="__PUBLIC__/images/face.png" >
            
