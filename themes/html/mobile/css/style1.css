@@ -788,7 +788,7 @@ span.resdel { float:right; margin-top:0}
 .blue-heart::before{
 	content:url('/public/images/blue-heart.png');
 	} 
-#container,#jiaoyan{
+#container,#jiaoyancontainer{
 	min-height:300px;}
 .playseek{position:relative;
 	top:-24px;}
