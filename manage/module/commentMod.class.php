@@ -131,7 +131,7 @@ class commentMod extends commonMod {
 		$this->actionname='评论调查';
 	    $this->id=$aid=isset($_GET['id']) ? intval($_GET['id']) : 0;
 		
-		$where=' A.fid ='.$aid;
+		$where='aid ='.$aid;
 		   $url = __URL__ . '/selfform/id-'.$aid.'-page-{page}'; //分页基准网址
 		$content=model('content')->info($aid);
 		if($content['signup']){
@@ -169,7 +169,7 @@ class commentMod extends commonMod {
 				
     	if($list){
 			
-		 $formlist=model('selfform')->inputs_list(array('fid'=>$list[0]['formid']));	
+		 $formlist=model('selfform')->inputs_list(array('fid'=>$list[0]['fid']));	
 		foreach($list as $key=>$value){
 			$list[$key]['values']=unserialize($value['values']);
 			}
@@ -182,7 +182,6 @@ class commentMod extends commonMod {
 			echo iconv('utf-8','gbk',$value['name'])."\t";
 			}
 		
-		echo iconv('utf-8','gbk','评论')."\t";
 		echo iconv('utf-8','gbk','评论人')."\t";
 		
 		echo iconv('utf-8','gbk','时间')."\n";
@@ -191,7 +190,7 @@ class commentMod extends commonMod {
 			echo iconv('utf-8','gbk',model('expand_model')->get_list_model($model['type'],$v['values'][$model['field']],$model['options']))."\t";
 			}	
 			
-		echo iconv('utf-8','gbk',str_replace("\n","",$v['message']))."\t";
+		
 		echo iconv('utf-8','gbk',$v['name'])."\t";
 		
 		echo iconv('utf-8','gbk',date("Y/m/d H:i",$v['time']))."\n";
@@ -216,7 +215,7 @@ class commentMod extends commonMod {
         $list=model('comment')->selfform_list($where,$limit);
     	if($list){
 			
-		 $this->formlist=model('selfform')->inputs_list(array('fid'=>$list[0]['formid']));	
+		 $this->formlist=model('selfform')->inputs_list(array('fid'=>$list[0]['fid']));	
 		foreach($list as $key=>$value){
 			$list[$key]['values']=unserialize($value['values']);
 			
@@ -248,20 +247,22 @@ class commentMod extends commonMod {
     {	
 		$this->actionname='评论调查';
 	    $this->id=$aid=isset($_GET['id']) ? intval($_GET['id']) : 0;
-		$where=' commentid>0 and  aid ='.$aid;
+		$where=' aid ='.$aid;
 		$list=model('selfform')->form_value_list($where);
 			
     	if($list){
 			
-		 $this->formlist=model('selfform')->inputs_list(array('fid'=>$list[0]['fid']));	
+		 $this->formlist=$formlist=model('selfform')->inputs_list(array('fid'=>$list[0]['fid']));	
 		
 		$data=array();
 		foreach($list as $key=>$value){
+			
 			$values=unserialize($value['values']);
-			$data[$values['qusetion']][$values['ans']]+=1;
-			
-			$list[$key]['values']=$values;
-			
+			foreach($formlist as $k=>$v){
+				$data[$v['field']][$values[$v['field']]]+=1;
+				
+				}
+		
 			
 				}
 			

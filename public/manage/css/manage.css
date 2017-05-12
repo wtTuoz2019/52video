@@ -2102,3 +2102,6 @@ body .userset .oftentable tr td{
     height: 100%;
     z-index: 2000;
 }
+.comment-content span{
+	display:block;
+}

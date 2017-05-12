@@ -16,7 +16,7 @@
              
              <div class="borderk"> 
              <a href="__URL__/person/id-{$id}">评论列表</a>
-             <a href="__URL__/selfform/id-{$id}" class="active">评论调查</a>
+             <a href="__URL__/selfform/id-{$id}" class="active">量表调查</a>
   
   
    </div>
@@ -33,68 +33,64 @@
                 
              
  <div id="surveydata" class="active" style="margin-right:-106px"> 
-  <!--foreach:{$data $key $vo}-->
-     <div class="problemfigures">
-        <div class="figuretitle"><?php  echo model('expand_model')->get_list_model(6,$key,$formlist[0]['options']); ?></div>
-        <div id="container{$key}"  class="figure" style=" width:455px; height:315px;">
-            
-        </div>
-     </div>
-     
-     
+   <!--foreach:{$formlist $key $vo}-->
+            	<div class="problemfigures">
+                    <div class="figuretitle">{$vo.name}</div>
+                    <div id="container{$key}"  class="figure" style=" width:485px; height:330px;">
+                        
+                    </div>
+                    
+                    
 <script>
 
     $('#container{$key}').highcharts({
         chart: {
             plotBackgroundColor: null,
-            plotBorderWidth: 0,
+            plotBorderWidth: null,
             plotShadow: false
         },
         title: {
             text: '调查情况占比',
-            align: 'center',
-            verticalAlign: 'middle',
-            y: 50,
-			style:{fontSize:'12px'}
+			verticalAlign:'bottom',
+			style:{
+				fontSize:'14px'	
+			}
         },
         tooltip: {
-            headerFormat: '<?php  echo model('expand_model')->get_list_model(6,$key,$formlist[0]['options']); ?><br>',
+            headerFormat: '{series.name}<br>',
             pointFormat: '{point.name}: <b>{point.y}</b>'
         },
         plotOptions: {
             pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
                 dataLabels: {
                     enabled: true,
-                    distance: -50,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
                     style: {
-                        fontWeight: 'bold',
-                        color: 'white',
-                        textShadow: '0px 1px 2px black'
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     }
-                },
-                startAngle: -90,
-                endAngle: 90,
-                center: ['50%', '75%']
+                }
             }
         },
         series: [{
             type: 'pie',
-            name: '浏览器占比',
-            innerSize: '50%',
+            name: '调查情况占比',
             data: [
-			 <!--foreach:{$vo $k $v}-->
+              <!--foreach:{$data[$vo['field']] $k $v}-->
 			 
-                ['<?php  echo model('expand_model')->get_list_model(6,$k,$formlist[1]['options']); ?>',   {$v}],
-			
+                ['<?php  echo model('expand_model')->get_list_model($vo['type'],$k,$vo['options']); ?>',   {$v}],
+				
 				 	<!--{/foreach}-->
-              
-                
             ]
         }]
     });
 
+
+
 </script>
- 	<!--{/foreach}-->
+                 </div>
+                <!--{/foreach}-->
     
  	
  </div>                                   

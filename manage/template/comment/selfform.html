@@ -13,7 +13,7 @@
              
              <div class="borderk"> 
              <a href="__URL__/person/id-{$id}">评论列表</a>
-             <a href="__URL__/selfform/id-{$id}" class="active">评论调查</a>
+             <a href="__URL__/selfform/id-{$id}" class="active">量表调查</a>
   
   
    </div>
@@ -47,7 +47,7 @@
                                     	<!--<input type="checkbox" name="id[]" onclick="mychoose(this)" value="{$vo.id}" />-->
 										<p class="pull-left">ID:{$vo['id']}</p>
 										<p class="pull-left user-name">用户名：&nbsp;&nbsp;<span>{$vo.name}</span></p>
-										<p class="pull-left date-time user_time">评论时间: &nbsp;&nbsp;<span>{$php(echo date('Y-m-d H:i:s',$vo['time']))}</span></p>
+										<p class="pull-left date-time user_time">时间: &nbsp;&nbsp;<span>{$php(echo date('Y-m-d H:i:s',$vo['time']))}</span></p>
 									</div>
 									<div class="clearfix commentoperation" style="clear:both">
                                     	<div class="problems">

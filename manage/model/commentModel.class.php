@@ -23,7 +23,7 @@ class  commentModel extends commonModel
     //列表
     public function selfform_list($where=null,$limit=null) {
 	
-      $data= $this->model->table('comment','A')->field('A.*,B.values,B.fid as formid')->add_table('selfform_value','B','A.id=B.commentid')->where($where)->limit($limit)->order('A.time desc,A.id desc')->select();
+      $data= $this->model->table('selfform_value')->where($where)->limit($limit)->order('id desc ')->select();
 		
 		
 		 return $data;
