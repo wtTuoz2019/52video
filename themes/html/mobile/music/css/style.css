@@ -869,7 +869,7 @@ p.allcomment span{
 			}
 			.commentarea{
 				border:0;
-				border-bottom:1px solid #D5D4D4;
+				border-bottom:1px solid #eeeeee;
 			}
 			.commentinput #import,.commentinput #smile{
 				width:35px;
