@@ -1,8 +1,8 @@
 // 原 Swipe.js文件
   window.Swipe = function(element, options) {
-	  console.log(1);
+	  
     if (!element) return null;
-	console.log(2);
+	
     var _this = this;
     this.options = options || {};
     this.index = this.options.startSlide || 0;

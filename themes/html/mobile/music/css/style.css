@@ -89,7 +89,6 @@ p{
 	height:100%;
 	}
 .play-box{
-	height: 200px;
 	position:relative;
 }
 .scroll-bar{
@@ -101,7 +100,6 @@ p{
 	width: 100%;
 	background: #000;
 	position:relative;
-	height:200px;
 }
 
 .player{
@@ -937,6 +935,7 @@ p.allcomment span{
 			}
 			#myTabContent div[id^="funcions"] p{
 				    text-indent: inherit !important;
+					font-size: 14px !important;
 			}
 			.commentarea_right p.school{
 				font-size:12px;

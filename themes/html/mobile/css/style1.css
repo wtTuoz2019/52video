@@ -82,7 +82,7 @@ span.resdel { float:right; margin-top:0}
 }
 .commentarea_right .comtop span
 {
-	font-size: 10px;
+	font-size: 14px !important;
 	padding: 1px 3px;	
 }
 .commentarea_right .comtop p,.commentarea_right .dianzan .userlist p
