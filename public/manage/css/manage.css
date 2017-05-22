@@ -314,6 +314,18 @@ button{
 #nav>a.active div.nav_selectclass1{
 	background-image: url(../img/nav_selectclass1_.png);
 }
+#nav>a div.nav_selectclass2{
+	background-image: url(../img/nav_selectclass2.png);
+}
+#nav>a.active div.nav_selectclass2{
+	background-image: url(../img/nav_selectclass2_.png);
+}
+#nav>a div.nav_selectclass3{
+	background-image: url(../img/nav_selectclass3.png);
+}
+#nav>a.active div.nav_selectclass3{
+	background-image: url(../img/nav_selectclass3_.png);
+}
 
 #nav>a div.nav_userset1{
 	background-image: url(../img/nav_userset1.png);
@@ -589,6 +601,7 @@ iframe{
 	width: 100%;
 	overflow: auto;
 	border: none;
+	min-height:700px;
 }
 #editmodel .modelk table tr>td{
 	height: 85px;

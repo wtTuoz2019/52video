@@ -987,6 +987,7 @@ p.allcomment span{
 			}
 			.nosie{
 				padding-bottom:20px;
+				position:relative;
 			}
 			.nosie button{
 				height:30px;
