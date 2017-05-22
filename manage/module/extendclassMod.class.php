@@ -112,5 +112,103 @@ class extendclassMod extends commonMod {
         $this->msg('删除成功！',1);
 		
 		}
+	public function batch(){
+	
+		$where['uid']= $this->user['id'];
+		 $this->list=model('extendclass')->batch_list($where);
+		 $this->show();
+		
+		}
+	public function batch_add(){
+		$this->actionname='添加';
+		$this->action='batch_add';
+		
+		 $this->show('extendclass/batch_info');
+		}
+	public function batch_add_save(){
+		
+		$_POST['uid']= $this->user['id'];
+		model('extendclass')->batch_add_save($_POST);
+    	
+    	$this->msg('添加成功！',1);
+		
+		}
+	public function batch_edit(){
+		$this->actionname='编辑';
+		$this->action='batch_edit';
+		
+		 $id=intval($_GET['id']);
+        $this->alert_str($id,'int');
+		
+		 $this->info=model('extendclass')->batch_info(array('id'=>$id));
+		
+		 $this->show('extendclass/batch_info');
+		}
+	
+	public function batch_edit_save(){
+		
+		model('extendclass')->batch_edit_save($_POST);
+    	
+    	$this->msg('编辑成功！',1);
+		
+		}
+	public function batch_del(){
+		 $id=$_POST['id'];
+     
+        $this->alert_str($_POST['id'],'int',true);
+        model('extendclass')->batch_del($id,$fid);
+      
+        $this->msg('删除成功！',1);
+		
+		}
+	public function course(){
+	
+		$where['uid']= $this->user['id'];
+		 $this->list=model('extendclass')->course_list($where);
+		 $this->show();
+		
+		}
+	public function course_add(){
+		$this->actionname='添加';
+		$this->action='course_add';
+		
+		 $this->show('extendclass/course_info');
+		}
+	public function course_add_save(){
+		
+		$_POST['uid']= $this->user['id'];
+		model('extendclass')->course_add_save($_POST);
+    	
+    	$this->msg('添加成功！',1);
+		
+		}
+	public function course_edit(){
+		$this->actionname='编辑';
+		$this->action='course_edit';
+		
+		 $id=intval($_GET['id']);
+        $this->alert_str($id,'int');
+		
+		 $this->info=model('extendclass')->course_info(array('id'=>$id));
+		
+		 $this->show('extendclass/course_info');
+		}
+	
+	public function course_edit_save(){
+		
+		model('extendclass')->course_edit_save($_POST);
+    	
+    	$this->msg('编辑成功！',1);
+		
+		}
+	public function course_del(){
+		 $id=$_POST['id'];
+     
+        $this->alert_str($_POST['id'],'int',true);
+        model('extendclass')->course_del($id,$fid);
+      
+        $this->msg('删除成功！',1);
+		
+		}
 }
 ?>

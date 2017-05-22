@@ -601,6 +601,8 @@ iframe{
 	width: 100%;
 	overflow: auto;
 	border: none;
+}
+iframe#main{
 	min-height:700px;
 }
 #editmodel .modelk table tr>td{

@@ -2,7 +2,7 @@
   
 <div id="postmanage">
 			<h4>
-				班级管理
+				选课批次管理
 			</h4>
 		<div class="borderk postk" style="overflow:hidden;">
 				
@@ -11,7 +11,8 @@
 			<table width="100%" cellspacing="0" class="oftentable">
 				<tr class="bgth">
 					<th>名称</th>
-					<th>排序</th>
+                    <th>描述</th>
+					
 					
 					
 					<th width="130px">操作</th>
@@ -19,22 +20,21 @@
                   <!--foreach:{$list $vo}-->
 				<tr>
 					
-					<td style="text-align:left" width="60%">
-						{$vo.grade}年级{$vo.class}班
+					<td style="text-align:left">
+						{$vo.name}
 					</td>
-					
-					
-                    <td>
-				
-				{$vo.sequence}
-					</td>
+					<td>{$vo.des}</td>
 					
 					<td class="operation">
 						<button>
 							操作
 						</button>
 						<ul>
-                        	
+                        	<li>
+								<a href="__URL__/course/cid-{$vo.id}">
+									课程管理
+								</a>
+							</li>
 							<li>
 								<a href="javascript:" onClick="edit({$vo.id})">
 									编辑
@@ -57,16 +57,16 @@
 	urldialog({
 		width:600,
 	height:400,
-	title:'班级操作',
-	url:'__URL__/classes_add'
+	title:'选课批次操作',
+	url:'__URL__/batch_add'
 	});
 	}
   function edit(id){
 	urldialog({
 		width:600,
 	height:400,
-	title:'班级操作',
-	url:'__URL__/classes_edit/id-'+id,
+	title:'选课批次操作',
+	url:'__URL__/batch_edit/id-'+id,
 	});
 	}
 //删除
@@ -75,8 +75,8 @@ function del(id,obj) {
 	
 
 	ajaxpost({
-		name:'确定要删除此班级？',
-		url:"__URL__/classes_del",
+		name:'确定要删除此选课批次？',
+		url:"__URL__/batch_del",
 		data:{id: id},
 		tip:1,
 		success:function(){

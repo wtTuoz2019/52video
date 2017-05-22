@@ -253,6 +253,7 @@ class contentModel extends commonModel
 				$aids=$val['content'];
 				}
 			}
+		if($aids)
 		$this->model->table('content')->data(array('activity_id'=>$aid))->where('aid in ('.$aids.')')->update();
 		}
 

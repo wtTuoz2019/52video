@@ -8,8 +8,8 @@
 <body scroll="no">
 <div class="page_function">
   <div class="info">
-    <h3>班级{$action_name}</h3>
-    <small>使用以下功能进行班级{$action_name}操作</small> </div>
+    <h3>选课批次{$action_name}</h3>
+    <small>使用以下功能进行选课批次{$action_name}操作</small> </div>
 </div>
 <div class="page_form">
 <form autocomplete="off" action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
@@ -17,28 +17,25 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
     
     <tr>
-        <td width="120" align="right">年级</td>
+        <td width="120" align="right">名称</td>
         <td>
-          <input name="grade" type="text" class="text_value" id="grade" value="{$info.grade}" style="width:100px;" reg="\S" msg="年级不能为空" placeholder="请填入数字" />
+          <input name="name" type="text" class="text_value" id="name" value="{$info.name}"reg="\S" msg="年级不能为空"  />
         
         
         </td>
         </tr>
       <tr>
        <tr>
-        <td width="120" align="right">班级</td>
-        <td>
-          <input name="class" type="text" class="text_value" id="class"  style="width:100px;" value="{$info.class}" reg="\S" msg="班级"  placeholder="请填入数字" />
+        <td width="120" align="right">描述</td>
+           <td >
+         
+          <textarea name="des" style="width:290px; height:50px;" id="des">{$info.des}</textarea>
+         
         </td>
         </tr>
     
       
-       <tr>
-        <td width="120" align="right">顺序</td>
-        <td>
-       <input name="sequence" type="text" class="text_value" id="sequence" style="width:30px;" reg="\S" value="{$info.sequence isset="0"}" />越小越前面，0-100
-        </td>
-        </tr>
+      
       
       
     </table>
