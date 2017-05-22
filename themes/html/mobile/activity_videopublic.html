@@ -261,7 +261,8 @@ function changecolor(color){
 	});
 	
 	$(function(){
-		
+		$('#backdrop').css('height',$(document).width()/16*9+'px');
+		$('.show').css('height',$(document).width()/16*9+'px');
 		if($('#myTab').children('li').length=='1'){
 				$('#myTab').children('li').addClass('only');
 		}

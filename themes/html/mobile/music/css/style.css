@@ -145,8 +145,8 @@ p{
 	height: 100%;
 	z-index:4000;
 }
-.show{
-	height: 100%;
+.channels .show{
+	min-height: 200px;
 }
 .backdrop img, .watchover img{
 	width: 100%;
