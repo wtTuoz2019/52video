@@ -27,7 +27,14 @@ class extendclassModel extends commonModel {
 		
 		
 	public function teacher_list($where){
-		return $this->model->table('teacher')->where($where)->order('sequence asc')->select();
+		$data=$this->model->table('teacher')->where($where)->order('sequence asc')->select();
+		if($data){
+			foreach($data as $key=>$value){
+				$temp[$value['id']]=$value;
+				
+				}
+			return $temp;
+			}
 		}
 	public function teacher_add_save($data){
 		return $this->model->table('teacher')->data($data)->insert();

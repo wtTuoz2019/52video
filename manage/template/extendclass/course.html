@@ -5,17 +5,24 @@
 			<div class="selectclassk borderk">
 				<div>
                 <a href="javascript:" onClick="add()"  class="sendlive">添加</a>
-					<span>
+                <form method="get" style="display:inline-block; vertical-align:middle;">
+					<span style="padding-top:5px;">
 						选修课程：
 					</span>
-					<input type="text" name="" id="" value="" />
-					<button class="query">
+					<input type="text" name="s" id="s" value="" />
+					<button class="query" style="position:static">
 						查询
 					</button>
+                    </form>
 				</div>
 				<div class="chooseclass">
-					<select name="">
-						<option value="">请选择班级</option>
+					<select name="bj_id">
+						<option value="0">请选择班级</option>
+                          <!--foreach:{$bj $vo}--> 
+                             <option value="{$vo['id']}">
+                                     {$vo.grade}年级{$vo.class}班
+                                  </option>
+                                  <!--{/foreach}-->
 					</select>
 					<button>
 						导出报名信息
@@ -35,34 +42,35 @@
 					<th>场地</th>
 					<th width="130px"></th>
 				</tr>
+                   <!--foreach:{$list $vo}-->
 				<tr>
 					<td>
-						<input type="checkbox" name="" id="" value="" />
-						张雪
+					<!--	<input type="checkbox" name="" id="" value="{$vo.id}" />-->
+						{$teacher[$vo['tid']]['name']}
 					</td>
 					<td>
-						ss
+						{$vo.code}
 					</td>
 					<td>
-						电影赏析
+						{$vo.name}
 					</td>
 					<td>
-						周四
+						{$vo.group}
 					</td>
 					<td>
-						手工课程
+					{$vo.title}
 					</td>
 					<td>
-						50
+						{$vo.number}
 					</td>
 					<td>
-						10
+						{$vo.limitnum}
 					</td>
 					<td>
 						2
 					</td>
 					<td>
-						逸夫楼
+					{$vo.place}
 					</td>
 					<td class="operation">
 						<button>
@@ -70,127 +78,25 @@
 						</button>
 						<ul>
 							<li>
-								<a href="javascript:;">
+								<a href="javascript:" onClick="edit({$vo.id})">
 									编辑
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="javascript:;"  onClick="del({$vo.id},this)">
 									删除
 								</a>
 							</li>
 							<li>
-								<a href="javascript:;">
+								<a href="__URL__/signup/cid-{$vo.id}">
 									报名列表
 								</a>
 							</li>
 						</ul>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" name="" id="" value="" />
-						张雪
-					</td>
-					<td>
-						ss
-					</td>
-					<td>
-						电影赏析
-					</td>
-					<td>
-						周四
-					</td>
-					<td>
-						手工课程
-					</td>
-					<td>
-						50
-					</td>
-					<td>
-						10
-					</td>
-					<td>
-						2
-					</td>
-					<td>
-						逸夫楼
-					</td>
-					<td class="operation">
-						<button>
-							操作
-						</button>
-						<ul>
-							<li>
-								<a href="javascript:;">
-									编辑
-								</a>
-							</li>
-							<li>
-								<a href="javascript:;">
-									删除
-								</a>
-							</li>
-							<li>
-								<a href="javascript:;">
-									报名列表
-								</a>
-							</li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" name="" id="" value="" />
-						张雪
-					</td>
-					<td>
-						ss
-					</td>
-					<td>
-						电影赏析
-					</td>
-					<td>
-						周四
-					</td>
-					<td>
-						手工课程
-					</td>
-					<td>
-						50
-					</td>
-					<td>
-						10
-					</td>
-					<td>
-						2
-					</td>
-					<td>
-						逸夫楼
-					</td>
-					<td class="operation">
-						<button>
-							操作
-						</button>
-						<ul>
-							<li>
-								<a href="javascript:;">
-									编辑
-								</a>
-							</li>
-							<li>
-								<a href="javascript:;">
-									删除
-								</a>
-							</li>
-							<li>
-								<a href="javascript:;">
-									报名列表
-								</a>
-							</li>
-						</ul>
-					</td>
-				</tr>
+                <!--{/foreach}-->
+				
 			</table>
 		</div>
   
@@ -198,7 +104,7 @@
  function add(){
 	urldialog({
 		width:600,
-	height:400,
+	height:500,
 	title:'课程操作',
 	url:'__URL__/course_add'
 	});
@@ -206,7 +112,7 @@
   function edit(id){
 	urldialog({
 		width:600,
-	height:400,
+	height:500,
 	title:'课程操作',
 	url:'__URL__/course_edit/id-'+id,
 	});

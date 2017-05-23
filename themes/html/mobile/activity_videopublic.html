@@ -46,7 +46,7 @@
 							
 						</div>
                         <div class="col-xs-6 r_text">
-                        <p class="videotitle">{$val.title}<!--<img class="videoimg2" src="img/to_play2.png"/>--></p>  
+                        <p class="videotitle">{$val.title len="14"}<!--<img class="videoimg2" src="img/to_play2.png"/>--></p>  
                        
                        <p class="schoolname">{$school[$val['csid']]['name']}</p>
                        <p class="now"> <?php echo $val['cid']==16?'直播':'重播';  ?></p>
@@ -158,22 +158,22 @@ function changecolor(color){
 		height:90px;
 	}
 	#myTabContent .m_recommend .r_text .schoolname{
-		font-size:12px;
+		font-size:12px !important;
 		color:#585858;
 	}
 	#myTabContent .m_recommend .r_text .now{
 		color:#f00;
 		padding-top:15px;
-		font-size:12px;
+		font-size:12px !important;
 	}
 	#myTabContent .m_recommend .r_text .videotime{
-		font-size:12px;
+		font-size:12px !important;
 		padding-top:2px;
 		color:#585858;
 	}
 	#myTabContent .m_recommend .r_text .videotime span{
 		float:right;
-		font-size:12px;
+		font-size:12px !important;
 	}
 	#myTabContent .m_recommend .r_text .videotime span img{
 		position:relative;
@@ -182,7 +182,7 @@ function changecolor(color){
 	}
 	#myTabContent .m_recommend .r_text .videotitle{
 		overflow:hidden;
-		font-size:12px;
+		font-size:12px !important;
 		color:#000;
 	}
 	#myTabContent .m_recommend .r_text .videoimg2{

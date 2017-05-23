@@ -162,21 +162,32 @@ class extendclassMod extends commonMod {
 		
 		}
 	public function course(){
+			$where['uid']= $this->user['id'];
+		
+		 $this->teacher=model('extendclass')->teacher_list($where);
 	
-		$where['uid']= $this->user['id'];
-		 $this->list=model('extendclass')->course_list($where);
+		  $this->bj=model('extendclass')->classes_list($where);
+		  if($_GET['s']){
+			 $where['name']=array('like',"'%".$_GET['s']."%'");
+			  }
+		   $this->list=model('extendclass')->course_list($where);
 		 $this->show();
 		
 		}
 	public function course_add(){
 		$this->actionname='添加';
 		$this->action='course_add';
-		
+		$where['uid']= $this->user['id'];
+		 $this->bj=model('extendclass')->classes_list($where);
+	   $this->teacher=model('extendclass')->teacher_list($where);
 		 $this->show('extendclass/course_info');
 		}
 	public function course_add_save(){
 		
 		$_POST['uid']= $this->user['id'];
+		$_POST['bj_ids']=serialize($_POST['bj_ids']);
+		$_POST['starttime']=strtotime($_POST['starttime']);
+		$_POST['endtime']=strtotime($_POST['endtime']);
 		model('extendclass')->course_add_save($_POST);
     	
     	$this->msg('添加成功！',1);
@@ -188,14 +199,20 @@ class extendclassMod extends commonMod {
 		
 		 $id=intval($_GET['id']);
         $this->alert_str($id,'int');
-		
-		 $this->info=model('extendclass')->course_info(array('id'=>$id));
-		
+		$where['uid']= $this->user['id'];
+		 $this->bj=model('extendclass')->classes_list($where);
+		  $this->teacher=model('extendclass')->teacher_list($where);
+		 $info=model('extendclass')->course_info(array('id'=>$id));
+		$info['bj_ids']=unserialize($info['bj_ids']);
+	
+		$this->info=$info;
 		 $this->show('extendclass/course_info');
 		}
 	
 	public function course_edit_save(){
-		
+		$_POST['bj_ids']=serialize($_POST['bj_ids']);
+		$_POST['starttime']=strtotime($_POST['starttime']);
+		$_POST['endtime']=strtotime($_POST['endtime']);
 		model('extendclass')->course_edit_save($_POST);
     	
     	$this->msg('编辑成功！',1);
@@ -208,6 +225,15 @@ class extendclassMod extends commonMod {
         model('extendclass')->course_del($id,$fid);
       
         $this->msg('删除成功！',1);
+		
+		}
+		
+	public function signup(){
+		$where['uid']= $this->user['id'];
+		 $cid=intval($_GET['cid']);
+        $this->alert_str($cid,'int');
+	 $info=model('extendclass')->course_info(array('id'=>$cid));
+			 $this->show();
 		
 		}
 }

@@ -155,6 +155,15 @@ select { border: 1px solid #cccccc; color: #3E3E3E; padding: 5px;line-height:18p
 .button:hover { color: #FFF; background-position: 0px -30px; }
 .button_small { line-height: 25px; font-size: 12px; height: 25px; padding-left: 10px; padding-right: 10px; background-image: url(../images/button_small.png); background-repeat: repeat-x; border: 1px solid #cccccc; color: #666; display: inline-block; margin-right: 10px; cursor: pointer; vertical-align: middle; }
 .button_small:hover { color: #333; background-position: 0px -10px; }
+.page_form #form .form_submit .button {
+    padding: 0 40px;
+    border: 1px solid #BABABA;
+    color: #222;
+    background: -moz-linear-gradient(top,#ffffff,#d5d2d2);
+    background: linear-gradient(to bottom,#ffffff,#d5d2d2);
+    background: -webkit-linear-gradient(top,#ffffff,#d5d2d2);
+    background: -o-linear-gradient(top,#ffffff,#d5d2d2);
+}
 /*
 ===================
 日历组件
