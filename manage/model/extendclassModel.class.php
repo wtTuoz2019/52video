@@ -51,6 +51,31 @@ class extendclassModel extends commonModel {
 		return $this->model->table('teacher')->where(array('id'=>$id))->delete();
 		}
 		
+	public function student_list($where){
+		$data=$this->model->table('student')->where($where)->order('sequence asc')->select();
+		if($data){
+			foreach($data as $key=>$value){
+				$temp[$value['id']]=$value;
+				
+				}
+			return $temp;
+			}
+		}
+	public function student_add_save($data){
+		return $this->model->table('student')->data($data)->insert();
+		
+		}
+	public function student_edit_save($data){
+		return $this->model->table('student')->where(array('id'=>$data['id']))->data($data)->update();
+		
+		}
+	public function student_info($where){
+		return $this->model->table('student')->where($where)->find();
+		}
+	public function student_del($id){
+		return $this->model->table('student')->where(array('id'=>$id))->delete();
+		}
+		
 	public function batch_list($where){
 		return $this->model->table('course_batch')->where($where)->select();
 		}
@@ -87,5 +112,6 @@ class extendclassModel extends commonModel {
 	public function course_del($id){
 		return $this->model->table('course')->where(array('id'=>$id))->delete();
 		}
+	
 }
 ?>

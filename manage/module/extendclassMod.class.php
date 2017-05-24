@@ -112,6 +112,55 @@ class extendclassMod extends commonMod {
         $this->msg('删除成功！',1);
 		
 		}
+	public function student(){
+	
+		$where['uid']= $this->user['id'];
+		 $this->list=model('extendclass')->student_list($where);
+		 $this->show();
+		
+		}
+	public function student_add(){
+		$this->actionname='添加';
+		$this->action='student_add';
+		
+		 $this->show('extendclass/student_info');
+		}
+	public function student_add_save(){
+		
+		$_POST['uid']= $this->user['id'];
+		model('extendclass')->student_add_save($_POST);
+    	
+    	$this->msg('添加成功！',1);
+		
+		}
+	public function student_edit(){
+		$this->actionname='编辑';
+		$this->action='student_edit';
+		
+		 $id=intval($_GET['id']);
+        $this->alert_str($id,'int');
+		
+		 $this->info=model('extendclass')->student_info(array('id'=>$id));
+		
+		 $this->show('extendclass/student_info');
+		}
+	
+	public function student_edit_save(){
+		
+		model('extendclass')->student_edit_save($_POST);
+    	
+    	$this->msg('编辑成功！',1);
+		
+		}
+	public function student_del(){
+		 $id=$_POST['id'];
+     
+        $this->alert_str($_POST['id'],'int',true);
+        model('extendclass')->student_del($id,$fid);
+      
+        $this->msg('删除成功！',1);
+		
+		}
 	public function batch(){
 	
 		$where['uid']= $this->user['id'];

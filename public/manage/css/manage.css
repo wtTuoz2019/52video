@@ -326,7 +326,12 @@ button{
 #nav>a.active div.nav_selectclass3{
 	background-image: url(../img/nav_selectclass3_.png);
 }
-
+#nav>a div.nav_selectclass4{
+	background-image: url(../img/nav_selectclass4.png);
+}
+#nav>a.active div.nav_selectclass4{
+	background-image: url(../img/nav_selectclass4_.png);
+}
 #nav>a div.nav_userset1{
 	background-image: url(../img/nav_userset1.png);
 }
@@ -414,7 +419,7 @@ button{
 	width: 1080px;
 	margin: 30px auto;
 }
-  #autoreply>h4,  #editmodel>h4, #usercenter>h4,#community>h4{
+  #autoreply>h4,  #editmodel>h4, #usercenter>h4,#community>h4,.outvideob>h4{
 	font-size: 16px;
 	padding: 15px 7px;
 	border-bottom: 1px solid #B5B5B5;
@@ -481,7 +486,7 @@ button{
 }
   #autoreply .replycontent #save{
 	height: 40px;
-    width: 220px;
+    width: 180px;
 	margin: 0 auto;
 	display: block;
 	border: 1px solid #B8B8B8;
@@ -589,13 +594,18 @@ table tr.bgth th{
 	line-height: 22px;
 }
 #editmodel .modelk{
-	width: 670px;
-	height: 515px;
+	width: 500px;
+	height: 450px;
 	margin: 50px auto;
 	border: 1px solid #BABABA;
 	padding: 25px;
+	text-align:center;
+	padding-top:40px;
 }
 
+#editmodel .modelk table{
+	display:inline-block;
+}
 iframe{
 	display: block;
 	width: 100%;
@@ -606,12 +616,12 @@ iframe#main{
 	min-height:700px;
 }
 #editmodel .modelk table tr>td{
-	height: 85px;
-	border-bottom: 1px solid #E5E5E5;
+	height: 60px;
+	text-align:left;
 }
 #editmodel .modelk table tr>td:first-child{
 	font-size: 14px;
-	width: 100px;
+	width: 80px;
 	text-align: right;
 	padding-right: 10px;
 }
@@ -627,11 +637,11 @@ iframe#main{
 	width: 210px;
 }
 #editmodel .modelk table tr>td input.choosemodel{
-	width: 105px;
+	width: 138px;
 	text-align: center;
 }
 #editmodel .modelk table tr>td select{
-	width: 105px;
+	width: 138px;
 	height: 35px;
 	font-size: 12px;
 	padding-left: 20px;
@@ -644,10 +654,10 @@ iframe#main{
 	border: 1px solid #B8B8B8;
 }
 #editmodel .modelk #savemodel{
-	width: 235px;
-	height: 45px;
+	width: 180px;
+	height: 40px;
 	border: 1px solid #BABABA;
-	background: #fff;
+	background: #eee;
 	font-size: 14px;
 	display: block;
 	margin: 0 auto;
@@ -691,8 +701,8 @@ iframe#main{
     font-size: 12px;
 }
 .amendk #savepassword,#save{
-	width: 170px;
-	height: 36px;
+	width: 180px;
+	height: 40px;
 	display: block;
 	margin: 0 auto;
 	margin-top: 40px;
@@ -813,8 +823,11 @@ body .oftentable tr td{
 	font-size: 12px;
 	position: relative;
 }
+#postmanage .postk>div:first-child{
+	margin-right:20px;
+}
 #postmanage .postk>div input{
-	width: 190px;
+	width: 150px;
 	height: 30px;
 	border: 1px solid #C3C3C3;
 	text-align: center;
@@ -1165,7 +1178,7 @@ body .oftentable tr td{
 	width:310px;
 } 
 #outvideo .videocontent>div.page_form table tr td:first-child{
-	width: 150px;
+	width: 130px;
 	text-align: right;
 	padding-right: 25px;
 }
@@ -1307,21 +1320,22 @@ body .oftentable tr td{
 	width:65px;
 }
 #outvideo #savevideo{
-	width: 260px;
-    height: 45px;
+	width: 180px;
+    height: 40px;
     font-size: 16px;
     border: 1px solid #BABABA;
     background: #eee;
     display: block;
-    margin: 20px 0 50px 150px;
+    margin: 20px 0 50px 205px;
 }
 
 #community .communityk{
-	width: 750px;
+	width: 600px;
 	height: 520px;
 	margin: 40px auto;
 	border: 1px solid #BABABA;
 	padding-top: 65px;
+	text-align:center;
 }
 #community .communityk table tr{
 	display: block;
@@ -1335,9 +1349,11 @@ body .oftentable tr td{
 	display: inline-block;
 }
 #community .communityk table tr td:first-child{
-	width: 230px;
 	text-align: right;
-	padding-right: 25px;
+	width:140px;
+}
+#community .communityk  table{
+	display: inline-block;
 }
 #community .communityk table tr td>input{
 	width: 240px;
@@ -1376,7 +1392,7 @@ body .oftentable tr td{
 	text-align:center;
 }
 #community .communityk .btns button{
-	width: 200px;
+	width: 180px;
     height: 40px;
     border: 1px solid #B9B9B9;
     background: #eee;
@@ -2138,8 +2154,13 @@ body .userset .oftentable tr td{
 	padding:0 40px;
 	border:1px solid #BABABA; 
 	color:#222;
-	background: -moz-linear-gradient(top,#ffffff,#d5d2d2);
-    background: linear-gradient(to bottom,#ffffff,#d5d2d2);
-    background: -webkit-linear-gradient(top,#ffffff,#d5d2d2);
-    background: -o-linear-gradient(top,#ffffff,#d5d2d2);
+	width:180px;
+	height:40px;
+	background:#eee;
+}
+#usercenter .userpassword{
+	width:440px;
+	padding:20px;
+	border:1px solid #BABABA;
+	margin:0 auto;
 }
