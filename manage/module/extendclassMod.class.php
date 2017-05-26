@@ -113,8 +113,39 @@ class extendclassMod extends commonMod {
 		
 		}
 	public function student(){
-	
-		$where['uid']= $this->user['id'];
+		
+		  $where['uid']= $this->user['id'];
+		  $this->bj=$bj=model('extendclass')->classes_list($where);
+		  	if($_FILES['file']['name']){
+		$return=module('editor_upload')->upload();
+			
+			if($return['error'])$this->error($return['msg']);
+			$data = new Spreadsheet_Excel_Reader();
+			// 设置输入编码 UTF-8/GB2312/CP936等等
+			$data->setOutputEncoding('UTF-8');
+			$data->read('..'.$return['url']);
+			$sheet=$data->sheets[0];
+			$rows=$sheet['cells'];
+			$temp=array();
+		
+			foreach($rows as  $key=>$val){
+				if($key>1){
+						$array=array('name'=>$val[1],'mobile'=>$val[2],'schoolcode'=>$val[5],'uid'=>$this->user['id']);
+						foreach($bj as $k=>$v){
+							if($v['grade']==intval($val['3'])&&$v['class']==intval($val['4'])){
+								$array['bj_id']=$v['id'];break;
+								}
+							}
+						$students[]=$array;
+						
+						}
+				
+			
+				}
+					if($students)
+				model('extendclass')->student_add_saveall($students);
+			}
+		  
 		 $this->list=model('extendclass')->student_list($where);
 		 $this->show();
 		
@@ -122,7 +153,8 @@ class extendclassMod extends commonMod {
 	public function student_add(){
 		$this->actionname='添加';
 		$this->action='student_add';
-		
+		$where['uid']= $this->user['id'];
+		$this->bj=model('extendclass')->classes_list($where);
 		 $this->show('extendclass/student_info');
 		}
 	public function student_add_save(){
@@ -139,7 +171,8 @@ class extendclassMod extends commonMod {
 		
 		 $id=intval($_GET['id']);
         $this->alert_str($id,'int');
-		
+		$where['uid']= $this->user['id'];
+		$this->bj=model('extendclass')->classes_list($where);
 		 $this->info=model('extendclass')->student_info(array('id'=>$id));
 		
 		 $this->show('extendclass/student_info');
@@ -279,10 +312,70 @@ class extendclassMod extends commonMod {
 		
 	public function signup(){
 		$where['uid']= $this->user['id'];
+		  $this->bj=$bj=model('extendclass')->classes_list($where);
 		 $cid=intval($_GET['cid']);
         $this->alert_str($cid,'int');
 	 $info=model('extendclass')->course_info(array('id'=>$cid));
+	   	if($_FILES['file']['name']){
+		$return=module('editor_upload')->upload();
+			
+			if($return['error'])$this->error($return['msg']);
+			$data = new Spreadsheet_Excel_Reader();
+			// 设置输入编码 UTF-8/GB2312/CP936等等
+			$data->setOutputEncoding('UTF-8');
+			$data->read('..'.$return['url']);
+			$sheet=$data->sheets[0];
+			$rows=$sheet['cells'];
+			$temp=array();
+		
+			foreach($rows as  $key=>$val){
+				if($key>1){
+						$array=array('name'=>$val[1],'mobile'=>$val[2],'schoolcode'=>$val[5],'uid'=>$this->user['id']);
+						foreach($bj as $k=>$v){
+							if($v['grade']==intval($val['3'])&&$v['class']==intval($val['4'])){
+								$array['bj_id']=$v['id'];break;
+								}
+							}
+					
+					$sid=model('extendclass')->student($array);
+							
+						$temp=array('cid'=>$cid,'time'=>time(),'sid'=>$sid);
+					
+						model('extendclass')->signup_add_save($temp);
+						}
+				
+			
+				}
+		
+			}
+	 
+	  $this->list=model('extendclass')->signup_list('A.uid='.$this->user['id'].' and B.cid='.$cid);
 			 $this->show();
+		
+		}
+	public function signup_add(){
+		$this->actionname='添加';
+		$this->action='signup_add';
+		$where['uid']= $this->user['id'];
+		$this->bj=model('extendclass')->classes_list($where);
+		 $this->show('extendclass/student_info');
+		}
+	public function signup_add_save(){
+		
+		$_POST['uid']= $this->user['id'];
+		$sid=model('extendclass')->signup_add_save($_POST);
+    	
+    	$this->msg('添加成功！',1);
+		
+		}
+
+	public function signup_del(){
+		 $id=$_POST['id'];
+     
+        $this->alert_str($_POST['id'],'int',true);
+        model('extendclass')->student_del($id,$fid);
+      
+        $this->msg('删除成功！',1);
 		
 		}
 }

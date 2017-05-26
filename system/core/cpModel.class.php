@@ -137,6 +137,21 @@ class cpModel{
 		}
         return false;
     }
+		 //插入批量数据
+    public function insertAll($datas = false,$replace = false ) {
+		$table = $this->options['table'];	//当前表
+	
+		$data = $this->db->insertAll($datas);	//要插入的数据
+		$INSERT = $replace ? 'REPLACE' : 'INSERT';
+        $this->sql = "$INSERT INTO $table $data" ;
+        $query = $this->db->execute($this->sql);
+		if ( $this->db->affectedRows() ) {
+			 $id = $this->db->lastId();
+			 return empty($id) ? $this->db->affectedRows() : $id;
+		}
+        return false;
+    }
+	
 	
 	//替换数据
 	 public function replace() {

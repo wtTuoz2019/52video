@@ -1,16 +1,17 @@
 
+  
 <div id="signup" class="huodongsh">
-			<h4>
-				报名管理
+			<h4> 
+				学生管理
 			</h4>
 		<div class="borderk postk" style="overflow:hidden;">
 				
-		
+			<a href="javascript:" onClick="add()"  class="sendlive">添加</a>
               <form  method="post"  enctype="multipart/form-data" id="form"> 
    	<input  type="text" placeholder="请选择文件" value=""/>
      <input class="shangc" type="file" name="file">  <a  type="submit" onClick="$('#form').submit();" >导入</a>
      </form>
-   <a href="__ROOT__/excel/signup.xls">模板下载</a>
+   <a href="__ROOT__/excel/student.xls">模板下载</a>
 			</div>
 		<table width="100%" border="0" cellspacing="0" cellpadding="0"class="oftentable">
 				<tr class="bgth">
@@ -37,7 +38,11 @@
 						</button>
 						<ul>
                         	
-						
+							<li>
+								<a href="javascript:" onClick="edit({$vo.id})">
+									编辑
+								</a>
+							</li>
 							<li>
 								<a href="javascript:;"  onClick="del({$vo.id},this)">
 									删除
@@ -55,16 +60,16 @@
 	urldialog({
 		width:600,
 	height:400,
-	title:'报名操作',
-	url:'__URL__/signup_add'
+	title:'学生操作',
+	url:'__URL__/student_add'
 	});
 	}
   function edit(id){
 	urldialog({
 		width:600,
 	height:400,
-	title:'报名操作',
-	url:'__URL__/signup_edit/id-'+id,
+	title:'学生操作',
+	url:'__URL__/student_edit/id-'+id,
 	});
 	}
 //删除
@@ -73,8 +78,8 @@ function del(id,obj) {
 	
 
 	ajaxpost({
-		name:'确定要删除此报名？',
-		url:"__URL__/signup_del",
+		name:'确定要删除此学生？',
+		url:"__URL__/student_del",
 		data:{id: id},
 		tip:1,
 		success:function(){

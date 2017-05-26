@@ -8,7 +8,14 @@ class extendclassModel extends commonModel {
     }
 	
 	public function classes_list($where){
-		return $this->model->table('classes')->where($where)->order('sequence asc')->select();
+		$data=$this->model->table('classes')->where($where)->order('sequence asc')->select();
+		if($data){
+			foreach($data as $key=>$value){
+				$temp[$value['id']]=$value;
+				
+				}
+			return $temp;
+			}
 		}
 	public function classes_add_save($data){
 		return $this->model->table('classes')->data($data)->insert();
@@ -65,6 +72,15 @@ class extendclassModel extends commonModel {
 		return $this->model->table('student')->data($data)->insert();
 		
 		}
+	public function student($data){
+		$student=$this->model->table('student')->where(array('name'=>$data['name'],'mobile'=>$data['mobile']))->find();
+		if($student)return $student['id'];
+		else return $this->model->table('student')->data($data)->insert();
+		
+		}
+	public function student_add_saveall($data){
+			return $this->model->table('student')->insertAll($data);
+		}
 	public function student_edit_save($data){
 		return $this->model->table('student')->where(array('id'=>$data['id']))->data($data)->update();
 		
@@ -76,6 +92,16 @@ class extendclassModel extends commonModel {
 		return $this->model->table('student')->where(array('id'=>$id))->delete();
 		}
 		
+	public function signup_list($where){
+		$data=$this->model->table('student','A')->field('A.*')->add_table('course_signup','B','A.id=B.sid')->where($where)->select();
+		
+			return $data;
+			
+		}
+	public function signup_add_save($data){
+		return $this->model->table('course_signup')->data($data)->insert();
+		
+		}
 	public function batch_list($where){
 		return $this->model->table('course_batch')->where($where)->select();
 		}

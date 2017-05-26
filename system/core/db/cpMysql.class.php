@@ -125,6 +125,33 @@ class cpMysql {
 		return false;
 	}
 	
+	   /**
+     * 插入记录
+     * @access public
+     * @param mixed $datas 数据
+     * @param array $options 参数表达式
+     * @param boolean $replace 是否replace
+     * @return false | integer
+     */
+    public function insertAll($datas,$options=array(),$replace=false) {
+        if(!is_array($datas[0])) return false;
+        $fields = array_keys($datas[0]);
+        array_walk($fields, array($this, 'parseKey'));
+        $values  =  array();
+        foreach ($datas as $data){
+            $value   =  array();
+            foreach ($data as $key=>$val){
+                $val   =  $this->escape($val);
+                if(is_scalar($val)) { // 过滤非标量数据
+                    $value[]   =  $val;
+                }
+            }
+            $values[]    = '('.implode(',', $value).')';
+        }
+       return  ' ('.implode(',', $fields).') VALUES '.implode(',',$values);
+       
+    }
+	
 	//解析查询条件
 	public function parseCondition($options) {
 		$condition = "";
@@ -293,4 +320,17 @@ class cpMysql {
 			@mysql_close($this->_readLink);
 		}
 	} 
+	    /**
+     * 字段和表名处理添加`
+     * @access protected
+     * @param string $key
+     * @return string
+     */
+    protected function parseKey(&$key) {
+        $key   =  trim($key);
+        if(!preg_match('/[,\'\"\*\(\)`.\s]/',$key)) {
+           $key = '`'.$key.'`';
+        }
+        return $key;
+    }
 }
