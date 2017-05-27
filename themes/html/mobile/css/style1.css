@@ -272,14 +272,7 @@ span.resdel { float:right; margin-top:0}
 .icongroups p{font-size: 10px;}
 .current
 {
-	background-color: #4b5154;
-	border-radius: 4px;
-	z-index: 999;
-	position: absolute;	
-	right:25px;
-	top: 0;
-	display: none;
-	
+	float:right;	
 }
 .current ul
 {
@@ -820,8 +813,8 @@ span.resdel { float:right; margin-top:0}
 }
 .logintishi{
 	position:absolute;
-	height:74px;
-	line-height:74px;
+	height:90px;
+	line-height:90px;
 	color:#fff;
 	width:100%;
 	bottom:0;
@@ -829,6 +822,7 @@ span.resdel { float:right; margin-top:0}
 	z-index:9999;
 	background:rgba(0,0,0,0.7);
 	font-size:12px;
+	text-align:center;
 }
 .logintishi a{ 
 	padding:5px 15px;

@@ -1,9 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 {$css}
-{$js}
+<link href="__PUBLICURL__/data/css/admin.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLICURL__/data/js/AdminLTE/app.js" type="text/javascript"></script>
+ <script src="__PUBLICURL__/data/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
 </head>
 <body scroll="no">
 <div class="page_function">
@@ -19,23 +21,23 @@
     <tr>
         <td width="120" align="right">课程代码</td>
         <td>
-          <input name="code" type="text" class="text_value" id="code" value="{$info.code}"reg="\S" msg="不能为空"  /> </td>
+          <input name="code" type="text" class="text_value" id="code" value="{$info.code}" msg="课程代码不能为空"  /> </td>
         </tr>
       <tr>
         <td width="120" align="right">课程名称</td>
         <td>
-          <input name="name" type="text" class="text_value" id="name" value="{$info.name}"reg="\S" msg="不能为空"  /> </td>
+          <input name="name" type="text" class="text_value" id="name" value="{$info.name}"reg="\S" msg="课程名称不能为空"  /> </td>
         </tr>
           <tr>
         <td width="120" align="right">课程模块</td>
         <td>
-          <input name="title" type="text" class="text_value" id="title" value="{$info.title}"reg="\S" msg="不能为空"  /> </td>
+          <input name="title" type="text" class="text_value" id="title" value="{$info.title}" msg="课程模块不能为空"  /> </td>
         </tr>
       <tr>
       <tr>
         <td width="120" align="right">选修课组</td>
         <td>
-          <input name="group" type="text" class="text_value" id="group" value="{$info.group}"reg="\S" msg="不能为空"  /> </td>
+          <input name="group" type="text" class="text_value" id="group" value="{$info.group}" msg="选修课组不能为空"  /> </td>
         </tr>
       <tr>
      <tr>
@@ -54,25 +56,25 @@
       <tr>
         <td width="120" align="right">招生数</td>
         <td>
-          <input name="number" type="text" class="text_value" id="number" style="width:50px;" value="{$info.number}"reg="\S" msg="不能为空"  /> </td>
+          <input name="number" type="text" class="text_value" id="number" style="width:50px;" value="{$info.number}" msg="招生数不能为空"  /> </td>
         </tr>
       <tr>
       <tr>
         <td width="120" align="right">每班限额</td>
         <td>
-          <input name="limitnum" type="text" class="text_value" id="limitnum" style="width:50px;" value="{$info.limitnum}"reg="\S" msg="不能为空"  /> </td>
+          <input name="limitnum" type="text" class="text_value" id="limitnum" style="width:50px;" value="{$info.limitnum}" msg="每班限额不能为空"  /> </td>
         </tr>
       <tr>
       <tr>
         <td width="120" align="right">上课地点</td>
         <td>
-          <input name="place" type="text" class="text_value" id="place" value="{$info.place}"reg="\S" msg="不能为空"  /> </td>
+          <input name="place" type="text" class="text_value" id="place" value="{$info.place}" msg="上课地点不能为空"  /> </td>
         </tr>
       <tr>
       <tr>
         <td width="120" align="right">报名开始时间</td>
         <td>
-          <input name="starttime" type="text" class="text_value" id="starttime" style="width:210px; float:left"  value="<?php echo $info['starttime']?date('Y-m-d H:i:s',$info['starttime']):''; ?>"reg="\S" msg="不能为空"  />  <div id="starttime_button" class="time"></div>  <script>$('#starttime_button').calendar({ id:'#starttime',format:'yyyy-MM-dd HH:mm:ss'});</script>
+          <input name="starttime" type="text" class="text_value" id="starttime" style="width:210px; float:left"  value="<?php echo $info['starttime']?date('Y-m-d H:i:s',$info['starttime']):''; ?>" msg="报名开始时间不能为空"  />  <div id="starttime_button" class="time"></div>  <script>$('#starttime_button').calendar({ id:'#starttime',format:'yyyy-MM-dd HH:mm:ss'});</script>
           
           </td>
         </tr>
@@ -80,7 +82,7 @@
       <tr>
         <td width="120" align="right">报名结束时间</td>
         <td>
-          <input name="endtime" type="text" class="text_value" id="endtime" style="width:210px; float:left"  value="<?php echo $info['endtime']?date('Y-m-d H:i:s',$info['endtime']):''; ?>"reg="\S" msg="不能为空"  />  <div id="endtime_button" class="time"></div>  <script>$('#endtime_button').calendar({ id:'#endtime',format:'yyyy-MM-dd HH:mm:ss'});</script>
+          <input name="endtime" type="text" class="text_value" id="endtime" style="width:210px; float:left"  value="<?php echo $info['endtime']?date('Y-m-d H:i:s',$info['endtime']):''; ?>" msg="报名结束时间不能为空"  />  <div id="endtime_button" class="time"></div>  <script>$('#endtime_button').calendar({ id:'#endtime',format:'yyyy-MM-dd HH:mm:ss'});</script>
           
           </td>
         </tr>
@@ -90,12 +92,12 @@
         <td>
          <select name="classtime"  reg="." id="classtime" >
         <option value="1" <?php if($info['classtime']=='1') { ?> selected="selected" <?php } ?>  >	周一</option>
-         <option value="2" <?php if($info['classtime']=='1') { ?> selected="selected" <?php } ?>  >	周二</option>
-          <option value="3" <?php if($info['classtime']=='1') { ?> selected="selected" <?php } ?>  >周三</option>
-           <option value="4" <?php if($info['classtime']=='1') { ?> selected="selected" <?php } ?>  >周四</option>
-            <option value="5" <?php if($info['classtime']=='1') { ?> selected="selected" <?php } ?>  >周五</option>
-             <option value="6" <?php if($info['classtime']=='1') { ?> selected="selected" <?php } ?>  >周六</option>
-              <option value="7" <?php if($info['classtime']=='1') { ?> selected="selected" <?php } ?>  >周日</option>
+         <option value="2" <?php if($info['classtime']=='2') { ?> selected="selected" <?php } ?>  >	周二</option>
+          <option value="3" <?php if($info['classtime']=='3') { ?> selected="selected" <?php } ?>  >周三</option>
+           <option value="4" <?php if($info['classtime']=='4') { ?> selected="selected" <?php } ?>  >周四</option>
+            <option value="5" <?php if($info['classtime']=='5') { ?> selected="selected" <?php } ?>  >周五</option>
+             <option value="6" <?php if($info['classtime']=='6') { ?> selected="selected" <?php } ?>  >周六</option>
+              <option value="7" <?php if($info['classtime']=='7') { ?> selected="selected" <?php } ?>  >周日</option>
         </select>      
               
               </td>

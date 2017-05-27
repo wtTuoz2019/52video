@@ -1,4 +1,4 @@
-<script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>  
+<script type="text/javascript" src="__PUBLIC__/js/mobilecomment.js"></script>  
 <script>
 $(function(){ 
 	$('span#right').bind('click',function(e){
@@ -25,8 +25,8 @@ var cid='{$info.id}';
                 	<img class="schoollogo" src="{$sys.imageurl}{$school[$info['csid']]['headimg']}"/>
                     <p>
                         <span>{$school[$info['csid']]['name']}</span>
-                        <br/>
-                        <span><img  src="__PUBLIC__/images/usersee.png"/>{$info.views}</span>
+                       
+                        <span><img  src="__PUBLIC__/images/usersee.png"/>{$info.views}    <img  src="__PUBLIC__/images/comment1.png" style="margin-left:5px;"/><font id="commentnum">0</font></span>
                 	</p>
                 </div>
                 
@@ -274,13 +274,10 @@ function changecolor(color){
 
 
 
-<div id="usercenter">
-	<div class="menubtn"><img height="55px" src="__PUBLIC__/usercenter.png" /></div>
-    <div class="menus">
-    	<a class="menubtn" href="/myhome/index"></a>
-        <a class="menubtn" href="{$config.addurl}"></a>
-    </div>
-</div>
+<a href="/myhome/index" id="usercenter">
+	<img height="55px" src="__PUBLIC__/usercenter.png" /></div>
+    
+</a>
 
 
 <script>
@@ -289,18 +286,7 @@ function changecolor(color){
 	
 	
 	
-	$('#usercenter .menubtn').click(function(){
-		if($('.menus').css('opacity')=='0'){
-			$('.menus').stop().animate({opacity:'1'},500);
-			$('.menus').css('transform','rotate(-90deg)');
-		}else{
-			$('.menus').css('transform','rotate(90deg)');
-			$('.menus').stop().animate({opacity:'0'},500);
-		}
-		
-		
-	});
-	
+
 
  
 $('.support').click(function(e){
@@ -320,6 +306,17 @@ $(function(){
 	$('#a1').css('height',$(document).width()/16*9+'px');
 	$('#play').css('height',$(document).width()/16*9+'px');
 	$('#Qr').css('top',$(document).width()/16*9+'px');
+	
+	//获取视频外多余高度
+	if($('.scroll-bar').length > 0){	
+		$('[id^="funcions"]').css('height',$(window).height()-125-$(document).width()/16*9+'px');
+		console.log(1);
+	}else{
+		$('[id^="funcions"]').css('height',$(window).height()-100-$(document).width()/16*9+'px');
+		console.log(2);
+	}
+	
+	
 });
 
 

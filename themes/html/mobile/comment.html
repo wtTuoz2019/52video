@@ -57,7 +57,6 @@
 								</li>
 							</ul>
 						</div>
-        				<span class="right" id="right" onClick="show(this)"><img src="img/comicon.png" style="width: 20px;"></span>
         			</div>
         		</div>
         		<div class="combtm"> 
@@ -155,9 +154,7 @@
                });
 				
 			}
-			function show(e){
-			$(e).prev("#current").slideToggle();	
-				}
+			
 	//	$("span#right").each(function(index, element) {
 //                $(element).click(function(){
 //				
@@ -204,7 +201,7 @@
 					return '';
 				}
 				for(var i=0;i<data.length;i++){
-					 strVar +='<div class="commentarea clearfix"><div class="commentarea_left left"><img  src="'+data[i]['pic']+'" style="width: 40px;height: 40px;margin-top: 10px;border-radius: 50%;"/></div><div class="commentarea_right right"><h6>'+data[i]['name']+'</h6><div class="comtop"><p id="comtopwben">'+data[i]['message']+'</p><h6 id="comtoph6">全文</h6></div><div class="commid"><div class="date" style="position: relative;"><date>'+data[i]['time']+'</date><div class="current" id="current"><ul><li> <span class="glyphicon glyphicon-heart-empty zan" onclick="goodplus('+data[i]['id']+',this)"><i>赞</i></span></li><li id="excom" pid="'+data[i]['id']+'" onClick="comment(this)"><span class="glyphicon glyphicon-comment"></span>评论</li></ul></div><span class="right" id="right" onClick="show(this)"><img src="img/comicon.png" style="width: 20px;"></span></div></div><div class="combtm">';
+					 strVar +='<div class="commentarea clearfix"><div class="commentarea_left left"><img  src="'+data[i]['pic']+'" style="width: 40px;height: 40px;margin-top: 10px;border-radius: 50%;"/></div><div class="commentarea_right right"><h6>'+data[i]['name']+'</h6><div class="comtop"><p id="comtopwben">'+data[i]['message']+'</p><h6 id="comtoph6">全文</h6></div><div class="commid"><div class="date" style="position: relative;"><date>'+data[i]['time']+'</date><div class="current" id="current"><ul><li> <span class="glyphicon glyphicon-heart-empty zan" onclick="goodplus('+data[i]['id']+',this)"><i>赞</i></span></li><li id="excom" pid="'+data[i]['id']+'" onClick="comment(this)"><span class="glyphicon glyphicon-comment"></span>评论</li></ul></div></div></div><div class="combtm">';
 					 strVar+='<div class="dianzan"><div class="left"><span class="glyphicon glyphicon-heart-empty"></span></div><div class="userlist right">';
                 if(data[i]['praiselist']){
 					for(var j=0;j<data[i]['praiselist'].length;j++){	

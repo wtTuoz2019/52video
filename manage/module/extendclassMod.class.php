@@ -66,7 +66,7 @@ class extendclassMod extends commonMod {
 	public function teacher(){
 	
 		$where['uid']= $this->user['id'];
-		 	   $url = __URL__ . '/student/page-{page}.html';
+		 	   $url = __URL__ . '/teacher/page-{page}.html';
         $listRows = 20;
         $limit=$this->pagelimit($url,$listRows);
 		 $this->list=model('extendclass')->teacher_list($where,$limit);

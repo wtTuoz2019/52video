@@ -298,19 +298,20 @@ p{
 	border-bottom: 2px solid #fff;
 	color:#fff;
 	}
-.tab-box .tab-nav li.active a{
-	border-bottom: 2px solid #576b95;
-	color: #576b95;
-}
+
 .tab-box .tab-nav li a{
 	display: inline-block;
 	text-align: center;
-	height: 50px;
-	line-height: 50px;
+	height: 23px;
+	line-height: 23px;
 	color: #888888;
 	font-size: 1.9rem;
 	float: left;
+	border-left:1px solid #EAE7E7;
 }
+	.tab-box .tab-nav li:first-child a{
+		border-left:0;
+	}
 .backgroudCb{
 	border-bottom:1px solid #fff;
 	background:#f84c4c;
@@ -375,6 +376,25 @@ p{
 .comment ul li{
 	border-bottom: 1px solid #e2e2e2;
 	padding: 5px;
+	border:0;
+}
+.date #current{
+	position: relative;
+    top: -3px;
+}
+.date #current ul li{
+	border:0;
+	width:50px;
+	padding:0;
+}
+.date #current ul{
+	padding:0;
+}
+.date .current ul li span i{
+	font-size:12px;
+	color:#b1b9dc;
+	position:relative;
+	top:1px;
 }
 .comment ul li dl{
 	margin: 0;
@@ -793,16 +813,16 @@ p.allcomment span{
 			}
 			#usercenter{
 				position:fixed;
-				bottom:90px;
+				bottom:85px;
 				right:15px;
 				z-index:100;
 			}
 			.view-box{
-				background:#ECECEC;
+				background:#fff;
 			}
 			.schoollogo{
-				height:50px;
-				width:50px;
+				height:40px;
+				width:40px;
 				border-radius:5px;
 				border:1px solid #E0E0E0;
 				vertical-align:top;
@@ -815,6 +835,8 @@ p.allcomment span{
 				display:inline-block;
 				color:#353535;
 				padding-left:10px;
+				position:relative;
+				height:40px;
 			}
 			.view-box{
 				padding:5px 0;
@@ -823,7 +845,7 @@ p.allcomment span{
 				height:13px;
 				margin-right:3px;
 				position:relative;
-				top:-2px;
+				top:-1px;
 			}
 			.schoolmessage>p>span:first-child{
 				margin-bottom:3px;
@@ -831,10 +853,17 @@ p.allcomment span{
 				margin-top: 3px;
 			}
 			.tab-box .tab-nav li a{
-				font-size: 1.7rem;
+				font-size: 1.5rem;
+			}
+			.tab-box .tab-nav li{
+				padding:7.5px 0;
+				border-bottom: 2px solid transparent;
+			}
+			.tab-box .tab-nav li.active{
+				border-bottom: 2px solid #606A97;
 			}
 			.tab-box .tab-nav li.active a{
-				border-bottom: 1px solid #576b95;
+				color:#000;
 			}
 			p.allcomment{
 				font-weight:normal;
@@ -865,7 +894,7 @@ p.allcomment span{
 				background:#fff;
 			}
 			.combtm{
-				background:#fff;
+				background:#F7F7F7;
 			}
 			.commentarea{
 				border:0;
@@ -886,8 +915,10 @@ p.allcomment span{
 				margin-right:10px;
 			}
 			.commentinput{
-				text-align:center;
-				border-top:1px solid #B6B6B6; 
+				padding:0;
+			}
+			.commentinput #inputimg{
+				width:100%;
 			}
 			.commentinput>*{
 				vertical-align:middle;
@@ -906,9 +937,14 @@ p.allcomment span{
 			}
 			.schoolmessage>p>span:first-child{
 				font-size:14px;
+				display:block;
+				margin:0;
 			}
 			.schoolmessage>p>span:last-child{
 				font-size:12px;
+				position:absolute;
+				bottom:0;
+				left:10px;
 			}
 			.commentarea{
 				padding:0;
@@ -1003,7 +1039,7 @@ p.allcomment span{
 				font-size:14px;
 				color:#353535;
 				float:right;
-				line-height:50px;
+				line-height:40px;
 				margin-right:10px;
 			}
 			.dbg .modal-content{
@@ -1093,4 +1129,15 @@ p.allcomment span{
 #myTabContent div[id^="funcions"] p#comtopwben>span{
 	background:transparent !important;
 	font-size:14px !important;
+}
+[id^="funcions"]{
+	overflow-x:scroll;
+	background-color:#F7F7F7;
+}
+#myTab{
+	margin-top:10px !important;
+	border-bottom:1px solid #D6D6D6;
+}
+.schoolmessage #commentnum{
+	font-size:12px;
 }
