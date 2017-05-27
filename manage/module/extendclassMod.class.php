@@ -138,8 +138,8 @@ class extendclassMod extends commonMod {
 						$array=array('name'=>$val[1],'mobile'=>$val[2],'schoolcode'=>$val[5],'uid'=>$this->user['id']);
 						foreach($bj as $k=>$v){
 							if($v['grade']==intval($val['3'])&&$v['class']==intval($val['4'])){
-								$array['bj_id']=$v['id'];break;
-								$students[]=$array;
+								$array['bj_id']=$v['id'];
+								$students[]=$array;;break;
 								}
 							}
 						
@@ -148,6 +148,7 @@ class extendclassMod extends commonMod {
 				
 			
 				}
+			
 					if($students)
 				model('extendclass')->student_add_saveall($students);
 			}

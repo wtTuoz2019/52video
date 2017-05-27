@@ -2078,10 +2078,8 @@ body{
 	margin-right:5px;
 	top:-2px;
 }
-#signup #form{
-	display:inline-block;
-}
 .huodongsh #form{
+	display:inline-block;
 	position:relative;
 }
 .huodongsh .borderk #form input{
