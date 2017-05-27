@@ -54,7 +54,32 @@
       </tr>
       <!--{/foreach}-->
     </table>
+    <div class="page">
+     					 <ul class="pagination">
+                                 {$page}
+                                        </ul>
+					 </div>	
 		</div>
+        
+        
+        
+        
+        <script>
+	$("#form .shangc").change(function(){
+		var file=$(this).val();
+		var strFileName=file.replace(/^.+?\\([^\\]+?)(\.[^\.\\]*?)?$/gi,"$1");//文件名
+		var FileExt=file.replace(/.+\./,""); //后缀名
+		$(this).prev('input').val(strFileName+'.'+FileExt);
+		
+		if($(this).prev('input').val()=='.'){
+			$(this).prev('input').val('请选择文件');
+		}
+	});
+	
+	
+
+</script>
+
  <script>
  function add(){
 	urldialog({

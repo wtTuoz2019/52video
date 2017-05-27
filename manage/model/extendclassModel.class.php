@@ -33,8 +33,8 @@ class extendclassModel extends commonModel {
 		}
 		
 		
-	public function teacher_list($where){
-		$data=$this->model->table('teacher')->where($where)->order('sequence asc')->select();
+	public function teacher_list($where,$limit=null){
+		$data=$this->model->table('teacher')->where($where)->limit($limit)->order('sequence asc')->select();
 		if($data){
 			foreach($data as $key=>$value){
 				$temp[$value['id']]=$value;
@@ -42,6 +42,10 @@ class extendclassModel extends commonModel {
 				}
 			return $temp;
 			}
+		}
+	public function teacher_count($where){
+		return $this->model->table('teacher')->where($where)->count();
+	
 		}
 	public function teacher_add_save($data){
 		return $this->model->table('teacher')->data($data)->insert();
@@ -58,8 +62,8 @@ class extendclassModel extends commonModel {
 		return $this->model->table('teacher')->where(array('id'=>$id))->delete();
 		}
 		
-	public function student_list($where){
-		$data=$this->model->table('student')->where($where)->order('sequence asc')->select();
+	public function student_list($where,$limit=null){
+		$data=$this->model->table('student')->where($where)->limit($limit)->order('sequence asc')->select();
 		if($data){
 			foreach($data as $key=>$value){
 				$temp[$value['id']]=$value;
@@ -67,6 +71,10 @@ class extendclassModel extends commonModel {
 				}
 			return $temp;
 			}
+		}
+	public function student_count($where){
+		return $this->model->table('student')->where($where)->count();
+	
 		}
 	public function student_add_save($data){
 		return $this->model->table('student')->data($data)->insert();

@@ -66,7 +66,12 @@ class extendclassMod extends commonMod {
 	public function teacher(){
 	
 		$where['uid']= $this->user['id'];
-		 $this->list=model('extendclass')->teacher_list($where);
+		 	   $url = __URL__ . '/student/page-{page}.html';
+        $listRows = 20;
+        $limit=$this->pagelimit($url,$listRows);
+		 $this->list=model('extendclass')->teacher_list($where,$limit);
+		   $count=model('extendclass')->teacher_count($where);
+		   $this->page = $this->page($url, $count, $listRows);
 		 $this->show();
 		
 		}
@@ -134,9 +139,10 @@ class extendclassMod extends commonMod {
 						foreach($bj as $k=>$v){
 							if($v['grade']==intval($val['3'])&&$v['class']==intval($val['4'])){
 								$array['bj_id']=$v['id'];break;
+								$students[]=$array;
 								}
 							}
-						$students[]=$array;
+						
 						
 						}
 				
@@ -146,7 +152,12 @@ class extendclassMod extends commonMod {
 				model('extendclass')->student_add_saveall($students);
 			}
 		  
-		 $this->list=model('extendclass')->student_list($where);
+		   $url = __URL__ . '/student/page-{page}.html';
+        $listRows = 20;
+        $limit=$this->pagelimit($url,$listRows);
+		 $this->list=model('extendclass')->student_list($where,$limit);
+		   $count=model('extendclass')->student_count($where);
+		   $this->page = $this->page($url, $count, $listRows);
 		 $this->show();
 		
 		}
