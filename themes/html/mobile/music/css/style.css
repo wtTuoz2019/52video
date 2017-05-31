@@ -392,7 +392,7 @@ p{
 }
 .date .current ul li span i{
 	font-size:12px;
-	color:#b1b9dc;
+	color:#9aa1c0;
 	position:relative;
 	top:1px;
 }
@@ -837,6 +837,7 @@ p.allcomment span{
 				padding-left:10px;
 				position:relative;
 				height:40px;
+				min-width:200px;
 			}
 			.view-box{
 				padding:5px 0;
@@ -945,6 +946,7 @@ p.allcomment span{
 				position:absolute;
 				bottom:0;
 				left:10px;
+				color:#959595;
 			}
 			.commentarea{
 				padding:0;
@@ -1035,12 +1037,48 @@ p.allcomment span{
 				margin:0 auto;
 				margin-top:20px;
 			}
-			.support{
-				font-size:14px;
-				color:#353535;
+			.supportimg{
 				float:right;
-				line-height:40px;
+				height:40px;
+				padding:5px 0;
 				margin-right:10px;
+				position:relative;
+				
+			}
+			.supportimg #sfunction{
+				position:absolute;
+				width:45px;
+				height:0;
+				text-align:center;
+				overflow: hidden;
+				top: 28px;
+    			right: -6px;
+			}
+			.supportimg #sfunction .sfunction{
+				background:rgba(0,0,0,.5);
+				border-radius:5px;
+				padding:0 5px;
+			}
+			.supportimg #sfunction .sfunction>div{
+				padding:5px 0;
+				border-top:1px solid #a5a3a3;
+				
+				font-size:12px;
+				
+			}
+			.supportimg #sfunction .sfunction>div a{
+				color:#fff;
+				font-size:12px;
+			}
+			.supportimg #sfunction .sfunction>div:first-child{
+				border:0;
+			}
+			.supportimg #sfunction img{
+				height:12px;
+				vertical-align:bottom;
+			}
+			.supportimg img{
+				height:100%;
 			}
 			.dbg .modal-content{
 				background:#f0eff5;

@@ -138,7 +138,10 @@ class userModel extends commonModel
         return $this->model->table('livenotice')->where($where)->order('starttime desc')->select();
     }
 
-
+	public function student($where){
+		return $this->model->table('schooluser','A')->add_table('student','B','A.stid=B.id')->where($where)->find();
+		
+		}
 
 }
 

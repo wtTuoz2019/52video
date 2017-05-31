@@ -74,8 +74,8 @@ $('.edit_score td input').blur(function(){
 
 
 
-$('.tablenav>a').click(function(){
-	console.log(1);
+$('.tablenav>a').click(function(event){
+	
 	event.preventDefault();
 	var id=$(this).attr('href');
 	$(this).addClass('active').siblings('.active').removeClass('active');

@@ -121,7 +121,65 @@ class loginMod extends commonMod {
         $url=__APP__.'/';
         $this->msg($url,1);
 	}
+	public function tocas(){
+			$this->getuserinfo();
+		 if(isset($_SESSION['phpCAS'])){
+			   $array=$_SESSION['phpCAS']['attributes'];
+		   if(isset($array['SXTEACHNUMBER'])){
+		  $teacher=array('name'=>$array['XM'],'XBM'=>$array['XBM'],'school'=>$array['XJXXMC'],'SXTEACHNUMBER'=>$array['SXTEACHNUMBER'],'SXEMAIL'=>$array['SXEMAIL'],'SFZJH'=>$array['SFZJH']);
+			
+			   $teacher['uid']=$this->config['uid']?$this->config['uid']:1;
+			 
+			  $stid=model('extendclass')->teacher($teacher);
+			  $data=array('uid'=>$this->userinfo['uid'],'type'=>'teacher','stid'=>$stid);
+			  model('extendclass')->schooluser_add_save($data);
+			  
+			   
+			     $this->redirect('/teacher');
+		  }else{
+			   $student=array('name'=>$array['XM'],'XBM'=>$array['XBM'],'school'=>$array['XJXXMC'],'schoolcode'=>$array['XJFH'],'XJQXMC'=>$array['XJQXMC'],'XJXXDM'=>$array['XJXXDM'],'XJNJ'=>$array['XJNJ'],'XJBJ'=>$array['XJBJ'],'XBM'=>$array['XBM'],'time'=>time(),'grade'=>$array['XJNJ']%10,'class'=>intval($array['XJBJ']));
+			   $student['bj_id']=model('schooluser')->getclassesid(array('class'=>$student['class'],'grade'=>$student['grade']));
+			   $student['uid']=$this->config['uid']?$this->config['uid']:1;
+			 
+			  $stid=model('extendclass')->student($student);
+			  $data=array('uid'=>$this->userinfo['uid'],'type'=>'student','stid'=>$stid);
+			  model('extendclass')->schooluser_add_save($data);
+			  
+			   $this->redirect('/parent');
+			  
+			  }
+			  
+			 
+			 }
+ include_once(DIR .'/PHPCAS/CAS.php');
+ phpCAS::setDebug();
+ phpCAS::client(CAS_VERSION_2_0,'cas.edu.sh.cn',8443,'CAS');
+ phpCAS::setNoCasServerValidation();
+phpCAS::handleLogoutRequests(false,false);
+// 访问CAS的验证
+phpCAS::forceAuthentication();
 
+		}
+	public function parent(){
+	
+		$this->display('parent_login.html');
+		
+		}
+	public function relation(){
+		$this->getuserinfo();
+			if($_POST['mobile']){
+				$student=model('user')->student('A.uid='.$this->userinfo['uid']);
+				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id']);
+				model('extendclass')->relation($data);
+				model('extendclass')->student_edit_save(array('mobile'=>$_POST['mobile'],'id'=>$student['id']));
+				
+       			 $this->msg($url,1);
+				
+				}
+		
+			$this->display('parent_relation.html');
+		
+		}
 
 
 }

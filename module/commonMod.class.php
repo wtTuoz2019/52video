@@ -46,6 +46,7 @@ class commonMod
 		}
 		if($admininfo){
 			$this->config['child']=1;
+			$this->config['uid']=$admininfo['id'];
 			$_SESSION['sid']=$admininfo['cid'];
 			if($admininfo['logo'])
 			$this->config['logo']=$admininfo['logo'];

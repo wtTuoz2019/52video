@@ -324,10 +324,7 @@ function commentHandle(){
                });
 				
 			}
-			
-			$('body').click(function(e) {
-       		 hide();
-    		});
+		
 			
 		
 			

@@ -17,7 +17,7 @@ foreach($_GET as $key=>$value){
 	}
 //定义框架目录
 define('CP_PATH', dirname(__file__) . '/system/'); //指定内核目录
-
+define('DIR', dirname(__file__)); //指定内核目录
 require (dirname(__file__) . '/inc/config.php');
 require (CP_PATH . 'core/cpApp.class.php');
 

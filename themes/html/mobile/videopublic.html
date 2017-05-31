@@ -31,8 +31,19 @@ var cid='{$info.id}';
                 </div>
                 
                 <!--if:{$desimage}-->
-				<div class="support">
-                	+技术支持
+				<div class="supportimg">
+                	<img src="__PUBLIC__/images/support.png" />
+                    <div id="sfunction">
+                    	<img src="__PUBLIC__/images/sjx.png" />
+                        <div class="sfunction">
+                        	<div class="support">
+                            	技术支持
+                            </div>
+                            <div>
+                            	<a href="/myhome/index">个人中心</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="Qr">
                 <div class="qrk">
@@ -274,14 +285,24 @@ function changecolor(color){
 
 
 
-<a href="/myhome/index" id="usercenter">
+<!--<a href="/myhome/index" id="usercenter">
 	<img height="55px" src="__PUBLIC__/usercenter.png" /></div>
     
-</a>
+</a>-->
 
 
 <script>
- 
+ 	$('.supportimg').click(function(){
+		console.log(1);
+		if($('#sfunction').css('height')=='0px'){
+			$('#sfunction').stop().animate({height:'115px'},500);
+		}else{
+			$('#sfunction').stop().animate({height:'0'},500);
+		}
+		
+		
+	});
+	
 	
 	
 	
@@ -292,6 +313,7 @@ function changecolor(color){
 $('.support').click(function(e){
 		e.preventDefault();
 		$('#Qr').show();
+		$('#sfunction').stop().animate({height:'0'},500);
 	});
 	 
 	 

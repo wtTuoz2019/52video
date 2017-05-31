@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=750, user-scalable=no">
+		<title>身份确认</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+	</head>
+           <script type=text/javascript src="/public/js/jquery.js"></script>
+<script type=text/javascript src="/public/js/duxui.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+<script type=text/javascript src="/public/kindeditor/kindeditor-min.js"></script>
+<script type=text/javascript src="/public/kindeditor/lang/zh_CN.js"></script>
+<script type=text/javascript src="/public/js/common.js"></script>
+	<body>
+		<div class="ploginhead">
+	
+		</div>
+		<div class="logintablek">
+			<div class="tablenav">
+			
+			   
+			</div>
+			
+			<div class="logink">
+		
+			<div id="accountlogin" class="active">
+			<form autocomplete="off" action="" method="post" id="form">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+			
+			<tr>
+			<td>手机号：</td>
+			</tr>
+			<tr>
+				<td>
+					<input  name="mobile"  class="px" id="mobile" value=""  reg="\S"  msg="手机号码必填"  type="text" placeholder="">
+				</td>
+			</tr>
+			
+			
+			<tr>
+			<td>家长身份：</td>
+			</tr>
+				<td>
+					<select name="relation" class="dropdown-select" id="relation">
+						<option  value="妈妈">妈妈</option>
+						<option  value="爸爸">爸爸</option>
+						<option  value="爷爷">爷爷</option>
+						<option  value="奶奶">奶奶</option>
+						<option  value="外公">外公</option>
+						<option  value="外婆">外婆</option>
+						<option  value="其他">其他</option>
+					</select>
+				</td>
+			</tr>
+			</table>
+			
+			<div class="footReturn">
+				<button id="submit"  class="submit" >提交信息</button>
+			
+			</div>
+            	
+			</form>
+			</div>
+		
+			
+			
+			</div>
+			
+			</div>
+		
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//提交表单
+var win = art.dialog.open.origin;
+saveform({
+	success:function(url){
+		 window.location.href='__APP__/parent';
+    art.dialog.close();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+
+</script>
+	</body>
+</html>
