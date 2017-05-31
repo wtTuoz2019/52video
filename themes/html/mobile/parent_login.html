@@ -5,6 +5,13 @@
 		<meta name="viewport" content="width=750, user-scalable=no">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+                   <script type=text/javascript src="/public/js/jquery.js"></script>
+<script type=text/javascript src="/public/js/duxui.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+<script type=text/javascript src="/public/kindeditor/kindeditor-min.js"></script>
+<script type=text/javascript src="/public/kindeditor/lang/zh_CN.js"></script>
+<script type=text/javascript src="/public/js/common.js"></script>
 	</head>
 	<body>
 		<div class="ploginhead">
@@ -27,38 +34,38 @@
 			    <a   class="submit" href="__URL__/tocas?mobile=yes" >提交信息</a>
 			</div>
 			<div id="accountlogin">
-			
+				<form autocomplete="off" action="" method="post" id="form">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
 			<tr>
 				<td>学生姓名：</td>
 			</tr>
 			<tr>
 				<td>
-					<input name="studentname" 
-					  type="text" class="px" id="studentname" value="" placeholder="">
+					<input name="name" 
+					  type="text" class="px" id="name" value="" placeholder=""  onchange="getmobile()">
 				</td>
 			</tr>
-			<tr>
-			<td>学生号：</td>
-			</tr>
-			<tr>
-			<td><input name="number"  class="px" id="number" value=""  type="text" placeholder=""></td>
-			</tr>
-			<tr>
-			<td>密匙：</td>
-			</tr>
-			<tr>
-			<td><input name="code" class="px" id="code" value=""  type="text" placeholder=""></td>
-			</tr>
+		
 			<tr>
 			<td>手机号：</td>
 			</tr>
 			<tr>
 				<td>
-					<input  name="tel"  class="px" id="tel" value=""  type="text" placeholder="">
+					  <select name="mobile" id="mobile">
+                    <option>选择号码</option>
+                    </select>
+                    
 				</td>
 			</tr>
-			
+			<tr> 
+			<td>验证码：</td>
+			</tr>
+			<tr>
+			<td>
+            	<input name="code" class="px" id="code" value=""  type="text" placeholder="">
+            		<button  type="button" id="tocode" onclick="huoqu(this)">获取验证码</button>    
+            </td>
+			</tr>
 			
 			<tr>
 			<td>家长身份：</td>
@@ -78,9 +85,10 @@
 			</table>
 			
 			<div class="footReturn">
-				<a id="showcard"  class="submit" >提交信息</a>
+				<button id="submit"  class="submit" >提交信息</button>
 			
 			</div>
+            </form>
 			</div>
 			
 			
@@ -89,9 +97,78 @@
 			</div>
 			
 			</div>
-		
-		<script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//提交表单
+var win = art.dialog.open.origin;
+saveform({
+	success:function(url){
+	 window.location.href='__APP__/parent';
+    art.dialog.close();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+function getmobile(){
+	var name=$('#name').val();
+	$.post('__URL__/getmobile',{'name':name},function(data){
+		if(data.status==1){
+			var html;
+			$.each(data.message,function(index,vo){
+				
+					html+='<option value='+vo.mobile+' >'+vo.mobile+'</option>';
+					})
+				$('#mobile').html(html);
+			}else{
+				tip({msg:data.message});
+			
+				}
+		},'json')
+	}
+  var timerID;
+		  var cishu=0;
+		  function daojishi(miao){
+			  var button=jQuery('button#tocode');
+			  miao=miao-cishu;
+			if(miao){
+			  button.text(miao+'s');
+			  button.attr('disabled',true);
+			   cishu++;
+			}else{
+				
+				button.text('重新获取');
+				button.attr('disabled',false);
+				 cishu=0;
+				}
+				 
+			  }
+		  
+         function huoqu(ele){
+			 
+			 var button=jQuery(ele);
+			 if(jQuery('#mobile').val()==''){
+				
+				 tip({msg:'手机号不能为空！'});
+				 return false;
+				 }
+			 
+			jQuery.post("/index.php/sms",{mobile:jQuery('#mobile').val()},function(data){
+				
+				if(data=='1'){
+				
+				 tip({msg:'验证码发送成功。由于网络有可能存在延时，请稍等。'});
+				var miao=180;
+				 timerID=setInterval("daojishi("+miao+")",1000);
+				}else{
+					
+					 tip({msg:'发送失败，请稍后重试。'});
+					}
 		
+				},'json');
+			 
+			 
+			 }
+</script>
 	</body>
 </html>

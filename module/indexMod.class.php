@@ -71,6 +71,7 @@ public function wenlai(){
 		$this->display('index_school.html');
 		}
 	public function  addvisit(){
+		$this->getuserinfo();
 		model('common')->addvisit();
 		
 		}

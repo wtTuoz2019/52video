@@ -164,7 +164,7 @@ class extendclassModel extends commonModel {
 			return $this->model->table('schooluser')->data($data)->insert();
 		}
 	public function relation($data){
-		return $this->model->table('schooluser')->where(array('stid'=>$data['stid']))->data($data)->update();
+		return $this->model->table('schooluser')->where(array('stid'=>$data['stid'],'uid'=>$data['uid']))->data($data)->update();
 		}
 	
 }

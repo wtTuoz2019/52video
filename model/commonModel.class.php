@@ -104,10 +104,12 @@ public function addvisit(){
 				'uid'=>$uid,
 				'cid'=>$cid,
 				'fuid'=>$fuid,
-				'ip'=>$ip,
-				'city'=>$iparray['city']
 				);
-	
+		if($ip!='unknown'){
+		$data['ip']=$ip;
+		$data['city']=$iparray['city'];
+		
+		}
 		if($aid){
 			$data['aid']=$where['aid']=$aid;
 			}

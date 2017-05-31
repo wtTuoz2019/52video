@@ -1159,6 +1159,7 @@ p.allcomment span{
 #myTabContent div[id^="funcions"] p.MsoNormal span,#myTabContent div[id^="funcions"] div.jiaoyantishi span{
 	color:#888888;
 	font-size:12px !important;
+	background:transparent !important;
 }
 #comtopwben img,.comlistarea>p>img{
 	height:24px !important;

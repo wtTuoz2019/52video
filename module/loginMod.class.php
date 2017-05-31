@@ -161,24 +161,60 @@ phpCAS::forceAuthentication();
 
 		}
 	public function parent(){
-	
+		$uid=$this->config['uid']?$this->config['uid']:1;
+				$this->getuserinfo();
+			if($_POST['mobile']){
+				if(!$_POST['code']){
+			
+			 $this->msg('手机验证码不能为空！',0);
+			}
+				if($_POST['code']!=$_COOKIE['mobilecode']){
+			
+			 $this->msg('手机验证码不对！',0);
+			}
+				$student=model('extendclass')->student_info(array('mobile'=>$_POST['mobile'],'uid'=>$uid));
+				
+				
+				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id'],'uid'=>$this->userinfo['uid']);
+					
+				model('extendclass')->schooluser_add_save($data);
+				
+				 $this->msg($url,1);
+				
+				}
 		$this->display('parent_login.html');
 		
 		}
+	
 	public function relation(){
 		$this->getuserinfo();
 			if($_POST['mobile']){
+			if(!$_POST['code']){
+			
+			 $this->msg('手机验证码不能为空！',0);
+			}
+				if($_POST['code']!=$_COOKIE['mobilecode']){
+			
+			 $this->msg('手机验证码不对！',0);
+			}
 				$student=model('user')->student('A.uid='.$this->userinfo['uid']);
-				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id']);
+			
+				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id'],'uid'=>$this->userinfo['uid']);
 				model('extendclass')->relation($data);
 				model('extendclass')->student_edit_save(array('mobile'=>$_POST['mobile'],'id'=>$student['id']));
-				
-       			 $this->msg($url,1);
+				 $this->msg($url,1);
 				
 				}
 		
 			$this->display('parent_relation.html');
 		
+		}
+	public function getmobile(){
+		$name=$_POST['name'];
+		$uid=$this->config['uid']?$this->config['uid']:1;
+		$where=array('uid'=>$uid,'name'=>$name,'mobile'=>array('<>',"''"));
+		$student=model('extendclass')->student_list($where);
+		 $this->msg($student,1);
 		}
 
 
