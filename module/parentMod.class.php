@@ -21,5 +21,9 @@ class parentMod extends commonMod {
 		
 		$this->display('parents_usercenter.html');
 	}
+	
+	public function kclist(){
+		$this->display('parents_kclist.html');
+		}
 }
 ?>

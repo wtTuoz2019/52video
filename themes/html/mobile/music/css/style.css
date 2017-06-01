@@ -1179,4 +1179,11 @@ p.allcomment span{
 }
 .schoolmessage #commentnum{
 	font-size:12px;
+} 
+#container .nocomment{
+	text-align:center;
+	padding-top:100px;
+}
+#container .nocomment img{
+	width:27%;
 }

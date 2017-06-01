@@ -146,6 +146,9 @@ class extendclassModel extends commonModel {
 	public function course_list($where){
 		return $this->model->table('course')->where($where)->order('sequence asc')->select();
 		}
+	public function group_list($where){
+		return $this->model->table('course')->field('distinct group')->where($where)->order('sequence asc')->select();
+		}
 	public function course_add_save($data){
 		return $this->model->table('course')->data($data)->insert();
 		}

@@ -258,13 +258,14 @@ class extendclassMod extends commonMod {
 		}
 	public function course(){
 			$where['uid']= $this->user['id'];
-		
+		$this->bid=$bid=intval($_GET['bid']);
 		 $this->teacher=model('extendclass')->teacher_list($where);
 	
 		  $this->bj=model('extendclass')->classes_list($where);
 		  if($_GET['s']){
 			 $where['name']=array('like',"'%".$_GET['s']."%'");
 			  }
+			 $where['bid']=$bid;
 		   $this->list=model('extendclass')->course_list($where);
 		 $this->show();
 		
@@ -272,6 +273,9 @@ class extendclassMod extends commonMod {
 	public function course_add(){
 		$this->actionname='添加';
 		$this->action='course_add';
+		$bid=intval($_GET['bid']);
+		$info['bid']=$bid;
+		$this->info=$info;
 		$where['uid']= $this->user['id'];
 		 $this->bj=model('extendclass')->classes_list($where);
 	   $this->teacher=model('extendclass')->teacher_list($where);

