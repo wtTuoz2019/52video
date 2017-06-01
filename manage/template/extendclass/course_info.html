@@ -106,7 +106,7 @@
      <tr>
 			<td  width="120" align="right">选择班级</td>
 							<td>
-								<select name="bj_ids[]"  reg="." id="bj_id" >
+								<select name="bj_ids[]"   id="bj_id" multiple="multiple">
                                   <option value="0">======选择班级======</option>
                                   <!--foreach:{$bj $vo}--> 
                                   <option value="{$vo['id']}" <?php if($info['bj_ids']&&in_array($vo['id'],$info['bj_ids'])) { ?> selected="selected" <?php } ?>  >
@@ -117,7 +117,7 @@
 							</td>
 						</tr>
                        
-                       <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
+      <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
         <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
                           <script type="text/javascript">
                             $(document).ready(function() {

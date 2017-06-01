@@ -11,7 +11,7 @@
 			<div id="cancel">
 				<img src="img/cancel.png"/>
 			</div>
-			科学探究与实践
+			{$course.name}
 			<div id="edit">
 				<img src="img/editscore.png"/>
 			</div>
@@ -26,48 +26,16 @@
 					<th width="34%">班级</th>
 					<th width="33%">成绩</th>
 				</tr>
+                  <!--foreach:{$signuplist $vo}-->
 				<tr>
-					<td>小米</td>
-					<td>三年一班</td>
+					<td>{$vo.name}</td>
+					<td>{$classes[$vo['bj_id']]['grade']}年级{$classes[$vo['bj_id']]['class']}班</td>
 					<td>
 						<input type="" name="" id="" value="88" disabled="disabled" placeholder=""/>
 					</td>
 				</tr>
-				<tr>
-					<td>小米</td>
-					<td>三年一班</td>
-					<td>
-						<input type="" name="" id="" value="88" disabled="disabled" placeholder=""/>
-					</td>
-				</tr>
-				<tr>
-					<td>小米</td>
-					<td>三年一班</td>
-					<td>
-						<input type="" name="" id="" value="88" disabled="disabled" placeholder=""/>
-					</td>
-				</tr>
-				<tr>
-					<td>小米</td>
-					<td>三年一班</td>
-					<td>
-						<input type="" name="" id="" value="88" disabled="disabled" placeholder=""/>
-					</td>
-				</tr>
-				<tr>
-					<td>小米</td>
-					<td>三年一班</td>
-					<td>
-						<input type="" name="" id="" value="88" disabled="disabled" placeholder=""/>
-					</td>
-				</tr>
-				<tr>
-					<td>小米</td>
-					<td>三年一班</td>
-					<td>
-						<input type="" name="" id="" value="88" disabled="disabled" placeholder=""/>
-					</td>
-				</tr>
+                  <!--{/foreach}-->
+				
 			</table>
 		</div>
 		<script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>

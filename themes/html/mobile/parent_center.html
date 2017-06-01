@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=750, user-scalable=no">
-		<title></title>
+		<title>我的选课</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
 	</head>
 	<body>
@@ -12,10 +12,10 @@
 			<div class="head_name">
 				<img src="img/parentshead.png"/>
 				<p>
-					黄晓明的家长
+					{$student.name}的{$student.relation}
 				</p>
 				<p>
-					三年级二班
+					{$classes[$student['bj_id']]['grade']}年级{$classes[$student['bj_id']]['class']}班
 				</p>
 			</div>
 			
@@ -26,77 +26,26 @@
 		</div>
 		
 		<div class="selectnav">
-			<a href="#">
+         <!--foreach:{$kclist $vo}-->
+			<a href="__URL__/kcdetail/id-{$vo.id}{$urltoken}">
 				<div class="headcolor">
 				</div>
 				<div class="classtitle">
 					<span class="classname">
-						课程模块
+						{$vo.title}
 					</span>
 					
 				</div>
 				<div class="classmain">
-					<p>课程：数学练习</p>
-					<p>选修课组：周四</p>
+					<p>课程：{$vo.name}</p>
+					<p>选修课组：{$vo.group}</p>
 				</div>
 				<span class="details">
 					查看详情>
 				</span>
 			</a>
-			
-			<a href="#">
-				<div class="headcolor">
-				</div>
-				<div class="classtitle">
-					<span class="classname">
-						课程模块
-					</span>
-					
-				</div>
-				<div class="classmain">
-					<p>课程：数学练习</p>
-					<p>选修课组：周四</p>
-				</div>
-				<span class="details">
-					查看详情>
-				</span>
-			</a>
-			
-			<a href="#">
-				<div class="headcolor">
-				</div>
-				<div class="classtitle">
-					<span class="classname">
-						课程模块
-					</span>
-					
-				</div>
-				<div class="classmain">
-					<p>课程：数学练习</p>
-					<p>选修课组：周四</p>
-				</div>
-				<span class="details">
-					查看详情>
-				</span>
-			</a>
-			
-			<a href="#">
-				<div class="headcolor">
-				</div>
-				<div class="classtitle">
-					<span class="classname">
-						课程模块
-					</span>
-					
-				</div>
-				<div class="classmain">
-					<p>课程：数学练习</p>
-					<p>选修课组：周四</p>
-				</div>
-				<span class="details">
-					查看详情>
-				</span>
-			</a>
+			   <!--{/foreach}-->
+		
 			
 		</div>
 		

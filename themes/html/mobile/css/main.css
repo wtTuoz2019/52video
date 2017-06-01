@@ -424,6 +424,12 @@ a,a:hover,a:focus{
 	padding-left: 60px;
 	font-size: 24px;
 }
+.scorelist{
+	background-image: url(../img/scorelist.png);
+}
+.attlist{
+	background-image: url(../img/attlist.png);
+}
 .selectnav{
 	padding: 28px 35px;
 }
@@ -1130,6 +1136,41 @@ button.submit{
 	list-style: initial;
 	text-align:left;
 }
-
-
+.huibg{
+ position: relative;
+    top: 67px;	
+	height: 67px;
+	 background: #F6F6F6;
+}
+.counter{
+	text-align: center;
+    height: 67px;
+	border: 3px solid #F6F6F6;
+	color: #fff;
+	background:rgba(0,0,0,0.6);
+	line-height: 61px;
+}
+.counter>*{
+	display:inline-block;
+	vertical-align:middle;
+	color: #fff;
+	font-size:18px;
+}
+.counter>.countdownHolder{
+	top:5px;
+}
+.times {
+    top: -7px;
+    left: -8px;
+    padding: 0 12px;
+    font-size: 18px;
+}
+#countdown .countDiv:before,#countdown .countDiv:after{
+	width:0;
+	height:0;
+}
+.toback{
+	background:#CBC8C8;
+	margin-top:30px;
+}
 

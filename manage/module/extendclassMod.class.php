@@ -309,6 +309,8 @@ class extendclassMod extends commonMod {
 		}
 	
 	public function course_edit_save(){
+		
+	 
 		$_POST['bj_ids']=serialize($_POST['bj_ids']);
 		$_POST['starttime']=strtotime($_POST['starttime']);
 		$_POST['endtime']=strtotime($_POST['endtime']);

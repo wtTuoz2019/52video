@@ -7,13 +7,14 @@
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
 	</head>
 	<body>
-		<div class="selecthead">
-			选课管理
+		<div class="selecthead scorelist">
+			成绩管理
 		</div>
 		
 		<div class="selectnav">
+        
           <!--foreach:{$kclist $vo}-->
-				<a href="__APP__/parent/kcdetail/id-{$vo.id}{$urltoken}">
+					<a href="__URL__/score/id-{$vo.id}{$urltoken}">
 				<div class="headcolor">
 				</div>
 				<div class="classtitle">
@@ -25,7 +26,7 @@
 				</div>
 				<div class="classmain">
 					<p>学科背景：{$vo.group}</p>
-					<p>已报名：{$vo.signupnum}人</p>
+					<p>学生人数：{$vo.signupnum}人</p>
 					<p>报名截止：{$vo.endtime time="Y-m-d H:i"}</p>
 				</div>
 				<span class="details">

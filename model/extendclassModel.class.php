@@ -118,11 +118,26 @@ class extendclassModel extends commonModel {
 		$data=$this->model->table('student','A')->field('A.*')->add_table('course_signup','B','A.id=B.sid')->where($where)->select();
 		
 			return $data;
+		}
+	public function signup_info($where){
+		$data=$this->model->table('course_signup')->where($where)->find();
+		
+			return $data;
+		}
+	public function signup_del($where){
+		return $this->model->table('course_signup')->where($where)->delete();
+		
 			
 		}
+	public function signup_num($where){
+		return $this->model->table('course_signup')->where($where)->count();
+		}
+	public function signup_bj_num($where){
+		return $this->model->table('student','A')->add_table('course_signup','B','A.id=B.sid')->where($where)->count();
+		}
 	public function signup_add_save($data){
+		if(!$this->model->table('course_signup')->where(array('cid'=>$data['cid'],'sid'=>$data['sid']))->find())
 		return $this->model->table('course_signup')->data($data)->insert();
-		
 		}
 	public function batch_list($where){
 		return $this->model->table('course_batch')->where($where)->select();
@@ -142,12 +157,17 @@ class extendclassModel extends commonModel {
 		return $this->model->table('course_batch')->where(array('id'=>$id))->delete();
 		}
 		
-		
+	public function new_course($where){
+		return $this->model->table('course_batch')->where($where)->order('id desc')->find();
+		}	
 	public function course_list($where){
-		return $this->model->table('course')->where($where)->order('sequence asc')->select();
+		return $this->model->table('course','A')->add_table('teacher','B','A.tid=B.id')->field('A.*,B.name as teachername,B.image,B.title as job,B.des as geyan')->where($where)->order('A.sequence asc')->select();
+		}
+	public function my_course_list($where){
+		return $this->model->table('course','A')->add_table('course_signup','B','A.id=B.cid')->field('A.*')->where($where)->order('A.sequence asc')->select();
 		}
 	public function group_list($where){
-		return $this->model->table('course')->field('distinct group')->where($where)->order('sequence asc')->select();
+		return $this->model->table('course')->field('DISTINCT(`group`)')->where($where)->select();
 		}
 	public function course_add_save($data){
 		return $this->model->table('course')->data($data)->insert();
@@ -157,7 +177,7 @@ class extendclassModel extends commonModel {
 		
 		}
 	public function course_info($where){
-		return $this->model->table('course')->where($where)->find();
+		return $this->model->table('course','A')->add_table('teacher','B','A.tid=B.id')->field('A.*,B.name as teachername,B.image,B.title as job,B.des as geyan')->where($where)->find();
 		}
 	public function course_del($id){
 		return $this->model->table('course')->where(array('id'=>$id))->delete();

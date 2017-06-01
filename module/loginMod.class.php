@@ -175,7 +175,7 @@ phpCAS::forceAuthentication();
 				$student=model('extendclass')->student_info(array('mobile'=>$_POST['mobile'],'uid'=>$uid));
 				
 				
-				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id'],'uid'=>$this->userinfo['uid']);
+				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id'],'uid'=>$this->userinfo['uid'],'type'=>'student');
 					
 				model('extendclass')->schooluser_add_save($data);
 				
@@ -183,6 +183,31 @@ phpCAS::forceAuthentication();
 				
 				}
 		$this->display('parent_login.html');
+		
+		}
+		public function teacher(){
+		$uid=$this->config['uid'];
+				$this->getuserinfo();
+			if($_POST['mobile']){
+				if(!$_POST['code']){
+			
+			 $this->msg('手机验证码不能为空！',0);
+			}
+				if($_POST['code']!=$_COOKIE['mobilecode']){
+			
+			 $this->msg('手机验证码不对！',0);
+			}
+				$teacher=model('extendclass')->teacher_info(array('mobile'=>$_POST['mobile'],'uid'=>$uid));
+				
+				
+				$data=array('mobile'=>$_POST['mobile'],'stid'=>$teacher['id'],'uid'=>$this->userinfo['uid'],'type'=>'teacher');
+					
+				model('extendclass')->schooluser_add_save($data);
+				
+				 $this->msg($url,1);
+				
+				}
+		$this->display('teacher_login.html');
 		
 		}
 	
@@ -214,6 +239,13 @@ phpCAS::forceAuthentication();
 		$uid=$this->config['uid']?$this->config['uid']:1;
 		$where=array('uid'=>$uid,'name'=>$name,'mobile'=>array('<>',"''"));
 		$student=model('extendclass')->student_list($where);
+		 $this->msg($student,1);
+		}
+	public function getteachermobile(){
+		$name=$_POST['name'];
+		$uid=$this->config['uid'];
+		$where=array('uid'=>$uid,'name'=>$name,'mobile'=>array('<>',"''"));
+		$student=model('extendclass')->teacher_list($where);
 		 $this->msg($student,1);
 		}
 

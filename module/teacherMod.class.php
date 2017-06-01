@@ -5,72 +5,78 @@ class teacherMod extends commonMod {
 	public function __construct()
     {
         parent::__construct();
-    }
-
-	 //老师列表
-    public function index()
-    {	 $user=model('user')->current_user();
-		 
-		if($user['cid'])	
-	 	$where=" sid =".$user['cid'];
-        $this->list=model('teacher')->model_list($where);
-		$this->subject=model('diyfield')->field_list_data(2);
-		$this->grade=model('diyfield')->field_list_data(1);
+		$this->getuserinfo();
 		
-        $this->show();
-    }
-    //老师添加
-    public function add()
-    {
-        $this->action_name='添加';
-        $this->action='add';
-      $this->subject=model('diyfield')->field_list_data(2);
-		$this->grade=model('diyfield')->field_list_data(1);
+		$teacher=model('user')->teacher('A.uid='.$this->userinfo['uid']);
 
-        $this->display('teacher/info');
+		if(!$teacher){
+		$this->redirect('/login/teacher');
+			}	
+			
+		$this->teacher=$teacher;
+				
     }
-  //老师保存
-    public function add_save()
-    {
+
+	public function index() {
         
-
-        model('teacher')->save($_POST);
-       
-        /*hook end*/
-        $this->msg('老师添加成功！',1);
-    }
-
-     //老师添加
-    public function edit()
-    {    $id=intval($_GET['id']);
-        $this->action_name='编辑';
-        $this->action='edit';
-       $this->subject=model('diyfield')->field_list_data(2);
-		$this->grade=model('diyfield')->field_list_data(1);
-        $this->info=model('teacher')->info($id);
-
-        $this->display('teacher/info');
-    }
-  //老师保存
-    public function edit_save()
-    {
-        
-
-     	model('teacher')->edit_save($_POST);
-       
-        /*hook end*/
-        $this->msg('老师编辑成功！',1);
-    }
+		
+		$this->display('teacher_usercenter.html');
+	}
 	
-
-	//老师删除
-    public function del()
-    {
-        $this->alert_str($_POST['id'],'int',true);
-       
-        $class_status=model('teacher')->del($_POST['id']);
-        
-        $this->msg('页面删除成功！',1);
-    }
+	public function kclist() {
+		$course=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
+		if(!$course)$this->alert('暂无选课');
+        $where=array('bid'=>$course['id'],'tid'=>$this->teacher['stid']);
+		$kclist=model('extendclass')->course_list($where);	
+		if($kclist){
+			foreach($kclist as $key=>$value){
+				$kclist[$key]['signupnum']=model('extendclass')->signup_num(array('cid'=>$value['id']));
+				}
+			
+			}
+		$this->kclist=$kclist;
+		$this->display('teacher_class.html');
+	}
+	public function scorelist(){
+		$course=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
+		if(!$course)$this->alert('暂无选课');
+        $where=array('bid'=>$course['id'],'tid'=>$this->teacher['stid']);
+		$kclist=model('extendclass')->course_list($where);	
+		if($kclist){
+			foreach($kclist as $key=>$value){
+				$kclist[$key]['signupnum']=model('extendclass')->signup_num(array('cid'=>$value['id']));
+				}
+			
+			}
+		$this->kclist=$kclist;
+		$this->display('teacher_scorelist.html');
+		
+		}
+	public function score(){
+		$id=intval($_GET['id']);
+		$course=model('extendclass')->course_info('A.id='.$id.' and A.uid='.$this->config['uid']);
+		
+		if(!$course)$this->alert('无此课程');
+		$this->course=$course;
+		$this->signuplist=model('extendclass')->signup_list(array('cid'=>$course['id']));
+		$this->classes=model('extendclass')->classes_list(array('uid'=>$this->config['uid']));
+		$this->display('teacher_score.html');
+		}
+	public function attlist(){
+		$course=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
+		if(!$course)$this->alert('暂无选课');
+        $where=array('bid'=>$course['id'],'tid'=>$this->teacher['stid']);
+		$kclist=model('extendclass')->course_list($where);	
+		if($kclist){
+			foreach($kclist as $key=>$value){
+				$kclist[$key]['signupnum']=model('extendclass')->signup_num(array('cid'=>$value['id']));
+				}
+			
+			}
+		$this->kclist=$kclist;
+		$this->display('teacher_attlist.html');
+		
+		}
+		
 
 }

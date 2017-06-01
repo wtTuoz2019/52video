@@ -12,7 +12,12 @@ class parentMod extends commonMod {
 			}else{
 		if(!$student['mobile']||!$student['relation']){
 		$this->redirect('/login/relation');	
-			}		
+			}	
+		if(!$student['bj_id']){
+		 $student['bj_id']=model('schooluser')->getclassesid(array('class'=>$student['class'],'grade'=>$student['grade']));
+			model('extendclass')->student_edit_save(array('id'=>$student['stid'],'bj_id'=>$student['bj_id']));
+			}	
+		$this->student=$student;
 				}
     }
 
@@ -21,9 +26,81 @@ class parentMod extends commonMod {
 		
 		$this->display('parents_usercenter.html');
 	}
+	public function center() {
+        
+		$this->classes=model('extendclass')->classes_list(array('uid'=>$this->config['uid']));
+		$course=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
+		$where=array('bid'=>$course['id'],'sid'=>$this->student['stid']);
+		$this->kclist=model('extendclass')->my_course_list($where);	
+		$this->display('parent_center.html');
+	}
 	
 	public function kclist(){
+		$course=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
+		if(!$course)$this->alert('暂无选课');
+		$this->group=model('extendclass')->group_list(array('uid'=>$this->config['uid'],'bid'=>$course['id']));	
+		$where=array('bid'=>$course['id']);
+		if($_GET['group'])$where['group']=$_GET['group'];
+		$this->kclist=model('extendclass')->course_list($where);	
+		
 		$this->display('parents_kclist.html');
+		}
+	public function kcdetail(){
+		
+		$id=intval($_GET['id']);
+		$course=model('extendclass')->course_info('A.id='.$id.' and A.uid='.$this->config['uid']);
+		
+		if(!$course)$this->alert('无此课程');
+	
+		
+		$course['signnum']=0;
+		if($course['starttime']<time()){
+			
+			
+		$course['bj_ids']=unserialize($course['bj_ids']);
+		if($course['bj_ids'][0]||count($course['bj_ids'])>1){
+			if(!in_array($this->student['bj_id'],$course['bj_ids'])){
+				$this->alert('您所在的班级不能报名该课程');
+				}
+			}
+			$bjsignnum=model('extendclass')->signup_bj_num(array('cid'=>$course['id'],'bj_id'=>$this->student['bj_id']));;
+			if($bjsignnum>=$course['limitnum'])$this->alert('报名已满');
+			
+			$course['signnum']=model('extendclass')->signup_num(array('cid'=>$course['id']));
+			if($course['signnum']>=$course['number'])$this->alert('报名已满');
+			
+			
+			}
+		$this->signupdetail=model('extendclass')->signup_info(array('cid'=>$course['id'],'sid'=>$this->student['stid']));
+		$this->course=$course;
+		
+		$this->display('parents_kcdetail.html');
+		}
+	public function signup(){
+		$id=intval($_POST['id']);
+		$course=model('extendclass')->course_info('A.id='.$id.' and A.uid='.$this->config['uid']);
+		if(!$course)$this->msg('无此课程',0);
+		$course['bj_ids']=unserialize($course['bj_ids']);
+		if($course['bj_ids'][0]||count($course['bj_ids'])>1){
+			if(!in_array($this->student['bj_id'],$course['bj_ids'])){
+				$this->msg('您所在的班级不能报名该课程',0);
+				}
+			}
+			$bjsignnum=model('extendclass')->signup_bj_num(array('cid'=>$course['id'],'bj_id'=>$this->student['bj_id']));;
+			if($bjsignnum>=$course['limitnum'])$this->msg('报名已满',0);
+			
+			$course['signnum']=model('extendclass')->signup_num(array('cid'=>$course['id']));
+			if($course['signnum']>=$course['number'])$this->msg('报名已满',0);
+			
+			$data=array('cid'=>$course['id'],'sid'=>$this->student['stid'],'time'=>time());
+			model('extendclass')->signup_add_save($data);
+			$this->msg('报名成功',1);
+		}
+	public function cansesignup(){
+		$id=intval($_POST['id']);
+		$data=array('cid'=>$id,'sid'=>$this->student['stid']);
+		model('extendclass')->signup_del($data);
+		$this->msg('取消报名成功',1);
 		}
 }
 ?>
