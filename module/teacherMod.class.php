@@ -73,6 +73,7 @@ class teacherMod extends commonMod {
 		$this->course=$course;
 		$this->signuplist=model('extendclass')->signup_list(array('cid'=>$course['id']));
 		$this->classes=model('extendclass')->classes_list(array('uid'=>$this->config['uid']));
+		$this->scoretype_list=model('extendclass')->scoretype_list(array('uid'=>$this->config['uid']));
 		$this->display('teacher_score.html');
 		}
 	public function attlist(){

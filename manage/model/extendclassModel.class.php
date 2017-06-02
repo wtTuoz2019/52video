@@ -31,7 +31,30 @@ class extendclassModel extends commonModel {
 	public function classes_del($id){
 		return $this->model->table('classes')->where(array('id'=>$id))->delete();
 		}
+	public function scoretype_list($where){
+		$data=$this->model->table('scoretype')->where($where)->order('sequence asc')->select();
+		if($data){
+			foreach($data as $key=>$value){
+				$temp[$value['id']]=$value;
+				
+				}
+			return $temp;
+			}
+		}
+	public function scoretype_add_save($data){
+		return $this->model->table('scoretype')->data($data)->insert();
 		
+		}
+	public function scoretype_edit_save($data){
+		return $this->model->table('scoretype')->where(array('id'=>$data['id']))->data($data)->update();
+		
+		}
+	public function scoretype_info($where){
+		return $this->model->table('scoretype')->where($where)->find();
+		}
+	public function scoretype_del($id){
+		return $this->model->table('scoretype')->where(array('id'=>$id))->delete();
+		}
 		
 	public function teacher_list($where,$limit=null){
 		$data=$this->model->table('teacher')->where($where)->limit($limit)->order('sequence asc')->select();

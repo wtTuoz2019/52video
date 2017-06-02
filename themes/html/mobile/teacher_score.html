@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=750, user-scalable=no">
-		<title></title>
+		<title>{$course.name}</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
 	</head>
 	<body>
@@ -31,11 +31,13 @@
 					<td>{$vo.name}</td>
 					<td>{$classes[$vo['bj_id']]['grade']}年级{$classes[$vo['bj_id']]['class']}班</td>
 					<td>
-						<select disabled="disabled">
-                        	<option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
+                
+						<select disabled="disabled" class="nosjx"  name="score[{$vo.id}]">
+                        	<option value="">暂无</option>
+                              <!--foreach:{$scoretype_list $v}-->
+                        	<option value="{$v.name}"  <?=$v['name']==$vo['score']?'selected':''?>>{$v.name}</option>
+                               <!--{/foreach}-->
+                            
                         </select>
 					</td>
 				</tr>
@@ -46,5 +48,12 @@
 		<script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 		
+        
+        <script>
+   
+        
+        </script>
+        
+        
 	</body>
 </html>

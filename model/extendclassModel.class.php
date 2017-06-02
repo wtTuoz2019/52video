@@ -115,7 +115,7 @@ class extendclassModel extends commonModel {
 		}
 		
 	public function signup_list($where){
-		$data=$this->model->table('student','A')->field('A.*')->add_table('course_signup','B','A.id=B.sid')->where($where)->select();
+		$data=$this->model->table('student','A')->field('A.*,B.score')->add_table('course_signup','B','A.id=B.sid')->where($where)->select();
 		
 			return $data;
 		}
@@ -160,6 +160,16 @@ class extendclassModel extends commonModel {
 	public function new_course($where){
 		return $this->model->table('course_batch')->where($where)->order('id desc')->find();
 		}	
+	public function scoretype_list($where){
+		$data=$this->model->table('scoretype')->where($where)->order('sequence asc')->select();
+		if($data){
+			foreach($data as $key=>$value){
+				$temp[$value['id']]=$value;
+				
+				}
+			return $temp;
+			}
+		}
 	public function course_list($where){
 		return $this->model->table('course','A')->add_table('teacher','B','A.tid=B.id')->field('A.*,B.name as teachername,B.image,B.title as job,B.des as geyan')->where($where)->order('A.sequence asc')->select();
 		}

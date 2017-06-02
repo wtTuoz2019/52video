@@ -250,6 +250,9 @@ button{
 #nav>a.nav4{
 	background: #DDCE30;
 }
+#nav>a.nav5{
+	background: #B593BB;
+}
 #nav>a.active{
 	color: #fff;
 }
@@ -331,6 +334,12 @@ button{
 }
 #nav>a.active div.nav_selectclass4{
 	background-image: url(../img/nav_selectclass4_.png);
+}
+#nav>a div.nav_selectclass5{
+	background-image: url(../img/nav_selectclass5.png);
+}
+#nav>a.active div.nav_selectclass5{
+	background-image: url(../img/nav_selectclass5_.png);
 }
 #nav>a div.nav_userset1{
 	background-image: url(../img/nav_userset1.png);

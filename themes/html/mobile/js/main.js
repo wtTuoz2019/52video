@@ -4,19 +4,26 @@ $('.kectitle #edit').click(function(){
 	$('.kectitle #cancel').show();
 	
 	
-	$('.edit_score td input').attr('disabled',false);
-	$('.edit_score td input').css('color','#E5E5E5');
+	$('.edit_score td select').attr('disabled',false);
+	$('.edit_score td select').removeClass('nosjx');
 	
 	$('.edit_score table tr:nth-child(2) td input').focus();
 	
 });
+var arr=new Array();
 $('.kectitle #save').click(function(){
 	$(this).hide();
 	$('.kectitle #cancel').hide();
 	$('.kectitle #edit').show();
 	
-	$('.edit_score td input').attr('disabled',true);
-	$('.edit_score td input').css('color','#222');
+	$('.edit_score td select').attr('disabled',true);
+	$('.edit_score td select').addClass('nosjx');
+	
+	
+	
+	
+	
+	
 });
 $('.kectitle #cancel').click(function(){
 	window.location.reload();//刷新当前页面

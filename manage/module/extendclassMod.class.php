@@ -63,6 +63,55 @@ class extendclassMod extends commonMod {
         $this->msg('删除成功！',1);
 		
 		}
+	public function scoretype(){
+	
+		$where['uid']= $this->user['id'];
+		 $this->list=model('extendclass')->scoretype_list($where);
+		 $this->show();
+		
+		}
+	public function scoretype_add(){
+		$this->actionname='添加';
+		$this->action='scoretype_add';
+		
+		 $this->show('extendclass/scoretype_info');
+		}
+	public function scoretype_add_save(){
+		
+		$_POST['uid']= $this->user['id'];
+		model('extendclass')->scoretype_add_save($_POST);
+    	
+    	$this->msg('添加成功！',1);
+		
+		}
+	public function scoretype_edit(){
+		$this->actionname='编辑';
+		$this->action='scoretype_edit';
+		
+		 $id=intval($_GET['id']);
+        $this->alert_str($id,'int');
+		
+		 $this->info=model('extendclass')->scoretype_info(array('id'=>$id));
+		
+		 $this->show('extendclass/scoretype_info');
+		}
+	
+	public function scoretype_edit_save(){
+		
+		model('extendclass')->scoretype_edit_save($_POST);
+    	
+    	$this->msg('编辑成功！',1);
+		
+		}
+	public function scoretype_del(){
+		 $id=$_POST['id'];
+     
+        $this->alert_str($_POST['id'],'int',true);
+        model('extendclass')->scoretype_del($id,$fid);
+      
+        $this->msg('删除成功！',1);
+		
+		}
 	public function teacher(){
 	
 		$where['uid']= $this->user['id'];
