@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=750, user-scalable=no">
+		<title>{$course.name}</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+           <script type=text/javascript src="/public/js/jquery.js"></script>
+<script type=text/javascript src="/public/js/duxui.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+<script type=text/javascript src="/public/kindeditor/kindeditor-min.js"></script>
+<script type=text/javascript src="/public/kindeditor/lang/zh_CN.js"></script>
+<script type=text/javascript src="/public/js/common.js"></script>
+        <link rel="stylesheet" href="__TPL__mobile/Scripts/countdown/jquery.countdown.css" />
+        <script type="text/javascript" src="__TPL__mobile/Scripts/countdown/jquery.countdown.js" ></script>
+	</head>
+	<body class="hui">
+		<div class="biggestk">
+			<div class="detailk">
+				<p>
+					课程模块：{$course.title}
+				</p>
+				<p>
+					课程名称：{$course.name}
+				</p>
+				<p>
+					编号：{$course.code}
+				</p>
+				<p>
+					任课老师：{$course.teachername}
+				</p>
+				<p>
+					上课地点：{$course.place}
+                    				</p>
+				<p>
+					上课时间：{$course.classtime}
+				</p>
+				<p>
+					招生人数：{$course.number}
+				</p>
+				<p>
+					已报名人数：{$course.signnum}
+				</p>
+				<p>
+					报名时间：{$course.endtime time="Y-m-d H:i"}截止
+				</p>
+			</div>
+			
+			<div class="detailk">
+				<p>
+					课程说明：
+				</p>
+				<p>
+					{$course.info}
+				</p>
+			</div>
+			
+			<div class="detailk">
+				<p>
+					特别说明：
+				</p>
+				<p>
+				{$course.des}
+				</p>
+			</div>
+		<?php  if ($course['endtime'] <= time()) { ?>
+        
+       <div class="huibg"> <div class="counter">报名已经结束</div> </div>
+        	<?php  }elseif ($course['starttime'] > time()) { ?>
+           <div class="huibg">
+            <div class="counter">
+				<p>距离报名还有：</p>
+				<div id="countdown"></div>
+			</div>   
+          </div>
+            <script type="text/javascript">
+			newYear = true;
+					t1 = '{$course.starttime}'*1000;
+					t = '{$course.endtime}'*1000;
+					ts = <?php echo time(); ?>*1000;	
+				$('#countdown').countdown({
+					timestamp	: t1,
+					callback	: function(days, hours, minutes, seconds){
+						
+						var message = "";
+					
+						message += days + " day" + ( days==1 ? '':'s' ) + ", ";
+						message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
+						message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
+						message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+						
+						if(days==0&&hours==0&&minutes==0&&seconds==0){
+							
+							$("#play").show();
+							$("#backdrop").hide();
+							
+						}
+					}
+				});	
+			$('#countdown .countDiv0').html('天');
+			$('#countdown .countDiv0').addClass('times');
+			$('#countdown .countDiv1').html('时');
+			$('#countdown .countDiv1').addClass('times');
+			$('#countdown .countDiv2').html('分');
+			$('#countdown .countDiv2').addClass('times');
+			$('#countdown').append('<span class="countDiv countDiv3 times">秒</span>');
+			$('#countdown .countDiv3').addClass('times');
+		</script>
+            
+            <?php  } ?>
+	
+             
+             	<button class="sign_up toback" onClick=" history.go(-1)" style="margin-top:90px">
+				返回列表
+			</button>
+		</div>
+		
+		 
+		
+		
+	</body>
+</html>

@@ -37,6 +37,19 @@ class teacherMod extends commonMod {
 		$this->kclist=$kclist;
 		$this->display('teacher_class.html');
 	}
+	public function kcdetail(){
+		
+		$id=intval($_GET['id']);
+		$course=model('extendclass')->course_info('A.id='.$id.' and A.uid='.$this->config['uid']);
+		
+		if(!$course)$this->alert('无此课程');
+	
+		
+	
+		$this->course=$course;
+		
+		$this->display('teacher_kcdetail.html');
+		}
 	public function scorelist(){
 		$course=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
 		if(!$course)$this->alert('暂无选课');
