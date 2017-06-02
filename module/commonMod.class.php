@@ -47,6 +47,7 @@ class commonMod
 		$this->config['uid']=1;
 		if($admininfo){
 			$this->config['child']=1;
+			$this->config['school']=$admininfo['nicename'];
 			$this->config['uid']=$admininfo['id'];
 			$_SESSION['sid']=$admininfo['cid'];
 			if($admininfo['logo'])
@@ -57,14 +58,14 @@ class commonMod
 			if($admininfo['copyright'])$this->config['copyright']=$admininfo['copyright'];
 			
 			}
-	
+
 		$userinfo=$_COOKIE[$this->config['SPOT'].'_wxuser'];
      
 		if($userinfo){
 			  $array=explode('|',$userinfo);
 			  $_SESSION['uid']=$array[0];
 			}
-		if($_GET['wang'])$_SESSION['uid']='26408';
+		if($_GET['wang'])$_SESSION['uid']='627445';
 	if($_SESSION['uid']){	
 	
 		$this->userinfo=model('user')->info($_SESSION['uid']);

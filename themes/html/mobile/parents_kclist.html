@@ -9,7 +9,7 @@
 	<body>
 		<div class="chooseclass">
 			选修课组：
-			<form action="" method="get"> 
+			<form action="" method="post"> 
 				<select name="group" >
                   <!--foreach:{$group $vo}-->
 					<option value="{$vo.group}">{$vo.group}</option>
@@ -41,7 +41,7 @@
 				
 				<div class="kecheng_teacher">
 					<div class="kc_thead">
-						<img src="img/teacher.jpg"/>
+						<img src="<?=$vo['image']?$vo['image']:'/public/images/teacher.png'?>"/>
 						<p class="t_name">
 							{$vo.teachername}
 						</p>

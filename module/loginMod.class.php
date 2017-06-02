@@ -126,6 +126,9 @@ class loginMod extends commonMod {
 		 if(isset($_SESSION['phpCAS'])){
 			   $array=$_SESSION['phpCAS']['attributes'];
 		   if(isset($array['SXTEACHNUMBER'])){
+			   if($this->config['school']&&$array['XJXXMC']!=$this->config['school']){
+				   $this->alert('该学校为'.$this->config['school'].',您属于'.$array['XJXXMC'].'老师','/teacher?'.$this->urltoken);
+				   }
 		  $teacher=array('name'=>$array['XM'],'XBM'=>$array['XBM'],'school'=>$array['XJXXMC'],'SXTEACHNUMBER'=>$array['SXTEACHNUMBER'],'SXEMAIL'=>$array['SXEMAIL'],'SFZJH'=>$array['SFZJH']);
 			
 			   $teacher['uid']=$this->config['uid']?$this->config['uid']:1;
@@ -137,6 +140,9 @@ class loginMod extends commonMod {
 			   
 			     $this->redirect('/teacher?'.$this->urltoken);
 		  }else{
+			   if($this->config['school']&&$array['XJXXMC']!=$this->config['school']){
+				   $this->alert('该学校为'.$this->config['school'].',您属于'.$array['XJXXMC'].'学生','/parent?'.$this->urltoken);
+				   }
 			   $student=array('name'=>$array['XM'],'XBM'=>$array['XBM'],'school'=>$array['XJXXMC'],'schoolcode'=>$array['XJFH'],'XJQXMC'=>$array['XJQXMC'],'XJXXDM'=>$array['XJXXDM'],'XJNJ'=>$array['XJNJ'],'XJBJ'=>$array['XJBJ'],'XBM'=>$array['XBM'],'time'=>time(),'grade'=>$array['XJNJ']%10,'class'=>intval($array['XJBJ']));
 			   $student['bj_id']=model('schooluser')->getclassesid(array('class'=>$student['class'],'grade'=>$student['grade']));
 			   $student['uid']=$this->config['uid']?$this->config['uid']:1;

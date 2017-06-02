@@ -5,13 +5,13 @@ class parentMod extends commonMod {
     {
         parent::__construct();
 		$this->getuserinfo();
-		$student=model('user')->student('A.uid='.$this->userinfo['uid']);
+		$student=model('user')->student('A.uid='.$this->userinfo['uid']." and type='student' and  B.uid=".$this->config['uid']);
 
 		if(!$student){
-		$this->redirect('/login/parent');
+		$this->redirect('/login/parent?'.$this->urltoken);
 			}else{
 		if(!$student['mobile']||!$student['relation']){
-		$this->redirect('/login/relation');	
+		$this->redirect('/login/relation?'.$this->urltoken);
 			}	
 		if(!$student['bj_id']){
 		 $student['bj_id']=model('schooluser')->getclassesid(array('class'=>$student['class'],'grade'=>$student['grade']));
@@ -38,9 +38,11 @@ class parentMod extends commonMod {
 	public function kclist(){
 		$course=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
 		if(!$course)$this->alert('暂无选课');
-		$this->group=model('extendclass')->group_list(array('uid'=>$this->config['uid'],'bid'=>$course['id']));	
+		
+	
+		$this->group=model('extendclass')->group_list(array('uid'=>$this->config['uid'],'bid'=>$course['id']));		
 		$where=array('bid'=>$course['id']);
-		if($_GET['group'])$where['group']=$_GET['group'];
+		if($_POST['group'])$where['group']=$_POST['group'];
 		$this->kclist=model('extendclass')->course_list($where);	
 		
 		$this->display('parents_kclist.html');
