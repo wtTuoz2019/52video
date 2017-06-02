@@ -3,15 +3,20 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=750, user-scalable=no">
-		<title></title>
+		<title>{$course.name}</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+                           <script type=text/javascript src="/public/js/jquery.js"></script>
+<script type=text/javascript src="/public/js/duxui.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+<script type=text/javascript src="/public/js/common.js"></script>
 	</head>
 	<body>
 		<div class="atdtitle">
 			<div id="cancel">
 				<img src="img/cancel.png"/>
 			</div>
-			科学探究与实践
+			{$course.name}
 			<div id="edit">
 				<img src="img/editscore.png"/>
 			</div>
@@ -29,11 +34,12 @@
 					<th width="25%">在勤</th>
 					<th width="25%">缺勤</th>
 				</tr>
+                   <!--foreach:{$signuplist $vo}-->
 				<tr>
 					<td>
-						<a href="#">小米</a>
+						<a href="#">{$vo.name}</a>
 					</td>
-					<td>三年一班</td>
+					<td>{$classes[$vo['bj_id']]['grade']}年级{$classes[$vo['bj_id']]['class']}班</td>
 					<td>
 						<div class="choosek">
 							<input type="radio" name="attendance"  checked="checked"/>
@@ -47,42 +53,8 @@
 						</div>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<a href="#">小米</a>
-					</td>
-					<td>三年一班</td>
-					<td>
-						<div class="choosek">
-							<input type="radio" name="attendance"  checked="checked"/>
-							<label name="zq" class="checked" for="zq"></label>
-						</div>
-					</td>
-					<td>
-						<div class="choosek">
-							<input type="radio" name="attendance" />
-							<label name="qq" for="qq"></label>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="#">小米</a>
-					</td>
-					<td>三年一班</td>
-					<td>
-						<div class="choosek">
-							<input type="radio" name="attendance" />
-							<label name="zq"  for="zq"></label>
-						</div>
-					</td>
-					<td>
-						<div class="choosek">
-							<input type="radio" name="attendance"  checked="checked"/>
-							<label name="qq" for="qq" class="checked"></label>
-						</div>
-					</td>
-				</tr>
+                    <!--{/foreach}-->
+			
 			</table>
 		</div>
 		

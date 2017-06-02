@@ -124,6 +124,11 @@ class extendclassModel extends commonModel {
 		
 			return $data;
 		}
+	public function signup_score($where,$data){
+		$data=$this->model->table('course_signup')->where($where)->data($data)->update();
+		
+			return $data;
+		}
 	public function signup_del($where){
 		return $this->model->table('course_signup')->where($where)->delete();
 		

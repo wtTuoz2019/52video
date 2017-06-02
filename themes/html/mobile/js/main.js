@@ -12,12 +12,7 @@ $('.kectitle #edit').click(function(){
 });
 var arr=new Array();
 $('.kectitle #save').click(function(){
-	$(this).hide();
-	$('.kectitle #cancel').hide();
-	$('.kectitle #edit').show();
-	
-	$('.edit_score td select').attr('disabled',true);
-	$('.edit_score td select').addClass('nosjx');
+$('form').submit()
 	
 	
 	

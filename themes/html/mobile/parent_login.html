@@ -100,11 +100,11 @@
 		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 //提交表单
-var win = art.dialog.open.origin;
+
 saveform({
 	success:function(url){
 	 window.location.href='__APP__/parent?{$urltoken}';
-    art.dialog.close();
+   
 	},
 	failure:function(msg){
 		tip({msg:msg});

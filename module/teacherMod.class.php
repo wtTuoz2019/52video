@@ -67,6 +67,16 @@ class teacherMod extends commonMod {
 		}
 	public function score(){
 		$id=intval($_GET['id']);
+		if($_POST){
+			foreach($_POST['score'] as $key=>$value){
+				$where=array('cid'=>$id,'sid'=>$key);
+				
+				model('extendclass')->signup_score($where,array('score'=>$value));
+				}
+			$this->msg('设置成功',1);
+			}
+		
+		
 		$course=model('extendclass')->course_info('A.id='.$id.' and A.uid='.$this->config['uid']);
 		
 		if(!$course)$this->alert('无此课程');
@@ -90,6 +100,26 @@ class teacherMod extends commonMod {
 		$this->kclist=$kclist;
 		$this->display('teacher_attlist.html');
 		
+		}
+	public function attendance(){
+		
+		$id=intval($_GET['id']);
+		if($_POST){
+			foreach($_POST['score'] as $key=>$value){
+				$where=array('cid'=>$id,'sid'=>$key);
+			
+				}
+			$this->msg('设置成功',1);
+			}
+		
+		
+		$course=model('extendclass')->course_info('A.id='.$id.' and A.uid='.$this->config['uid']);
+		
+		if(!$course)$this->alert('无此课程');
+		$this->course=$course;
+		$this->signuplist=model('extendclass')->signup_list(array('cid'=>$course['id']));
+		$this->classes=model('extendclass')->classes_list(array('uid'=>$this->config['uid']));
+		$this->display('teacher_attendance.html');	
 		}
 		
 
