@@ -132,7 +132,7 @@
 			   
 			   ajaxpost({
 		name:'确定要报名此课程？',
-		url:"__URL__/signup{$urltoken}",
+		url:"__URL__/signup?{$urltoken}",
 		data:{id: '{$course.id}'},
 		tip:1,
 		success:function(msg){

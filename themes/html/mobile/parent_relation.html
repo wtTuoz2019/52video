@@ -87,7 +87,7 @@
 var win = art.dialog.open.origin;
 saveform({
 	success:function(url){
-		 window.location.href='__APP__/parent';
+		 window.location.href='__APP__/parent?{$urltoken}';
     art.dialog.close();
 	},
 	failure:function(msg){

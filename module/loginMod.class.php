@@ -135,7 +135,7 @@ class loginMod extends commonMod {
 			  model('extendclass')->schooluser_add_save($data);
 			  
 			   
-			     $this->redirect('/teacher');
+			     $this->redirect('/teacher?'.$this->urltoken);
 		  }else{
 			   $student=array('name'=>$array['XM'],'XBM'=>$array['XBM'],'school'=>$array['XJXXMC'],'schoolcode'=>$array['XJFH'],'XJQXMC'=>$array['XJQXMC'],'XJXXDM'=>$array['XJXXDM'],'XJNJ'=>$array['XJNJ'],'XJBJ'=>$array['XJBJ'],'XBM'=>$array['XBM'],'time'=>time(),'grade'=>$array['XJNJ']%10,'class'=>intval($array['XJBJ']));
 			   $student['bj_id']=model('schooluser')->getclassesid(array('class'=>$student['class'],'grade'=>$student['grade']));
@@ -145,7 +145,7 @@ class loginMod extends commonMod {
 			  $data=array('uid'=>$this->userinfo['uid'],'type'=>'student','stid'=>$stid);
 			  model('extendclass')->schooluser_add_save($data);
 			  
-			   $this->redirect('/parent');
+			   $this->redirect('/parent?'.$this->urltoken);
 			  
 			  }
 			  

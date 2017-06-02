@@ -1053,6 +1053,7 @@ p.allcomment span{
 				overflow: hidden;
 				top: 28px;
     			right: -6px;
+				z-index:9999;
 			}
 			.supportimg #sfunction .sfunction{
 				background:rgba(0,0,0,.5);

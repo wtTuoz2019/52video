@@ -1114,6 +1114,19 @@ button.submit{
 	margin-top:45px;
 	border:0;
 }
+a.submit{
+	height:60px;
+	background:#55B0C3;
+	font-size:24px;
+	color:#fff;
+	text-align:center; 
+	width:280px;
+	line-height:60px; 
+	display:block;
+	margin:0 auto;
+	margin-top:45px;
+	border:0;
+}
 .logintablek .logink #accountlogin{
 	padding:40px 115px;
 }
