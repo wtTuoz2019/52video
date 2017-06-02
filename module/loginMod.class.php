@@ -125,11 +125,13 @@ class loginMod extends commonMod {
 			$this->getuserinfo();
 		 if(isset($_SESSION['phpCAS'])){
 			   $array=$_SESSION['phpCAS']['attributes'];
+			   
+			  
 		   if(isset($array['SXTEACHNUMBER'])){
-			   if($this->config['school']&&$array['XJXXMC']!=$this->config['school']){
-				   $this->alert('该学校为'.$this->config['school'].',您属于'.$array['XJXXMC'].'老师','/teacher?'.$this->urltoken);
-				   }
-		  $teacher=array('name'=>$array['XM'],'XBM'=>$array['XBM'],'school'=>$array['XJXXMC'],'SXTEACHNUMBER'=>$array['SXTEACHNUMBER'],'SXEMAIL'=>$array['SXEMAIL'],'SFZJH'=>$array['SFZJH']);
+			//   if($this->config['school']&&$array['XJXXMC']!=$this->config['school']){
+//				   $this->alert('该学校为'.$this->config['school'].',您属于'.$array['XJXXMC'].'老师','/teacher?'.$this->urltoken);
+//				   }
+		  $teacher=array('name'=>$array['XM'],'XBM'=>$array['XBM'],'SXTEACHNUMBER'=>$array['SXTEACHNUMBER'],'SXEMAIL'=>$array['SXEMAIL'],'SFZJH'=>$array['SFZJH']);
 			
 			   $teacher['uid']=$this->config['uid']?$this->config['uid']:1;
 			 

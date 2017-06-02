@@ -18,6 +18,9 @@
 	.modal-backdrop.in{
 		opacity: 0;
 	}
+	#editmodel .modelk{
+		width:880px;
+	}
 </style>
 <div id="editmodel">
 			<h4>
@@ -52,7 +55,7 @@
 						<td>
 							<select id="example-dropUp" multiple="multiple" name="aid[]">
                                              <!--foreach:{$list $vo}-->
-                                            <option value="{$vo.aid}" <?php if(in_array($vo['aid'],$info['aid'])){echo 'selected';}?>>{$vo.title}</option>
+                                            <option value="{$vo.aid}" <?php if(in_array($vo['aid'],$info['aid'])){echo 'selected';}?>>{$vo.title len="20"}</option>
                                              <!--{/foreach}-->
                                         </select>
 						</td>
