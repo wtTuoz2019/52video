@@ -104,6 +104,7 @@ class teacherMod extends commonMod {
 	public function attendance(){
 		
 		$id=intval($_GET['id']);
+		$day=date('Ymd',time());
 		if($_POST){
 			foreach($_POST['score'] as $key=>$value){
 				$where=array('cid'=>$id,'sid'=>$key);
@@ -117,6 +118,7 @@ class teacherMod extends commonMod {
 		
 		if(!$course)$this->alert('无此课程');
 		$this->course=$course;
+	
 		$this->signuplist=model('extendclass')->signup_list(array('cid'=>$course['id']));
 		$this->classes=model('extendclass')->classes_list(array('uid'=>$this->config['uid']));
 		$this->display('teacher_attendance.html');	

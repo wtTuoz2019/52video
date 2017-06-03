@@ -118,7 +118,9 @@ class extendclassMod extends commonMod {
 		 	   $url = __URL__ . '/teacher/page-{page}.html';
         $listRows = 20;
         $limit=$this->pagelimit($url,$listRows);
+		
 		 $this->list=model('extendclass')->teacher_list($where,$limit);
+		 
 		   $count=model('extendclass')->teacher_count($where);
 		   $this->page = $this->page($url, $count, $listRows);
 		 $this->show();

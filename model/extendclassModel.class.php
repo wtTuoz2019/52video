@@ -82,7 +82,7 @@ class extendclassModel extends commonModel {
 		}
 	public function student($data){
 		
-		$student=$this->model->table('student')->where(array('name'=>$data['name'],'schoolcode'=>$data['schoolcode'],'uid'=>$data['uid']))->find();
+		$student=$this->model->table('student')->where(array('schoolcode'=>$data['schoolcode'],'uid'=>$data['uid']))->find();
 		if($student){
 			$this->model->table('student')->where(array('id'=>$student['id']))->data($data)->update();
 			return $student['id'];
@@ -92,7 +92,7 @@ class extendclassModel extends commonModel {
 		}
 	public function teacher($data){
 		
-		$teacher=$this->model->table('teacher')->where(array('name'=>$data['name'],'SXTEACHNUMBER'=>$data['SXTEACHNUMBER'],'uid'=>$data['uid']))->find();
+		$teacher=$this->model->table('teacher')->where(array('SXTEACHNUMBER'=>$data['SXTEACHNUMBER'],'uid'=>$data['uid']))->find();
 		if($teacher){
 			$this->model->table('teacher')->where(array('id'=>$teacher['id']))->data($data)->update();
 			return $teacher['id'];

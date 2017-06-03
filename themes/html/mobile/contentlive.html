@@ -151,7 +151,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 				}
 			}else if(data.status=='2'){
 					$.dialog('<div class="nosubscribe"><h1>恭喜，您已预约成功</h1><p>请关注‘闪阅云’公众号</p><p>将收到消息提醒</p><a href="{$config.addurl}">+关注</a></div>');
-				
+					$('.nosubscribe').parents('.aui_state_focus').css('top','270px');
 					$('#subscribe').attr('src','__PUBLIC__/images/'+data.message+'.png');
 					if($('#subscribe').attr('src')=="/public/images/nosubscribe.png"){
 						$('#bsubscribe').html('取消预约');

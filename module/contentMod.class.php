@@ -40,6 +40,7 @@ class contentMod extends commonMod
 		if($info['autoaudit']&&$info['noaudit']){
 		$info['auditfield_lists']=unserialize($info['auditfield_lists']);
 		$where=array();
+		if(is_array($info['auditfield_lists'])){
 			foreach($info['auditfield_lists'] as $key=>$val)
 			{	
 				$where[$val]=$data[$val];
@@ -52,7 +53,7 @@ class contentMod extends commonMod
 			
 		}
 		
-		
+		}
 		
 		model('form_list')->addsign($sign); 
 		 $this->msg('报名成功！',1);exit();
