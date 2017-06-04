@@ -27,6 +27,7 @@
 		
 		
 		<div class="tablek atdkaoqing">
+        	<form autocomplete="off" action="" method="post" id="form">
 			<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr class="thbg">
 					<th width="25%">学生姓名</th>
@@ -42,26 +43,40 @@
 					<td>{$classes[$vo['bj_id']]['grade']}年级{$classes[$vo['bj_id']]['class']}班</td>
 					<td>
 						<div class="choosek">
-							<input type="radio" name="attendance"  checked="checked"/>
-							<label name="sid[{$vo.id}]" class="checked" for="sid[{$vo.id}]"></label>
+							<input type="radio" name="attendance" <?=!$attendance||!in_array($vo['id'],$attendance['sids'])?'checked="checked"':''?>  />
+							<label  <?=!$attendance||!in_array($vo['id'],$attendance['sids'])?'class="checked"':''?>  for="sid[{$vo.id}]"></label>
 						</div>
 					</td>
 					<td>
 						<div class="choosek">
-							<input type="radio" name="attendance" />
-							<label name="sid[{$vo.id}]" for="qq"></label>
+							<input type="radio" name="sid[]" value="{$vo.id}" <?=$attendance&&in_array($vo['id'],$attendance['sids'])?'checked="checked"':''?> />
+							<label name="sid[{$vo.id}]" <?=$attendance&&in_array($vo['id'],$attendance['sids'])?'class="checked"':''?> for="qq"></label>
 						</div>
 					</td>
 				</tr>
                     <!--{/foreach}-->
 			
 			</table>
+            </form>
 		</div>
 		
 		
-		<script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
 		
 		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-	
+	       		<script type="text/javascript">
+//提交表单
+
+saveform({
+	success:function(url){
+	 window.location.reload();
+   
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+   
+        
+        </script>
 	</body>
 </html>

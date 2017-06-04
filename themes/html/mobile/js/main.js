@@ -35,11 +35,8 @@ $('.atdtitle #edit').click(function(){
 	
 });
 $('.atdtitle #save').click(function(){
-	$(this).hide();
-	$('.atdtitle #cancel').hide();
-	$('.atdtitle #edit').show();
+$('form').submit()
 	
-	$('.atdkaoqing .choosek').removeClass('biank');
 });
 $('.atdtitle #cancel').click(function(){
 	window.location.reload();//刷新当前页面

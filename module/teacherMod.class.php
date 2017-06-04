@@ -106,10 +106,7 @@ class teacherMod extends commonMod {
 		$id=intval($_GET['id']);
 		$day=date('Ymd',time());
 		if($_POST){
-			foreach($_POST['score'] as $key=>$value){
-				$where=array('cid'=>$id,'sid'=>$key);
-			
-				}
+			$data=array('cid'=>$id,'sids'=>serialize($_POST['sid']),'tid'=>$this->teacher['stid'],'day'=>$day);		model('extendclass')->attendance_save($data);
 			$this->msg('设置成功',1);
 			}
 		
@@ -118,7 +115,11 @@ class teacherMod extends commonMod {
 		
 		if(!$course)$this->alert('无此课程');
 		$this->course=$course;
-	
+		$attendance=model('extendclass')->attendance_info(array('cid'=>$course['id'],'day'=>$day));
+		if($attendance)
+		$attendance['sids']=unserialize($attendance['sids']);
+		
+		 $this->assign('attendance', $attendance);
 		$this->signuplist=model('extendclass')->signup_list(array('cid'=>$course['id']));
 		$this->classes=model('extendclass')->classes_list(array('uid'=>$this->config['uid']));
 		$this->display('teacher_attendance.html');	

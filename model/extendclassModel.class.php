@@ -124,6 +124,18 @@ class extendclassModel extends commonModel {
 		
 			return $data;
 		}
+	public function attendance_info($where){
+		$data=$this->model->table('course_attendance')->where($where)->find();
+		
+			return $data;
+		}
+		public function attendance_save($data){
+		if(!$this->model->table('course_attendance')->where(array('cid'=>$data['cid'],'tid'=>$data['tid'],'day'=>$data['day']))->find())
+		return $this->model->table('course_attendance')->data($data)->insert();
+		else
+		return  $this->model->table('course_attendance')->where(array('cid'=>$data['cid'],'tid'=>$data['tid'],'day'=>$data['day']))->data($data)->update();
+		
+		}
 	public function signup_score($where,$data){
 		$data=$this->model->table('course_signup')->where($where)->data($data)->update();
 		

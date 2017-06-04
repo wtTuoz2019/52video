@@ -176,6 +176,7 @@ class form_listMod extends commonMod {
 		
         //内容列表
 		$this->list=model('form_list')->form_signupautolist($where,$limit);
+	
         $count=model('form_list')->signupautocount($where);
         
         
