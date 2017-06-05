@@ -412,6 +412,10 @@ a,a:hover,a:focus{
 	background-color: #A2DADB;
 	background-image: url(../img/nav4.png);
 }
+.centernav a.nav5{
+	background-color: #fec4b0;
+	background-image: url(../img/nav4_.png);
+}
 
 /**/
 .selecthead{
@@ -663,7 +667,9 @@ a,a:hover,a:focus{
 .centernav_p a.nav3{
 	background-image: url(../img/nav3_.png);
 }
-
+.centernav_p a.nav4{
+	background-image: url(../img/nav4_.png);
+}
 .kechenglist{
 	padding: 20px 70px;
 }
@@ -695,11 +701,12 @@ a,a:hover,a:focus{
 	margin-bottom: 38px;
 }
 .kechenglist .kechengk .kecheng_text .kc_title span{
-	padding: 0 ;
+	padding: 0 20px;
 	text-align: center;
 	border: 2px solid #fff;
 	border-radius: 8px;
 	float: left;
+	display:block;
 }
 .kechenglist .kechengk .kecheng_text .kc_text,.kechenglist .kechengk .kecheng_text .kc_time{
 	line-height: 30px;
@@ -1192,4 +1199,9 @@ a.submit{
 	-moz-appearance:none;
 	-webkit-appearance:none;
 	background:none;
+}
+.tablenav .login_title{
+	font-size:40px;
+	text-align:center;
+	color:#55b0c3;
 }

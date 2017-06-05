@@ -7,7 +7,7 @@ class teacherMod extends commonMod {
         parent::__construct();
 		$this->getuserinfo();
 		
-		$teacher=model('user')->teacher('A.uid='.$this->userinfo['uid'].' and  B.uid='.$this->config['uid']);
+		$teacher=model('user')->teacher('A.uid='.$this->userinfo['uid'].' and  B.uid='.$this->config['uid']." and  A.byuid=".$this->config['uid']);
 
 		if(!$teacher){
 		$this->redirect('/login/teacher?'.$this->urltoken);

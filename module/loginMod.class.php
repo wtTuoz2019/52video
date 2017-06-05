@@ -136,7 +136,7 @@ class loginMod extends commonMod {
 			   $teacher['uid']=$this->config['uid']?$this->config['uid']:1;
 			 
 			  $stid=model('extendclass')->teacher($teacher);
-			  $data=array('uid'=>$this->userinfo['uid'],'type'=>'teacher','stid'=>$stid);
+			  $data=array('uid'=>$this->userinfo['uid'],'type'=>'teacher','stid'=>$stid,'byuid'=>$this->config['uid']);
 			  model('extendclass')->schooluser_add_save($data);
 			  
 			   
@@ -150,7 +150,7 @@ class loginMod extends commonMod {
 			   $student['uid']=$this->config['uid']?$this->config['uid']:1;
 			 
 			  $stid=model('extendclass')->student($student);
-			  $data=array('uid'=>$this->userinfo['uid'],'type'=>'student','stid'=>$stid);
+			  $data=array('uid'=>$this->userinfo['uid'],'type'=>'student','stid'=>$stid,'byuid'=>$this->config['uid']);
 			  model('extendclass')->schooluser_add_save($data);
 			  
 			   $this->redirect('/parent?'.$this->urltoken);
@@ -183,7 +183,7 @@ phpCAS::forceAuthentication();
 				$student=model('extendclass')->student_info(array('mobile'=>$_POST['mobile'],'uid'=>$uid));
 				
 				
-				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id'],'uid'=>$this->userinfo['uid'],'type'=>'student');
+				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id'],'uid'=>$this->userinfo['uid'],'type'=>'student','byuid'=>$this->config['uid']);
 					
 				model('extendclass')->schooluser_add_save($data);
 				
@@ -208,7 +208,7 @@ phpCAS::forceAuthentication();
 				$teacher=model('extendclass')->teacher_info(array('mobile'=>$_POST['mobile'],'uid'=>$uid));
 				
 				
-				$data=array('mobile'=>$_POST['mobile'],'stid'=>$teacher['id'],'uid'=>$this->userinfo['uid'],'type'=>'teacher');
+				$data=array('mobile'=>$_POST['mobile'],'stid'=>$teacher['id'],'uid'=>$this->userinfo['uid'],'type'=>'teacher','byuid'=>$this->config['uid']);
 					
 				model('extendclass')->schooluser_add_save($data);
 				
@@ -232,7 +232,7 @@ phpCAS::forceAuthentication();
 			}
 				$student=model('user')->student('A.uid='.$this->userinfo['uid']);
 			
-				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id'],'uid'=>$this->userinfo['uid']);
+				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id'],'uid'=>$this->userinfo['uid'],'byuid'=>$this->config['uid']);
 				model('extendclass')->relation($data);
 				model('extendclass')->student_edit_save(array('mobile'=>$_POST['mobile'],'id'=>$student['id']));
 				 $this->msg($url,1);

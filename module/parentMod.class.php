@@ -5,7 +5,7 @@ class parentMod extends commonMod {
     {
         parent::__construct();
 		$this->getuserinfo();
-		$student=model('user')->student('A.uid='.$this->userinfo['uid']." and type='student' and  B.uid=".$this->config['uid']);
+		$student=model('user')->student('A.uid='.$this->userinfo['uid']." and type='student' and  B.uid=".$this->config['uid']." and  A.byuid=".$this->config['uid']);
 
 		if(!$student){
 		$this->redirect('/login/parent?'.$this->urltoken);
