@@ -1205,3 +1205,54 @@ a.submit{
 	text-align:center;
 	color:#55b0c3;
 }
+.aui_content{
+	font-size:24px;
+	color:#4d4d4d;
+	padding:30px 65px 50px 65px !important;
+}
+.aui_title{
+	font-size: 36px;
+    color: #000;
+    background: #fff;
+    border: 0;
+    height: 80px;
+    text-align: center;
+    line-height: 110px;
+    padding: 0;
+	border-radius:20px 20px 0 0 ;
+}
+.aui_inner{
+	border-radius:20px;
+	border:0;
+}
+.aui_close{
+	font-size:35px;
+	height:35px;
+	width:35px;
+	line-height:35px;
+}
+.aui_buttons{
+	padding:0;
+	border-top:1px solid #E1E0E0;
+	overflow:hidden;
+	border-radius:0 0 20px 20px;
+}
+.aui_buttons button{
+	background:none;
+	margin:0;
+	padding:0;
+	float:left;
+	height:85px;
+	width:50%;
+	line-height:85px;
+	color:#55b0c3;
+	border:0;
+	font-size:30px;
+	text-align:center;
+}
+.aui_buttons button:focus{
+	outline:none;
+}
+.aui_buttons button:first-child{
+	border-right:1px solid #E1E0E0;
+}
