@@ -5,6 +5,13 @@
 		<meta name="viewport" content="width=750, user-scalable=no">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+                   <script type=text/javascript src="/public/js/jquery.js"></script>
+<script type=text/javascript src="/public/js/duxui.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+<script type=text/javascript src="/public/kindeditor/kindeditor-min.js"></script>
+<script type=text/javascript src="/public/kindeditor/lang/zh_CN.js"></script>
+<script type=text/javascript src="/public/js/common.js"></script>
 	</head>
 	<body>
 		<div class="headerimg parents_user">
@@ -21,10 +28,24 @@
 			<a href="__URL__/center?{$urltoken}" class="nav3">
 				个人中心
 			</a>
-            <a href="#" class="nav4">
+            <a href="javascript:" onClick="Relieve()" class="nav4">
 				解除绑定
 			</a>
 		</div>
-		
+		<script>
+        function Relieve(){
+				ajaxpost({
+		name:'确定要解除与{$student.name}的绑定？',
+		url:"__URL__/schooluser_del",
+		tip:1,
+		success:function(){
+			window.location.reload();
+		}
+	});
+			
+			
+			}
+        
+        </script>
 	</body>
 </html>

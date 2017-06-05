@@ -24,10 +24,25 @@
 			<a href="#" class="nav4">
 				调差问卷
 			</a>
-            <a href="#" class="nav4">
+              <a href="javascript:" onClick="Relieve()" class="nav4">
 				解除绑定
 			</a>
 		</div>
+		<script>
+        function Relieve(){
+				ajaxpost({
+		name:'确定要解除与{$teacher.name}的绑定？',
+		url:"__URL__/schooluser_del",
+		tip:1,
+		success:function(){
+			window.location.reload();
+		}
+	});
+			
+			
+			}
+        
+        </script>
 		
 		
 	</body>

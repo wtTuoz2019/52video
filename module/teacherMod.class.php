@@ -124,6 +124,11 @@ class teacherMod extends commonMod {
 		$this->classes=model('extendclass')->classes_list(array('uid'=>$this->config['uid']));
 		$this->display('teacher_attendance.html');	
 		}
+		public function schooluser_del(){
 		
+			 $data=array('uid'=>$this->userinfo['uid'],'type'=>'teacher','stid'=>$this->teacher['stid'],'byuid'=>$this->config['uid']);
+			 model('extendclass')->schooluser_del($data);
+			$this->msg('解除成功',1);
+		}
 
 }

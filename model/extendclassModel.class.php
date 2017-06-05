@@ -213,6 +213,9 @@ class extendclassModel extends commonModel {
 		if(!$this->model->table('schooluser')->where($data)->find())
 			return $this->model->table('schooluser')->data($data)->insert();
 		}
+		public function schooluser_del($data){
+		return $this->model->table('schooluser')->where($data)->delete();
+		}
 	public function relation($data){
 		return $this->model->table('schooluser')->where(array('stid'=>$data['stid'],'uid'=>$data['uid'],'byuid'=>$data['byuid']))->data($data)->update();
 		}

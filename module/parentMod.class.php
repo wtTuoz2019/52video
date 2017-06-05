@@ -104,5 +104,11 @@ class parentMod extends commonMod {
 		model('extendclass')->signup_del($data);
 		$this->msg('取消报名成功',1);
 		}
+	public function schooluser_del(){
+		
+			 $data=array('uid'=>$this->userinfo['uid'],'type'=>'student','stid'=>$this->student['stid'],'byuid'=>$this->config['uid']);
+			 model('extendclass')->schooluser_del($data);
+			$this->msg('解除成功',1);
+		}
 }
 ?>

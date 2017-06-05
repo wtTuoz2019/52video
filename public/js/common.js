@@ -97,9 +97,8 @@ function ajaxpost(config,url,data,tip,success,failure,cancel){
 	art.dialog.through({
 	    content: config.name,
 	    lock: true,
-	    icon: 'warning',
 	    button: [{
-			name: '确认操作',
+			name: '确认',
 			callback: function() {
 			window.top.sub_lock();
 			$.ajax({
