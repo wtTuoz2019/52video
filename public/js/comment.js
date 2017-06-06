@@ -538,13 +538,13 @@ function commentHandle(){
 					 var delstring='';
 					if(string[i]['res'][k]['uid']==uid){
                       delstring='<span class="resdel" onClick="resdel(this,'+string[i]['res'][k]['id']+')">删除</span>';}
-						strVar+='<li><div class="left"><img src="'+string[i]['res'][k]['pic']+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><span class="username">'+string[i]['res'][k]['nickname']+'</span>'+delstring+'<p pid="'+string[i]['id']+'" toname="'+string[i]['res'][k]['nickname']+'" onclick="comment(this)">'+namestring+string[i]['res'][k]['message']+'</p></div></li>';
+						strVar+='<li><div class="left"><img src="'+string[i]['res'][k]['pic']+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><span class="username">'+string[i]['res'][k]['nickname']+'</span>';
 						
 						
-						 if(typeof(string[i]['res'][k]['school'])!="undefined"&&string[i]['res'][k]['school']!=''){
+						 if(typeof(string[i]['res'][k]['school'])!="undefined"&&string[i]['res'][k]['school']!=''&&string[i]['res'][k]['school']!=null){
 						   strVar +='<p class="school">'+string[i]['res'][k]['school']+'</p>';
 					  }
-						
+						strVar+=''+delstring+'<p pid="'+string[i]['id']+'" toname="'+string[i]['res'][k]['nickname']+'" onclick="comment(this)">'+namestring+string[i]['res'][k]['message']+'</p></div></li>';
 						
 						
 							}
@@ -609,11 +609,12 @@ function commentHandle(){
 					 var delstring='';
 					if(string[i]['res'][k]['uid']==uid){
                       delstring='<span class="resdel" onClick="resdel(this,'+string[i]['res'][k]['id']+')">删除</span>';}
-						strVar+='<li><div class="left"><img src="'+string[i]['res'][k]['pic']+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><span class="username">'+string[i]['res'][k]['nickname']+'</span>'+delstring+'<p pid="'+string[i]['id']+'" toname="'+string[i]['res'][k]['nickname']+'" onclick="comment(this)">'+namestring+string[i]['res'][k]['message']+'</p></div></li>';
+						strVar+='<li><div class="left"><img src="'+string[i]['res'][k]['pic']+'" style="width: 35px;height: 37px;"/></div><div class="comlistarea right"><span class="username">'+string[i]['res'][k]['nickname']+'</span>';
 						
-						 if(typeof(string[i]['res'][k]['school'])!="undefined"&&string[i]['res'][k]['school']!=''){
+						 if(typeof(string[i]['res'][k]['school'])!="undefined"&&string[i]['res'][k]['school']!=''&&string[i]['res'][k]['school']!=null){
 						   strVar +='<p class="school">'+string[i]['res'][k]['school']+'</p>';
 					  }
+						strVar+=''+delstring+'<p pid="'+string[i]['id']+'" toname="'+string[i]['res'][k]['nickname']+'" onclick="comment(this)">'+namestring+string[i]['res'][k]['message']+'</p></div></li>';
 						
 						
 						

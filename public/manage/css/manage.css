@@ -2162,3 +2162,33 @@ body .userset .oftentable tr td{
 	border:1px solid #BABABA;
 	margin:0 auto;
 }
+#editmodel #myModal .modal-body{
+	overflow:hidden;
+	height:320px;
+	position:relative;
+}
+#editmodel #myModal .modal-body .mbk{
+	overflow:hidden;
+	width:1120px;
+	position:relative;
+	top:0;
+	left:0;
+}
+#editmodel #myModal .modal-body .mbk>div{
+	float:left;
+	width:280px;
+}
+#editmodel #myModal .modal-body div.toleft,#editmodel #myModal .modal-body div.toright{
+	position:absolute;
+	width:50px;
+	height:100%;
+	position:absolute;	
+	top:0;
+	z-index:1000;
+}
+#editmodel #myModal .modal-body div.toleft{
+	left:0;
+}
+#editmodel #myModal .modal-body div.toright{
+	right:0;
+}

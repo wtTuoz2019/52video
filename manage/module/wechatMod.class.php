@@ -6,7 +6,25 @@ class wechatMod extends commonMod {
 	public function __construct()
     {
         parent::__construct();
+		$user=model('user')->current_user();
+		$this->uid=$uid=$user['id'];
+		$wxuser=$this->model->table('admin')->where(array('id'=>$uid))->find();
+		if(!$wxuser['token']){
+			$chars='abcdefghijklmnopqrstuvwxyz';
+			$len=strlen($chars);
+			$randStr='';
+			for ($i=0;$i<6;$i++){
+				$randStr.=$chars[rand(0,$len-1)];
+			}
+			$this->token=$randStr.time();
+			$this->model->table('admin')->data(array('token'=>$this->token))->where(array('id'=>$uid))->update();
+			}else{
+				
+			$this->token=$wxuser['token'];
+				
+				}
 		
+		$this->assign('token',$this->token);
     }
 
 	 //评论列表
@@ -575,6 +593,7 @@ class wechatMod extends commonMod {
 				$this->msg('操作失败,curl_error:'.$rt['errorno'],0);
 			}else{
 				$this->msg('操作成功',1);
+
 			}
 			exit;
 		}else{
@@ -751,7 +770,7 @@ class wechatMod extends commonMod {
 		}
 	public function diytpl_edit()
 	{	error_reporting(0);
-		$this->actionname='模板编辑';
+	$this->actionname='模板编辑';
 		if(!$_GET['cid']){
 			$thiscate=$this->model->table('category')->where(array('show'=>1))->find();
 			$cid=$thiscate['cid'];
@@ -773,7 +792,11 @@ class wechatMod extends commonMod {
 		}
 		$this->assign('cid',$cid);
 		
-	$list=model('content')->content_list($cid,1000,$where);
+		
+	
+		
+		
+		$list=model('content')->content_list($cid,1000,$where);
 		
 		$this->assign('list',$list);
 		$this->show();

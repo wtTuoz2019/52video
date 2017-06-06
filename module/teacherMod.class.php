@@ -124,6 +124,42 @@ class teacherMod extends commonMod {
 		$this->classes=model('extendclass')->classes_list(array('uid'=>$this->config['uid']));
 		$this->display('teacher_attendance.html');	
 		}
+	public function attendance_info(){
+		
+		$id=intval($_GET['id']);
+		$sid=intval($_GET['sid']);
+		$this->stduent=$stduent=model('extendclass')->student_info(array('id'=>$sid));
+		
+		$course=model('extendclass')->course_info('A.id='.$id.' and A.uid='.$this->config['uid']);
+		
+		if(!$course)$this->alert('无此课程');
+		$this->course=$course;
+		$attendance=model('extendclass')->attendance_list(array('cid'=>$course['id']));
+	
+		if($attendance){
+			foreach($attendance as $key=>$val){
+				
+				$val['sids']=unserialize($val['sids']);
+				if($val['sids']&&in_array($sid,$val['sids'])){
+					$queqin[]='"'.$val['day'].'"';
+					}else{
+					$zaiqin[]='"'.$val['day'].'"';
+					}
+				
+				}
+				
+				$this->assign('queqinnum', count($queqin));
+			if($queqin)
+			$this->assign('queqin', implode(",", $queqin));
+				if($zaiqin)
+		  $this->assign('zaiqin', implode(",", $zaiqin));
+		  $this->assign('zaiqinnum', count($zaiqin));
+			}
+		
+		 
+		
+		$this->display('teacher_attendance_info.html');	
+		}
 		public function schooluser_del(){
 		
 			 $data=array('uid'=>$this->userinfo['uid'],'type'=>'teacher','stid'=>$this->teacher['stid'],'byuid'=>$this->config['uid']);

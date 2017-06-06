@@ -32,10 +32,16 @@ $('.atdtitle #edit').click(function(){
 	$('.atdtitle #cancel').show();
 	
 	$('.atdkaoqing .choosek').addClass('biank');
+	if(!kaoqin){
+		$('input[name="attendance"]').click();
+	}
+		
+
+   
 	
 });
 $('.atdtitle #save').click(function(){
-$('form').submit()
+	$('form').submit()
 	
 });
 $('.atdtitle #cancel').click(function(){
@@ -46,6 +52,8 @@ $('.atdtitle #cancel').click(function(){
 $('.atdkaoqing').delegate('.biank','click',function(){
 	var radioId = $(this).find('label').attr('name');
 	$(this).parents('tr').find('label').removeAttr('class') && $(this).find('label').attr('class', 'checked');
+	$(this).parents('tr').find('input').prop("checked",false);
+	 $(this).find('input').prop('checked',true);
 })
 
 

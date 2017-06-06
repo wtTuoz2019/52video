@@ -783,36 +783,43 @@ a,a:hover,a:focus{
 	background-position: 19px 19px;
 }
 .choosemonth{
-	height: 95px;
-	background: #55B0C3;
-	color: #fff;
+	height: 120px;
+	background: #EEEEEE;
+	color: #000;
 	font-size: 40px;
-	padding-left: 20%;
 	position: relative;
 }
 .choosemonth .timeshow{
-	width: 450px;
-	display: inline-block;
-	padding-left: 35px;
+	text-align:center;
 }
 .choosemonth .timeshow>div{
 	display: inline-block;
-	line-height: 95px;
+	line-height: 120px;
+}
+.choosemonth .timeshow div.f-riqi{
+	line-height:60px;
 }
 .choosemonth .timeshow>div[class^='f-btn-jia']{
 	padding: 0 20px;
+	position:absolute;
+	top:0;
+}
+.choosemonth .timeshow>div.f-btn-jian{
+	left:0;
+}
+.choosemonth .timeshow>div.f-btn-jia{
+	right:0;
 }
 .day_total{
-	width: 390px;
-	height: 80px;
-	border: 3px solid #55B0C3;
-	margin: 40px auto;
-	padding: 0 35px;
 	font-size: 24px;
-	color: #222;
+	line-height:60px;
+	overflow: hidden;
 }
 .day_total>div{
-	line-height: 74px;
+	line-height: 60px;
+}
+.day_total>div.left{
+	margin-right:65px;
 }
 .day_total>div span{
 	font-size: 30px;
@@ -825,6 +832,7 @@ a,a:hover,a:focus{
 }
 .f-rili-table{
 	padding: 0 20px;
+	margin-top:60px;
 }
 .f-rili-table .f-rili-head{
 	overflow: hidden;
@@ -841,21 +849,28 @@ a,a:hover,a:focus{
 	margin: 0;
 }
 .f-rili-table .f-tbody .f-td{
-	height: 42px;
-	width: 42px;
+	height: 47px;
+	width: 47px;
 	border-radius: 50%;
 	font-size: 18px;
 	text-align: center;
-	line-height: 42px;
+	line-height: 47px;
 	float: left;
-	margin-right: 55px;
+	margin-right: 50px;
 	margin-left: 10px;
 	margin-top: 45px;
 }
 .f-rili-table .f-tbody .f-td.f-number{
-	background: #55B0C3;
+	background: #CBE3E8;
 	color: #fff;
 }
+.f-rili-table .f-tbody .f-td.f-number.zq{
+	background:#55B0C3;
+}
+.f-rili-table .f-tbody .f-td.f-number.qq{
+	background:#CE2427;
+}
+
 .f-rili-table .f-tbody .f-td.f-number.hui{
 	background: #ddd;
 }
@@ -1255,4 +1270,31 @@ a.submit{
 }
 .aui_buttons button:first-child{
 	border-right:1px solid #E1E0E0;
+}
+.namekaoqin{
+	height:90px;
+	background:#55B0C3;
+	line-height:90px;
+	color:#fff;
+	font-size:30px;
+	text-align:center;
+}
+.qdtishi{
+	height:55px;
+	background:#EEEEEE;
+	line-height:55px;
+	font-size:18px;
+}
+.qdtishi span{
+	display:inline-block;
+	width:27px;
+	height:27px;
+	border-radius:50%;
+	background:#55B0C3;
+	margin:0 10px 0 50px;
+	position:relative;
+	top:7px;
+}
+.qdtishi span.qq{
+	background:#CE2427;
 }
