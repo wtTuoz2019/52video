@@ -80,21 +80,21 @@
                                   <div class="toleft"></div>
                                   <div class="mbk">
                                   
-                                  <div >
-                                    <input checked class="radio" type="radio" name="tplid" value="101" <?php if($info['tplid']==101){echo 'checked';} ?>>模板1
+                                  <div data-dismiss="modal" >
+                                    <input checked class="radio" type="radio" name="tplid" value="模板1" <?php if($info['tplid']==101){echo 'checked';} ?>>模板1
                                         <img src="__PUBLICURL__/home/images/1.jpg"  width="140" height="266"  class="img" />
                                         </div>
-                                        <div>
-                                        <input class="radio gap" type="radio" name="tplid" value="102" <?php if($info['tplid']==102){echo 'checked';} ?>>模板2
+                                        <div data-dismiss="modal">
+                                        <input class="radio gap" type="radio" name="tplid" value="模板2" <?php if($info['tplid']==102){echo 'checked';} ?>>模板2
                                        <img src="__PUBLICURL__/home/images/2.jpg"  width="140" height="266"  class="img" />
                                        </div>
-                                       <div>
-                                       <input class="radio gapo" type="radio" name="tplid" value="103" <?php if($info['tplid']==103){echo 'checked';} ?>>模板3
+                                       <div data-dismiss="modal">
+                                       <input class="radio gapo" type="radio" name="tplid" value="模板3" <?php if($info['tplid']==103){echo 'checked';} ?>>模板3
                                        <img src="__PUBLICURL__/home/images/3.jpg"  width="140" height="266"  class="img" />
                                        </div>
-                                       <div>
+                                       <div data-dismiss="modal">
 
-<input class="radio gapo" type="radio" name="tplid" value="104" <?php if($info['tplid']==104){echo 'checked';} ?>>模板4
+<input class="radio gapo" type="radio" name="tplid" value="模板4" <?php if($info['tplid']==104){echo 'checked';} ?>>模板4
                                        <img src="__PUBLICURL__/home/images/4.jpg"  width="140" height="266"  class="img" />
                                        </div>
                                       
@@ -102,7 +102,6 @@
                                         <div class="toright"></div> 
                                   </div>
                                   <div class="modal-footer">
-                                  	<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="mbxz()">确定</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
                                     
                                   </div>
@@ -121,18 +120,14 @@
           <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
             <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
 <script>
-function mbxz(){
-	if($('input:radio[name="tplid"]:checked').val()=='101'){
-		$('#nowmb').val('模板1')
-	}else if($('input:radio[name="tplid"]:checked').val()=='102'){
-		$('#nowmb').val('模板2')
-	}else if($('input:radio[name="tplid"]:checked').val()=='103'){
-		$('#nowmb').val('模板3')
-	}else if($('input:radio[name="tplid"]:checked').val()=='104'){
-		$('#nowmb').val('模板4')
-	}
-}
 
+$('.mbk>div').click(function(){
+	console.log($(this).find('input').val());
+	$(this).parents('.mbk').find('input').prop("checked",false);
+	 $(this).find('input').prop('checked',true);
+	$('#nowmb').val($(this).find('input').val());
+
+});
 
 
 //提交表单
@@ -156,10 +151,10 @@ savelistform({addurl:"__URL__/diytpl_edit",listurl:"__URL__/diytpl"});
         
         <script>
 
-	$('.toleft').mouseover(function(){
+	$('.toleft').click(function(){
 		$('.mbk').stop().animate({left:'0'},700);
 	});
-	$('.toright').mouseover(function(){
+	$('.toright').click(function(){
 		$('.mbk').stop().animate({left:'-560px'},700);
 	});
 	

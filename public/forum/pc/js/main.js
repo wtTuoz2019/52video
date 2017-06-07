@@ -45,10 +45,7 @@ $('.messagenav>a').click(function(){
 	$(id).addClass('active').siblings('.active').removeClass('active');
 });
 
-//点击登录
-$('#header a.login').click(function(){
-	$('body').prepend('<div id="pop_up"><div><h4>微信登录</h4><img src="img/qr.jpg"/><p>请打开微信“扫一扫”</p><a href="javascript:;" onclick="closelg()">X</a></div></div>');
-});
+
 
 //关闭登录
 function closelg(){

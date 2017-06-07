@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title></title>
+		<title>{$forum.forumname}</title>
 		
 		
 		<link rel="stylesheet" type="text/css" href="__PUBLIC__/forum/pc/css/main.css"/>
@@ -12,8 +12,8 @@
 		<div id="header">
 			<div class="headk">
 				<div class="schoollogo">
-					<img src="__PUBLIC__/forum/pc/img/schoollogo.jpg" />
-					上海文来中学
+                	<img src="{$sys.imageurl}{$sys.logo}" />
+					{$sys.sitename}
 				</div>
 				<div class="search">
 					<input type="" name="" id="headsearch" value="" placeholder="请输入您要搜索的内容..."/>
@@ -24,12 +24,26 @@
 					<a class="homepage active" href="__APP__/">
 						首页
 					</a>
-					
+                    <?php 
+                   
+  			 if($userinfo){
+      					  ?>
+                     <a href="javascript:;" class="message">
+						信息
+					</a>
+					<a href="javascript:;" class="personal">
+						{$userinfo.nicename}
+					</a>
+					<a href="javascript:;" class="exit">
+						退出
+					</a>
+                    <?php }else{?>
 					<a href="javascript:;" class="login">
 						<span>
 							点击登录
 						</span>
 					</a>
+                    <?php }?>
 				</div>
 			</div>
 		</div>
@@ -37,9 +51,10 @@
 		<div class="bg">
 			<div class="container">
 				<div class="chead">
-					<img src="__PUBLIC__/forum/pc/img/headimg.jpg"/>
+						
+					<img src="{$sys.imageurl}{$forum.logo}" />
 					<div>
-						<h5>家校论坛</h5>
+						<h5>{$forum.forumname}</h5>
 						<p>
 							<span>帖子：12552</span>
 							<span>浏览量：1213123</span>
@@ -153,5 +168,31 @@
 		
 		<script type="text/javascript" src="__PUBLIC__/forum/pc/js/jquery-1.11.3.js" ></script>
 		<script src="__PUBLIC__/forum/pc/js/main.js" type="text/javascript" ></script>
+        <script>
+        //点击登录
+$('#header a.login').click(function(){
+	$('body').prepend('<div id="pop_up"><div><h4>微信登录</h4><img src="{$sys.imageurl}/upload/login/{$code}.png"/><p>请打开微信“扫一扫”</p><a href="javascript:;" onclick="closelg()">X</a></div></div>');
+});      
+
+ <?php 
+             if(!$userinfo){?>
+						  
+			function getResult(){
+	$.post("__APP__/login/logincode", { code: '{$code}'},
+	function(d){
+	
+		
+		if (d.status == 1) { 
+		window.location.reload();
+		}
+	}, "json");
+}
+setInterval("getResult()",3000); 			  
+						  
+		  <?php 
+				 }
+      		  ?>
+        
+        </script>
 	</body>
 </html>

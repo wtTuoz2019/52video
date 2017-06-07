@@ -19,6 +19,7 @@ class forumMod extends commonMod {
 	public function config_save(){
 		
 		$_POST['token']=$this->user['token'];
+		$_POST['uid']=$this->user['id'];
         model('forum')->forum_config_save($_POST);
        
         /*hook end*/

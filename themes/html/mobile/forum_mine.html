@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- 让 Bootstrap 兼容 IE 兼容模型 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 让 Bootstrap 兼容 国产浏览器的高速模型 -->
+		<meta name="renderer" content="webkit">
+		<!-- 实现响应式的设置 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{$forum.forumname}</title>
+		<!-- 引入 Bootstrap 的 CSS 文件 -->
+	  <link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/forum/mobile/css/main.css" />
+		<script type="text/javascript">
+			if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+				var version = parseFloat(RegExp.$1);
+				if(version>2.3){
+					var phoneScale = parseInt(window.screen.width)/720;
+					document.write('<meta name="viewport" content="width=720, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+				}else{
+					document.write('<meta name="viewport" content="width=720, target-densitydpi=device-dpi">');
+				}
+			}else{
+				document.write('<meta name="viewport" content="width=720, user-scalable=no, target-densitydpi=device-dpi">');
+			}
+		</script>
+	</head>
+	<body>
+		<div class="minehead">
+			<img src="{$userinfo.headimgurl}"/>
+			<p>
+				{$userinfo.nicename}
+				<a>
+					修改个人资料
+					<img src="__PUBLIC__/forum/mobile/img/amend.png"/> 
+				</a>
+			</p>
+		</div>
+		<div class="navigation">
+			<a href="#post" class="active post">
+				<span>帖子</span>
+			</a>
+			<a href="#like" class="like">
+				<span>喜欢</span>
+			</a>
+			<a href="#message" class="message">
+				<span>消息</span>
+			</a>
+		</div>
+		 
+		<div class="minek">
+			<div id="post"  class="active">
+				
+				<div class="dynamick">
+					<div class="left userhead">
+						<img src="img/headimg.jpg"/> 
+					</div>
+					<div class="right usercontent">
+						<p class="username">waiting</p>
+						<p>
+							日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此前坊间流传的酷狗PC端......
+							<a href="javascript:;">查看全文</a>
+						</p>
+						<div class="imgs">
+							
+						</div>
+						<div class="time_cz">
+							<span>2016-07-06&nbsp;&nbsp;18:44:06</span>
+							
+							<div class="current_r">
+								<button>赞</button>
+								<button>评论</button>
+							</div>
+							
+							<img src="img/comicon.png" id="reply"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="dynamick">
+					<div class="left userhead">
+						<img src="img/headimg.jpg"/> 
+					</div>
+					<div class="right usercontent">
+						<p class="username">waiting</p>
+						<p>
+							日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此前坊间流传的酷狗PC端......
+							<a href="javascript:;">查看全文</a>
+						</p>
+						<div class="imgs">
+							
+						</div>
+						<div class="time_cz">
+							<span>2016-07-06&nbsp;&nbsp;18:44:06</span>
+							
+							<div class="current_r">
+								<button>赞</button>
+								<button>评论</button>
+							</div>
+							
+							<img src="img/comicon.png" id="reply"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="dynamick">
+					<div class="left userhead">
+						<img src="img/headimg.jpg"/> 
+					</div>
+					<div class="right usercontent">
+						<p class="username">
+							waiting
+						</p>
+						<p>
+							日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此前坊间流传的酷狗PC端......
+							<a href="javascript:;">查看全文</a>
+						</p>
+						<div class="imgs">
+							
+						</div>
+						<div class="time_cz">
+							<span>2016-07-06&nbsp;&nbsp;18:44:06</span>
+							
+							<div class="current_r">
+								<button>赞</button>
+								<button>评论</button>
+							</div>
+							
+							<img src="img/comicon.png" id="reply"/>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div id="like">
+				<div class="dynamick">
+					<div class="left userhead">
+						<img src="img/headimg.jpg"/> 
+					</div>
+					<div class="right usercontent">
+						<p class="username">waiting<span><img src="img/likeh.png"/>关注</span></p>
+						<p>
+							日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此前坊间流传的酷狗PC端......
+							<a href="javascript:;">查看全文</a>
+						</p>
+						<div class="imgs">
+							
+						</div>
+						<div class="time_cz">
+							<span>2016-07-06&nbsp;&nbsp;18:44:06</span>
+							
+							<div class="current_r">
+								<button>赞</button>
+								<button>评论</button>
+							</div>
+							
+							<img src="img/comicon.png" id="reply"/>
+						</div>
+					</div>
+				</div>
+				<div class="dynamick">
+					<div class="left userhead">
+						<img src="img/headimg.jpg"/> 
+					</div>
+					<div class="right usercontent">
+						<p class="username">waiting<span><img src="img/likeh.png"/>关注</span></p>
+						<p>
+							日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此前坊间流传的酷狗PC端......
+							<a href="javascript:;">查看全文</a>
+						</p>
+						<div class="imgs">
+							
+						</div>
+						<div class="time_cz">
+							<span>2016-07-06&nbsp;&nbsp;18:44:06</span>
+							
+							<div class="current_r">
+								<button>赞</button>
+								<button>评论</button>
+							</div>
+							
+							<img src="img/comicon.png" id="reply"/>
+						</div>
+					</div>
+				</div>
+				<div class="dynamick">
+					<div class="left userhead">
+						<img src="img/headimg.jpg"/> 
+					</div>
+					<div class="right usercontent">
+						<p class="username">waiting<span><img src="img/likeh.png"/>关注</span></p>
+						<p>
+							日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此前坊间流传的酷狗PC端......
+							<a href="javascript:;">查看全文</a>
+						</p>
+						<div class="imgs">
+							
+						</div>
+						<div class="time_cz">
+							<span>2016-07-06&nbsp;&nbsp;18:44:06</span>
+							
+							<div class="current_r">
+								<button>赞</button>
+								<button>评论</button>
+							</div>
+							
+							<img src="img/comicon.png" id="reply"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="message">
+				<h5>
+					<span>
+						2016/07/11
+					</span>
+				</h5>
+				<div class="messagek">
+					<ul>
+						<li>
+							<span class="quan"></span>
+							<p class="title_name">
+								<span class="bquan">通<b>知</b></span>
+								<span class="title">家校论坛</span>
+								<span class="time">2016/07/11&nbsp;&nbsp;14:00</span>
+							</p>
+							<a class="contentk">
+								<div class="top_">
+									<h4>家校论坛（测试）</h4>
+									7月8号
+								</div>
+								<p>
+									阅读全文
+									<img src="img/rightjt.png"/>
+								</p>
+							</a>
+						</li>
+						<li>
+							<span class="quan"></span>
+							<p class="title_name">
+								<span class="bquan">通<b>知</b></span>
+								<span class="title">家校论坛</span>
+								<span class="time">2016/07/11&nbsp;&nbsp;14:00</span>
+							</p>
+							<a class="contentk">
+								<div class="top_">
+									<h4>家校论坛（测试）</h4>
+									7月8号
+								</div>
+								<p>
+									阅读全文
+									<img src="img/rightjt.png"/>
+								</p>
+							</a>
+						</li>
+						<li>
+							<span class="quan"></span>
+							<p class="title_name">
+								<span class="bquan gquan">公<b>告</b></span>
+								<span class="title">家校论坛</span>
+								<span class="time">2016/07/11&nbsp;&nbsp;14:00</span>
+							</p>
+							<div class="contentk">
+								<a href="javascript:;">
+									<img src="img/teacher.png" alt="" />
+									<p>教师绑定</p>
+								</a>
+								<a href="javascript:;">
+									<img src="img/parents.png" alt="" />
+									<p>家长绑定</p>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div> 
+		
+		
+		
+		
+		<div id="foot">
+			<a class="home" href="__URL__/index.html?{$urltoken}">主页</a>
+			<a href="__URL__/post?{$urltoken}" class="fabu"></a>
+			<a class="mine" href="__URL__/mine.html?{$urltoken}">我的</a>
+		</div>
+		
+		<!-- 引入 jQuery 文件 -->
+	  <script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+		<!-- 引入 Bootstrap 的 JS 文件 -->
+		 <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+		<script src="__PUBLIC__/forum/mobile/js/main.js"></script>
+	</body>
+</html>

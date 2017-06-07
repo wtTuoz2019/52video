@@ -1,0 +1,599 @@
+*{
+	font-family: "微软雅黑";
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+p{
+	margin: 0;
+}
+a:focus,a:hover{
+	text-decoration: none;
+}
+
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.dynamichead{
+	height: 180px;
+	background-image: url(../img/dynamicbg.jpg);
+	background-repeat: no-repeat;
+	background-size:100% 100%;
+	position: relative;
+	padding-top: 80px;
+	margin-bottom: 40px;
+}
+.dynamichead .userdata{
+	position: absolute;
+	bottom: 0;
+	right: 180px;
+}
+.dynamichead .userdata h4{
+	font-size: 35px;
+	color: #fff;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.dynamichead .userdata span{
+	font-size: 16px;
+}
+.dynamichead .userdata span:last-child{
+	float: right;
+}
+.dynamichead fieldset{
+	width:325px;
+	margin: 0 auto;
+	border: 1px solid #429DDC;
+	clear: both;
+	overflow: hidden;
+	display: none;
+}
+.dynamichead fieldset input{
+	float: left;
+	border: 0;
+	height: 40px;
+	width: 263px;
+}
+.dynamichead fieldset button{
+	border: 0;
+	height: 40px;
+	width: 60px;
+	background: #429DDC;
+	float: left;
+}
+.dynamichead fieldset button>span{
+	color: #fff;
+}
+.dynamichead>img{
+	position: absolute;
+	height: 110px;
+	width: 110px;
+	right: 45px;
+	border: 2px solid #A0A0A0;
+	top: 115px;
+}
+.dcbox{
+	margin-bottom: 150px;
+}
+.dynamick{
+	overflow: hidden;
+	padding: 20px 15px;
+	border-bottom: 1px solid #C5C5C5;
+}
+.dynamick:last-child{
+	border: 0;
+}
+.dynamick .userhead>img{
+	height: 70px;
+	width: 70px;
+}
+.dynamick .userhead{
+	width: 15%;
+}
+.dynamick .usercontent{
+	width: 85%;
+}
+.dynamick .usercontent>p>a{
+	float: right;
+}
+.dynamick .usercontent>p{
+	font-size: 28px;
+}
+.dynamick .usercontent>p:first-child+p{
+	font-size: 25px;
+	overflow: hidden;
+}
+.dynamick .usercontent .username{
+	color: #576B95;
+	font-weight: bold;
+	margin-bottom: 8px;
+    line-height: 20px;
+}
+.dynamick .usercontent .imgs{
+	overflow: hidden;
+}
+.dynamick .usercontent .imgs>img{
+	width: 31%;
+	float: left;
+	margin-right: 2%;
+	margin-top: 10px;
+}
+.dynamick .usercontent .time_cz{
+	position: relative;
+	margin-top: 5px;
+}
+.dynamick .usercontent .time_cz>span{
+	color: #737373;
+	font-size: 19px;
+}
+.dynamick .usercontent .time_cz #reply{
+	position: absolute;
+	right: 35px;
+	top: 3px;
+	cursor: pointer;
+}
+.dynamick .usercontent .time_cz .current_r{
+	position: absolute;
+	top: -8px;
+	right: 80px;
+	background: #4B5154;
+	width: 180px;
+	height: 50px;
+	border-radius: 5px;
+	display: none;
+}
+.dynamick .usercontent .time_cz .current_r button{
+	background: transparent;
+	border: 0;
+	color: #fff;
+	float: left;
+	width: 50%;
+	height: 50px;
+	padding-left: 30px;
+	font-size: 21px;
+	background-image: url(../img/commenticon.png);
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+	background-position: 8px 9px;
+}
+.dynamick .usercontent .time_cz .current_r button:first-child{
+	background-image: url(../img/zanicon.png);
+	background-repeat: no-repeat;
+	background-position: 12px 9px;
+	border-right: 1px solid #373D40;
+}
+#foot{
+	position: fixed;
+	bottom: 0;
+	background-image: url(../img/foot.png);
+	height: 130px;
+	width: 100%;
+	background-repeat:no-repeat;
+	background-size: 100% 100%;
+}
+#foot a{
+	display: inline-block;
+	width: 19%;
+	position: absolute;
+	background-repeat: no-repeat;
+	padding-left: 40px;
+	color: #fff;
+	text-align: right;
+	background-position: 10px 5px;
+	top: 55px;
+	font-size: 33px;
+}
+#foot a.search{
+	left: 10%;
+	background-image: url(../img/search.png);
+	background-size: 40px 40px;
+}
+#foot a.home{
+	background-image: url(../img/home.png);
+	left: 10%;
+}
+#foot a.mine{
+	background-image: url(../img/mine.png);
+	right: 10%;
+}
+#foot a.fabu{
+	margin: 0;
+    height: 85px;
+    width: 85px;
+    padding: 0;
+    border-radius: 50%;
+    top: 12px;
+    left: 44%;
+}
+
+/*我的页面*/
+.minehead{
+	height: 250px;
+	background-image: url(../img/minebg.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	text-align: center;
+	padding-top: 35px;
+}
+.minehead>img{
+	width: 130px;
+	height: 130px;
+	border-radius: 50%;
+}
+.minehead>p{
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 30px;
+	position: relative;
+}
+.minehead>p>a{
+	position: absolute;
+	font-size: 20px;
+	color: #FFFFFF;
+	font-weight: normal;
+	top: 10px;
+    padding-left: 20px;
+}
+.minehead>p>a img{
+	
+	position: relative;
+	top: -2px;
+}
+.navigation{
+	overflow: hidden;
+	background: #50BDDF;
+	
+}
+.navigation a:first-child img{
+	position: relative;
+	top: -2px;
+}
+.navigation a{
+	display: inline-block;
+	width: 33.3%;
+	float: left;
+	text-align: center;
+	height: 100px;
+	line-height: 100px;
+	color: #fff;
+	font-size: 25px;
+	border: 1px solid #C9C9C9;
+	border-left: 0;
+}
+.navigation a>span{
+	background-repeat:no-repeat;
+	padding-left: 50px;
+	
+	display: inline-block;
+	height: 100px;
+}
+.navigation a:first-child span{
+	background-image: url(../img/post.png);
+	background-position: 0 28px;
+}
+.navigation a:first-child+a span{
+	background-image: url(../img/like.png);
+	background-position: 0 37px;
+}
+.navigation a:first-child+a+a span{
+	background-image: url(../img/message.png);
+	background-position: 0 35px;
+}
+.navigation a.active.post span{
+	background-image: url(../img/post1.png);
+}
+.navigation a.active.like span{
+	background-image: url(../img/like1.png);
+}
+.navigation a.active.message span{
+	background-image: url(../img/message1.png);
+}
+.navigation a:last-child{
+	border-right: 0;
+}
+.navigation a.active{
+	color: #1B5061;
+	border-bottom: 2px solid #045C78;
+}
+
+.minek{
+	padding-bottom: 150px;
+	background: #E8E8E8;
+}
+.minek>div{
+	display: none;
+}
+.minek>div.active{
+	display: block;
+}
+#post{
+	padding-top: 20px;
+}
+#post .dynamick{
+	padding: 10px 15px;
+	background: #fff;
+	margin-bottom: 20px;
+	box-shadow: 0 10px 15px -6px;
+}
+#like{
+	padding: 40px;
+	padding-bottom: 0;
+}
+#like .dynamick{
+	padding:  15px;
+	background: #fff;
+	border-radius: 5px;
+	border: 2px solid #BCBCBC;
+	margin-bottom: 30px;
+}
+#like .dynamick p.username{
+	position: relative;
+}
+#like .dynamick p.username>span{
+	position: absolute;
+	right: 0;
+	font-weight: normal;
+	color: #F17878;
+	top: -2px;
+	font-size: 20px;
+}
+#like .dynamick p.username>span>img{
+	margin-right: 10px;
+}
+#message h5{
+	margin: 0;
+	padding: 30px 0 10px 15px;
+}
+#message h5 span{
+	background: #3ACBCC;
+	padding: 8px 15px;
+	font-size: 20px;
+}
+#message .messagek{
+	padding: 0 20px 0 85px;
+}
+#message .messagek p.title_name .bquan{
+	display: inline-block;
+	height: 65px;
+	width: 65px;
+	background: #FF7247;
+	color: #fff;
+	border-radius: 50px;
+	text-align: center;
+	font-size: 30px;
+	line-height: 65px;
+}
+#message .messagek p.title_name .gquan{
+	background: #126396;
+}
+#message .messagek p.title_name .bquan>b{
+	font-weight: normal;
+	font-size: 16px;
+}
+#message .messagek p.title_name .title{
+	font-size: 30px;
+	color: #717171;
+	padding-left: 15px;
+}
+#message .messagek p.title_name .time{
+	color: #717171;
+	float: right;
+	margin-top: 20px;
+	font-size: 15px;
+}
+#message .messagek div.contentk{
+	margin: 20px auto;
+	width: 90%;
+	border: 1px solid #BEBEBE;
+	background: #fff;
+	border-radius: 5px;
+	overflow: hidden;
+	padding: 25px 0 10px 0;
+}
+#message .messagek a.contentk{
+	margin: 20px auto;
+	display: block;
+	width: 90%;
+	padding: 20px 10px;
+	border: 1px solid #BEBEBE;
+	background: #fff;
+	border-radius: 5px;
+	color: #060606;
+	padding-bottom: 10px;
+}
+#message .messagek a.contentk h4{
+	margin: 0;
+	margin-bottom: 15px;
+	color: #0A0A0A;
+	font-size: 28px;
+}
+#message .messagek a.contentk .top_{
+	color: #9F9F9F;
+	border-bottom: 2px solid #F1F1F1;
+	padding-bottom: 10px;
+	font-size: 15px;
+}
+#message .messagek a.contentk p{
+	margin-top: 8px;
+	font-size: 21px;
+}
+#message .messagek a.contentk p>img{
+	height: 16px;
+	float: right;
+	margin-top: 6px;
+}
+#message .messagek ul{
+	border-left: 1px solid #6E6E6E;
+	padding-left: 40px;
+	margin-top: 40px;
+}
+#message .messagek ul li{
+	position: relative;
+	top: -20px;
+}
+#message .messagek ul li span.quan{
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: #3ACBCC;
+	left: -52px;
+	top: 20px;
+}
+#message .messagek div.contentk a{
+	display: inline-block;
+	float: left;
+	width: 50%;
+	padding: 0px 45px;
+	text-align: center;
+	color: #2A2A2A;
+}
+#message .messagek div.contentk a>p{
+	font-size: 23px;
+}
+#message .messagek div.contentk a:first-child{
+	border-right: 1px solid #E9E9E8;
+}
+#message .messagek div.contentk a>img{
+	width: 100%;
+	margin-bottom: 5px;
+}
+.posthead{
+	height: 70px;
+	background: #F0EFF5;
+	line-height: 70px;
+	padding: 0 40px;
+	font-size:26px;
+	border-bottom: 1px solid #1B1B1B;
+}
+.posthead .exit{
+	float: right;
+	color: #79797A;
+}
+.editk{
+	background: #fff;
+}
+.editk #title{
+	height: 80px;
+	padding-left: 40px;
+	font-size: 30px;
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid #D5D5D5;
+}
+.editk #text{
+	height: 320px;
+	width: 100%;
+	border-bottom: 1px solid #E4E4E4;
+	font-size: 28px;
+	padding: 20px 40px;
+}
+.editk #text>span{
+	color: #656565;
+}
+.editk .imgk{
+	height: 85px;
+	line-height: 85px;
+	position: relative;
+}
+.editk .imgk>img{
+	margin-left: 40px;
+}
+.editk .imgk #imgs{
+	position: absolute;
+    width: 50px;
+    height: 40px;
+    top: 24px;
+    left: 133px;
+    opacity: 0;
+}
+.fabu{
+	text-align: center;
+	margin-top: 50px;
+}
+.fabu>button{
+	width: 555px;
+	height: 80px;
+	border: 1px solid #E3E3E3;
+	background: #fff;
+	font-size: 30px;
+}
+
+
+.dynamick .zan_reply{
+	clear: both;
+	padding-left: 15%;
+	
+}
+.dynamick .zan_reply .dianzan,.dynamick .zan_reply .comment{
+	overflow: hidden;
+	padding: 0 10px;
+	background: #EAEAEA;
+}
+.dynamick .zan_reply .dianzan .zanimg>img,.dynamick .zan_reply .comment .pingimg>img{
+	height: 40px;
+	width: 40px;
+	position: relative;
+	top: 20px;
+}
+.dynamick .zan_reply .dianzan>div,.dynamick .zan_reply .comment>div{
+	float: left;
+}
+.dynamick .zan_reply .dianzan .zanhead,.dynamick .zan_reply .comment .pinghead{
+	margin-left: 30px;
+	width: 495px;
+	float: right;
+}
+.dynamick .zan_reply .dianzan .zanhead>img,.dynamick .zan_reply .comment .pinghead>img{
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	margin: 10px 20px 10px 0;
+}
+.dynamick .zan_reply .comment .pinghead>div{
+	display: inline-block;
+	vertical-align: middle;
+}
+.dynamick .zan_reply .comment .pinghead>div p{
+	font-size: 21px;
+}
+.dynamick .zan_reply .comment .pinghead>div p:first-child{
+	color: #576B95;
+}
+
+/*表情样式修改*/
+.emoji_container{
+	top: 160px !important;
+}
+.emoji_content ul li{
+	width: 100px;
+	height: 100px;
+}
+.emoji_content ul li a{
+	line-height: 100px;
+}
+.emoji_content ul li a img,.emoji_icon,.emoji_preview img{
+	width: 55px;
+	height: 55px;
+	max-height: none;
+	max-width: none;
+}
+.emoji_container{
+	width: 508px;
+}
+.emoji_content{
+	height: 310px;
+}
+.emoji_preview{
+	height: 95px;
+	width: 95px;
+	left: 505px !important;
+}
+.emoji_preview img{
+	position: relative;
+    top: 12px;
+    
+}

@@ -1248,6 +1248,7 @@ body .oftentable tr td{
 	margin:0;
 	text-align:center;
 	cursor:pointer;
+	background: #E5E5E5;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional{
 	width: 315px;
@@ -1374,6 +1375,9 @@ body .oftentable tr td{
 	text-align: right;
 	width:140px;
 }
+#community .communityk table tr td .iradio_minimal {
+	margin:0 10px;
+}
 #community .communityk  table{
 	display: inline-block;
 }
@@ -1390,7 +1394,7 @@ body .oftentable tr td{
 	border: 1px solid #BABABA;
 	border-left: 0;
 	position: relative;
-    left: -4px;
+    left: -5px;
 }
 #community .communityk table tr td>a{
 		color: #5f709a;
@@ -2133,12 +2137,18 @@ body{
 .userset .oftentable tr td input{
 	width:220px;
 	height:30px;
+	margin:0;
 }
 .userset .oftentable tr td input[type='button']{
 	width:80px;
+	border:1px solid #ccc;
+	border-left:0;
+	background:#eee;
+	margin-right:20px;
 }
 body .userset .oftentable tr td{
 	border-bottom:0;
+	border-top:0;
 }
 #postmanage .scrolldiv{
 	overflow-x: scroll;
@@ -2171,6 +2181,7 @@ body .userset .oftentable tr td{
 	width:180px;
 	height:40px;
 	background:#eee;
+	margin-left:140px;
 }
 #usercenter .userpassword{
 	width:440px;
@@ -2193,6 +2204,7 @@ body .userset .oftentable tr td{
 #editmodel #myModal .modal-body .mbk>div{
 	float:left;
 	width:280px;
+	cursor:pointer;
 }
 #editmodel #myModal .modal-body div.toleft,#editmodel #myModal .modal-body div.toright{
 	position:absolute;
@@ -2201,10 +2213,16 @@ body .userset .oftentable tr td{
 	position:absolute;	
 	top:0;
 	z-index:1000;
+	background-position:center center;
+	background-repeat:no-repeat;
+	cursor:pointer;
+	margin:0;
 }
 #editmodel #myModal .modal-body div.toleft{
 	left:0;
+	background-image:url(../img/toleft.png);
 }
 #editmodel #myModal .modal-body div.toright{
 	right:0;
+	background-image:url(../img/toright.png);
 }
