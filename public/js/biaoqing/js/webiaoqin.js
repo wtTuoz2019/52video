@@ -261,12 +261,16 @@
       rend: function() {
         var that = this;
         var TPL = '{seprateDiv}<dd><span data-key="{k}_{page}_{v}" style="background-position:{xPos}px 0;"></span></dd>{delHTML}';
+		if($("#list_emotion").hasClass('list_emotion2')){
+			TPL	= '{seprateDiv}<dd><span data-key="{k}_{page}_{v}" style="background-position:{xPos2}px 0;"></span></dd>{delHTML}';
+		}
         var res = iTemplate.makeList(TPL, that.values, function(k, v) {
           return {
             k: k,
             v: v,
             page: Math.floor(k / that.spearate),
             xPos: -24 * k,
+			xPos2: -40 * k,
             seprateDiv: (0 == k % that.spearate && 0 != k && k != that.values.length) ? "</div><div>" : "",
             delHTML: (19 == k % that.spearate || k == (that.values.length - 1)) ? '<dd><span data-key="-1_-1_/:del" class="del"></span></dd>' : ''
           }

@@ -386,8 +386,9 @@ line-height:30px;
 .contentBox h1 img{
 	float:left; 
 	height:55px;
-	position: relative;
     top: -10px;
+	position:absolute;
+	left:10px;
 }
 .contentBox .big_img{
 	position:absolute;

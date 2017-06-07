@@ -35,14 +35,14 @@
 		
 		<div class="editk">
 			<input type="text" id="title" placeholder="添加标题"/>
-			<div contenteditable="true" id="text" onfocus="hide(this)" onblur="show(this)" onkeydown="myInput.listen(this, event);"><span>说点什么吧...</span></div>
+			<div contenteditable="true" id="text" onfocus="hide(this)" onblur="show(this)" class="biaoqing"><span>说点什么吧...</span></div>
 			<div class="imgk">
 				<img src="__PUBLIC__/forum/mobile/img/smile.png" id="biaoqing"/>
 				<input type="file" id="imgs" />
 				<img src="__PUBLIC__/forum/mobile/img/imgs.png" />
 			</div>
-            <div class="page_emotion box_swipe" id="page_emotion">
-                                <dl id="list_emotion" class="list_emotion pt_10"></dl><!-- 表情框 -->
+            <div class="page_emotion page_emotion2 box_swipe" id="page_emotion">
+                                <dl id="list_emotion" class="list_emotion  list_emotion2 pt_10"></dl><!-- 表情框 -->
                                 <dt><ol id="nav_emotion" class="nav_emotion"></ol></dt><!-- 分页提示点 -->
                             </div>
 		</div>
@@ -59,7 +59,9 @@
 		<script src="__PUBLIC__/forum/mobile/js/main.js"></script>
 		<link href="__PUBLIC__/js/biaoqing/css/webiaoqing.css" rel="stylesheet" type="text/css">
 <script src="__PUBLIC__/js/biaoqing/js/webiaoqin.js" ></script> 
-
+<style>
+	
+</style>
 
 <script>
 $('#biaoqing').click(function(){

@@ -3,7 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 {$css}
-{$js}
 </head>
 <body scroll="no">
 
@@ -67,14 +66,12 @@
       
     </table>
 </div>
-<?php if(model('user_group')->model_power('form','field')){ ?>
 <!--普通提交-->
 <div class="form_submit">
 <input name="fid" type="hidden" value="{$form.id}">
 <input name="id" type="hidden" value="{$info.id}">
 <button type="submit" class="button">保存</button> 
 </div>
-<?php } ?>
 </form>
 </div>
 </div>

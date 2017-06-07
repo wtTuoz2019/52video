@@ -149,7 +149,7 @@ ul.optionList li input{ width:24px; height:24px; vertical-align:top;}
 
 .volid{ width: 100%;background: #fff;height: auto; color:#141212; padding-top:60px;background:#404040; min-height:550px}
 .volid_main{ margin: 20px 0 10px 0;}
-.volid h1{font-size:1.8em; text-align:center; border-bottom:1px dotted #fff; padding-bottom:20px; color: #fff;}
+.volid h1{font-size:1.8em; text-align:center; border-bottom:1px dotted #fff;padding: 0 130px; padding-bottom:20px; color: #fff;}
 .volid .signsource{text-align:center; padding:10px 0 0px 0; color:#999;}
 .volid .signsource span{display:inline-block; width:25px;}
 .volid_bottom{margin: 0 auto 15px;height: auto;overflow: hidden;width:1100px;}
@@ -248,7 +248,8 @@ i.blog_icon13{background-position:  center -630px;}
 	color:#bbb;
 	}
 .volid .down{
-	top:68px;
+	top: initial;
+    bottom: 0;
 }
 .volid .doo span{
 	font-size:48px;
