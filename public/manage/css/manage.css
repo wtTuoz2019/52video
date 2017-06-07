@@ -412,6 +412,10 @@ button{
 	border-radius: 50%;
 	background-color:#E5E5E5;
 }
+.WeChat>div>img.yuan.big_yuan{
+	height:150px;
+	width:150px;
+}
   .WeChat #binding{
 	width: 330px;
 	height: 45px;
@@ -511,7 +515,7 @@ button{
 	font-weight: normal;
 	margin-bottom: 20px;
 }
-.borderk a{
+.borderk a,#menuset .addmenuk button{
 	padding:0 20px;
 	height:30px;
     border: 1px solid #C3C3C3;
@@ -526,6 +530,7 @@ button{
 	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
 	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
 }
+
 .borderk a:hover{
 	border-color:#000;
 }
@@ -847,12 +852,19 @@ body .oftentable tr td{
     left: -3px;
 	top:-1px;
 	border:1px solid #C3C3C3;
-	border-left:0; 
+	border-left:0;
+	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
+	background:linear-gradient(to bottom,#ffffff,#d5d2d2);
+	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
+	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
 }
 #postmanage .postk  button{
 	width: 70px;
 	height: 30px;
-	background: #eee;
+	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
+	background:linear-gradient(to bottom,#ffffff,#d5d2d2);
+	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
+	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
 }
 #postmanage .postk  button.audit{
 	width: 130px;
@@ -1706,15 +1718,19 @@ div.batch{
 	float:left;
 }
 div.batch a{
-	width: 70px;
+	padding:0 20px;
 	height:30px;
-	text-align:center;
-	line-height:28px;
-	background: #eee;
-	border:1px solid #C3C3C3;
+    border: 1px solid #C3C3C3;
+	line-height: 30px;
+    font-size: 12px; 
 	display:inline-block;
+	text-align:center;
 	color:#000;
-	margin-right: 10px;
+	margin-right:20px;
+	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
+	background:linear-gradient(to bottom,#ffffff,#d5d2d2);
+	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
+	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
 }
 div.batch a.delete{
 	margin-left:10px;
@@ -1961,7 +1977,7 @@ table td .commentoperation>a{
 	color:#000;
 	position:absolute;
 	right:0;
-	top:50px;
+	top:30px;
 }
 table td .commentoperation>a+a{
 	top:10px;
