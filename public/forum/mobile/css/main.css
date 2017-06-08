@@ -4,7 +4,7 @@
 	padding: 0;
 	list-style: none;
 }
-p{
+p,ol{
 	margin: 0;
 }
 a:focus,a:hover{
@@ -89,6 +89,7 @@ a:focus,a:hover{
 .dynamick .userhead>img{
 	height: 70px;
 	width: 70px;
+	border-radius:50%;
 }
 .dynamick .userhead{
 	width: 15%;
@@ -107,10 +108,10 @@ a:focus,a:hover{
 	overflow: hidden;
 }
 .dynamick .usercontent .username{
-	color: #576B95;
-	font-weight: bold;
-	margin-bottom: 8px;
-    line-height: 20px;
+	color: #00a0ff;
+	margin-bottom: 20px;
+	margin-top:10px;
+    line-height: 26px;
 }
 .dynamick .usercontent .imgs{
 	overflow: hidden;
@@ -211,12 +212,12 @@ a:focus,a:hover{
 
 /*我的页面*/
 .minehead{
-	height: 250px;
-	background-image: url(../img/minebg.png);
+	height: 365px;
+	background-image: url(../img/minebg.jpg);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	text-align: center;
-	padding-top: 35px;
+	padding-top: 105px;
 }
 .minehead>img{
 	width: 130px;
@@ -225,9 +226,9 @@ a:focus,a:hover{
 }
 .minehead>p{
 	margin-top: 10px;
-	font-weight: bold;
 	font-size: 30px;
 	position: relative;
+	color:#fff;
 }
 .minehead>p>a{
 	position: absolute;
@@ -244,8 +245,9 @@ a:focus,a:hover{
 }
 .navigation{
 	overflow: hidden;
-	background: #50BDDF;
-	
+	background: #FFFFFF;
+	padding:20px 0;
+	border-bottom:1px solid #E5E9EB;
 }
 .navigation a:first-child img{
 	position: relative;
@@ -253,34 +255,29 @@ a:focus,a:hover{
 }
 .navigation a{
 	display: inline-block;
-	width: 33.3%;
+	width: 50%;
 	float: left;
 	text-align: center;
-	height: 100px;
-	line-height: 100px;
-	color: #fff;
+	height: 50px;
+	line-height: 50px;
+	color: #b1b1b1;
 	font-size: 25px;
-	border: 1px solid #C9C9C9;
-	border-left: 0;
+	border-right: 1px solid #E5E9EB;
 }
 .navigation a>span{
 	background-repeat:no-repeat;
 	padding-left: 50px;
 	
 	display: inline-block;
-	height: 100px;
+	height: 50px;
 }
 .navigation a:first-child span{
 	background-image: url(../img/post.png);
-	background-position: 0 28px;
+	background-position: 0 3px;
 }
 .navigation a:first-child+a span{
 	background-image: url(../img/like.png);
-	background-position: 0 37px;
-}
-.navigation a:first-child+a+a span{
-	background-image: url(../img/message.png);
-	background-position: 0 35px;
+	background-position: 0 11px;
 }
 .navigation a.active.post span{
 	background-image: url(../img/post1.png);
@@ -288,15 +285,11 @@ a:focus,a:hover{
 .navigation a.active.like span{
 	background-image: url(../img/like1.png);
 }
-.navigation a.active.message span{
-	background-image: url(../img/message1.png);
-}
 .navigation a:last-child{
 	border-right: 0;
 }
 .navigation a.active{
-	color: #1B5061;
-	border-bottom: 2px solid #045C78;
+	color: #00A0FF;
 }
 
 .minek{
@@ -309,14 +302,10 @@ a:focus,a:hover{
 .minek>div.active{
 	display: block;
 }
-#post{
-	padding-top: 20px;
-}
 #post .dynamick{
-	padding: 10px 15px;
+	padding: 30px 5%;
 	background: #fff;
-	margin-bottom: 20px;
-	box-shadow: 0 10px 15px -6px;
+	margin-bottom: 10px;
 }
 #like{
 	padding: 40px;
@@ -343,127 +332,10 @@ a:focus,a:hover{
 #like .dynamick p.username>span>img{
 	margin-right: 10px;
 }
-#message h5{
-	margin: 0;
-	padding: 30px 0 10px 15px;
-}
-#message h5 span{
-	background: #3ACBCC;
-	padding: 8px 15px;
-	font-size: 20px;
-}
-#message .messagek{
-	padding: 0 20px 0 85px;
-}
-#message .messagek p.title_name .bquan{
-	display: inline-block;
-	height: 65px;
-	width: 65px;
-	background: #FF7247;
-	color: #fff;
-	border-radius: 50px;
-	text-align: center;
-	font-size: 30px;
-	line-height: 65px;
-}
-#message .messagek p.title_name .gquan{
-	background: #126396;
-}
-#message .messagek p.title_name .bquan>b{
-	font-weight: normal;
-	font-size: 16px;
-}
-#message .messagek p.title_name .title{
-	font-size: 30px;
-	color: #717171;
-	padding-left: 15px;
-}
-#message .messagek p.title_name .time{
-	color: #717171;
-	float: right;
-	margin-top: 20px;
-	font-size: 15px;
-}
-#message .messagek div.contentk{
-	margin: 20px auto;
-	width: 90%;
-	border: 1px solid #BEBEBE;
-	background: #fff;
-	border-radius: 5px;
-	overflow: hidden;
-	padding: 25px 0 10px 0;
-}
-#message .messagek a.contentk{
-	margin: 20px auto;
-	display: block;
-	width: 90%;
-	padding: 20px 10px;
-	border: 1px solid #BEBEBE;
-	background: #fff;
-	border-radius: 5px;
-	color: #060606;
-	padding-bottom: 10px;
-}
-#message .messagek a.contentk h4{
-	margin: 0;
-	margin-bottom: 15px;
-	color: #0A0A0A;
-	font-size: 28px;
-}
-#message .messagek a.contentk .top_{
-	color: #9F9F9F;
-	border-bottom: 2px solid #F1F1F1;
-	padding-bottom: 10px;
-	font-size: 15px;
-}
-#message .messagek a.contentk p{
-	margin-top: 8px;
-	font-size: 21px;
-}
-#message .messagek a.contentk p>img{
-	height: 16px;
-	float: right;
-	margin-top: 6px;
-}
-#message .messagek ul{
-	border-left: 1px solid #6E6E6E;
-	padding-left: 40px;
-	margin-top: 40px;
-}
-#message .messagek ul li{
-	position: relative;
-	top: -20px;
-}
-#message .messagek ul li span.quan{
-	position: absolute;
-	width: 25px;
-	height: 25px;
-	border-radius: 50%;
-	background: #3ACBCC;
-	left: -52px;
-	top: 20px;
-}
-#message .messagek div.contentk a{
-	display: inline-block;
-	float: left;
-	width: 50%;
-	padding: 0px 45px;
-	text-align: center;
-	color: #2A2A2A;
-}
-#message .messagek div.contentk a>p{
-	font-size: 23px;
-}
-#message .messagek div.contentk a:first-child{
-	border-right: 1px solid #E9E9E8;
-}
-#message .messagek div.contentk a>img{
-	width: 100%;
-	margin-bottom: 5px;
-}
+
 .posthead{
 	height: 70px;
-	background: #F0EFF5;
+	background: #f4f3f6;
 	line-height: 70px;
 	padding: 0 40px;
 	font-size:26px;
@@ -491,13 +363,14 @@ a:focus,a:hover{
 	font-size: 28px;
 	padding: 20px 40px;
 }
-.editk #text>span{
-	color: #656565;
+.editk #text>span{ 
+	color: #656565; 
 }
 .editk .imgk{
-	height: 85px;
+	height: 85px; 
 	line-height: 85px;
 	position: relative;
+	background:#F6F6F6;
 }
 .editk .imgk>img{
 	margin-left: 40px;
@@ -596,4 +469,35 @@ a:focus,a:hover{
 	position: relative;
     top: 12px;
     
+}
+.biaoqing img{
+	width:40px;
+	height:40px;
+} 
+#imgDiv{
+	overflow:hidden;
+	background:#F6F6F6;
+}
+#imgDiv .userimgk{
+	width:200px;
+	height:200px;
+	float:left;
+	margin-left:30px;
+	position:relative;
+}
+#imgDiv .userimgk>img{
+	width:200px;
+	height:200px;
+}
+#imgDiv .userimgk>span{
+	position:absolute;
+	font-size:32px;
+	height:30px;
+	width:30px;
+	background:#000;
+	color:#fff;
+	top:0;
+	right:0;
+	text-align:center;
+	line-height:30px;
 }

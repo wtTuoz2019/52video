@@ -317,7 +317,15 @@ class extendclassMod extends commonMod {
 			 $where['name']=array('like',"'%".$_GET['s']."%'");
 			  }
 			 $where['bid']=$bid;
-		   $this->list=model('extendclass')->course_list($where);
+		   $list=model('extendclass')->course_list($where);
+		   if($list){
+			   foreach($list as $key=>$val){
+				   $list[$key]['signupnum']=model('extendclass')->signup_num(array('cid'=>$val['id']));
+				   
+				   }
+			   
+			   }
+		$this->list=$list;
 		 $this->show();
 		
 		}

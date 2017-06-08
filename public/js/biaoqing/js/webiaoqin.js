@@ -202,6 +202,9 @@
           img.src = evt.imgUrl;
           img.innerHTML = evt.value;
           img.setAttribute("data-innerHTML", evt.value);
+		  if(thi.innerText=="说点什么吧..."){ 
+		  		thi.innerHTML='';
+		  }
           thi.appendChild(img)
         }
       }

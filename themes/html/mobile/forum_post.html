@@ -27,7 +27,7 @@
 			}
 		</script>
 	</head>
-	<body style="background: #F0EFF5;">
+	<body style="background: #f4f3f6;">
 		<div class="posthead">
 			帖子
 			<a href="javascript:history.back(-1);" class="exit">取消</a>
@@ -39,12 +39,16 @@
 			<div class="imgk">
 				<img src="__PUBLIC__/forum/mobile/img/smile.png" id="biaoqing"/>
 				<input type="file" id="imgs" />
-				<img src="__PUBLIC__/forum/mobile/img/imgs.png" />
+				<img src="__PUBLIC__/forum/mobile/img/imgs.png" id="uploadFile"/>
 			</div>
             <div class="page_emotion page_emotion2 box_swipe" id="page_emotion">
                                 <dl id="list_emotion" class="list_emotion  list_emotion2 pt_10"></dl><!-- 表情框 -->
                                 <dt><ol id="nav_emotion" class="nav_emotion"></ol></dt><!-- 分页提示点 -->
                             </div>
+                            
+                     <div id="imgDiv">
+                     	
+                     </div>
 		</div>
 		
 		<div class="fabu">
@@ -69,6 +73,48 @@ $('#biaoqing').click(function(){
 });
 	
 </script>
+<script>
+		
+	  var img;
+	  
+	  $('#imgs').change(function() {
+                    var file = this.files[0];
+					
+					img=file;
+                    var r = new FileReader();
+                    r.readAsDataURL(file);
+					$('#imgDiv').append('<div class="userimgk loading"><img id="" src="__PUBLIC__/images/timg.gif" alt="" /></div>');
+					
+                    $(r).load(function() {
+						var html='<div class="userimgk"><img id="" src="' + this.result + '" alt="" /><span onclick="delimg(this)">X</span></div>';
+						setTimeout(function(){
+							$('.loading').remove();
+						
+                        	$('#imgDiv').append(html);
+							
+						},1000);
+						
+						 //imgID.onload = function() {
+//							
+//							
+//       					}
+						
+                    })
+         })
+	  
+	  
+           
+       
+		
+		
+		function delimg(e){
+			$(e).parent().remove();
+		}
+		
+		
+		
+	</script>
+
 	
 	</body>
 </html>

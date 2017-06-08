@@ -17,6 +17,9 @@ class extendclassModel extends commonModel {
 			return $temp;
 			}
 		}
+	public function signup_num($where){
+		return $this->model->table('course_signup')->where($where)->count();
+		}
 	public function classes_add_save($data){
 		return $this->model->table('classes')->data($data)->insert();
 		
@@ -104,7 +107,7 @@ class extendclassModel extends commonModel {
 		
 		}
 	public function student($data){
-		$student=$this->model->table('student')->where(array('name'=>$data['name'],'mobile'=>$data['mobile']))->find();
+		$student=$this->model->table('student')->where(array('name'=>$data['name'],'uid'=>$data['uid'],'mobile'=>$data['mobile']))->find();
 		if($student)return $student['id'];
 		else return $this->model->table('student')->data($data)->insert();
 		
