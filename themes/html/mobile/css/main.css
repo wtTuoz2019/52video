@@ -948,7 +948,7 @@ a,a:hover,a:focus{
 
 .surveybtn {
 	text-align: center;
-	margin: 70px 0;
+	margin: 50px 0 0 0;
 }
 .kectitle,.atdtitle{
 	height: 90px;
@@ -1348,4 +1348,8 @@ a.submit{
     border: 0;
     color: #fff;
     font-size: 30px;
+	border-radius:5px;
+}
+.surveybtn button.ywc{
+	background:#D1D1D1;
 }

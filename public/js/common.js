@@ -208,7 +208,10 @@ function dialog(config){
 		height:config.height,
 		lock: true,
 		icon: config.icon,
-		button:config.button
+		button:config.button,
+		time:config.time,
+		padding:config.padding,
+		id:config.id
 	});
 }
 

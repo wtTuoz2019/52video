@@ -10,3 +10,16 @@
 	left:20% !important;
 	width:60% !important;
 }
+.aui_dialog{
+	position:relative;
+}
+.aui_icon div{
+	height:117px;
+	width:117px;
+	position:absolute;
+	left:38%;
+	top:22%;
+}
+.aui_titleBar{
+	display:none;
+}

@@ -55,7 +55,10 @@
 			<div class="surveybtn">
 				
 				<!--if:{$signinfo}-->
-                已完成
+                <button disabled="disabled" class="ywc">
+                	已完成
+                </button>
+                
                    <!--{else}-->
 				<button type="submit">
 					提交
@@ -80,8 +83,12 @@
 <script type="text/javascript">
 saveform({
 	success:function(msg){
-		tip({msg:msg});
-	 window.location.reload()
+		dialog({content:msg,icon:'succeed',width:'565px',height:'345px',id:'iconad'});
+		$('.aui_main').css('padding-top','180px')
+		setTimeout(function(){
+			window.location.reload()
+		},3000); 
+	 
   
 	},
 	failure:function(msg){
