@@ -1340,9 +1340,9 @@ a.submit{
 	color:#fff;
 	width:75px;
 	border-left:1px solid #C8C8C8;
-}
+} 
 .surveybtn button{
-	width:395px;
+	width:395px; 
 	height:70px;
     background: #4DC1E8;
     border: 0;
@@ -1351,5 +1351,10 @@ a.submit{
 	border-radius:5px;
 }
 .surveybtn button.ywc{
-	background:#D1D1D1;
+	background:#D1D1D1; 
+}
+.copy{
+	text-align:center;
+	font-size:19px;
+	padding-bottom:10px;
 }
