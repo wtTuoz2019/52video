@@ -617,9 +617,7 @@ a,a:hover,a:focus{
 	color: #222;
 	margin: 40px 0;
 }
-.survey_k{
-	padding: 0 40px;
-}
+
 .survey_k .survey_text{
 	font-size: 22px;
 	line-height: 32px;
@@ -1296,4 +1294,11 @@ a.submit{
 }
 .qdtishi span.qq{
 	background:#CE2427;
+}
+.fenge{
+	height:15px;
+	background:#D1D1D1;
+}
+.survey_k{
+	padding: 0 40px;
 }

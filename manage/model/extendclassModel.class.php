@@ -89,14 +89,10 @@ class extendclassModel extends commonModel {
 		}
 		
 	public function student_list($where,$limit=null){
-		$data=$this->model->table('student')->where($where)->limit($limit)->order('sequence asc')->select();
-		if($data){
-			foreach($data as $key=>$value){
-				$temp[$value['id']]=$value;
-				
-				}
-			return $temp;
-			}
+		$data=$this->model->table('student')->where($where)->limit($limit)->order('id desc')->select();
+		
+		return $data;
+			
 		}
 	public function student_count($where){
 		return $this->model->table('student')->where($where)->count();

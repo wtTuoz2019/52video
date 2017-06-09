@@ -180,7 +180,7 @@ phpCAS::forceAuthentication();
 			
 			 $this->msg('手机验证码不对！',0);
 			}
-				$student=model('extendclass')->student_info(array('mobile'=>$_POST['mobile'],'uid'=>$uid));
+				$student=model('extendclass')->student_info(array('mobile'=>$_POST['mobile'],'name'=>$_POST['name'],'uid'=>$uid));
 				
 				
 				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id'],'uid'=>$this->userinfo['uid'],'type'=>'student','byuid'=>$this->config['uid']);
