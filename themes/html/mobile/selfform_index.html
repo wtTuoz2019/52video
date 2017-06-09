@@ -3,12 +3,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=750, user-scalable=no">
-		<title></title>
+		<title>	{$info.name}</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+           <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
 	</head>
 	<body>
 		<div class="headerimg psurvey">
-			
+        	<img src="img/dchead.jpg"/>
 		</div>
 		
 		<h2 class="survey_t"> 
@@ -20,11 +21,11 @@
 			<p class="survey_text">
 				{$info.intro}
 			</p>
-			
+			 <form action="__INDEX__/selfform/only_post" method="post" id="form" >
 			<div class="problems">
                 		 <!--foreach:{$field_list $vo}-->
-            	{$php( echo model('selfform')->get_field_html($vo,''))}
-                     <!--if:{$vo['field']=='mobile'}-->
+            	{$php( echo model('selfform')->get_field_html($vo,$signinfo['values'][$vo['field']]))}
+                     <!--if:{$vo['field']=='mobile'&&!$signinfo}-->
     			 
                    		<label class="ui-border-r">
                             验证码
@@ -45,20 +46,38 @@
 			
 			<div class="surveybtn">
 				
-				
-				<button>
+				<!--if:{$signinfo}-->
+                已完成报名
+                   <!--{else}-->
+				<button type="submit">
 					提交
 				</button>
+                 <!--{/if}-->
 			</div>
-			
+			 <input type="hidden" name="fid" value="{$vo.fid}"/>
+         
+        </form>
 			
 			
 		</div>
 		
 		
-	  <script>
-savesignupform({addurl:'{$php( echo module("label")->get_aurl($info["aid"]))}'});
+       <script type=text/javascript src="/public/js/duxui.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
 
+<script type=text/javascript src="/public/js/common.js"></script>
+<script type="text/javascript">
+saveform({
+	success:function(msg){
+		tip({msg:msg});
+		document.getElementById("form").reset();
+  
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
 		
           var timerID;
 		  var cishu=0;
@@ -82,18 +101,19 @@ savesignupform({addurl:'{$php( echo module("label")->get_aurl($info["aid"]))}'})
 			 
 			 var button=jQuery(ele);
 			 if(jQuery('#mobile').val()==''){
-				 alert('手机号不能为空！');
+				 tip({msg:'手机号不能为空！'});
 				 return false;
 				 }
 			 
 			jQuery.post("/index.php/sms",{mobile:jQuery('#mobile').val()},function(data){
 				
 				if(data=='1'){
-				alert('验证码发送成功。由于网络有可能存在延时，请稍等。');
+				 tip({msg:'验证码发送成功。由于网络有可能存在延时，请稍等。'});
 				var miao=180;
 				 timerID=setInterval("daojishi("+miao+")",1000);
 				}else{
-					alert('发送失败，请稍后重试。');	
+					
+					 tip({msg:'发送失败，请稍后重试。'});
 					}
 		
 				},'json');

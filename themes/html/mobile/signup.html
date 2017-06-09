@@ -137,18 +137,18 @@ savesignupform({addurl:'{$php( echo module("label")->get_aurl($info["aid"]))}'})
 			 
 			 var button=jQuery(ele);
 			 if(jQuery('#mobile').val()==''){
-				 alert('手机号不能为空！');
+				 tip('手机号不能为空！');
 				 return false;
 				 }
 			 
 			jQuery.post("/index.php/sms",{mobile:jQuery('#mobile').val()},function(data){
 				
 				if(data=='1'){
-				alert('验证码发送成功。由于网络有可能存在延时，请稍等。');
+				tip('验证码发送成功。由于网络有可能存在延时，请稍等。');
 				var miao=180;
 				 timerID=setInterval("daojishi("+miao+")",1000);
 				}else{
-					alert('发送失败，请稍后重试。');	
+					tip('发送失败，请稍后重试。');	
 					}
 		
 				},'json');

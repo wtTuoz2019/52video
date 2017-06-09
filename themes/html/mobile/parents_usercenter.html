@@ -38,7 +38,7 @@
         function Relieve(){
 				ajaxpost({
 		name:'确定要解除与{$student.name}的绑定？',
-		url:"__URL__/schooluser_del",
+		url:"__URL__/schooluser_del?{$urltoken}",
 		tip:1,
 		success:function(){
 			window.location.reload();
