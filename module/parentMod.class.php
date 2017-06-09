@@ -79,6 +79,14 @@ class parentMod extends commonMod {
 		$this->display('parents_kcdetail.html');
 		}
 	public function signup(){
+		
+		$batch=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
+		if($batch['limitnum']){
+			if($batch['limitnum']==model('extendclass')->signup_num(array('bid'=>$batch['id'],'sid'=>$this->student['stid']))){
+				$this->msg('每位学生最多只能报'.$batch['limitnum'].'课程',0);
+				}
+			
+			}
 		$id=intval($_POST['id']);
 		$course=model('extendclass')->course_info('A.id='.$id.' and A.uid='.$this->config['uid']);
 		if(!$course)$this->msg('无此课程',0);
@@ -94,7 +102,7 @@ class parentMod extends commonMod {
 			$course['signnum']=model('extendclass')->signup_num(array('cid'=>$course['id']));
 			if($course['signnum']>=$course['number'])$this->msg('报名已满',0);
 			
-			$data=array('cid'=>$course['id'],'sid'=>$this->student['stid'],'time'=>time());
+			$data=array('cid'=>$course['id'],'bid'=>$batch['id'],'sid'=>$this->student['stid'],'time'=>time());
 			model('extendclass')->signup_add_save($data);
 			$this->msg('报名成功',1);
 		}
