@@ -375,7 +375,7 @@ a,a:hover,a:focus{
 /**/
 .headerimg{
 	height: 405px;
-	background-image: url(../img/teacherhead.jpg);
+	background-image: url(../img/dchead.jpg);
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: 100% 100%;
@@ -749,9 +749,7 @@ a,a:hover,a:focus{
 	border: 0;
 	border-radius: 3px;	
 }
-.headerimg.psurvey{
-	background-image: url(../img/parentsdiaocha.jpg);
-}
+
 .centerhead{
 	background-image: url(../img/userhead.jpg);
 	height: 265px;

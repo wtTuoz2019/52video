@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=750, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+	</head>
+	<body>
+		<div class="headerimg psurvey">
+			
+		</div>
+		
+		<h2 class="survey_t"> 
+			{$info.name}
+		</h2>
+		
+		<div class="survey_k">
+			
+			<p class="survey_text">
+				{$info.intro}
+			</p>
+			
+			<div class="problems">
+                		 <!--foreach:{$field_list $vo}-->
+            	{$php( echo model('selfform')->get_field_html($vo,''))}
+                     <!--if:{$vo['field']=='mobile'}-->
+    			 
+                   		<label class="ui-border-r">
+                            验证码
+                        </label>
+      
+                        <input type="text" placeholder="请输入验证码" name="code" reg="\S" msg="验证码不能为空">
+                        <button type="button" class="ui-border-l"  id="jishi" onclick="huoqu(this)">获取</button>
+                    
+                   
+      			 <!--{/if}-->
+                
+     		 <!--{/foreach}-->
+           
+			
+					
+				
+			</div>
+			
+			<div class="surveybtn">
+				
+				
+				<button>
+					提交
+				</button>
+			</div>
+			
+			
+			
+		</div>
+		
+		
+	  <script>
+savesignupform({addurl:'{$php( echo module("label")->get_aurl($info["aid"]))}'});
+
+		
+          var timerID;
+		  var cishu=0;
+		  function daojishi(miao){
+			  var button=jQuery('button#jishi');
+			  miao=miao-cishu;
+			if(miao){
+			  button.text(miao+'s');
+			  button.attr('disabled',true);
+			   cishu++;
+			}else{
+				
+				button.text('重新获取');
+				button.attr('disabled',false);
+				 cishu=0;
+				}
+				 
+			  }
+		  
+         function huoqu(ele){
+			 
+			 var button=jQuery(ele);
+			 if(jQuery('#mobile').val()==''){
+				 alert('手机号不能为空！');
+				 return false;
+				 }
+			 
+			jQuery.post("/index.php/sms",{mobile:jQuery('#mobile').val()},function(data){
+				
+				if(data=='1'){
+				alert('验证码发送成功。由于网络有可能存在延时，请稍等。');
+				var miao=180;
+				 timerID=setInterval("daojishi("+miao+")",1000);
+				}else{
+					alert('发送失败，请稍后重试。');	
+					}
+		
+				},'json');
+			 
+			 
+			 }
+        
+        
+</script>	
+		
+		
+		
+	</body>
+</html>

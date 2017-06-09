@@ -9,9 +9,26 @@ class selfformMod extends commonMod
 
     public function index()
     {  	
-	 
+	 $fid=in($_GET['fid']);
+    	if(empty($fid)){
+    		$this->error404();
+    	}
 	
+    	$this->info=$info=model('selfform')->info($fid);
 	
+    	if(empty($info)){
+    		$this->error404();
+    	}
+		
+			//获取所有字段
+    	$this->field_list=$field_list=model('selfform')->form_inputs_list(array('fid'=>$info['id']));
+    	if(empty($field_list)){
+            
+                $this->msg('未发现表单信息！',0);
+           
+        }
+	
+	$this->display('selfform_index.html');
 	}
 	//提交表单
     public function post()
