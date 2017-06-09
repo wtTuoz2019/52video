@@ -12,7 +12,7 @@
 			<form action="" method="post"> 
 				<select name="group" >
                   <!--foreach:{$group $vo}-->
-					<option value="{$vo.group}">{$vo.group}</option>
+					<option value="{$vo.group}"   <?=$groupname==$vo['group']?selected:''?> >{$vo.group}</option>
 					   <!--{/foreach}-->
 				</select><button type="submit">查询</button>
 			</form>

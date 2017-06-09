@@ -42,7 +42,7 @@ class parentMod extends commonMod {
 	
 		$this->group=model('extendclass')->group_list(array('uid'=>$this->config['uid'],'bid'=>$course['id']));		
 		$where=array('bid'=>$course['id']);
-		if($_POST['group'])$where['group']=$_POST['group'];
+		if($_POST['group'])$this->groupname=$where['group']=$_POST['group'];
 		$this->kclist=model('extendclass')->course_list($where);	
 		
 		$this->display('parents_kclist.html');

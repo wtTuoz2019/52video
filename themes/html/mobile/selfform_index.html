@@ -17,14 +17,19 @@
 		
 		
 		<div class="survey_k">
+        <form action="__INDEX__/selfform/only_post" method="post" id="form" >
+        <div class="boxk">
 			<h2 class="survey_t"> 
 			{$info.name}
-		</h2>
-			<p class="survey_text">
+			</h2>
+			
+			 
+			<div class="problems">
+            <p class="survey_text">
 				{$info.intro}
 			</p>
-			 <form action="__INDEX__/selfform/only_post" method="post" id="form" >
-			<div class="problems">
+            
+            <div class="problemul">
                 		 <!--foreach:{$field_list $vo}-->
             	{$php( echo model('selfform')->get_field_html($vo,$signinfo['values'][$vo['field']]))}
                      <!--if:{$vo['field']=='mobile'&&!$signinfo}-->
@@ -32,10 +37,10 @@
                    		<label class="ui-border-r">
                             验证码
                         </label>
-      
+      		<li class="yzcode">
                         <input type="text" placeholder="请输入验证码" name="code" reg="\S" msg="验证码不能为空">
                         <button type="button" class="ui-border-l"  id="jishi" onclick="huoqu(this)">获取</button>
-                    
+                  </li>  
                    
       			 <!--{/if}-->
                 
@@ -43,8 +48,9 @@
            
 			
 					
-				
+				</div>
 			</div>
+            </div>
 			
 			<div class="surveybtn">
 				
@@ -69,6 +75,8 @@
 <script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
 
 <script type=text/javascript src="/public/js/common.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/dialog.css"/>
 <script type="text/javascript">
 saveform({
 	success:function(msg){
