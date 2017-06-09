@@ -55,7 +55,7 @@
 			<div class="surveybtn">
 				
 				<!--if:{$signinfo}-->
-                已完成报名
+                已完成
                    <!--{else}-->
 				<button type="submit">
 					提交
@@ -81,7 +81,7 @@
 saveform({
 	success:function(msg){
 		tip({msg:msg});
-		document.getElementById("form").reset();
+	 window.location.reload()
   
 	},
 	failure:function(msg){
