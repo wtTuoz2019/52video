@@ -10,7 +10,12 @@
    	<input  type="text" placeholder="请选择文件" value=""/>
      <input class="shangc" type="file" name="file">  <a  type="submit" onClick="$('#form').submit();" >导入</a>
      </form>
-   <a href="__ROOT__/excel/signup.xls">模板下载</a>
+   <a href="__ROOT__/excel/signup.xls">模板下载</a>   <form method="post" style="display:inline-block; vertical-align:middle;">
+					 	<input  type="hidden" name="signup" value="1"/>
+					<button>
+						导出报名信息
+					</button>
+                    </form>
 			</div>
 		<table width="100%" border="0" cellspacing="0" cellpadding="0"class="oftentable">
 				<tr class="bgth">

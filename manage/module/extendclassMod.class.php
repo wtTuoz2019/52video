@@ -308,11 +308,42 @@ class extendclassMod extends commonMod {
 		
 		}
 	public function course(){
-			$where['uid']= $this->user['id'];
+		$where['uid']= $this->user['id'];
 		$this->bid=$bid=intval($_GET['bid']);
-		 $this->teacher=model('extendclass')->teacher_list($where);
+		 $this->teacher=$teacher=model('extendclass')->teacher_list($where);
 	
-		  $this->bj=model('extendclass')->classes_list($where);
+		  $this->bj=$bj=model('extendclass')->classes_list($where);
+		if($_POST['bj_id']){
+		 $list=model('extendclass')->signup_course_list('A.uid='.$this->user['id'].' and A.bj_id='.$_POST['bj_id']);	
+		if($list){
+			header("Content-Type: text/html; charset=utf-8");
+		header("Content-type:application/vnd.ms-execl");
+		header("Content-Disposition:filename=signup.xls");
+		echo iconv('utf-8','gbk','姓名')."\t";
+		echo iconv('utf-8','gbk','班级')."\t";
+		echo iconv('utf-8','gbk','联系号码')."\t";
+		echo iconv('utf-8','gbk','课程名称')."\t";
+		echo iconv('utf-8','gbk','任课老师')."\t";
+		echo "\n";
+		foreach($list as $k=>$v){
+			echo iconv('utf-8','gbk',$v['name'])."\t";
+			echo iconv('utf-8','gbk',$bj[$v['bj_id']]['grade'].'年级'.$bj[$v['bj_id']]['class'].'班')."\t";
+			echo iconv('utf-8','gbk',$v['mobile'])."\t";
+			echo iconv('utf-8','gbk',$v['title'])."\t";
+			echo iconv('utf-8','gbk',$teacher[$v['tid']]['name'])."\t";
+			}
+		
+			echo "\n";
+			
+			
+			
+			}	
+		die;
+			}
+		
+		
+		
+		
 		  if($_GET['s']){
 			 $where['name']=array('like',"'%".$_GET['s']."%'");
 			  }
@@ -394,6 +425,37 @@ class extendclassMod extends commonMod {
 		 $cid=intval($_GET['cid']);
         $this->alert_str($cid,'int');
 	 $info=model('extendclass')->course_info(array('id'=>$cid));
+	 
+	 if($_POST['signup']){
+		 $list=model('extendclass')->signup_course_list('A.uid='.$this->user['id'].' and B.cid='.$cid);	
+		if($list){
+		 $this->teacher=$teacher=model('extendclass')->teacher_list($where);
+			header("Content-Type: text/html; charset=utf-8");
+		header("Content-type:application/vnd.ms-execl");
+		header("Content-Disposition:filename=signup.xls");
+		echo iconv('utf-8','gbk','姓名')."\t";
+		echo iconv('utf-8','gbk','班级')."\t";
+		echo iconv('utf-8','gbk','联系号码')."\t";
+		echo iconv('utf-8','gbk','课程名称')."\t";
+		echo iconv('utf-8','gbk','任课老师')."\t";
+		echo "\n";
+		foreach($list as $k=>$v){
+			echo iconv('utf-8','gbk',$v['name'])."\t";
+			echo iconv('utf-8','gbk',$bj[$v['bj_id']]['grade'].'年级'.$bj[$v['bj_id']]['class'].'班')."\t";
+			echo iconv('utf-8','gbk',$v['mobile'])."\t";
+			echo iconv('utf-8','gbk',$v['title'])."\t";
+			echo iconv('utf-8','gbk',$teacher[$v['tid']]['name'])."\t";
+			}
+		
+			echo "\n";
+			
+			
+			
+			}	
+		die;
+			}
+	 
+	 
 	   	if($_FILES['file']['name']){
 		$return=module('editor_upload')->upload();
 			
