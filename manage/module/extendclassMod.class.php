@@ -330,10 +330,10 @@ class extendclassMod extends commonMod {
 			echo iconv('utf-8','gbk',$bj[$v['bj_id']]['grade'].'年级'.$bj[$v['bj_id']]['class'].'班')."\t";
 			echo iconv('utf-8','gbk',$v['mobile'])."\t";
 			echo iconv('utf-8','gbk',$v['title'])."\t";
-			echo iconv('utf-8','gbk',$teacher[$v['tid']]['name'])."\t";
+			echo iconv('utf-8','gbk',$teacher[$v['tid']]['name'])."\t";echo "\n";
 			}
 		
-			echo "\n";
+			
 			
 			
 			
@@ -444,10 +444,10 @@ class extendclassMod extends commonMod {
 			echo iconv('utf-8','gbk',$bj[$v['bj_id']]['grade'].'年级'.$bj[$v['bj_id']]['class'].'班')."\t";
 			echo iconv('utf-8','gbk',$v['mobile'])."\t";
 			echo iconv('utf-8','gbk',$v['title'])."\t";
-			echo iconv('utf-8','gbk',$teacher[$v['tid']]['name'])."\t";
+			echo iconv('utf-8','gbk',$teacher[$v['tid']]['name'])."\t";echo "\n";
 			}
 		
-			echo "\n";
+			
 			
 			
 			
