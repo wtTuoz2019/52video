@@ -30,7 +30,7 @@ class parentMod extends commonMod {
         
 		$this->classes=model('extendclass')->classes_list(array('uid'=>$this->config['uid']));
 		$course=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
-		$where=array('bid'=>$course['id'],'sid'=>$this->student['stid']);
+		$where=array('0'=>'A.bid='.$course['id'],'sid'=>$this->student['stid']);
 		$this->kclist=model('extendclass')->my_course_list($where);	
 		$this->display('parent_center.html');
 	}
