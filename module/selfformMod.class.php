@@ -96,7 +96,7 @@ class selfformMod extends commonMod
     	if(empty($fid)){
     		$this->error404();
     	}
-	if($_POST['code']!=$_COOKIE['mobilecode']){
+	if($_COOKIE['mobilecode']&&$_POST['code']!=$_COOKIE['mobilecode']){
 			
 			 $this->msg('手机验证码不对！',0);
 			}

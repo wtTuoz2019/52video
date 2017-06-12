@@ -324,13 +324,16 @@ class extendclassMod extends commonMod {
 		echo iconv('utf-8','gbk','联系号码')."\t";
 		echo iconv('utf-8','gbk','课程名称')."\t";
 		echo iconv('utf-8','gbk','任课老师')."\t";
+		echo iconv('utf-8','gbk','分数')."\t";
 		echo "\n";
 		foreach($list as $k=>$v){
 			echo iconv('utf-8','gbk',$v['name'])."\t";
 			echo iconv('utf-8','gbk',$bj[$v['bj_id']]['grade'].'年级'.$bj[$v['bj_id']]['class'].'班')."\t";
 			echo iconv('utf-8','gbk',$v['mobile'])."\t";
 			echo iconv('utf-8','gbk',$v['title'])."\t";
-			echo iconv('utf-8','gbk',$teacher[$v['tid']]['name'])."\t";echo "\n";
+			echo iconv('utf-8','gbk',$teacher[$v['tid']]['name'])."\t";
+			echo iconv('utf-8','gbk',$v['score'])."\t";
+			echo "\n";
 			}
 		
 			
@@ -430,7 +433,7 @@ class extendclassMod extends commonMod {
 		 $list=model('extendclass')->signup_course_list('A.uid='.$this->user['id'].' and B.cid='.$cid);	
 		if($list){
 		 $this->teacher=$teacher=model('extendclass')->teacher_list($where);
-			header("Content-Type: text/html; charset=utf-8");
+				header("Content-Type: text/html; charset=utf-8");
 		header("Content-type:application/vnd.ms-execl");
 		header("Content-Disposition:filename=signup.xls");
 		echo iconv('utf-8','gbk','姓名')."\t";
@@ -438,16 +441,18 @@ class extendclassMod extends commonMod {
 		echo iconv('utf-8','gbk','联系号码')."\t";
 		echo iconv('utf-8','gbk','课程名称')."\t";
 		echo iconv('utf-8','gbk','任课老师')."\t";
+		echo iconv('utf-8','gbk','分数')."\t";
 		echo "\n";
 		foreach($list as $k=>$v){
 			echo iconv('utf-8','gbk',$v['name'])."\t";
 			echo iconv('utf-8','gbk',$bj[$v['bj_id']]['grade'].'年级'.$bj[$v['bj_id']]['class'].'班')."\t";
 			echo iconv('utf-8','gbk',$v['mobile'])."\t";
 			echo iconv('utf-8','gbk',$v['title'])."\t";
-			echo iconv('utf-8','gbk',$teacher[$v['tid']]['name'])."\t";echo "\n";
+			echo iconv('utf-8','gbk',$teacher[$v['tid']]['name'])."\t";
+			echo iconv('utf-8','gbk',$v['score'])."\t";
+			echo "\n";
 			}
 		
-			
 			
 			
 			

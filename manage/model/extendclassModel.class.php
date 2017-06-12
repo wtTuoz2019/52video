@@ -128,7 +128,7 @@ class extendclassModel extends commonModel {
 			return $data;
 		}
 	public function signup_course_list($where){
-		$data=$this->model->table('student','A')->field('A.*,C.name as title,C.tid')->add_table('course_signup','B','A.id=B.sid')->add_table('course','C','B.cid=C.id')->where($where)->select();
+		$data=$this->model->table('student','A')->field('A.*,C.name as title,C.tid,B.score')->add_table('course_signup','B','A.id=B.sid')->add_table('course','C','B.cid=C.id')->where($where)->select();
 		
 			return $data;
 		}
