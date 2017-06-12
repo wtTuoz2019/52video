@@ -149,7 +149,7 @@
 			   
 			   ajaxpost({
 		name:'确定要取消报名此课程？',
-		url:"__URL__/cansesignup{$urltoken}",
+		url:"__URL__/cansesignup?{$urltoken}",
 		data:{id: '{$course.id}'},
 		tip:1,
 		success:function(msg){
