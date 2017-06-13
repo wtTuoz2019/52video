@@ -206,8 +206,10 @@ class extendclassMod extends commonMod {
 		  
 		   $url = __URL__ . '/student/page-{page}.html';
         $listRows = 20;
-        echo $limit=$this->pagelimit($url,$listRows);
-		
+         $limit=$this->pagelimit($url,$listRows);
+		if($_GET['s']){
+			 $where['name']=array('like',"'%".$_GET['s']."%'");
+			  }
 		 $this->list=model('extendclass')->student_list($where,$limit);
 		   $count=model('extendclass')->student_count($where);
 		   $this->page = $this->page($url, $count, $listRows);
@@ -493,8 +495,10 @@ class extendclassMod extends commonMod {
 				}
 		
 			}
-	 
-	  $this->list=model('extendclass')->signup_list('A.uid='.$this->user['id'].' and B.cid='.$cid);
+	 if($_GET['s']){
+			 $whereadd=" and A.name like '%".$_GET['s']."%'";
+			  }
+	  $this->list=model('extendclass')->signup_list('A.uid='.$this->user['id'].' and B.cid='.$cid.$whereadd);
 			 $this->show();
 		
 		}

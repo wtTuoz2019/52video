@@ -21,5 +21,11 @@ class forumModel extends commonModel
 			$this->model->table('forum_config')->data($data)->insert();	
 			}
 		}
+	public function topics_save($data){
+		$this->model->table('forum_topics')->data($data)->insert();	
+		
+		
+		}
 }
+
 ?>

@@ -5,7 +5,15 @@
 			</h4>
 		<div class="borderk postk" style="overflow:hidden;">
 				
-		
+		  <form method="get" style="display:inline-block; vertical-align:middle;">
+					<span style="padding-top:5px;">
+						学生姓名：
+					</span>
+					<input type="text" name="s" id="s" value="" />
+					<button class="query" style="position:static">
+						查询
+					</button>
+                    </form>
               <form  method="post"  enctype="multipart/form-data" id="form"> 
    	<input  type="text" placeholder="请选择文件" value=""/>
      <input class="shangc" type="file" name="file">  <a  type="submit" onClick="$('#form').submit();" >导入</a>

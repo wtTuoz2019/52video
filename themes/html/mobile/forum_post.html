@@ -32,10 +32,11 @@
 			帖子
 			<a href="javascript:history.back(-1);" class="exit">取消</a>
 		</div>
-		
+		<form action="" method="post" id="form" onSubmit="forvalue()" >
 		<div class="editk">
 		
 			<div contenteditable="true" id="text" onfocus="hide(this)" onblur="show(this)" class="biaoqing"><span>说点什么吧...</span></div>
+            <textarea id="content" name="content" style="display:none" reg="\S"  msg="内容必填"></textarea>
 			<div class="imgk">
 				<img src="__PUBLIC__/forum/mobile/img/smile.png" id="biaoqing"/>
 				<input type="file" id="imgs" />
@@ -54,51 +55,68 @@
 		<div class="fabu">
 			<button>发布</button>
 		</div>
-		
-		
+		</form>
+			 <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+                 <script type=text/javascript src="__PUBLIC__/js/duxui.js"></script>
+        <script type=text/javascript src="__PUBLIC__/dialog/jquery.artDialog.js?skin=default"></script>
+        <script type=text/javascript src="__PUBLIC__/dialog/plugins/iframeTools.js"></script>
+        <script type=text/javascript src="__PUBLIC__/js/common.js"></script>
 			<!-- 引入 jQuery 文件 -->
 	 	 <script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
 		<!-- 引入 Bootstrap 的 JS 文件 -->
-		 <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+	
 		<script src="__PUBLIC__/forum/mobile/js/main.js"></script>
 		<link href="__PUBLIC__/js/biaoqing/css/webiaoqing.css" rel="stylesheet" type="text/css">
 		<script src="__PUBLIC__/js/biaoqing/js/webiaoqin.js" ></script> 
-<style>
-	
-</style>
 
 <script>
 $('#biaoqing').click(function(){
 	$('#page_emotion').toggle();
 });
+function forvalue(){
+	if($('.biaoqing').html()=="<span>说点什么吧...</span>"){
+	}else{
 	
-</script>
-<script>
-		
+	$('#content').val($('#text').html());
+	}
+	
+	}
+
+	//提交表单
+var win = art.dialog.open.origin;
+saveform({
+	success:function(msg){
+		tip({msg:msg});
+	 window.location.href='__URL__/index?{$urltoken}';
+    art.dialog.close();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);	
 	  var img;
 	  
 	  $('#imgs').change(function() {
                     var file = this.files[0];
-					
 					img=file;
                     var r = new FileReader();
                     r.readAsDataURL(file);
 					$('#imgDiv').append('<div class="userimgk loading"><img id="" src="__PUBLIC__/images/timg.gif" alt="" /></div>');
 					
                     $(r).load(function() {
-						var html='<div class="userimgk"><img id="" src="' + this.result + '" alt="" /><span onclick="delimg(this)">X</span></div>';
-						setTimeout(function(){
-							$('.loading').remove();
 						
-                        	$('#imgDiv').append(html);
-							
-						},1000);
-						
-						 //imgID.onload = function() {
-//							
-//							
-//       					}
-						
+						  $.post("__URL__/upload", { img: this.result},function(ret){
+							  if(ret.status=='1'){
+								  $('.loading').remove();
+								  	var html='<div class="userimgk"><img id="" src="'+ret.message.thumb+'" alt="" /><span onclick="delimg(this)">X</span><input type="hidden" value="'+ret.message.pic+'" name="pic[]"><input type="hidden" value="'+ret.message.thumb+'" name="thumb[]"></div>';
+								  $('#imgDiv').append(html);
+								  }else{
+									  
+									   tip({msg:ret.message});
+									  }
+							  
+						  },'json')
+					
                     })
          })
 	  

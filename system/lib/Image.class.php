@@ -175,6 +175,16 @@ class Image {
 			}
 			imagedestroy($thumbImg);
 			imagedestroy($srcImg);
+			
+			require(CP_CORE_PATH . '/../ext/aliyun-oss-php-sdk-master/samples/Common.php');
+	$ossClient = Common::getOssClient();
+		if (is_null($ossClient)) exit(1);
+	$bucket = Common::getBucketName();
+	$temp=explode('upload',$destFileName);
+	$object='upload'.$temp[1];
+	
+	 $ossClient->uploadFile($bucket, $object, $thumbname);
+			
 			return $thumbname;
          }
          return false;
