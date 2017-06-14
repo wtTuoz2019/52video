@@ -131,7 +131,7 @@ class commonMod
 		}
 		$data = json_decode($user_info, true);
 		
-		var_dump($data );die;
+	
 		if(!$data['openid']){
 				$this->msg('授权出错', 0);	
 			}
