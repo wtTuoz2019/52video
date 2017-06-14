@@ -125,7 +125,7 @@ class contentMod extends commonMod
 		
 			$data=$wetch->getUserInfo($this->userinfo['openid']);
 			if($data){
-			if($data['subscribe_time']){
+			if(!$data['subscribe_time']){
 			$res['openid']=$data['openid'];
 		$res['nicename']=$data['nickname'];
 		$res['headimgurl']=$data['headimgurl'];
