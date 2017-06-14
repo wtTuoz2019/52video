@@ -92,9 +92,9 @@ class commonMod
 	
 	public  function getuserinfo(){
 		
-	var_dump($this->wxuser);die;
+	
 		if(MOBILE){ 
-			if(!$_SESSION['uid']){
+			if(1){
 			if($this->wxuser&&$this->wxuser['oauth']){
 			 if (!isset($_GET['code']) ) {
 			  $customeUrl = 'http://'.$this->config['MOBILE_DOMAIN'] . $_SERVER['REQUEST_URI'];
@@ -130,6 +130,8 @@ class commonMod
 			$this->msg($user_info->errmsg, 0);
 		}
 		$data = json_decode($user_info, true);
+		
+		var_dump($data );die;
 		if(!$data['openid']){
 				$this->msg('授权出错', 0);	
 			}
