@@ -117,7 +117,7 @@ class contentMod extends commonMod
 			$Wechat2_options = array(
             'appid' => $this->config['kfappid'],
             'appsecret' =>$this->config['kfappsecret'],
-            'access_token' =>getcomponent_access_token($this->config['kfappid'],$this->config['kfappsecret'])
+            'access_token' =>getauthorizer_access_token($this->config['kfappid'],$this->config['kfappsecret'],$this->wxuser['authorizer_appid'],$this->wxuser['authorizer_refresh_token'],$this->config['uid'])
         );
 		
 	

@@ -63,7 +63,7 @@ function getcomponent_access_token($appid,$appsecret){
 	}
 	return $component_access_token;
 	}
-function getauthorizer_access_token($appid,$authorizer_appid,$refresh_token_value,$uid){
+function getauthorizer_access_token($appid,$appsecret,$authorizer_appid,$refresh_token_value,$uid){
 	
 	
 	 $authorizer_access_token=S('authorizer_access_token_'.$uid);
