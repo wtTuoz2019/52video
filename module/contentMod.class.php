@@ -113,7 +113,7 @@ class contentMod extends commonMod
 		
 	
 		if($info['gzstatus']){
-			if($this->wxuser&&$this->wxuser['oauth']){
+			if($this->wxuser&&$this->wxuser['oauth']&&$this->wxuser['gzurl']){
 			$Wechat2_options = array(
             'appid' => $this->config['kfappid'],
             'appsecret' =>$this->config['kfappsecret'],
@@ -121,21 +121,11 @@ class contentMod extends commonMod
         );
 		
 	
-        $wetch = new Wechat2($Wechat2_options);
-		var_dump($this->userinfo);
-			var_dump($wetch->getUserInfo($this->userinfo['openid']));die;
-			}
-		if(!$this->userinfo['subscribe_time']){
-			$access_token=getAccessToken($this->config['appid'],$this->config['appsecret']);
-			$user_info_url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$this->userinfo['openid'].'&lang=zh_CN';
-		//转成对象
-		$user_info = file_get_contents($user_info_url);
-		if (isset($user_info->errcode)) {
-			$this->msg($user_info->errmsg, 0);
-		}
-		$data = json_decode($user_info, true);
+      		 $wetch = new Wechat2($Wechat2_options);
 		
-		if($data['subscribe_time']){
+			$data=$wetch->getUserInfo($this->userinfo['openid']);
+			if($data){
+			if($data['subscribe_time']){
 			$res['openid']=$data['openid'];
 		$res['nicename']=$data['nickname'];
 		$res['headimgurl']=$data['headimgurl'];
@@ -148,11 +138,13 @@ class contentMod extends commonMod
 		$res['groupid']=$data['groupid'];
 		
 		$uid=model('comment')->wechat_add($res);
-		}else{
-			
-			
+			}else{
+				$this->redirect($this->wxuser['gzurl']);		
+				
+				}
 			}
-		}
+			}
+	
 			
 			}
 	
