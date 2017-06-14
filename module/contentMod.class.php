@@ -123,7 +123,7 @@ class contentMod extends commonMod
 		echo $url='https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_list?component_access_token='.getcomponent_access_token($this->config['kfappid'],$this->config['kfappsecret']);
 		$data=array('component_appid'=>$this->config['kfappid'],'offset'=>0,'count'=>100);
 	
-		var_dump(curlPost($url,$data));die;
+		var_dump(curlPost($url,json_encode($data)));die;
         $wetch = new Wechat2($Wechat2_options);
 		var_dump($this->userinfo);
 			var_dump($wetch->getUserInfo($this->userinfo['openid']));die;
