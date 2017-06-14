@@ -324,6 +324,8 @@ class liveMod extends commonMod
 			$_POST['field_lists']=serialize($_POST['field_lists']);
 			$_POST['auditfield_lists']=serialize($_POST['auditfield_lists']);
     	//保存内容信息
+		
+		
     	$_POST['aid']=model('live')->add_save($_POST);
     	model('live')->add_content_save($_POST);
         /*hook*/
@@ -360,6 +362,7 @@ class liveMod extends commonMod
 		if(!$_POST['csid']){
 			$this->msg('学校通道必选！',0);
 			}
+	
         $status=model('live')->edit_save($_POST);
         model('live')->edit_content_save($_POST);
 		$time= $_POST['starttime'];

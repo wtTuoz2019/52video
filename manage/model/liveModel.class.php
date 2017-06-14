@@ -138,6 +138,7 @@ class liveModel extends commonModel
         }
         $data['urltitle']=$this->get_urltitle($data['title'],$data['urltitle'],$data['aid']);
         $data['taglink']=intval($data['taglink']);
+		
         return $data;
     }
 
@@ -212,6 +213,7 @@ class liveModel extends commonModel
         //格式化部分字段
         $data=$this->common_data_save($data);
         //录入数据
+		
         $aid=$this->model->table('content')->data($data)->where('aid='.$data['aid'])->update(); //录入基本信息	
 			if($data['functions']){
 			foreach($data['functions'] as $key=>$val){

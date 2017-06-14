@@ -38,18 +38,18 @@
 		<img src="{$sys.imageurl}{$forum.logo}" />
 			<div class="userdata">
 				<h4>{$forum.forumname}</h4>
-				<span>372帖子</span>
-				<span>5000访问</span>
+                <span>112帖子</span>
+                <span>154654访问量</span>
 			</div>
 		</div>
 		<div class="dcbox">
 			<div class="dynamick">
 				<div class="left userhead">
-					<img src="img/headimg.jpg"/> 
+					<img src="__PUBLIC__/forum/mobile/img/headimg.jpg"/> 
 				</div>
 				<div class="right usercontent">
 					<p class="username">waiting</p>
-					<p>教授说的真好！</p>
+					<p class="contents">日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此前坊间流传日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此前坊间流传</p>
 					<div class="imgs">
 						<img src="" alt="" />
 						<img src="" alt="" />
@@ -59,19 +59,23 @@
 					<div class="time_cz">
 						<span>2016-07-06&nbsp;&nbsp;18:44:06</span>
 						
-						<div class="current_r">
-							<button onclick="zan(this)">赞</button>
-							<button onclick="dreply(this)">评论</button>
-						</div>
-						
-						<img src="img/comicon.png" id="reply" class="reply"/>
+						<div class="current">
+                        	<span class="date_zan">
+                            	<i></i>
+                                <em>赞</em>
+                            </span>
+                            <span class="date_pl">
+                            	<i></i>
+                                <em>评论</em>
+                            </span>
+                        </div>
 					</div>
 				</div>
 				
 				<div class="zan_reply">
 					<div class="dianzan">
 						<div class="zanimg">
-							<img src="img/zan.png" />
+							<img src="__PUBLIC__/forum/mobile/img/zan.png" />
 						</div>
 						<div class="zanhead">
 							
@@ -79,41 +83,44 @@
 					</div>
 					<div class="comment">
 						<div class="pingimg">
-							<img src="img/ping.png" />
+							<img src="__PUBLIC__/forum/mobile/img/ping.png" />
 						</div>
 						
 					</div>
 				</div>
+                
+                <div class="clear"></div>
 			</div>
 			
 			<div class="dynamick">
 				<div class="left userhead">
-					<img src="img/headimg.jpg"/> 
+					<img src="__PUBLIC__/forum/mobile/img/headimg.jpg"/> 
 				</div>
 				<div class="right usercontent">
 					<p class="username">waiting</p>
-					<p>
-						日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此前坊间流传......
-						<a href="javascript:;">查看全文</a>
-					</p>
+					<p class="contents">日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此前坊间流传</p>
 					<div class="imgs">
 						
 					</div>
 					<div class="time_cz">
 						<span>2016-07-06&nbsp;&nbsp;18:44:06</span>
 						
-						<div class="current_r" id="zp">
-							<button onclick="zan(this)">赞</button>
-							<button onclick="dreply(this)">评论</button>
-						</div>
-						
-						<img src="img/comicon.png" id="reply" class="reply"/>
+						<div class="current">
+                        	<span class="date_zan">
+                            	<i></i>
+                                <em>赞</em>
+                            </span>
+                            <span class="date_pl">
+                            	<i></i>
+                                <em>评论</em>
+                            </span>
+                        </div>
 					</div>
 				</div>
 				<div class="zan_reply">
 					<div class="dianzan">
 						<div class="zanimg">
-							<img src="img/zan.png" />
+							<img src="__PUBLIC__/forum/mobile/img/zan.png" />
 						</div>
 						<div class="zanhead">
 							<img src="img/headimg.jpg"/><img src="img/headimg.jpg"/>
@@ -121,14 +128,12 @@
 					</div>
 					<div class="comment">
 						<div class="pingimg">
-							<img src="img/ping.png" />
+							<img src="__PUBLIC__/forum/mobile/img/ping.png" />
 						</div>
 						<div class="pinghead">
 							<img src="img/headimg.jpg"/>
 							<div>
-								<p>
-									waiting
-								</p>
+								<p class="uname">waiting</p>
 								<p>
 									等等
 								</p>
@@ -137,9 +142,7 @@
 						<div class="pinghead">
 							<img src="img/headimg.jpg"/>
 							<div>
-								<p>
-									waiting
-								</p>
+								<p class="uname">waiting</p>
 								<p>
 									等等
 								</p>
@@ -147,6 +150,7 @@
 						</div>
 					</div>
 				</div>
+                <div class="clear"></div>
 			</div>
 		</div>
 		
@@ -163,5 +167,15 @@
 		<!-- 引入 Bootstrap 的 JS 文件 -->
 	
 		<script src="__PUBLIC__/forum/mobile/js/main.js"></script>
+        
+        <script>
+        	$(document).ready(function() {
+				$(window).scroll(function() {if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+						$('.dcbox').append('<div class="dynamick"><div class="left userhead"><img src="__PUBLIC__/forum/mobile/img/headimg.jpg"/></div><div class="right usercontent"><p class="username">waiting</p><p class="contents">日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此前坊间流传日前，在线音乐市场波澜频起，小编辗转拿到几张酷狗音乐PC端界面截图，截图中界面与用户过去熟悉的酷狗音乐传统界面大不相同，似乎印证了此<div class="imgs"><img src="" alt="" /></div><div class="time_cz"><span>2016-07-06&nbsp;&nbsp;18:44:0<div class="current"><span class="date_zan"><i></i><em>赞</em></span><span class="date_pl"><i></i><em>评论</em></span></div></div></div><div class="zan_reply"><div class="dianzan"><div class="zanimg"><img src="__PUBLIC__/forum/mobile/img/zan.png" /></div><div class="zanhead"></div></div><div class="comment"><div class="pingimg"><img src="__PUBLIC__/forum/mobile/img/ping.png" /></div></div></div><div class="clear"></div></div>');
+						loading();
+					}
+				});
+			});
+        </script>
 	</body>
 </html>

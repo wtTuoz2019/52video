@@ -17,13 +17,16 @@ a:focus,a:hover{
 .right{
 	float: right;
 }
+.clear{
+	clear:both;
+}
 .dynamichead{
-	height: 180px;
+	height: 280px;
 	background-image: url(../img/dynamicbg.jpg);
 	background-repeat: no-repeat;
 	background-size:100% 100%;
 	position: relative;
-	padding-top: 80px;
+	padding-top: 85px;
 	margin-bottom: 40px;
 }
 .dynamichead .userdata{
@@ -32,9 +35,9 @@ a:focus,a:hover{
 	right: 180px;
 }
 .dynamichead .userdata h4{
-	font-size: 35px;
-	color: #fff;
-	font-weight: bold;
+	font-size: 48px;
+	color: #00A5FB;
+	font-weight:normal;
 	margin-bottom: 10px;
 }
 .dynamichead .userdata span{
@@ -44,7 +47,7 @@ a:focus,a:hover{
 	float: right;
 }
 .dynamichead fieldset{
-	width:325px;
+	width:420px;
 	margin: 0 auto;
 	border: 1px solid #429DDC;
 	clear: both;
@@ -54,18 +57,19 @@ a:focus,a:hover{
 .dynamichead fieldset input{
 	float: left;
 	border: 0;
-	height: 40px;
-	width: 263px;
+	height: 55px;
+	width: 343px;
 }
 .dynamichead fieldset button{
 	border: 0;
-	height: 40px;
-	width: 60px;
+	height: 55px;
+	width: 75px;
 	background: #429DDC;
 	float: left;
 }
 .dynamichead fieldset button>span{
 	color: #fff;
+	font-size:22px;
 }
 .dynamichead>img{
 	position: absolute;
@@ -73,15 +77,15 @@ a:focus,a:hover{
 	width: 110px;
 	right: 45px;
 	border: 2px solid #A0A0A0;
-	top: 115px;
+	top: 215px;
 }
 .dcbox{
 	margin-bottom: 150px;
 }
 .dynamick{
 	overflow: hidden;
-	padding: 20px 15px;
-	border-bottom: 1px solid #C5C5C5;
+	padding: 30px 25px;
+	border-bottom: 1px solid #e6e5e5;
 }
 .dynamick:last-child{
 	border: 0;
@@ -107,6 +111,9 @@ a:focus,a:hover{
 	font-size: 25px;
 	overflow: hidden;
 }
+.contents div>a>span{
+	font-size:22px;
+}
 .dynamick .usercontent .username{
 	color: #00a0ff;
 	margin-bottom: 20px;
@@ -117,14 +124,15 @@ a:focus,a:hover{
 	overflow: hidden;
 }
 .dynamick .usercontent .imgs>img{
-	width: 31%;
+	width: 150px;
 	float: left;
 	margin-right: 2%;
+	height:150px;
 	margin-top: 10px;
 }
 .dynamick .usercontent .time_cz{
 	position: relative;
-	margin-top: 5px;
+	margin-top: 20px;
 }
 .dynamick .usercontent .time_cz>span{
 	color: #737373;
@@ -136,44 +144,13 @@ a:focus,a:hover{
 	top: 3px;
 	cursor: pointer;
 }
-.dynamick .usercontent .time_cz .current_r{
-	position: absolute;
-	top: -8px;
-	right: 80px;
-	background: #4B5154;
-	width: 180px;
-	height: 50px;
-	border-radius: 5px;
-	display: none;
-}
-.dynamick .usercontent .time_cz .current_r button{
-	background: transparent;
-	border: 0;
-	color: #fff;
-	float: left;
-	width: 50%;
-	height: 50px;
-	padding-left: 30px;
-	font-size: 21px;
-	background-image: url(../img/commenticon.png);
-	background-repeat: no-repeat;
-	background-size: 30px 30px;
-	background-position: 8px 9px;
-}
-.dynamick .usercontent .time_cz .current_r button:first-child{
-	background-image: url(../img/zanicon.png);
-	background-repeat: no-repeat;
-	background-position: 12px 9px;
-	border-right: 1px solid #373D40;
-}
 #foot{
 	position: fixed;
 	bottom: 0;
-	background-image: url(../img/foot.png);
-	height: 130px;
+	height: 110px;
 	width: 100%;
-	background-repeat:no-repeat;
-	background-size: 100% 100%;
+	border-top:1px solid #BDC0C2;
+	background:#fff;
 }
 #foot a{
 	display: inline-block;
@@ -181,16 +158,17 @@ a:focus,a:hover{
 	position: absolute;
 	background-repeat: no-repeat;
 	padding-left: 40px;
-	color: #fff;
+	color: #b1b1b1;
 	text-align: right;
-	background-position: 10px 5px;
-	top: 55px;
+	background-position: 10px 0;
+	top: 30px;
 	font-size: 33px;
 }
 #foot a.search{
 	left: 10%;
 	background-image: url(../img/search.png);
-	background-size: 40px 40px;
+	background-size: 45px 45px;
+	background-position: 10px 3px;
 }
 #foot a.home{
 	background-image: url(../img/home.png);
@@ -202,12 +180,14 @@ a:focus,a:hover{
 }
 #foot a.fabu{
 	margin: 0;
-    height: 85px;
-    width: 85px;
+    height: 80px;
+    width: 80px;
     padding: 0;
     border-radius: 50%;
-    top: 12px;
+    top: 15px;
     left: 44%;
+	background-position: center center;
+	background-image: url(../img/fabu.png);
 }
 
 /*我的页面*/
@@ -293,7 +273,7 @@ a:focus,a:hover{
 }
 
 .minek{
-	padding-bottom: 150px;
+	padding-bottom: 110px;
 	background: #E8E8E8;
 }
 .minek>div{
@@ -302,35 +282,14 @@ a:focus,a:hover{
 .minek>div.active{
 	display: block;
 }
-#post .dynamick{
+.dynamick{
 	padding: 30px 5%;
 	background: #fff;
 	margin-bottom: 10px;
 }
-#like{
-	padding: 40px;
-	padding-bottom: 0;
-}
-#like .dynamick{
-	padding:  15px;
-	background: #fff;
-	border-radius: 5px;
-	border: 2px solid #BCBCBC;
-	margin-bottom: 30px;
-}
+
 #like .dynamick p.username{
 	position: relative;
-}
-#like .dynamick p.username>span{
-	position: absolute;
-	right: 0;
-	font-weight: normal;
-	color: #F17878;
-	top: -2px;
-	font-size: 20px;
-}
-#like .dynamick p.username>span>img{
-	margin-right: 10px;
 }
 
 .posthead{
@@ -404,7 +363,7 @@ a:focus,a:hover{
 .dynamick .zan_reply .dianzan,.dynamick .zan_reply .comment{
 	overflow: hidden;
 	padding: 0 10px;
-	background: #EAEAEA;
+	background: #f3f3f3;
 }
 .dynamick .zan_reply .dianzan .zanimg>img,.dynamick .zan_reply .comment .pingimg>img{
 	height: 40px;
@@ -416,8 +375,7 @@ a:focus,a:hover{
 	float: left;
 }
 .dynamick .zan_reply .dianzan .zanhead,.dynamick .zan_reply .comment .pinghead{
-	margin-left: 30px;
-	width: 495px;
+	width: 480px;
 	float: right;
 }
 .dynamick .zan_reply .dianzan .zanhead>img,.dynamick .zan_reply .comment .pinghead>img{
@@ -500,4 +458,80 @@ a:focus,a:hover{
 	right:0;
 	text-align:center;
 	line-height:30px;
+}
+.time_cz .current{
+	float:right;
+	font-size:19px;
+}
+.time_cz .current2{
+	float:right;
+	font-size:21px;
+}
+.time_cz .current span,.time_cz .current2 span{
+	display:inline-block;
+}
+.time_cz .current span i,.time_cz .current2 span i{
+	width:24px;
+	height:20px;
+	display:inline-block;
+	background-repeat:no-repeat;
+	background-position:center center;
+	position:relative;
+	top:3px;
+}
+.time_cz .current .date_pl i{
+	background-image:url(../img/data_pl.png);
+}
+.time_cz .current .date_zan i{
+	background-image:url(../img/data_zan.png);
+}
+.time_cz .current2 .date_pl2 i{
+	background-image:url(../img/data_pl2.png);
+}
+.time_cz .current2 .date_zan2 i{
+	background-image:url(../img/data_zan2.png);
+}
+.time_cz .current .date_zan,.time_cz .current2 .date_zan2{
+	margin-right:20px;
+}
+.time_cz .current em{
+	font-style: normal;
+	color:#9aa1c0;
+}
+.time_cz .current2 em{
+	font-style: normal;
+	color:#72c9fd;
+}
+.input_box{
+	position:relative;
+	width:85%;
+	float:right;
+	margin-top:20px;
+}
+.input_box a{
+	position:absolute;
+	width:80px;
+	height:48px;
+	background:#2F904D;
+	color:#fff;
+	border-radius:0 3px 3px 0;
+	font-size:20px;
+	line-height:48px;
+	text-align:center;
+	right:1px;
+	top:1px;
+}
+.input_box textarea{
+	padding:10px;
+	height:50px;
+	    resize: none;
+	border: 1px solid #c6c8ce;
+	border-radius: 3px;
+	width:100%;
+	box-shadow: 0 0 8px rgba(182, 195, 214, .6) inset, 0 1px 1px #fff;
+	font-size:20px;
+}
+.loading{
+	text-align:center;
+	font-size:20px;
 }

@@ -85,8 +85,8 @@ class wechatMod extends commonMod {
 		
 		$uid=$this->uid;
 		$token=$this->token;
-		$this->actionname='关注回复';
-		$info=model('wechat')->wechat_info('areply',$uid);//微信信息
+		$this->actionname='关注地址';
+		$info=model('wechat')->wechat_info('wxuser',$uid);//微信信息
 		$this->assign('token',$token);
 		$this->assign('info',$info);
 		
@@ -101,8 +101,7 @@ class wechatMod extends commonMod {
 		
 		$_POST['uid']=$this->uid;
 		$_POST['token']=$this->token;
-		if(!$_POST['home']) $_POST['home']=0;
-		$add=model('wechat')->save('areply',$_POST);
+		$add=model('wechat')->save('wxuser',$_POST);
 		
 		if($add!=='FALSE'){
 			$this->msg('保存成功！',1);

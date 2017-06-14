@@ -112,6 +112,49 @@ class contentMod extends commonMod
         $info=model('content')->model_content($info['aid'],$this->category['expand']);
 		
 	
+		if($info['gzstatus']){
+			if($this->wxuser&&$this->wxuser['oauth']){
+			$Wechat2_options = array(
+            'appid' => $this->config['kfappid'],
+            'appsecret' =>$this->config['kfappsecret'],
+            'access_token' =>getcomponent_access_token($this->config['kfappid'],$this->config['kfappsecret'])
+        );
+		var_dump($Wechat2_options);
+        $wetch = new Wechat2($Wechat2_options);
+		var_dump($wetch);
+			var_dump($wetch->getUserInfo($this->userinfo['openid']));die;
+			}
+		if(!$this->userinfo['subscribe_time']){
+			$access_token=getAccessToken($this->config['appid'],$this->config['appsecret']);
+			$user_info_url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$this->userinfo['openid'].'&lang=zh_CN';
+		//转成对象
+		$user_info = file_get_contents($user_info_url);
+		if (isset($user_info->errcode)) {
+			$this->msg($user_info->errmsg, 0);
+		}
+		$data = json_decode($user_info, true);
+		
+		if($data['subscribe_time']){
+			$res['openid']=$data['openid'];
+		$res['nicename']=$data['nickname'];
+		$res['headimgurl']=$data['headimgurl'];
+		$res['sex']=$data['sex'];
+		$res['city']=$data['city'];
+		$res['country']=$data['country'];
+		$res['province']=$data['province'];
+		$res['subscribe_time']=$data['subscribe_time'];
+		$res['unionid']=$data['unionid'];
+		$res['groupid']=$data['groupid'];
+		
+		$uid=model('comment')->wechat_add($res);
+		}else{
+			
+			
+			}
+		}
+			
+			}
+	
 		
 		if($info['activity_id']){
 			$this->activity=$activity=model('content')->model_content($info['activity_id']);

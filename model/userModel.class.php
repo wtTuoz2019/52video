@@ -127,6 +127,12 @@ class userModel extends commonModel
         return $this->model->table('wxuser')->where(array('token'=>$token))->find();
     }
 	
+	 public function wxuserdefault()
+    {
+		
+        return $this->model->table('wxuser')->where(array('uid'=>1))->find();
+    }
+	
 	  //添加直播预告
     public function addlive($data)
     {

@@ -2,37 +2,24 @@
  <script src="__PUBLICURL__/data/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
 <div id="autoreply">
 			<h4>
-					关注回复
+					关注地址
 			</h4>
             <form action="__URL__/save_reply/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
 			<div class="replycontent">
 				<p>
-					关注回复内容：
+					关注url：
 				</p>
-				<textarea id="Hfcontent" name="content"  class="px">{$info.content}</textarea>
+				<textarea id="Hfcontent" name="gzurl"  class="px">{$info.gzurl}</textarea>
 				<p class="tishi">
-					注意：字数限额1000字，超出则无法发送！
+					注意：引导关注的url
 				</p>
 				<hr />
-				<p>
-					关联文章：
-				</p>
-				<p>
-					 <input name="home" type="checkbox"  value="1" <?php if($info['home']==1) echo 'checked';?>  /> 若想关注回复文章，此项必须勾选
-				</p>
+			
 				<div>
-					<p>
-						关联文章：
-
-					</p>
-					
-                    <input type="input" name="url" value="{$info.url}" id="url" class="px" >  
-					<a class="choose"  onClick="content_add('url','contentid')">
-								选择
-					</a>
-                    <input type="input" name="contentid" value="{$info.contentid}" id="contentid" class="px" style="width:415px"  hidden>
+				
+                 
 				</div>
-                <input name="id" type="hidden" value="{$info.id}" />
+               
 				<button id="save">
 						保存
 				</button>
@@ -43,12 +30,13 @@
 <script>
 //提交表单
 
-  function content_add(domid,domida){
-			
-		art.dialog.data('domid', domid);
-		art.dialog.data('domida', domida);
-		art.dialog.open('__URL__/menu_add_content',{lock:true,title:'关联文章',width:600,height:400,yesText:'关闭',background: '#000', top:'5%',opacity: 0.45});
-	
-        
-		}  
+saveform({
+	success:function(msg){
+	tip({msg:msg});
+ window.location.reload();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
         </script>

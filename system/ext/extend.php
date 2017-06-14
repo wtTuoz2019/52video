@@ -55,6 +55,7 @@ function getcomponent_access_token($appid,$appsecret){
 				'component_verify_ticket'=>$component_verify_ticket);
 	   
 	$json=curlPost($url_get,json_encode($array));
+	
 	$component_access_token=$json['component_access_token'];
 	S('component_access_token',$component_access_token,$json['expires_in']-1);
 	
