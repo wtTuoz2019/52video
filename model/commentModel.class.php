@@ -180,6 +180,11 @@ class  commentModel extends commonMod
     }
 
     public function wechat_add($data){
+		if($data['unionid']){
+			if($this->model->table('user')->where("unionid='".$data['unionid']."'")->find()){
+				return $this->model->table('user')->where("unionid='".$data['unionid']."'")->data($data)->update();	
+				}
+			}
 		if($this->model->table('user')->where("openid='".$data['openid']."'")->find()){
 			
 			return $this->model->table('user')->where("openid='".$data['openid']."'")->data($data)->update();	
