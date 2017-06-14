@@ -119,9 +119,8 @@ class contentMod extends commonMod
             'appsecret' =>$this->config['kfappsecret'],
             'access_token' =>getcomponent_access_token($this->config['kfappid'],$this->config['kfappsecret'])
         );
-		var_dump($Wechat2_options);
         $wetch = new Wechat2($Wechat2_options);
-		var_dump($wetch);
+		var_dump($this->userinfo);
 			var_dump($wetch->getUserInfo($this->userinfo['openid']));die;
 			}
 		if(!$this->userinfo['subscribe_time']){
