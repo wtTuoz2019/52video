@@ -2446,8 +2446,8 @@ class Wechat2
      */
     public function getUserInfo($openid, $lang = 'zh_CN')
     {
-		var_dump($this->access_token );die;
-        if (!$this->access_token && !$this->checkAuth()) return false;
+		
+        if (!$this->access_token ) return false;
         $result = $this->http_get(self::API_URL_PREFIX . self::USER_INFO_URL . 'access_token=' . $this->access_token . '&openid=' . $openid . '&lang=' . $lang);
         if ($result) {
             $json = json_decode($result, true);
