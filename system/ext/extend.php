@@ -68,7 +68,7 @@ function getauthorizer_access_token($appid,$appsecret,$authorizer_appid,$refresh
 	
 	 $authorizer_access_token=S('authorizer_access_token_'.$uid);
 	if(!$authorizer_access_token){
-	$url_get='https:// api.weixin.qq.com /cgi-bin/component/api_authorizer_token?component_access_token='.getcomponent_access_token($appid,$appsecret);
+	$url_get='https:/api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token='.getcomponent_access_token($appid,$appsecret);
 	$array=array('component_appid'=>$appid,
 				'authorizer_appid'=>$authorizer_appid,
 				'authorizer_refresh_token'=>$refresh_token_value);
