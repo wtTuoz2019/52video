@@ -124,7 +124,7 @@ class contentMod extends commonMod
       		 $wetch = new Wechat2($Wechat2_options);
 		
 			$data=$wetch->getUserInfo($this->userinfo['openid']);
-			var_dump($data);die;
+		
 			if($data){
 			if($data['subscribe_time']){
 			$res['openid']=$data['openid'];
