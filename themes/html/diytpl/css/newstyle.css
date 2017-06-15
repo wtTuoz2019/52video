@@ -1,0 +1,78 @@
+*{
+	margin:0;
+	padding:0;
+	font-family:"微软雅黑";
+	max-height:9999px;
+}
+ul,li,ol{
+	list-style:none;
+}
+a{
+	text-decoration:none;
+}
+#carousel{
+	overflow: hidden;
+    position: relative;
+	height:400px;
+}
+#carousel div.swiper-wrapper{
+	overflow:hidden;
+	width:2250px;
+}
+#carousel div.swiper-wrapper>div{
+	float:left;
+	height:400px;
+}
+#carousel div.swipe-wrap>div>img{
+	width:100%;
+	height:100%;
+}
+#carousel ul{
+	position:absolute;
+	overflow:hidden;
+	bottom:15px;
+	left:315px;
+}
+#carousel ul li{
+	height:25px;
+	width:25px;
+	border-radius:50%;
+	float:left;
+	margin-left:10px;
+	background:#B2B2B2;
+}
+#carousel ul li:first-child{
+	margin-left:0;
+}
+#carousel ul li.active{
+	background:#97A7CA;
+}
+.splist{
+	font-size:25px;
+	height:55px;
+	line-height:55px;
+	background:#E5E5E5;
+	color:#5371b1;
+	padding-left:30px;
+}
+.wraper{
+	padding:20px 30px;
+}
+.wraper .orderList li{
+	padding:15px;
+	overflow:hidden;
+}
+.wraper .orderList li>div{
+	float:left;
+}
+.wraper .orderList li>div.picture{
+	width:270px;
+	height:165px;
+}
+.wraper .orderList li>div.content{
+	
+}
+.wraper .orderList li>div.picture img{
+	height:100%;
+	width:100%;
+}

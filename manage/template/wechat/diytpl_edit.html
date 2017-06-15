@@ -26,6 +26,7 @@
 			<h4>
 				模版编辑
 			</h4>
+            <form action="__URL__/diytpl_edit_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
 			<div class="modelk">
 				<table>
 					<tr>
@@ -81,20 +82,20 @@
                                   <div class="mbk">
                                   
                                   <div data-dismiss="modal" >
-                                    <input checked class="radio" type="radio" name="tplid" value="模板1" <?php if($info['tplid']==101){echo 'checked';} ?>>模板1
+                                    <input checked class="radio" type="radio" name="tplid" value="101" <?php if($info['tplid']==101){echo 'checked';} ?>>模板1
                                         <img src="__PUBLICURL__/home/images/1.jpg"  width="140" height="266"  class="img" />
                                         </div>
                                         <div data-dismiss="modal">
-                                        <input class="radio gap" type="radio" name="tplid" value="模板2" <?php if($info['tplid']==102){echo 'checked';} ?>>模板2
+                                        <input class="radio gap" type="radio" name="tplid" value="102" <?php if($info['tplid']==102){echo 'checked';} ?>>模板2
                                        <img src="__PUBLICURL__/home/images/2.jpg"  width="140" height="266"  class="img" />
                                        </div>
                                        <div data-dismiss="modal">
-                                       <input class="radio gapo" type="radio" name="tplid" value="模板3" <?php if($info['tplid']==103){echo 'checked';} ?>>模板3
+                                       <input class="radio gapo" type="radio" name="tplid" value="103" <?php if($info['tplid']==103){echo 'checked';} ?>>模板3
                                        <img src="__PUBLICURL__/home/images/3.jpg"  width="140" height="266"  class="img" />
                                        </div>
                                        <div data-dismiss="modal">
 
-<input class="radio gapo" type="radio" name="tplid" value="模板4" <?php if($info['tplid']==104){echo 'checked';} ?>>模板4
+<input class="radio gapo" type="radio" name="tplid" value="104" <?php if($info['tplid']==104){echo 'checked';} ?>>模板4
                                        <img src="__PUBLICURL__/home/images/4.jpg"  width="140" height="266"  class="img" />
                                        </div>
                                       
@@ -116,7 +117,8 @@
 					保存
 				</button>
 			</div>
-		</div>
+		</form>
+        </div>
           <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
             <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
 <script>

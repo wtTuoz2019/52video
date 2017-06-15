@@ -244,6 +244,10 @@ class selfformModel extends commonModel {
 		return $this->model->table('selfform_value')->data($data)->insert();
 		
 		}
+	public function edit_value($data){
+		return $this->model->table('selfform_value')->where(array('fid'=>$data['fid'],'uid'=>$data['uid']))->data($data)->update();
+		
+		}
    public function input_value($where){
 	   return $this->model->table('selfform_value')->where($where)->find();
 	   

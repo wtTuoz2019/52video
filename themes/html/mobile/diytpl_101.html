@@ -5,74 +5,66 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content=""/>
+    <meta name="viewport" content="width=750, user-scalable=no">
 	<title>{$info.title}</title>
 	<!-- 自定义样式 -->
-	<link rel="stylesheet" href="__TPL__diytpl/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="__TPL__diytpl/css/newstyle.css" type="text/css" />
     <!--JQuery-->
     <script src="__TPL__diytpl/javascript/jquery-2.1.4.min.js" ></script>
      <!--TAB-->
     <script src="__TPL__diytpl/javascript/jquery.idTabs.min.js" ></script>
-      
+    <script src="__TPL__mobile/js/swiper-3.4.2.jquery.min.js" ></script>
 
 </head>
 	
 <body>
-	<!--<div class="body_bg">
-		<img src="img/body_bg.png" >
-	</div>-->
-	<!--<div class="content-header">
-		<div class="main">
-			<div class="search-bar">
-				<input type="text" class="search-text" placeholder="直播名称" />
-				<a href="#" class="search-btn">搜索</a>
-			</div>
-		</div>
-		<div class="menu">
-			<a href="#" class="index">首页</a>
-			<a href="#" class="department">科室</a>
-		</div>
-	</div>-->
+	<div id="carousel">
+    	<div class="swiper-wrapper">
+        	<div class="swiper-slide">
+            	<img src="__TPL__mobile/img/lunbo.png"/>
+            </div>
+            <div class="swiper-slide">
+            	<img src="__TPL__mobile/img/lunbo.png"/>
+            </div>
+            <div class="swiper-slide">
+            	<img src="__TPL__mobile/img/lunbo.png"/>
+            </div>
+        </div>
+        <ul class="sindex">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    
+    <div class="splist">
+    	视频列表
+    </div>
+    
 	
 	<div class="wraper dianbo-content">
-		<!--<div class="content-header">
-			<div class="main">
-				<div class="search-bar">
-                <form action="" method="post">
-					<input type="text" class="search-text"  name="search_data"/>
-					<button  type="submit" class="search-btn">搜索</button>
-                </form>
-				</div>
-			</div> 
-            
-			<div class="menu" id="myTab">
-				<a href="__URL__/index/tid-{$_GET['tid']}" class="index">所有</a>
-				
-                <a href="#item1mobile" class="index">首页</a>
-				<a href="#item2mobile" class="department">年级</a>
-			</div>
-		</div>-->
+		
         <div id="item1mobile">
         		<ul class="orderList" >
-                    <!--<div class="btngroups">
-                        <button type="button" class="left">视频直播</button>
-                        <button type="button" class="right">视频点播</button>
-                    </div>-->
+                    
                     <!--foreach:{$list $vo}-->
                     <li>
+                    	<div class="picture">
+                        	<img src="{$sys['imageurl']}{$vo.image}" />
+                        </div>
+                    
+                        
+                        <div class="content">
                         <div class="date">
                             <i></i>
                             <strong><?php echo $vo['cid']==16?date('Y.m.d',model('content')->get_starttime($vo['aid'])):date('Y.m.d',$vo['updatetime'])?>
         </strong>
                             <p><?php echo $vo['cid']==16?date('H:i',model('content')->get_starttime($vo['aid'])):date('H:i',$vo['updatetime'])?></p>
                         </div>
-                        <div class="content">
                             <span class="triangle"></span>
                             <a href="{$vo.aurl}">
                                 <h5 style=" margin-top:-20px; width:100%;"> {$vo.title}</h5>
-                                <div class="picture">
-                                    <img src="{$sys['imageurl']}{$vo.image}" />
-                                    <span class="play"></span>
-                                </div>
+                               
                                 <div class="person">
                                    <p>{$vo.updatetime time="Y-m-d"}  <span> <img id="img-1" src="__TPL__diytpl/img/eyes2.png" />{$vo.views}</span> </p>
                                  
@@ -124,6 +116,15 @@
 	<script>
 	  	$('#myTab').idTabs(); 
 		 
+		 
+		 
+		 
+		 var mySwiper = new Swiper('#carousel', {
+			 autoplay: 2000,        //每隔3000ms，自动轮播一面的内容
+			 onSlideChangeEnd: function(swiper){
+			  	$('.sindex li').eq(swiper.activeIndex).addClass("active").siblings().removeClass("active");
+			}
+		});
 	</script>
 	 
  <!--#include file="sharewx.html"-->

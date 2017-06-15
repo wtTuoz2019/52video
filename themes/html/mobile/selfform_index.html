@@ -17,7 +17,7 @@
 		
 		
 		<div class="survey_k">
-        <form action="__INDEX__/selfform/only_post" method="post" id="form" >
+        <form action="__INDEX__/selfform/selfform_post" method="post" id="form" >
         <div class="boxk">
 			<h2 class="survey_t"> 
 			{$info.name}
@@ -55,10 +55,12 @@
 			<div class="surveybtn">
 				
 				<!--if:{$signinfo}-->
-                <button disabled="disabled" class="ywc">
+               <!-- <button disabled="disabled" class="ywc">
                 	已完成
-                </button>
-                
+                </button>-->
+                <button type="submit">
+					修改
+				</button>
                    <!--{else}-->
 				<button type="submit">
 					提交
