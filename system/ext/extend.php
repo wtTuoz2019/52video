@@ -110,27 +110,40 @@ function getpre_auth_code($appid,$appsecret){
  * @return mixed
  */
 function S($name, $value='', $expire=1600, $type='',$options=null) {
-    static $_cache = array();
-    //取得缓存对象实例
-    $cache=new CacheFile();
+//    static $_cache = array();
+//    //取得缓存对象实例
+//    $cache=new CacheFile();
+//    if ('' !== $value) {
+//        if (is_null($value)) {
+//            // 删除缓存
+//            if ($result)
+//                unset($_cache[$type . '_' . $name]);
+//            return $result;
+//        }else {
+//            // 缓存数据
+//            $cache->set($name, $value, $expire);
+//            $_cache[$type . '_' . $name] = $value;
+//        }
+//        return;
+//    }
+//    if (isset($_cache[$type . '_' . $name]))
+//        return $_cache[$type . '_' . $name];
+//    // 获取缓存数据
+//    $value = $cache->get($name);
+//    $_cache[$type . '_' . $name] = $value;
     if ('' !== $value) {
         if (is_null($value)) {
-            // 删除缓存
-            if ($result)
-                unset($_cache[$type . '_' . $name]);
-            return $result;
+           
         }else {
             // 缓存数据
-            $cache->set($name, $value, $expire);
-            $_cache[$type . '_' . $name] = $value;
+            model('common')->config_save($name, $value, $expire);
         }
         return;
     }
-    if (isset($_cache[$type . '_' . $name]))
-        return $_cache[$type . '_' . $name];
+
     // 获取缓存数据
-    $value = $cache->get($name);
-    $_cache[$type . '_' . $name] = $value;
+    $value =  model('common')->config_get($name);
+
     return $value;
 }
 
