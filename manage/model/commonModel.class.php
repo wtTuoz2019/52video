@@ -108,7 +108,20 @@ class commonModel
         $css .= '<link href="' . __PUBLICURL__ . '/kindeditor/themes/default/default.css" rel="stylesheet" type="text/css" />' . PHP_EOL;
         return $css;
     }
+	 
 	
-	
-
+public function config_save($name,$value,$expire){
+		
+		if($this->model->table('config')->where(array('name'=>$name))->find()){
+			$this->model->table('config')->where(array('name'=>$name))->data(array('name'=>$name,'value'=>$value,'time'=>$expire+time()))->update();
+			}else{
+			$this->model->table('config')->data(array('name'=>$name,'value'=>$value,'time'=>$expire+time()))->insert();	
+				}
+		
+		}	
+	public function config_get($name){
+		$data=$this->model->table('config')->where(array('name'=>$name,'time'=>array('>',time())))->find();
+		if($data)return $data['value'];
+		else return '';
+		}
 }
