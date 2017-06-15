@@ -120,10 +120,11 @@ class contentMod extends commonMod
             'access_token' =>getauthorizer_access_token($this->config['kfappid'],$this->config['kfappsecret'],$this->wxuser['authorizer_appid'],$this->wxuser['authorizer_refresh_token'],$this->config['uid'])
         );
 		
-	
+		var_dump($Wechat2_options);die;
       		 $wetch = new Wechat2($Wechat2_options);
 		
 			$data=$wetch->getUserInfo($this->userinfo['openid']);
+			var_dump($data);die;
 			if($data){
 			if($data['subscribe_time']){
 			$res['openid']=$data['openid'];
