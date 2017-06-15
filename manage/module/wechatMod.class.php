@@ -75,7 +75,7 @@ class wechatMod extends commonMod {
 						'oauth'=>1,
 						'token'=>$this->token);
 		$add=model('wechat')->save('wxuser',$adddata);
-		$this->redirect(__URL__.'/wechat_info');die;
+		$this->redirect(__APP__.'/index/index#headWeChat');die;
 		}
 		
 		

@@ -27,7 +27,7 @@
 					<a class="headvideo" href="__URL__/nav_video.html">
 						 视频服务
 					</a>
-					<a class="headWeChat" href="__URL__/nav_wechat.html">
+					<a class="headWeChat" id="headWeChat" href="__URL__/nav_wechat.html">
 						 绑定微信
 					</a>
 					<a class="headxk" href="__URL__/nav_selectclass.html">
@@ -82,7 +82,13 @@
       </div>
 	 <script src="__PUBLICURL__/manage/js/homepage.js" type="text/javascript" charset="utf-8"></script>
      
-     
+     <script>
+     	var thisId = window.location.hash;
+		if(thisId!=''){
+			$(thisId).click();
+		}
+		
+     </script>
      
      <script type="text/javascript" language="javascript"> 
 			

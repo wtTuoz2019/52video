@@ -22,9 +22,11 @@ $('#headnav>a').click(function(e){
 			$('#nav').html(html);
 			$('#nav a').eq(0)[0].click();
 		})
-	}	
+	}
+	//获取浏览器链接锚点
+	var thisId = window.location.hash;
 	
-	
+	console.log(thisId);
 				
 });
 	
