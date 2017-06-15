@@ -182,7 +182,7 @@ public function addstreamvisit(){
 		if($this->model->table('config')->where(array('name'=>$name))->find()){
 			$this->model->table('config')->where(array('name'=>$name))->data(array('name'=>$name,'value'=>$value,'time'=>$expire+time()))->update();
 			}else{
-			$this->model->table('config')->where(array('name'=>$name))->data(array('name'=>$name,'value'=>$value,'time'=>$expire+time()))->insert();	
+			$this->model->table('config')->data(array('name'=>$name,'value'=>$value,'time'=>$expire+time()))->insert();	
 				}
 		
 		}	
