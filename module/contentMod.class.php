@@ -112,7 +112,7 @@ class contentMod extends commonMod
         $info=model('content')->model_content($info['aid'],$this->category['expand']);
 		
 	
-		if(!$info['gzstatus']){
+		if($info['gzstatus']){
 			
 			if($this->wxuser&&$this->wxuser['oauth']&&$this->wxuser['gzurl']){
 			$Wechat2_options = array(
