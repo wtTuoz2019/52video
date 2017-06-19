@@ -142,7 +142,7 @@ class contentMod extends commonMod
 		
 		$uid=model('comment')->wechat_add($res);
 			}else{
-				$this->alert('请先关注，再观看',$this->wxuser['gzurl']);
+				$this->alert('【提示】请先关注公众号',$this->wxuser['gzurl']);
 				}
 			}
 			}

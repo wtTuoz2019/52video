@@ -127,8 +127,15 @@ $('.mbk>div').click(function(){
 	console.log($(this).find('input').val());
 	$(this).parents('.mbk').find('input').prop("checked",false);
 	 $(this).find('input').prop('checked',true);
-	$('#nowmb').val($(this).find('input').val());
-
+	 if($(this).find('input').val()=='101'){
+		 	$('#nowmb').val("模板1");	
+	 }else if($(this).find('input').val()=='102'){
+		 	$('#nowmb').val("模板2");	
+	 }else if($(this).find('input').val()=='103'){
+		 	$('#nowmb').val("模板3");	
+	 }else if($(this).find('input').val()=='104'){
+		 	$('#nowmb').val("模板4");	
+	 }
 });
 
 

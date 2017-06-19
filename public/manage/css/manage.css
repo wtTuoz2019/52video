@@ -445,6 +445,9 @@ button{
 	border:1px solid #BABABA;
 	padding: 45px 30px;
 }
+#autoreply .replycontent.gzcontent{
+	height:inherit;
+}
   #autoreply .replycontent p{
 	font-size: 14px;
 }
