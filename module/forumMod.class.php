@@ -11,7 +11,7 @@ class forumMod extends commonMod {
 		  $this->forum=$forum= model('forum')->forum_config(array('uid'=>$this->config['uid']));
 	  if(!$forum['isopen'])$this->alert('该论坛未开放');
 		$this->getuserinfo();
-		
+		var_dump($this->userinfo);die;
 	  if($forum['auth']){
 		  if(!($this->userinfo['name']&&$this->userinfo['peopletype'])){
 			 $this->redirect('/login/parent?'.$this->urltoken); 
