@@ -7,9 +7,26 @@ class forumMod extends commonMod {
 		if($_POST['data']['configuid']){
 			$this->config['uid']=$_POST['data']['configuid'];
 			}
+			
 		  $this->forum=$forum= model('forum')->forum_config(array('uid'=>$this->config['uid']));
 	  if(!$forum['isopen'])$this->alert('该论坛未开放');
 		$this->getuserinfo();
+		
+	  if($forum['auth']){
+		  if(!($this->userinfo['name']&&$this->userinfo['peopletype'])){
+			 $this->redirect('/login/parent?'.$this->urltoken); 
+			  }
+		  }
+		  
+		
+		$this->myname=$this->userinfo['nickname'];
+		if($this->userinfo['name']){
+						if($this->userinfo['peopletype']=='student')
+						 $this->myname=$this->userinfo['name'].$this->userinfo['relation'];
+						elseif($this->userinfo['peopletype']=='teacher')
+						 $this->myname=$this->userinfo['name'].'老师';
+						} 
+		  
     }
 
 	public function index(){
@@ -113,6 +130,12 @@ if(file_put_contents($photo, base64_decode($data), true)){
 			if($list){
 				
 				foreach($list as $key=>$value){
+					if($value['realname']){
+						if($value['peopletype']=='student')
+						$list[$key]['name']=$value['realname'].$value['relation'];
+						elseif($value['peopletype']=='teacher')
+						$list[$key]['name']=$value['realname'].'老师';
+						}
 					$list[$key]['photos']=unserialize($value['photos']);
 					$list[$key]['createtime']=date('Y-m-d H:i:s',$value['createtime']);
 					$list[$key]['zanlist']=model('forum')->topics_zan_list('A.tid='.$value['id']);
@@ -139,7 +162,7 @@ if(file_put_contents($photo, base64_decode($data), true)){
 		}
 	public function reply(){
 		$data=array('uid'=>$this->userinfo['uid'],'tid'=>$_POST['id'],'content'=>$_POST['content'],'configuid'=>$_POST['data']['configuid'],'createtime'=>time());
-			if($this->forum['ischeck'])$data['status']=0;
+			if($this->forum['comcheck'])$data['status']=0;
 		if(model('forum')->topics_comment_save($data)){
 			$this->msg('yes',1);	
 			}else{
@@ -173,6 +196,12 @@ if(file_put_contents($photo, base64_decode($data), true)){
 				
 				foreach($list as $key=>$value){
 					//$list[$key]['photos']=unserialize($value['photos']);
+					if($value['realname']){
+						if($value['peopletype']=='student')
+						$list[$key]['name']=$value['realname'].$value['relation'];
+						elseif($value['peopletype']=='teacher')
+						$list[$key]['name']=$value['realname'].'老师';
+						}
 					$list[$key]['createtime']=date('Y-m-d H:i:s',$value['createtime']);
 					$list[$key]['zannum']=model('forum')->topics_zan_count('tid='.$value['id']);
 					
@@ -199,6 +228,12 @@ if(file_put_contents($photo, base64_decode($data), true)){
 				
 				foreach($list as $key=>$value){
 					//$list[$key]['photos']=unserialize($value['photos']);
+					if($value['realname']){
+						if($value['peopletype']=='student')
+						$list[$key]['name']=$value['realname'].$value['relation'];
+						elseif($value['peopletype']=='teacher')
+						$list[$key]['name']=$value['realname'].'老师';
+						}
 					$list[$key]['createtime']=date('Y-m-d H:i:s',$value['createtime']);
 					
 					}
@@ -216,6 +251,12 @@ if(file_put_contents($photo, base64_decode($data), true)){
 			
             $this->error404();
        		 }
+			 		if($info['realname']){
+						if($info['peopletype']=='student')
+						$info['name']=$info['realname'].$info['relation'];
+						elseif($info['peopletype']=='teacher')
+						$info['name']=$info['realname'].'老师';
+						}
 			 		$info['photos']=unserialize($info['photos']);
 					$info['createtime']=date('Y-m-d H:i:s',$info['createtime']);
 					$info['zanlist']=model('forum')->topics_zan_list('A.tid='.$info['id']);

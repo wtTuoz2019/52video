@@ -22,6 +22,7 @@ class commonMod
         $this->init();
         Plugin::init();
         $langCon=Lang::langCon();
+		 $this->siteurl=$_SERVER["HTTP_HOST"];;
         $this->config = array_merge((array)$config,(array)$langCon);
 		
 		$token=trim($_GET['token']);
@@ -41,7 +42,7 @@ class commonMod
 		
 		}else{
 			$this->wxuser=model('user')->wxuserdefault();	
-	//	$siteurl=$_SERVER["HTTP_HOST"];
+	
 //		$admininfo=model('user')->admininfo($siteurl);
 		}
 		$this->config['uid']=1;

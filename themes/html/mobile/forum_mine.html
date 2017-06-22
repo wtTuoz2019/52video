@@ -80,10 +80,10 @@
 		<!-- 引入 Bootstrap 的 JS 文件 -->
 			<script>
 		var token='{$urltoken}';
-   	var url='http://{$config.MOBILE_DOMAIN}';
+   	var url='http://{$siteurl}';
 	var imageurl='{$sys.imageurl}';
 	  var headpic='{$userinfo["headimgurl"]}';
-	 var nickname='<?php echo $_SESSION["name"]?$_SESSION["name"]:$_SESSION["nickname"];?>';
+	 var nickname='{$myname}';
 	  var uid='{$userinfo["uid"]}';
 	  var minedata = {
 				uid:uid,

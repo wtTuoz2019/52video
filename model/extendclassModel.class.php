@@ -215,13 +215,17 @@ class extendclassModel extends commonModel {
 		return $this->model->table('course')->where(array('id'=>$id))->delete();
 		}
 	public function schooluser_add_save($data){
-		if(!$this->model->table('schooluser')->where($data)->find())
+		if(!$this->model->table('schooluser')->where($data)->find()){
+			
+			model('user')->edit(array('uid'=>$data['uid'],'name'=>$data['name'],'peopletype'=>$data['type'],'relation'=>$data['relation'],'school'=>$data['school']));
 			return $this->model->table('schooluser')->data($data)->insert();
+		}
 		}
 		public function schooluser_del($data){
 		return $this->model->table('schooluser')->where($data)->delete();
 		}
 	public function relation($data){
+		model('user')->edit(array('uid'=>$data['uid'],'name'=>$data['name'],'relation'=>$data['relation']));
 		return $this->model->table('schooluser')->where(array('stid'=>$data['stid'],'uid'=>$data['uid'],'byuid'=>$data['byuid']))->data($data)->update();
 		}
 	

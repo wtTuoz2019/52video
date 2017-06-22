@@ -28,15 +28,15 @@ class forumModel extends commonModel
 		}
 	public function topics_list($where,$limit){
 		
-		return $this->model->field('A.*,B.nicename as name,headimgurl as pic')->table('forum_topics','A')->add_table('user','B','A.uid=B.uid')->where($where)->limit($limit)->order('A.top desc,A.sort desc,A.id desc')->select();	
+		return $this->model->field('A.*,B.nicename as name,headimgurl as pic,B.name as realname,B.peopletype ,B.relation')->table('forum_topics','A')->add_table('user','B','A.uid=B.uid')->where($where)->limit($limit)->order('A.top desc,A.sort desc,A.id desc')->select();	
 		}
 	public function topics_info($where){
 		
-		return $this->model->field('A.*,B.nicename as name,headimgurl as pic')->table('forum_topics','A')->add_table('user','B','A.uid=B.uid')->where($where)->find();	
+		return $this->model->field('A.*,B.nicename as name,headimgurl as pic,B.name as realname,B.peopletype ,B.relation')->table('forum_topics','A')->add_table('user','B','A.uid=B.uid')->where($where)->find();	
 		}
 	public function zan_topics_list(){
 		
-		return $this->model->field('A.*,B.nicename as name,headimgurl as pic')->table('forum_topics','A')->add_table('user','B','A.uid=B.uid')->add_table('forum_zan','C','C.tid=A.id')->where($where)->limit($limit)->order('A.top desc,A.sort desc,A.id desc')->select();	
+		return $this->model->field('A.*,B.nicename as name,headimgurl as pic,B.name as realname,B.peopletype ,B.relation')->table('forum_topics','A')->add_table('user','B','A.uid=B.uid')->add_table('forum_zan','C','C.tid=A.id')->where($where)->limit($limit)->order('A.top desc,A.sort desc,A.id desc')->select();	
 		
 		}
 	public function topics_count($where){
@@ -68,7 +68,20 @@ class forumModel extends commonModel
 		return $this->model->table('forum_comment')->data($data)->insert();	
 		}
 	public function topics_comment_list($where){
-		return $this->model->field('A.*,B.nicename as name,headimgurl as pic')->table('forum_comment','A')->add_table('user','B','A.uid=B.uid')->where($where)->limit($limit)->order('A.id desc')->select();
+		$list=$this->model->field('A.*,B.nicename as name,headimgurl as pic,B.name as realname,B.peopletype ,B.relation')->table('forum_comment','A')->add_table('user','B','A.uid=B.uid')->where($where)->limit($limit)->order('A.id desc')->select();
+		if($list){
+			foreach($list as $key=>$value){
+				if($value['realname']){
+						if($value['peopletype']=='student')
+						$list[$key]['name']=$value['realname'].$value['relation'];
+						elseif($value['peopletype']=='teacher')
+						$list[$key]['name']=$value['realname'].'老师';
+						}
+				}
+			
+			}
+		
+		return $list;
 		}
 	public function topics_comment_count($where){
 		return $this->model->table('forum_comment')->where($where)->count();

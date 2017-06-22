@@ -1386,8 +1386,9 @@ body .oftentable tr td{
 	font-size: 14px;
 }
 #community .communityk table tr td p.tishi{
-	color: #e20101;
+	color: #f00;
 	display: inline-block;
+	font-size:12px;
 }
 #community .communityk table tr td:first-child{
 	text-align: right;

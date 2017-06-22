@@ -51,7 +51,7 @@
 					<tr class="tishi">
                     	<td></td>
                         <td>
-                        	（图片大为宽750px;高280px）
+                        	（图片大为宽720px;高300px）
                         </td>
                     </tr>
 					<tr>
@@ -73,6 +73,17 @@
 							<div>
 								<input type="radio" name="comcheck" id="" value="0" <?php if(!$info['comcheck']){ ?> checked <?php } ?>  />不需要
 								<input type="radio" name="comcheck" id="" value="1" <?php if($info['comcheck']){ ?> checked <?php } ?> />需要
+							</div>
+						</td>
+					</tr>
+                   <tr>
+						<td>
+							是否身份验证：
+						</td>
+						<td>
+							<div>
+								<input type="radio" name="auth" id="" value="0" <?php if(!$info['auth']){ ?> checked <?php } ?>  />不需要
+								<input type="radio" name="auth" id="" value="1" <?php if($info['auth']){ ?> checked <?php } ?> />需要
 							</div>
 						</td>
 					</tr>
