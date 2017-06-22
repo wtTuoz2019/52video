@@ -188,7 +188,7 @@ function reply(id,e,name){
 					 strVar+='<div class="dynamick"><div class="left userhead"><img src="'+data[i]['pic']+'"/></div><div class="right usercontent"><p class="username">'+data[i]['name']+'</p><a href="/forum/topics_info/id-'+data[i]['id']+'?'+token+'"><p class="contents">'+data[i]['content']+'</p></a><div class="imgs">'
 					 if(data[i]['photos'].length){
 						 	for(var j=0;j<data[i]['photos'].length;j++){
-					 strVar+=' <img src="'+data[i]['photos'][j]['thumb']+'" data-src="'+imageurl+data[i]['photos'][j]['pic']+'" data-gid="g7" onload="preViewImg(this, event);" />';
+					 strVar+=' <img src="'+imageurl+data[i]['photos'][j]['thumb']+'" data-src="'+imageurl+data[i]['photos'][j]['pic']+'" data-gid="g7" onload="preViewImg(this, event);" />';
 							}
 					 }
 					 

@@ -41,7 +41,13 @@
 				
 					<p class="content">{$info.content}</p>
 				
-				<div class="imgs"></div>
+				<div class="imgs">
+                
+                    <!--foreach:{$info['photos'] $vo}-->
+					 <img src="{$sys.imageurl}{$vo.thumb}" data-src="{$sys.imageurl}{$vo.pic}" data-gid="g7" onload="preViewImg(this, event);" />';
+							}
+                   <!--{/foreach}-->
+                </div>
 				<div class="time_cz">
 					<span>{$info.createtime}</span>
                      <!--if:{$info['uid']==$userinfo["uid"]}-->
