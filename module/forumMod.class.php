@@ -4,13 +4,16 @@ class forumMod extends commonMod {
 	public function __construct()
     {
         parent::__construct();
+		if($_POST['data']['configuid']){
+			$this->config['uid']=$_POST['data']['configuid'];
+			}
 		  $this->forum=$forum= model('forum')->forum_config(array('uid'=>$this->config['uid']));
 	  if(!$forum['isopen'])$this->alert('该论坛未开放');
 		$this->getuserinfo();
     }
 
 	public function index(){
-	
+		
 	  if(!$this->userinfo){
 		  	$code=$_COOKIE[$this->config['SPOT'].'_logincode'];
 		if(!$code){
@@ -23,7 +26,8 @@ class forumMod extends commonMod {
 		model('login')->gsetloginQrcode($url, $code);
 		  
 		  }
-	  
+	  model('forum')->forum_pv('uid='.$this->config['uid']);
+	 $this->topics_count=model('forum')->topics_count(array('configuid'=>$this->config['uid']));
 	  $this->display('forum_index.html');
 		
 		}
@@ -85,7 +89,9 @@ if(file_put_contents($photo, base64_decode($data), true)){
 	 $ossClient->uploadFile($bucket, $object, $photo);
 	require(CP_CORE_PATH . '/../lib/Image.class.php');
 	Image::thumb($photo, $thumbname, '', 60, 60); // 生成图像缩略图
-	
+	$temp=explode('upload',$thumbname);
+	$object='upload'.$temp[1];
+	 $ossClient->uploadFile($bucket, $object, $thumbname);
 	$this->msg(array('pic'=>$pic,'thumb'=>$thumb),1);
 	}else{
 	$this->msg('上传失败',0);	
@@ -93,6 +99,132 @@ if(file_put_contents($photo, base64_decode($data), true)){
 // 返回  
 
 		
+		}
+		
+	public function morelist(){
+		  $listrows=5;
+        //分页处理
+        $url=__URL__.'morelist?page={page}'; 
+        $limit=$this->pagelimit($url,$listrows);
+		if($_POST['data']){
+			$where='configuid='.$_POST['data']['configuid'].' and A.status=1';
+			if($_POST['s'])$where.=" and A.content like '%".$_POST['s']."%' ";
+			$list=model('forum')->topics_list($where,$limit);
+			if($list){
+				
+				foreach($list as $key=>$value){
+					$list[$key]['photos']=unserialize($value['photos']);
+					$list[$key]['createtime']=date('Y-m-d H:i:s',$value['createtime']);
+					$list[$key]['zanlist']=model('forum')->topics_zan_list('A.tid='.$value['id']);
+					$list[$key]['mezan']=model('forum')->topics_zan_info('A.tid='.$value['id'].' and A.uid='.$this->userinfo['uid']);
+					$list[$key]['comment']=model('forum')->topics_comment_list('A.tid='.$value['id'].' and A.status=1');
+					
+					}
+			$this->msg($list,1);	
+			}else{
+			$this->msg('no',0);		
+				}
+			
+			}
+			
+		
+		}
+	public function zan(){
+		$data=array('uid'=>$this->userinfo['uid'],'tid'=>$_POST['id']);
+		if(model('forum')->topics_zan($data)){
+				$this->msg('取消成功',1);	
+			}else{
+			$this->msg('取消失败',0);			
+				}
+		}
+	public function reply(){
+		$data=array('uid'=>$this->userinfo['uid'],'tid'=>$_POST['id'],'content'=>$_POST['content'],'configuid'=>$_POST['data']['configuid'],'createtime'=>time());
+			if($this->forum['ischeck'])$data['status']=0;
+		if(model('forum')->topics_comment_save($data)){
+			$this->msg('yes',1);	
+			}else{
+				$this->msg('no',0);		
+				}
+		
+		}
+	public function topics_del(){
+		$where=array('id'=>$_POST['id'],'configuid'=>$_POST['data']['configuid']);
+		
+		model('forum')->topics_del($where);
+		$this->msg('删除成功',1);	
+		}
+	public function comment_del(){
+		$where=array('id'=>$_POST['id'],'configuid'=>$_POST['data']['configuid']);
+		
+		model('forum')->comment_del($where);
+		$this->msg('删除成功',1);	
+		}
+		
+	public function minemorelist(){
+		  $listrows=5;
+        //分页处理
+        $url=__URL__.'minemorelist?page={page}'; 
+        $limit=$this->pagelimit($url,$listrows);
+		if($_POST['data']){
+			$where='configuid='.$_POST['data']['configuid'].' and A.uid='.$this->userinfo['uid'];
+			if($_POST['s'])$where.=" and A.content like '%".$_POST['s']."%' ";
+			$list=model('forum')->topics_list($where,$limit);
+			if($list){
+				
+				foreach($list as $key=>$value){
+					//$list[$key]['photos']=unserialize($value['photos']);
+					$list[$key]['createtime']=date('Y-m-d H:i:s',$value['createtime']);
+					$list[$key]['zannum']=model('forum')->topics_zan_count('tid='.$value['id']);
+					
+					$list[$key]['commentnum']=model('forum')->topics_comment_count('tid='.$value['id'].' and status=1');
+					
+					}
+			
+			}
+			
+			}
+				$this->msg($list,1);
+		
+		}
+		public function likemorelist(){
+		  $listrows=5;
+        //分页处理
+        $url=__URL__.'likemorelist?page={page}'; 
+        $limit=$this->pagelimit($url,$listrows);
+		if($_POST['data']){
+			$where='configuid='.$_POST['data']['configuid'].' and C.uid='.$this->userinfo['uid'];
+		
+			$list=model('forum')->zan_topics_list($where,$limit);
+			if($list){
+				
+				foreach($list as $key=>$value){
+					//$list[$key]['photos']=unserialize($value['photos']);
+					$list[$key]['createtime']=date('Y-m-d H:i:s',$value['createtime']);
+					
+					}
+			
+			}
+			
+			}
+			
+		$this->msg($list,1);	
+		}
+	public function topics_info(){
+			$where='configuid='.$this->config['uid'].' and A.id='.intval($_GET['id']);
+			$info=model('forum')->topics_info($where);
+			if (!is_array($info)) {
+			
+            $this->error404();
+       		 }
+			 		$info['photos']=unserialize($info['photos']);
+					$info['createtime']=date('Y-m-d H:i:s',$info['createtime']);
+					$info['zanlist']=model('forum')->topics_zan_list('A.tid='.$info['id']);
+					$info['mezan']=model('forum')->topics_zan_info('A.tid='.$info['id'].' and A.uid='.$this->userinfo['uid']);
+					$info['comment']=model('forum')->topics_comment_list('A.tid='.$info['id'].' and A.status=1');
+					
+			 
+			$this->info=$info;
+		 $this->display('forum_topics_info.html');
 		}
 }
 ?>

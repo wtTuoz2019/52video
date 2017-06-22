@@ -4,8 +4,8 @@
 			<h4>
 				评论管理
 			</h4>
-			<div class="borderk">
-				<button>
+			<div class="borderk postk">
+				<!--<button>
 					<span>
 						&radic;
 					</span>
@@ -14,7 +14,7 @@
 				<button>
 					<img src="__PUBLICURL__/manage/img/delete.png"/>
 					批量删除
-				</button>
+				</button>-->
 			</div>
 			<table width="100%" cellspacing="0" class="oftentable">
 				<tr class="bgth">
@@ -22,53 +22,48 @@
 					<th width="15%">对应发帖子编号</th>
 					<th width="10%">评论人</th>
 					<th width="30%">内容</th>
-					<th width="8%">赞</th>
+					
 					<th width="15%">创建时间</th>
 					<th width="10%">状态</th>
 					<th width="12%"></th>
 				</tr>
+                  <!--foreach:{$list $vo}-->
 				<tr>
 					<td>
-						<input type="checkbox" name="" id="" value="" />
-						022
+						<input type="checkbox" name="ids[]" id="" value="{$vo.id}" />
+						{$vo.id}
 					</td>
 					<td>
-						0356
+						{$vo.tid}
 					</td>
 					<td>
-						小民
-					</td>
-					<td>
-						<p>
-							名章很好!写的很棒，我很喜欢。
-						</p>
-					</td>
-					<td>
-						10
+						{$vo.name}
 					</td>
 					<td>
 						<p>
-							2016-07-20
+							{$vo.content}
+						</p>
+					</td>
+					
+					<td>
+						<p>
+						 {$php(echo date('Y-m-d',$vo['createtime']))}
 						</p>
 						<p>
-							11:31:10
+						{$php(echo date('H:i:s',$vo['createtime']))}
 						</p>
 					</td>
 					<td>
-						正常
+						<?=$vo['status']?'正常':'待审核'?>	
 					</td>
 					<td class="operation">
 						<button>
 							操作
 						</button>
 						<ul>
+							
 							<li>
-								<a href="javascript:;">
-									置顶
-								</a>
-							</li>
-							<li>
-								<a href="javascript:;">
+								<a href="javascript:;" onClick="del({$vo.id},this)">
 									删除
 								</a>
 							</li>
@@ -76,104 +71,76 @@
 						</ul>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" name="" id="" value="" />
-						022
-					</td>
-					<td>
-						0356
-					</td>
-					<td>
-						小民
-					</td>
-					<td>
-						<p>
-							名章很好!写的很棒，我很喜欢。
-						</p>
-					</td>
-					<td>
-						10
-					</td>
-					<td>
-						<p>
-							2016-07-20
-						</p>
-						<p>
-							11:31:10
-						</p>
-					</td>
-					<td>
-						正常
-					</td>
-					<td class="operation">
-						<button>
-							操作
-						</button>
-						<ul>
-							<li>
-								<a href="javascript:;">
-									置顶
-								</a>
-							</li>
-							<li>
-								<a href="javascript:;">
-									删除
-								</a>
-							</li>
-							
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" name="" id="" value="" />
-						022
-					</td>
-					<td>
-						0356
-					</td>
-					<td>
-						小民
-					</td>
-					<td>
-						<p>
-							名章很好!写的很棒，我很喜欢。
-						</p>
-					</td>
-					<td>
-						10
-					</td>
-					<td>
-						<p>
-							2016-07-20
-						</p>
-						<p>
-							11:31:10
-						</p>
-					</td>
-					<td>
-						正常
-					</td>
-					<td class="operation">
-						<button>
-							操作
-						</button>
-						<ul>
-							<li>
-								<a href="javascript:;">
-									置顶
-								</a>
-							</li>
-							<li>
-								<a href="javascript:;">
-									删除
-								</a>
-							</li>
-							
-						</ul>
-					</td>
-				</tr>
+                  <!--{/foreach}-->
+				
 				
 			</table>
+             <div class="function">
+  <input type="button" onclick="javascript:selectall('ids[]');" class="button_small" value="全选" />
+ 
+  <input type="button" onclick="javascript:audit(1);"  class="button_small" value="审核" />
+
+ <input type="button" onclick="javascript:audit(2);"  class="button_small" value="删除" />
+
+  
+  </div>			<div class="page">
+     					 <ul class="pagination">
+                                 {$page}
+                                        </ul>
+					 </div>	
+</div>
 		</div>
+       
+        
+   <script>
+
+function del(id,obj) {
+	
+	
+
+	ajaxpost({
+		name:'确定要删除？',
+		url:"__URL__/comment_del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().parent().remove();
+		}
+	});
+}
+//选择
+function selectall(name){   
+    $("[name='"+name+"']").each(function(){//反选   
+
+    if($(this).parent().hasClass("checked")){   
+          $(this).parent().removeClass("checked"); 
+		   $(this).removeAttr("checked");   
+   
+    }else{  
+			
+          $(this).attr("checked",'true');     
+          $(this).parent().addClass("checked");   
+    }   
+    })  
+}
+
+//批量操作
+function audit(status){
+	var str="";
+	$("[name='ids[]']").each(function(){
+    if($(this).parent().hasClass("checked")){
+		  str+=$(this).val()+","; 
+    }
+    })
+	
+	ajaxpost({
+		name:'您确认要继续进行操作吗？操作将无法撤销！',
+		url:"__URL__/comment_batch",
+		data:{status: status, id:str},
+		tip:1,
+		success:function(){
+			window.location.reload();	
+		}
+	});
+}
+</script>

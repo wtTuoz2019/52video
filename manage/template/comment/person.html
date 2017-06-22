@@ -51,8 +51,8 @@
             	</div>
         	
   <div class="row">
-  <div class="batch">
-                    	<input type="checkbox" value="all" id="all" onclick="allchoose(this)"/>全选
+  <div class="batch function">
+                    	<input type="button" onclick="selectalls()" value="全选" />
                         <a href="javascript:;" class="delete" onclick="audit(2)">删除</a>
                         <a href="javascript:;" class="audit" onClick="audit(1)">审核</a>
                        <!-- <a href="javascript:;" class="manage">批量管理</a>-->
@@ -86,15 +86,8 @@
 	      	}
 			
 			
-			function allchoose(e){
-					if($(e).parent().hasClass('checked')){ 
-						$(e).parent().removeClass('checked') 
-						$("input[name='id[]']").parent().removeClass("checked"); 
-					}else{
-						$(e).parent().addClass('checked')
-						$("input[name='id[]']").parent().addClass("checked"); 
-					}    
-			}
+			
+
 			function mychoose(e){
 				if($(e).parent().hasClass('checked')){ 
 					$(e).parent().removeClass('checked');
@@ -163,7 +156,20 @@ function audit(status){
 	});
 }
 
-
+function selectalls(){ 
+			 $("[name='id[]']").each(function(){//反选   
+			
+				if($(this).parent().hasClass("checked")){   
+					  $(this).parent().removeClass("checked"); 
+					   $(this).removeAttr("checked");   
+			   
+				}else{  
+						
+					  $(this).attr("checked",'true');     
+					  $(this).parent().addClass("checked");   
+				}   
+			 });
+			}
 
 
 

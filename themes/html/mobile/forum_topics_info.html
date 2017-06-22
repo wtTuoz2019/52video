@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$forum.forumname}</title>
+<meta name="viewport" content="width=720, user-scalable=no, target-densitydpi=device-dpi">
+<link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="__PUBLIC__/forum/mobile/css/main.css" />
+
+<script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+        <script type=text/javascript src="__PUBLIC__/js/duxui.js"></script>
+        <script type=text/javascript src="__PUBLIC__/dialog/jquery.artDialog.js?skin=default"></script>
+        <script type=text/javascript src="__PUBLIC__/dialog/plugins/iframeTools.js"></script>
+        <script type=text/javascript src="__PUBLIC__/js/common.js"></script>
+		<!-- 引入 jQuery 文件 -->
+	  <script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+</head>
+
+<body>
+<script>
+	var token='{$urltoken}';
+   	var url='http://{$config.MOBILE_DOMAIN}';
+	var imageurl='{$sys.imageurl}';
+	  var headpic='{$userinfo["headimgurl"]}';
+	 var nickname='<?php echo $_SESSION["name"]?$_SESSION["name"]:$_SESSION["nickname"];?>';
+	  var uid='{$userinfo["uid"]}';
+	  var data = {
+				uid:uid,
+				configuid:'{$sys.uid}',
+			    pageNum: 1,
+			  };  
+	var flag=true;
+    </script>
+<div class="dcbox post_detail">
+	<div class="dynamick">
+			<div class="left userhead">
+				<img src='{$info.pic}'>
+			</div>
+			<div class="right usercontent">
+				<p class="username">{$info.name}</p>
+				
+					<p class="content">{$info.content}</p>
+				
+				<div class="imgs"></div>
+				<div class="time_cz">
+					<span>{$info.createtime}</span>
+                     <!--if:{$info['uid']==$userinfo["uid"]}-->
+                    <span class="commentdel" onclick="commentinfodel(this,{$info.id})">删除</span>
+                      <!--{/if}-->	 
+					<div class="current">
+						<span class="date_zan" onclick="zan({$info.id},this)"><i></i><em>赞</em></span>
+						<span class="date_pl" onclick="comment({$info.id},this,'')"><i></i><em>评论</em></span>
+					</div>
+				</div>
+			</div>
+			<div class="zan_reply">
+				<div class="dianzan">
+					<div class="zanimg"><img src="/public/forum/mobile/img/zan.png" style="display:none"></div>
+					<div class="zanhead"></div>
+				</div>
+				<div class="comment">
+					<div class="pingimg"><img src="/public/forum/mobile/img/ping.png"></div>
+                    
+                       <!--foreach:{$info['comment'] $vo}-->
+					<div class="pinghead"><img src="{$vo.pic}">
+						<div>
+							<p class="uname">{$vo.name}</p>
+							<p>{$vo.content}</p>
+						</div>
+                         <!--if:{$vo['uid']==$userinfo["uid"]}-->
+                        <span class="resdel" onclick="resdel(this,{$vo.id})">删除</span>
+                         <!--{/if}-->	 
+                        </div>
+                        
+                      <!--{/foreach}-->
+					
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+</div>
+
+
+<div id="foot">
+			<a class="home" href="__URL__/index.html?{$urltoken}" >主页</a>
+			<a href="__URL__/post?{$urltoken}" class="fabu"></a>
+			<a class="mine" href="__URL__/mine.html?{$urltoken}">我的</a>
+		</div>
+
+
+<script src="__PUBLIC__/forum/mobile/js/main.js"></script>
+</body>
+</html>

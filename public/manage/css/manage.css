@@ -542,7 +542,7 @@ button{
 	color:#518DB9;
 	
 }
-#signup .function input{
+.function input,.function a{
 	width:70px;
 	height:30px;
 	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
@@ -555,14 +555,19 @@ button{
 	display:inline-block;
 	text-align:center;
 	margin-right:10px;
+	vertical-align:middle;
+	color:#000;
 }
-#signup .function input:hover{
+.function input:hover{
 	border-color:#000;
 }
 .borderk{
 	padding: 20px 30px;
 	border: 1px solid #BABABA;
 	overflow:hidden;
+}
+.borderk>*{
+	vertical-align:middle;
 }
 .borderk>button{
 	width: 130px;
@@ -862,8 +867,16 @@ body .oftentable tr td{
 	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
 }
 #postmanage .postk  button{
+	border:1px solid #C3C3C3;
 	width: 70px;
 	height: 30px;
+	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
+	background:linear-gradient(to bottom,#ffffff,#d5d2d2);
+	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
+	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
+}
+#commentmanage .postk  button{
+	border:1px solid #C3C3C3;
 	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
 	background:linear-gradient(to bottom,#ffffff,#d5d2d2);
 	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
@@ -1357,15 +1370,17 @@ body .oftentable tr td{
 
 #community .communityk{
 	width: 600px;
-	height: 520px;
 	margin: 40px auto;
 	border: 1px solid #BABABA;
-	padding-top: 65px;
+	padding: 35px 0;
 	text-align:center;
 }
 #community .communityk table tr{
 	display: block;
 	margin-bottom: 25px;
+}
+#community .communityk table tr:last-child{
+	margin-bottom:0;
 }
 #community .communityk table tr td{
 	font-size: 14px;
@@ -1417,7 +1432,7 @@ body .oftentable tr td{
 	margin-left: 10px;
 }
 #community .communityk .btns{
-	margin-top: 40px;
+	margin-top: 30px;
 	text-align:center;
 }
 #community .communityk .btns button{
@@ -1598,17 +1613,7 @@ body .oftentable tr td{
 	margin: 0 auto;
 	
 }
-.page_tool .function input{
-	width: 70px;
-    margin-right: 10px;
-	height: 30px;
-    background: #eee;
-    border: 1px solid #C3C3C3;
-    line-height: 30px;
-    font-size: 12px;
-    display: inline-block;
-    text-align: center;
-}
+
 .page li{
 	list-style:none;
 }
@@ -1723,21 +1728,6 @@ div.batch{
 	border:0;
 	padding-left:20px;
 	float:left;
-}
-div.batch a{
-	padding:0 20px;
-	height:30px;
-    border: 1px solid #C3C3C3;
-	line-height: 30px;
-    font-size: 12px; 
-	display:inline-block;
-	text-align:center;
-	color:#000;
-	margin-right:20px;
-	background:-moz-linear-gradient(top,#ffffff,#d5d2d2);
-	background:linear-gradient(to bottom,#ffffff,#d5d2d2);
-	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
-	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
 }
 div.batch a.delete{
 	margin-left:10px;
@@ -1993,8 +1983,11 @@ table td .commentoperation>a+a{
 	float:right;
 	margin:0;
 }
-.table>tbody>tr:first-child>td{
+.table>tbody>tr td{
 	border-top:0;
+}
+.table>tbody>tr td{
+	border-bottom:1px solid #ddd;
 }
 body{
 	background:#fff !important; 
@@ -2114,7 +2107,7 @@ body{
 	display:inline-block;
 	position:relative;
 }
-.huodongsh .borderk #form input{
+.huodongsh .borderk form input{
 	width:110px;
 	height:30px;
 	border:1px solid #C3C3C3;
@@ -2228,4 +2221,13 @@ body .userset .oftentable tr td{
 #editmodel #myModal .modal-body div.toright{
 	right:0;
 	background-image:url(../img/toright.png);
+}
+.allmain .row{
+	margin-top:25px;
+}
+#community .communityk table .tishi{
+	color:#f00;
+}
+#community .communityk table .tishi td{
+	font-size:12px;
 }

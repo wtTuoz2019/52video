@@ -770,11 +770,19 @@ span.resdel { float:right; margin-top:0}
 	 font-size:14px;
 	 border-radius:5px;
 	}
-.white-comment::before{
-	content:url('/public/images/white-comment.png');
-	}
-.white-heart::before{
-	content:url('/public/images/white-heart.png');
+.white-comment{
+	background-image:url(/public/images/white-comment.png);
+	padding-left:15px;
+	background-position:center left;
+	background-repeat:no-repeat;
+	background-size:15px 15px;
+}
+.white-heart{
+	background-image:url(/public/images/white-heart.png);
+	padding-left:15px;
+	background-position:center left;
+	background-repeat:no-repeat;
+	background-size:15px 15px;
 	}
 .blue-comment::before{
 	content:url('/public/images/blue-comment.png');

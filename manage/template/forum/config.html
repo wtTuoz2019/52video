@@ -36,7 +36,7 @@
 					</tr>
 					<tr>
 						<td>
-							自定义背景：
+							自定义banner：
 						</td>
 						<td>
                         
@@ -48,7 +48,12 @@
 							
 						</td>
 					</tr>
-				
+					<tr class="tishi">
+                    	<td></td>
+                        <td>
+                        	（图片大为宽750px;高280px）
+                        </td>
+                    </tr>
 					<tr>
 						<td>
 							是否需要审核新帖：
@@ -82,6 +87,21 @@
 								<p class="tishi">
 									（*选择关闭将不能打开讨论社区）
 								</p>
+							</div>
+							
+						</td>
+					</tr>
+                   	<tr>
+						<td>
+							访问二维码：
+						</td>
+						<td>
+							<div>
+									<img src="<?php 
+         $url = "http://".$sys['MOBILE_DOMAIN']."/forum/index?token={$token}";
+          model('live')->getQrcode($url, 'forum_'.$token);
+          echo $img = "/upload/aidimage/forum_".$token.".png";
+        ?>"/>
 							</div>
 							
 						</td>
