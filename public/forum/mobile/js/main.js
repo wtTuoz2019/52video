@@ -344,6 +344,9 @@ function resdel(e,id){
 		tip:1,
 		success:function(){
 			$(e).parents('.pinghead').remove();
+		 if( $(e).parents('.dynamick').find('.pinghead').length<1)
+			$(e).parents('.dynamick').find('.pingimg').children('img').hide(); 
+			
 		}
 	});
 	

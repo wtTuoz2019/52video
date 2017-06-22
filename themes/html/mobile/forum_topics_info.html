@@ -44,8 +44,7 @@
 				<div class="imgs">
                 
                     <!--foreach:{$info['photos'] $vo}-->
-					 <img src="{$sys.imageurl}{$vo.thumb}" data-src="{$sys.imageurl}{$vo.pic}" data-gid="g7" onload="preViewImg(this, event);" />';
-							}
+					 <img src="{$sys.imageurl}{$vo.thumb}" data-src="{$sys.imageurl}{$vo.pic}" data-gid="g7" onload="preViewImg(this, event);" />'
                    <!--{/foreach}-->
                 </div>
 				<div class="time_cz">
@@ -54,18 +53,33 @@
                     <span class="commentdel" onclick="commentinfodel(this,{$info.id})">删除</span>
                       <!--{/if}-->	 
 					<div class="current">
-						<span class="date_zan" onclick="zan({$info.id},this)"><i></i><em>赞</em></span>
+						<span class="date_zan" onclick="zan({$info.id},this)"><i></i><em>
+                           <!--if:{$info['mezan']}-->
+                           已<!--{/if}-->赞</em></span>
 						<span class="date_pl" onclick="comment({$info.id},this,'')"><i></i><em>评论</em></span>
 					</div>
 				</div>
 			</div>
 			<div class="zan_reply">
 				<div class="dianzan">
-					<div class="zanimg"><img src="/public/forum/mobile/img/zan.png" style="display:none"></div>
-					<div class="zanhead"></div>
+					<div class="zanimg">
+                     <!--if:{$info['zanlist']}-->
+                    <img src="/public/forum/mobile/img/zan.png">
+                      <!--{/if}-->
+                    </div>
+					<div class="zanhead">
+                    <!--foreach:{$info['zanlist'] $vo}-->
+                    <img src="{$vo.pic}" id="{$vo.uid}">
+                     <!--{/foreach}-->
+                    </div>
 				</div>
 				<div class="comment">
-					<div class="pingimg"><img src="/public/forum/mobile/img/ping.png"></div>
+                
+					<div class="pingimg">
+                       <!--if:{$info['comment']}-->
+                    <img src="/public/forum/mobile/img/ping.png">
+                      <!--{/if}-->
+                    </div>
                     
                        <!--foreach:{$info['comment'] $vo}-->
 					<div class="pinghead"><img src="{$vo.pic}">
