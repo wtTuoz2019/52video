@@ -1335,8 +1335,11 @@ a.submit{
 	margin-bottom:20px;
 }
 .boxk .problemul input[type="radio"]{
-	width:25px;
-	height:25px;
+	    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+	position:relative;
+	top:3px;
 }
 .boxk .problemul .yzcode{
 	position:relative;
