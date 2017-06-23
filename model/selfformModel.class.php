@@ -37,8 +37,8 @@ class selfformModel extends commonModel {
                 if(!empty($info['must'])){
                     $html.=' reg="\S" msg="'.$info['name'].'不能为空！" ';
                 }
-                $html.='/>
-				 <p>'.$info['tip'].'</p>
+                $html.=' placeholder="'.$info['tip'].'"/>
+				
                     </li>
                    
               
@@ -48,8 +48,8 @@ class selfformModel extends commonModel {
                 $html.='
                 <li class="title">
                   '.$info['name'].'</li>
-                    <li class="table"><textarea name="'.$info['field'].'" class="text_textarea" id="'.$info['field'].'" >'.$info['default'].'</textarea>
-					  <p>'.$info['tip'].'</p>
+                    <li class="table"><textarea name="'.$info['field'].'" class="text_textarea" id="'.$info['field'].'"  placeholder="'.$info['tip'].'" >'.$info['default'].'</textarea>
+					 
                     </li>
                   
                
@@ -79,8 +79,8 @@ class selfformModel extends commonModel {
                 if(!empty($info['must'])){
                     $html.=' reg="\S"  msg="'.$info['name'].'不能为空！" ';
                 }
-                $html.='/>
-                &nbsp;&nbsp;<input type="button" id="'.$info['field'].'_botton" class="button_small" value="选择文件" />  <p>'.$info['tip'].'</p>
+                $html.='/  placeholder="'.$info['tip'].'">
+                &nbsp;&nbsp;<input type="button" id="'.$info['field'].'_botton" class="button_small" value="选择文件" />  
                     </li>
                     
                 </tr>
@@ -98,8 +98,8 @@ class selfformModel extends commonModel {
                 if(!empty($info['must'])){
                     $html.=' reg="\S"  msg="'.$info['name'].'不能为空！" ';
                 }
-                $html.='/>
-                &nbsp;&nbsp;<input type="button" id="'.$info['field'].'_botton" class="button_small" value="选择图片" />  <p>'.$info['tip'].'</p>
+                $html.='  placeholder="'.$info['tip'].'"/>
+                &nbsp;&nbsp;<input type="button" id="'.$info['field'].'_botton" class="button_small" value="选择图片" /> 
                     </li>
                     
                 ';
@@ -207,7 +207,7 @@ class selfformModel extends commonModel {
                     $select_list.=' /> '.$value[0].'&nbsp;&nbsp;';
                 }
                 $html.=$select_list;
-                $html.='  <p>'.$info['tip'].'</p></li>';
+                $html.='</li>';
               
                 break;
             case '9':
@@ -233,7 +233,7 @@ class selfformModel extends commonModel {
                     $select_list.=' /> '.$value[0].'&nbsp;&nbsp;';
                 }
                 $html.=$select_list;
-                $html.='  <p>'.$info['tip'].'</p></li>';
+                $html.='  </li>';
               
                 break;
         }
