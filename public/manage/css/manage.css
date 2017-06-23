@@ -1856,6 +1856,9 @@ div.batch a.delete{
 .amendk .setsee .table tr  td:first-child{
 	width:inherit;
 }
+.amendk .setsee .table tr  td{
+	border-bottom:0;
+}
 .setsee .table td input{
 	width:380px;
 	height:32px;

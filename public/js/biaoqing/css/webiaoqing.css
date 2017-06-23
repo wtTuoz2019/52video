@@ -49,6 +49,7 @@
 	visibility: visible;
 	    z-index: 9999;
 		background:#F6F6F6;
+		overflow:hidden;
 }
 #list_emotion{
 	list-style: none;
