@@ -621,8 +621,26 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
         $where_url='search-'.urlencode($search);
         }
 		
-			if($this->user['gid']!=1)
-			$where['uid']= $this->user['id'];
+			 
+		 if($this->user['gid']==6){
+				$temp;$temp[]=0;
+		
+				$temp[]=$this->user['id'];
+				
+			$nextuser=model('user')->admin_list(' AND pid='.$this->user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['id'];
+				}
+			} 
+		 	$where=" uid  in (".implode(',',$temp).") ";
+			 }else{
+		if($this->user['cid'])	
+	 	$where=" uid =".$this->user['cid'];
+			 }
+			
+			
+			
 			
 		 $listRows=20;
         $url = __URL__ . '/video/'.$where_url.'-page-{page}.html'; //分页基准网址

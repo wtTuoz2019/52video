@@ -13,8 +13,24 @@ class selfformMod extends commonMod
 		if($_GET['s']){
 			$where['name']=array('like',"'%".$_GET['s']."%'");
 			} 
-		if($this->user['gid']!=1)
-		$where['uid']= $this->user['id'];
+				 
+		 if($this->user['gid']==6){
+				$temp;$temp[]=0;
+		
+				$temp[]=$this->user['id'];
+				
+			$nextuser=model('user')->admin_list(' AND pid='.$this->user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['id'];
+				}
+			} 
+		 	$where[]=" uid  in (".implode(',',$temp).") ";
+			 }else{
+		if($this->user['cid'])	
+	 	$where[]=" uid =".$this->user['cid'];
+			 }
+			
 		 $this->list=model('selfform')->form_list($where,$limit);
         $count=model('selfform')->count($where);
         $this->page=$this->page($url, $count, $listRows);

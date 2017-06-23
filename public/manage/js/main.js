@@ -74,8 +74,11 @@ $('.commentnav a').click(function(){
 	$(id).addClass('active').siblings('.active').removeClass('active');
 });
 
-
-
+$(".movetishi").mouseover(function (){  
+    $(this).children('.tishik').fadeIn(300);  
+}).mouseout(function (){
+    $(this).children('.tishik').fadeOut(300);  
+});  
 
 
 

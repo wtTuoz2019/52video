@@ -2178,7 +2178,7 @@ body .userset .oftentable tr td{
 	width:180px;
 	height:40px;
 	background:#eee;
-	margin-left:140px;
+
 }
 #usercenter .userpassword{
 	width:440px;
@@ -2231,4 +2231,43 @@ body .userset .oftentable tr td{
 }
 #community .communityk table .tishi td{
 	font-size:12px;
+}
+.movetishi{
+	height:16px;
+	width:16px;
+	background-image:url(../img/tishi2.png);
+	float:right;
+	background-size:16px 16px;
+	background-repeat:no-repeat;
+	cursor:pointer;
+	position:relative;
+	top:2px;
+}
+.movetishi .tishik{
+	position:absolute;
+	padding:10px 15px;
+	border:1px solid #E5E5E5;
+	color:#272727;
+	width:175px;
+	background:#fff;
+	border-radius:5px;
+	top: 40px;
+    left: -75px;
+    z-index: 1000;
+	display:none;
+}
+.movetishi .tishik:after {
+  content: " ";
+    position: absolute;
+    right: 85px;
+    top: -6px;
+    background: #fff;
+    width: 10px;
+    height: 10px;
+    border: #E5E5E5 solid 1px;
+    border-left: 0;
+    border-bottom: 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
