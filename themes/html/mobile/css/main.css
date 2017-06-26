@@ -1295,7 +1295,7 @@ a.submit{
 	background:#D1D1D1;
 }
 .survey_k{
-	padding: 45px 80px;
+	padding: 45px 50px;
 }
 .survey_t{
 	font-size: 30px;
@@ -1340,6 +1340,10 @@ a.submit{
     margin-right: 10px;
 	position:relative;
 	top:3px;
+	margin-left:30px;
+}
+.boxk .problemul .table input[type="radio"]:first-child{
+	margin-left:0;
 }
 .boxk .problemul .yzcode{
 	position:relative;

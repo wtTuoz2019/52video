@@ -117,6 +117,22 @@
                 <option value="{$vo.id}" <?php  if($vo['id']==$info['content']){echo 'selected';}?>>{$vo.name len="20"}</option>
                                              <!--{/foreach}-->
                                         </select>
+              <div class="movetishi">
+                            	
+                                
+                                	<div class="tishik" style="display: none;">
+                                    	嵌入调查问卷，表单在后台-功能服务-自定义表单内添加
+                                    </div>
+                            	</div>
+                                
+                                <script>
+ 	$(".movetishi").mouseover(function (){  
+		$(this).children('.tishik').fadeIn(300);  
+	}).mouseout(function (){
+		$(this).children('.tishik').fadeOut(300);  
+	});  
+ 	
+ </script>
           </td>
         
         </tr>
@@ -133,6 +149,9 @@
  <script src="__PUBLICURL__/data/js/bootstrap.min.js" type="text/javascript"></script>
  <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
  <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
+ 
+ 
+ 
 <script type="text/javascript">
 	$(document).ready(function() {
 				$('#example-dropUp').multiselect({
@@ -204,6 +223,6 @@ function typechange(){
 	
 	
 	}
-
+	
 </script>
 </body>

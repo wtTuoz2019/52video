@@ -520,6 +520,10 @@ ul[id^="commentlist"]{
 	line-height:35px;
 	padding:9px 0;
 	display:none;
+	right:0;
+}
+.current ul li{
+	color:#000;
 }
 .comment  #container .commentarea_left,.comment_show  #container_show .commentarea_left{
 	width:auto;

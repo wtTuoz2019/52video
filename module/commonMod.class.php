@@ -95,7 +95,7 @@ class commonMod
 		
 	
 		if(MOBILE){ 
-			if(!$_SESSION['uid']||$this->wxuser['wxname']!=$this->userinfo['from']){
+			if(!$_SESSION['uid']||($this->wxuser['wxname']!=$this->userinfo['from']&&$this->wxuser['oauth'])){
 			if($this->wxuser&&$this->wxuser['oauth']){
 			 if (!isset($_GET['code']) ) {
 			  $customeUrl = 'http://'.$this->config['MOBILE_DOMAIN'] . $_SERVER['REQUEST_URI'];

@@ -148,7 +148,7 @@
          							 <input name="image" type="text"class="form-control" id="image" value="{$info.image}" onchange="imagechange(this)"/> 
 								
 								<p>
-									（宽1000px；高550px；）
+									（宽1000px；高550px；图片大小建议500K以内）
 								</p>
 								<input class="chooseimg" id="image1" value="选择图片"></input>
 							</td>
@@ -218,7 +218,7 @@
                                     <!--{/foreach}-->
 								
                                         </div>
-										<button type="button" class="addgn" onClick="addfunctions()">
+										<button type="button" class="addgn" onClick="addfunctions()" title="中间栏自定义菜单，建议最多设置4">
 											+添加
 										</button>
 									</div>
@@ -263,7 +263,13 @@
                                            </div>   
                                               自动审核：
                                                 <input name="autoaudit" type="radio" value="1" onchange="showdiv(this)" <!--if:{$info['autoaudit']==1}-->checked="checked"<!--{/if}-->/>开启
-                                                <input name="autoaudit" type="radio"   value="0" onchange="hidediv(this)" <!--if:{$info['autoaudit']==0}-->checked="checked"<!--{/if}--> />关闭
+                                                <input name="autoaudit" type="radio"   value="0" onchange="hidediv(this)" <!--if:{$info['autoaudit']==0}-->checked="checked"<!--{/if}--> />关闭   <div class="movetishi movetishi2">
+                            	
+                                
+                                	<div class="tishik" style="display: none;">
+                                    	开启后，导入名单，可自动验证报名人员	
+                                    </div>
+                            	</div>
 										</div>
                                         <div class="comment">
                                                     <div>
@@ -277,16 +283,34 @@
                                                            <!--{/foreach}-->
                                                     </div>
                                                 </div>
-										<p>
+										<div>
 											发布状态：
 											<input name="status" type="radio" value="1"  <!--if:{$info['status']==1}-->checked="checked"<!--{/if}-->/>开启
-											<input name="status" type="radio"  <!--if:{$info['status']==0}-->checked="checked"<!--{/if}-->/>草稿  
-										</p>
-                                        	<p>
+											<input name="status" type="radio"  <!--if:{$info['status']==0}-->checked="checked"<!--{/if}-->/>草稿 
+                                            <div class="movetishi movetishi2">
+                            	
+                                
+                                	<div class="tishik" style="display: none;">
+                                    	开启后，节目会自动显示在视频列表中
+                                        <br />
+注：该功能需绑定微信服务号才有效	
+                                    </div>
+                            	</div> 
+										</div>
+                                        	<div>
 											关注观看：
 											<input name="gzstatus" type="radio" value="1"  <!--if:{$info['gzstatus']==1}-->checked="checked"<!--{/if}-->/>开启
-											<input name="gzstatus" type="radio"  <!--if:{$info['gzstatus']==0}-->checked="checked"<!--{/if}-->/>关闭  
-										</p>
+											<input name="gzstatus" type="radio"  <!--if:{$info['gzstatus']==0}-->checked="checked"<!--{/if}-->/>关闭
+                                            <div class="movetishi movetishi2">
+                            	
+                                
+                                	<div class="tishik" style="display: none;">
+                                    	开启后，观看直播需要观众指定公众号
+                                        <br />
+注：该功能需绑定微信服务号才有效	
+                                    </div>
+                            	</div>  
+										</div>
                                         <?php } ?>
 									</div>
 								</div>

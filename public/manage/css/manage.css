@@ -1269,7 +1269,6 @@ body .oftentable tr td{
 #outvideo .videocontent>div.page_form table tr td div.additional{
 	width: 315px;
 	border: 1px solid #BABABA;
-	overflow: hidden;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div{
 	padding: 10px;
@@ -2246,31 +2245,36 @@ body .userset .oftentable tr td{
 	position:relative;
 	top:2px;
 }
+.movetishi2{
+	float:none;
+	display:inline-block;
+	margin-left:5px;
+}
 .movetishi .tishik{
-	position:absolute;
-	padding:10px 15px;
-	border:1px solid #E5E5E5;
-	color:#272727;
-	width:175px;
-	background:#fff;
-	border-radius:5px;
-	top: 40px;
-    left: -75px;
+	position: absolute;
+    padding: 10px 15px;
+    border: 1px solid #E5E5E5;
+    color: #272727;
+    width: 290px;
+    background: #fff;
+    border-radius: 5px;
+    top: -10px;
+    left: 35px;
     z-index: 1000;
 	display:none;
 }
 .movetishi .tishik:after {
   content: " ";
     position: absolute;
-    right: 85px;
-    top: -6px;
+    left: -6px;
+    top: 15px;
     background: #fff;
     width: 10px;
     height: 10px;
     border: #E5E5E5 solid 1px;
     border-left: 0;
     border-bottom: 0;
-    -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+    -webkit-transform: rotate(-145deg);
+    -ms-transform: rotate(-145deg);
+    transform: rotate(-145deg);
 }
