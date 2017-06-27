@@ -920,7 +920,7 @@ body{
 				border-bottom: 1px dashed #D4D4D4;
 				padding-top:10px;
 				margin:0;
-				height:40px;
+				height:inherit;
 			}
 			.nosie li.table input{
 				margin:0;
