@@ -744,14 +744,20 @@ iframe#main{
 	height: 30px;
 	border: 1px solid #BFBFBF;
 }
-#extendclass .selectclassk>div button.query{
-	width: 65px;
-	height: 30px;
-	background: #eee;
-	position: absolute;
-	top: 0;
-	right: 0;
-	border: 1px solid #BFBFBF;
+ .selectclassk form button{
+	padding: 0 20px;
+    height: 30px;
+    border: 1px solid #C3C3C3;
+    line-height: 30px;
+    font-size: 12px;
+    display: inline-block;
+    text-align: center;
+    color: #000;
+    margin-right: 20px;
+    background: -moz-linear-gradient(top,#ffffff,#d5d2d2);
+    background: linear-gradient(to bottom,#ffffff,#d5d2d2);
+    background: -webkit-linear-gradient(top,#ffffff,#d5d2d2);
+    background: -o-linear-gradient(top,#ffffff,#d5d2d2);
 }
 #extendclass .selectclassk>div.chooseclass select{
 	width: 180px;
@@ -765,14 +771,6 @@ iframe#main{
 	padding-left: 45px;
 	float: left;
 	border: 1px solid #BFBFBF;
-}
-#extendclass .selectclassk>div.chooseclass button{
-	width: 115px;
-	height: 30px;
-	background: #eee;
-	border: 1px solid #BFBFBF;
-	float: left;
-	border-left: 0;
 }
 .oftentable{
 	margin-bottom:20px;
@@ -1338,7 +1336,6 @@ body .oftentable tr td{
 	line-height:25px;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div.choose .comment,#outvideo .videocontent>div.page_form table tr td div.additional>div.choose .signup{
-	overflow: hidden;
 	padding:5px 15px;
     display: none;
 	width:80%;
@@ -1346,6 +1343,10 @@ body .oftentable tr td{
 	text-align:left;
 	background:#EEEEEE;
 	box-shadow:0px 2px 6px -2px inset;
+}
+#outvideo .videocontent>div.page_form table tr td div.additional>div.choose .signup{
+	display:block;
+	overflow: hidden;
 }
 #outvideo .videocontent>div.page_form table tr td div.additional>div.choose .comment>div:first-child,#outvideo .videocontent>div.page_form table tr td div.additional>div.choose .signup>div:first-child{
 	padding:5px 0;
@@ -2262,6 +2263,7 @@ body .userset .oftentable tr td{
     left: 35px;
     z-index: 1000;
 	display:none;
+	text-align:left;
 }
 .movetishi .tishik:after {
   content: " ";

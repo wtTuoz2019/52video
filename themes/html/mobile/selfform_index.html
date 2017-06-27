@@ -90,7 +90,11 @@ saveform({
 		dialog({content:msg,icon:'succeed',width:'565px',height:'345px',id:'iconad'});
 		$('.aui_main').css('padding-top','180px')
 		setTimeout(function(){
+				<!--if:{$info['tourl']}-->
+				window.location.href='{$info["tourl"]}';
+				  <!--{else}-->
 			window.location.reload()
+			 <!--{/if}-->
 		},3000); 
 	 
   

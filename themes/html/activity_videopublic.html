@@ -1,7 +1,8 @@
+<script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>   
 
-		<section>
-			<div class="tab-box" id="tab-box">
-				<ul id="myTab" class="  clearfix" role="tablist">
+	
+			<div class="tab-box  contentBox" id="tab-box">
+				<ul id="myTab" class="setdmtop clearfix" role="tablist">
                 	<!--foreach:{$functions $key $vo}-->
                           <li class="funcions{$vo.id} <?php if(!$key) echo 'active'; ?>" ><a href="#funcions{$vo.id}"  role="tab" data-toggle="tab">{$vo.name}</a></li>		
                            <!--/loop-->
@@ -12,11 +13,39 @@
                 	 <!--foreach:{$functions $key $vo}-->
                      <div class="tab-pane <?php if(!$key) echo 'active'; ?>" id="funcions{$vo.id}">
                      
-                     <?php if($vo['type']=='comment'){?>
+                     <?php if($vo['type']=='comment'){  
+                    if(intval($vo['content'])){
+                   $selfform=model('selfform')->info($vo['content']);
+                  $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                  }elseif($vo['content']!='0'){?>
+               	 <div class="jiaoyantishi">{$vo.content html}</div>
+                 <?php }
+               $commentflag=true;
+                     ?>
                      
-                      <!--#include file="menu_comment.html"-->
-					 <?php }elseif($vo['type']=='jiaoyancomment'){?>
-                          <!--#include file="menu_jiaoyan.html"-->
+                       <!--#include file="menu_comment.html"-->
+      <?php }elseif($vo['type']=='jiaoyancomment'){
+      $selfform=model('selfform')->info($vo['content']);
+      $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+        $jiaoyancommentflag=true;
+      ?>
+      
+      
+                   <!--#include file="menu_jiaoyan.html"-->
+                        <?php }elseif($vo['type']=='commentshow'){?>
+                          <script>
+						   var mobile='{$vo.content}';
+   							
+ 						  </script> 
+                          <!--#include file="menu_commentshow.html"-->
+                             <?php }elseif($vo['type']=='selfform'){
+                               $this->selfform=model('selfform')->info($vo['content']);
+                    	  $this->commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                             
+                             ?>
+                          
+                          <!--#include file="menu_selfform.html"-->
+                          
                           <?php }elseif($vo['type']=='content'){?>
                         	{$vo.content html}
                          <?php }elseif($vo['type']=='url'){?>
@@ -85,7 +114,65 @@
                            <?php }?>
 					</div>
                            <!--/loop-->
+                <?php if($commentflag||$jiaoyancommentflag){  ?>
                 
+                <div class="modal pcmodal" id="mymodal"> 
+		    <div class="modal-dialog" id="movediv">
+		        <div class="modal-content">
+                	<div class="modal-title">评论</div>
+					<div class="modal-body" style="position:static;">
+                 <?php if($commentinputs&&$selfform){ ?>
+                 <div class="choosep">
+                 	<p><img src="__TPL__mobile/img/tongji.jpg"/>{$selfform.name}</p>
+                 
+                 
+                      <!--foreach:{$commentinputs $v}-->
+                     
+      					{$php( echo model('selfform')->get_field_html($v,''))}
+                       
+      				  <!--{/foreach}-->
+           
+           
+            <input type="hidden" name="aid"  value="{$info.aid}"/>
+            <input type="hidden" name="fid" value="{$v.fid}"/>
+             </div>
+              <?php } ?>
+              
+                <?php if($jiaoyancommentflag){ ?>
+              <div class="comment-area" id="commentform" style="display:none"  >
+          
+           <span id="start2">开始:00:00</span>
+            <div class="area"><div class="progress1" id="progress2"></div></div>
+             <span id="end2">结束:00:00</span>
+           
+             <input type="button" value="获取开始" class="btn btn-primary"  onclick="getprogress()" />
+            
+            <input type="button" value="获取结束" class="btn btn-primary"   onclick="getprogressend()"  style=" "/>
+            <input name="progress"  id="progressinput" value="0"  type="hidden" >
+            <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
+            
+           </div>  
+           <?php } ?>
+						<textarea id="editors" placeholder="我的评论..."></textarea>
+						<div class="icongroups">
+				
+						</div>
+						<div style="text-align: center; margin-bottom:20px;">
+                        	<input name="pid" type="hidden" value="" id="pid">
+                            <input name="toname" type="hidden" value="" id="toname">
+							<button id="input-type-submit" type="button" class="btn btn-primary">发布</button>
+                            <button  type="button" class="btn toback" data-dismiss="modal">取消</button>
+							<button id="modal_cance" type="button" class="btn btn-default"  data-dismiss="modal">X</button>
+                            <div id="messageto"></div>
+						</div>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+                
+                
+                
+                <?php }?> 
 				</div>
 			</div>
 		</section>
@@ -237,6 +324,32 @@ function changecolor(color){
 		font-size: 13px;
 		padding-left: 10px;
 		border: 0;
+	}
+	#myTabContent{
+		width:1100px;
+		margin:0 auto;
+	}
+	#myTabContent .biaogek{
+		border:6px solid #e5e5e5;
+		width:66%;
+		margin:0 auto;
+		margin-top:37px;
+	}
+	#myTabContent .biaogek .pingdingimg{
+		width:256px;
+		height:166px;
+		position:absolute;
+		bottom: -45px;
+		right: -123px;
+	}
+	#myTabContent  [id^="funcions"]{
+		overflow-x:inherit;
+	}
+	#myTabContent{
+		position:relative;
+	}
+	.contentBox #mymodal{
+		left:305px;
 	}
 </style>
 

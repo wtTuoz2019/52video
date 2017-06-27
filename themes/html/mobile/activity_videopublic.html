@@ -12,11 +12,45 @@
                 	 <!--foreach:{$functions $key $vo}-->
                      <div class="tab-pane <?php if(!$key) echo 'active'; ?>" id="funcions{$vo.id}">
                      
-                     <?php if($vo['type']=='comment'){?>
+                     <?php if($vo['type']=='comment'){  
+                    if(intval($vo['content'])){
+                   $selfform=model('selfform')->info($vo['content']);
+                  $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                  }elseif($vo['content']!='0'){?>
+               	 <div class="jiaoyantishi">{$vo.content html}</div>
+                 <?php }
+               $commentflag=true;
+                     ?>
                      
                       <!--#include file="menu_comment.html"-->
-					 <?php }elseif($vo['type']=='jiaoyancomment'){?>
+					 <?php }elseif($vo['type']=='jiaoyancomment'){
+                         if(intval($vo['content'])){
+                   $selfform=model('selfform')->info($vo['content']);
+                  $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                  }elseif($vo['content']!='0'){?>
+               	 <div class="jiaoyantishi">{$vo.content html}</div>
+                 <?php }
+                      $jiaoyancommentflag=true;
+                    
+                     ?>
                           <!--#include file="menu_jiaoyan.html"-->
+                        <?php }elseif($vo['type']=='commentshow'){?>
+                          <script>
+						   var mobile='{$vo.content}';
+   							
+ 						  </script> 
+                          <!--#include file="menu_commentshow.html"-->
+                             <?php }elseif($vo['type']=='selfform'){
+                               $this->selfform=model('selfform')->info($vo['content']);
+                    	  $this->commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                             
+                             ?>
+                          
+                          <!--#include file="menu_selfform.html"-->
+                          
+                          
+                          
+                          
                           <?php }elseif($vo['type']=='content'){?>
                         	{$vo.content html}
                          <?php }elseif($vo['type']=='url'){?>

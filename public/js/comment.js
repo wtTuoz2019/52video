@@ -377,7 +377,8 @@ function commentHandle(){
 				 }
 				 
 				 
-				 var a=$(e).offset().top-730;
+				 var a=$(e).offset().top-$('.setdmtop').offset().top;
+				 console.log($(e).offset().top);
 				 $('.contentBox #mymodal').css('top',a+'px')
 				 
 				$('.contentBox #mymodal #movediv').css('top','0');

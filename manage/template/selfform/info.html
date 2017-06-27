@@ -15,7 +15,15 @@
 						</tr>
                         
                         <tr>
-							<td>形象图：</td>
+							<td><div class="movetishi movetishi2">
+                            	
+                                
+                                	<div class="tishik" style="display: none;">
+                                    	单独使用表单页，请上传标题图	
+                                    </div>
+                            	</div>
+                                形象图：
+                                </td>
 							<td>
           	                  	<?php echo module('editor')->get_image_upload('image1','image',false,'editor_content') ?>
          							 <input name="image" type="text"class="form-control" id="image" value="{$info.image}" onchange="imagechange(this)"/> 
@@ -38,7 +46,16 @@
 							</td>
 						</tr>
                         <tr>
-							<td>跳转链接：</td>
+							<td>
+                            <div class="movetishi movetishi2">
+                            	
+                                
+                                	<div class="tishik" style="display: none;">
+                                    	输入链接，表单提交后，将跳转到指定链接	
+                                    </div>
+                            	</div>
+                            跳转链接：
+                            </td>
 							<td>
 								<textarea name="tourl" class="text_textarea" id="tourl"  placeholder="可不填">{$info.tourl}</textarea>
 								<p>

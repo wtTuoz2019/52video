@@ -515,12 +515,14 @@ ul[id^="commentlist"]{
 .comment  #container .date #current,.comment_show  #container_show .date #current{
 	float: right;
     position: absolute;
-    top: -1px;
+    top: 2px;
 	height:35px;
 	line-height:35px;
 	padding:9px 0;
 	display:none;
-	right:0;
+	right: 15px;
+    background: #eee;
+    border-radius: 5px;
 }
 .current ul li{
 	color:#000;
@@ -605,6 +607,7 @@ ul[id^="commentlist"]{
 	border:1px solid #D1D2D4;
 	height: initial;
 	position:relative;
+	background-color:#fff;
 }
 .contentBox #mymodal .modal-title{
 	height:45px;

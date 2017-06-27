@@ -281,7 +281,8 @@
 											<input type="radio" name="signup" value="1" onchange="showdiv(this)"   <!--if:{$info['signup']==1}-->checked="checked"<!--{/if}--> />开启
 											<input type="radio" name="signup" onchange="hidediv(this)" value="0" <!--if:{$info['signup']==0}-->checked="checked"<!--{/if}-->  />关闭
 										</p>
-										<div class="signup">
+										<div style="display:none">
+                                        <div class="signup">
 											<div>
 												报名选项
 											</div>
@@ -303,7 +304,7 @@
                                                 <input name="ignore" type="radio" value="1" <!--if:{$info['ignore']==1}-->checked="checked"<!--{/if}-->/>开启
                                                 <input name="ignore" type="radio"   value="0" <!--if:{$info['ignore']==0}-->checked="checked"<!--{/if}--> />关闭
                                                 
-                                           </div>   
+                                          <br />  
                                               自动审核：
                                                 <input name="autoaudit" type="radio" value="1" onchange="showdiv(this)" <!--if:{$info['autoaudit']==1}-->checked="checked"<!--{/if}-->/>开启
                                                 <input name="autoaudit" type="radio"   value="0" onchange="hidediv(this)" <!--if:{$info['autoaudit']==0}-->checked="checked"<!--{/if}--> />关闭 <div class="movetishi movetishi2">
@@ -327,6 +328,7 @@
                                                            <!--{/foreach}-->
                                                     </div>
                                                 </div>
+                                                </div>
 										<div>
 											发布状态：
 											<input name="status" type="radio" value="1"  <!--if:{$info['status']==1}-->checked="checked"<!--{/if}-->/>开启
@@ -349,7 +351,7 @@
                             	
                                 
                                 	<div class="tishik" style="display: none;">
-                                    	开启后，观看直播需要观众指定公众号
+                                    	开启后，观看直播需要关注指定公众号
                                         <br />
 注：该功能需绑定微信服务号才有效	
                                     </div>

@@ -34,6 +34,7 @@
             <option value="{$key}" <?php if($info['type']==$key){ ?> selected="selected" <?php } ?> >{$vo.name}</option>
             <!--{/foreach}-->
             </select>
+           
         </td>
       </tr>
       
@@ -61,6 +62,19 @@
        <tr>
         <td width="120" align="right">字段配置</td>
         <td><textarea name="options" class="text_textarea" id="options">{$info.options html}</textarea>
+         <div class="movetishi movetishi2">
+                            	
+                                
+                                	<div class="tishik" style="display: none;">
+                                    	字段配置示例：
+                                        <br />
+                                        显示字段一|1
+                                        <br />               
+                                        显示字段二|2
+                                        <br />
+                                        显示字段三|3
+                                    </div>
+                            	</div>
         </td>
        </tr>
       

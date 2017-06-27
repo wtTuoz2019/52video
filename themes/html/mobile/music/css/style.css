@@ -1023,6 +1023,19 @@ p.allcomment span{
 				position: relative;
 				top: 2px;
 			}
+			.nosie li.table input[type="text"]{
+				width:160px;
+				border-radius:3px;
+				border:1px solid #D2D2D2;
+				height:25px;	
+			}
+			.nosie li.table select{
+				width:160px;
+				border-radius:3px;
+				border:1px solid #D2D2D2;	
+				height:25px;
+				margin-left:15px;
+			}
 			.nosie{
 				padding-bottom:20px;
 				position:relative;
