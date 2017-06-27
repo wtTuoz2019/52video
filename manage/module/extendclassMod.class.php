@@ -115,6 +115,59 @@ class extendclassMod extends commonMod {
 	public function teacher(){
 	
 		$where['uid']= $this->user['id'];
+		  	if($_FILES['file']['name']){
+		$return=module('editor_upload')->upload();
+			
+			if($return['error'])$this->error($return['msg']);
+			$data = new Spreadsheet_Excel_Reader();
+			// 设置输入编码 UTF-8/GB2312/CP936等等
+			$data->setOutputEncoding('UTF-8');
+			$data->read('..'.$return['url']);
+			$sheet=$data->sheets[0];
+			$rows=$sheet['cells'];
+			$temp=array();
+		
+			foreach($rows as  $key=>$val){
+				if($key>1){
+						$array=array('name'=>$val[1],'mobile'=>$val[2],'title'=>$val[3],'SXTEACHNUMBER'=>$val[4],'des'=>$val[5],'uid'=>$this->user['id']);
+						$teacher[]=$array;
+						
+						}
+				
+			
+				}
+			
+					if($teacher)
+				model('extendclass')->teacher_add_saveall($teacher);
+			}
+		  
+		if($_GET['download']){
+			$list=model('extendclass')->teacher_list($where);
+		header("Content-Type: text/html; charset=utf-8");
+		header("Content-type:application/vnd.ms-execl");
+		header("Content-Disposition:filename=teacher.xls");
+		echo iconv('utf-8','gbk','名称')."\t";
+		echo iconv('utf-8','gbk','手机')."\t";
+		echo iconv('utf-8','gbk','职称')."\t";
+		echo iconv('utf-8','gbk','师训号')."\t";
+		echo iconv('utf-8','gbk','介绍')."\n";
+		
+	
+			
+			foreach($list as $key=>$value){
+	
+		
+		echo iconv('utf-8','gbk',  $value['name'])."\t";
+		echo iconv('utf-8','gbk',  $value['mobile'])."\t";
+		echo iconv('utf-8','gbk',  $value['title'])."\t";
+		echo iconv('utf-8','gbk',  $value['SXTEACHNUMBER'])."\t";
+		echo iconv('utf-8','gbk',  $value['des']."\n");
+      		  
+     	   }
+		  	die;
+			}
+		
+		
 		 	   $url = __URL__ . '/teacher/page-{page}.html';
         $listRows = 20;
         $limit=$this->pagelimit($url,$listRows);
@@ -168,6 +221,30 @@ class extendclassMod extends commonMod {
         $this->msg('删除成功！',1);
 		
 		}
+	 public function teacher_batch(){
+        if(empty($_POST['status'])||empty($_POST['id'])){
+            $this->msg('请先选择内容！',0);
+        }
+        $id_array=substr($_POST['id'],0,-1);
+        $id_array=explode(',', $id_array);
+        switch ($_POST['status']) {
+            case '1':
+                //审核
+                foreach ($id_array as $value) {
+                //    model('forum')->comment_status($value);
+                }
+				break;
+			 case '2':
+                //审核
+                foreach ($id_array as $value) {
+                    model('extendclass')->teacher_del($value);
+                }
+                break;
+           
+        }
+        $this->msg('操作执行完毕！',1);
+
+    }
 	public function student(){
 		
 		  $where['uid']= $this->user['id'];
@@ -202,6 +279,32 @@ class extendclassMod extends commonMod {
 			
 					if($students)
 				model('extendclass')->student_add_saveall($students);
+			}
+		  
+		  
+		  
+		if($_GET['download']){
+			$list=model('extendclass')->student_list($where);
+		header("Content-Type: text/html; charset=utf-8");
+		header("Content-type:application/vnd.ms-execl");
+		header("Content-Disposition:filename=student.xls");
+		echo iconv('utf-8','gbk','名称')."\t";
+		echo iconv('utf-8','gbk','联系手机')."\t";
+		echo iconv('utf-8','gbk','学籍号')."\t";
+		echo iconv('utf-8','gbk','班级')."\n";
+		
+	
+			
+			foreach($list as $key=>$value){
+	
+		
+		echo iconv('utf-8','gbk',  $value['name'])."\t";
+		echo iconv('utf-8','gbk',  $value['mobile'])."\t";
+		echo iconv('utf-8','gbk',  $value['schoolcode'])."\t";
+		echo iconv('utf-8','gbk',  $bj[$value['bj_id']]['grade'].'年级'.$bj[$value['bj_id']]['class'].'班'."\n");
+      		  
+     	   }
+		  	die;
 			}
 		  
 		   $url = __URL__ . '/student/page-{page}.html';
@@ -260,6 +363,31 @@ class extendclassMod extends commonMod {
         $this->msg('删除成功！',1);
 		
 		}
+	
+	 public function student_batch(){
+        if(empty($_POST['status'])||empty($_POST['id'])){
+            $this->msg('请先选择内容！',0);
+        }
+        $id_array=substr($_POST['id'],0,-1);
+        $id_array=explode(',', $id_array);
+        switch ($_POST['status']) {
+            case '1':
+                //审核
+                foreach ($id_array as $value) {
+                //    model('forum')->comment_status($value);
+                }
+				break;
+			 case '2':
+                //审核
+                foreach ($id_array as $value) {
+                    model('extendclass')->student_del($value);
+                }
+                break;
+           
+        }
+        $this->msg('操作执行完毕！',1);
+
+    }
 	public function batch(){
 	
 		$where['uid']= $this->user['id'];

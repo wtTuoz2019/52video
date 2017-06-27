@@ -88,6 +88,9 @@ class extendclassModel extends commonModel {
 		return $this->model->table('teacher')->where(array('id'=>$id))->delete();
 		}
 		
+	public function teacher_add_saveall($data){
+			return $this->model->table('teacher')->insertAll($data);
+		}
 	public function student_list($where,$limit=null){
 		$data=$this->model->table('student')->where($where)->limit($limit)->order('id desc')->select();
 		

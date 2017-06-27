@@ -65,7 +65,7 @@ class form_listMod extends commonMod {
 			}
 			}
 		
-		echo iconv('utf-8','gbk','总时长(分钟)')."\n";
+		echo iconv('utf-8','gbk','总时长(分钟)')."\t";
 		echo iconv('utf-8','gbk','分时长')."\n";
 			
 			foreach($list as $key=>$value){

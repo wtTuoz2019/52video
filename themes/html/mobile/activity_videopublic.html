@@ -1,4 +1,4 @@
-
+<script type="text/javascript" src="__PUBLIC__/js/mobilecomment.js"></script>  
 		<section>
 			<div class="tab-box" id="tab-box">
 				<ul id="myTab" class="  clearfix" role="tablist">
@@ -119,6 +119,68 @@
                            <?php }?>
 					</div>
                            <!--/loop-->
+                           
+                           
+                           <?php if($commentflag||$jiaoyancommentflag){  ?>
+                    
+                        <div class="modal dbg" id="mymodal">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+					<div class="modal-body" style="padding-top:10px;">
+                 <?php  if($commentinputs&&$selfform){
+                
+                  ?>
+                 <div class="choosep">
+                 	<p><img src="img/tongji.jpg"/>{$selfform.name}</p>
+                 
+                 
+                      <!--foreach:{$commentinputs $v}-->
+                     
+      					{$php( echo model('selfform')->get_field_html($v,''))}
+                       
+      				  <!--{/foreach}-->
+           
+           
+            <input type="hidden" name="aid"  value="{$info.aid}"/>
+            <input type="hidden" name="fid" value="{$v.fid}"/>
+             </div>
+              <?php } ?>
+              
+              <?php if($jiaoyancommentflag){ ?>
+              <div class="comment-area" id="commentform" style="display:none"  >
+          
+           <span id="start2">开始:00:00</span>
+            <div class="area"><div class="progress1" id="progress2"></div></div>
+             <span id="end2">结束:00:00</span>
+           </div>  
+           <?php } ?>
+         
+         
+						<div contenteditable="true" id="editors"  style="padding:5px;" class="biaoqing" onfocus="hidespan(this)" onblur="showspan(this)" onkeydown="myInput.listen(this, event);"><span>输入评论...</span></div>
+                        <div class="imgk">
+                        	 <img id="smiles" src="__PUBLIC__/images/face.png" >
+                             <div class="page_emotion box_swipe" id="page_emotion">
+                                <dl id="list_emotion" class="list_emotion pt_10"></dl><!-- 表情框 -->
+                                <dt><ol id="nav_emotion" class="nav_emotion"></ol></dt><!-- 分页提示点 -->
+                            </div>
+                        </div>
+                        
+						<div class="icongroups">
+				
+						</div>
+						<div style="text-align: center;position:relative">
+                        	<input name="pid" type="hidden" value="" id="pid">
+                            <input name="toname" type="hidden" value="" id="toname">
+							<button id="input-type-submit" type="button" class="btn btn-primary">发布</button>
+							<button id="modal_cance" type="button" class="btn btn-default"  data-dismiss="modal">返回</button>
+                            <div id="messageto"></div>
+						</div>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+        
+                      <?php }?>
                 
 				</div>
 			</div>
@@ -278,10 +340,13 @@ function changecolor(color){
         <a class="menubtn" href="{$config.addurl}"></a>
     </div>
 </div>
-
+<link href="__PUBLIC__/js/biaoqing/css/webiaoqing.css" rel="stylesheet" type="text/css">
+<script src="__PUBLIC__/js/biaoqing/js/webiaoqin.js" ></script> 
 
 <script>
- 
+ $('#smiles').click(function(){
+	$('#page_emotion').toggle();
+});
 	$('#usercenter .menubtn').click(function(){
 		if($('.menus').css('opacity')=='0'){
 			$('.menus').stop().animate({opacity:'1'},500);
