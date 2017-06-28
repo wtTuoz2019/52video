@@ -32,7 +32,7 @@
             <div class="problemul">
                 		 <!--foreach:{$field_list $vo}-->
             	{$php( echo model('selfform')->get_field_html($vo,$signinfo['values'][$vo['field']]))}
-                     <!--if:{$vo['field']=='mobile'&&!$signinfo}-->
+                     <!--if:{$vo['field']=='mobile'}-->
     			 
                    		<label class="ui-border-r">
                             验证码
