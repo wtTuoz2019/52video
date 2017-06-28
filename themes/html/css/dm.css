@@ -86,6 +86,7 @@ div[class^='danmu']{
 	border-radius:30px;
 	padding-left: 85px;
 	white-space: nowrap;
+	height:66px;
 }
 div[class^='danmu'] .userhead{
 	position: absolute;

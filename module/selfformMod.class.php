@@ -13,7 +13,7 @@ class selfformMod extends commonMod
     		$this->error404();
     	}
 		$time=time();
-		 $url = "http://".$sys['MOBILE_DOMAIN']."/selfform/index/fid-".$id."?time=".$time."&token=".$_GET['token'];
+		 $url = "http://".$this->config['MOBILE_DOMAIN']."/selfform/index/fid-".$id."?time=".$time."&token=".$_GET['token'];
           model('login')->getQrcode($url, 'selfform_'.$id.'_'.$time);
            $img = "/upload/aidimage/selfform_".$id.'_'.$time.".png";
 		   $this->msg($img,1);
