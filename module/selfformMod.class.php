@@ -185,10 +185,12 @@ class selfformMod extends commonMod
     	if(empty($fid)){
     		$this->error404();
     	}
+		if(isset($_POST['code'])){
 	if($_COOKIE['mobilecode']&&$_POST['code']!=$_COOKIE['mobilecode']){
 			
 			 $this->msg('手机验证码不对！',0);
 			}
+		}
     	$info=model('selfform')->info($fid);
 	
     	if(empty($info)){

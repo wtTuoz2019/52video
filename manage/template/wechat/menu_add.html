@@ -36,39 +36,19 @@
 
 <div class="page_form">
 
-	<h4>菜单添加</h4>
 <form action="__URL__/menu_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
 <div class="box-body">
 <div class="tablek">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
-    
-      <tr>
-        <td width="150" align="right">父级菜单：</td>
-        <td width="300">
-       <select name="pid" id="pid" class="form-control">
-                                                <option  value="0">请选择菜单</option>
-                                                <!--foreach:{$p_menu $vo}-->
-                                                    <option value="{$vo.id}" <?php if($vo['id']==$info['pid']) echo 'selected'?>>{$vo.title}</option>
-                                                <!--{/foreach}-->
-                                            </select>
-        </td>
-        <td></td>
-      </tr>
-  
+ 
        <tr>
         <td  align="right">菜单名称：</td>
         <td>
-        <input  type="text" class="form-control" value="{$info.title}" name="title" reg="\S" msg="名称不能为空"/>
+        <input  type="text" class="form-control" value="{$info.title}" id="title" name="title" reg="\S" msg="名称不能为空"/>
         </td>
         <td></td>
       </tr>
-        <tr>
-        <td align="right">关联关键词：</td>
-        <td>
-        <input  type="text" class="form-control" value="{$info.keyword}" name="keyword" />
-        </td>
-        <td></td>
-      </tr>
+       
      
         <tr>
 		   <td align="right">关联文章：</td>
@@ -103,12 +83,28 @@
 </div>
 <script>
 //提交表单
-   savelistform({addurl:"__URL__/menu_add",listurl:"__URL__/menu"});
+var win = art.dialog.open.origin;
+saveform({
+	success:function(data){
+		<?php if($info){  ?>
+	data='{$info["id"]}';
+	$('#menus'+data,win.document).html('<button type="button" class="button">'+$('#title').val()+'</button><input type="hidden" value="'+data+'" name="menus['+data+']"><p><a href="javascript:" onClick="editmenus('+data+')">编辑</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" onClick="delmenus('+data+',this)">删除</a></p>');
+	<?php }else{?>
+		$('#menus',win.document).append('<div id="button'+data+'"><button type="button" class="button">'+$('#title').val()+'</button><input type="hidden" value="'+data+'" name="menus['+data+']"><p><a href="javascript:" onClick="editmenus('+data+')">编辑</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" onClick="delmenus('+data+',this)">删除</a></p></div>');
+		
+		<?php }?>
+		art.dialog.close();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+
      function content_add(domid,domida){
 			
 		art.dialog.data('domid', domid);
 		art.dialog.data('domida', domida);
-		art.dialog.open('__URL__/menu_add_content',{lock:true,title:'关联文章',width:600,height:400,yesText:'关闭',background: '#000', top:'5%',opacity: 0.45});
+		art.dialog.open('__URL__/menu_add_content',{lock:true,title:'关联链接',width:600,height:400,yesText:'关闭',background: '#000', top:'5%',opacity: 0.45});
 	
         
 		}

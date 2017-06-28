@@ -41,8 +41,8 @@ class wechatModel extends commonModel
 			
 		}	
 	//菜单设置_获取父菜单	
-	public function get_p_menu(){
-		return $this->model->table('diymen_class')->where(array('token'=>$_SESSION['token'],'pid'=>0))->order('sort desc,id desc')->select();
+	public function get_p_menu($where){
+		return $this->model->table('diymen_class')->where($where)->order('sort desc,id desc')->select();
 		
 		}
 	//获取子菜单	

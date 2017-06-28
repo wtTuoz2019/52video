@@ -227,8 +227,7 @@ class wechatMod extends commonMod {
 	//编辑菜单	
 	public function menu_add(){
 		$this->actionname='菜单添加';
-		$p_menu=model('wechat')->get_p_menu();
-		$this->assign('p_menu',$p_menu);
+		
 		$id=intval($_GET['id']);
 		if($id){
 			$menu_info=$this->model->table('diymen_class')->where(array('id'=>$id))->find();
@@ -242,7 +241,6 @@ class wechatMod extends commonMod {
 	public function menu_save(){
 		
 		$_POST['uid']=$this->uid;
-		$_POST['token']=$this->token;
 		
 		if($_POST['id']){
 			
@@ -252,7 +250,7 @@ class wechatMod extends commonMod {
 			$add=model('wechat')->insert('diymen_class',$_POST);
 			}
 		if($add){
-			$this->msg('保存成功！',1);
+			$this->msg($add,1);
 		}
 		
 		}	
@@ -834,6 +832,39 @@ class wechatMod extends commonMod {
 		$uid=$this->uid;
 		$list=$this->model->table('diytpl')->where(array('uid'=>$uid))->select();
 		$this->assign('list',$list);
+	
+		$this->display();
+		
+	}	
+		public function menu_add_selfform_list(){
+		
+		  $listRows=9;
+        $url = __URL__ . '/index/page-{page}.html'; //分页基准网址
+        $limit=$this->pagelimit($url,$listRows);
+		if($_GET['s']){
+			$where['name']=array('like',"'%".$_GET['s']."%'");
+			} 
+				 
+		 if($this->user['gid']==6){
+				$temp;$temp[]=0;
+		
+				$temp[]=$this->user['id'];
+				
+			$nextuser=model('user')->admin_list(' AND pid='.$this->user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['id'];
+				}
+			} 
+		 	$where[]=" uid  in (".implode(',',$temp).") ";
+			 }else{
+		if($this->user['cid'])	
+	 	$where[]=" uid =".$this->user['cid'];
+			 }
+			
+		 $this->list=model('selfform')->form_list($where,$limit);
+        $count=model('selfform')->count($where);
+        $this->page=$this->page($url, $count, $listRows);
 	
 		$this->display();
 		

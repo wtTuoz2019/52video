@@ -39,7 +39,7 @@
           				<table width="100%" cellspacing="0" cellpadding="0" border="0" class="ListProduct">
 							<thead>
 								<tr>
-									<th>标题</th>
+									<th>名称</th>
 									<th style=" width:80px;">
 									操作 
 									</th>
@@ -48,7 +48,7 @@
 								<tbody>
                                  	<!--foreach:{$list $vo}-->
 									<tr>
-										<td>{$vo.title}</td>
+										<td>{$vo.name}</td>
 										<td class="norightborder">
 											<a onclick="returnHomepage('{$vo.id}')" href="javascript:">选中</a>
 										</td>
@@ -58,7 +58,7 @@
 								</tbody>
           				</table>
           				<div style="padding-left:10px" class="footactions">
-						  	<div class="pages"> {$page} </div>
+						  	<div class="pages"> {$page}   </div>
 						</div>
         		</div>
     		</div>
@@ -78,7 +78,7 @@
 			// 返回数据到主页面
 			function returnHomepage(id){
 				
-				url="http://{$sys.MOBILE_DOMAIN}/index.php/diytpl/index/tid-"+id+"?token={$token}";
+				url="http://{$sys.MOBILE_DOMAIN}/selfform/index/fid-"+id+"?token={$token}";
 				var origin = artDialog.open.origin;
 				var dom = origin.document.getElementById(domid);
 				dom.value=url;

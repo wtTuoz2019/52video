@@ -1,0 +1,145 @@
+<div id="outvideo" class="outvideob">
+			<h4>
+				{$actionname}
+			</h4>
+			<div class="videocontent" style="border:0; text-align:center;">
+				<div class="page_form" style="width:100%;">
+               <form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form" autocomplete="off" style=" display:inline-block; padding:20px; border:1px solid #BABABA; padding-right: 80px;">
+					
+                       <table cellspacing="0">
+						<tr>
+							<td>名称：</td>
+							<td>
+								<input name="name" type="text" class="form-control" id="name"  value="{$info.name}" reg="\S" msg="名称不能为空" />
+							</td>
+						</tr>
+                        
+                        <tr>
+							<td><div class="movetishi movetishi2">
+                            	
+                                
+                                	<div class="tishik" style="display: none;">
+                                    	单独使用表单页，请上传标题图	
+                                    </div>
+                            	</div>
+                                形象图：
+                                </td>
+							<td>
+          	                  	<?php echo module('editor')->get_image_upload('image1','image',false,'editor_content') ?>
+         							 <input name="image" type="text"class="form-control" id="image" value="{$info.image}" onchange="imagechange(this)"/> 
+								
+								<p>
+									
+								</p>
+								<input class="chooseimg" id="image1" value="选择图片"></input>
+							</td>
+						</tr>
+                          <tr>
+							<td><div class="movetishi movetishi2">
+                            	
+                                
+                                	<div class="tishik" style="display: none;">
+                                    	单独使用表单页，请上传标题图	
+                                    </div>
+                            	</div>
+                                背景图：
+                                </td>
+							<td>
+          	                  	<?php echo module('editor')->get_image_upload('backurl1','backurl',false,'editor_content') ?>
+         							 <input name="backurl" type="text"class="form-control" id="backurl" value="{$info.backurl}" onchange="imagechange(this)"/> 
+								
+								<p>
+									
+								</p>
+								<input class="chooseimg" id="backurl1" value="选择图片"></input>
+							</td>
+						</tr>
+                        
+                    <tr>
+							<td>菜单：</td>
+							<td>
+								
+									<div style="padding:0;">
+                                    <div id="menus">
+                                    <!--foreach:{$p_menu $vo}-->
+        
+                                      <div id="button{$vo.id}"><button type="button" class="button">{$vo.title}</button><input type="hidden" value="{$vo.id}" name="menus[{$vo.id}]">
+                                      <p><a href="javascript:" onClick="editmenus('{$vo.id}')">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:" onClick="delmenus('{$vo.id}',this)">删除</a></p>
+                                      </div>
+                                    
+                                    <!--{/foreach}-->
+								
+                                        </div>
+										<button type="button" class="addgn" onClick="addmenus()" title="菜单分类">
+											+添加
+										</button>
+									</div>
+                                    
+                      </td>
+                      </tr>
+                      
+                      	<tr>
+							<td>模板：</td>
+							<td>
+								<input name="tpl" type="text" class="form-control" id="tpl"  value="{$info.tpl}" reg="\S" msg="模板不能为空" />
+							</td>
+						</tr>         
+						
+                        
+                      
+                        
+                       
+					</table>
+                    
+                     <div class="form_submit">
+                    
+      <input name="id" id="id" type="hidden" value="{$info.id}" />
+                      <button type="submit" id="savevideo">保存</button>
+                    </div>
+                    </form>
+				</div>
+				
+			</div>
+			
+			
+		</div>
+   <script>
+   savelistform({addurl:"__URL__/add",listurl:"__URL__/index"});
+   function addmenus(){
+	urldialog({
+		width:1000,
+	height:500,
+	title:'功能编辑',
+	url:'__ROOT__/index.php/wechat/menu_add'
+	});
+	
+	}
+	function editmenus(id){
+	urldialog({
+		width:1000,
+	height:500,
+	title:'功能编辑',
+	url:'__ROOT__/index.php/wechat/menu_add/id-'+id
+	});
+	
+	}
+//删除
+function delmenus(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'确定删除？ ',
+		url:"__ROOT__/index.php/wechat/del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$('#fakebutton button').eq($(obj).parent().parent().index()).remove();
+			$('#fakebutton button').eq(0).addClass('active');
+			$('#iframek>div').eq($(obj).parent().parent().index()).remove();
+			$('#iframek>div').eq(0).addClass('active');
+			$('#fakebutton>button').css('width',100/$('#fakebutton>button').length+'%');
+			$(obj).parent().parent().remove();
+		}
+	});
+}
+	
+   </script>     
