@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$info.name}</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/selfform/css/main.css"/>
+	</head>
+	<body class="sign">
+		<div>
+			<h1 class="title">
+			{$info.name}
+			</h1>
+			
+			<div class="qrk">
+				<div class="rgba">
+					
+				</div>
+				<div class="qr">
+					<div>
+						<img src="{$sys.imageurl}/upload/aidimage/selfform_{$info.id}.png" id="erweima"/>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+    <!--if:{$info['dynamic']&&$info['interval']}-->
+       <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+<script>
+setInterval("geterweima()",{$info['interval']}*1000);
+function geterweima(){
+	
+	
+	$.post('__URL__/geterweima?{$urltoken}',{'id':'{$info.id}'},function(data){
+		if(data.status){
+			$('#erweima').attr('src','{$sys.imageurl}'+data.message);
+			}
+			},'json');
+	}
+</script>
+
+<!--{/if}-->
+</html>

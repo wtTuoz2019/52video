@@ -4,9 +4,33 @@ class selfformMod extends commonMod
     public function __construct()
     {
         parent::__construct();
+		if($_GET["_action"]!='showpc'&&$_GET["_action"]!='geterweima')
 		$this->getuserinfo();
     }
-
+	public function geterweima(){
+		$id=in($_POST['id']);
+    	if(empty($id)){
+    		$this->error404();
+    	}
+		$time=time();
+		 $url = "http://".$sys['MOBILE_DOMAIN']."/selfform/index/fid-".$id."?time=".$time."&token=".$_GET['token'];
+          model('login')->getQrcode($url, 'selfform_'.$id.'_'.$time);
+           $img = "/upload/aidimage/selfform_".$id.'_'.$time.".png";
+		   $this->msg($img,1);
+		}
+	public function showpc(){
+		$id=in($_GET['id']);
+    	if(empty($id)){
+    		$this->error404();
+    	}
+		$this->info=$info=model('selfform')->info($id);
+	
+    	if(empty($info)){
+    		$this->error404();
+    	}
+		
+		$this->display('selfform_showpc.html');
+		}
     public function index()
     {  	
 	 $fid=in($_GET['fid']);
@@ -19,6 +43,14 @@ class selfformMod extends commonMod
     	if(empty($info)){
     		$this->error404();
     	}
+		if($info['dynamic']&&$info['interval']){
+			$time=$_GET['time'];
+			if($time<time()-$info['interval']){
+				 $this->msg('二维码已失效，请重新扫码！',0);
+				}
+			
+			}
+		
 		
 			//获取所有字段
     	$this->field_list=$field_list=model('selfform')->form_inputs_list(array('fid'=>$info['id']));

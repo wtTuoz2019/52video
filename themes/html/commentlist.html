@@ -11,81 +11,16 @@
 <script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
 <meta name="description" content="{$sys.description}" />
 <meta name="keywords" content="{$sys.keywords}" />
-<style>
-	*{
-		margin:0;
-		padding:0;
-		font-family: "微软雅黑";
-		box-sizing:border-box;
-	}
-	.maintm{
-		width:760px;
-		margin:0 auto;
-		padding:40px 0;
-		background:rgba(255,255,255,.2);
-		border-radius: 35px 0 35px 0;
-	}
-	.maintm .title{
-		font-size:30px;
-		height:inherit;
-		margin:0;
-		line-height:inherit;
-		letter-spacing: inherit;
-		margin-left:-115px;
-		margin-right:-115px;
-		min-height:100px;
-		width: 990px;
-		color:#000;
-		background-size:100% auto;
-		background-repeat:no-repeat;
-	}
-	.maintm .title>span{
-		display:inline-block;
-		width:810px;
-		padding: 20px;
-		background:#E7E7E7;
-	}
-	.maintm ul.bjList li{
-		margin:0;
-		padding:0;
-		width:100%;
-		background:none;
-		border-radius:none;
-		padding:0 100px;
-		margin-bottom:30px;
-	}
-	ul.bjList li .txPic img{
-		height:130px;
-		width:130px;
-		border-radius:50%;
-	}
-	ul.bjList li .bjListCon{
-		padding-left:165px;
-	}
-	.maintm ul.bjList li .biaoti{
-		font-size:20px;
-		color:#000;
-	}
-	.maintm ul.bjList li .time{
-		font-size:18px;
-		color:#000;
-	}
-	.maintm ul.bjList li .jianjie{
-		font-size:32px;
-		color:#222;
-		padding:25px;
-		background:rgba(255,255,255,.2);
-		border-radius: 35px 0 35px 0;
-		margin-top: 15px;
-		letter-spacing: inherit;
-		font-weight:bold;
-	}
-</style>
+<link href="css/dm.css" type="text/css" rel="stylesheet">
 
 </head>
 
 <body>
 <!--start 中间部分-->
+<div class="btnqh">
+<button onclick="plq(this)" disabled="disabled"></button>
+<button onclick="dm(this)"></button>
+</div>
 <div class="maintm">
 <h3 class="title"><span>{$title}</span></h3>
 <div class="t100">
@@ -96,12 +31,13 @@
 </div>
 </div>
 <div class="cbmain"></div>
+
 <script language="javascript" type="text/javascript">
 var pageIndex=0;
 
  var  fid='<?php echo $fid;?>';
  
-
+//弹幕1
 function getResult(){
 	$.post("__URL__/ajax_list", { fid: fid,pageIndex:pageIndex},
 	function(d){
@@ -124,7 +60,7 @@ function buildLi(data){
 	strVar += "<div class=\"txPic left\" style=\"width:130px\"><img src=\""+ data[i]['pic'] +"\"><\/div>";
 	strVar += "<div class=\"bjListCon\">";
 	strVar += "<span class=\"biaoti\">"+ data[i]['name'] +" :<\/span>";
-	strVar += "<span class=\"time\">"+ data[i]['t'] +"<\/span>";
+	//strVar += "<span class=\"time\">"+ data[i]['t'] +"<\/span>";
 	strVar += "<p class=\"jianjie\">"+ data[i]['message'] +"<\/p>";
 	strVar += "<\/div>";
 	strVar += "<\/li>";
@@ -133,6 +69,84 @@ function buildLi(data){
 };	
 function time(){ 
 	getResult();
-}setInterval("time()",3000);
+}
+var pl1= setInterval("time()",3000);
+
+//弹幕2
+var dmnum=0;
+var pageW=parseInt($(document).width());
+var pageH=parseInt($(document).height());
+var nTop=0;
+
+function getResult2(){
+	$.post("__URL__/ajax_list", { fid: fid,pageIndex:pageIndex},
+	function(d){
+	
+		console.log(d);
+		if (d.status == 1) { 
+			pageIndex=d.message.pageIndex;
+		// if(d.message.num <= number){
+			$('#more').hide();
+		// }
+			
+			dmnum++;
+			var Top=parseInt(pageH*(Math.random()));
+			if(Top>pageH-90){
+                Top=pageH-90;
+            }
+			if(Top<170){
+				Top=170;
+			}
+			if(nTop-Top<60&&nTop-Top>=0){
+				Top-60;
+			}else if(nTop-Top>-60&&nTop-Top<=0){
+				Top+60;
+			}
+			nTop=Top;
+			$("body").append($(buildLi2(d.message.info)));
+			
+			$('.danmu'+dmnum+'').css({"top":Top,"right":-300});
+			$('.danmu'+dmnum+'').stop().animate({"right":pageW+300},15000,"linear",function(){
+                        $(this).remove();
+            });
+			
+		}
+		if (d.status == 0){
+			pageIndex=0;
+		}
+	}, "json");
+}
+
+function buildLi2(data){
+  var strVar = "";
+  for (var i = 0; i < data.length; i++) {
+	strVar += '<div class="danmu'+dmnum+'">';
+	strVar += "<img src=\""+ data[i]['pic'] +"\" class='userhead'/>"+ data[i]['message'] +"</div>";
+  };
+  return strVar;
+};	
+function time2(){ 
+	getResult2();
+}
+var pl2= setInterval("time2()",3000);
+clearInterval(pl2);
+function plq(e){
+	pageIndex=0;
+	pl1= setInterval("time()",3000);
+	clearInterval(pl2);
+	$('.maintm').css('background','rgba(255,255,255,.2)');
+	$("div[class^='danmu']").remove();
+	$(e).attr('disabled',true);
+	$(e).next().attr('disabled',false);
+}
+function dm(e){
+	pageIndex=0;
+	pl2= setInterval("time2()",3000);
+	clearInterval(pl1);
+	$('.maintm').css('background','none');
+	$('#comments_list').empty();
+	$(e).attr('disabled',true);
+	$(e).prev().attr('disabled',false);
+}
 </script>
 </body>

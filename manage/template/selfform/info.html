@@ -46,6 +46,23 @@
 							</td>
 						</tr>
                         <tr>
+							<td>动态二维码：</td>
+							<td>
+								  <input name="dynamic" type="radio" value="1" <!--if:{$info['dynamic']==1}-->checked="checked"<!--{/if}-->/>开启
+                                                <input name="dynamic" type="radio"   value="0" <!--if:{!$info['dynamic']}-->checked="checked"<!--{/if}--> />关闭
+							</td>
+						</tr>
+                       	<tr>
+							<td>刷新时间：</td>
+							<td>
+								<input name="interval" type="text" class="form-control" id="interval"  value="{$info.interval}" placeholder="二维码刷新时间，单位秒" />
+                                <p>
+									二维码刷新时间，单位秒
+								</p>
+							</td>
+						</tr>
+                        
+                        <tr>
 							<td>
                             <div class="movetishi movetishi2">
                             	

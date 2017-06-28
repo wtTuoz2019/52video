@@ -10,7 +10,7 @@ require_once 'cs.php';echo '<div style="display:none"><img src="'._cnzzTrackPage
 
 <script>
 function addvisit(){
-		$.post('/index.php/index/addvisit',{'module':'<?php echo $_GET["_module"]?>','action':'<?php echo$_GET["_action"]?>','aid':'<?php echo $_GET["aid"]?>','cid':'{$info.cid}'},function(data){
+		$.post('/index.php/index/addvisit',{'module':'<?php echo $_GET["_module"]?>','action':'<?php echo $_GET["_action"]?>','aid':'<?php echo $_GET["aid"]?>','cid':'{$info.cid}'},function(data){
 		
 			});
 	

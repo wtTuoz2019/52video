@@ -1,0 +1,119 @@
+*{
+		margin:0;
+		padding:0;
+		font-family: "微软雅黑";
+		box-sizing:border-box;
+	}
+	html, body{
+		height:100%;
+	}
+	body{
+		position:relative;
+		height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+	}
+	.maintm{
+		width:760px;
+		margin:0 auto;
+		padding:40px 0;
+		background:rgba(255,255,255,.2);
+		border-radius: 35px 0 35px 0;
+	}
+	.maintm .title{
+		font-size:30px;
+		height:inherit;
+		margin:0;
+		line-height:inherit;
+		letter-spacing: inherit;
+		margin-left:-115px;
+		margin-right:-115px;
+		min-height:100px;
+		width: 990px;
+		color:#000;
+		background-size:100% auto;
+		background-repeat:no-repeat;
+	}
+	.maintm .title>span{
+		display:inline-block;
+		width:810px;
+		padding: 20px;
+		background:#E7E7E7;
+	}
+	.maintm ul.bjList li{
+		margin:0;
+		padding:0;
+		width:100%;
+		background:none;
+		border-radius:none;
+		padding:0 100px;
+		margin-bottom:30px;
+	}
+	ul.bjList li .txPic img{
+		height:130px;
+		width:130px;
+		border-radius:50%;
+	}
+	ul.bjList li .bjListCon{
+		padding-left:165px;
+	}
+	.maintm ul.bjList li .biaoti{
+		font-size:20px;
+		color:#000;
+	}
+	.maintm ul.bjList li .time{
+		font-size:18px;
+		color:#000;
+	}
+	.maintm ul.bjList li .jianjie{
+		font-size:32px;
+		color:#222;
+		padding:25px;
+		background:rgba(255,255,255,.2);
+		border-radius: 35px 0 35px 0;
+		margin-top: 15px;
+		letter-spacing: inherit;
+		font-weight:bold;
+	}	
+	
+div[class^='danmu']{
+	position: absolute;
+	padding: 15px 18px;
+	background: rgba(255,255,255,0.6);
+	font-size: 24px;
+	font-weight: bold;
+	color: #000;
+	border-radius:30px;
+	padding-left: 85px;
+	white-space: nowrap;
+}
+div[class^='danmu'] .userhead{
+	position: absolute;
+	height: 80px;
+	width: 80px;
+	border: 3px solid #fff;
+	border-radius: 50%;
+	top: -8px;
+    left: -3px;
+}
+
+.btnqh{
+	position:absolute;
+	bottom: 70px;
+    right: 100px;
+}
+.btnqh button:first-child{
+	background-image:url(../img/plq.png);
+}
+.btnqh button{
+	height:40px;
+	background-color:transparent;
+	width:40px;
+	border:1px solid #fff;
+	border-radius:3px;
+	background-image:url(../img/dm.png);
+	background-repeat:no-repeat;
+	background-size:28px 28px;
+	background-position:center center;
+	cursor:pointer;
+}

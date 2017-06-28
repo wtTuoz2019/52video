@@ -92,7 +92,7 @@ class forumMod extends commonMod {
             case '1':
                 //审核
                 foreach ($id_array as $value) {
-                    model('forum')->comment_status($value);
+                    model('forum')->topics_status($value);
                 }
 				break;
 			 case '2':

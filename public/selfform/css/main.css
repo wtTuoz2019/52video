@@ -1,0 +1,259 @@
+/*签到页面样式*/
+*{
+	font-family: "微软雅黑";
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+.sign{
+	background-image: url(../img/signbg.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #123275;
+	
+}
+.title{
+	font-size: 91px;
+	width: 920px;
+	margin: 0 auto;
+	text-align: center;
+	color: #fff;
+	text-shadow: 0px 5px 3px #757575;
+	padding-top: 70px;
+}
+.qrk {
+	margin-top: 45px;
+	position: relative;
+}
+.qrk .qr{
+	height: 385px;
+	width: 385px;
+	background: rgba(255,255,255,0.17);
+	margin: 0 auto;
+	border-radius: 5px;
+	padding: 10px;
+	z-index: 100; 
+    position: relative;
+}
+.qrk .qr>div{
+	height: 100%;
+	width: 100%;
+	background: #fff;
+	border-radius: 5px;
+	padding: 10px;
+}
+.qrk .qr>div img{
+	height: 100%;
+	width: 100%;
+}
+.qrk .rgba{
+	height: 185px;
+	position: absolute;
+	width: 100%;
+	background: rgba(255,255,255,0.17);
+	top: 100px;
+	left: 0;
+}
+/*签到成功页面样式*/
+.win{
+	background: #FAF7F7;
+}
+.winbg{
+	width: 625px;
+	height: 510px;
+	margin: 165px auto;
+	background-image: url(../img/winbg.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	text-align: center;
+	padding-top: 270px;
+}
+.winbg .qdtime{
+	color: #00ccff;
+	font-size: 32px;
+	margin-bottom: 25px;
+}
+.winbg .qdnum , .winbg .qdzw{
+	color: #9fa0a0;
+	font-size: 30px;
+	margin-bottom: 15px;
+}
+.winbg .qdzw{
+	margin-bottom: 25px;
+}
+.winbg .qdnum span{
+	color: #00ccff;
+}
+.winbg .qdtishi{
+	color: #a6a5a5;
+	font-size: 14px;
+}
+/*输入弹幕*/
+.usertext{
+	margin-bottom: 120px;
+}
+.textk{
+	margin-top: 30px;
+	padding: 0 30px;
+	overflow: hidden;
+}
+.textk>div{
+	float: left;
+}
+.textk>div.userhead img{
+	height: 68px;
+	width: 68px;
+	border-radius: 50%;
+}
+p.username .name{
+	font-size: 26px;
+	color: #606a97;
+}
+p.username .school{
+	font-size: 21px;
+	color: #b1b9dc;
+	padding-left: 5px;
+}
+.textk>div.userxx{
+	margin-left: 10px;
+}
+.textk>div.userxx .text{
+	max-width: 540px;
+	padding: 20px 25px;
+	border-radius: 5px;
+	border: 1px solid #E3E3E3;
+	background: #fff;
+	position: relative;
+	font-size: 24px;
+	margin-top: 15px;
+	display: inline-block;
+}
+.textk.righttext>div.userxx .text{
+	background: #8FCD52;
+	float: right;
+}
+.textk>div.userxx .text img{
+	height: 40px;
+	width: 40px;
+	vertical-align: text-bottom;
+}
+.textk>div.userxx .text:after{
+	content: " ";
+    position: absolute;
+    left: -9px;
+    top: 9px;
+    background: #fff;
+    width: 15px;
+    height: 15px;
+    border: #E3E3E3 solid 1px;
+    border-left: 0;
+    border-bottom: 0;
+    -webkit-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    transform: rotate(225deg);
+}
+.textk.righttext>div{
+	float: right;
+}
+.textk.righttext .username{
+	overflow: hidden;
+}
+.textk.righttext .username>span{
+	float: right;
+}
+.textk.righttext .username>span.school{
+	padding-right: 10px;
+	position: relative;
+	top: 5px;
+}
+.textk.righttext>div.userxx .text:after{
+	left: initial;
+	right: -9px;
+	-webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background: #8FCD52;
+}
+.textk.righttext>div.userxx{
+	margin-right: 10px;
+}
+.bottomapp{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+}
+.comments{
+	height: 101px;
+	border-top: 1px solid #D6D6D6;
+	padding: 20px 30px;
+}
+.comments>*{
+	float: left;
+	height: 60px;
+}
+.inputtext{
+	margin-left: 20px;
+	height: 60px;
+	width: 450px;
+	border: 1px solid #D6D6D6;
+	border-radius: 3px;
+	font-size: 24px;
+	padding-left: 15px;
+	overflow: hidden;
+	line-height: 60px;
+}
+.inputtext img{
+	height: 40px;
+	width: 40px;
+	vertical-align: text-bottom;
+}
+.inputtext>*{
+}
+.send{
+	width:105px;
+	height: 60px;
+	border-radius: 3px;
+	background: #606A97;
+	color: #fff;
+	font-size: 24px;
+	text-align: center;
+	line-height: 60px;
+	margin-left: 22px;
+}
+.nav_emotion{
+	margin-bottom: 10px;
+}
+#list_emotion{
+	padding: 20px 0;
+}
+/*弹幕显示页面*/
+#boxDom{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+div[class^='danmu']{
+	position: absolute;
+	padding: 15px 18px;
+	background: rgba(255,255,255,0.6);
+	font-size: 24px;
+	font-weight: bold;
+	color: #000;
+	border-radius:30px;
+	padding-left: 85px;
+	white-space: nowrap;
+}
+div[class^='danmu'] .userhead{
+	position: absolute;
+	height: 80px;
+	width: 80px;
+	border: 3px solid #fff;
+	border-radius: 50%;
+	top: -13px;
+    left: 0;
+}
