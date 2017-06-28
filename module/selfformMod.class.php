@@ -226,14 +226,15 @@ class selfformMod extends commonMod
 	 			  'uid'=>$this->userinfo['uid']))){
 					  
 					   model('selfform')->edit_value($valuedata);
-			 $this->msg('修改成功',1);		  
+					   $msg=$info['msg']?$info['msg']:'修改成功';
+			 $this->msg($msg,1);		  
 					  }
     
         model('selfform')->add_value($valuedata);
     
       
-       
-         $this->msg('提交成功',1);
+        $msg=$info['msg']?$info['msg']:'提交成功';
+         $this->msg($msg,1);
        
         
     }

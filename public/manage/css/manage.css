@@ -1983,10 +1983,11 @@ table td .commentoperation>a{
 	color:#000;
 	position:absolute;
 	right:0;
-	top:30px;
+	bottom:5px;
 }
 table td .commentoperation>a+a{
-	top:10px;
+	top:5px;
+	bottom: initial;
 }
 .borderk a.toexport{
 	float:right;

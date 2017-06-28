@@ -105,6 +105,7 @@ div[class^='danmu'] .userhead{
 }
 .btnqh button:first-child{
 	background-image:url(../img/plq.png);
+	margin-right:10px;
 }
 .btnqh button{
 	height:40px;

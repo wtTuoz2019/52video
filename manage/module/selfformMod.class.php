@@ -151,7 +151,7 @@ class selfformMod extends commonMod
 		foreach($this->formlist as $k=>$v){
 			echo iconv('utf-8','gbk',$v['name'])."\t";
 			}
-		
+		echo iconv('utf-8','gbk','时间')."\t";
 		echo "\n";
 			$list=model('selfform')->form_value_list($where);
 		if(is_array($list)){
@@ -166,6 +166,7 @@ class selfformMod extends commonMod
 				echo iconv('utf-8','gbk',  $string)."\t";
 						
 					}
+				echo iconv('utf-8','gbk',  date('Y-m-d H:i:s',$val['time']))."\t";
 					echo "\n";
 				
 				}

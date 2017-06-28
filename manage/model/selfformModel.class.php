@@ -42,7 +42,7 @@ class  selfformModel extends commonModel
 		
 		}
 	public function form_value_list($where,$limit=null){
-		return $this->model->table('selfform_value')->where($where)->limit($limit)->select();
+		return $this->model->table('selfform_value')->where($where)->limit($limit)->order('time desc')->select();
 		}
 	public function form_value_count($where){
 		return $this->model->table('selfform_value')->where($where)->count();
