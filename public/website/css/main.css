@@ -158,3 +158,43 @@ html,body{
 	background-color: rgba(0,0,0,0.8);
 	transition: all 0.3s ease-in-out;
 }
+/*模板1*/  
+.headerimg{
+	height: 400px;
+	background-image:url(../img/mb1head.jpg);
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+}
+.centernav {
+    overflow: hidden;
+    padding: 20px 0 0 20px;
+}
+.centernav a {
+    float: left;
+    height: 190px;
+    width: 330px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    line-height: 190px;
+    padding-left: 170px;
+    background-image: url(../img/nav4_1.png);
+    background-repeat: no-repeat;
+    background-position: 30px center;
+    font-size: 30px;
+    background-color: #F79CAD;
+    color: #fff;
+    border-radius: 10px;
+}
+.centernav a+a{
+	 background-image: url(../img/nav4_2.png);
+	 background-color: #B9D94A;
+}
+.centernav a+a+a{
+	 background-image: url(../img/nav4_3.png);
+	 background-color: #FBDC73;
+}
+.centernav a+a+a+a{
+	 background-image: url(../img/nav4_4.png);
+	 background-color: #A2DADB;
+}
+

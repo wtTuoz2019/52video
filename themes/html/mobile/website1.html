@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$info.name}</title>
+		<meta name="viewport" content="width=720, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/website/css/main.css"/>
+	</head>
+	<body>
+    <div class="headerimg" <?=$info['image']?'style="background-image:url('.$sys['imageurl'].$info['image'].')"':''?>>
+    </div>
+		
+        <div class="centernav">
+         <!--foreach:{$menus $vo}-->
+			
+				<a href="{$vo.url}" <?=$vo['image']?'style="background-image:url('.$vo['image'].')"':''?>>{$vo.title}</a>
+				
+			
+              <!--{/foreach}-->
+		
+		</div>
+	</body>
+</html>

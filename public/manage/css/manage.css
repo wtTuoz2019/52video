@@ -2366,6 +2366,9 @@ body .userset .oftentable tr td{
 	top:0;
 	right:9px;
 }
+#myModal .modal-dialog{
+	width:910px;
+}
 .weihome .modal  input{
 	display:inline-block;
 }

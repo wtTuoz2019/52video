@@ -320,7 +320,7 @@ class wechatMod extends commonMod {
         $this->class_info = model('category')->info($id);
         //分页信息
         $listRows=20;
-        $url = __URL__ . '/index/id-' . $id . '-page-{page}'.$where['url'].'.html'; //分页基准网址
+        $url = __URL__ . '/menu_add_content_list/id-' . $id . '-page-{page}'.$where['url'].'.html'; //分页基准网址
         $limit=$this->pagelimit($url,$listRows);
         //内容列表
         $this->list=model('live')->content_list($id,$limit,$where['where'],$where['order']);
@@ -839,7 +839,7 @@ class wechatMod extends commonMod {
 		public function menu_add_selfform_list(){
 		
 		  $listRows=9;
-        $url = __URL__ . '/index/page-{page}.html'; //分页基准网址
+        $url = __URL__ . '/menu_add_selfform_list/page-{page}.html'; //分页基准网址
         $limit=$this->pagelimit($url,$listRows);
 		if($_GET['s']){
 			$where['name']=array('like',"'%".$_GET['s']."%'");

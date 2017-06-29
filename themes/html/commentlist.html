@@ -82,7 +82,6 @@ function getResult2(){
 	$.post("__URL__/ajax_list", { fid: fid,pageIndex:pageIndex},
 	function(d){
 	
-		console.log(d);
 		if (d.status == 1) { 
 			pageIndex=d.message.pageIndex;
 		// if(d.message.num <= number){

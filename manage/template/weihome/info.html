@@ -15,18 +15,12 @@
 						</tr>
                         
                         <tr>
-							<td><div class="movetishi movetishi2">
-                            	
-                                
-                                	<div class="tishik" style="display: none;">
-                                    	宽720px;高405px	
-                                    </div>
-                            	</div>
+							<td>
                                 形象图：
                                 </td>
 							<td>
           	                  	<?php echo module('editor')->get_image_upload('image1','image',false,'editor_content') ?>
-         							 <input name="image" type="text"class="form-control" id="image" value="{$info.image}" onchange="imagechange(this)"/> 
+         							 <input name="image" type="text"class="form-control" id="image" value="{$info.image}"  placeholder="宽720px;高400px	"/> 
 								
 								<p>
 									
@@ -35,18 +29,12 @@
 							</td>
 						</tr>
                           <tr>
-							<td><div class="movetishi movetishi2">
-                            	
-                                
-                                	<div class="tishik" style="display: none;">
-                                    	宽720px;高1280px
-                                    </div>
-                            	</div>
+							<td>
                                 背景图：
                                 </td>
 							<td>
           	                  	<?php echo module('editor')->get_image_upload('backurl1','backurl',false,'editor_content') ?>
-         							 <input name="backurl" type="text"class="form-control" id="backurl" value="{$info.backurl}" onchange="imagechange(this)"/> 
+         							 <input name="backurl" type="text"class="form-control" id="backurl" value="{$info.backurl}"   placeholder="宽720px;高1280px"/> 
 								
 								<p>
 									
@@ -101,20 +89,20 @@
                                   
                                   <div data-dismiss="modal" >
                                     <input checked class="radio" type="radio" name="tplid" value="101" <?php if($info['tplid']==101){echo 'checked';} ?>>模板1
-                                        <img src="__PUBLICURL__/home/images/1.jpg"  width="140" height="266"  class="img" />
+                                        <img src="__PUBLICURL__/home/images/mb1.jpg"  width="140" height="266"  class="img" />
                                         </div>
                                         <div data-dismiss="modal">
                                         <input class="radio gap" type="radio" name="tplid" value="102" <?php if($info['tplid']==102){echo 'checked';} ?>>模板2
-                                       <img src="__PUBLICURL__/home/images/2.jpg"  width="140" height="266"  class="img" />
+                                       <img src="__PUBLICURL__/home/images/mb2.jpg"  width="140" height="266"  class="img" />
                                        </div>
                                        <div data-dismiss="modal">
                                        <input class="radio gapo" type="radio" name="tplid" value="103" <?php if($info['tplid']==103){echo 'checked';} ?>>模板3
-                                       <img src="__PUBLICURL__/home/images/3.jpg"  width="140" height="266"  class="img" />
+                                       <img src="__PUBLICURL__/home/images/mb3.jpg"  width="140" height="266"  class="img" />
                                        </div>
                                        <div data-dismiss="modal">
 
 <input class="radio gapo" type="radio" name="tplid" value="104" <?php if($info['tplid']==104){echo 'checked';} ?>>模板4
-                                       <img src="__PUBLICURL__/home/images/4.jpg"  width="140" height="266"  class="img" />
+                                       <img src="__PUBLICURL__/home/images/mb4.jpg"  width="140" height="266"  class="img" />
                                        </div>
                                       
                                        </div>
@@ -152,6 +140,9 @@
        <style>
        	#outvideo .videocontent>div.page_form table td>input[type="text"]{
 			width:420px !important;
+		}
+		#outvideo .videocontent>div.page_form table td>input#tpl{
+			width:200px !important;
 		}
        	#outvideo .videocontent>div.page_form table tr td .chooseimg{
 			left:335px;
@@ -201,5 +192,21 @@ $('.toleft').click(function(){
 	$('.toright').click(function(){
 		$('.mbk').stop().animate({left:'-560px'},700);
 	});
+	
+	
+	$('.mbk>div').click(function(){
+		$(this).parents('.mbk').find('input').prop("checked",false);
+		 $(this).find('input').prop('checked',true);
+		 if($(this).find('input').val()=='101'){
+				$('#tpl').val("website1");	
+		 }else if($(this).find('input').val()=='102'){
+				$('#tpl').val("website2");	
+		 }else if($(this).find('input').val()=='103'){
+				$('#tpl').val("website3");	
+		 }else if($(this).find('input').val()=='104'){
+				$('#tpl').val("website4");	
+		 }
+	});
+	
 	
    </script>     

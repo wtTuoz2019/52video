@@ -88,6 +88,15 @@ div[class^='danmu']{
 	white-space: nowrap;
 	height:66px;
 }
+div[class^='danmu'] span,.maintm ul.bjList li .jianjie span{
+	color: #000 !important;
+	font-size: 24px !important;
+	font-family:"微软雅黑" !important;
+	font-weight:bold !important;
+}
+.maintm ul.bjList li .jianjie span{
+	font-size:25px !important;
+}
 div[class^='danmu'] .userhead{
 	position: absolute;
 	height: 80px;
