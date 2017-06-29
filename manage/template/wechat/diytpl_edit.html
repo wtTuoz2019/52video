@@ -1,3 +1,6 @@
+<script src="__PUBLICURL__/data/js/AdminLTE/newapp.js" type="text/javascript"></script>
+ <script src="__PUBLICURL__/data/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
 <style>
 	#myModal input{
 		display:inline-block;
@@ -133,7 +136,11 @@
 $('.mbk>div').click(function(){
 	console.log($(this).find('input').val());
 	$(this).parents('.mbk').find('input').prop("checked",false);
+	$(this).parents('.mbk').find('.iradio_minimal').removeClass('checked');
+	$(this).parents('.mbk').find('.iradio_minimal').attr('aria-checked',false);
 	 $(this).find('input').prop('checked',true);
+	 $(this).find('.iradio_minimal').addClass('checked');
+	 $(this).find('.iradio_minimal').attr('aria-checked',true);
 	 if($(this).find('input').val()=='101'){
 		 	$('#nowmb').val("模板1");	
 	 }else if($(this).find('input').val()=='102'){
@@ -144,7 +151,22 @@ $('.mbk>div').click(function(){
 		 	$('#nowmb').val("模板4");	
 	 }
 });
+$(function(){
+	$('.mbk input').each(function() {
+        if($(this)[0].checked==true){
+			 if($(this).val()=='101'){
+		 			$('#nowmb').val("模板1");	
+			 }else if($(this).val()=='102'){
+					$('#nowmb').val("模板2");	
+			 }else if($(this).val()=='103'){
+					$('#nowmb').val("模板3");	
+			 }else if($(this).val()=='104'){
+					$('#nowmb').val("模板4");	
+			 }
+		}
+    });
 
+})
 
 //提交表单
 savelistform({addurl:"__URL__/diytpl_edit",listurl:"__URL__/diytpl"});

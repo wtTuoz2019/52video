@@ -38,11 +38,11 @@
 					</td>
                     <td>
                     
-                  <!--  	<img src="<?php 
-      $url = "http://".$sys['MOBILE_DOMAIN']."/selfform/index/fid-".$vo['id']."?token=".$token;
-          model('live')->getQrcode($url, 'selfform_'.$vo['id']);
-          echo $img = "/upload/aidimage/selfform_".$vo['id'].".png";
-        ?>" width="65px"/>-->
+                    	<img src="<?php 
+      $url = "http://".$sys['MOBILE_DOMAIN']."/weihome/index/id-".$vo['id']."?token=".$token;
+          model('live')->getQrcode($url, 'weihome_'.$vo['id']);
+          echo $img = "/upload/aidimage/weihome_".$vo['id'].".png";
+        ?>" width="65px"/>
                     </td>
 					
 					<td class="operation">
@@ -50,21 +50,8 @@
 							操作
 						</button>
 						<ul>
-                        <li>
-								<a href="<?php echo ROOTAPP ?>/selfform/showpc?id={$vo.id}&token={$token}" target="_blank">
-									大屏幕
-								</a>
-							</li>
-                        	<li>
-								<a href="__URL__/infos/id-{$vo.id}">
-									信息管理
-								</a>
-							</li>
-                            <li>
-								<a href="__URL__/inputs/id-{$vo.id}">
-									输入项管理
-								</a>
-							</li>
+                      		
+                        	
 							<li>
 								<a href="__URL__/edit/id-{$vo.id}">
 									编辑

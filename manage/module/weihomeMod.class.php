@@ -40,7 +40,7 @@ class weihomeMod extends commonMod
 	public function add(){
 		$this->actionname='微首页添加';
 		$this->action='add';
-		$where['uid']=$this->user['id'];
+		$where=array('uid'=>$this->user['id'],'indexid'=>0);
 		$p_menu=model('wechat')->get_p_menu($where);
 		$this->assign('p_menu',$p_menu);
 		 $this->show('weihome/info');

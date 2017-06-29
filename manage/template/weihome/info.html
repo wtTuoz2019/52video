@@ -1,4 +1,4 @@
-<div id="outvideo" class="outvideob">
+<div id="outvideo" class="outvideob weihome">
 			<h4>
 				{$actionname}
 			</h4>
@@ -59,12 +59,14 @@
 							<td>菜单：</td>
 							<td>
 								
-									<div style="padding:0;">
+									<div class="menusk">
                                     <div id="menus">
                                     <!--foreach:{$p_menu $vo}-->
         
                                       <div id="button{$vo.id}"><button type="button" class="button">{$vo.title}</button><input type="hidden" value="{$vo.id}" name="menus[{$vo.id}]">
-                                      <p><a href="javascript:" onClick="editmenus('{$vo.id}')">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:" onClick="delmenus('{$vo.id}',this)">删除</a></p>
+                                      <p><a href="javascript:" onClick="editmenus('{$vo.id}')">编辑</a>
+                                      	<br />
+                                      <a href="javascript:" onClick="delmenus('{$vo.id}',this)">删除</a></p>
                                       </div>
                                     
                                     <!--{/foreach}-->
@@ -82,6 +84,9 @@
 							<td>模板：</td>
 							<td>
 								<input name="tpl" type="text" class="form-control" id="tpl"  value="{$info.tpl}" reg="\S" msg="模板不能为空" />
+                                <button class="cmodel" data-toggle="modal" data-target="#myModal">
+                                    选择
+                                </button>
 							</td>
 						</tr>         
 						
@@ -103,6 +108,14 @@
 			
 			
 		</div>
+       <style>
+       	#outvideo .videocontent>div.page_form table td>input[type="text"]{
+			width:420px !important;
+		}
+       	#outvideo .videocontent>div.page_form table tr td .chooseimg{
+			left:335px;
+		}
+       </style>
    <script>
    savelistform({addurl:"__URL__/add",listurl:"__URL__/index"});
    function addmenus(){
