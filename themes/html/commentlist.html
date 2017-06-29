@@ -97,10 +97,11 @@ function getResult2(){
 				Top=170;
 			}
 			if(nTop-Top<60&&nTop-Top>=0){
-				Top-60;
+				Top=Top-60;
 			}else if(nTop-Top>-60&&nTop-Top<=0){
-				Top+60;
+				Top=Top+60;
 			}
+			console.log('Top2:'+Top);
 			nTop=Top;
 			$("body").append($(buildLi2(d.message.info)));
 			
