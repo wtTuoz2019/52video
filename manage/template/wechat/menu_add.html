@@ -1,6 +1,5 @@
 <style>
 	.page_form{
-		width:1080px;
 		margin:40px auto;
 	}
 	.form_submit{
@@ -21,16 +20,62 @@
 		margin-bottom:20px;
 	}
 	.page_form .tablek{
-		width:700px;
+		width:540px;
 		margin:30px auto;
 		padding:30px 0;
-		border:1px solid #B5B5B5;
 	}
 	.page_form .tablek table td{
 		border:0;
+		position:relative;
+	}
+	.page_form .tablek table td .cdicon,.page_form .tablek table td .btnGrayS{
+		position:absolute;
+		height:34px;
+		width:75px;
+		top:8px;
+		right:8px;
+		background: #eee;
+		border: 1px solid #ccc;
+	}
+	.page_form .tablek table td .btnGrayS{
+		right:32px;
+		text-align:center;
+		line-height:34px;
+		cursor:pointer;
+	}
+	.page_form .tablek table td input[name="url"],.page_form .tablek table td input[name="image"]{
+		padding-right:80px;
 	}
 	.aui_state_focus{
 		top:110px !important;
+	}
+	#myicon .iconk{
+		background:#ddd;
+		overflow:hidden;
+		margin:0;
+		width:481px;
+		margin:20px auto;
+		border-right:1px solid #fff;
+		border-bottom:1px solid #fff;
+	}
+	#myicon .modal-body{
+		padding:0;
+	}
+	#myicon .iconk li{
+		float:left;
+		width:60px;
+		height:60px;
+		padding:5px;
+		border-left:1px solid #fff;
+		border-top:1px solid #fff;
+	}
+	#myicon .iconk li img{
+		width:100%;
+		height:100%;
+		cursor:pointer;
+	}
+	#myicon .modal-footer{
+		margin-top:0;
 	}
 </style>
 
@@ -52,6 +97,413 @@
         <td  align="right">菜单图标：</td>
         <td>
         <input  type="text" class="form-control" value="{$info.image}" id="image" name="image" />
+        <button class="cdicon" data-toggle="modal" data-target="#myicon">选择</button>
+        
+        <div class="modal fade" id="myicon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    
+                                    <h4 class="modal-title" id="myModalLabel">内容模板</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                  	<ul class="iconk">
+                                    	<li>
+                                        	<img src="/public/manage/img/icon/3column.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/4column.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/account.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/account-filling.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/add.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/all.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/apparel.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/assessed-Badge.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/atm.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/atm-away.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/attachment.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/auto.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/back.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/bags.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/beauty.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/box.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/browse.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/bussiness-card.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/bussiness-man.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/Calculator.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/calendar.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/cart.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/clock.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/close.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/code.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/color.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/color-filling.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/comments.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/compass.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/component.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/component-filling.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/copy.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/credit-level.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/credit-level-filling.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/cry.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/cut.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/data.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/delete.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/discount.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/dollar.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/download.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/earth.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/edit.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/electrical.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/electronics.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/email.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/email-filling.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/exl.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/favorite.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/favorites.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/favorites-filling.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/folder.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/form.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/gifts.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/good.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/help.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/history.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/home.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/hot.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/image-text.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/information.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/inquiry-template.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/integral.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/less.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/libra.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/lights.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/link.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/logistic.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/machinery.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/manage-order.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/map.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/Mobile-phone.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/more.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/more_unfold.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/move.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/nav-list.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/office.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/onepage.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/operation.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/original-image.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/password.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/pdf.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/personal-center.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/phone.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/pic.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/pic-filling.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/play.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/print.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/process.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/product-features.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/QRCode.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/raw.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/refresh.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/rejected-order.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/remind.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/RFQ.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/RFQ-filling.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/rfq-quantity.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/save.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/scanning.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/search.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/security.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/selected.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/service.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/set.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/share.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/ship.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/shoes.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/shuffling-banner.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/signboard.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/similar-product.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/skip.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/Smile.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/sports.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/stop.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/subtract.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/success.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/supplier-features.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/survey.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/task-management.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/template-default.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/text.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/trade.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/training.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/trust.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/video.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/ViewGallery.png"/>
+                                        </li>
+                                        <li>
+                                        	<img src="/public/manage/img/icon/Viewlist.png"/>
+                                        </li>
+                                        
+                                    </ul>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+        
+        
         </td>
         <td></td>
       </tr>
@@ -59,17 +511,26 @@
         <tr>
 		   <td align="right">关联链接：</td>
 			 <td>
-				<input type="input" name="url" value="{$info.url}" id="url" class="px form-control" style="width:415px">  
+				<input type="input" name="url" value="{$info.url}" id="url" class="px form-control" reg="\S" msg="名称不能为空" />  
 											 
-											 	<input type="input" name="contentid" value="" id="contentid" class="px" style="width:415px"  hidden> </td>
+											 	<input type="input" name="contentid" value="" id="contentid" class="px"   hidden> </td>
                                                    <td>	<a class="btnGrayS"  onClick="content_add('url','contentid')">选择</a> </td>
        </tr>
          <tr>
-        <td align="right">排序：</td>
+        <td align="right">
+        <div class="movetishi movetishi2">
+            <div class="tishik" style="display: none;">
+               越大越前面
+            </div>
+        </div>
+        排序：
+        </td>
         <td>
         <input  type="text" class="form-control" value="{$info.sort}" name="sort" />
         </td>
-        <td>越大越前面</td>
+        <td>
+        
+         </td>
       </tr>
                 						
      
@@ -94,9 +555,9 @@ saveform({
 	success:function(data){
 		<?php if($info){  ?>
 	data='{$info["id"]}';
-	$('#menus'+data,win.document).html('<button type="button" class="button">'+$('#title').val()+'</button><input type="hidden" value="'+data+'" name="menus['+data+']"><p><a href="javascript:" onClick="editmenus('+data+')">编辑</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" onClick="delmenus('+data+',this)">删除</a></p>');
+	$('#menus'+data,win.document).html('<button type="button" class="button">'+$('#title').val()+'</button><input type="hidden" value="'+data+'" name="menus['+data+']"><p><a href="javascript:" onClick="editmenus('+data+')">编辑</a><br/><a href="javascript:" onClick="delmenus('+data+',this)">删除</a></p>');
 	<?php }else{?>
-		$('#menus',win.document).append('<div id="button'+data+'"><button type="button" class="button">'+$('#title').val()+'</button><input type="hidden" value="'+data+'" name="menus['+data+']"><p><a href="javascript:" onClick="editmenus('+data+')">编辑</a>&nbsp;&nbsp;&nbsp;<a href="javascript:" onClick="delmenus('+data+',this)">删除</a></p></div>');
+		$('#menus',win.document).append('<div id="button'+data+'"><button type="button" class="button">'+$('#title').val()+'</button><input type="hidden" value="'+data+'" name="menus['+data+']"><p><a href="javascript:" onClick="editmenus('+data+')">编辑</a><br/><a href="javascript:" onClick="delmenus('+data+',this)">删除</a></p></div>');
 		
 		<?php }?>
 		art.dialog.close();
@@ -114,4 +575,13 @@ saveform({
 	
         
 		}
+		
+		
+		$('.iconk li img').click(function(){
+			$("#myicon").modal('hide');
+			$('#image').val($(this).attr('src'));
+			
+		});
+		
+		
         </script>

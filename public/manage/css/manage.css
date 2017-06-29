@@ -653,7 +653,7 @@ iframe#main{
 	text-align: right;
 	padding-right: 10px;
 }
-#editmodel .modelk table tr>td input{
+#editmodel .modelk table tr>td input,.weihome .modal  input{
 	height: 35px;
 	border: 1px solid #BABABA;
 	font-size: 12px;
@@ -2201,25 +2201,25 @@ body .userset .oftentable tr td{
 	border:1px solid #BABABA;
 	margin:0 auto;
 }
-#editmodel #myModal .modal-body{
+ #myModal .modal-body{
 	overflow:hidden;
 	height:320px;
 	position:relative;
 }
-#editmodel #myModal .modal-body .mbk{
+#myModal .modal-body .mbk{
 	overflow:hidden;
 	width:1120px;
 	position:relative;
 	top:0;
 	left:0;
 }
-#editmodel #myModal .modal-body .mbk>div{
+ #myModal .modal-body .mbk>div{
 	float:left;
 	width:280px;
 	cursor:pointer;
 	padding-left:30px;
 }
-#editmodel #myModal .modal-body div.toleft,#editmodel #myModal .modal-body div.toright{
+ #myModal .modal-body div.toleft, #myModal .modal-body div.toright{
 	position:absolute;
 	width:50px;
 	height:100%;
@@ -2231,11 +2231,11 @@ body .userset .oftentable tr td{
 	cursor:pointer;
 	margin:0;
 }
-#editmodel #myModal .modal-body div.toleft{
+ #myModal .modal-body div.toleft{
 	left:0;
 	background-image:url(../img/toleft.png);
 }
-#editmodel #myModal .modal-body div.toright{
+#myModal .modal-body div.toright{
 	right:0;
 	background-image:url(../img/toright.png);
 }
@@ -2356,4 +2356,16 @@ body .userset .oftentable tr td{
 	position:relative;
 	left:2px;
 	top:-10px;
+}
+.weihome .cmodel{
+	width:85px;
+	height:40px;
+	position:absolute;
+	border: 1px solid #BABABA;
+    background: #E5E5E5;
+	top:0;
+	right:9px;
+}
+.weihome .modal  input{
+	display:inline-block;
 }

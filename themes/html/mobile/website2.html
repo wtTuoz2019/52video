@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$info.name}</title>
+		<meta name="viewport" content="width=720, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/website/css/main.css"/>
+	</head>
+	<body class="webbg" <?=$info['backurl']?'style="background-image:url('.$sys['imageurl'].$info['backurl'].')"':''?>>
+		
+		<ul class="nav2">
+        
+           <!--foreach:{$menus $vo}-->
+			<li class="<?=$i==1?'active':''?> " <?=$vo['image']?'style="background-image:url('.$vo['image'].')"':''?>>
+				<a href="{$vo.url}"></a>
+				{$vo.title}
+			</li>
+              <!--{/foreach}-->
+			
+            
+		</ul>
+		
+		
+		<script src="__PUBLIC__/website/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$('.nav2 li').click(function(){
+				$(this).addClass('active').siblings('.active').removeClass('active');
+				
+			});
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$info.name}</title>
+		<meta name="viewport" content="width=720, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/website/css/main.css"/>
+	</head>
+	<body class="webbg webbg2" <?=$info['backurl']?'style="background-image:url('.$sys['imageurl'].$info['backurl'].')"':''?>>
+		<ul class="nav4">
+			  <!--foreach:{$menus $vo}-->
+			<li >
+				<a <?=$vo['image']?'style="background-image:url('.$vo['image'].')"':''?> href="{$vo.url}">	{$vo.title}</a>
+			
+			</li>
+              <!--{/foreach}-->
+		</ul>
+	</body>
+</html>

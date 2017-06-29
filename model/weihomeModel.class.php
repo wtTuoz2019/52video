@@ -1,10 +1,19 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>无标题文档</title>
-</head>
-
-<body>
-</body>
-</html>
+<?php
+class weihomeModel extends commonModel
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+	
+	public function info($where){
+		
+		return $this->model->table('weihome')->where($where)->find();
+		}
+	public function menus($where){
+		
+		return $this->model->table('diymen_class')->where($where)->order('sort desc, id desc')->select();
+		}
+	
+}
+?>

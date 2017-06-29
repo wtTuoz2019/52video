@@ -1,0 +1,160 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+	box-sizing: border-box;
+}
+ul,li,ol{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+html,body{
+	height: 100%;
+}
+/*模板3*/
+.webbg{
+	background-image: url(../img/bg.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+.nav3{
+	padding-top: 740px;
+}
+.nav3 li{
+	padding: 0 85px;
+	margin-bottom: 35px;
+}
+.nav3 li a{
+	display: block;
+	height: 88px;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 45px;
+	font-size: 36px;
+	color: #fff;
+	line-height: 88px;
+	padding-left: 70px;
+	background-image: url(../img/comments.png);
+	background-repeat: no-repeat;
+	background-size: 65px 65px;
+	background-position: 435px center; 
+}
+.nav3 li.dcwj a{
+	background-image: url(../img/form.png);
+}
+.nav3 li.wdsc a{
+	background-image: url(../img/favorite.png);
+}
+.nav3 li.grsz a{
+	background-image: url(../img/set.png);
+}
+
+/*模板4*/
+.webbg.webbg2{
+	background-image: url(../img/bg2.jpg);
+}
+.nav4{
+	padding: 0 60px;
+	padding-top: 500px;
+}
+.nav4 li{
+	float: left;
+	width: 290px;
+	margin-bottom: 15px;
+}
+.nav4 li a{
+	display: block;
+	height: 145px;
+	line-height: 145px;
+	font-size: 35px;
+	color: #fff;
+	padding-left: 125px;
+	background-color: rgba(0,0,0,0.4);
+	border-radius: 10px;
+	background-image: url(../img/nav4_1.png);
+	background-repeat: no-repeat;
+	background-position: 40px center;
+}
+.nav4 li:nth-child(odd){
+	margin-right: 20px;
+}
+.nav4 li.link2 a{
+	background-image: url(../img/nav4_2.png);
+}
+.nav4 li.link3 a{
+	background-image: url(../img/nav4_3.png);
+}
+.nav4 li.link4 a{
+	background-image: url(../img/nav4_4.png);
+}
+.nav4 li.link5 a{
+	background-image: url(../img/nav4_5.png);
+}
+.nav4 li.link6 a{
+	background-image: url(../img/set.png);
+}
+
+/*模板2*/
+.nav2{
+	padding-top: 400px;
+	
+}
+.nav2 li{
+	position: relative;
+	width: 280px;
+	height: 100px;
+	background-color: rgba(0,0,0,0.4);
+	margin-bottom: 20px;
+	font-size: 30px;
+	color: #fff;
+	text-align: right;
+	padding-right: 20px;
+	line-height: 100px;
+	transition: all 0.3s ease-in-out 0.1s;
+	left: -105px;
+	background-image: url(../img/all.png);
+	background-repeat: no-repeat;
+	background-position: 40px center;
+}
+.nav2 li.link2{
+	background-image: url(../img/comments.png);
+}
+.nav2 li.link3{
+	background-image: url(../img/form.png);
+}
+.nav2 li.link4{
+	background-image: url(../img/nav4_4.png);
+}
+.nav2 li:before{
+	content: " ";
+    position: absolute;
+   	left: 234px;
+    top: 39px;
+    width:0;
+    height:0;
+	line-height:0;
+	border: 71px solid transparent;
+	border-bottom-color: rgba(0,0,0,0.4);
+	border-top:0;
+    -webkit-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    transform: rotate(225deg);
+}
+.nav2 li.active a{
+	position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.nav2 li.active:before{
+	border-bottom-color: rgba(0,0,0,0.8);
+}
+.nav2 li.active{
+	left: 0;
+	background-color: rgba(0,0,0,0.8);
+	transition: all 0.3s ease-in-out;
+}

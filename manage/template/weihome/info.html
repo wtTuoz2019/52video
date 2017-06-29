@@ -19,7 +19,7 @@
                             	
                                 
                                 	<div class="tishik" style="display: none;">
-                                    	单独使用表单页，请上传标题图	
+                                    	宽720px;高405px	
                                     </div>
                             	</div>
                                 形象图：
@@ -39,7 +39,7 @@
                             	
                                 
                                 	<div class="tishik" style="display: none;">
-                                    	单独使用表单页，请上传标题图	
+                                    	宽720px;高1280px
                                     </div>
                             	</div>
                                 背景图：
@@ -87,6 +87,47 @@
                                 <button class="cmodel" data-toggle="modal" data-target="#myModal">
                                     选择
                                 </button>
+                                
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    
+                                    <h4 class="modal-title" id="myModalLabel">内容模板</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                  <div class="toleft"></div>
+                                  <div class="mbk">
+                                  
+                                  <div data-dismiss="modal" >
+                                    <input checked class="radio" type="radio" name="tplid" value="101" <?php if($info['tplid']==101){echo 'checked';} ?>>模板1
+                                        <img src="__PUBLICURL__/home/images/1.jpg"  width="140" height="266"  class="img" />
+                                        </div>
+                                        <div data-dismiss="modal">
+                                        <input class="radio gap" type="radio" name="tplid" value="102" <?php if($info['tplid']==102){echo 'checked';} ?>>模板2
+                                       <img src="__PUBLICURL__/home/images/2.jpg"  width="140" height="266"  class="img" />
+                                       </div>
+                                       <div data-dismiss="modal">
+                                       <input class="radio gapo" type="radio" name="tplid" value="103" <?php if($info['tplid']==103){echo 'checked';} ?>>模板3
+                                       <img src="__PUBLICURL__/home/images/3.jpg"  width="140" height="266"  class="img" />
+                                       </div>
+                                       <div data-dismiss="modal">
+
+<input class="radio gapo" type="radio" name="tplid" value="104" <?php if($info['tplid']==104){echo 'checked';} ?>>模板4
+                                       <img src="__PUBLICURL__/home/images/4.jpg"  width="140" height="266"  class="img" />
+                                       </div>
+                                      
+                                       </div>
+                                        <div class="toright"></div> 
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                                
 							</td>
 						</tr>         
 						
@@ -120,7 +161,7 @@
    savelistform({addurl:"__URL__/add",listurl:"__URL__/index"});
    function addmenus(){
 	urldialog({
-		width:1000,
+		width:600,
 	height:500,
 	title:'功能编辑',
 	url:'__ROOT__/index.php/wechat/menu_add'
@@ -129,7 +170,7 @@
 	}
 	function editmenus(id){
 	urldialog({
-		width:1000,
+		width:600,
 	height:500,
 	title:'功能编辑',
 	url:'__ROOT__/index.php/wechat/menu_add/id-'+id
@@ -154,5 +195,11 @@ function delmenus(id,obj) {
 		}
 	});
 }
+$('.toleft').click(function(){
+		$('.mbk').stop().animate({left:'0'},700);
+	});
+	$('.toright').click(function(){
+		$('.mbk').stop().animate({left:'-560px'},700);
+	});
 	
    </script>     
