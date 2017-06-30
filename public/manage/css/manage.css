@@ -663,16 +663,17 @@ iframe#main{
 }
 #editmodel .modelk table tr>td input.modelname{
 	width: 210px;
+	padding-left:10px;
 }
 #editmodel .modelk table tr>td input.choosemodel{
 	width: 138px;
-	text-align: center;
+	padding-left:10px;
 }
 #editmodel .modelk table tr>td select{
 	width: 138px;
 	height: 35px;
 	font-size: 12px;
-	padding-left: 20px;
+	padding-left: 10px;
 }
 #editmodel .modelk table tr>td .cmodel{
 	width: 70px;

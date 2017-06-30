@@ -126,16 +126,19 @@ class selfformMod extends commonMod
     {
     	$fid=in($_POST['fid']);
     	if(empty($fid)){
-    		$this->error404();
+    		 $this->msg('未发现表单信息！',0);
     	}
+		
+		if(isset($_POST['code'])){
 	if($_COOKIE['mobilecode']&&$_POST['code']!=$_COOKIE['mobilecode']){
 			
 			 $this->msg('手机验证码不对！',0);
 			}
+		}
     	$info=model('selfform')->info($fid);
 	
     	if(empty($info)){
-    		$this->error404();
+    	 $this->msg('未发现表单信息！',0);
     	}
     	//获取所有字段
     	$field_list=model('selfform')->form_inputs_list(array('fid'=>$info['id']));
@@ -183,7 +186,7 @@ class selfformMod extends commonMod
     {
     	$fid=in($_POST['fid']);
     	if(empty($fid)){
-    		$this->error404();
+    		 $this->msg('未发现表单信息！',0);
     	}
 		if(isset($_POST['code'])){
 	if($_COOKIE['mobilecode']&&$_POST['code']!=$_COOKIE['mobilecode']){
@@ -194,7 +197,7 @@ class selfformMod extends commonMod
     	$info=model('selfform')->info($fid);
 	
     	if(empty($info)){
-    		$this->error404();
+    		 $this->msg('未发现表单信息！',0);
     	}
     	//获取所有字段
     	$field_list=model('selfform')->form_inputs_list(array('fid'=>$info['id']));
