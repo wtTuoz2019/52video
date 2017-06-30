@@ -1295,10 +1295,10 @@ a.submit{
 	background:#D1D1D1;
 }
 .survey_k{
-	padding: 45px 50px;
+	padding: 45px 30px;
 }
 .survey_t{
-	font-size: 30px;
+	font-size: 32px;
 	text-align: center;
 	color: #fff;
 	padding: 20px 40px;
@@ -1321,7 +1321,7 @@ a.submit{
 }
 .boxk .problemul{
 	padding:25px 80px;
-	font-size:19px;
+	font-size:21px;
 	border-radius:0 0 5px 5px;
 }
 .boxk .problemul input,.boxk .problemul select{
