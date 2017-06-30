@@ -1298,7 +1298,7 @@ a.submit{
 	padding: 45px 30px;
 }
 .survey_t{
-	font-size: 32px;
+	font-size: 36px;
 	text-align: center;
 	color: #fff;
 	padding: 20px 40px;
@@ -1314,14 +1314,14 @@ a.submit{
 }
 .survey_k .survey_text{
 	font-size: 18px;
-	line-height: 34px;
+	line-height: 32px;
 	border-bottom: 1px dashed #CCCCCC;
 	padding: 20px;
 	border-bottom:1px dashed #BBBBBB;
 }
 .boxk .problemul{
 	padding:25px 80px;
-	font-size:26px;
+	font-size:28px;
 	border-radius:0 0 5px 5px;
 }
 .boxk .problemul .title{

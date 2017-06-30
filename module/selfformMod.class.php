@@ -129,7 +129,7 @@ class selfformMod extends commonMod
     		 $this->msg('未发现表单信息！',0);
     	}
 		
-		if(isset($_POST['code'])){
+		if($_POST['code']&&$_POST['mobile']){
 	if($_COOKIE['mobilecode']&&$_POST['code']!=$_COOKIE['mobilecode']){
 			
 			 $this->msg('手机验证码不对！',0);
@@ -188,7 +188,7 @@ class selfformMod extends commonMod
     	if(empty($fid)){
     		 $this->msg('未发现表单信息！',0);
     	}
-		if(isset($_POST['code'])){
+		if($_POST['code']&&$_POST['mobile']){
 	if($_COOKIE['mobilecode']&&$_POST['code']!=$_COOKIE['mobilecode']){
 			
 			 $this->msg('手机验证码不对！',0);
