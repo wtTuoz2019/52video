@@ -46,7 +46,7 @@ class selfformMod extends commonMod
 		if($info['dynamic']&&$info['interval']){
 			$time=$_GET['time'];
 			if($time<time()-$info['interval']){
-				 $this->msg('二维码已失效，请重新扫码！',0);
+				$this->msg('二维码已失效，请重新扫码！',0);
 				}
 			
 			}

@@ -1314,15 +1314,19 @@ a.submit{
 }
 .survey_k .survey_text{
 	font-size: 18px;
-	line-height: 32px;
+	line-height: 34px;
 	border-bottom: 1px dashed #CCCCCC;
 	padding: 20px;
 	border-bottom:1px dashed #BBBBBB;
 }
 .boxk .problemul{
 	padding:25px 80px;
-	font-size:21px;
+	font-size:26px;
 	border-radius:0 0 5px 5px;
+}
+.boxk .problemul .title{
+	margin-bottom:10px;
+	margin-top:5px;
 }
 .boxk .problemul input,.boxk .problemul select{
 	width:100%;
