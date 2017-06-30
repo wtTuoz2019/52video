@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$info.name}</title>
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/selfform/css/main.css"/>
+	</head>
+	<body class="sign">
+    	<div class="dataform">
+        	<h1 class="title">
+				{$info.name}
+			</h1>
+        	
+            <div class="opbg">
+               <!--foreach:{$formlist $key $vo}-->
+               <!--if:{$vo['type']==6||$vo['type']==8||$vo['type']==9}-->
+                <div class="bgk">
+                
+                    <div class="bgtitle">
+                      {$vo.name}
+                    </div>
+                    <div id="container" name="{$vo.field}" style="width:460px;height:300px"></div>
+                 </div>
+                 
+                 <!--{/if}-->
+                  <!--{/foreach}-->  
+               
+                 
+            </div>
+            
+        </div>
+    
+    
+    	
+    	<script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+    	<script type=text/javascript src="__PUBLIC__/js/highcharts.js"></script>
+		<script type=text/javascript src="__PUBLIC__/js/highcharts-3d.js"></script>
+        <script type=text/javascript src="__PUBLIC__/js/radialIndicator.min.js"></script>
+        <script>
+		var id='{$info.id}';
+        	$(function () {
+			getdata();
+setInterval("getdata()",60000);	
+ 
+				
+			});
+			
+	function getdata(){
+		
+		
+	$.post('__URL__/getshowdata',{id:id},function(data){
+				$('div#container').each(function(index, element) {
+					//console.log(data['message'][$(element).attr('name')]);
+					
+					var string= data['message'][$(element).attr('name')];
+					　var arr = [ ];
+ 　　for ( var i in string ){
+         　
+          　　arr.push( string[ i ] );
+　　}
+
+                  $(element).highcharts({
+					chart: {
+						type: 'column'
+					},
+					title: {
+						text: ''
+					},
+					xAxis: {
+						categories: [
+							''
+						],
+						crosshair: true
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: '人数'
+						}
+					},
+					tooltip: {
+						headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+						pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						'<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+						footerFormat: '</table>',
+						shared: true,
+						useHTML: true
+					},
+					plotOptions: {
+						column: {
+							pointPadding: 0.2,
+							borderWidth: 0,
+							dataLabels: {
+								enabled: true,
+								allowOverlap: true
+							}
+						}
+					},
+					
+					series:arr
+				});
+				
+				
+                });
+	},'json')
+		}		
+			
+        </script>
+	</body>
+</html>

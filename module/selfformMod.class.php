@@ -4,7 +4,7 @@ class selfformMod extends commonMod
     public function __construct()
     {
         parent::__construct();
-		if($_GET["_action"]!='showpc'&&$_GET["_action"]!='geterweima')
+		if($_GET["_action"]!='showpc'&&$_GET["_action"]!='geterweima'&&$_GET["_action"]!='showdata'&&$_GET["_action"]!='getshowdata')
 		$this->getuserinfo();
     }
 	public function geterweima(){
@@ -30,6 +30,69 @@ class selfformMod extends commonMod
     	}
 		
 		$this->display('selfform_showpc.html');
+		}
+	public function showdata(){
+		$id=in($_GET['id']);
+    	if(empty($id)){
+    		$this->error404();
+    	}
+		$this->info=$info=model('selfform')->info($id);
+	
+    	if(empty($info)){
+    		$this->error404();
+    	}
+		$this->formlist=$formlist=model('selfform')->inputs_list(array('fid'=>$id));	
+		
+		$this->display('selfform_showdata.html');
+		}
+	public function getshowdata(){
+		$id=in($_POST['id']);
+    	if(empty($id)){
+    		$this->error404();
+    	}
+			$where=' fid ='.$id;
+		$list=model('selfform')->form_value_list($where);
+			
+    	if($list){
+			
+		 $this->formlist=$formlist=model('selfform')->inputs_list(array('fid'=>$id));	
+			
+		$data=array();
+		foreach($list as $key=>$value){
+			
+			$values=unserialize($value['values']);
+		
+			foreach($formlist as $k=>$v){
+				if(($v['type']==6||$v['type']==8||$v['type']==9)){
+					if($values[$v['field']]){
+					$data[$v['field']][$values[$v['field']]]+=1;
+					}
+				}
+				
+				}
+		}
+		foreach($formlist as $k=>$v){
+			if(($v['type']==6||$v['type']==8||$v['type']==9)){
+				
+				
+				  $list=explode("\n",html_out($v['options']));
+                foreach ($list as $keyo) {
+                    $value=explode('|',$keyo);
+                  
+			$temp[$v['field']][$value[1]]=(object)array('name'=>$value[0],'data'=>array(0));		
+                }
+				
+				foreach($data[$v['field']] as $key=>$val){
+					
+			$temp[$v['field']][$key]=(object)array('name'=>model('expand_model')->get_list_model($v['type'],$key,$v['options']),'data'=>array($val));
+				}
+			}
+			}
+			
+	$this->msg((array)$temp,1);
+			}	
+		
+		
 		}
     public function index()
     {  	

@@ -17,6 +17,12 @@ class selfformModel extends commonModel {
 		
         return $this->model->table('selfform_input')->where($where)->order('sequence asc,id asc')->select();
     }
+	public function form_value_list($where,$limit=null){
+		return $this->model->table('selfform_value')->where($where)->limit($limit)->order('time desc')->select();
+		}
+	public function inputs_list($where){
+		return $this->model->table('selfform_input')->where($where)->select();
+		}
       //获取字段HTML
     public function get_field_html($info,$data=null){
         $info['default']=html_out($info['default']);
