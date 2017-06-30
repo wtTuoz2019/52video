@@ -862,7 +862,7 @@ body .oftentable tr td{
 #postmanage .postk>div>button{
 	position: relative;
     border-left: 0;
-    left: -3px;
+    left: -4px;
 	top:-1px;
 	border:1px solid #C3C3C3;
 	border-left:0;
@@ -1423,7 +1423,6 @@ body .oftentable tr td{
 	height: 36px;
 	background: #E5E5E5;
 	border: 1px solid #BABABA;
-	border-left: 0;
 	position: relative;
     left: -5px;
 }

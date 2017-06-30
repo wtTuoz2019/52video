@@ -41,19 +41,14 @@
 						<td>
                         
                             	<?php echo module('editor')->get_image_upload('bgurl1','bgurl',false,'editor_content') ?>
-							<input type="text" name="bgurl" id="bgurl" value="{$info.bgurl}" />
+							<input type="text" name="bgurl" id="bgurl" value="{$info.bgurl}"  placeholder="图片宽720px;高300px"/>
 							<button id="bgurl1"  type="button">
 								上传
 							</button>
 							
 						</td>
 					</tr>
-					<tr class="tishi">
-                    	<td></td>
-                        <td>
-                        	（图片宽720px;高300px）
-                        </td>
-                    </tr>
+					
 					<tr>
 						<td>
 							是否需要审核新帖：
