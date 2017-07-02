@@ -302,8 +302,12 @@ class selfformMod extends commonMod
     
       
         $msg=$info['msg']?$info['msg']:'提交成功';
+		
+		if($info['tourl']){
+			$this->alert($msg,$info['tourl']);
+			}else{
          $this->msg($msg,1);
-       
+			}
         
     }
 	//提交表单
