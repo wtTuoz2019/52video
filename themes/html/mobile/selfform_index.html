@@ -77,7 +77,7 @@
         	闪阅云技术支持
         </div>
 		
-       <script type=text/javascript src="/public/js/duxui.js?t=111"></script>
+       <script type=text/javascript src="/public/js/duxui.js"></script>
 <script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
 <script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
 
@@ -85,24 +85,24 @@
 
 <link rel="stylesheet" type="text/css" href="css/dialog.css"/>
 <script type="text/javascript">
-saveform({
-	success:function(msg){
-		dialog({content:msg,icon:'succeed',width:'565px',height:'345px',id:'iconad'});
-		$('.aui_main').css('padding-top','180px')
-		setTimeout(function(){
-				<!--if:{$info['tourl']}-->
-				window.location.href='{$info["tourl"]}';
-				  <!--{else}-->
-			window.location.reload()
-			 <!--{/if}-->
-		},3000); 
-	 
-  
-	},
-	failure:function(msg){
-		tip({msg:msg});
-	}}
-);
+//saveform({
+//	success:function(msg){
+//		dialog({content:msg,icon:'succeed',width:'565px',height:'345px',id:'iconad'});
+//		$('.aui_main').css('padding-top','180px')
+//		setTimeout(function(){
+//				<!--if:{$info['tourl']}-->
+//				window.location.href='{$info["tourl"]}';
+//				  <!--{else}-->
+//			window.location.reload()
+//			 <!--{/if}-->
+//		},3000); 
+//	 
+//  
+//	},
+//	failure:function(msg){
+//		tip({msg:msg});
+//	}}
+//);
 		
           var timerID;
 		  var cishu=0;
