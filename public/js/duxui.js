@@ -1,6 +1,7 @@
 //jquery.form 2.77
 (function($) {
     $.fn.ajaxSubmit = function(options) {
+		alert(11);
         if (!this.length) {
             log("ajaxSubmit: skipping submit process - no element selected");
             return this;
