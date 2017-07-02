@@ -247,6 +247,8 @@ class selfformMod extends commonMod
 	
 	  public function selfform_post()
     {
+		
+		var_dump($_POST);die;
     	$fid=in($_POST['fid']);
     	if(empty($fid)){
     		 $this->msg('未发现表单信息！',0);
@@ -295,7 +297,12 @@ class selfformMod extends commonMod
 					  
 					   model('selfform')->edit_value($valuedata);
 					   $msg=$info['msg']?$info['msg']:'修改成功';
-			 $this->msg($msg,1);		  
+					   
+					 if($info['tourl']){
+			$this->alert($msg,$info['tourl']);
+			}else{
+			 $this->msg($msg,1);	
+			 }	  
 					  }
     
         model('selfform')->add_value($valuedata);
