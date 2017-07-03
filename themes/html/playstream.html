@@ -48,13 +48,11 @@ setInterval("addvisit()",60000);
 
 var w = "100%";//视频宽度
   var h = "400";//视频高度 
-  var url = "http://{$sys.ali}{$stream}.m3u8";//视频地址
-  var image = "{$sys.imageurl}{$info.image}";//封面图片
-  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:1,p:1};
+  var url = "rtmp://{$sys.ali}{$stream}";//视频地址
+ var flashvars={f:url,c:0,s:0,lv:1,loaded:'loadHandler'};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
 CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,flashvars,video,params);
-
 				 
 </script>
 
