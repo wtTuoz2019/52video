@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>测试观看页面-闪阅云</title>
+
+		<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
+		<!-- Css 样式-->
+	    <link rel="stylesheet" href="__TPL__mobile/music/css/style.css" />
+	    
+	    <!-- Javascript -->
+	    <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+
+        
+	</head>
+	<body>
+    	
+    
+		<header> 
+			<div class="logo-box">
+			 <img src="__TPL__/mobile/img/logo.png" />
+             <h1>测试观看页面-闪阅云</h1>
+			
+			</div>
+		</header>
+		<section>
+		<div class="play-box">
+				<div class="channels">
+        
+        <div class="show">
+  
+    
+       <div id="play" class="play" style="width:100%;">
+        	
+        </div>
+        
+  <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+<script type="text/javascript">
+function addvisit(){
+		$.post('/index.php/index/addstreamvisit',{'stream':'{$stream}'},function(data){
+		
+			});
+	
+	}
+addvisit();
+setInterval("addvisit()",60000);
+
+var w = "100%";//视频宽度
+  var h = "200";//视频高度 
+  var url = "http://{$sys.ali}{$stream}.m3u8";//视频地址
+  var image = "{$sys.imageurl}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:1,p:1};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,flashvars,video,params);
+
+				 
+</script>
+
+
+    </div>
+</div>
+		</div>
+      
+		
+		</section>
+        <div class="jianjie">
+        	<span>
+            	闪阅云教育微直播平台简介
+            </span>
+        </div>
+        <div class="img_text">
+        <img src="__TPL__/mobile/img/shanyueyun.jpg" />
+        	<h1> 
+            	闪阅云系统
+            </h1>
+            <p class="name">LIVE EDUCATION LEADER</p>
+            <p class="textcontent">
+            	闪阅云系统教育平台用微信连接一切，帮助学校连接老师、学生和家长。通过 有效的推送，帮助学校实现移动互联化信息改造。通过一个学校微信公众号入口打造学校、老师 、学生、家长四位一体，全方位学校移动互联信息化管理平台，提供家校通平台，微直播，在 线论坛，融入OA功能，在线选课，在线
+投票功能，各功能模块简明扼要，操作便捷简单。关注者 能够利用碎片时间获取有效信息，化整为 零，又从零到一地制定有效的管理及教育实施方案。
+            </p>
+        </div>
+		
+	</body>
+</html>
