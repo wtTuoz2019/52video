@@ -283,8 +283,7 @@ div[class^='danmu'] .userhead{
 	float:left;
 }
 .dataform .opbg .bgk .bgtitle{
-	height:60px;
-	font-size:12px;
+	font-size:20px;
 	padding:15px 10px;
 	background:#EEEEEE;
 	border-bottom: 1px solid #D4D4D4;
