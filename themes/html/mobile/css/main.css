@@ -1326,8 +1326,8 @@ a.submit{
 	border-radius:0 0 5px 5px;
 }
 .boxk .problemul .title{
-	margin-bottom:10px;
-	margin-top:5px;
+	margin-bottom:30px;
+	margin-top:25px;
 }
 .boxk .problemul input,.boxk .problemul select{
 	width:100%;
@@ -1394,4 +1394,11 @@ a.submit{
     margin: 0 auto;
     margin-top: 45px;
     border: 1px solid #c3bfbf;
+}
+.boxk .problemul .table{
+	overflow:hidden;
+}
+.boxk .problemul .table>div{
+	float:left;
+	min-width:50%;
 }
