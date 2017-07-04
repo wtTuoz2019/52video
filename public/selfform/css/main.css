@@ -263,10 +263,10 @@ div[class^='danmu'] .userhead{
 /*图标样式*/
 
 .dataform .title{
-	width:875px;
+	width:1500px;
 	padding-top:10px;
 	font-size:72px;
-	margin-bottom:15px;
+	margin-bottom:55px;
 }
 .dataform .opbg{
 	width:1580px;
@@ -292,6 +292,7 @@ div[class^='danmu'] .userhead{
 	background:#EEEEEE;
 	border-bottom: 1px solid #D4D4D4;
 	padding-left:20px;
+	font-weight: bold;
 }
 .hd a{
 	background-image:url(../../manage/img/toleft.png);
