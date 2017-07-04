@@ -14,6 +14,9 @@
 	background-color: #123275;
 	
 }
+ul,li,ol{
+	list-style:none;
+}
 .title{
 	font-size: 91px;
 	width: 1410px;
@@ -266,25 +269,44 @@ div[class^='danmu'] .userhead{
 	margin-bottom:15px;
 }
 .dataform .opbg{
-	width:1540px;
+	width:1580px;
 	margin:0 auto;
 	background:rgba(255,255,255,0.5);
 	border-radius:5px;
-	padding:40px;
-	padding-right:0;
-	padding-bottom:20px;
+	padding:40px 60px;
+	overflow:hidden;
+	position:relative;
+}
+.dataform .opbg .bd ul{
 	overflow:hidden;
 }
 .dataform .opbg .bgk{
-	width:460px;
-	height:360px;
-	margin-right:40px;
-	margin-bottom:20px;
+	width:1460px;
+	height:700px;
 	float:left;
 }
 .dataform .opbg .bgk .bgtitle{
 	font-size:20px;
-	padding:15px 10px;
+	height:60px;
+	line-height:60px;
 	background:#EEEEEE;
 	border-bottom: 1px solid #D4D4D4;
+	padding-left:20px;
+}
+.hd a{
+	background-image:url(../../manage/img/toleft.png);
+	width:60px;
+	height:700px;
+	position:absolute;
+	left:0;
+	top:0;
+	background-repeat:no-repeat;
+	background-position:center center;
+	cursor:pointer;
+	background-size:60px 60px;
+}
+.hd a.next{
+	left:inherit;
+	right:0;
+	background-image:url(../../manage/img/toright.png);
 }
