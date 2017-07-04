@@ -1322,7 +1322,7 @@ a.submit{
 }
 .boxk .problemul{
 	padding:25px 80px;
-	font-size:28px;
+	font-size:30px;
 	border-radius:0 0 5px 5px;
 }
 .boxk .problemul .title{
@@ -1340,8 +1340,8 @@ a.submit{
 	margin-bottom:20px;
 }
 .boxk .problemul input[type="radio"]{
-	    width: 20px;
-    height: 20px;
+	    width: 28px;
+    height: 28px;
     margin-right: 10px;
 	position:relative;
 	top:3px;

@@ -67,7 +67,7 @@ setInterval("getdata()",60000);
 					var string= data['message'][$(element).attr('name')];
 					　var arr = [ ];
  　　for ( var i in string ){
-         　
+         　	console.log(string[i]);
           　　arr.push( string[ i ] );
 　　}
 
@@ -75,6 +75,11 @@ setInterval("getdata()",60000);
 					chart: {
 						type: 'column'
 					},
+					labels:{
+						 
+							style:{fontSize:'20px'}  
+						
+					},  
 					title: {
 						text: ''
 					},
@@ -89,9 +94,11 @@ setInterval("getdata()",60000);
 						title: {
 							text: '人数'
 						},
-						style: {
-                            fontSize:'40px' 
-                        }
+						labels:{
+							style: {
+								fontSize:'20px' 
+							}
+						}
 					},
 					tooltip: {
 						headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
@@ -107,12 +114,15 @@ setInterval("getdata()",60000);
 							borderWidth: 0,
 							dataLabels: {
 								enabled: true,
-								allowOverlap: true
+								allowOverlap: true,
+								style : {'fontSize' : '20px'}
 							}
 						}
+						
 					},
 					
-					series:arr
+					series:arr,
+					
 				});
 				
 				
