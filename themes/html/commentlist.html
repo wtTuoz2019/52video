@@ -75,8 +75,7 @@ var pl1= setInterval("time()",3000);
 //弹幕2
 var dmnum=0;
 var pageW=parseInt($(document).width());
-var pageH=parseInt($(document).height());
-var nTop=0;
+var pageH=170;
 
 function getResult2(){
 	$.post("__URL__/ajax_list", { fid: fid,pageIndex:pageIndex},
@@ -89,23 +88,15 @@ function getResult2(){
 		// }
 			
 			dmnum++;
-			var Top=parseInt(pageH*(Math.random()));
-			if(Top>pageH-90){
-                Top=pageH-90;
-            }
-			if(Top<170){
-				Top=170;
+			var Top=pageH;
+			pageH+=70;
+			if(pageH>900){
+				pageH=170;
 			}
-			if(nTop-Top<60&&nTop-Top>=0){
-				Top=Top-60;
-			}else if(nTop-Top>-60&&nTop-Top<=0){
-				Top=Top+60;
-			}
-			console.log('Top2:'+Top);
-			nTop=Top;
-			$("body").append($(buildLi2(d.message.info)));
 			
-			$('.danmu'+dmnum+'').css({"top":Top,"right":-300});
+			$("body").append($(buildLi2(d.message.info)));
+			console.log(parseInt($('.danmu'+dmnum+'').css('width')));
+			$('.danmu'+dmnum+'').css({"top":Top,"right":-parseInt($('.danmu'+dmnum+'').css('width'))});
 			$('.danmu'+dmnum+'').stop().animate({"right":pageW+300},15000,"linear",function(){
                         $(this).remove();
             });
