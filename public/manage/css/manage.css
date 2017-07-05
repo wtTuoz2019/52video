@@ -641,7 +641,7 @@ iframe{
 	border: none;
 }
 iframe#main{
-	min-height:700px;
+	min-height:850px;
 }
 #editmodel .modelk table tr>td{
 	height: 60px;

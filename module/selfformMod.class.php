@@ -65,7 +65,7 @@ class selfformMod extends commonMod
 			foreach($formlist as $k=>$v){
 				if(($v['type']==6||$v['type']==8||$v['type']==9)){
 					if($values[$v['field']]){
-					$data[$v['field']][$values[$v['field']]]+=1;
+					$data[$v['field']][intval($values[$v['field']])]+=1;
 					}
 				}
 				
