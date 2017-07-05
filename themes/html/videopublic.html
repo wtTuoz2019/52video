@@ -32,8 +32,8 @@ var cid='{$info.id}';
     <ul id="mainTabs" class="setdmtop">
     <!--foreach:{$functions $key $vo}-->
                           
-          <li>
-    		<a  href="#funcions{$vo.id}" >{$vo.name}</a>	
+          <li >
+    		<a  class="funcions{$vo.id}"  href="#funcions{$vo.id}" >{$vo.name}</a>	
         </li>	
                            <!--/loop-->
     	
@@ -85,7 +85,7 @@ var cid='{$info.id}';
                          <script>
 						 $('.funcions{$vo.id}').bind('click',function(){
 							 
-							window.location="{$vo.content}"; 
+							window.location="{$vo.content html}"; 
 							 });
 						 </script>
                           <?php }elseif($vo['type']=='linkaid'){?>

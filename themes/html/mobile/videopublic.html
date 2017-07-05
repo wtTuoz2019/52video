@@ -109,7 +109,7 @@ var cid='{$info.id}';
                          <script>
 						 $('.funcions{$vo.id}').bind('click',function(){
 							 
-							window.location="{$vo.content}"; 
+							window.location="{$vo.content html}"; 
 							 });
 						 </script>
                           <?php }elseif($vo['type']=='linkaid'){?>
