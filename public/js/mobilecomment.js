@@ -26,6 +26,12 @@ var commenturl="http://comment.shanyueyun.net";
 	}
 	return init;
 })();
+
+
+
+
+
+
 	function jsApiCall(jsApiParameters)
 	{
 			

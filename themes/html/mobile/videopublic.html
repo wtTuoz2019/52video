@@ -31,20 +31,9 @@ var cid='{$info.id}';
                 </div>
                 
                 <!--if:{$desimage}-->
-				<div class="supportimg">
-                	<img src="__PUBLIC__/images/support.png" />
-                    <div id="sfunction">
-                    	<img src="__PUBLIC__/images/sjx.png" />
-                        <div class="sfunction">
-                        	<div class="support">
-                            	技术支持
+				<div class="support">
+                            	+技术支持
                             </div>
-                            <div>
-                            	<a href="/myhome/index">个人中心</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div id="Qr">
                 <div class="qrk">
                 <img class="qr" src="{$sys.imageurl}{$desimage}" /><span onclick="toclose(this)"><img src="/themes/html/mobile/img/gb.png" /></span>
@@ -292,28 +281,29 @@ function changecolor(color){
 
 
 <script>
- 	$('.supportimg').click(function(){
-		console.log(1);
-		if($('#sfunction').css('height')=='0px'){
-			$('#sfunction').stop().animate({height:'115px'},500);
-		}else{
-			$('#sfunction').stop().animate({height:'0'},500);
-		}
-		
-		
-	});
-	
-	$('body').click(function(){
-		if($('#sfunction').css('height')=='115px'){
-			$('#sfunction').stop().animate({height:'0'},500);
-		}
-	
-	
-	});
+ 	
 	
 	
 	
+$('.gongneng').click(function(){
+	if($('#nowgn').css('height')=='0px'){
+		$('#nowgn').stop().animate({height:'100px'},300);
+	}else{
+		$('#nowgn').stop().animate({height:'0'},300);
+	}
 
+});
+	
+$('body').click(function(e){
+	var elem = e.target || e.srcElement; 
+	if(elem.id!='nowgn'){
+		console.log(1)
+		if($('#nowgn').css('height')=='100px'){
+			$('#nowgn').stop().animate({height:'0'},300);
+		}
+	}
+	
+});
 
  
 $('.support').click(function(e){
@@ -338,10 +328,10 @@ $(function(){
 	//获取视频外多余高度
 	if($('.scroll-bar').length > 0){	
 		$('[id^="funcions"]').css('height',$(window).height()-125-$(document).width()/16*9+'px');
-		console.log(1);
+		
 	}else{
 		$('[id^="funcions"]').css('height',$(window).height()-100-$(document).width()/16*9+'px');
-		console.log(2);
+		
 	}
 	
 	if($('#container').children().length==0){

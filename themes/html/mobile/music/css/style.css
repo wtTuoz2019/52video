@@ -1215,3 +1215,51 @@ p.allcomment span{
 	padding-bottom:10px;
 	margin-top:5px;
 }
+.commentinput .gongneng{
+	position:absolute;
+	height:50px;
+	width:70px;
+	top:0;
+	left:0;
+	background-image:url(../../../../../public/images/function.jpg);
+	background-repeat:no-repeat;
+	background-size: 30px;
+    background-position: 18px 7px;
+}
+#nowgn{
+	height:0;
+	background:#fff;
+	overflow:hidden;
+}
+#nowgn>div{
+	border-top:1px solid #E7E7E7;
+}
+#nowgn div[class^=gn]{
+	float:left;
+	text-align:center;
+	font-size:12px;
+	color:#6f7277;
+	margin:12.5px 0 0 15px;
+}
+#nowgn .gn1 a{
+	display:block;
+	height:55px;
+	width:55px;
+	border:1px solid #DCDCDC;
+	border-radius:10px;
+	background-image:url(../img/user.png);
+	background-size:40px 40px;
+	background-repeat:no-repeat;
+	background-position:center center;
+	margin-bottom:2px;
+}
+.support{
+	color: #959595;
+    float: right;
+    line-height: 40px;
+    padding-right: 7px;
+	font-size:14px;
+}
+body{
+	cursor:pointer;
+}

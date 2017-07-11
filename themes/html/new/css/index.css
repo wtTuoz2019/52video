@@ -515,7 +515,7 @@ ul[id^="commentlist"]{
 .comment  #container .date #current,.comment_show  #container_show .date #current{
 	float: right;
     position: absolute;
-    top: 2px;
+    top: -4px;
 	height:35px;
 	line-height:35px;
 	padding:9px 0;
@@ -523,6 +523,7 @@ ul[id^="commentlist"]{
 	right: 15px;
     background: #eee;
     border-radius: 5px;
+	z-index:100;
 }
 .current ul li{
 	color:#000;
