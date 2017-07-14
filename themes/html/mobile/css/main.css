@@ -378,7 +378,10 @@ a,a:hover,a:focus{
 /**/
 .headerimg{
 	height: 405px;
-	
+	background-image: url(../img/teacherhead.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 100% 100%;
 }
 .headerimg>img{
 	width:100%;

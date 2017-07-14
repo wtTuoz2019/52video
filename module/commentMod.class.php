@@ -446,7 +446,7 @@ public function commentdel() {
 			
 			$info[$k]['time'] = model('comment')->get_time($v['time']);
 			$info[$k]['num'] = 0;
-			$info[$k]['res'] = model('comment')->comment_reply($v['id'],$signup,$aid);
+			$info[$k]['res'] = model('comment')->comment_reply($v['id'],$signup);
 			$info[$k]['praiselist'] = model('comment')->laud_list($v['id']);
 				if($signup){
 				

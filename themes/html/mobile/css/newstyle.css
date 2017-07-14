@@ -83,3 +83,36 @@ body * { max-height: 999999px; }
 .aui_state_focus .aui_content div{
 	font-size:24px;
 }
+.problems .table>div{
+	float:left;
+	min-width:50%;
+	text-align: left;
+    padding-left: 30px;
+	font-size:22px;
+}
+.problems .table{
+	overflow:hidden;
+}
+li.table input{
+	margin:0;
+	margin-left: 15px;
+	position: relative;
+	top: 2px;
+}
+li.table input:first-child{
+	margin-left:0;
+}
+li.table input[type="text"]{
+	width:100%;
+	border-radius:3px;
+	border:1px solid #D2D2D2;
+	height:50px;
+	font-size:22px;
+}
+li.table select{
+	width:100%;
+	border-radius:3px;
+	border:1px solid #D2D2D2;	
+	height:50px;
+	font-size:22px;
+}
