@@ -639,13 +639,13 @@ iframe{
 	width: 100%;
 	overflow: auto;
 	border: none;
-}
+} 
 iframe#main{
-	min-height:850px;
+	min-height:1600px;
 }
 #editmodel .modelk table tr>td{
 	height: 60px;
-	text-align:left;
+	text-align:left; 
 }
 #editmodel .modelk table tr>td:first-child{
 	font-size: 14px;
