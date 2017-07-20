@@ -27,6 +27,10 @@ $(document).ready(function(){
 		
 	});	
 　　get_fields(); 
+
+
+
+	
 });
 //提交表单
 savelistform({addurl:"__URL__/add/cid-{$class_info.cid}",listurl:"__URL__/index"});
@@ -305,5 +309,6 @@ function delfunctions(id,obj) {
 	});
 }
 
-
+var iframe=parent.document.getElementById("main");
+	$(iframe).css('min-height','1600px');
 </script>
