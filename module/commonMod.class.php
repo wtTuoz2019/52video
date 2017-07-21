@@ -64,15 +64,13 @@ class commonMod
      
 		if($userinfo){
 			  $array=explode('|',$userinfo);
-			  $_SESSION['uid']=$array[0];
+			  $this->userinfo['uid']=$array[0];
 			}
-		if($_GET['wang'])$_SESSION['uid']='26408';
-	if($_SESSION['uid']){	
+		if($_GET['wang'])$this->userinfo['uid']='26408';
+	if($this->userinfo['uid']){	
 	
-		$this->userinfo=model('user')->info($_SESSION['uid']);
+		$this->userinfo=model('user')->info($this->userinfo['uid']);
 		
-		$_SESSION["headpic"]=$this->userinfo['headimgurl'];
-		$_SESSION["nickname"]=$this->userinfo['nicename'];
 		
 	}
 		if($config['LANG_OPEN']){
@@ -226,7 +224,7 @@ class commonMod
 		
 		
 		
-		$_SESSION['uid'] = $uid; 
+		$this->userinfo['uid'] = $uid; 
          
        	 } 
 		 
@@ -240,11 +238,10 @@ class commonMod
 		
 		}
 		
-	if($_SESSION['uid']){	
+	if($this->userinfo['uid']){	
 		
-		$this->userinfo=model('user')->info($_SESSION['uid']);
-		$_SESSION["headpic"]=$this->userinfo['headimgurl'];
-		$_SESSION["nickname"]=$this->userinfo['nicename'];
+		$this->userinfo=model('user')->info($this->userinfo['uid']);
+		
 		   //设置登录信息
         $cookie=$this->userinfo['uid'].'|'.sha1($this->userinfo['nicename']);
        
