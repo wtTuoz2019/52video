@@ -42,8 +42,10 @@ class changeMod extends commonMod
 	
 	public function laud()
     {   
+	 $this->getuserinfo();
+      $uid =$this->userinfo['uid']; 
 	  $data['type'] = $_POST['type'];
-      $data['uid'] = $_SESSION['uid']; 
+      $data['uid'] =$uid; 
 	  $data['cid'] = $_POST['fid'];
       if($data['uid'] <= 0){
       	$this->msg('请先登录',0);
@@ -59,8 +61,10 @@ class changeMod extends commonMod
 	
 		public function canselaud()
     {   
+	 $this->getuserinfo();
+      $uid =$this->userinfo['uid']; 
 	  $data['type'] = $_POST['type'];
-      $data['uid'] = $_SESSION['uid']; 
+      $data['uid'] = $uid; 
 	  $data['cid'] = $_POST['fid'];
       if($data['uid'] <= 0){
       	$this->msg('请先登录',0);

