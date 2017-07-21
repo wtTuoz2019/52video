@@ -5,6 +5,7 @@ class commentMod extends commonMod {
 	public function __construct()
     {
         parent::__construct();
+		$this->getuserinfo();
     }
 
     public function index() {
@@ -26,15 +27,15 @@ class commentMod extends commonMod {
 		}
 	   $this->pageindex=intval($id);
 		$this->commentlist=$list;
-		$this->headpic=model('comment')->get_pic('', $_SESSION['uid']);
-		$this->nickname=model('comment')->getname($_SESSION['uid']);
+		$this->headpic=model('comment')->get_pic('', $this->userinfo['uid']);
+		$this->nickname=model('comment')->getname($this->userinfo['uid']);
      	$this->display('comment.html');
 	}
 	
 	 public function save() {
 		 
 	
-		 $this->getuserinfo();
+		 
 		 
 		if($_POST['formdata']){
 			$formstring=explode('|',$_POST['formdata']);
@@ -91,13 +92,13 @@ class commentMod extends commonMod {
 	 }
 	 public function reply_add(){
 		$data['time']=time();
-		$data['uid']=$_SESSION['uid'];
+		$data['uid']=$this->userinfo['uid'];
 		$data['fid']=$_POST['id'];
 		$data['pid']=$_POST['pid'];
 		$data['toname']=$_POST['toname'];
 		$data['type']="content";
 		$data['message']=$_POST['mes'];
-		$data['nickname']=$_SESSION['nickname'];
+		$data['nickname']=$this->userinfo['nickname'];
 		if($data['uid'] > 0){
 		if(model('comment')->contentinfo($data['fid'])){
 		$data['flag']=1;
@@ -253,9 +254,9 @@ public function editpay() {
 		if(!$res){
 			$this->msg('操作失败', 0);
 		}else{
-			if($_SESSION['uid']){
+			if($this->userinfo['uid']){
 			$data=array(
-					'uid'=>$_SESSION['uid'],
+					'uid'=>$this->userinfo['uid'],
 					'fid'=>intval($_POST['fid']),
 					'sid'=>intval($_POST['sid']),
 					'type'=>$_POST['act'],
@@ -281,9 +282,9 @@ public function editpay() {
 			$this->msg('操作失败', 0);
 		}else{
 			
-			if($_SESSION['uid']){
+			if($this->userinfo['uid']){
 				$datalog=array(
-					'uid'=>$_SESSION['uid'],
+					'uid'=>$this->userinfo['uid'],
 					'fid'=>intval($_POST['fid']),
 					'sid'=>intval($_POST['sid']),
 					'type'=>'starttime',
@@ -311,9 +312,9 @@ public function editpay() {
 	
 			$this->msg('操作失败', 0);
 		}else{
-				if($_SESSION['uid']){
+				if($this->userinfo['uid']){
 				$data=array(
-					'uid'=>$_SESSION['uid'],
+					'uid'=>$this->userinfo['uid'],
 					'fid'=>intval($_POST['fid']),
 					'sid'=>intval($_POST['sid']),
 					'type'=>'endtime',
@@ -386,7 +387,7 @@ public function editpay() {
 public function commentdel() {
 		$id=intval($_POST['id']);	
 		$where['id']=$id;
-		$where['uid']=$_SESSION['uid'];
+		$where['uid']=$this->userinfo['uid'];
 		$res=model('comment')->comment_del($where);
 		if(!$res){
 			$this->msg('删除失败', 0);
@@ -399,7 +400,7 @@ public function commentdel() {
 	public function resdel() {
 		$id=intval($_POST['id']);	
 		$where['id']=$id;
-		$where['uid']=$_SESSION['uid'];
+		$where['uid']=$this->userinfo['uid'];
 		$res=model('comment')->comment_del($where);
 		if(!$res){
 			$this->msg('删除失败', 0);
