@@ -85,15 +85,15 @@ class commonModel
         echo json_encode(array('status' => $status, 'message' => $message));
         exit;
     }
-public function addvisit(){
+public function addvisit($uid){
 		
 		
-		if($_SESSION['uid']){
+		if($uid){
 		$module=$_POST['module'];
 		$action=$_POST['action'];
 		$aid=intval($_POST['aid']);
 		$cid=intval($_POST['cid']);
-		$uid=$_SESSION['uid'];
+		$uid=$uid;
 		$fuid=intval($_POST['fuid']);
 		$dateline=time();
 		$ip=get_client_ip();

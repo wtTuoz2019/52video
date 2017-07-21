@@ -72,7 +72,7 @@ public function wenlai(){
 		}
 	public function  addvisit(){
 		$this->getuserinfo();
-		model('common')->addvisit();
+		model('common')->addvisit($this->userinfo['uid']);
 		
 		}
 	public function  addstreamvisit(){

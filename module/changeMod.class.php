@@ -10,11 +10,11 @@ class changeMod extends commonMod
     {   
       
       session_start();
-     
-      $uid =$_SESSION['uid']; 
+     $this->getuserinfo();
+      $uid =$this->userinfo['uid']; 
      
       $fid = $_POST['fid'] + 0;
-      if($_SESSION['status'] == 1 && $_SESSION['uid'] == $uid && $_SESSION['fid'] == $fid){
+      if($_SESSION['status'] == 1 &&  $_SESSION['fid'] == $fid){
           $arr = array(
               'status' => 0,
               'msg' => "已经点过赞"
