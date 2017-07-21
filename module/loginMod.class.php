@@ -31,8 +31,7 @@ class loginMod extends commonMod {
 	public function scope(){
 		
 		$this->getuserinfo();
-		$userinfo=model('user')->info($_SESSION['uid']);
-
+		$userinfo=$this->userinfo;
 		$res['logincode']=$_GET['logincode'];
 		$res['logintime']=time();
 		$res['openid']=$userinfo['openid'];
