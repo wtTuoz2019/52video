@@ -44,8 +44,8 @@ class loginMod extends commonMod {
 		$code=$_POST['code'];
 		$uid=model('user')->getuidbylogincode($code);
 		if($uid){
-		$_SESSION['uid']=$uid;
-		$this->userinfo=model('user')->info($_SESSION['uid']);
+	
+		$this->userinfo=model('user')->info($uid);
 	
 		   //设置登录信息
         $cookie=$this->userinfo['uid'].'|'.sha1($this->userinfo['nicename']);

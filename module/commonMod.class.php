@@ -64,15 +64,16 @@ class commonMod
      
 		if($userinfo){
 			  $array=explode('|',$userinfo);
-			  $this->userinfo['uid']=$array[0];
+			  $uid=$array[0];
 			}
-		if($_GET['wang'])$this->userinfo['uid']='26408';
-	if($this->userinfo['uid']){	
+		if($_GET['wang'])$uid='26408';
+	if($uid){	
 	
-		$this->userinfo=model('user')->info($this->userinfo['uid']);
+		$this->userinfo=model('user')->info($uid);
 		
 		
 	}
+	
 		if($config['LANG_OPEN']){
             define('__INDEX__', __APP__.'/'.__LANG__);
         }else{
@@ -157,7 +158,7 @@ class commonMod
 		
 		}
 		
-		$_SESSION['uid'] = $uid; 
+		$this->userinfo['uid'] = $uid; 
          
        	 } 	 
 				 
@@ -232,7 +233,7 @@ class commonMod
 	 
 	 }else{
 		if($_GET['frame']) return true;
-		if(!$_SESSION['uid']){
+		if(!$this->userinfo){
 				$this->redirect("http://live.shanyueyun.com/login/login.html?url=".urlencode($_SERVER['REQUEST_URI']));
 				}
 		
