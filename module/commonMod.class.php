@@ -158,7 +158,6 @@ class commonMod
 		
 		}
 		
-		$this->userinfo['uid'] = $uid; 
          
        	 } 	 
 				 
@@ -223,10 +222,6 @@ class commonMod
 		}
 		
 		
-		
-		
-		$this->userinfo['uid'] = $uid; 
-         
        	 } 
 		 
 	 } }
@@ -239,9 +234,9 @@ class commonMod
 		
 		}
 		
-	if($this->userinfo['uid']){	
+	if($uid){	
 		
-		$this->userinfo=model('user')->info($this->userinfo['uid']);
+		$this->userinfo=model('user')->info($uid);
 		
 		   //设置登录信息
         $cookie=$this->userinfo['uid'].'|'.sha1($this->userinfo['nicename']);
