@@ -9,7 +9,8 @@ class myhomeMod extends commonMod
 
     public function index()
     {	
-		 $list=model('comment')->mycomment($this->userinfo['id']);
+	
+		 $list=model('comment')->mycomment($this->userinfo['uid']);
 			if(is_array($list)){
 			$fkeywords=explode('，',$this->config['fkeywords']);
 		 foreach($list as $k=>$v){
@@ -37,25 +38,25 @@ class myhomeMod extends commonMod
 					}
 			}
 			
-			$myarticle=model('comment')->mycommentarticle($this->userinfo['id']);
+			$myarticle=model('comment')->mycommentarticle($this->userinfo['uid']);
 		
 			$this->myarticle=$myarticle;
 			
-			$mycommentid=model('comment')->mycommentid($this->userinfo['id']);
+			$mycommentid=model('comment')->mycommentid($this->userinfo['uid']);
 			$wherec="id in (".implode(",",$mycommentid).")";
 			$wherel="cid in (".implode(",",$mycommentid).")";
 			$wherer="pid in (".implode(",",$mycommentid).")";
 			$data['mycommentnum']=model('comment')->getcommentcount($wherec);
 			$data['mycommentreplynum']=model('comment')->getcommentcount($wherer);
 			$data['mycommentlaudnum']=model('comment')->getlaudnum($wherel);
-			$wherebec='uid='.$this->userinfo['id']." and pid<>0";
-			 $whereber='uid='.$this->userinfo['id']." and pid<>0";
-			$wherebel='uid='.$this->userinfo['id'];
+			$wherebec='uid='.$this->userinfo['uid']." and pid<>0";
+			 $whereber='uid='.$this->userinfo['uid']." and pid<>0";
+			$wherebel='uid='.$this->userinfo['uid'];
 			$data['becommentnum']=model('comment')->getbecommentcount($wherebec);
 			$data['becommentreplynum']=model('comment')->getcommentcount($whereber);
 			$data['becommentlaudnum']=model('comment')->getlaudnum($wherebel);
 		$where=array();
-		$where['uid']=$this->userinfo['id'];
+		$where['uid']=$this->userinfo['uid'];
 		$where['cid']=array('<>',0);
 		$data['alltime']=intval(model('data')->looktimesum($where)/60);
        	$where['cid']='13';
@@ -69,7 +70,7 @@ class myhomeMod extends commonMod
 	}
 	
 	public function getcomment(){
-		 $list=model('comment')->mycomment($this->userinfo['id'],$_POST['pageIndex']);
+		 $list=model('comment')->mycomment($this->userinfo['uid'],$_POST['pageIndex']);
 		
 		 	if(is_array($list)){
 			$fkeywords=explode('，',$this->config['fkeywords']);
@@ -101,7 +102,7 @@ class myhomeMod extends commonMod
 		}
 	public function getvideos(){
 		
-		$list=model('comment')->mycommentarticle($this->userinfo['id'],$_POST['index']);
+		$list=model('comment')->mycommentarticle($this->userinfo['uid'],$_POST['index']);
 		if(is_array($list)){
 		 foreach($list as $k=>$v){
 			 $list[$k]['time']=date('Y-m-d H:i',$v['updatetime']);
@@ -118,7 +119,7 @@ class myhomeMod extends commonMod
 						'starttime'=>$starttime,
 						'inputtime'=>$timenow,
 						'updatetime'=>$timenow,
-						'uid'=>$this->userinfo['id']
+						'uid'=>$this->userinfo['uid']
 						);
 				
 			$res=model('user')->addlive($array);
