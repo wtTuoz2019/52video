@@ -28,9 +28,9 @@
 		<div id="picture_frame">
 			<img class="background" src="img/user_bg.jpg" height="100%" width="100%"/>
 			<div id="mine_xinxi">
-				<img class="header_img" src="<?php echo $_SESSION['headpic'];?>"/>
+				<img class="header_img" src="{$userinfo.headimgurl}"/>
 				<p>
-					<?php echo $_SESSION['nickname'];?>
+					{$userinfo.nicename}
 					<a href="#" class="t_bianji">
 						编辑
 						<img height="14px" src="img/bainji.png"/>
