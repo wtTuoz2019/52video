@@ -20,20 +20,21 @@
 <body>
 	<div id="carousel">
     	<div class="swiper-wrapper">
+           <!--foreach:{$list $key $vo}-->
+             <!--if:{$key<5}-->
         	<div class="swiper-slide">
-            	<img src="__TPL__mobile/img/lunbo.png"/>
+            	<img src="{$sys['imageurl']}{$vo.image}"/>
             </div>
-            <div class="swiper-slide">
-            	<img src="__TPL__mobile/img/lunbo.png"/>
-            </div>
-            <div class="swiper-slide">
-            	<img src="__TPL__mobile/img/lunbo.png"/>
-            </div>
+              <!--{/if}-->
+              <!--{/foreach}-->
+          
         </div>
         <ul class="sindex">
-            <li class="active"></li>
-            <li></li>
-            <li></li>
+            <!--foreach:{$list $key $vo}-->
+             <!--if:{$key<5}-->
+        	 <li></li>
+              <!--{/if}-->
+              <!--{/foreach}-->
         </ul>
     </div>
     
