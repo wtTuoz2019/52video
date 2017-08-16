@@ -621,7 +621,7 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
         $where_url='search-'.urlencode($search);
         }
 		
-			 
+			
 		 if($this->user['gid']==6){
 				$temp;$temp[]=0;
 		

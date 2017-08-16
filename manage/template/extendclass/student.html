@@ -31,6 +31,7 @@
        			 <th width="15%">名称</th>
        			   <th width="17%">联系手机</th>
                     <th width="23%">学籍号</th>
+                     <th width="23%">学号</th>
            			<th width="20%">班级</th>
        
         <th width="10%"><center>操作</center></th>
@@ -41,6 +42,7 @@
         <td><input type="checkbox" name="ids[]" id="" value="{$vo.id}" />{$vo.name}</td>
         <td>{$vo.mobile}</td>
           <td>{$vo.schoolcode}</td>
+           <td>{$vo.codenumber}</td>
        	 <td>{$bj[$vo['bj_id']]['grade']}年级{$bj[$vo['bj_id']]['class']}班</td>
       
        

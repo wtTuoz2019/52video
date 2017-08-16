@@ -311,7 +311,7 @@ class contentMod extends commonMod
             $this->channel=model('content')->channel($info['channel']);
         }
 		
-		$data=array('uid'=>$_SESSION['uid'],
+		$data=array('uid'=>$this->userinfo['uid'],
 					'aid'=>$info['aid'],
 					'type'=>'aid'
 					);

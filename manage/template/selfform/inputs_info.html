@@ -50,6 +50,24 @@
         
         </td>
         </tr>
+        <tr>
+        <td width="120" align="right">是否唯一</td>
+        <td>
+        <?php if(!isset($info['unique'])){ $info['unique']=0; } ?>
+          <input name="unique" type="radio" value="1" <?php if($info['unique']==1){ ?> checked="checked" <?php } ?> />
+          是
+          &nbsp;&nbsp;
+          <input name="unique" type="radio" value="0" <?php if($info['unique']==0){ ?> checked="checked" <?php } ?> />
+          否
+              <div class="movetishi movetishi2">
+                            	
+                                
+                                	<div class="tishik" style="display: none;">
+                                    一个表单仅能设置一项
+                                    </div>
+                            	</div>
+        </td>
+        </tr>
       
        <tr>
         <td width="120" align="right">字段提示</td>

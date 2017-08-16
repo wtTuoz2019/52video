@@ -163,17 +163,30 @@ class selfformMod extends commonMod
                    
                 }
             }
+			if($value['unique']){
+				$unique=$_POST[$value['field']];$uniquename=$value['name'];}
             $data[$value['field']]=model('expand_model')->field_in($_POST[$value['field']],$value['type'],$value['field']);
             if(!isset($_POST[$value['field']])){
                 $data[$value['field']]=$value['default'];
             }
         }
 
-     $valuedata=array('fid'=>$fid,
+    $valuedata=array('fid'=>$fid,
 	 			  'uid'=>$this->userinfo['uid'],
 				  'aid'=>$_POST['aid'],
 				  'values'=>serialize($data),
-				  'time'=>time());
+				  'time'=>time());	
+				  
+				  
+	if($unique){
+		$valuedata['unique']=$unique;
+		if(model('selfform')->input_value(array('fid'=>$fid,
+	 			  'unique'=>$unique))){
+			 $this->msg($uniquename.'不能重复',0);		  
+					  }
+		
+		}
+	
         //过滤完后提交表单
         model('selfform')->add_value($valuedata);
     
@@ -220,21 +233,33 @@ class selfformMod extends commonMod
                    
                 }
             }
+			if($value['unique']){
+				$unique=$_POST[$value['field']];$uniquename=$value['name'];}
             $data[$value['field']]=model('expand_model')->field_in($_POST[$value['field']],$value['type'],$value['field']);
             if(!isset($_POST[$value['field']])){
                 $data[$value['field']]=$value['default'];
             }
         }
+	  $valuedata=array('fid'=>$fid,
+	 			  'uid'=>$this->userinfo['uid'],
+				  'aid'=>$_POST['aid'],
+				  'values'=>serialize($data),
+				  'time'=>time());	
+	if($unique){
+		$valuedata['unique']=$unique;
+		if(model('selfform')->input_value(array('fid'=>$fid,
+	 			  'unique'=>$unique))){
+			 $this->msg($uniquename.'不能重复',0);		  
+					  }
+		
+		}
+	
 	if(model('selfform')->input_value(array('fid'=>$fid,
 	 			  'uid'=>$this->userinfo['uid'],
 				  'aid'=>$_POST['aid'],))){
 			 $this->msg('请勿重复提交',0);		  
 					  }
-     $valuedata=array('fid'=>$fid,
-	 			  'uid'=>$this->userinfo['uid'],
-				  'aid'=>$_POST['aid'],
-				  'values'=>serialize($data),
-				  'time'=>time());
+   
         //过滤完后提交表单
         model('selfform')->add_value($valuedata);
     
@@ -279,6 +304,9 @@ class selfformMod extends commonMod
                    
                 }
             }
+			if($value['unique']){
+				$unique=$_POST[$value['field']];$uniquename=$value['name'];}
+			
             $data[$value['field']]=model('expand_model')->field_in($_POST[$value['field']],$value['type'],$value['field']);
             if(!isset($_POST[$value['field']])){
                 $data[$value['field']]=$value['default'];
@@ -297,7 +325,16 @@ class selfformMod extends commonMod
 					   $msg=$info['msg']?$info['msg']:'修改成功';
 			 $this->msg($msg,1);		  
 					  }
-    
+    	
+		
+if($unique){
+		$valuedata['unique']=$unique;
+		if(model('selfform')->input_value(array('fid'=>$fid,
+	 			  'unique'=>$unique))){
+			 $this->msg($uniquename.'不能重复',0);		  
+					  }
+		
+		}		
         model('selfform')->add_value($valuedata);
     
       

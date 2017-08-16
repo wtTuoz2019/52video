@@ -135,12 +135,17 @@ class extendclassModel extends commonModel {
 		
 			return $data;
 		}
+		public function nosignup_course_list($uid=0,$bid=0){
+		$data=$this->model->table('student','A')->field('A.*')->where('uid='.$uid.' and id not in (select sid from dc_course_signup where uid='.$uid.' and bid='.$bid.' ) ')->select();
+		
+			return $data;
+		}
 	public function signup_add_save($data){
 		return $this->model->table('course_signup')->data($data)->insert();
 		
 		}
 	public function batch_list($where){
-		return $this->model->table('course_batch')->where($where)->select();
+		return $this->model->table('course_batch')->where($where)->order('id desc')->select();
 		}
 	public function batch_add_save($data){
 		return $this->model->table('course_batch')->data($data)->insert();

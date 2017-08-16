@@ -34,16 +34,24 @@
           <input name="limitnum" type="text" class="text_value" id="limitnum" style="width:50px;" value="{$info.limitnum}"  />每位学生选课数量限制，不填为无限制 </td>
         </tr>
       <tr>
+     
        <tr>
         <td width="120" align="right">描述</td>
            <td >
          
-          <textarea name="des" style="width:290px; height:50px;" id="des">{$info.des}</textarea>
+          <textarea name="des" style="width:290px; height:80px;" id="des">{$info.des}</textarea>
          
         </td>
         </tr>
     
-      
+        <tr>
+        <td width="120" align="right">报名结束时间</td>
+        <td>
+          <input name="endtime" type="text" class="text_value" id="endtime" style="width:210px; float:left"  value="<?php echo $info['endtime']?date('Y-m-d H:i:s',$info['endtime']):''; ?>" msg="报名结束时间不能为空"  />  <div id="endtime_button" class="time"></div>  <script>$('#endtime_button').calendar({ id:'#endtime',format:'yyyy-MM-dd HH:mm:ss'});</script>
+          
+          </td>
+        </tr>
+      <tr>
       
       
       

@@ -539,7 +539,9 @@ button{
 	background:-webkit-linear-gradient(top,#ffffff,#d5d2d2);
 	background:-o-linear-gradient(top,#ffffff,#d5d2d2);
 }
-
+.borderk.selectclassk  a.sendlive{
+	margin:0;
+}
 .borderk a:hover{
 	border-color:#000;
 }

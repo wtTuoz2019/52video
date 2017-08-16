@@ -29,14 +29,45 @@ class parentMod extends commonMod {
 	public function center() {
         
 		$this->classes=model('extendclass')->classes_list(array('uid'=>$this->config['uid']));
+		
+		$wheretemp['uid']= $this->config['uid'];
+		$wheretemp['endtime']=array('>',time());
+		
+		 $num=model('extendclass')->batch_list_count($wheretemp);
+		if($num>1){
+		$batchlist=model('extendclass')->batch_list($wheretemp);
+		foreach($batchlist as $key=>$value){
+			
+			$bids.=$bids?','.$value['id']:$value['id'];
+			}		
+		$where=array('0'=>'A.bid in (' .$bids.')','sid'=>$this->student['stid']);	
+		}else{
 		$course=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
 		$where=array('0'=>'A.bid='.$course['id'],'sid'=>$this->student['stid']);
+		}
 		$this->kclist=model('extendclass')->my_course_list($where);	
 		$this->display('parent_center.html');
 	}
-	
+	public function batchlist(){
+		$where['uid']= $this->config['uid'];
+		$where['endtime']=array('>',time());
+		 $num=model('extendclass')->batch_list_count($where);
+		if( $num>1){
+		 $this->list=model('extendclass')->batch_list($where);	
+			
+		}else{
+			
+		 header('Location:' .__URL__.'/kclist?'.$this->urltoken);exit();
+			}
+		
+			$this->display('parents_batchlist.html');
+		}
 	public function kclist(){
+		if($_GET['bid']){
+			$course=model('extendclass')->batch_info(array('uid'=>$this->config['uid'],'id'=>intval($_GET['bid'])));
+			}else{
 		$course=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
+			}
 		if(!$course)$this->alert('暂无选课');
 		
 	

@@ -57,6 +57,7 @@ class contentModel extends commonModel
             $position_sql=" LEFT JOIN {$this->model->pre}position_relation D ON D.aid = A.aid ";
         }
        $user=model('user')->current_user();
+	 
 		 if($user['gid']==6){
 				$temp;$temp[]=0;
 			if($user['cid']){

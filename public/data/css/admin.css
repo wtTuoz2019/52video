@@ -55,7 +55,7 @@ body > .header {
   display: block;
 }
 
-.page_form{background:#f4f4f4 none repeat scroll 0 0; }
+.page_form{background:#fff none repeat scroll 0 0; }
 /*right side - contins main content*/
 .right-side {
   background-color: #f9f9f9;
@@ -3511,7 +3511,7 @@ fieldset[disabled] .btn-vk.active {
 	margin-top:20px;
 	}
 .image_button, .file_button, .time, .corol_button, .bold_button,.button_small{
-	height:34px;
+	height:27px;
 	}
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{ vertical-align:middle}
 #functions  {

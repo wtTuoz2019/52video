@@ -263,7 +263,7 @@ class extendclassMod extends commonMod {
 		
 			foreach($rows as  $key=>$val){
 				if($key>1){
-						$array=array('name'=>$val[1],'mobile'=>$val[2],'schoolcode'=>$val[5],'uid'=>$this->user['id']);
+						$array=array('name'=>$val[1],'mobile'=>$val[2],'schoolcode'=>$val[5],'codenumber'=>$val[6],'uid'=>$this->user['id']);
 						foreach($bj as $k=>$v){
 							if($v['grade']==intval($val['3'])&&$v['class']==intval($val['4'])){
 								$array['bj_id']=$v['id'];
@@ -404,6 +404,8 @@ class extendclassMod extends commonMod {
 	public function batch_add_save(){
 		
 		$_POST['uid']= $this->user['id'];
+		
+		$_POST['endtime']=strtotime($_POST['endtime']);
 		model('extendclass')->batch_add_save($_POST);
     	
     	$this->msg('添加成功！',1);
@@ -423,6 +425,7 @@ class extendclassMod extends commonMod {
 	
 	public function batch_edit_save(){
 		
+		$_POST['endtime']=strtotime($_POST['endtime']);
 		model('extendclass')->batch_edit_save($_POST);
     	
     	$this->msg('编辑成功！',1);
@@ -436,6 +439,41 @@ class extendclassMod extends commonMod {
       
         $this->msg('删除成功！',1);
 		
+		}
+	public function exportnosign(){
+		$bid=intval($_GET['bid']);
+		$teacher=model('extendclass')->teacher_list($where);
+		$bj=model('extendclass')->classes_list($where);
+		if($bid){
+		 $list=model('extendclass')->nosignup_course_list($this->user['id'],$bid);	
+		if($list){
+			header("Content-Type: text/html; charset=utf-8");
+		header("Content-type:application/vnd.ms-execl");
+		header("Content-Disposition:filename=signup.xls");
+		echo iconv('utf-8','gbk','姓名')."\t";
+		echo iconv('utf-8','gbk','班级')."\t";
+		echo iconv('utf-8','gbk','联系号码')."\t";
+		echo iconv('utf-8','gbk','学籍号码')."\t";
+		echo iconv('utf-8','gbk','学号')."\t";
+		
+		echo "\n";
+		foreach($list as $k=>$v){
+			echo iconv('utf-8','gbk',$v['name'])."\t";
+			echo iconv('utf-8','gbk',$bj[$v['bj_id']]['grade'].'年级'.$bj[$v['bj_id']]['class'].'班')."\t";
+			echo iconv('utf-8','gbk',$v['mobile'])."\t";
+			echo iconv('utf-8','gbk',$v['schoolcode'])."\t";
+			
+			echo iconv('utf-8','gbk',$v['codenumber'])."\t";
+			echo "\n";
+			}
+		
+			
+			
+			
+			
+			}	
+		
+		}
 		}
 	public function course(){
 		$where['uid']= $this->user['id'];
@@ -452,6 +490,8 @@ class extendclassMod extends commonMod {
 		echo iconv('utf-8','gbk','姓名')."\t";
 		echo iconv('utf-8','gbk','班级')."\t";
 		echo iconv('utf-8','gbk','联系号码')."\t";
+		echo iconv('utf-8','gbk','学籍号码')."\t";
+		echo iconv('utf-8','gbk','学号')."\t";
 		echo iconv('utf-8','gbk','课程名称')."\t";
 		echo iconv('utf-8','gbk','任课老师')."\t";
 		echo iconv('utf-8','gbk','分数')."\t";
@@ -460,6 +500,9 @@ class extendclassMod extends commonMod {
 			echo iconv('utf-8','gbk',$v['name'])."\t";
 			echo iconv('utf-8','gbk',$bj[$v['bj_id']]['grade'].'年级'.$bj[$v['bj_id']]['class'].'班')."\t";
 			echo iconv('utf-8','gbk',$v['mobile'])."\t";
+			echo iconv('utf-8','gbk',$v['schoolcode'])."\t";
+			
+			echo iconv('utf-8','gbk',$v['codenumber'])."\t";
 			echo iconv('utf-8','gbk',$v['title'])."\t";
 			echo iconv('utf-8','gbk',$teacher[$v['tid']]['name'])."\t";
 			echo iconv('utf-8','gbk',$v['score'])."\t";
@@ -567,6 +610,8 @@ class extendclassMod extends commonMod {
 		header("Content-type:application/vnd.ms-execl");
 		header("Content-Disposition:filename=signup.xls");
 		echo iconv('utf-8','gbk','姓名')."\t";
+		echo iconv('utf-8','gbk','学籍号')."\t";
+		echo iconv('utf-8','gbk','学号')."\t";
 		echo iconv('utf-8','gbk','班级')."\t";
 		echo iconv('utf-8','gbk','联系号码')."\t";
 		echo iconv('utf-8','gbk','课程名称')."\t";
@@ -575,6 +620,8 @@ class extendclassMod extends commonMod {
 		echo "\n";
 		foreach($list as $k=>$v){
 			echo iconv('utf-8','gbk',$v['name'])."\t";
+			echo iconv('utf-8','gbk',$v['schoolcode'])."\t";
+			echo iconv('utf-8','gbk',$v['codenumber'])."\t";
 			echo iconv('utf-8','gbk',$bj[$v['bj_id']]['grade'].'年级'.$bj[$v['bj_id']]['class'].'班')."\t";
 			echo iconv('utf-8','gbk',$v['mobile'])."\t";
 			echo iconv('utf-8','gbk',$v['title'])."\t";
@@ -605,7 +652,7 @@ class extendclassMod extends commonMod {
 		
 			foreach($rows as  $key=>$val){
 				if($key>1){
-						$array=array('name'=>$val[1],'mobile'=>$val[2],'schoolcode'=>$val[5],'uid'=>$this->user['id']);
+						$array=array('name'=>$val[1],'mobile'=>$val[2],'schoolcode'=>$val[5],'codenumber'=>$val[6],'uid'=>$this->user['id']);
 						foreach($bj as $k=>$v){
 							if($v['grade']==intval($val['3'])&&$v['class']==intval($val['4'])){
 								$array['bj_id']=$v['id'];break;

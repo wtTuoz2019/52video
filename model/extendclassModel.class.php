@@ -162,7 +162,10 @@ class extendclassModel extends commonModel {
 		return $this->model->table('course_signup')->data($data)->insert();
 		}
 	public function batch_list($where){
-		return $this->model->table('course_batch')->where($where)->select();
+		return $this->model->table('course_batch')->where($where)->order('id desc')->select();
+		}
+	public function batch_list_count($where){
+		return $this->model->table('course_batch')->where($where)->count();
 		}
 	public function batch_add_save($data){
 		return $this->model->table('course_batch')->data($data)->insert();

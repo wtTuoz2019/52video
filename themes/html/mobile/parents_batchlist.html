@@ -1,0 +1,26 @@
+  
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=750, user-scalable=no">
+		<title>在线选课</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+	</head>
+    <style>
+    	html,body{
+			height:100%;
+		}
+    </style>
+	<body class="zxxkbg">
+     
+    	<!--foreach:{$list $vo}-->
+			
+				
+			<a href="__URL__/kclist/bid-{$vo.id}?{$urltoken}">
+            
+		{$vo.name}            
+            </a>
+               <!--{/foreach}-->
+	</body>
+</html>

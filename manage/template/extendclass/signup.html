@@ -28,12 +28,13 @@
 		<table width="100%" border="0" cellspacing="0" cellpadding="0"class="oftentable">
 				<tr class="bgth">
        
-       			 <th width="20%">名称</th>
-       			   <th width="10%">联系手机</th>
-                    <th width="20%">学籍号</th>
-           			<th width="40%">班级</th>
+       			 <th width="10%">名称</th>
+       			   <th width="15%">联系手机</th>
+                    <th width="25%">学籍号</th>
+                    <th width="20%">学号</th>
+           			<th width="20%">班级</th>
        
-        <th width="10%"><center>操作</center></th>
+        <th width="20%"><center>操作</center></th>
       </tr>
       <!--foreach:{$list $vo}-->
       <tr>
@@ -41,6 +42,8 @@
         <td>{$vo.name}</td>
         <td>{$vo.mobile}</td>
           <td>{$vo.schoolcode}</td>
+          <td>{$vo.codenumber}</td>
+
        	 <td>{$bj[$vo['bj_id']]['grade']}年级{$bj[$vo['bj_id']]['class']}班</td>
       
        
