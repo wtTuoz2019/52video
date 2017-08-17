@@ -9,6 +9,8 @@ class smsMod extends commonMod {
     }
 
 	public function index() {
+		if(!$this->userinfo){echo 0;}
+		
 		
 $mobile =$_POST['mobile'];
 $rand=rand(1000,9999);
