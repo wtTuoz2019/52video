@@ -136,13 +136,13 @@ public function addvisit($uid){
 		
 		
 		}
-public function addstreamvisit(){
+public function addstreamvisit($uid){
 		
 		
-		if($_SESSION['uid']){
+		if($uid){
 		$stream=$_POST['stream'];
 		
-		$uid=$_SESSION['uid'];
+	
 	
 		$dateline=time()+60;
 	

@@ -524,22 +524,22 @@ a,a:hover,a:focus{
 	box-shadow: -5px 6px 10px 0px;
 	line-height: 90px;
 	text-align: center;
-	font-size: 18px;
+	font-size: 20px;
 	margin-bottom: 20px;
 }
 .chooseclass form{
 	display: inline-block;
 }
 .chooseclass select{
-	height: 45px;
+	height: 50px;
 	width: 250px;
 	font-size: 18px;
 	padding-left: 35px;
 	border: 1px solid #AFAFAF;
 }
 .chooseclass form button{
-	height: 45px;
-	padding: 0 20px;
+	height: 50px;
+	padding: 0 25px;
 	font-size: 18px;
 	background: #F9F9F9;
 	border: 1px solid #AFAFAF;
@@ -672,19 +672,20 @@ a,a:hover,a:focus{
 	background-image: url(../img/nav5_.png);
 }
 .kechenglist{
-	padding: 20px 70px;
+	padding: 20px 50px;
 }
 .kechenglist .kechengk{
 	border: 1px solid #ccc;
-	border-radius: 3px;
+	border-radius: 20px;
 	font-size: 18px;
 	margin-bottom: 30px;
-	box-shadow: -2px 2px 10px 0px;
+	box-shadow: -2px 2px 10px 0px #aaa;
 }
 .kechenglist .kechengk .kecheng_text{
 	padding: 10px 20px;
 	padding-bottom: 60px;
 	color: #fff;
+	    border-radius: 20px 20px 0 0;
 }
 .kechenglist .kechengk:nth-child(3n+1) .kecheng_text{
 	background: #F79CAD;	

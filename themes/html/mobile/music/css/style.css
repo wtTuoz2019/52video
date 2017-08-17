@@ -1263,3 +1263,21 @@ p.allcomment span{
 body{
 	cursor:pointer;
 }
+.schoolmessage>p>span.jknum{
+	color:#606a97;
+}
+.jktitle{
+	margin-top:20px;
+	font-size:15px;
+	height:50px;
+	background:#fff;
+	padding-left:10px;
+	line-height:50px;
+}
+.jkno{
+	background-image:url(../img/jkbg.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+	height:100%;
+}

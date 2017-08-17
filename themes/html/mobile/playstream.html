@@ -17,19 +17,12 @@
 	<body>
     	
     
-		<header> 
-			<div class="logo-box">
-			 <img src="__TPL__/mobile/img/logo.png" />
-             <h1>测试观看页面-闪阅云</h1>
-			
-			</div>
-		</header>
 		<section>
 		<div class="play-box">
 				<div class="channels">
         
         <div class="show">
-  
+		<!--if:{$flag}-->
     
        <div id="play" class="play" style="width:100%;">
         	
@@ -37,14 +30,7 @@
         
   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
 <script type="text/javascript">
-function addvisit(){
-		$.post('/index.php/index/addstreamvisit',{'stream':'{$stream}'},function(data){
-		
-			});
-	
-	}
-addvisit();
-setInterval("addvisit()",60000);
+
 
 var w = "100%";//视频宽度
   var h = "200";//视频高度 
@@ -58,18 +44,48 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 				 
 </script>
 
+<!--{else}-->
 
+<div class="jkno">
+	
+</div>
+
+<!--{/if}-->
     </div>
 </div>
 		</div>
       
 		
 		</section>
-        <div class="jianjie">
-        	<span>
-            	闪阅云教育微直播平台简介
-            </span>
+        <div class="view-box clearfix">	
+        		<div class="schoolmessage jkmessage">
+                	<img class="schoollogo" src="{$sys.imageurl}{$school[$info['csid']]['headimg']}"/>
+                    <p>
+                        <span>{$school[$info['csid']]['name']}</span>
+                       
+                        <span class="jknum">观看人数：{$count}</span>
+                	</p>
+                </div>
+                
+              
+				<div class="support">
+                            	+技术支持
+                            </div>
+                <div id="Qr">
+                <div class="qrk">
+                <img class="qr" src="/themes/html/mobile/img/jkqr.jpg" /><span onclick="toclose(this)"><img src="/themes/html/mobile/img/gb.png" /></span>
+                </div>
+                </div>
+				
+		</div>
+        
+        
+        <div class="jktitle">
+        	闪阅云教育微直播平台简介
         </div>
+        
+        
+        
         <div class="img_text">
         <img src="__TPL__/mobile/img/shanyueyun.jpg" />
         	<h1> 
@@ -82,5 +98,28 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
             </p>
         </div>
 		
+        
+        
+        <script>
+        	$('.support').click(function(e){
+		e.preventDefault();
+		$('#Qr').show();
+		$('#sfunction').stop().animate({height:'0'},500);
+	});
+	 
+	 
+	function toclose(e){
+		$(e).parents('#Qr').hide();
+	} 
+        function addvisit(){
+		$.post('/index.php/index/addstreamvisit',{'stream':'{$stream}'},function(data){
+		
+			});
+	
+	}
+addvisit();
+setInterval("addvisit()",60000);
+        </script>
+        
 	</body>
 </html>

@@ -75,6 +75,14 @@ class  dataModel extends commonModel
          return $this->model->table('expand_content_livestream')->where(array('aid'=>$aid))->find();
        
     }
+	
+  //获取模型信息
+    public function sn_info($where) {
+    
+
+        return $this->model->table('device','A')->field('A.*,B.cid as csid')->add_table('admin','B','A.cid=B.id')->where($where)->find();
+    }
+  
 }
 
 ?>

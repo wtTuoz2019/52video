@@ -76,7 +76,7 @@ public function wenlai(){
 		
 		}
 	public function  addstreamvisit(){
-		model('common')->addstreamvisit();
+		model('common')->addstreamvisit($this->userinfo['uid']);
 		
 		}
 	public function login(){

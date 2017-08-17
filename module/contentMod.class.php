@@ -410,10 +410,15 @@ class contentMod extends commonMod
 		$where['endtime']=array('>',$nowtime);
 		$where['uid']=array('<>',$this->userinfo['uid']);
 		 $count=model('data')->streamvisitnum($where);
-		if($count>=10){
+		 $this->info=model('data')->sn_info(array('sn'=>$this->stream));
+		
+		if($count>=20){
 			$this->alert('观看人数已满，请联系管理员');
 			}
+		$this->count=$count+1;
 		
+		$url='http://'.$this->config['ali'].$_GET['stream'].'.m3u8';
+		$this->flag=@fopen($url,'r');
 		 $this->display('playstream.html');	
 		
 		}	
