@@ -181,7 +181,7 @@ class selfformMod extends commonMod
 	if($unique){
 		$valuedata['unique']=$unique;
 		if(model('selfform')->input_value(array('fid'=>$fid,
-	 			  'unique'=>$unique))){
+	 			  'unique'=>$unique,'uid'=>array('<>',$this->userinfo['uid'])))){
 			 $this->msg($uniquename.'不能重复',0);		  
 					  }
 		
@@ -248,7 +248,7 @@ class selfformMod extends commonMod
 	if($unique){
 		$valuedata['unique']=$unique;
 		if(model('selfform')->input_value(array('fid'=>$fid,
-	 			  'unique'=>$unique))){
+	 			  'unique'=>$unique,'uid'=>array('<>',$this->userinfo['uid'])))){
 			 $this->msg($uniquename.'不能重复',0);		  
 					  }
 		
@@ -313,6 +313,15 @@ class selfformMod extends commonMod
             }
         }
 		
+		if($unique){
+		$valuedata['unique']=$unique;
+		if(model('selfform')->input_value(array('fid'=>$fid,
+	 			  'unique'=>$unique,'uid'=>array('<>',$this->userinfo['uid'])))){
+			 $this->msg($uniquename.'不能重复',0);		  
+					  }
+		
+		}	
+		
 		 $valuedata=array('fid'=>$fid,
 	 			  'uid'=>$this->userinfo['uid'],
 				  'values'=>serialize($data),
@@ -327,14 +336,7 @@ class selfformMod extends commonMod
 					  }
     	
 		
-if($unique){
-		$valuedata['unique']=$unique;
-		if(model('selfform')->input_value(array('fid'=>$fid,
-	 			  'unique'=>$unique))){
-			 $this->msg($uniquename.'不能重复',0);		  
-					  }
-		
-		}		
+	
         model('selfform')->add_value($valuedata);
     
       
