@@ -191,4 +191,7 @@ public function addstreamvisit($uid){
 		if($data)return $data['value'];
 		else return '';
 		}
+	public function smslog($data){
+		return $this->model->table('smslog')->data($data)->insert();
+		}
 }

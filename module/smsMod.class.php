@@ -30,7 +30,7 @@ $resp = $c ->execute( $req );
 if($resp->code){
 	echo 0;	
 	}else{ 
-		
+	model('common')->smslog(array('uid'=>$this->userinfo['id'],'mobile'=>$mobile,'content'=>'SMS_9545056'));	
 echo 1;	
 		}
 
