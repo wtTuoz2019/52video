@@ -11,7 +11,7 @@ class smsMod extends commonMod {
 	public function index() {
 		
 		
-		if(!$this->userinfo){echo 0;}
+		if(!$this->userinfo){echo 0;die;}
 		
 		
 $mobile =$_POST['mobile'];
