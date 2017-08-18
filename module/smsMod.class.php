@@ -9,6 +9,8 @@ class smsMod extends commonMod {
     }
 
 	public function index() {
+		
+		
 		if(!$this->userinfo){echo 0;}
 		
 		
@@ -30,7 +32,7 @@ $resp = $c ->execute( $req );
 if($resp->code){
 	echo 0;	
 	}else{ 
-	model('common')->smslog(array('uid'=>$this->userinfo['id'],'mobile'=>$mobile,'content'=>'SMS_9545056','time'=>date('Ymd H:i:s')));	
+	model('common')->smslog(array('uid'=>$this->userinfo['uid'],'mobile'=>$mobile,'content'=>'SMS_9545056','time'=>date('Ymd H:i:s')));	
 echo 1;	
 		}
 
