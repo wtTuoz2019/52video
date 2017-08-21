@@ -5,6 +5,7 @@ class cpTemplate {
 	protected $_replace = array();
 	
 	public function __construct($config = array()) {
+	
 		$this->config = array_merge(cpConfig::get('TPL'), (array)$config);//参数配置	
 		$this->assign('cpTemplate', $this);
 		$this->_replace = array(
@@ -43,14 +44,16 @@ class cpTemplate {
 		if($return){
 			ob_start();
 		}
-		extract($this->vars, EXTR_OVERWRITE);
+		extract($this->vars, EXTR_OVERWRITE);	
 		if ( $is_tpl && $this->config['TPL_CACHE_ON'] ) {
 			define('CANPHP', true);
 			if($diy_tpl){
 				$tplFile = $tpl;
 			}else{
-				$tplFile = $this->config['TPL_TEMPLATE_PATH'] . $tpl . $this->config['TPL_TEMPLATE_SUFFIX'];
+			 	$tplFile = $this->config['TPL_TEMPLATE_PATH'] . $tpl . $this->config['TPL_TEMPLATE_SUFFIX'];
 			}
+			
+		
 			$cacheFile = $this->config['TPL_CACHE_PATH'] . md5($tplFile) . $this->config['TPL_CACHE_SUFFIX'];
 			
 			if ( !file_exists($tplFile) ) {
@@ -106,9 +109,9 @@ class cpTemplate {
 			if($diy_tpl){
 				$tplFile = $tpl;
 			}else{
-				$tplFile = $this->config['TPL_TEMPLATE_PATH'] . $tpl . $this->config['TPL_TEMPLATE_SUFFIX'];
+			 	$tplFile = $this->config['TPL_TEMPLATE_PATH'] . $tpl . $this->config['TPL_TEMPLATE_SUFFIX'];
 			}
-
+		
 			if ( !file_exists($tplFile) ) {
 				throw new Exception($tplFile . "模板文件不存在");
 			}

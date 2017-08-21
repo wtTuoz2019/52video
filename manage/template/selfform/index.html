@@ -36,13 +36,19 @@
 							 {$php(echo date('Y-m-d H:i',$vo['time']))}
 						
 					</td>
-                    <td>
+                    <td class="isqr">
                     
-                    	<img src="<?php 
+                    	<img class="smqr" src="<?php 
       $url = "http://".$sys['MOBILE_DOMAIN']."/selfform/index/fid-".$vo['id']."?token=".$token;
           model('live')->getQrcode($url, 'selfform_'.$vo['id']);
           echo $img = "/upload/aidimage/selfform_".$vo['id'].".png";
         ?>" width="80px"/>
+        
+        	<img class="bigqr" src="<?php 
+      $url = "http://".$sys['MOBILE_DOMAIN']."/selfform/index/fid-".$vo['id']."?token=".$token;
+          model('live')->getQrcode($url, 'selfform_'.$vo['id']);
+          echo $img = "/upload/aidimage/selfform_".$vo['id'].".png";
+        ?>" width="180px"/>
                     </td>
 					
 					<td class="operation">
@@ -110,4 +116,11 @@ function del(id,obj) {
 		}
 	});
 }
+
+//
+$('.smqr').mouseover(function(){
+	$(this).siblings('.bigqr').show();
+}).mouseout(function (){
+   	$(this).siblings('.bigqr').hide();  
+}); 
 </script>

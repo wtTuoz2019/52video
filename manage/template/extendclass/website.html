@@ -1,0 +1,94 @@
+  
+<div id="postmanage" class="userurl">
+			<h4>
+				用户入口管理
+			</h4>
+		
+			<table width="100%" cellspacing="0" class="oftentable">
+				<tr class="bgth">
+					<th width="20%">名称</th>
+                    <th width="30%">链接地址</th>
+                    <th width="20%">访问二维码</th>
+					
+					
+					
+					<th width="10%">操作</th>
+				</tr>
+                  
+				<tr>
+					
+					<td style="text-align:left">
+						学生中心
+					</td>
+                    <td >
+                    
+                    <?php 
+      $url = "http://".$sys['MOBILE_DOMAIN']."/selfform/patent?token=".$token;
+          model('live')->getQrcode($url, 'patent_'.$token);
+        $img = "/upload/aidimage/patent_".$token.".png";
+        ?>
+                    
+                    	<input class="isurl"  value="{$url}">
+                    </td>
+					<td class="isqr">
+                    	<img class="smqr" src="{$img}" width="80px">
+                        <img class="bigqr" src="{$img}" width="180px">
+                    </td>
+					
+					<td class="operation">
+						<button onClick="copyUrl(this)">
+							复制链接
+						</button>
+						
+					</td>
+				</tr>
+                   
+				<tr>
+					
+					<td style="text-align:left">
+						老师中心
+					</td>
+                    <td >
+                    
+                    <?php 
+      $url = "http://".$sys['MOBILE_DOMAIN']."/selfform/teacher?token=".$token;
+          model('live')->getQrcode($url, 'teacher_'.$token);
+        $img = "/upload/aidimage/teacher_".$token.".png";
+        ?>
+                    
+                    	<input class="isurl"  value="{$url}">
+                    </td>
+					<td class="isqr">
+                    	<img class="smqr" src="{$img}" width="80px">
+                        <img class="bigqr" src="{$img}" width="180px">
+                    </td>
+					
+					<td class="operation">
+						<button onClick="copyUrl(this)">
+							复制链接
+						</button>
+						
+					</td>
+				</tr>
+				
+			</table>
+		</div>
+        
+        
+        <script>
+        	function copyUrl(e)
+			{
+				var Url2=$(e).parents('tr').find('.isurl')[0];
+				console.log(Url2);
+				Url2.select(); // 选择对象
+				document.execCommand("Copy"); // 执行浏览器复制命令
+				alert("已复制");
+			}
+			//
+			$('.smqr').mouseover(function(){
+				$(this).siblings('.bigqr').show();
+			}).mouseout(function (){
+				$(this).siblings('.bigqr').hide();  
+			}); 
+        
+        </script>

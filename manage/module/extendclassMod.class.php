@@ -14,6 +14,12 @@ class extendclassMod extends commonMod {
 		
 		}
 		
+	  public function website(){
+		
+		 $this->show();
+		
+		}
+		
 	public function classes(){
 	
 		$where['uid']= $this->user['id'];

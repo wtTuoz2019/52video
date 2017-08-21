@@ -69,6 +69,12 @@ class indexMod extends commonMod
 	
         $this->show();
     }
+	
+	 public function nav_web()
+    {	
+	
+        $this->show();
+    }
 
 
     //环境信息

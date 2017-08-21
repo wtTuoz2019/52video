@@ -22,7 +22,7 @@ class commonMod
         $this->init();
         Plugin::init();
         $langCon=Lang::langCon();
-		 $this->siteurl=$_SERVER["HTTP_HOST"];;
+		 $this->siteurl=$siteurl=$_SERVER["HTTP_HOST"];;
         $this->config = array_merge((array)$config,(array)$langCon);
 		
 		$token=trim($_GET['token']);
@@ -36,14 +36,16 @@ class commonMod
 //			if($this->wxuser['appid']&&$this->wxuser['appsecret']){
 //				$this->config['appid']=$this->wxuser['appid'];
 //				$this->config['appsecret']=$this->wxuser['appsecret'];
-//				}
+//				}	
+			
 			$admininfo=model('user')->admininfobytoken($token);
 		
 		
 		}else{
 			$this->wxuser=model('user')->wxuserdefault();	
-	
-//		$admininfo=model('user')->admininfo($siteurl);
+			$sitetemp=explode('.',$siteurl);
+		$webconfig=model('web')->web_config(array('site'=>$sitetemp[0]));
+		
 		}
 		$this->config['uid']=1;
 		if($admininfo){
@@ -59,8 +61,16 @@ class commonMod
 			if($admininfo['copyright'])$this->config['copyright']=$admininfo['copyright'];
 			
 			}
-
+		if($webconfig){
+			$this->config['child']=1;
+			$this->config['uid']=$webconfig['uid'];
+			if($webconfig['logo'])
+			$this->config['logo']=$webconfig['logo'];
+			$this->config['sitename']=$webconfig['name'];
+			$this->webconfig=$webconfig;
+			}
 		$userinfo=$_COOKIE[$this->config['SPOT'].'_wxuser'];
+		
      
 		if($userinfo){
 			  $array=explode('|',$userinfo);
@@ -305,13 +315,32 @@ class commonMod
           $mobile_tpl='mobile'.'/';
 		 
 		 }
-        if( $is_tpl){
+		
+		 if($this->webconfig){
+			$tpl_add=$this->webconfig['template'].'/'; 
+			 }
+		 
+		  if($this->webconfig){
+			  $tpl_add=$this->webconfig['template'].'/'; 
+			   $this->config['TPL_TEMPLATE_PATH']='themes/'.$tpl_add;
+			  $tpl=__ROOTDIR__.'/themes/'.$tpl_add.$lang.$mobile_tpl.$tpl;
+            if( $is_tpl && $this->layout ){
+                $this->__template_file = $tpl;
+                $tpl = $this->layout;
+            }
+		  }
+		 
+        elseif( $is_tpl){
             $tpl=__ROOTDIR__.'/'.$this->config['TPL_TEMPLATE_PATH'].$lang.$mobile_tpl.$tpl;
             if( $is_tpl && $this->layout ){
                 $this->__template_file = $tpl;
                 $tpl = $this->layout;
             }
         }
+		
+		
+		
+		
 		$school=model('school')->school_list();
 		
 		//foreach($school as $k=>$v){

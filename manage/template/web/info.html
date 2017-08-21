@@ -1,0 +1,212 @@
+<div id="outvideo" class="outvideob weihome">
+			<h4>
+				{$actionname}
+			</h4>
+			<div class="videocontent" style="border:0; text-align:center;">
+				<div class="page_form" style="width:100%;">
+               <form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form" autocomplete="off" style=" display:inline-block; padding:20px; border:1px solid #BABABA; padding-right: 80px;">
+					
+                       <table cellspacing="0">
+						<tr>
+							<td>名称：</td>
+							<td>
+								<input name="name" type="text" class="form-control" id="name"  value="{$info.name}" reg="\S" msg="名称不能为空" />
+							</td>
+						</tr>
+                        
+                        <tr>
+							<td>
+                                形象图：
+                                </td>
+							<td>
+          	                  	<?php echo module('editor')->get_image_upload('image1','image',false,'editor_content') ?>
+         							 <input name="image" type="text"class="form-control" id="image" value="{$info.image}"  placeholder="宽720px;高400px	"/> 
+								
+								<p>
+									
+								</p>
+								<input class="chooseimg" id="image1" value="选择图片"></input>
+							</td>
+						</tr>
+                          <tr>
+							<td>
+                                背景图：
+                                </td>
+							<td>
+          	                  	<?php echo module('editor')->get_image_upload('backurl1','backurl',false,'editor_content') ?>
+         							 <input name="backurl" type="text"class="form-control" id="backurl" value="{$info.backurl}"   placeholder="宽720px;高1280px"/> 
+								
+								<p>
+									
+								</p>
+								<input class="chooseimg" id="backurl1" value="选择图片"></input>
+							</td>
+						</tr>
+                        
+                    <tr>
+							<td>菜单：</td>
+							<td>
+								
+									<div class="menusk">
+                                    <div id="menus">
+                                    <!--foreach:{$p_menu $vo}-->
+        
+                                      <div id="button{$vo.id}"><button type="button" class="button">{$vo.title}</button><input type="hidden" value="{$vo.id}" name="menus[{$vo.id}]">
+                                      <p><a href="javascript:" onClick="editmenus('{$vo.id}')">编辑</a>
+                                      	<br />
+                                      <a href="javascript:" onClick="delmenus('{$vo.id}',this)">删除</a></p>
+                                      </div>
+                                    
+                                    <!--{/foreach}-->
+								
+                                        </div>
+										<button type="button" class="addgn" onClick="addmenus()" title="菜单分类">
+											+添加
+										</button>
+									</div>
+                                    
+                      </td>
+                      </tr>
+                      
+                      	<tr>
+							<td>模板：</td>
+							<td>
+								<input name="tpl" type="text" class="form-control" id="tpl"  value="{$info.tpl}" reg="\S" msg="模板不能为空" />
+                                <button class="cmodel" data-toggle="modal" data-target="#myModal">
+                                    选择
+                                </button>
+                                
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    
+                                    <h4 class="modal-title" id="myModalLabel">内容模板</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                  <div class="toleft"></div>
+                                  <div class="mbk">
+                                  
+                                  <div data-dismiss="modal" >
+                                    <input checked class="radio" type="radio" name="tplid" value="101" <?php if($info['tplid']==101){echo 'checked';} ?>>模板1
+                                        <img src="__PUBLICURL__/home/images/mb1.jpg"  width="140" height="266"  class="img" />
+                                        </div>
+                                        <div data-dismiss="modal">
+                                        <input class="radio gap" type="radio" name="tplid" value="102" <?php if($info['tplid']==102){echo 'checked';} ?>>模板2
+                                       <img src="__PUBLICURL__/home/images/mb2.jpg"  width="140" height="266"  class="img" />
+                                       </div>
+                                       <div data-dismiss="modal">
+                                       <input class="radio gapo" type="radio" name="tplid" value="103" <?php if($info['tplid']==103){echo 'checked';} ?>>模板3
+                                       <img src="__PUBLICURL__/home/images/mb3.jpg"  width="140" height="266"  class="img" />
+                                       </div>
+                                       <div data-dismiss="modal">
+
+<input class="radio gapo" type="radio" name="tplid" value="104" <?php if($info['tplid']==104){echo 'checked';} ?>>模板4
+                                       <img src="__PUBLICURL__/home/images/mb4.jpg"  width="140" height="266"  class="img" />
+                                       </div>
+                                      
+                                       </div>
+                                        <div class="toright"></div> 
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                                
+							</td>
+						</tr>         
+						
+                        
+                      
+                        
+                       
+					</table>
+                    
+                     <div class="form_submit">
+                    
+      <input name="id" id="id" type="hidden" value="{$info.id}" />
+                      <button type="submit" id="savevideo">保存</button>
+                    </div>
+                    </form>
+				</div>
+				
+			</div>
+			
+			
+		</div>
+       <style>
+       	#outvideo .videocontent>div.page_form table td>input[type="text"]{
+			width:420px !important;
+		}
+		#outvideo .videocontent>div.page_form table td>input#tpl{
+			width:200px !important;
+		}
+       	#outvideo .videocontent>div.page_form table tr td .chooseimg{
+			left:335px;
+		}
+       </style>
+   <script>
+   savelistform({addurl:"__URL__/add",listurl:"__URL__/index"});
+   function addmenus(){
+	urldialog({
+		width:600,
+	height:500,
+	title:'功能编辑',
+	url:'__ROOT__/index.php/wechat/menu_add'
+	});
+	
+	}
+	function editmenus(id){
+	urldialog({
+		width:600,
+	height:500,
+	title:'功能编辑',
+	url:'__ROOT__/index.php/wechat/menu_add/id-'+id
+	});
+	
+	}
+//删除
+function delmenus(id,obj) {
+	var obj;
+	ajaxpost({
+		name:'确定删除？ ',
+		url:"__ROOT__/index.php/wechat/del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$('#fakebutton button').eq($(obj).parent().parent().index()).remove();
+			$('#fakebutton button').eq(0).addClass('active');
+			$('#iframek>div').eq($(obj).parent().parent().index()).remove();
+			$('#iframek>div').eq(0).addClass('active');
+			$('#fakebutton>button').css('width',100/$('#fakebutton>button').length+'%');
+			$(obj).parent().parent().remove();
+		}
+	});
+}
+$('.toleft').click(function(){
+		$('.mbk').stop().animate({left:'0'},700);
+	});
+	$('.toright').click(function(){
+		$('.mbk').stop().animate({left:'-560px'},700);
+	});
+	
+	
+	$('.mbk>div').click(function(){
+		$(this).parents('.mbk').find('input').prop("checked",false);
+		 $(this).find('input').prop('checked',true);
+		 if($(this).find('input').val()=='101'){
+				$('#tpl').val("website1");	
+		 }else if($(this).find('input').val()=='102'){
+				$('#tpl').val("website2");	
+		 }else if($(this).find('input').val()=='103'){
+				$('#tpl').val("website3");	
+		 }else if($(this).find('input').val()=='104'){
+				$('#tpl').val("website4");	
+		 }
+	});
+	
+	
+   </script>     

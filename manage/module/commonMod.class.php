@@ -293,6 +293,7 @@ class commonMod
         $css='';
         $css .= '<link href="' . __PUBLICURL__ . '/css/base.css" rel="stylesheet" type="text/css" />' . PHP_EOL;
         $css .= '<link href="' . __PUBLICURL__ . '/css/style.css" rel="stylesheet" type="text/css" />' . PHP_EOL;
+		 $css .= '<link href="' . __PUBLICURL__ . '/manage/css/manage.css" rel="stylesheet" type="text/css" />' . PHP_EOL;
         $css .= '<link href="' . __PUBLICURL__ . '/kindeditor/themes/default/default.css" rel="stylesheet" type="text/css" />' . PHP_EOL;
         return $css;
     }

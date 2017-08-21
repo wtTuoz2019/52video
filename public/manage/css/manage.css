@@ -190,6 +190,12 @@ button{
 #header .nav #headnav>a.headmine{
 	background-image: url(../img/user.png);
 }
+#header .nav #headnav>a.headweb{
+	background-image: url(../img/web.png);
+}
+#header .nav #headnav>a.headfun{
+	background-image: url(../img/fun.png);
+}
 #header .nav #headnav>a.headvideo{
 	background-image: url(../img/videos.png);
 }
@@ -341,6 +347,15 @@ button{
 #nav>a.active div.nav_selectclass5{
 	background-image: url(../img/nav_selectclass5_.png);
 }
+
+#nav>a div.nav_selectclass6{
+	background-image: url(../img/nav_selectclass6.png);
+}
+#nav>a.active div.nav_selectclass6{
+	background-image: url(../img/nav_selectclass6_.png);
+}
+
+
 #nav>a div.nav_userset1{
 	background-image: url(../img/nav_userset1.png);
 }
@@ -389,6 +404,30 @@ button{
 #nav>a.active div.nav_function2{
 	background-image: url(../img/nav_function2_.png);
 }
+
+
+
+#nav>a div.nav_web1{
+	background-image: url(../img/nav_web1.png);
+}
+#nav>a.active div.nav_web1{
+	background-image: url(../img/nav_web1_.png);
+}
+#nav>a div.nav_web2{
+	background-image: url(../img/nav_web2.png);
+}
+#nav>a.active div.nav_web2{
+	background-image: url(../img/nav_web2_.png);
+}
+#nav>a div.nav_web3{
+	background-image: url(../img/nav_web3.png);
+}
+#nav>a.active div.nav_web3{
+	background-image: url(../img/nav_web3_.png);
+}
+
+
+
 /*微信绑定模块下的内容*/
 
 .WeChat{
@@ -2373,4 +2412,24 @@ body .userset .oftentable tr td{
 }
 .weihome .modal  input{
 	display:inline-block;
+}
+.userurl .oftentable tr td.operation button{
+	background-image:none;
+}
+.userurl .oftentable tr td .isurl{
+	width:100%;
+	border:0;
+	background:#fff;
+}
+.userurl .oftentable tr td .isurl:focus {
+    outline:none;
+}
+.isqr{
+	position:relative;
+}
+.isqr .bigqr{
+	position:absolute;
+	top: 0;
+    left: 100px;
+	display:none;
 }
