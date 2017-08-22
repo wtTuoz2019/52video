@@ -23,9 +23,9 @@
                     <td >
                     
                     <?php 
-      $url = "http://".$sys['MOBILE_DOMAIN']."/selfform/patent?token=".$token;
-          model('live')->getQrcode($url, 'patent_'.$token);
-        $img = "/upload/aidimage/patent_".$token.".png";
+      $url = "http://".$sys['MOBILE_DOMAIN']."/patent?token=".$token;
+          model('live')->getQrcode($url, 'patent_center_'.$token);
+        $img = "/upload/aidimage/patent_center_".$token.".png";
         ?>
                     
                     	<input class="isurl"  value="{$url}">
@@ -51,9 +51,9 @@
                     <td >
                     
                     <?php 
-      $url = "http://".$sys['MOBILE_DOMAIN']."/selfform/teacher?token=".$token;
-          model('live')->getQrcode($url, 'teacher_'.$token);
-        $img = "/upload/aidimage/teacher_".$token.".png";
+      $url = "http://".$sys['MOBILE_DOMAIN']."/teacher?token=".$token;
+          model('live')->getQrcode($url, 'teacher_center_'.$token);
+        $img = "/upload/aidimage/teacher_center_".$token.".png";
         ?>
                     
                     	<input class="isurl"  value="{$url}">
