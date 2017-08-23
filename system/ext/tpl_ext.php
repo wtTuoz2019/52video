@@ -24,12 +24,19 @@ function template_ext($template,$config=array())
     //替换菜单与内容的反向超链接
     $template = preg_replace("/\{\\\$curl\.([a-z0-9_]+)\}/iU",
         "<?php echo module('label')->get_curl($1); ?>", $template);
+		
+	  $template = preg_replace("/\{\\\$murl\.([a-z0-9_]+)\}/iU",
+        "<?php echo module('label')->get_murl($1); ?>", $template);	
     $template = preg_replace("/\{\\\$aurl\.([a-z0-9_]+)\}/iU",
         "<?php echo module('label')->get_aurl($1); ?>", $template);
 
     //替换菜单超链接
-    $template = preg_replace("/\{(\\$[a-z0-9_]+)\.curl\}/iU",
-        "<?php if(!empty($1['url'])){ echo module('common')->return_tpl(html_out($1['url'])); }else{ echo module('label')->get_curl($1['cid']); } ?>", $template);
+    $template = preg_replace("/\{(\\$[a-z0-9_]+)\.murl\}/iU",
+        "<?php if(!empty($1['url'])){ echo html_out($1['url']); }else{ echo module('label')->get_murl($1); } ?>", $template);
+		
+		
+	$template = preg_replace("/\{(\\$[a-z0-9_]+)\.curl\}/iU",
+        "<?php if(!empty($1['url'])){ echo module('common')->return_tpl(html_out($1['url'])); }else{ echo module('label')->get_curl($1['cid']); } ?>", $template);	
 
     //替换内容超链接
     $template = preg_replace("/\{(\\$[a-z0-9_]+)\.aurl\}/iU",

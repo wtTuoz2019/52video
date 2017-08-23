@@ -27,11 +27,16 @@ class indexMod extends commonMod {
                 $_SESSION['wecha_id']=$wecha_id;
             }
         }*/
+		if($this->webconfig){
+			
+		$this->info=model('web')->menu_info(array('uid'=>$this->config['uid'],'type'=>'index'));	
+			}
+		
         $this->loops=model('field')->video(6,16);
         $this->common=model('pageinfo')->media();
 		$this->display($this->config['TPL_INDEX']);
 	}
-public function wenlai(){
+	public function wenlai(){
 		
 		$this->display('wenlai.html');
 		}
@@ -83,5 +88,21 @@ public function wenlai(){
 		$this->display('login.html');
 		
 		}
+	 //栏目导航
+    public function nav($id,$where)
+    {
+        $data = $this->model->field('id,pid,name')->table('web_menu')->where($where)->select();
+        $cat = new Category(array(
+            'id',
+            'pid',
+            'name',
+            'cname'));
+        if(empty($data)){
+             return;
+        }
+        $cat = $cat->getPath($data, $id);
+        return $cat; 
+    }
+
 
 	}

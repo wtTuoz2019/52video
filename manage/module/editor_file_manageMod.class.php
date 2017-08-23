@@ -9,69 +9,52 @@ class editor_file_manageMod extends commonMod
     //KE文件JSON管理
     public function index() {
         
-        
-//        $video='/opt/adobe/ams/webroot/vod/';
-//        $handle = opendir($video);
-//        
-//        $file_list = array();
-//        $key=0;
-//         while (false !== ($file = readdir($handle))) {
-//        if ($file != "." && $file != "..") {
-//          
-//                $file_list[$key]['is_dir']=false;
-//                $file_list[$key]['has_file']=false;
-//                $file_list[$key]['filesize']=filesize($video.$file);
-//                $file_list[$key]['dir_path']='';
-//                $file_list[$key]['is_photo']=true;
-//                $file_list[$key]['filetype'] = get_extension($video.$file);
-//                $file_list[$key]['filename'] = iconv('GB2312', 'UTF-8', $file);
-//                $file_list[$key]['filedir'] = '/opt/adobe/ams/webroot/vod/'.iconv('GB2312', 'UTF-8', $file);
-//                $file_list[$key]['datetime'] = fileatime($video.$file);
-//                $key++;
-//             }
-//         }
-//   closedir($handle);
-    //var_dump($file_list);
-//      die;
-		if($this->user['gid']!=1)
-			$where['uid']= $this->user['id'];
-		$file_list=model('content')->video_list($where);
-        $order=in($_GET['order']);
-        if(!empty($order)){
-            $where='type="'.$order.'"';
-        }
+
+
 
         $search=in(urldecode($_GET['search']));
         if(!empty($search)){
-            $where=' title like "%' . $search . '%"';
-            $url_search='-search-'.$search;
+        $where[]=' name like "%' . $search . '%"';
+        $where_url='search-'.urlencode($search);
         }
-        
-
-    $url = __URL__ . '/index.html?order='.$order.'&page={page}&search='.$url_search; //分页基准网址
-//
-    $cur_page=$_GET['page'];
-//
-        $count=count($file_list);;
-        $listRows = 20;
-//
-       $totalPage=ceil($count/$listRows);
+		
+			
+		 if($this->user['gid']==6){
+				$temp;$temp[]=0;
+		
+				$temp[]=$this->user['id'];
+				
+			$nextuser=model('user')->admin_list(' AND pid='.$this->user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['id'];
+				}
+			} 
+		 	$where=" uid  in (".implode(',',$temp).") ";
+			 }else{
+		if($this->user['cid'])	
+	 	$where=" uid =".$this->user['cid'];
+			 }
+			
+	
+			
+		 $listRows=20;
+        $url = __URL__ . '/video/'.$where_url.'-page-{page}.html'; //分页基准网址
+        $limit=$this->pagelimit($url,$listRows);
+		$file_list=model('content')->video_list($where,$limit);
+      	$count=model('content')->video_count($where);
+		 $cur_page=$_GET['page'];
+		 $totalPage=ceil($count/$listRows);
         if($cur_page>=$totalPage){
             $cur_page=$totalPage;
         }
         if($cur_page<=1){
             $cur_page=1;
         }
-      $limit=$this->pagelimit($url,$listRows);
-        
-
+			
         $result = array();
         //相对于根目录的上一级目录
-        $result['moveup_dir_path'] = '';
-        //相对于根目录的当前目录
-        $result['current_dir_path'] = '';
-        //当前目录的URL
-        $result['current_url'] =    '';
+      
         //文件数
         $result['total_count'] = count($file_list);
         //文件列表数组

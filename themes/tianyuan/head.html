@@ -1,6 +1,6 @@
-
 <head>
-			<div class="header">
+			
+<div class="header">
 				
 				<form action="">
 					<input type="" name="" id="" value="" placeholder="Search"/>
@@ -11,61 +11,24 @@
 		</head>
 		<div class="nav">
 			<ul class="fnav">
+            
+            <!--channel:{table="web_menu"  order="sequence desc,id asc" where="uid=<$sys.uid> and pid=0" }-->
 				<li>
-					<a href="http://tywx.mhedu.sh.cn/ischoolweb/schoolweb/web/tianyuan/home.action" target="_blank">官网</a>
-				</li>
-                <li class="active">
-					<a href="index.html">主页</a>
-				</li>
-				<li>
-					<a href="fl_zbjm.html">周播节目</a>
-				</li>
-				<li>
-					<a href="#">校园影视</a>
-                    <div class="znav">
+					<a href="{$channel.murl}">{$channel.name}</a>
+                      <div class="znav">
                     	<ul>
                         	<li>
-                            	<a href="fl_xywdy.html">校园微电影</a>
-                                <a href="fl_xydsj.html">校园电视剧</a>
-                                <a href="fl_xyxw.html">校园新闻</a>
-                                <a href="fl_xyzt.html">校园专题</a>
-                                <a href="fl_xymtv.html">校园MTV</a>
-                                <a href="fl_rwzt.html">人物专题</a>
-                                <a href="fl_jmby.html">节目表演</a>
-                                <a href="fl_kbj.html">课本剧</a>
-                            </li>
+                     <!--list:{table="web_menu"  where="pid=<$channel.id> " order="sequence desc,id asc" }-->
+             		  <a href="{$list.murl}">{$list.name}</a> 
+              			  <!--/list-->
+						 </li>
                         </ul>
                     </div>
 				</li>
-				<li>
-					<a href="#">优课鉴赏</a>
-                    <div class="znav">
-                    	<ul>
-                        	<li>
-                            	<a href="fl_ktsl.html">课堂实录</a>
-                                <a href="fl_wk.html">微课</a>
-                            </li>
-                        </ul>
-                    </div>
-				</li>
-				<li>
-					<a href="#">视频资源</a>
-                    <div class="znav">
-                    	<ul>
-                        	<li>
-                            	<a href="fl_ysjs.html">影视鉴赏</a>
-                                <a href="fl_spsc.html">视频素材</a>
-                                <a href="fl_jcsj.html">精彩瞬间</a>
-                            </li>
-                        </ul>
-                    </div>
-				</li>
-				<li>
-					<a href="fl_jczb.html">精彩直播</a>
-				</li>
-				<li>
-					<a href="fl_jcsl.html">精彩实录</a>
-				</li>
+                
+                
+                <!--/channel-->
+               
 			</ul>
 		</div>
         

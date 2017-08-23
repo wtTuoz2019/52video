@@ -2433,3 +2433,28 @@ body .userset .oftentable tr td{
     left: 100px;
 	display:none;
 }
+.tianyuan_m table td .form-control{
+	display:inline-block;
+}
+.tianyuan_m table td button{
+	height: 34px;
+    vertical-align: middle;
+    padding: 0 15px;
+    background: #eee;
+    border: 1px solid #bababa;
+    border-left: 0;
+}
+body .oftentable.tianyuant tr td{
+	height:75px;
+}
+.oftentable.tianyuant tr td.operation ul{
+	top: 55px;
+}
+.oftentable.tianyuant tr:last-child td.operation ul{
+	top: inherit;
+    bottom: 45px;
+}
+
+.uploadify-button{
+	min-width:75px !important;
+}

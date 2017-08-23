@@ -6,7 +6,7 @@
 </head>
 <body scroll="no">
 
-<div class="page_form">
+<div class="page_form tianyuan_m">
 <form autocomplete="off" action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
 <div class="page_table form_table">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -18,7 +18,7 @@
             <!--foreach:{$list $key $vo}-->
             <option value="{$vo.id}" <?php if($info['pid']==$vo['id']){ ?> selected="selected" <?php } ?> >{$vo.cname}</option>
             <!--{/foreach}-->
-            </select>
+            </select> 
            
         </td>
       </tr>

@@ -277,6 +277,26 @@ class labelMod extends commonMod {
             }
         	return $app .'/'. $url_catrgory;
     }
+	
+	
+	
+		//栏目超链接
+    public function get_murl($menu,$app='')
+    {
+            if(empty($app)){
+                $app=__APP__;
+            }
+            if($this->config['LANG_OPEN']){
+                $app=$app.'/'.__LANG__;
+            }
+           
+            if($menu['type']=='cid'){
+             $url_catrgory='menulist/index/id-'.$menu['id'];
+            }
+        	return $app .'/'. $url_catrgory;
+    }
+	
+	
 
     //内容超链接
     public function get_aurl($aid,$app='')

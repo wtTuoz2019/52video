@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title></title>
+		<title>{$sys.sitename}</title>
         <meta name="viewport" content="width=1100,user-scalable=no">
 		<script src="/themes/tianyuan/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
 		
@@ -35,12 +35,13 @@
 		<div id="carousel" class="shutter">
 			
 			<div class="shutter-img" id="sb-slider">
-				<a>
-					<img src="img/banner1.jpg"/>
+            
+               <!--list:{table="web_menu_pics"  where="mid=<$info.id> " order="sequence desc,id asc" }-->
+				<a href="{$list.url}">
+					<img src="{$sys.imageurl}{$list.image}" alt="{$list.name}"/>
 				</a>
-				<a>
-					<img src="img/banner2.jpg"/>
-				</a>
+                  <!--/list-->
+			
 			</div>
 			
 			<ul id="nav-arrows"  class="nav-arrows shutter-btn">

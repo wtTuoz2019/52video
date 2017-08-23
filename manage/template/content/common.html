@@ -1,3 +1,31 @@
+<style>
+	.spaceczk{
+		margin-bottom:20px;
+	}
+	.spaceczk input{
+		height:32px;
+		border:1px solid #ddd;
+		border-radius:3px 0 0 3px;
+		width:180px;
+		vertical-align: middle;
+	}
+	.spaceczk button{
+		height: 32px;
+		background: #F6F6F6;
+		border: 1px solid #ddd;
+		font-size: 12px;
+		width: 50px;
+		vertical-align: middle;
+		border-left: 0;
+	}
+	.spacepage{
+		text-align:center;
+		padding:10px 0;
+	}
+	.spacepage a{
+		color:#f00;
+	}
+</style>
 <script type="text/javascript">
 $(document).ready(function(){ 
 	$("#cid").change(function(){
@@ -199,14 +227,20 @@ $(document).ready(function() {
 		targetMode: "list"
 	});
 
-
+	var pagenum=1;
+	
+	var searcht='';
 	var mydialog;
 	$('#info').bind('click', function(){
+		pagenum=1;
+		searcht='';
+		$('.spacepage .prvey').hide();
 		$.ajax({
-			type: 'POST',
+			type: 'get',
 			url: "__APP__/editor_file_manage/index.html",   
 			data: {
-				page:1
+				page:pagenum,
+				'search':searcht
 			},
 			success: function(data) {
 				data=eval('['+data+']');
@@ -223,16 +257,17 @@ $(document).ready(function() {
 			}
 		});
 		
-	})
+	}) 
 
 	function arg(data) {
 		var strVar = "";
+		strVar+="<div class='spaceczk'><input type='text' value=''><button class='spacecz'>查找</button></div>";
     strVar += "<table class=\"ke-table\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
     strVar += "<tbody>";
     for (var i = 0; i < data.length; i++) {
     	strVar += "<tr class=\"zeego\" style=\"cursor: pointer;\">";
-	    strVar += "<td class=\"ke-cell ke-name\" title=\"\">";
-	    strVar += "<img src=\"/public/kindeditor/plugins/filemanager/images/file-16.gif\" width=\"16\" height=\"16\" alt=\""+data[i]['name']+"\" align=\"absmiddle\"> "+data[i]['name']+"";
+	    strVar += "<td class=\"ke-cell ke-name\" title=\"\"><input type='radio' name='videospace' style='margin-right:8px;position: relative;top:1px'>";
+	    strVar += ""+data[i]['name']+"";
 	    strVar += "<\/td>";
 	    strVar += "<td class=\"ke-cell ke-size ke-vn\" style=\"display:none\">"+data[i]['vurl']+"<\/td>";
 	    strVar += "<td class=\"ke-cell ke-datetime\"><\/td>";
@@ -240,10 +275,105 @@ $(document).ready(function() {
     };
     strVar += "<\/tbody>";
     strVar += "<\/table>";
+	strVar += "<div class='spacepage'><a class='prvey' href='javascript:;' onClick='prvey()'>上一页</a><a class='nexty' href='javascript:;'>下一页</a></div>";
+	
     return strVar
 	}
+	$(document).on('click', '.prvey',function(){
+		pagenum--;
+		$.ajax({
+			type: 'get',
+			url: "__APP__/editor_file_manage/index.html",   
+			data: {
+				page:pagenum,
+				'search':searcht
+			},
+			success: function(data) {
+				var list = art.dialog.list;
+				for (var i in list) {
+					list[i].close();
+				};
+				data=eval('['+data+']');
+				data=data[0];
+					mydialog =  art.dialog({
+					id:"my2",
+				    title: '视频列表',
+				    content: arg(data['file_list']),
+				    follow: document.getElementById('btn2'),
+				    ok: function(){
+				        return false;
+				   	}
+				  });
+			}
+		});
+	});
+	
+	
+	
+	$(document).on('click', '.nexty',function(){
+		pagenum++;
+		
+		$.ajax({
+			type: 'get',
+			url: "__APP__/editor_file_manage/index.html",   
+			data: {
+				page:pagenum,
+				'search':searcht
+			},
+			success: function(data) {
+				var list = art.dialog.list;
+				for (var i in list) {
+					list[i].close();
+				};
+				
+				data=eval('['+data+']');
+				data=data[0];
+					mydialog =  art.dialog({
+					id:"my2",
+				    title: '视频列表',
+				    content: arg(data['file_list']),
+				    follow: document.getElementById('btn2'),
+				    ok: function(){
+				        return false;
+				   	}
+				  });
+				  console.log(data['file_list']);
+			}
+		});
+	});
 
-
+	
+	$(document).on('click', '.spacecz',function(){
+		pagenum=1;
+		searcht=$(this).parent().find('input').val();
+		$.ajax({
+			type: 'get',
+			url: "__APP__/editor_file_manage/index.html",   
+			data: {
+				page:pagenum,
+				'search':searcht
+			},
+			success: function(data) {
+				var list = art.dialog.list;
+				for (var i in list) {
+					list[i].close();
+				};
+				data=eval('['+data+']');
+				data=data[0];
+					mydialog =  art.dialog({
+					id:"my2",
+				    title: '视频列表',
+				    content: arg(data['file_list']),
+				    follow: document.getElementById('btn2'),
+				    ok: function(){
+				        return false;
+				   	}
+				  });
+			}
+		});
+	});
+	
+	
 
 	function getLocalTime(uData){
 		var myDate = new Date(uData*1000);
@@ -255,6 +385,7 @@ $(document).ready(function() {
 
 	$(document).on('click', '.zeego', function(){
 		var msg = $(this).find('.ke-vn').html();
+		$(this).find('input').attr("checked",true); 
 		$('#videourl').val(msg);
 		mydialog.close();
 	})
