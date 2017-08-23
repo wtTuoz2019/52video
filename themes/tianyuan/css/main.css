@@ -57,10 +57,11 @@ img { border: 0; vertical-align: top; }
 	height: 80px;
 	width: 1100px;
 	margin: 0 auto;
-	background-image: url(../img/logo.jpg);
-	background-repeat: no-repeat;
-	background-position: 0 center;
 	position:relative;
+}
+.header img{
+	    height: 100%;
+    padding: 8px 0;
 }
 .header form{
 	float: right;

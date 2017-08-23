@@ -254,6 +254,7 @@ $(document).ready(function() {
 				        return false;
 				   	}
 				  });
+				  $('.prvey').hide();
 			}
 		});
 		
@@ -304,6 +305,9 @@ $(document).ready(function() {
 				        return false;
 				   	}
 				  });
+				  if(data['cur_page']==1){
+					 $('.prvey').hide();
+				  }
 			}
 		});
 	});
@@ -337,7 +341,11 @@ $(document).ready(function() {
 				        return false;
 				   	}
 				  });
-				  console.log(data['file_list']);
+				  console.log(data['totalPage']);
+				  console.log(data['cur_page']);
+				  if(data['totalPage']==data['cur_page']){
+					 $('.nexty').hide();
+				  }
 			}
 		});
 	});
@@ -369,6 +377,7 @@ $(document).ready(function() {
 				        return false;
 				   	}
 				  });
+				  $('.prvey').hide();
 			}
 		});
 	});

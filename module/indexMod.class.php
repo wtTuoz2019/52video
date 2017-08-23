@@ -30,6 +30,8 @@ class indexMod extends commonMod {
 		if($this->webconfig){
 			
 		$this->info=model('web')->menu_info(array('uid'=>$this->config['uid'],'type'=>'index'));	
+		
+		if(!$this->info)$this->alert('请先新建栏目');
 			}
 		
         $this->loops=model('field')->video(6,16);
