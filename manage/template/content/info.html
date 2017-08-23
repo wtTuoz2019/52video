@@ -25,10 +25,10 @@
                          	<tr>
 							<td>我的栏目：</td>
 							<td>
-								<select name="mzid"  reg="." id="mid" msg="栏目未选择" >
+								<select name="mid"  reg="." id="mid" msg="栏目未选择" >
 									<option value="">======选择栏目======</option>
                                       <!--foreach:{$menulist $vo}--> 
-                                      <option value="{$vo['mid']}" <?php if($info['mid']==$vo['id']) { ?> selected="selected" <?php } ?> 
+                                      <option value="{$vo['id']}" <?php if($info['mid']==$vo['id']) { ?> selected="selected" <?php } ?> 
                                          
                                       >
                                           {$vo['cname']}
