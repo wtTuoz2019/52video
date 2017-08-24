@@ -1,19 +1,20 @@
-<head>
+
 			
 <div class="header">
 				<img src="{$sys.imageurl}{$sys.logo}"/>
-				<form action="">
-					<input type="" name="" id="" value="" placeholder="Search"/>
-					<button></button>
+				<form action="__INDEX__/search">
+					<input name="keyword" type="text" id="keyword" />
+
+					<button type="submit"></button> 
 				</form>
-                <a href="login.html" class="login">登录</a>
+                <a href="/login/login.html" class="login">登录</a>
 			</div>
 		</head>
 		<div class="nav">
 			<ul class="fnav">
             
             <!--channel:{table="web_menu"  order="sequence desc,id asc" where="uid=<$sys.uid> and pid=0" }-->
-				<li>
+				<li> 
 					<a href="{$channel.murl}">{$channel.name}</a>
                       <div class="znav">
                     	<ul>
@@ -39,5 +40,27 @@
 				$(this).find('.znav').show();  
 			}).mouseout(function (){
 				$(this).find('.znav').hide();  
+			});
+			
+			
+			
+			$(function(){
+				var url = window.location.href;
+				var href=url.substring(url.length,20); 
+				console.log(url);
+				
+				$('.nav a').each(function() {
+					if(href.indexOf($(this).attr("href"))>=0){
+						
+							$(this).addClass('active').siblings('.active').removeClass('active');
+						
+					}
+				   
+					$('.scrollUl3 li[class^="sd0"]').click(function(){
+						$(this).addClass('active').siblings('.active').removeClass('active');
+					});
+				});
+				
+				
 			});
         </script>

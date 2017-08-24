@@ -39,6 +39,9 @@ class webModel extends commonModel
 		return $this->model->table('web_menu')->where(array('id'=>$data['id']))->data($data)->update();
 		
 		}
+	public function menu_del($id){
+		return $this->model->table('web_menu')->where(array('id'=>$id))->delete();
+		}
 	public function pics_list($where){
 		return $this->model->table('web_menu_pics')->where($where)->order('sequence desc,id asc')->select();
 		
@@ -54,6 +57,9 @@ class webModel extends commonModel
 	public function pics_edit_save($data){
 		return $this->model->table('web_menu_pics')->where(array('id'=>$data['id']))->data($data)->update();
 		
+		}
+	public function pics_del($id){
+		return $this->model->table('web_menu_pics')->where(array('id'=>$id))->delete();
 		}
 }
 ?>

@@ -66,78 +66,30 @@
 				</div>
 				
 				<div class="casek">
-					<div class="case1">
-						<div class="case1k">
-							<!--<div class="stitle">
-								<p>
-									Hot video
-								</p>
-								<span>
-									热门视频
-								</span>
-							</div>-->
+				
+					
 							<ul class="mbul">
-								<li>
-									<a href="#">
-										<img src="img/videoimg.jpg"/>
+                                <!--list:{table="content" position='6' where="A.mid in ( <$info.mids> ) " order="views desc" limit="3" }-->
+								<li class="">
+									<a href="{$list.aurl}">
+										<img src="{$sys.imageurl}{$list.image}"/>
 										
 									</a>
                                     <div class="videotext">
-                                        <h5>历史_印度非暴力不合作运动-杨国纬</h5>
+                                        <h5>{$list.title len="20"}</h5>
                                         <p>
-                                            <span class="seenum"><img src="img/see.png"/>104</span>
-                                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
+                                            <span class="seenum"><img src="img/see.png"/>{$list.views}</span>
+                                           <!-- <span class="cmtnum"><img src="img/comment.png"/>4</span>-->
                                         </p>
                                     </div>
 								</li>
+                                   <!--/list-->
 								
 							</ul>
 							
-						</div>
-					</div>
-					
-					<div class="case2">
-						<!--<div class="stitle">
-							<p>
-								Activity project
-							</p>
-							<span>
-								活动专题
-							</span>
-						</div>-->
 						
-						<ul>
-							<li>
-									<a href="#">
-										<img src="img/videoimg.jpg"/>
 										
-									</a>
-                                    <div class="videotext">
-                                        <h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                                        <p>
-                                            <span class="seenum"><img src="img/see.png"/>104</span>
-                                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                                        </p>
-                                    </div>
-								</li>
-							<li>
-									<a href="#">
-										<img src="img/videoimg.jpg"/>
-										
-									</a>
-                                    <div class="videotext">
-                                        <h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                                        <p>
-                                            <span class="seenum"><img src="img/see.png"/>104</span>
-                                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                                        </p>
-                                    </div>
-								</li>
-						</ul>
-						<!--<a href="#" class="more">
-								更多视频
-						</a>-->
-					</div>
+					
 				</div>
 				
 				
@@ -165,84 +117,21 @@
         	<div class="greatvideo active" id="hotvideo">
 				
 				<ul class="mbul">
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
+					 <!--list:{table="content" position='5' where="A.mid in ( <$info.mids> ) " order="views desc" limit="6" }-->
+								<li class="">
+									<a href="{$list.aurl}">
+										<img src="{$sys.imageurl}{$list.image}"/>
+										
+									</a>
+                                    <div class="videotext">
+                                        <h5>{$list.title len="20"}</h5>
+                                        <p>
+                                            <span class="seenum"><img src="img/see.png"/>{$list.views}</span>
+                                           <!-- <span class="cmtnum"><img src="img/comment.png"/>4</span>-->
+                                        </p>
+                                    </div>
+								</li>
+                                   <!--/list-->
 				</ul>
            
 			</div>
@@ -253,84 +142,21 @@
             <div class="greatvideo" id="newvideo">
 				
 				<ul class="mbul">
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
-					<li>
-						<a href="#">
-							<img src="img/videoimg.jpg"/>
-							
-						</a>
-                        <div class="videotext">
-                        	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                            <p>
-                            	<span class="seenum"><img src="img/see.png"/>104</span>
-                                <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                            </p>
-                        </div>
-					</li>
+					 <!--list:{table="content" where="A.mid in ( <$info.mids> ) " order="updatetime desc" limit="6" }-->
+								<li class="">
+									<a href="{$list.aurl}">
+										<img src="{$sys.imageurl}{$list.image}"/>
+										
+									</a>
+                                    <div class="videotext">
+                                        <h5>{$list.title len="20"}</h5>
+                                        <p>
+                                            <span class="seenum"><img src="img/see.png"/>{$list.views}</span>
+                                           <!-- <span class="cmtnum"><img src="img/comment.png"/>4</span>-->
+                                        </p>
+                                    </div>
+								</li>
+                                   <!--/list-->
 				</ul>
               
 			</div>

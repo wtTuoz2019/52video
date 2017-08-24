@@ -89,8 +89,19 @@ class contentMod extends commonMod
 			header("Location: ".$link."");
 			exit;
         }
+		$this->category = model('category')->info($info['cid']);
+		
+		if($this->webconfig){
+				$whereuid=array('uid'=>$this->config['uid']);
+				 $this->menuinfo=model('web')->menu_info(array('id'=>$info['mid']));
+        //位置导航
+        $this->nav=array_reverse(model('web')->nav($info['mid'],	$whereuid));
+		
+		  $this->parent_category = model('web')->menu_info(array('id'=>$this->menuinfo['pid']));
+     
+			}else{
         //查询栏目的信息
-        $this->category = model('category')->info($info['cid']);
+        
         // //模块自动纠正
         // model('content')->model_jump($this->category['mid'],'content');
         $model_info = model('category')->model_info($this->category['mid']);
@@ -98,16 +109,11 @@ class contentMod extends commonMod
         $this->nav=array_reverse(model('category')->nav($this->category['cid']));
         //查询上级栏目信息
         $this->parent_category = model('category')->info($this->category['pid']);
-        if (!$this->parent_category) {
-            $this->parent_category = array(
-                "cid" => "0",
-                "pid" => "0",
-                "mid" => "0",
-                "name" => "无上级栏目");
-        }
+  
         //获取顶级栏目信息
         $this->top_category = model('category')->info($this->nav[0]['cid']);
-
+			}
+			
         //读取完整内容信息
         $info=model('content')->model_content($info['aid'],$this->category['expand']);
 		

@@ -36,138 +36,26 @@
 		</div>
 		<div class="flmain">
 			<ul class="flk">
-				<li>
-					<a href="#">
-						<img src="img/videoimg.jpg"/>
-						
-					</a>
-                    <div class="videotext">
-                      	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                        <p>
-                           	<span class="seenum"><img src="img/see.png"/>104</span>
-                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                        </p>
-                    </div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="img/videoimg.jpg"/>
-						
-					</a>
-                    <div class="videotext">
-                      	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                        <p>
-                           	<span class="seenum"><img src="img/see.png"/>104</span>
-                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                        </p>
-                    </div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="img/videoimg.jpg"/>
-						
-					</a>
-                    <div class="videotext">
-                      	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                        <p>
-                           	<span class="seenum"><img src="img/see.png"/>104</span>
-                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                        </p>
-                    </div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="img/videoimg.jpg"/>
-						
-					</a>
-                    <div class="videotext">
-                      	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                        <p>
-                           	<span class="seenum"><img src="img/see.png"/>104</span>
-                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                        </p>
-                    </div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="img/videoimg.jpg"/>
-						
-					</a>
-                    <div class="videotext">
-                      	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                        <p>
-                           	<span class="seenum"><img src="img/see.png"/>104</span>
-                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                        </p>
-                    </div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="img/videoimg.jpg"/>
-						
-					</a>
-                    <div class="videotext">
-                      	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                        <p>
-                           	<span class="seenum"><img src="img/see.png"/>104</span>
-                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                        </p>
-                    </div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="img/videoimg.jpg"/>
-						
-					</a>
-                    <div class="videotext">
-                      	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                        <p>
-                           	<span class="seenum"><img src="img/see.png"/>104</span>
-                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                        </p>
-                    </div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="img/videoimg.jpg"/>
-						
-					</a>
-                    <div class="videotext">
-                      	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                        <p>
-                           	<span class="seenum"><img src="img/see.png"/>104</span>
-                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                        </p>
-                    </div>
-				</li>
-				<li>
-					<a href="#">
-						<img src="img/videoimg.jpg"/>
-						
-					</a>
-                    <div class="videotext">
-                      	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                        <p>
-                           	<span class="seenum"><img src="img/see.png"/>104</span>
-                            <span class="cmtnum"><img src="img/comment.png"/>4</span>
-                        </p>
-                    </div>
-				</li>
+            
+             <!--foreach:{$loop $list}-->
+			<li class="">
+									<a href="{$list.aurl}">
+										<img src="{$sys.imageurl}{$list.image}"/>
+										
+									</a>
+                                    <div class="videotext">
+                                        <h5>{$list.title len="20"}</h5>
+                                        <p>
+                                            <span class="seenum"><img src="img/see.png"/>{$list.views}</span>
+                                           <!-- <span class="cmtnum"><img src="img/comment.png"/>4</span>-->
+                                        </p>
+                                    </div>
+								</li>
+                                   <!--/list-->
 			</ul>
 			<div class="page">
 				<ul>
-					<li>
-						<a href="" class="current">1</a>
-					</li>
-					<li>
-						<a href="">2</a>
-					</li>
-					<li>
-						<a href="">3</a>
-					</li>
-					<li>
-						<a href="">4</a>
-					</li>
+					{$page}
 				</ul>
 			</div>
 		</div>

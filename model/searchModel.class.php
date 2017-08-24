@@ -33,14 +33,14 @@ class searchModel extends commonMod {
     public function search_count($where,$model)
     {
         if($model==2){
-            $count=$this->model->field('A.*,B.name as cname,B.subname as csubname,B.mid')
+            $count=$this->model
                 ->table('content','A')
                 ->add_table('category','B','B.cid = A.cid')
                 ->add_table('content_data','C','C.aid = A.aid')
                 ->where($where)
                 ->count();
         }else{
-            $count=$this->model->field('A.*,B.name as cname,B.subname as csubname,B.mid')
+            $count=$this->model
                 ->table('content','A')
                 ->add_table('category','B','B.cid = A.cid')
                 ->where($where)

@@ -29,10 +29,18 @@ class indexMod extends commonMod {
         }*/
 		if($this->webconfig){
 			
-		$this->info=model('web')->menu_info(array('uid'=>$this->config['uid'],'type'=>'index'));	
+		$info=model('web')->menu_info(array('uid'=>$this->config['uid'],'type'=>'index'));	
+		$mids = model('web')->getmids(array('uid'=>$this->config['uid']));
 		
-		if(!$this->info)$this->alert('请先新建栏目');
+		if(!$info)$this->alert('请先新建栏目');
+		if(!$mids)$info['mids']=$info['id'];
+		else $info['mids']=$mids;
+		
+		$this->info=$info;
+		
+		
 			}
+		
 		
         $this->loops=model('field')->video(6,16);
         $this->common=model('pageinfo')->media();

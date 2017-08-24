@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$common.title}</title>
+        <meta name="viewport" content="width=1100,user-scalable=no">
+		<script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/include.js"></script>
+        <link rel="stylesheet" href="js/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+        <script type="text/javascript" src="js/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+		<script type=text/javascript src="js/dialog/jquery.artDialog.js?skin=default"></script>
+        <script type=text/javascript src="js/dialog/plugins/iframeTools.js"></script>
+        <link href="css/style1.css" type="text/css" rel="stylesheet">
+		<link href="css/details.css" type="text/css" rel="stylesheet">
+		<link href="css/index.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        
+	</head>
+	<body>
+    <!--#include file="head.html"-->
+    	<div class="videotitle">
+        	<p>
+             <!--foreach:{$nav $list}-->
+            <a href="/menulist/index/id-{$list.id}">{$list.name}</a> > 
+             <!--/list-->
+                        
+             {$info.title} </p>
+        </div>
+    	 
+        <div class="videobg">
+        	<div class="contentBox">
+            	<h3>
+                	{$info.title} 
+                	<img class="smqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"/>
+                    <img class="bgqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"/>
+                </h3>
+             
+             
+             
+                
+                <?php if($info['channeltype']){  ?>
+        <object width="100%" id="player" height="400" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+<param name="allowFullScreen" value="true">
+<param name="allowScriptAccess" value="always" />
+<param name="flashVars" value="activityId={$info.activityId}" />
+<param name="movie" value="http://sdk.lecloud.com/live.swf" />
+<embed src="http://sdk.lecloud.com/live.swf" flashVars="activityId={$info.activityId}" name="player" width="100%" height="400" allowFullScreen="true" type="application/x-shockwave-flash"  allowScriptAccess="always"/>
+</object>
+        
+            <?php }else{  ?>
+  
+   <div id="play" ></div>
+    <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <script type="text/javascript">
+
+var play=1;
+					t1 = {$info.starttime}*1000;
+					t = {$info.starttime}*1000 + {$info.time}*60*1000;
+					ts = <?php echo time(); ?>*1000;	
+
+				if(ts < t1){
+				
+					play=0;
+		        }else if(ts > t1 && ts < t){
+		        play=1;
+					
+				}else{ 
+					 play=0;
+					
+					
+				}	
+				
+
+	
+	var w = "100%";//视频宽度
+  var h = "400";//视频高度
+  var url = "rtmp://{$sys.ali}{$channel.vMp4url}";//视频地址
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:url,c:0,s:0,i:image,lv:1,p:play,loaded:'loadHandler'};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,flashvars,video,params);
+
+
+
+	
+	$(function(){
+	var t = '<?php echo intval($info[time]);?>'*60;
+   timeid=  setInterval(function(){
+      $(".endtime").each(function(){
+        var obj = $(this);
+        var endTime = new Date(parseInt(obj.attr('value')) * 1000);
+        var nowTime = new Date();
+        var nMS=endTime.getTime() - nowTime.getTime();
+        var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+        var myH=Math.floor(nMS/(1000*60*60)) % 24; //小时 
+        var myM=Math.floor(nMS/(1000*60)) % 60; //分钟 
+        var myS=Math.floor(nMS/1000) % 60; //秒 
+        var myMS=Math.floor(nMS/100) % 10; //拆分秒
+		var x=nMS/1000;
+		var y = x+t;
+        if(nMS>= 0){
+            var str = "<span>离直播开始还有<\/span><br>" + myD+"<i>天</i>"+myH+"<i>小时</i>"+myM+"<i>分</i>"+myS+"<i>秒</i>";
+			obj.html(str);
+        }else{
+			if(y>0){
+			if(idLoadHandler){
+			CKobject.getObjectById('player_a1').videoPlay();
+				}
+				$('.down').hide();
+			}else{
+				if(idLoadHandler){
+			CKobject.getObjectById('player_a1').videoPause();
+				}
+				$('.down').show();
+				<?php if($info['videourl']){ ?>
+				var str = "<a href=\"{$info.aurl}\"><span style=\"color:#f00;\">直播已结束,点此回看<\/span></a>";
+					<?php }else{ ?>
+				var str = "<span style=\"color:#f00;\">直播已结束<\/span>";  
+					<?php }?>
+				clearInterval(timeid);
+				obj.html(str);
+				$('#CuPlayer').html('');
+			}
+        }
+      });
+    }, 100);
+});
+
+
+</script>
+   <?php } ?>
+       <div style="background: #fff url('{$sys['imageurl']}{$info.image}') no-repeat scroll 0 0 / cover ;background-size:100% 100%;" class="down <?php 
+		 $end = $info['starttime'] + 60*$info['time'];
+		 if ($info['starttime'] <= time() && $end >= time()) {
+		 	echo 'noe';
+		 }
+		?>" >
+			<div class="doo">
+				<div id="dao" class="endtime" value="{$info.starttime}"></div>
+			</div>
+		</div>  
+    
+
+
+
+
+
+    
+    	<!--#include file="videopublic.html"-->
+        
+		
+        <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

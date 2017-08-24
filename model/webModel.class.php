@@ -98,6 +98,34 @@ class webModel extends commonModel
         }
     }
 	
+	    //栏目树
+    public function getmids($where)
+    {
+       
+        $data = $this->model->field('id,pid,name')->table('web_menu')->where($where)->select();
+        $cat = new Category(array(
+            'id',
+            'pid',
+            'name',
+            'cname')); //初始化无限分类
+
+        $cat_for = $cat->getTree($data, 0); //获取分类数据树结构
+        if(empty($cat_for)){
+            return $id;
+        }
+        foreach ($cat_for as $k=>$v) {
+			if(!$k)$cat_id= $v['id'];
+			else
+            $cat_id .="," . $v['id'] ;
+        }
+
+        if (!empty($cat_id)) {
+            return $cat_id ;
+        } else {
+            return $id;
+        }
+    }
+	
 	  //内容列表
     public function content_list($where,$limit)
     {

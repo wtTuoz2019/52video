@@ -249,7 +249,7 @@ class commonMod
 	 }else{
 		if($_GET['frame']) return true;
 		if(!$this->userinfo){
-				$this->redirect("http://live.shanyueyun.com/login/login.html?url=".urlencode($_SERVER['REQUEST_URI']));
+				$this->redirect("/login/login.html?url=".urlencode($_SERVER['REQUEST_URI']));
 				}
 		
 		}

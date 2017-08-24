@@ -38,17 +38,21 @@ class menulistMod extends commonMod
 
         //设置栏目属性
         if ($this->info['pid'] == 0) {
-            $son_id = model('category')->getcat($this->info['id'],	$whereuid);
+            $son_id = model('web')->getcat($this->info['id'],	$whereuid);
 			if($son_id)
-            $where = 'A.status=1 AND B.mid in (' . $son_id . ') ';
+            $where = 'A.status=1 AND A.mid in (' . $son_id . ') ';
 			else
-			 $where = 'A.status=1 AND B.mid=' . $this->info['id'];
+			 $where = 'A.status=1 AND A.mid=' . $this->info['id'];
         } else {
-            $where = 'A.status=1 AND B.mid=' . $this->info['id'];
+            $where = 'A.status=1 AND A.mid=' . $this->info['id'];
         }
 
+		
         //执行查询
         $this->loop=model('web')->content_list($where,$limit);
+		
+		
+	
         $count = model('web')->content_count($where);
 
         //查询上级栏目信息

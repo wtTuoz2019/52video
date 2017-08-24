@@ -7,6 +7,9 @@
 ul,ol,li{
 	list-style: none;
 }
+.h1, .h2, .h3, h1, h2, h3{
+	margin:0;
+}
 body{
 	overflow-x: hidden;
 }
@@ -172,6 +175,7 @@ img { border: 0; vertical-align: top; }
 	font-size:14px;
 	padding:0;
 	-webkit-animation:none !important;
+	line-height:40px;
 }
 .nav ul li .znav li a:hover{
 	color:#2aadfc;
@@ -224,10 +228,10 @@ img { border: 0; vertical-align: top; }
 	margin-right: 70px;
 	margin-bottom: 40px;
 }
-.greatvideo ul li:hover,.case1 ul li:hover,.case2 ul li:hover{
+.greatvideo ul li:hover,.casek ul li:hover{
 	    box-shadow: 7px 7px 10px 0px #e1e9ef;
 }
-.greatvideo ul li:hover a>img,.case1 ul li:hover a>img,.case2 ul li:hover a>img{
+.greatvideo ul li:hover a>img,.casek ul li:hover a>img{
 	-webkit-filter: brightness(.5);
     filter: brightness(.5);
     -moz-transform: scale(1.05);
@@ -296,24 +300,37 @@ img { border: 0; vertical-align: top; }
 	font-size: 20px;
 	color: #4a4a4a;
 }
-.case1 ul li{
-	width: 100%;
+.casek ul li:first-child{
+	width:720px;
 	height: 587px;
-	transition: all 1s ease 0s;
+	float:left;
 }
-.case1 ul li a{
+.casek ul li{
+	float:right;
+	width: 320px;
+    height: 280px;
+}
+.casek ul li:nth-child(2){
+    margin-bottom: 27px;
+}
+.casek ul li:first-child a{
 	display: block;
-	width: 100%;
 	height: 507px;
 	position:relative;
 	overflow:hidden;
 }
-.case1 ul li a>img,.case2 ul li a>img{
+.casek ul li a{
+	display: block;
+	height: 200px;
+	position:relative;
+	overflow:hidden;
+}
+.casek ul li a>img{
 	height: 100%;
 	width: 100%;
 	transition: all 1s ease 0s;
 }
-.case1 ul li:nth-child(2n){
+.case ul li:nth-child(2n){
 	margin-right: 0;
 }
 .more{
@@ -331,38 +348,7 @@ img { border: 0; vertical-align: top; }
 	background-position: 15px center;
 	background-size: 20px;
 }
-.casek .case2 .more{
-	margin-top:33px;
-}
-.case2 ul li{
-	width: 320px;
-    height: 280px;
-    margin-bottom: 27px;
-    transition: all 1s ease 0s;
-}
-.case2 ul li:last-child{
-	margin-bottom:0;
-}
-.case2 ul li a{
-	display: block;
-	height: 200px;
-	overflow:hidden;
-}
-.case2 ul li a>img{
-	height: 100%;
-	width: 100%;
-}
-.case2 ul li .mbtext{
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	text-align: center;
-	line-height: 30px;
-	background: rgba(0,0,0,0.3);
-	font-size: 12px;
-	color: #fff;
-}
+
 /*底部*/
 .footer{
 	height: 230px;
@@ -667,6 +653,7 @@ ul.flk li:hover a>img{
 }
 .videobg{
 	background:#F7F7F7;
+	padding-bottom:20px;
 }
 .contentBox{
 	width:1100px;
@@ -693,6 +680,7 @@ ul.flk li:hover a>img{
 	width:170px;
 	border:1px solid #000;
 	display:none;
+	z-index:100;
 }
 #play{
 	height:400px;
@@ -756,4 +744,15 @@ ul.flk li:hover a>img{
 }
 .othershutter .nav-arrows li{
 	top:165px;
+}
+.down {
+    font-size: 45px;
+    height: 400px;
+    position: absolute;
+    text-align: center;
+    top:80px;
+    width: 1100px;
+}
+.down .endtime i{
+	font-style:inherit;
 }

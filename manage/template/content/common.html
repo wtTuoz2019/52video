@@ -1,18 +1,15 @@
 <style>
-	.spaceczk{
-		margin-bottom:20px;
-	}
 	.spaceczk input{
 		height:32px;
-		border:1px solid #ddd;
+		border:1px solid #E0E5E8;
 		border-radius:3px 0 0 3px;
-		width:180px;
+		width:400px;
 		vertical-align: middle;
 	}
 	.spaceczk button{
 		height: 32px;
 		background: #F6F6F6;
-		border: 1px solid #ddd;
+		border: 1px solid #E0E5E8;
 		font-size: 12px;
 		width: 50px;
 		vertical-align: middle;
@@ -23,7 +20,31 @@
 		padding:10px 0;
 	}
 	.spacepage a{
-		color:#f00;
+		    color: #989488;
+		display: inline-block;
+		padding: 5px 10px;
+		border: 1px solid #D8D8D8;
+		border-radius: 3px;
+		font-size: 13px;
+	}
+	.spacepage a.prvey{
+		margin-right:20px;
+	}
+	.stablek{
+		width:450px;
+		border:1px solid #E0E5E8;
+		padding:10px;
+		border-top:0;
+	}
+	.stablek td{
+		position:relative;
+	}
+	.stablek td .stext{
+		overflow:hidden; 
+		white-space:nowrap;
+		text-overflow:ellipsis;
+		padding-left:20px;
+		width: 430px;
 	}
 </style>
 <script type="text/javascript">
@@ -263,19 +284,19 @@ $(document).ready(function() {
 	function arg(data) {
 		var strVar = "";
 		strVar+="<div class='spaceczk'><input type='text' value=''><button class='spacecz'>查找</button></div>";
-    strVar += "<table class=\"ke-table\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+    strVar += "<div class='stablek'><table class=\"ke-table\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
     strVar += "<tbody>";
     for (var i = 0; i < data.length; i++) {
     	strVar += "<tr class=\"zeego\" style=\"cursor: pointer;\">";
-	    strVar += "<td class=\"ke-cell ke-name\" title=\"\"><input type='radio' name='videospace' style='margin-right:8px;position: relative;top:1px'>";
-	    strVar += ""+data[i]['name']+"";
+	    strVar += "<td class=\"ke-cell ke-name\" title=\"\"><input type='radio' name='videospace' style='position: absolute;left:0;'>";
+	    strVar += "<div class='stext'>"+data[i]['name']+"</div>";
 	    strVar += "<\/td>";
 	    strVar += "<td class=\"ke-cell ke-size ke-vn\" style=\"display:none\">"+data[i]['vurl']+"<\/td>";
 	    strVar += "<td class=\"ke-cell ke-datetime\"><\/td>";
 	    strVar += "<\/tr>";
     };
     strVar += "<\/tbody>";
-    strVar += "<\/table>";
+    strVar += "<\/table></div>";
 	strVar += "<div class='spacepage'><a class='prvey' href='javascript:;' onClick='prvey()'>上一页</a><a class='nexty' href='javascript:;'>下一页</a></div>";
 	
     return strVar

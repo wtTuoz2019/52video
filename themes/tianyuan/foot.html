@@ -22,30 +22,12 @@
 						网站导航
 					</p>
 					<ul>
+                     <!--channel:{table="web_menu"  order="sequence desc,id asc" where="uid=<$sys.uid> and pid=0" }-->
                     	<li>
-							<a href="#">官网</a>
+							<a href="{$channel.murl}" target="_blank">{$channel.name}</a>
 						</li>
-						<li>
-							<a href="#">首页</a>
-						</li>
-						<li>
-							<a href="#">周播节目</a>
-						</li>
-						<li>
-							<a href="#">校园影视</a>
-						</li>
-						<li>
-							<a href="#">优课鉴赏</a>                 	
-						</li>
-						<li>
-							<a href="#">视频资源</a>                 
-						</li>
-						<li>
-							<a href="#">精彩直播</a>                 
-						</li>
-						<li>
-							<a href="#">精彩实录</a>
-						</li>
+                          <!--/channel-->
+						
 					</ul>
 				</div>
 				
