@@ -5,6 +5,10 @@ class activityMod extends commonMod
     public function __construct()
     {
         parent::__construct();
+			$this->webconfig= model('web')->web_config(array('token'=>$this->user['token']));
+			if($this->webconfig['isopen']){
+		$this->menulist=model('web')->menu_list(array('uid'=>$this->user['id'],'type'=>'cid'));	
+			}
     }
 
     //公共列表信息

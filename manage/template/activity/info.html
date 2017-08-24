@@ -21,7 +21,32 @@
 								</select>
 							</td>
 						</tr>
-                        
+                           <?php if($webconfig&&$menulist){ ?>
+                         	<tr>
+							<td>我的栏目：</td>
+							<td>
+								<select name="mid"  reg="." id="mid" msg="栏目未选择" >
+									<option value="">======选择栏目======</option>
+                                      <!--foreach:{$menulist $vo}--> 
+                                      <option value="{$vo['id']}" <?php if($info['mid']==$vo['id']) { ?> selected="selected" <?php } ?> 
+                                         
+                                      >
+                                          {$vo['cname']}
+                                      </option> 
+                                      <!--{/foreach}-->
+								</select>
+							</td>
+						</tr>
+                         <tr>
+          <td width="100" align="right">推荐位</td>
+          <td width="350">
+          	<!--foreach:{$position_list $vo}--> 
+            <input name="position[]" type="checkbox" value="{$vo.id}" <?php if(is_array($position_array)){ if(in_array($vo['id'],$position_array)){ ?> checked="checked" <?php }} ?> /> {$vo.name}&nbsp;&nbsp;
+          	<!--{/foreach}-->
+            </td>
+          <td></td>
+        </tr>
+                          <?php } ?>
 						<tr>
 							<td>所属学校：</td>
 							<td>
