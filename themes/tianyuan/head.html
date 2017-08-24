@@ -1,15 +1,47 @@
-
-			
+<script src="/themes/tianyuan/js/laydate/laydate.js"></script>
+	<div class="headtop">		
 <div class="header">
 				<img src="{$sys.imageurl}{$sys.logo}"/>
 				<form action="__INDEX__/search">
-					<input name="keyword" type="text" id="keyword" />
+                	<select id="sort" name="model">
+                    	<option value="1">关键词</option>
+                        <option value="2">时间</option>
+                        <option value="3">类别</option>
+                    </select>
+					<input name="keyword" type="text" id="keyword"/>
 
-					<button type="submit"></button> 
+					<button type="submit" id="tosubmit"></button> 
 				</form>
+                
+                <ul class="leibie" id="leibie">
+                   <!--foreach:{$menulist $list}-->
+                     <li><a href="javascript:;" name="{$list.id}">{$list.name}</a></li>
+           
+             <!--/list-->
+                
+                </ul>
+                
+                
+                <?php 
+   if(!$userinfo){
+        ?>
                 <a href="/login/login.html" class="login">登录</a>
+                <?php }?>
+                
+                
+                
+                
+                
 			</div>
-		</head>
+            <?php if($userinfo){ ?>
+<div class="userlogo">
+                <img src="{$userinfo.headimgurl}" width="50px"></li>
+                		<!--<li><a href="javascript:" class="login"><?php echo $_SESSION['nickname'];?></a></li>-->
+                    <a href="/weixinlogin/logout" class="usertc">退出</a>
+              
+              </div>  
+                    <?php };?>
+		</div>
 		<div class="nav">
 			<ul class="fnav">
             
@@ -61,6 +93,48 @@
 					});
 				});
 				
+			});
+			
+			
+			$('.header form').delegate('.ctime','click',function(){
+				laydate();
+			})
+			$('.header form').delegate('.cleibie','click',function(){
+				$('.header .leibie').show();
+			})
+			
+			
+			$('#leibie').delegate('a','click',function(){
+				$('#keyword').val($(this).attr('name'));
+				$('#tosubmit').click();
+			});
+			
+			
+			$('#sort').change(function(){
+				if($(this).children('option:selected').val()==2){
+					$('#keyword').removeClass('cleibie');
+					$('#keyword').addClass('ctime');
+				}else if($(this).children('option:selected').val()==3){
+					$('#keyword').removeClass('ctime');
+					$('#keyword').addClass('cleibie');
+				}else{
+					$('#keyword').removeClass('ctime');
+					$('#keyword').removeClass('cleibie');
+				}
+			});
+			
+			
+			
+			$('body').click(function(e){
+				var elem = e.target || e.srcElement; 
+				if(elem.id!='leibie'&&elem.id!='keyword'&&elem.className!='prev'&&elem.className!='next'){
+					if($('#leibie').css('display')=='block'){
+						$('#leibie').hide();
+					}
+				}
 				
 			});
+			
+			
+			
         </script>

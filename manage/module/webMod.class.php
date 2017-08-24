@@ -129,6 +129,58 @@ class webMod extends commonMod
     	$this->msg('编辑成功！',1);
 		
 		}
+		
+	public function  contact(){
+		
+		$this->list=model('web')->contact_list(array('uid'=>$this->user['id']));
+		
+	
+		$this->show();
+		
+		
+		}
+		
+	public function contact_add(){
+		$this->actionname='添加';
+		$this->action='contact_add';
+		$this->list=model('web')->contact_list(array('uid'=>$this->user['id']));
+		 $this->show('web/contact_info');
+		}
+	public function contact_add_save(){
+		
+			$_POST['uid']=$this->user['id'];
+		model('web')->contact_add_save($_POST);
+    	
+    	$this->msg('添加成功！',1);
+		
+		}
+	public function contact_edit(){
+		$this->actionname='编辑';
+		$this->action='contact_edit';
+		$this->list=model('web')->contact_list(array('uid'=>$this->user['id']));
+		 $id=intval($_GET['id']);
+        $this->alert_str($id,'int');
+		 $this->info=model('web')->contact_info(array('id'=>$id));
+		 $this->show('web/contact_info');
+		}
+	public function contact_del(){
+		 $id=$_POST['id'];
+        $fid=$_POST['fid'];
+       
+        $this->alert_str($_POST['id'],'int',true);
+        model('web')->contact_del($id);
+      
+        $this->msg('删除成功！',1);
+		
+		}
+	public function contact_edit_save(){
+		
+	
+		model('web')->contact_edit_save($_POST);
+    	
+    	$this->msg('编辑成功！',1);
+		
+		}
 	
 }
 

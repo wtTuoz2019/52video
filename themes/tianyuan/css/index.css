@@ -483,8 +483,7 @@ ul[id^="commentlist"]{
 	width:inherit;
 }
 #container .commentlist div.left>img,#container_show .commentlist div.left>img{
-	width:40px!important; height:40px!important;
-	margin-left: 4px;
+	width:35px!important; height:35px!important;
 }
  #container .commentlist ul li,#container_show .commentlist ul li{
 	margin-top:10px;

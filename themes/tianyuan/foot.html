@@ -5,15 +5,13 @@
 						联系我们
 					</p>
 					<ul>
-						<li>
-							电话：(021)52968997
+                    
+                    <!--channel:{table="web_contact"  order="sequence desc,id asc" where="uid=<$sys.uid> " }-->
+                    	<li>
+							<img src="{$sys.imageurl}{$channel.image}"/><a href="{$channel.url}" target="_blank">{$channel.content}</a>
 						</li>
-						<li>
-							金都校区地址:都市路3000号
-						</li>
-						<li>
-							银都校区地址:都市路4388号
-						</li>
+                          <!--/channel-->
+						
 					</ul>
 				</div>
 				
@@ -22,11 +20,7 @@
 						网站导航
 					</p>
 					<ul>
-                     <!--channel:{table="web_menu"  order="sequence desc,id asc" where="uid=<$sys.uid> and pid=0" }-->
-                    	<li>
-							<a href="{$channel.murl}" target="_blank">{$channel.name}</a>
-						</li>
-                          <!--/channel-->
+                     <!--channel:{table="web_menu"  order="sequence desc,id asc" where="uid=<$sys.uid> and pid=0" }--><li><a href="{$channel.murl}" target="_blank">{$channel.name}</a></li><!--/channel-->
 						
 					</ul>
 				</div>
@@ -35,7 +29,7 @@
 					<p class="foottitle">
 						关注我们
 					</p>
-					<img class="qr" src="img/qr.jpg"/>
+					<img class="qr" src="{$sys.erweima}"/>
 				</div>
 				
 			</div>

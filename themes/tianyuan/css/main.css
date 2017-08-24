@@ -69,16 +69,20 @@ img { border: 0; vertical-align: top; }
 .header form{
 	float: right;
 	height: 38px;
-	width: 220px;
-	border: 2px solid #B3ADA6;
-	border-radius: 25px;
-	padding-left: 15px;
+	width: 310px;
+	border: 1px solid #2AADFD;
 	position: relative;
 	margin-top: 21px;
 	margin-right:35px;
 }
 .header form>*{
 	border: 0;
+}
+.header form select{
+	width:75px;
+	height:36px;
+	background:#F1F1F1;
+	padding-left:10px;
 }
 .header form input{
 	height: 100%;
@@ -89,16 +93,16 @@ img { border: 0; vertical-align: top; }
 	outline:none;
 }
 .header form  button{
-	width: 38px;
-	height: 34px;
+	width: 60px;
+	height: 36px;
 	background-image: url(../img/search.png);
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: 25px 25px;
-	background-color: transparent;
+	background-color: #2AADFD;
 	position: absolute;
 	top: 0;
-	right: 5px;
+	right: 0;
 }
 #carousel{
 	height: 600px;
@@ -382,17 +386,13 @@ img { border: 0; vertical-align: top; }
 	line-height: 27px;
 	font-size: 12px;
 	color: #d0cfcf;
-	padding-left: 40px;
-	background-image: url(../img/icon1.png);
-	background-repeat: no-repeat;
-	background-position: left center;
 	margin-bottom: 15px;
 }
-.footk .foot1 ul li:nth-child(2){
-	background-image: url(../img/icon3.png);
+.footk .foot1 ul li>*{
+	vertical-align:middle;
 }
-.footk .foot1 ul li:nth-child(3){
-	background-image: url(../img/icon3.png);
+.footk .foot1 ul li img{
+	margin-right:10px;
 }
 .footk .foot1,.footk .foot2{
 	margin-right: 160px;
@@ -609,6 +609,8 @@ ul.flk li:hover a>img{
 }
 .page ul li{
 	display: inline-block;
+	    margin-right: 5px;
+		
 }
 .page ul li a{
 	padding: 8px 12px;
@@ -755,4 +757,66 @@ ul.flk li:hover a>img{
 }
 .down .endtime i{
 	font-style:inherit;
+}
+.contentBox #mymodal{
+	left:305px;
+}
+.headtop{
+	position:relative;
+}
+.headtop .userlogo{
+	position:absolute;
+	top:15px;
+	right:30px;
+}
+.userlogo .usertc{
+	display:inline-block;
+	font-size:12px;
+	color:#4a4a4a;
+	padding:5px 10px;
+	background:#ddd;
+	border-radius:3px;
+	position:relative;
+	top:-10px;
+}
+.leibie{
+	position:absolute;
+	top:60px;
+	left:755px;
+	width:310px;
+	overflow:hidden;
+	z-index:1000;
+	background:#F7F7F7;
+	padding:10px 0;
+	display:none;
+}
+.leibie li{
+	float:left;
+	width:33.33%;
+	text-align:center;
+	font-size:12px;
+	cursor:pointer;
+	padding:8px 0;
+}
+.leibie li a{
+	color:#8B8B8B;
+}
+.leibie li a:hover{
+	color:#2AADFD;
+}
+.footk .foot1 ul li a{
+	color:#c9c9c9;
+}
+.search_result{
+	
+	line-height:40px;
+	background:#dcdcdc;
+}
+.search_result p{
+	width:1100px;
+	margin:0 auto;
+	font-size:14px;
+}
+.search_result p span{
+	color:#2AADFD;
 }

@@ -22,12 +22,25 @@
 							站点logo：
 						</td>
 						<td>
-						
-							
-                            	<?php echo module('editor')->get_image_upload('logo1','logo',false,'editor_content') ?>
+						<?php echo module('editor')->get_image_upload('logo1','logo',false,'editor_content') ?>
          							 <input name="logo" type="text" id="logo" value="{$info.logo}" /> 
 								
 								<button id="logo1" type="button"> 
+								上传
+							</button>
+							
+							
+						</td>
+					</tr>
+                   	<tr>
+						<td>
+							二维码：
+						</td>
+						<td>
+						<?php echo module('editor')->get_image_upload('erweima1','erweima',false,'editor_content') ?>
+         							 <input name="erweima" type="text" id="erweima" value="{$info.erweima}" /> 
+								
+								<button id="erweima1" type="button"> 
 								上传
 							</button>
 							

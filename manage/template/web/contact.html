@@ -1,0 +1,100 @@
+<script src="__PUBLICURL__/data/js/AdminLTE/newapp.js" type="text/javascript"></script>
+ <script src="__PUBLICURL__/data/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+<div id="postmanage">
+			<h4>
+				联系方式管理
+			</h4>
+	
+			<div class="addcontactk borderk">
+				<a href="javascript:" onClick="add()"  class="sendlive">添加</a>
+			</div>
+			<table width="100%" cellspacing="0" class="oftentable tianyuant">
+				<tr class="bgth">
+					<th>内容</th>
+				
+                    <th>排序</th>
+					<th width="130px">操作</th>
+					
+					
+				</tr>
+                <!--foreach:{$list $vo}-->
+				<tr>
+				
+					<td>
+						<?=$vo['image']?'<img src="'.$vo['image'].'">':''?>{$vo.content}
+					</td>
+					
+					<td>
+						{$vo.sequence}
+					</td>
+				
+	
+					<td class="operation">
+						<button>
+							操作
+						</button>
+						<ul>
+                        	
+							<li>
+								<a href="javascript:;" onClick="edit({$vo.id})">
+									编辑
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;" onClick="del({$vo.id},this)">
+									删除
+								</a>
+							</li>
+							
+						</ul>
+					</td>
+				</tr>
+                  <!--{/foreach}-->
+				
+			</table>
+		</div>
+        <div class="page_tool">
+		<div class="page">
+     					 <ul class="pagination">
+                                 {$page}
+                                        </ul>
+					 </div>	
+</div>
+
+   <script>
+ function add(){
+	urldialog({
+		width:600,
+	height:400,
+	title:'联系方式添加',
+	url:'__URL__/contact_add'
+	});
+	}
+  function edit(id){
+	urldialog({
+		width:600,
+	height:400,
+	title:'联系方式编辑',
+	url:'__URL__/contact_edit/id-'+id,
+	});
+	}
+
+//删除
+function del(id,obj) {
+	
+	
+
+	ajaxpost({
+		name:'确定要删除？',
+		url:"__URL__/contact_del",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			$(obj).parent().parent().parent().parent().remove();
+		}
+	});
+}
+
+
+
+</script>

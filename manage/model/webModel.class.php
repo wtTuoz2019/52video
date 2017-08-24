@@ -61,5 +61,26 @@ class webModel extends commonModel
 	public function pics_del($id){
 		return $this->model->table('web_menu_pics')->where(array('id'=>$id))->delete();
 		}
+	public function contact_list($where){
+		$data=$this->model->table('web_contact')->where($where)->order('sequence desc,id asc')->select();
+		
+		
+        return $data;
+		}
+	public function contact_add_save($data){
+		return $this->model->table('web_contact')->data($data)->insert();
+		
+		}
+	public function contact_info($where){
+		
+		return $this->model->table('web_contact')->where($where)->find();
+		}
+	public function contact_edit_save($data){
+		return $this->model->table('web_contact')->where(array('id'=>$data['id']))->data($data)->update();
+		
+		}
+	public function contact_del($id){
+		return $this->model->table('web_contact')->where(array('id'=>$id))->delete();
+		}
 }
 ?>

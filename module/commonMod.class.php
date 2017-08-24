@@ -67,7 +67,9 @@ class commonMod
 			if($webconfig['logo'])
 			$this->config['logo']=$webconfig['logo'];
 			$this->config['sitename']=$webconfig['name'];
+			$this->config['erweima']=$webconfig['erweima']?$this->config['imageurl'].$webconfig['erweima']:'/public/erweima.jpg';
 			$this->webconfig=$webconfig;
+			$this->menulist=model('web')->menu_list(array('uid'=>$this->config['uid'],'type'=>'cid'));	
 			}
 		$userinfo=$_COOKIE[$this->config['SPOT'].'_wxuser'];
 		

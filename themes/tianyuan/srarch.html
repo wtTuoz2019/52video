@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$common.title}</title>
+        <script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        
+		<style>
+        	.nav{
+				box-shadow:none;
+			}
+        </style>
+	</head>
+	<body>
+		
+	  <!--#include file="head.html"-->
+		<div class="search_result"><p>共搜索<span>{$count}</span>资源</p></div>
+		
+   
+        
+        
+        
+		
+		<div class="flmain">
+			<ul class="flk">
+            
+             <!--foreach:{$loop $list}-->
+			<li class="">
+									<a href="{$list.aurl}">
+										<img src="{$sys.imageurl}{$list.image}"/>
+										
+									</a>
+                                    <div class="videotext">
+                                        <h5>{$list.title len="20"}</h5>
+                                        <p>
+                                            <span class="seenum"><img src="img/see.png"/>{$list.views}</span>
+                                           <!-- <span class="cmtnum"><img src="img/comment.png"/>4</span>-->
+                                        </p>
+                                    </div>
+								</li>
+                                   <!--/list-->
+			</ul>
+			<div class="page">
+				<ul>
+					{$page}
+				</ul>
+			</div>
+		</div>
+		
+	  <!--#include file="foot.html"-->
+		
+		
+		
+		
+		
+		
+		
+        <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/velocity.js"></script>
+      	<script src="js/shutter.js"></script>
+        <script src="js/otherbanner.js"></script>
+	</body>
+</html>

@@ -24,10 +24,10 @@ class searchMod extends commonMod {
         /*hook end*/
 
         //获取栏目
-        $cid=model('category')->getcat(intval($_GET['cid']));
-        if($cid){
-            $where_cid=' B.cid in('.$cid.') AND ';
-        }
+//        $cid=model('category')->getcat(intval($_GET['cid']));
+//        if($cid){
+//            $where_cid=' B.cid in('.$cid.') AND ';
+//        }
 
         //获取搜索模型
         $model=intval($_GET['model']);
@@ -36,9 +36,9 @@ class searchMod extends commonMod {
         }
         //分页处理
         $url=__INDEX__.'/search/index/model-'.$model.'-keyword-'.urlencode($keyword).'-page-{page}.html';
-        $listrows = $this->config['TPL_SEARCH_PAGE'];
+        //$listrows = $this->config['TPL_SEARCH_PAGE'];
         if(empty($listrows)){
-            $listrows=20;
+            $listrows=9;
         }
         $limit=$this->pagelimit($url,$listrows);
 
@@ -47,12 +47,13 @@ class searchMod extends commonMod {
         foreach ($keywords as $value) {
             switch ($model) {
                 //标题+描述+关键词
-                case '1':
-                    $where2.= 'or A.title like "%' . $value . '%" or A.keywords like "%' . $value . '%" or A.description like "%' . $value . '%" ';
+                case '3':
+                    $where2.= 'or A.mid= '.$value;
                     break;
                 //标题+描述+关键词+全文
                 case '2':
-                    $where2.= 'or A.title like "%' . $value . '%" or A.keywords like "%' . $value . '%" or A.description like "%' . $value . '%" or C.content like "%' . $value . '%" ';
+					$time=strtotime($value);$endtime=$time+24*60*60;
+                    $where2.= 'or A.inputtime between '.$time.' and '.$endtime;
                     break;
                 //标题
                 default:
