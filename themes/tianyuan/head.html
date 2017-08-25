@@ -47,12 +47,12 @@
             
             <!--channel:{table="web_menu"  order="sequence desc,id asc" where="uid=<$sys.uid> and pid=0" }-->
 				<li> 
-					<a href="{$channel.murl}">{$channel.name}</a>
+					<a href="{$channel.murl}"><?=$channel['image']?'<img src="'.{$sys.imageurl}.$channel['image'].'">':''?>{$channel.name}</a>
                       <div class="znav">
                     	<ul>
                         	<li>
                      <!--list:{table="web_menu"  where="pid=<$channel.id> " order="sequence desc,id asc" }-->
-             		  <a href="{$list.murl}">{$list.name}</a> 
+             		  <a href="{$list.murl}"><?=$list['image']?'<img src="'.{$sys.imageurl}.$list['image'].'">':''?>{$list.name}</a> 
               			  <!--/list-->
 						 </li>
                         </ul>

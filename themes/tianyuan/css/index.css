@@ -154,6 +154,7 @@ h2{margin:0px 10px;background:#ccc;padding:5px;}
    border: 0;
    text-align:center;
    margin:0 auto;
+   vertical-align: baseline;
   }
   
   a {
