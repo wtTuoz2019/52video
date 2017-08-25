@@ -334,6 +334,7 @@ class commonMod
 		  }
 		 
         elseif( $is_tpl){
+			 $tpl = empty($tpl) ? $_GET['_module'] . '/'. $_GET['_action'].'.html' : $tpl;
             $tpl=__ROOTDIR__.'/'.$this->config['TPL_TEMPLATE_PATH'].$lang.$mobile_tpl.$tpl;
             if( $is_tpl && $this->layout ){
                 $this->__template_file = $tpl;
@@ -365,6 +366,8 @@ class commonMod
         $this->assign('model', $this->model);
         $this->assign('sys', $this->config);
         $this->assign('config', $this->config);
+		 $this->assign('js', $this->load_js());
+        $this->assign('css', $this->load_css());
         $this->view()->assign( $this->_data);
         return $this->view()->display($tpl, $return, $is_tpl,$is_dir);
     }
@@ -433,6 +436,29 @@ class commonMod
         }
         echo "<script>$alert_msg $gourl</script>";
         exit;
+    }
+	
+	    //JSUI库
+    public function load_js() {
+        $js='';
+        $js .= '<script type=text/javascript src="' . __PUBLIC__ . '/js/jquery.js"></script>' . PHP_EOL;
+        $js .= '<script type=text/javascript src="' . __PUBLIC__ . '/js/duxui.js"></script>' . PHP_EOL;
+        $js .= '<script type=text/javascript src="' . __PUBLIC__ . '/dialog/jquery.artDialog.js?skin=default"></script>' . PHP_EOL;
+        $js .= '<script type=text/javascript src="' . __PUBLIC__ . '/dialog/plugins/iframeTools.js"></script>' . PHP_EOL;
+        $js .= '<script type=text/javascript src="' . __PUBLIC__ . '/kindeditor/kindeditor-min.js"></script>' . PHP_EOL;
+        $js .= '<script type=text/javascript src="' . __PUBLIC__ . '/kindeditor/lang/zh_CN.js"></script>' . PHP_EOL;
+        $js .= '<script type=text/javascript src="' . __PUBLIC__ . '/js/common.js"></script>' . PHP_EOL;
+        return $js;
+    }
+    //CSSUI库
+    public function load_css() 
+    {
+        $css='';
+        $css .= '<link href="' . __PUBLIC__ . '/css/base.css" rel="stylesheet" type="text/css" />' . PHP_EOL;
+        $css .= '<link href="' . __PUBLIC__ . '/css/style.css" rel="stylesheet" type="text/css" />' . PHP_EOL;
+		 $css .= '<link href="' . __PUBLIC__ . '/manage/css/manage.css" rel="stylesheet" type="text/css" />' . PHP_EOL;
+        $css .= '<link href="' . __PUBLIC__ . '/kindeditor/themes/default/default.css" rel="stylesheet" type="text/css" />' . PHP_EOL;
+        return $css;
     }
 
     //弹出信息

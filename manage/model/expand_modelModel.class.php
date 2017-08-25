@@ -129,9 +129,9 @@ class  expand_modelModel extends commonModel
             2=> array(
                 'name'=>'多行文本'
                 ),
-            3=> array(
-                'name'=>'编辑器'
-                ),
+           // 3=> array(
+//                'name'=>'编辑器'
+//                ),
             4=> array(
                 'name'=>'文件上传'
                 ),
