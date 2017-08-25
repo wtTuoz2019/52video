@@ -2458,3 +2458,7 @@ body .oftentable.tianyuant tr td{
 .uploadify-button{
 	min-width:75px !important;
 }
+.tianyuant td img{
+	max-height:40px;
+	max-width:40px;
+}

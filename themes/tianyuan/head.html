@@ -76,6 +76,10 @@
 			
 			
 			
+			
+			
+			
+			
 			$(function(){
 				var url = window.location.href;
 				var href=url.substring(url.length,20); 
@@ -92,6 +96,13 @@
 						$(this).addClass('active').siblings('.active').removeClass('active');
 					});
 				});
+				
+				
+				$('.znav').each(function(index, element) {
+					$(this).css('left',(parseInt($(this).parent('li').width())-parseInt($(this).width()))/2-6+'px')
+                });
+				
+				
 				
 			});
 			
