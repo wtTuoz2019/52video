@@ -80,18 +80,46 @@ class selfformModel extends commonModel {
                   <li class="title">
                   '.$info['name'].'</li>
                     <li class="table">
-                    <input name="'.$info['field'].'" type="text"  class="text_value"  style="width:200px; float:left"  id="'.$info['field'].'" value="'.$info['default'].'" 
+					<button class="scbtn">文件上传</button>
+                    <input name="'.$info['field'].'" type="text"  class="text_value"   id="'.$info['field'].'" value="'.$info['default'].'" 
                 ';
                 if(!empty($info['must'])){
                     $html.=' reg="\S"  msg="'.$info['name'].'不能为空！" ';
                 }
                 $html.='/  placeholder="'.$info['tip'].'">
-                &nbsp;&nbsp;<input type="button" id="'.$info['field'].'_botton" class="button_small" value="选择文件" />  
+                <input type="file" id="'.$info['field'].'_botton" class="sc" value="" />  
+				
                     </li>
                     
                 </tr>
                 ';
-                $html.=module('editor')->get_file_upload($info['field'].'_botton',$info['field'],true);
+                $html.='
+					<script>
+					$("#'.$info['field'].'_botton").change(function() {
+						var file = this.files[0];
+					
+						img=file;
+						var r = new FileReader();
+						r.readAsDataURL(file);
+						
+						
+						$(r).load(function() {
+							
+							  $.post("/selfform/upload", { img: this.result},function(ret){
+								  if(ret.status=="1"){
+									  	$("#'.$info['field'].'").val(ret.message.pic);
+									  }else{
+										  
+										   tip({msg:ret.message});
+										  }
+								  
+							  },"json")
+							
+						})
+				 	})
+					
+					</script>
+				';
                 break;
             case '10':
                 
@@ -99,17 +127,50 @@ class selfformModel extends commonModel {
                    <li class="title">
                   '.$info['name'].'</li>
                     <li class="table">
-                    <input name="'.$info['field'].'" type="text"  class="text_value"  style="width:200px; float:left"  id="'.$info['field'].'" value="'.$info['default'].'" 
+					
+                    <input name="'.$info['field'].'" type="hidden"  class="text_value"  style=""  id="'.$info['field'].'" value="'.$info['default'].'" 
                 ';
                 if(!empty($info['must'])){
                     $html.=' reg="\S"  msg="'.$info['name'].'不能为空！" ';
                 }
                 $html.='  placeholder="'.$info['tip'].'"/>
-                &nbsp;&nbsp;<input type="button" id="'.$info['field'].'_botton" class="button_small" value="选择图片" /> 
+                <input type="file" id="'.$info['field'].'_botton"  class="sc" value="" />
+				<button class="scbtn">单图片上传</button>
+				<div id="imgDiv">
+					<div class="userimgk">
+						<img src="'.$this->config['imageurl'].$info['default'].'"/>
+					</div>
+					</div
                     </li>
                     
                 ';
-                $html.=module('editor')->get_image_upload($info['field'].'_botton',$info['field'],true);
+                $html.='
+					<script>
+					$("#'.$info['field'].'_botton").change(function() {
+						var file = this.files[0];
+						img=file;
+						var r = new FileReader();
+						r.readAsDataURL(file);
+						$("#imgDiv").html("<div class=\'userimgk loading\'><img src=\'/public/images/timg.gif\' /></div>");
+						$(r).load(function() {
+							
+							  $.post("/selfform/upload", { img: this.result},function(ret){
+								  if(ret.status=="1"){
+									  $(".loading").remove();
+									 $("#imgDiv").html("<div class=\'userimgk\'><img src=\'"+ret.message.pic+"\'/></div>");
+									  $("#'.$info['field'].'").val(ret.message.pic);
+									  }else{
+										  
+										   tip({msg:ret.message});
+										  }
+								  
+							  },"json")
+							
+						})
+				 	})
+					
+					</script>
+				';
                 break;
             case '5':
                 
@@ -117,35 +178,56 @@ class selfformModel extends commonModel {
                    <li class="title">
                   '.$info['name'].'</li>
                     <li class="table">
-                    <input type="button" id="'.$info['field'].'_button" class="button_small" value="上传多图" />
-                    <div class="fn_clear"></div>
-                    <div class="images">
-                    <ul id="'.$info['field'].'_list" class="images_list">';
-
-                if(!empty($data)){
+					
+                    <input type="file" id="'.$info['field'].'_button" class="sc" value="" />
+					<button class="scbtn">组图上传</button>
+					<div id="imgDiv2">';
+					
+					   if(!empty($data)){
                 $info['default']=unserialize($info['default']);
                 if(!empty($info['default'])){
                 foreach ($info['default'] as $value) {
-                $html.="<li>
-                        <div class='pic' id='images_button'>
-                        <img src='".$value['url']."' width='125' height='105' />
-                        <input  id='".$info['field']."[]' name='".$info['field']."[]' type='hidden' value='".$value['url']."' />
-                        <input  id='".$info['field']."_original[]' name='".$info['field']."_original[]' type='hidden' value='".$value['original']."' />
-                        </div>
-                        <div class='title'>标题： <input name='".$info['field']."_title[]' type='text' id='".$info['field']."_title[]' value='".$value['title']."' /></div>
-                        <div class='title'>排序： <input id='".$info['field']."_order[]' name='".$info['field']."_order[]' value='".$value['order']."' type='text' style='width:50px;' /> <a href='javascript:void(0);' onclick='$(this).parent().parent().remove()'>删除</a></div>
-                    </li>";
+                $html.='<div class="userimgk" ><img src="'.$this->config['imageurl'].$value['url'].'"/><span onclick="$(this).parent().remove()">X</span><input  id="'.$info['field'].'[]" name="'.$info['field'].'[]" type="hidden" value="'.$value['url'].'" /></div>';
                 }
                 }
                 }
+					
+					
+					$html.='</div>
+					 </li>
+                    ';
 
-                $html.="</ul>
-                    <div style='clear:both'></div>
-                    </div>
-                    </li>
-              
-                ";
-                $html.=module('editor')->get_images_upload($info['field'],$ajax=true);
+                
+
+                
+                $html.='
+					<script>
+					$("#'.$info['field'].'_button").change(function() {
+						var file = this.files[0];
+						img=file;
+						var r = new FileReader();
+						r.readAsDataURL(file);
+						$("#imgDiv2").append("<div class=\'userimgk loading\'><img src=\'/public/images/timg.gif\' /></div>");
+						
+						$(r).load(function() {
+							
+							  $.post("/selfform/upload", { img: this.result},function(ret){
+								  if(ret.status=="1"){
+									  $(".loading").remove();
+									  $("#imgDiv2").append(\'<div class="userimgk" ><img src="\'+ret.message.pic+\'"/><span onclick="$(this).parent().remove()">X</span><input  id="'.$info['field'].'[]" name="'.$info['field'].'[]" type="hidden" value="\'+ret.message.pic+\'" /></div>\');
+									  }else{
+										  
+										   tip({msg:ret.message});
+										  }
+								  
+							  },"json")
+							
+						})
+				 	})
+					
+					</script>
+				
+				';
                 break;
             case '6':
                

@@ -113,8 +113,9 @@ class selfformMod extends commonMod
 				}
 			
 			}
+			
 		
-		
+	
 			//获取所有字段
     	$this->field_list=$field_list=model('selfform')->form_inputs_list(array('fid'=>$info['id']));
     	if(empty($field_list)){
@@ -122,14 +123,32 @@ class selfformMod extends commonMod
                 $this->msg('未发现表单信息！',0);
            
         }
-	
-	$signinfo=model('selfform')->input_value(array('fid'=>$fid,
+	if($info['repeat']==2){
+			$postaction='post';
+			
+			}elseif($info['repeat']==1){
+			$postaction='selfform_post';	
+			$signinfo=model('selfform')->input_value(array('fid'=>$fid,
 	 			  'uid'=>$this->userinfo['uid']));
 	if($signinfo){
 		
 		$signinfo['values']=unserialize($signinfo['values']);
 		$this->signinfo=$signinfo;
 	}
+				}else{
+				$postaction='only_post';
+				$signinfo=model('selfform')->input_value(array('fid'=>$fid,
+	 			  'uid'=>$this->userinfo['uid']));
+	if($signinfo){
+		
+		$signinfo['values']=unserialize($signinfo['values']);
+		$this->signinfo=$signinfo;
+	}		
+					}
+			
+				$this->postaction=$postaction;		
+	
+	
 	
 	$this->display('selfform_index.html');
 	}
@@ -400,6 +419,63 @@ class selfformMod extends commonMod
        
         
     }
+		public function upload(){
+	$img = isset($_POST['img'])? $_POST['img'] : '';  
+  
+// 获取图片  
+list($type, $data) = explode(',', $img);  
+ 
+
+// 判断类型  
+if(strstr($type,'image/jpeg')){  
+    $ext = '.jpg';  
+}elseif(strstr($type,'image/gif')){  
+    $ext = '.gif';  
+}elseif(strstr($type,'image/png')){  
+    $ext = '.png';  
+}elseif(strstr($type,'application/vnd.ms-excel')){  
+    $ext = '.xls';  
+}elseif(strstr($type,'application/msword')){  
+    $ext = '.doc';  
+}elseif(strstr($type,'application/vnd.openxmlformats-officedocument.wordprocessingml.document')){  
+    $ext = '.docx';  
+}elseif(strstr($type,'application/vnd.ms-powerpoint')){  
+    $ext = '.ppt';  
+}elseif(strstr($type,'application/pdf')){  
+    $ext = '.pdf';  
+}   
+      
+
+
+   
+
+if(!$ext){
+$this->msg('文件格式只能是jpg,gif,png,pdf,ppt,doc,docx,xls',0);die;	
+	}
+  $time=time().rand(10000,99999);
+// 生成的文件名  
+$photo = __ROOTDIR__.'/upload/selfform/'.$time.$ext;  
+$pic='/upload/selfform/'.$time.$ext;  
+
+// 生成文件  
+if(file_put_contents($photo, base64_decode($data), true)){
+	require(CP_CORE_PATH . '/../ext/aliyun-oss-php-sdk-master/samples/Common.php');
+	$ossClient = Common::getOssClient();
+		if (is_null($ossClient)) exit(1);
+	$bucket = Common::getBucketName();
+	$temp=explode('upload',$photo);
+	$object='upload'.$temp[1];
+	
+	 $ossClient->uploadFile($bucket, $object, $photo);
+
+	$this->msg(array('pic'=>$pic),1);
+	}else{
+	$this->msg('上传失败',0);	
+	} 
+// 返回  
+
+		
+		}	
 }
 
 ?>

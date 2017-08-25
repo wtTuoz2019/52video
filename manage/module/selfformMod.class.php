@@ -230,4 +230,6 @@ class selfformMod extends commonMod
         $this->msg('操作成功！',1);
 
     }
+	
+	
 }

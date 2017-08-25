@@ -296,7 +296,7 @@ class  expand_modelModel extends commonModel
             case '1':
             case '2':
             case '4':
-                return $str;
+                return '<a href="'.$this->config['imageurl'].$str.'">'.$str.'</a>';
                 break;
             case '3':
                 return html_out($str);
@@ -306,7 +306,7 @@ class  expand_modelModel extends commonModel
                     $array=unserialize($str);
                     if(!empty($array)){
                         foreach ($array as $value) {
-                            $strs.=$value['url'].'<br>';
+                            $strs.='<img name="" src="'.$this->config['imageurl'].$value['url'].'" alt="" style="max-width:170px; max-height:90px; _width:170px; _height:90px;" />';
                         }
                     }
                 }
@@ -337,7 +337,7 @@ class  expand_modelModel extends commonModel
                 return $strs;
                 break;
             case '10':
-                return '<img name="" src="'.$str.'" alt="" style="max-width:170px; max-height:90px; _width:170px; _height:90px;" />';
+                return '<img name="" src="'.$this->config['imageurl'].$str.'" alt="" style="max-width:170px; max-height:90px; _width:170px; _height:90px;" />';
                 break;
             default:
                 return $str;

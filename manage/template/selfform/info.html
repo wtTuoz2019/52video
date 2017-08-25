@@ -61,6 +61,15 @@
                                                 <input name="dynamic" type="radio"   value="0" <!--if:{!$info['dynamic']}-->checked="checked"<!--{/if}--> />关闭
 							</td>
 						</tr>
+                         <tr>
+							<td>提交模式：</td>
+							<td>
+                            <input name="repeat" type="radio" value="2" <!--if:{$info['repeat']==2}-->checked="checked"<!--{/if}-->/>可重复
+								  <input name="repeat" type="radio" value="1" <!--if:{$info['repeat']==1}-->checked="checked"<!--{/if}-->/>不重复可编辑
+                                                <input name="repeat" type="radio"   value="0" <!--if:{!$info['repeat']}-->checked="checked"<!--{/if}--> />不重复不可编辑
+							</td>
+						</tr>
+                       
                        	<tr>
 							<td>刷新时间：</td>
 							<td>

@@ -1401,10 +1401,17 @@ a.submit{
 }
 .boxk .problemul .table{
 	overflow:hidden;
+	position:relative;
 }
 .boxk .problemul .table>div{
 	float:left;
 	min-width:50%;
+}
+.boxk .problemul .table textarea{
+	width:100%;
+	height:150px;
+	font-size:22px;
+	border:1px solid #929292;
 }
 .zxxkbg{
 	background-image:url(../img/xkbg.jpg);
@@ -1426,4 +1433,50 @@ a.submit{
 	box-shadow: 5px 5px 10px 0px rgba(157,233,243,0.65);
 	padding:25px 15px;
 	text-align:center;
+}
+.table .scbtn{
+	width:100%;
+	height:60px;
+	background:#59C0E7;
+	color:#fff;
+	border:0;
+	border-radius:5px;
+	font-size:24px;
+}
+.table .sc{
+	position:absolute;
+	top:0;
+	margin:0 !important;
+	opacity:0;
+	left:0;
+}
+.boxk .problemul .table>div#imgDiv,.boxk .problemul .table>div#imgDiv2{
+	display:block;
+	width:100%;
+	overflow:hidden;
+}
+.boxk .problemul .table>div#imgDiv .userimgk ,.boxk .problemul .table>div#imgDiv2 .userimgk{
+	float:left;
+	width:200px;
+	height:200px;
+	margin-top:20px;
+	margin-right:20px;
+	position:relative;
+}
+.boxk .problemul .table>div#imgDiv .userimgk img,.boxk .problemul .table>div#imgDiv2 .userimgk img{
+	height:100%;
+	width:100%;
+}
+.boxk .problemul .table>div#imgDiv2 .userimgk span{
+	position:absolute;
+	top:10px;
+	right:10px;
+	height:40px;
+	border-radius: 50%;
+	width:40px;
+	background:#59C0E7;
+	color:#fff;
+	text-align:center;
+	line-height:40px;
+	font-size:28px;
 }

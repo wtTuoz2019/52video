@@ -78,11 +78,11 @@ class forumMod extends commonMod {
 list($type, $data) = explode(',', $img);  
   
 // 判断类型  
-if(strstr($type,'image/jpeg')!==''){  
+if(strstr($type,'image/jpeg')){  
     $ext = '.jpg';  
-}elseif(strstr($type,'image/gif')!==''){  
+}elseif(strstr($type,'image/gif')){  
     $ext = '.gif';  
-}elseif(strstr($type,'image/png')!==''){  
+}elseif(strstr($type,'image/png')){  
     $ext = '.png';  
 }  
 if(!$ext){

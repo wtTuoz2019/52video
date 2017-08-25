@@ -120,7 +120,7 @@ class editor_uploadMod extends commonMod
            $data['ext']=$ext;
            $data['size']=$info['size'];
            $data['time']=time();
-           $id=model('upload')->add($data);
+         //  $id=model('upload')->add($data);
            $json['id']=$id;
 
            @header("Content-type:text/html");

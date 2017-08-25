@@ -9,7 +9,9 @@
 	</head>
 	<body>
 		<div class="headerimg">
+          <!--if:{$info['image']}-->
         	<img src="{$sys.imageurl}{$info.image}"/>
+             <!--{/if}-->
 		</div>
         <div class="fenge"></div>
         
@@ -17,7 +19,7 @@
 		
 		
 		<div class="survey_k">
-        <form action="__INDEX__/selfform/selfform_post?{$urltoken}" method="post" id="form" >
+        <form action="__INDEX__/selfform/{$postaction}?{$urltoken}" method="post" id="form" >
         <div class="boxk">
 			<h2 class="survey_t"> 
 			{$info.name}
@@ -54,13 +56,11 @@
 			
 			<div class="surveybtn">
 				
-				<!--if:{$signinfo}-->
-               <!-- <button disabled="disabled" class="ywc">
+				<!--if:{$signinfo&&!$info['repeat']}-->
+                <button disabled="disabled" class="ywc">
                 	已完成
-                </button>-->
-                <button type="submit">
-					确认提交
-				</button>
+                </button>
+              
                    <!--{else}-->
 				<button type="submit">
 					确认提交
@@ -93,7 +93,7 @@ saveform({
 				<!--if:{$info['tourl']}-->
 				window.location.href='{$info["tourl"]}';
 				  <!--{else}-->
-			//window.location.reload()
+			window.location.reload()
 			 <!--{/if}-->
 		},3000); 
 	 
@@ -145,7 +145,12 @@ saveform({
 			 
 			 
 			 }
-        
+      
+	  
+	  
+	  
+	  
+	    
         
 </script>	
 		
