@@ -8,7 +8,8 @@
                     
                     <!--channel:{table="web_contact"  order="sequence desc,id asc" where="uid=<$sys.uid> " }-->
                     	<li>
-							<img src="{$sys.imageurl}{$channel.image}"/><a href="{$channel.url}" target="_blank">{$channel.content}</a>
+							<?=$channel['image']?'<img src="'.$sys['imageurl'].$channel['image'].'">':''?><a href="{$channel.url}" target="_blank">{$channel.content}</a>
+                            
 						</li>
                           <!--/channel-->
 						
