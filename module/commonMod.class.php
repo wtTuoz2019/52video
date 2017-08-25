@@ -62,6 +62,7 @@ class commonMod
 			
 			}
 		if($webconfig){
+			if(!$webconfig['isopen'])$this->alert('站点已经关闭');
 			$this->config['child']=1;
 			$this->config['uid']=$webconfig['uid'];
 			if($webconfig['logo'])
