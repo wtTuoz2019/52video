@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>测试观看页面-闪阅云</title>
+		<title>{$school[$info['csid']]['name']}直播间-闪阅云</title>
 
 		<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
 		<!-- Css 样式-->
@@ -119,6 +119,58 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 	}
 addvisit();
 setInterval("addvisit()",60000);
+
+<?php
+$d = time();
+$data = $this->config;
+$jssdk = new Jssdk($data['appid'], $data['appsecret']);
+$signPackage = $jssdk->GetSignPackage();
+?> 
+ wx.config({
+				    debug: false,
+				    appId: '<?php echo $signPackage["appId"];?>',
+				    timestamp: <?php echo $signPackage["timestamp"];?>,
+				    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+				    signature: '<?php echo $signPackage["signature"];?>',
+				    jsApiList: [
+				        'onMenuShareTimeline',
+				        'onMenuShareAppMessage'
+				      // 所有要调用的 API 都要加到这个列表中
+				    ]
+				  });
+				  wx.ready(function () { 
+					  
+			
+				    // 在这里调用 API 
+					wx.onMenuShareTimeline({
+						title: '<?php echo $school[$info['csid']]['name'];?>', // 分享标题
+						link: 'http://<?php echo $data["MOBILE_DOMAIN"];?>__URL__/playstream/stream-{$stream}', // 分享链接
+						imgUrl: '{$sys.imageurl}{$school[$info['csid']]['headimg']}', // 分享图标
+						success: function () { 
+							//alert('分享成功');
+						},
+						cancel: function () { 
+							//alert('已取消分享');// 用户取消分享后执行的回调函数
+						}
+					});
+					
+					wx.onMenuShareAppMessage({
+						title: '<?php echo $school[$info['csid']]['name'];?>', // 分享标题
+						desc: '<?php echo $school[$info['csid']]['name'];?>', // 分享描述
+						link: 'http://<?php echo $data['MOBILE_DOMAIN'];?>__URL__/playstream/stream-{$stream}', // 分享链接
+						imgUrl: '{$sys.imageurl}{$school[$info['csid']]['headimg']}', // 分享图标
+						type: '', // 分享类型,music、video或link，不填默认为link
+						dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+						success: function () { 
+							//alert('分享成功');
+						},
+						cancel: function () { 
+							//alert('已取消分享');// 用户取消分享后执行的回调函数
+						}
+					});
+				  });
+
+
         </script>
         
 	</body>

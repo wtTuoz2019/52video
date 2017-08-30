@@ -80,14 +80,14 @@ class selfformModel extends commonModel {
                   <li class="title">
                   '.$info['name'].'</li>
                     <li class="table">
-					<button class="scbtn">文件上传</button>
-                    <input name="'.$info['field'].'" type="text"  class="text_value"   id="'.$info['field'].'" value="'.$info['default'].'" 
+					<button class="scbtn scwjbtn">文件上传</button>
+                    <input name="'.$info['field'].'" type="text"  class="text_value wjval"   id="'.$info['field'].'" value="'.$info['default'].'" 
                 ';
                 if(!empty($info['must'])){
                     $html.=' reg="\S"  msg="'.$info['name'].'不能为空！" ';
                 }
                 $html.='/  placeholder="'.$info['tip'].'">
-                <input type="file" id="'.$info['field'].'_botton" class="sc" value="" />  
+                <input type="file" id="'.$info['field'].'_botton" class="sc scwj" value="" />  
 				
                     </li>
                     
@@ -135,7 +135,7 @@ class selfformModel extends commonModel {
                 }
                 $html.='  placeholder="'.$info['tip'].'"/>
                 <input type="file" id="'.$info['field'].'_botton"  class="sc" value="" />
-				<button class="scbtn">单图片上传</button>
+				<button class="scbtn"><img src="/public/images/dantu.png"/>单图片上传</button>
 				<div id="imgDiv">
 					<div class="userimgk">
 						<img src="'.$this->config['imageurl'].$info['default'].'"/>
@@ -180,7 +180,7 @@ class selfformModel extends commonModel {
                     <li class="table">
 					
                     <input type="file" id="'.$info['field'].'_button" class="sc" value="" />
-					<button class="scbtn">组图上传</button>
+					<button class="scbtn"><img src="/public/images/duotu.png"/>组图上传</button>
 					<div id="imgDiv2">';
 					
 					   if(!empty($data)){
