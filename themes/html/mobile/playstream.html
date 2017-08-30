@@ -127,7 +127,7 @@ $jssdk = new Jssdk($data['appid'], $data['appsecret']);
 $signPackage = $jssdk->GetSignPackage();
 ?> 
  wx.config({
-				    debug: true,
+				    debug: false,
 				    appId: '<?php echo $signPackage["appId"];?>',
 				    timestamp: <?php echo $signPackage["timestamp"];?>,
 				    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
