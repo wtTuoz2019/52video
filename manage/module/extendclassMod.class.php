@@ -69,6 +69,10 @@ class extendclassMod extends commonMod {
         $this->msg('删除成功！',1);
 		
 		}
+	public function grade_up(){
+		model('extendclass')->grade_up( $this->user['id']);
+		 $this->msg('操作成功！',1);
+		}
 	public function scoretype(){
 	
 		$where['uid']= $this->user['id'];

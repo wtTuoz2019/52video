@@ -34,6 +34,10 @@ class extendclassModel extends commonModel {
 	public function classes_del($id){
 		return $this->model->table('classes')->where(array('id'=>$id))->delete();
 		}
+	public function grade_up($uid=0){
+		$sql='update dc_classes set grade=grade+1 where uid='.$uid;
+		return $this->model->query($sql);
+		}
 	public function scoretype_list($where){
 		$data=$this->model->table('scoretype')->where($where)->order('sequence asc')->select();
 		if($data){

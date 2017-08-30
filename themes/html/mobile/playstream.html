@@ -143,7 +143,7 @@ $signPackage = $jssdk->GetSignPackage();
 			
 				    // 在这里调用 API 
 					wx.onMenuShareTimeline({
-						title: '<?php echo $school[$info['csid']]['name'];?>', // 分享标题
+						title: '<?php echo $school[$info['csid']]['name'];?>直播间', // 分享标题
 						
 						link: 'http://<?php echo $data["MOBILE_DOMAIN"];?>__URL__/playstream/stream-{$stream}', // 分享链接
 						imgUrl: '{$sys.imageurl}{$school[$info['csid']]['headimg']}', // 分享图标
@@ -156,8 +156,8 @@ $signPackage = $jssdk->GetSignPackage();
 					});
 					
 					wx.onMenuShareAppMessage({
-						title: '<?php echo $school[$info['csid']]['name'];?>', // 分享标题
-						desc: '<?php echo $school[$info['csid']]['name'];?>直播间', // 分享描述
+						title: '<?php echo $school[$info['csid']]['name'];?>直播间', // 分享标题
+						desc: '闪阅云技术支持', // 分享描述
 						link: 'http://<?php echo $data['MOBILE_DOMAIN'];?>__URL__/playstream/stream-{$stream}', // 分享链接
 						imgUrl: '{$sys.imageurl}{$school[$info['csid']]['headimg']}', // 分享图标
 						type: '', // 分享类型,music、video或link，不填默认为link

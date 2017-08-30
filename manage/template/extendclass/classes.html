@@ -6,7 +6,7 @@
 			</h4>
 		<div class="borderk postk" style="overflow:hidden;">
 				
-			<a href="javascript:" onClick="add()"  class="sendlive">添加</a>
+			<a href="javascript:" onClick="add()"  class="sendlive">添加</a><a href="javascript:" onClick="up()"  class="sendlive">升一年级</a>
 			</div>
 			<table width="100%" cellspacing="0" class="oftentable">
 				<tr class="bgth">
@@ -81,6 +81,21 @@ function del(id,obj) {
 		tip:1,
 		success:function(){
 			$(obj).parent().parent().parent().parent().remove();
+		}
+	});
+}
+
+function up(id) {
+	
+	
+
+	ajaxpost({
+		name:'确定要全部班级升一年级？',
+		url:"__URL__/grade_up",
+		data:{id: id},
+		tip:1,
+		success:function(){
+			window.location.reload();
 		}
 	});
 }
