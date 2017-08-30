@@ -144,6 +144,7 @@ $signPackage = $jssdk->GetSignPackage();
 				    // 在这里调用 API 
 					wx.onMenuShareTimeline({
 						title: '<?php echo $school[$info['csid']]['name'];?>', // 分享标题
+							desc: '<?php echo $school[$info['csid']]['name'];?>', // 分享描述
 						link: 'http://<?php echo $data["MOBILE_DOMAIN"];?>__URL__/playstream/stream-{$stream}', // 分享链接
 						imgUrl: '{$sys.imageurl}{$school[$info['csid']]['headimg']}', // 分享图标
 						success: function () { 
