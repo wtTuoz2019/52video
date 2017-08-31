@@ -1,0 +1,39 @@
+<div class="headtop">
+        	<div class="header">
+            	<img src="{$sys.imageurl}{$sys.logo}"/>
+                <form>
+                	<input placeholder="请输入关键字"/>
+                    <button></button>
+                </form>
+            </div>
+             <?php if($userinfo){ ?>
+<div class="userlogo">
+                <img src="{$userinfo.headimgurl}" width="50px"></li>
+                		<!--<li><a href="javascript:" class="login"><?php echo $_SESSION['nickname'];?></a></li>-->
+                    <a href="/weixinlogin/logout" class="usertc">退出</a>
+              
+              </div>  
+                    <?php };?>
+        </div>
+        
+        <div class="nav">
+        	<ul>
+            	<!--channel:{table="web_menu"  order="sequence desc,id asc" where="uid=<$sys.uid> and pid=0" }-->
+            	<li>
+                	<a href="{$channel.murl}"><?=$channel['image']?'<img src="'.$sys['imageurl'].$channel['image'].'">':''?>{$channel.name}</a>
+                </li>
+                
+                <!--/channel-->
+                
+                
+                   <?php 
+   if(!$userinfo){
+        ?>
+                <li class="login">
+                	<a href="/login/login.html">用户登录</a>
+                </li>
+                
+                
+                 <?php }?>
+            </ul>
+        </div>

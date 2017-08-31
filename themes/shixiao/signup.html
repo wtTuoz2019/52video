@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <title>{$info.title}</title>
+        
+        <link rel="stylesheet" href="__PUBLIC__/frozen/css/frozen.css">
+        <link rel="stylesheet" href="__PUBLIC__/frozen/style.css">
+        <script src="__PUBLIC__/frozen/lib/zepto.min.js"></script>
+        <script src="__PUBLIC__/frozen/js/frozen.js"></script>
+        <script type="text/javascript" src="__TPL__mobile/Scripts/jquery-1.10.2.js" ></script>
+           <script type=text/javascript src="__PUBLIC__/js/duxui.js"></script>
+        <script type=text/javascript src="__PUBLIC__/dialog/jquery.artDialog.js?skin=default"></script>
+        <script type=text/javascript src="__PUBLIC__/dialog/plugins/iframeTools.js"></script>
+        <script type=text/javascript src="__PUBLIC__/js/common.js"></script>
+        
+      
+        <link rel="stylesheet" href="__TPL__mobile/css/newadd.css" />
+        <style>
+        	.form_submit .tishi{
+				font-size:12px; color:#e4393c;
+			}
+			.ui-container{
+				width:750px;
+				margin:0 auto;
+			}
+			#layout .signup .tabledetail .bottom{
+				width:750px;
+			}
+        </style>
+    </head>
+    
+    <body ontouchstart>
+        
+      
+        <section class="ui-container">
+
+
+
+<section id="layout">
+		<div class="signup">
+<div class="logo"><img src="{$sys.imageurl}{$sys.logo}" ></div>
+<div class="signdetails">
+	<div  class="discrption">{$info.title}</div>
+    
+    	<div class="tabledetail">
+        <!--<div class="headpic"><img src="<?php echo $_SESSION['headpic']; ?>" height="50px;"></div>-->
+          <!--if:{$signinfo&&!$_GET['sign']}-->
+        
+    		 <!--foreach:{$field_list $vo}-->
+             	<?php  if(in_array($vo['field'],$info['field_lists'])){ ?>
+                <div class="ui-form-item ui-form-item-l ui-border-b">
+                        <label class="ui-border-r">
+                            {$vo['name']}
+                        </label>
+                          <span>{$userinfo[$vo['field']]}</span>
+                       
+                    </div>
+        		<?php } ?>
+              
+    
+      		
+     		 <!--{/foreach}-->
+       <div class="ui-form-item ui-form-item-l ui-border-b">
+                     
+                          
+                           <label class="ui-border-r">
+                           状态
+                        </label>
+                          <span><?php if($info['aid']=='942'){ echo '已通过';}else{ echo '审核中'; }?></span>
+                       
+                    </div>
+       <div class="form_submit">
+		<a class="button" href=" {$php( echo module('label')->get_aurl($info['aid']))}&sign=yes" >修改报名信息</a>
+        
+           <!--if:{$info['ignore']}-->
+           <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes">进入活动</a>
+                  <!--{/if}-->
+		</div>
+          
+          
+               <!--{else}-->
+           <form action="__APP__/content/index/time-<?php echo time(); ?>-ajax-false" method="post" id="form" autocomplete="off" >
+    		 <!--foreach:{$field_list $vo}-->
+            	<?php  if(in_array($vo['field'],$info['field_lists'])){ ?>
+                <div class="ui-form-item ui-form-item-l ui-border-b">
+                        <label class="ui-border-r">
+                            {$vo['name']}
+                        </label>
+                        <input type="text" placeholder="{$vo['name']}" id="{$vo['field']}" name="{$vo['field']}" value="{$userinfo[$vo['field']]}" <!--if:{$vo['must']}--> reg="\S" msg="{$vo['name']}不能为空" <!--{/if}--> />
+                       
+                    </div>
+                     <!--if:{$vo['field']=='mobile'}-->
+    			   <div class="ui-form-item ui-form-item-r ui-border-b">
+                   		<label class="ui-border-r">
+                            验证码
+                        </label>
+      
+                        <input type="text" placeholder="请输入验证码" name="code" reg="\S" msg="验证码不能为空">
+                        <button type="button" class="ui-border-l"  id="jishi" onclick="huoqu(this)">获取</button>
+                    
+                    </div>
+      			 <!--{/if}-->
+                 	<?php } ?>
+     		 <!--{/foreach}-->
+     
+       <div class="form_submit">
+       <input type="hidden" name="aid" value="{$info.aid}">
+       <button class="ui-btn ui-btn-primary" type="submit"  style="height:30px; line-height:30px; font-size:12px;">
+                  提交报名
+                </button>
+                  <!--if:{$info['ignore']}-->
+                <a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=yes" style="height:30px; line-height:30px; font-size:12px;">忽略报名</a>
+                <p class="tishi">温馨提示：未收到活动通知的用户请忽略报名</p>
+                  <!--{/if}-->
+	
+		</div>
+        <script>
+savesignupform({addurl:'{$php( echo module("label")->get_aurl($info["aid"]))}'});
+
+		
+          var timerID;
+		  var cishu=0;
+		  function daojishi(miao){
+			  var button=jQuery('button#jishi');
+			  miao=miao-cishu;
+			if(miao){
+			  button.text(miao+'s');
+			  button.attr('disabled',true);
+			   cishu++;
+			}else{
+				
+				button.text('重新获取');
+				button.attr('disabled',false);
+				 cishu=0;
+				}
+				 
+			  }
+		  
+         function huoqu(ele){
+			 
+			 var button=jQuery(ele);
+			 if(jQuery('#mobile').val()==''){
+				 art.dialog.tips('手机号不能为空！',3);
+				 return false;
+				 }
+			 
+			jQuery.post("/index.php/sms",{mobile:jQuery('#mobile').val()},function(data){
+				
+				if(data=='1'){
+				art.dialog.tips('验证码发送成功。由于网络有可能存在延时，请稍等。',3);
+				var miao=180;
+				 timerID=setInterval("daojishi("+miao+")",1000);
+				}else{
+					art.dialog.tips('发送失败，请稍后重试。',3);	
+					}
+		
+				},'json');
+			 
+			 
+			 }
+        
+        
+</script>
+ </form> 
+         <!--{/if}--> 
+    	</div>
+      
+</div>
+
+</div>
+
+</section>
+ 
+        </section><!-- /.ui-container-->
+        <script>
+          $('.ui-list li,.ui-tiled li').click(function(){
+            if($(this).data('href')){
+                location.href= $(this).data('href');
+          }
+          });
+        $('.ui-header .ui-btn').click(function(){
+            location.href= 'index.html';
+        });
+		$(function(){
+			var text=$('div.form_submit').prev().children('span').html();
+			if(text=='审核中'){
+				$('div.form_submit').prev().empty();
+				$('div.form_submit').prev().html('<b></b>报名审核中<b></b>');
+				$('div.form_submit').prev().addClass('bottom')
+				$('div.discrption').html('报名信息');
+			}
+		})
+		
+		
+		
+			
+        </script>
+    </body>
+</html>

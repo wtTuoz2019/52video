@@ -82,19 +82,15 @@
 			
 			$(function(){
 				var url = window.location.href;
-				var href=url.substring(url.length,20); 
-				console.log(url);
+				var href=url.substr(url.length-4); 
 				
-				$('.nav a').each(function() {
-					if(href.indexOf($(this).attr("href"))>=0){
+				$('.nav .fnav>li>a').each(function() {
+					if($(this).attr("href").indexOf(href)>=0){
+						$(this).parent().addClass('active').siblings('.active').removeClass('active');
 						
-							$(this).addClass('active').siblings('.active').removeClass('active');
-						
+					}else if($(this).attr("href")=='/'){
+						$(this).parent().addClass('active').siblings('.active').removeClass('active');
 					}
-				   
-					$('.scrollUl3 li[class^="sd0"]').click(function(){
-						$(this).addClass('active').siblings('.active').removeClass('active');
-					});
 				});
 				
 				

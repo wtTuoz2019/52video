@@ -1,0 +1,40 @@
+<div class="footer">
+			<div class="footk">
+				<div class="foot1">
+					<p class="foottitle">
+						联系我们
+					</p>
+					<ul>
+                    
+                    <!--channel:{table="web_contact"  order="sequence desc,id asc" where="uid=<$sys.uid> " }-->
+                    	<li>
+							<?=$channel['image']?'<img src="'.$sys['imageurl'].$channel['image'].'">':''?><a href="{$channel.url}" target="_blank">{$channel.content}</a>
+                            
+						</li>
+                          <!--/channel-->
+						
+					</ul>
+				</div>
+				
+				<div class="foot2">
+					<p class="foottitle">
+						网站导航
+					</p>
+					<ul>
+                     <!--channel:{table="web_menu"  order="sequence desc,id asc" where="uid=<$sys.uid> and pid=0" }--><li><a href="{$channel.murl}" target="_blank">{$channel.name}</a></li><!--/channel-->
+						
+					</ul>
+				</div>
+				
+				<div class="foot3">
+					<p class="foottitle">
+						关注我们
+					</p>
+					<img class="qr" src="{$sys.erweima}"/>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		

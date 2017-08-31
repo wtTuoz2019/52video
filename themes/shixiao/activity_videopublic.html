@@ -1,0 +1,359 @@
+<script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>   
+
+	
+			<div class="tab-box  contentBox" id="tab-box">
+				<ul id="myTab" class="setdmtop clearfix" role="tablist">
+                	<!--foreach:{$functions $key $vo}-->
+                          <li class="funcions{$vo.id} <?php if(!$key) echo 'active'; ?>" ><a href="#funcions{$vo.id}"  role="tab" data-toggle="tab">{$vo.name}</a></li>		
+                           <!--/loop-->
+                    
+				</ul> 
+				
+				<div id="myTabContent" class="tab-content">
+                	 <!--foreach:{$functions $key $vo}-->
+                     <div class="tab-pane <?php if(!$key) echo 'active'; ?>" id="funcions{$vo.id}">
+                     
+                     <?php if($vo['type']=='comment'){  
+                    if(intval($vo['content'])){
+                   $selfform=model('selfform')->info($vo['content']);
+                  $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                  }elseif($vo['content']!='0'){?>
+               	 <div class="jiaoyantishi">{$vo.content html}</div>
+                 <?php }
+               $commentflag=true;
+                     ?>
+                     
+                       <!--#include file="menu_comment.html"-->
+      <?php }elseif($vo['type']=='jiaoyancomment'){
+      $selfform=model('selfform')->info($vo['content']);
+      $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+        $jiaoyancommentflag=true;
+      ?>
+      
+      
+                   <!--#include file="menu_jiaoyan.html"-->
+                        <?php }elseif($vo['type']=='commentshow'){?>
+                          <script>
+						   var mobile='{$vo.content}';
+   							
+ 						  </script> 
+                          <!--#include file="menu_commentshow.html"-->
+                             <?php }elseif($vo['type']=='selfform'){
+                               $this->selfform=model('selfform')->info($vo['content']);
+                    	  $this->commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                             
+                             ?>
+                          
+                          <!--#include file="menu_selfform.html"-->
+                          
+                          <?php }elseif($vo['type']=='content'){?>
+                        	{$vo.content html}
+                         <?php }elseif($vo['type']=='url'){?>
+                         <script>
+						 $('.funcions{$vo.id}').bind('click',function(){
+							 
+							window.location="{$vo.content}"; 
+							 });
+						 </script>
+                          <?php }elseif($vo['type']=='linkaid'){?>
+                          <ul>
+     <?php  
+     $loop=array();
+     if($vo['content'])
+    $loop=model('content')->getlist($vo['content']);
+  
+      ?> <!--foreach:{$loop $val}-->    
+                <li   class="<?php echo $val['cid']==16?'live-class':'over-class';  ?> m_recommend">
+                    <a href="{$val.aurl}">
+                   
+						<div class="col-xs-6">
+                           
+							
+                            <img src="{$sys.imageurl}{$val.image}" class="img-responsive m_img"/>
+                             
+                           
+							
+						</div>
+                        <div class="col-xs-6 r_text">
+                        <p class="videotitle">{$val.title}<!--<img class="videoimg2" src="img/to_play2.png"/>--></p>  
+                       
+                       <p class="schoolname">{$school[$val['csid']]['name']}</p>
+                       <p class="now"> <?php echo $val['cid']==16?'直播':'重播';  ?></p>
+                         <p class="videotime">
+                       		<?php echo $val['cid']==16?date('Y-m-d H:i',model('content')->get_starttime($val['aid'])):date('Y-m-d',$val['updatetime'])?><span><img src="__TPL__mobile/img/see.png" class="to_play"/>{$val.views}</span></p>
+                   		
+                   		</div>
+                         </a>
+				</li>
+		<!--/loop-->
+		</ul>
+                             <?php }elseif($vo['type']=='looktimes'){?>
+     <ul  class="orderList">
+     <?php  
+     $loop=array();
+    $loop=model('content')->gettimes($info['videourl']);
+  
+      ?> 
+      
+      
+      <!--foreach:{$loop $val}-->    
+                <li  >
+
+                <div class="date">
+                	<i class="dian"></i>
+					<i class="datetime"><?=formartkandian($val[start])?></i>
+					
+				</div>
+                <div class="content">
+                    <a href="javascript:" onclick="playseek(this)" data-time="{$val.start}"  end-time="{$val.end}">{$val.name} </a>
+                  </div> 
+				</li>
+
+		<!--/loop-->
+		</ul>
+                           <?php }?>
+					</div>
+                           <!--/loop-->
+                <?php if($commentflag||$jiaoyancommentflag){  ?>
+                
+                <div class="modal pcmodal" id="mymodal"> 
+		    <div class="modal-dialog" id="movediv">
+		        <div class="modal-content">
+                	<div class="modal-title">评论</div>
+					<div class="modal-body" style="position:static;">
+                 <?php if($commentinputs&&$selfform){ ?>
+                 <div class="choosep">
+                 	<p><img src="__TPL__mobile/img/tongji.jpg"/>{$selfform.name}</p>
+                 
+                 
+                      <!--foreach:{$commentinputs $v}-->
+                     
+      					{$php( echo model('selfform')->get_field_html($v,''))}
+                       
+      				  <!--{/foreach}-->
+           
+           
+            <input type="hidden" name="aid"  value="{$info.aid}"/>
+            <input type="hidden" name="fid" value="{$v.fid}"/>
+             </div>
+              <?php } ?>
+              
+                <?php if($jiaoyancommentflag){ ?>
+              <div class="comment-area" id="commentform" style="display:none"  >
+          
+           <span id="start2">开始:00:00</span>
+            <div class="area"><div class="progress1" id="progress2"></div></div>
+             <span id="end2">结束:00:00</span>
+           
+             <input type="button" value="获取开始" class="btn btn-primary"  onclick="getprogress()" />
+            
+            <input type="button" value="获取结束" class="btn btn-primary"   onclick="getprogressend()"  style=" "/>
+            <input name="progress"  id="progressinput" value="0"  type="hidden" >
+            <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
+            
+           </div>  
+           <?php } ?>
+						<textarea id="editors" placeholder="我的评论..."></textarea>
+						<div class="icongroups">
+				
+						</div>
+						<div style="text-align: center; margin-bottom:20px;">
+                        	<input name="pid" type="hidden" value="" id="pid">
+                            <input name="toname" type="hidden" value="" id="toname">
+							<button id="input-type-submit" type="button" class="btn btn-primary">发布</button>
+                            <button  type="button" class="btn toback" data-dismiss="modal">取消</button>
+							<button id="modal_cance" type="button" class="btn btn-default"  data-dismiss="modal">X</button>
+                            <div id="messageto"></div>
+						</div>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+                
+                
+                
+                <?php }?> 
+				</div>
+			</div>
+		</section>
+		<script>
+		            var s =document.getElementById("tab-box");
+		            var uls = document.getElementById("myTab");
+					var as = uls.getElementsByTagName("a");
+					for(var i=0; i<as.length;i++){
+						var sum = parseInt(1100/ as.length)
+						as[i].style.width = sum +"px";
+					}
+					
+					function zan(){
+						var counts = document.getElementById("zan-counts");
+						
+						$.post('/index.php/change',{type:'love',fid:'{$info.aid}',uid:'<?php echo $_SESSION["uid"];?>'},function(data){
+				if(data.status=='1'){
+				
+					 counts.innerHTML = counts.innerHTML*1+1;
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}else{
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}
+			},'json');
+						
+						   
+					}
+					
+					
+		
+		 var style="<?=$zidingyi[style]?>";
+		changecolor(style);
+			$('#mask').click(function(){
+		$('#mask,#register').hide();
+	});
+function changecolor(color){
+	if(color=='red')
+{
+	$('.view-box').addClass('backgroudCb');
+	$('.infos').addClass('chageCw');
+	$('#myTab').addClass('backgroudC')
+	}else{
+		$('#myTab').addClass('tab-nav')
+		}
+}	
+					
+		</script>
+      
+<!--Tabs.js-->
+<script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
+
+<!-- 修改 -->
+<style>
+	#myTabContent .m_recommend{
+		width:1000px;
+		margin:15px auto !important;
+		background:#fff;
+		border:1px solid #DCDCDC;
+		border-radius:3px;
+		padding:0;
+	}
+	#myTabContent .m_recommend .r_text{
+		padding:10px 10px;
+		padding-left:0;
+		text-align:left;
+	}
+	#myTabContent  .m_recommend .m_img{
+		height:215px;
+	}
+	#myTabContent .m_recommend .r_text .schoolname{
+		font-size:14px;
+		color:#585858;
+	}
+	#myTabContent .m_recommend .r_text .now{
+		color:#f00;
+		padding-top:128px;
+		font-size:14px;
+	}
+	#myTabContent .m_recommend .r_text .videotime{
+		font-size:14px;
+		padding-top:2px;
+		color:#585858;
+	}
+	#myTabContent .m_recommend .r_text .videotime span{
+		float:right;
+		font-size:14px;
+	}
+	#myTabContent .m_recommend .r_text .videotime span img{
+		position:relative;
+		top:-1px;
+		left:-2px;
+	}
+	#myTabContent .m_recommend .r_text .videotitle{
+		overflow:hidden;
+		color:#000;
+		font-size:14px;
+	}
+	#myTabContent .m_recommend .r_text .videoimg2{
+		float:right;
+		margin-top:3px;
+	}
+	#myTabContent .m_recommend .r_text img{
+		height:14px;
+		width:initial;
+	}
+	.tab-box{
+		background:#F6F6F6;
+	} 
+	
+	#myTab{
+		background:#E5E5E5;
+		width:1100px;
+		margin: 0 auto !important;
+		overflow:hidden;
+	}
+	#myTab li.only a{
+		text-align: left;
+		height: 35px;
+		line-height: 35px;
+		font-size: 13px;
+		padding-left: 10px;
+		border: 0;
+	}
+	#myTabContent{
+		width:1100px;
+		margin:0 auto;
+	}
+	#myTabContent .biaogek{
+		border:6px solid #e5e5e5;
+		width:66%;
+		margin:0 auto;
+		margin-top:37px;
+	}
+	#myTabContent .biaogek .pingdingimg{
+		width:256px;
+		height:166px;
+		position:absolute;
+		bottom: -45px;
+		right: -123px;
+	}
+	#myTabContent  [id^="funcions"]{
+		overflow-x:inherit;
+	}
+	#myTabContent{
+		position:relative;
+	}
+	.contentBox #mymodal{
+		left:305px;
+	}
+	#myTabContent .m_recommend{
+		height:inherit;
+	}
+	.channels .show{
+		height:inherit;
+	}
+</style>
+
+
+
+<script>
+ 
+	
+	
+	$(function(){
+		
+		if($('#myTab').children('li').length=='1'){
+				$('#myTab').children('li').addClass('only');
+		}
+		
+	});
+	
+
+</script>
+
+
+
+   <!--#include file="common.html"-->
+   
+   
+   
+   
+   

@@ -1,0 +1,195 @@
+<script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>   
+<script>
+$(function(){ 
+	$('span#right').bind('click',function(e){
+	e.stopPropagation();
+  	$(this).prev("#current").slideToggle();	
+	})
+
+});
+
+var cid='{$info.id}';
+	
+</script>
+
+
+<!--if:{$zidingyi['notice']}-->
+		<div class="scroll-bar" style="width: 1100px; margin: 0 auto;">
+			<marquee style="color:#fff; font-size: 14px; width: 100%; line-height: 25px;" scrollamount=3>{$zidingyi.notice}</marquee>	
+			
+		</div>
+         <!--/if-->
+
+	</div>
+</div>
+
+<div class="contentBox t100">
+    <ul id="mainTabs" class="setdmtop">
+    <!--foreach:{$functions $key $vo}-->
+                          
+          <li >
+    		<a  class="funcions{$vo.id}"  href="#funcions{$vo.id}" >{$vo.name}</a>	
+        </li>	
+                           <!--/loop-->
+    	
+       
+    </ul>
+    <!--foreach:{$functions $key $vo}-->
+    <div id="funcions{$vo.id}">
+   
+  
+  
+               
+      
+     		<?php if($vo['type']=='comment'){  
+            $selfform=model('selfform')->info($vo['content']);
+           $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                  $commentflag=true;
+                     ?>
+  
+  
+  
+                     
+                      <!--#include file="menu_comment.html"-->
+      <?php }elseif($vo['type']=='jiaoyancomment'){
+      $selfform=model('selfform')->info($vo['content']);
+      $commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+        $jiaoyancommentflag=true;
+      ?>
+      
+      
+                   <!--#include file="menu_jiaoyan.html"-->
+                        <?php }elseif($vo['type']=='commentshow'){?>
+                          <script>
+						   var mobile='{$vo.content}';
+   							
+ 						  </script> 
+                          <!--#include file="menu_commentshow.html"-->
+                             <?php }elseif($vo['type']=='selfform'){
+                               $this->selfform=model('selfform')->info($vo['content']);
+                    	  $this->commentinputs=model('selfform')->form_inputs_list(array('fid'=>$vo['content']));
+                             
+                             ?>
+                          
+                          <!--#include file="menu_selfform.html"-->
+                          
+                         
+                          <?php }elseif($vo['type']=='content'){?>
+                        	{$vo.content html}
+                         <?php }elseif($vo['type']=='url'){?>
+                         <script>
+						 $('.funcions{$vo.id}').bind('click',function(){
+							 
+							window.location="{$vo.content html}"; 
+							 });
+						 </script>
+                          <?php }elseif($vo['type']=='linkaid'){?>
+                          <ul>
+     <?php  
+     $loop=array();
+     if($vo['content'])
+    $loop=model('content')->getlist($vo['content']);
+  
+      ?> <!--foreach:{$loop $val}-->    
+                <li   class="<?php echo $val['cid']==16?'live-class':'over-class';  ?>">
+                    <a href="{$val.aurl}"><span>●</span>{$val.title len="20"} </a>
+                   <span><?php echo $val['cid']==16?'直播':'重播';  ?></span>
+				</li>
+		<!--/loop-->
+		</ul>
+                   <?php }elseif($vo['type']=='looktimes'){?>
+                          <ul class="t_kuang">
+     <?php  
+     $loop=array();
+    $loop=model('content')->gettimes($info['videourl']);
+  
+      ?> <!--foreach:{$loop $val}-->    
+                <li>
+                	<i class="datetime"><?=formartkandian($val[start])?></i>
+                    <a href="javascript:" onclick="playseek(this)" data-time="{$val.start}"  end-time="{$val.end}"><span class="dian"> </span><span class="dian1"></span>
+                    
+                    <span class="t_text">{$val.name}</span> </a>
+                   
+				</li>
+		<!--/loop-->
+		</ul>
+                           <?php }?>
+					</div>
+                    
+                  
+                    
+                    
+                           <!--/loop-->
+                           
+                 <?php if($commentflag||$jiaoyancommentflag){  ?>
+                   
+                    
+                    
+                        <div class="modal pcmodal" id="mymodal"> 
+		    <div class="modal-dialog" id="movediv">
+		        <div class="modal-content">
+                	<div class="modal-title">评论</div>
+					<div class="modal-body" style="position:static;">
+                 <?php if($commentinputs&&$selfform){ ?>
+                 <div class="choosep">
+                 	<p><img src="__TPL__mobile/img/tongji.jpg"/>{$selfform.name}</p>
+                 
+                 
+                      <!--foreach:{$commentinputs $v}-->
+                     
+      					{$php( echo model('selfform')->get_field_html($v,''))}
+                       
+      				  <!--{/foreach}-->
+           
+           
+            <input type="hidden" name="aid"  value="{$info.aid}"/>
+            <input type="hidden" name="fid" value="{$v.fid}"/>
+             </div>
+              <?php } ?>
+              
+                <?php if($jiaoyancommentflag){ ?>
+              <div class="comment-area" id="commentform" style="display:none"  >
+          
+           <span id="start2">开始:00:00</span>
+            <div class="area"><div class="progress1" id="progress2"></div></div>
+             <span id="end2">结束:00:00</span>
+           
+             <input type="button" value="获取开始" class="btn btn-primary"  onclick="getprogress()" />
+            
+            <input type="button" value="获取结束" class="btn btn-primary"   onclick="getprogressend()"  style=" "/>
+            <input name="progress"  id="progressinput" value="0"  type="hidden" >
+            <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
+            
+           </div>  
+           <?php } ?>
+						<textarea id="editors" placeholder="我的评论..."></textarea>
+						<div class="icongroups">
+				
+						</div>
+						<div style="text-align: center; margin-bottom:20px;">
+                        	<input name="pid" type="hidden" value="" id="pid">
+                            <input name="toname" type="hidden" value="" id="toname">
+							<button id="input-type-submit" type="button" class="btn btn-primary">发布</button>
+                            <button  type="button" class="btn toback" data-dismiss="modal">取消</button>
+							<button id="modal_cance" type="button" class="btn btn-default"  data-dismiss="modal">X</button>
+                            <div id="messageto"></div>
+						</div>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+        
+      
+                      <?php }?> 
+  
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.idTabs.min.js"></script>
+<script>
+	$("#mainTabs").idTabs();
+</script>
+<div class="contentBox">
+	<div class="mborder"></div>
+</div>
+
+<!--底部-->
+<!--#include file="foot.html"-->
