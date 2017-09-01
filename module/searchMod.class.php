@@ -44,6 +44,9 @@ class searchMod extends commonMod {
 
         //处理搜索字段
         $where='A.status=1 AND '.$where_cid;
+		
+		$mids = model('web')->getmids(array('uid'=>$this->config['uid']));
+		$where.=' and mid in ('.$mids.')';
         foreach ($keywords as $value) {
             switch ($model) {
                 //标题+描述+关键词
