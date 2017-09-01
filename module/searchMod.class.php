@@ -43,7 +43,7 @@ class searchMod extends commonMod {
         $limit=$this->pagelimit($url,$listrows);
 
         //处理搜索字段
-        $where='A.status=1 AND '.$where_cid;
+        $where='A.status=1 ';
 		
 		$mids = model('web')->getmids(array('uid'=>$this->config['uid']));
 		$where.=' and A.mid in ('.$mids.') and ';
