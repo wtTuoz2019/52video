@@ -799,3 +799,6 @@ p,h1,h2,h3,h4,h5,h6{
 .modal-backdrop.in{
 	display:none;
 }
+.contentBox #mymodal{
+	left: 305px;
+}
