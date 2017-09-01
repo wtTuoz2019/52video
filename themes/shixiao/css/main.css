@@ -19,6 +19,9 @@ a{
 .clear{
 	clear:both;
 }
+input{
+	outline:none;
+}
 <!--轮播-->
 
 img { border: 0; vertical-align: top; }

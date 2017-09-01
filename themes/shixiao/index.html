@@ -68,22 +68,23 @@
                     <div class="videok2">
                         <div id="bannerlb">
                             <ul class="imgList">
-                                 <li><a href="#"><img src="img/videoimg.jpg" alt="puss in boots1" /></a></li>
-                                  <li><a href="#"><img src="img/videoimg.jpg" alt="puss in boots2" /></a></li>
-                                  <li><a href="#"><img src="img/videoimg.jpg" alt="puss in boots3" /></a></li>
+                            
+                            	<!--list:{table="content" position='6' where="A.mid in ( <$info.mids> ) " order="views desc" limit="3" }-->
+                                 <li><a href="{$list.aurl}"><img src="{$sys.imageurl}{$list.image}" alt="puss in boots1" /></a></li>
+                                 <!--/list-->
                             </ul>
                             <div class="bg"></div>
                             <ul class="infoList">
-                                <li class="infoOn">one</li>
-                                <li>two</li>
-                                <li>three</li>
+                            <!--list:{table="content" position='6' where="A.mid in ( <$info.mids> ) " order="views desc" limit="3" }-->
+                                <li >{$list.title len="20"}</li>
+                                   <!--/list-->
+                               
                                
                               </ul>
                               <ul class="indexList">
-                                <li class="indexOn"></li>
-                                <li></li>
-                                <li></li>
-                                
+                                <!--list:{table="content" position='6' where="A.mid in ( <$info.mids> ) " order="views desc" limit="3" }-->
+                                <li ></li>
+                                   <!--/list-->
                               </ul>
                         </div>
                         
