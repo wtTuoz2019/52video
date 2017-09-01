@@ -36,11 +36,24 @@
 									</div>
 									<div class="comment-content clearfix commentoperation">
 										<p>{$vo.message}</p>
-										<a href="javascript:;" class="delete-comment pull-right f-14" onclick="del('{$vo.id}',this)">删除</a>
+                                        <div class="ploperation">
+                                        	<button>操作</button>
+                                            <ul>
+                                            	<li>
+                                                	<a href="javascript:;"  onclick="del('{$vo.id}',this)">删除</a>
+                                                </li>
+                                                <?php if(!$vo['flag']){ ?>
+                                                <li>
+                                                	 <a href="javascript:;"  onclick="examine('{$vo.id}',this)">审核</a>
+                                                </li>
+                                                <?php } ?>
+                                            </ul>
+                                        </div>
+										
                                         
-                                        <?php if(!$vo['flag']){ ?>
-                                        <a href="javascript:;" class="delete-comment pull-right f-14" onclick="examine('{$vo.id}',this)">审核</a>
-                                        <?php } ?>
+                                        
+                                       
+                                        
 									</div>
 								</td>
 							</tr>
@@ -86,7 +99,11 @@
 	      	}
 			
 			
-			
+			$(".ploperation").mouseover(function (){  
+    $(this).children('ul').show();  
+}).mouseout(function (){
+    $(this).children('ul').hide();  
+});  
 
 			function mychoose(e){
 				if($(e).parent().hasClass('checked')){ 

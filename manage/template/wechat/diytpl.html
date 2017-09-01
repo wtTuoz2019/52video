@@ -43,8 +43,22 @@
        
          <td>http://{$sys['MOBILE_DOMAIN']}/index.php/diytpl/index/tid-{$vo.id}-token-{$token}</td>
        
-         <td>	<a title="编辑图文自定义回复" href="__URL__/diytpl_edit/id-{$vo.id}" class="v-gray">编辑</a>
-	<a href="javascript:" onclick="del('{$vo.id}',this)" class="v-gray">删除</a></td>
+         <td class="operation">	
+         <button>
+			操作
+		</button>
+						<ul>
+                        	<li>
+								<a title="编辑图文自定义回复" href="__URL__/diytpl_edit/id-{$vo.id}" class="v-gray">编辑</a>
+							</li>
+							<li>
+								<a href="javascript:" onclick="del('{$vo.id}',this)" class="v-gray">删除</a>
+							</li>
+							
+						</ul>
+         
+         
+	</td>
       </tr>
       <!--{/foreach}-->
     </table>

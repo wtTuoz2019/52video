@@ -1,9 +1,9 @@
 <div class="headtop">
         	<div class="header">
             	<img src="{$sys.imageurl}{$sys.logo}"/>
-                <form>
-                	<input placeholder="请输入关键字"/>
-                    <button></button>
+                <form action="__INDEX__/search">
+                	<input  name="keyword" type="text" id="keyword" placeholder="请输入关键字"/>
+                    <button type="submit"></button>
                 </form>
             </div>
              <?php if($userinfo){ ?>

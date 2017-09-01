@@ -43,7 +43,22 @@
          <td>
          <input  value="{$vo.vurl}" style="width:100%; border:0;outline:none;"/>
         </td>
-        <td> <a href="__URL__/videoedit/id-{$vo.id}"><?=$vo['type']=='video'?'设置看点':'编辑'?></a>&nbsp;&nbsp; <a href="javascript:" onClick="del('{$vo.id}',this)">删除</a></td>
+        <td class="operation"> 
+        <button>
+			操作
+		</button>
+						<ul>
+                        	<li>
+								<a href="__URL__/videoedit/id-{$vo.id}"><?=$vo['type']=='video'?'设置看点':'编辑'?></a>
+							</li>
+							<li>
+								<a href="javascript:" onClick="del('{$vo.id}',this)">删除</a>
+							</li>
+							
+						</ul>
+        
+        
+        </td>
       </tr>
       <!--{/foreach}-->
     </table>

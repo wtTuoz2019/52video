@@ -588,7 +588,7 @@ img { border: 0; vertical-align: top; }
 	border: 1px solid #D8D8D8;
 	border-radius: 3px;
 }
-.page ul li.current a{
+.page ul li a.current{
 	background:#4BD0FB;
 	color:#fff;
 }

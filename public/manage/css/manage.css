@@ -833,7 +833,7 @@ body .oftentable tr td{
 	font-size: 14px;
 	text-align: left;
 	padding-left:20px;
-	height: 100px;
+	height: 70px;
 	border-bottom: 1px solid #B5B5B5;
 	vertical-align:middle;
 }
@@ -847,7 +847,12 @@ body .oftentable tr td{
 .oftentable tr td.operation{
 	position: relative;
 }
-.oftentable tr td.operation button{
+.ploperation{
+	position:absolute;
+	top:35px;
+	right:15px;
+}
+.oftentable tr td.operation button,.ploperation button{
 	width: 115px;
 	height: 35px;
 	border: 1px solid #BABABA;
@@ -858,19 +863,23 @@ body .oftentable tr td{
 }
 .oftentable tr:last-child td.operation button{
 }
-.oftentable tr td.operation ul{
+.oftentable tr td.operation ul,.ploperation ul{
 	width: 115px;
 	padding: 0 8px;
 	font-size: 12px;
 	border: 1px solid #B5B5B5;
 	border-top: 0;
 	position: absolute;
-	top: 67px;
+	top: 52px;
     left: 20px;
     background: #fff;
     display: none;
     z-index: 100;
 	text-align:center;
+}
+.ploperation ul{
+	top: 35px;
+    left: 0;
 }
 .oftentable tr:last-child td.operation ul{
     top: inherit;
@@ -884,11 +893,11 @@ body .oftentable tr td{
 	border-top:0;
 	border-bottom:1px solid #B5B5B5;
 }
-.oftentable tr td.operation ul li{
+.oftentable tr td.operation ul li,.ploperation ul li{
 	line-height: 30px;
 	border-top: 1px solid #B5B5B5;
 }
-.oftentable tr td.operation ul li:first-child{
+.oftentable tr td.operation ul li:first-child,.ploperation ul li:first-child{
 	border: 0;
 }
 
@@ -2062,7 +2071,7 @@ body{
 #functions > div {
    float: left;
 }
-.videocontent .oftentable td a{
+.videocontent .oftentable td>a{
 	width: 115px;
 	height: 30px;
 	border: 1px solid #BABABA;
@@ -2070,7 +2079,7 @@ body{
 	line-height: 28px;
 	display:inline-block;
 }
-.videocontent .oftentable td a:first-child{
+.videocontent .oftentable td>a:first-child{
 	margin-bottom:10px;
 }
 #flowall,#flowlive,#flowfield{
