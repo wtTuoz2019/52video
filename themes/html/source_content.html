@@ -9,160 +9,106 @@
         
         <meta name="description" content="{$sys.description}" />
         <meta name="keywords" content="{$sys.keywords}" />
-        <script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
-        <script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+       
+        
+       
+        
+	</head>
+    <body>
+    	<!--#include file="head.html"-->
+         
+         <script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
 		<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
         <script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
         
         <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
-        <script type="text/javascript" src="__PUBLIC__/player/js/action.js"></script>
+     
         <link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
-        
-        <link href="__TPL__/new/css/rescss.css" rel="stylesheet" type="text/css" />
-        <script>var play=1;</script>
-	</head>
-    <body>
-    	<div class="head">
-			<div class="logo">
-				<img src="img/logo.jpg"/>闪阅云资源平台
-			</div>
-			
-			
-			<div class="search_login">
-				<form action="" method="post">
-					<input type="" name="" id="" value="" />
-					<button></button>
-				</form>
-				<a href="#" class="login">登陆</a>
-			</div>
-			
-		</div>
-		
-		<div class="navk">
-			<div class="nav">
-				<ul class="znav allnav">
-					
-					
-					<li>
-						<a href="#">官网 </a>
-					</li>
-					<li>
-						<a href="#">主页 </a>
-					</li>
-					<li class="active">
-						<a href="#">课例资源 </a>
-					</li>
-					<li>
-						<a href="#">微课 </a>
-					</li>
-					<li>
-						<a href="#">素材资源 </a>
-					</li>
-					<li>
-						<a href="#">上传资源 </a>
-					</li>
-				</ul>
-			</div>
-		</div>
+         <link href="__TPL__/new/css/rescss.css" rel="stylesheet" type="text/css" />
+         <div style="clear:both;"></div>
 		<div class="wkcnav">
+   
 			<ul>
+                 <?php if($info['sources']['videos']){  ?>
 				<li class="active">
 					<a href="#videok">课列实录</a>
 				</li>
+                
+                 <?php  } if($info['sources']['source']){  ?>
 				<li>
 					<a href="#wkcmain">课件资源 </a>
 				</li>
+                <?php  } ?>
 			</ul>
 		</div>
         
         <div class="resmain">
         	
-        
+        <?php if($info['sources']['videos']){ 
+        $ids=implode(",", $info['sources']['videos']);
+		$videos=model('content')->video_list('id in ('.$ids.')');
+       
+         ?>
 		<div class="videok active" id="videok">
-			<p class="video_title">{$info.title}</p>
+			<p class="video_title">{$info.title}
+            
+            </p>
+            <div class="videoqr"> 
+            扫码观看
+            <img class="smqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
+             <img class="bgqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
+            </div>
 			<div class="lplay">
             
-				 <?php if(strstr($info['videourl'],"http")&&(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"urren")||strstr($info['videourl'],"shanyueyun"))){?>
-
-   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
-   <div id="a1" ></div>
-   <script type="text/javascript">
-	
-	var w = "100%";//视频宽度
-  var h = "480";//视频高度
-  var url = "{$info.videourl}";//视频地址
-  var image = "{$sys['imageurl']}{$info.image}";//封面图片
-  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:1};
-  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
-  var video=[url];
-CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
-
-</script>
-
-
-<?php }else{
-
-
-	
-		
-
-?>
+			
 <div id="videoPlayer"></div>
  <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
    <div id="a1" ></div>
    
    
-   <?php 
-		 if( @fopen('http://'.$config[out].'/video/'.$info[videourl].'/video.m3u8', 'r' )){  ?>
-         
-        <script type="text/javascript">
-	
-	var w = "100%";//视频宽度
-  var h = "480";//视频高度
-  var url = "http://{$config.out}/video/{$info.videourl}/video.m3u8" 
 
-  var image = "{$sys['imageurl']}{$info.image}";//封面图片
-  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
-  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
-  var video=[url];
-CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+</div>
 
-</script>  
-         
-         <?php }else{  ?>
-   <script type="text/javascript">
-	
-	var w = "100%";//视频宽度
-  var h = "480";//视频高度
-  var url = "http://{$config.out}/video/{$info.videourl}/1280/video.m3u8" 
-  var urlarray = "http://{$config.out}/video/{$info.videourl}/640/video.m3u8|http://{$config.out}/video/{$info.videourl}/1280/video.m3u8|http://{$config.out}/video/{$info.videourl}/1920/video.m3u8";//视频地址
-  var image = "{$sys['imageurl']}{$info.image}";//封面图片
-  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,deft:'标清|高清|超清',defa:urlarray,c:0,s:4,i:image,lv:0,p:play};
-  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
-  var video=[url];
-CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
 
-</script>
 
-  <?php } ?>
-      
-        <?php  }  ?>  
-        
-        
-        
-			</div>
+
+
 			<div class="rlist">
 				<p class="rtitle">课程目录</p>
 				<ul id="weikes">
-					<li class="active">
-						<a href="#">作品1</a>	
-					</li>
-					<li>
-						<a href="#">作品1</a>	
-					</li>
+                 <!--foreach:{$videos $val}-->  
+            	<li >
+                	<a href="javascript:" video="<?=urlencode($val['vurl'])?>" onclick="playweike(this)">{$val.name}</a>
+                </li>
+                <!--/loop-->
+					
 				</ul>
 			</div>
-            
+           
+           
+           
+
+         
+        <script type="text/javascript">
+	
+	function playweike(e){
+	$('#a1').html('');
+	$('#weikes li').removeClass('active');
+	$(e).parent().addClass('active');
+	var url=$(e).attr('video');
+		var w = "100%";//视频宽度
+  var h = "480";//视频高度
+
+  var image = "";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:1};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+	}
+	
+　$('#weikes').find('a').eq(0).click();
+
+</script>  
             <script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>   
             <script>
 			$(function(){ 
@@ -247,76 +193,75 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 			</div><!-- /.modal-dialog -->
 		</div>
             </div>
-            
+            <?php  } ?>
 		</div>
 		
-		
+
+		 <?php  if($info['sources']['source']){ 
+           $ids=implode(",", $info['sources']['source']);
+		$sources=model('content')->video_list('id in ('.$ids.')');
+         
+          ?>
 		
 		<div class="wkcmain" id="wkcmain">
 			<div id="wdzl">
-				<p class="wtitle">文档资料</p>
+				<p class="wtitle">{$info.title}</p>
+                <div class="videoqr videoqr2"> 
+            扫码观看
+            <img class="smqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
+             <img class="bgqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
+            </div>
 				<ul>
-					<li>
-						<span>●</span>《微视频设计与制作》——响度.doc
-						<a href="#">下载</a>
-					</li>
-					<li>
-						<span>●</span>《微视频设计与制作》——响度.doc
-                        
-						<a href="#">下载</a>
-                        <a href="#">预览</a>
-					</li>
-					<li>
-						<span>●</span>《微视频设计与制作》——响度.doc
-						<a href="#">下载</a>
-					</li>
+      <!--foreach:{$sources $val}-->  
+        	<li>
+            	<span>●</span>
+                <?php  $name= explode( '.',$val['vurl']) ; $name='.'.end($name)?>
+             {$val.name}{$name}
+             <a href="{$val.vurl}"  target="_blank">下载</a>
+             	<?php  
+             $types=array('.xls','.ppt','.pdf','.doc','.docx','.xlsx','.pptx','.txt');
+             if(in_array($name,$types)){
+               ?>
+               <a href="javascript:"  onclick="yl('http://dcsapi.com/?k=26984290&url={$val.vurl}','{$val.name}{$name}')">预览</a>
+             <?php } ?>
+                  
+                
+            </li>
+                <!--/loop-->
+                
+					
 				</ul>
 			</div>
 		</div>
+        
+     <div class="wdcontent">
+<div class="colse">
+<span></span>
+	<a href="javascript:">
+        关闭
+    </a>
+</div>
+<div class="loading" id="content_loading"></div>
+	 <iframe src=""  width="100%" height="694px" frameborder="0" scrolling="yes"  onload="loadFrame(this)"></iframe>
+</div>   
+        
+<?php  } ?>
 		</div>
 		
-		<div class="foot">
-			<div class="foottop">
-				<ul>
-					<li class="foot1">
-						<p class="toptitle">闪阅云教育云播平台</p>
-						<ul>
-							<li>
-								<a href="#">联系方式</a>
-							</li>
-							<li>
-								<a href="#">关于我们</a>
-							</li>
-						</ul>
-					</li>
-					<li class="foot2">
-						<p class="toptitle">联系方式</p>
-						<ul>
-							<li>
-								<a href="#">地址：中国 上海</a>
-							</li>
-							<li>
-								<a href="#"> 电话：021-3126-5752</a>
-							</li>
-							<li>
-								<a href="#">传真：021-6082-3272</a>
-							</li>
-						</ul>
-					</li>
-					<li class="foot3">
-						<img src="img/qr.jpg"/>
-					</li>
-				</ul>
-			</div>
-			<div class="footbottom">
-				 Copyright 2016-视盛信息. All rights reserved.
-				 <br />
-				 沪ICP备10219186号
-			</div>
-		</div>
+		<!--#include file="foot.html"-->
     	
     <script type="text/javascript" src="__PUBLIC__/js/jquery.idTabs.min.js"></script>
 			<script>
+				function loadFrame(e){
+					$('#content_loading').hide();
+				}
+				$('.videoqr .smqr').mouseover(function(){
+						$(this).next().show();
+					}).mouseout(function(){
+						$(this).next().hide();
+					});
+			
+				$('.wkcnav').find('li').eq(0).addClass('active');
                 $("#mainTabs").idTabs();
 				
 				
@@ -325,6 +270,68 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 					$(this).parent().addClass('active').siblings('.active').removeClass('active');
 					var id=$(this).attr('href');
 					$(id).addClass('active').siblings('.active').removeClass('active');
+				});
+				function yl(url,txt){
+		$('.wdcontent .colse span').text(txt);
+		$('.wdcontent iframe').attr('src',url);
+		$('.wdcontent').show();
+	}
+	$('.colse a').click(function(){
+		$(this).parents('.wdcontent').hide();
+	});
+				
+				
+				$(window).scroll(function () {
+					if ($(window).scrollTop() >= 720) {
+						 $('#a1').addClass('drag');
+					}else{
+						$('#a1').removeClass('drag');
+					}
+					
+					if ($(window).scrollTop() >= 140) {
+						 $('.wkcnav').addClass('fxtop');
+					}else{
+						$('.wkcnav').removeClass('fxtop');
+					}
+					 
+					
+					if($('#a1').hasClass("drag")){
+							var $div = $("#a1");
+						  /* 绑定鼠标左键按住事件 */
+						  $div.bind("mousedown",function(event){
+							/* 获取需要拖动节点的坐标 */
+							var offset_x = $(this)[0].offsetLeft;//x坐标
+							var offset_y = $(this)[0].offsetTop;//y坐标
+							/* 获取当前鼠标的坐标 */
+							var mouse_x = event.pageX;
+							var mouse_y = event.pageY;
+							/* 绑定拖动事件 */
+							/* 由于拖动时，可能鼠标会移出元素，所以应该使用全局（document）元素 */
+							$(document).bind("mousemove",function(ev){
+							  /* 计算鼠标移动了的位置 */
+							  var _x = ev.pageX - mouse_x;
+							  var _y = ev.pageY - mouse_y;
+							  /* 设置移动后的元素坐标 */
+							  var now_x = (offset_x + _x ) + "px";
+							  var now_y = (offset_y + _y ) + "px";
+							  /* 改变目标元素的位置 */
+							  $div.css({
+								top:now_y,
+								left:now_x
+								});
+								});
+							});
+						  /* 当鼠标左键松开，接触事件绑定 */
+						  $(document).bind("mouseup",function(){
+							$(this).unbind("mousemove");
+						  });
+					  
+						  $div.mouseenter( function() {
+							$div.append("<div id='dragto'> 点击按住视频可拖动 </div>");
+						  }).mouseleave( function(){
+							  $div.find("#dragto").remove();
+						  }); 
+					 }
 				});
 				
             </script>

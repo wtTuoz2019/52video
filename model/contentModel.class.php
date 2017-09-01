@@ -285,6 +285,16 @@ class contentModel extends commonMod
 		return $data['id'];
 	}
 	
+	
+	public function video_list($where,$limit=null)
+    {	
+	
+		
+       return $this->model->table('videolist')->limit($limit)->where($where)->order('id desc')->select(); 
+      
+      
+    }
+	
 	 //获取模型信息
     public function deviceinfo($id) {
         $where['id']=$id;

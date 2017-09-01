@@ -255,7 +255,7 @@ class contentMod extends commonMod
 		}else{
 			
 			$userinfo=model('form_list')->infobyuser($this->userinfo['uid'],'signup');
-			$_SESSION["name"]=$userinfo['name']?$userinfo['name']:$_SESSION["nickname"];
+			$this->userinfo["name"]=$userinfo['name']?$userinfo['name']:$this->userinfo["nickname"];
 			}
 	
 	
@@ -266,6 +266,7 @@ class contentMod extends commonMod
 	    //读取内容信息
         $info_content=model('content')->info_content($info['aid']);
 		 $content=$info_content['content'];
+		 
 		   //读取内容替换
         if(!empty($content)){
             $content=model('content')->format_content($content);
@@ -276,6 +277,9 @@ class contentMod extends commonMod
         }
 		
 			 $info['content']=$content;
+			 if($info['cid']=='18'){
+				 $info['sources']=json_decode($info_content['sources'],true);
+				 }
 			 
 			if($info['beforeid']){
 			if(!model('selfform')->input_value(array('fid'=>$info['beforeid'],'aid'=>$info['aid'],'uid'=>$this->userinfo['uid']))){
