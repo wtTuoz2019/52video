@@ -172,8 +172,10 @@ class contentModel extends commonModel
 			unset($data['zidingyi']['content2']['content']);
 		$data['zidingyi']=serialize($data['zidingyi']);
 		
-	
+		$data['sources']=json_encode($data['sources']);
         $data['content']=html_in($data['content']);
+		
+		
         return $data;
     }
 

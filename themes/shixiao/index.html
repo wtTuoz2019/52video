@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>{$common.title}</title>
+		<title>{$sys.sitename}</title>
     	<script src="/themes/shixiao/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
         <link rel="stylesheet" type="text/css" href="/themes/shixiao/css/main.css"/>
 	</head>
@@ -43,9 +43,9 @@
                                         <img src="{$sys.imageurl}{$list.image}"/>
                                     </div>
                                     <div class="video_text">
-                                        <h5>{$list.title len="20"}</h5>
+                                        <h5>{$list.title len="15"}</h5>
                                         <p>
-                                            <span>{$list.school}</span>
+                                            <span>{$school[$list['csid']]['name']}</span>
                                             <span class="seenum"><img src="img/see.png"/>{$list.views}</span>
                                         </p>
                                     </div>
@@ -89,61 +89,20 @@
                         
                         
                         <ul>
+                        	<!--list:{table="content" position='6' where="A.mid in ( <$info.mids> ) " order="views desc" limit="5" }-->
                             <li>
-                                <a href="#">
+                                <a href="{$list.aurl}">
                                     <div class="video_img">
-                                        <img src="img/videoimg.jpg" />
+                                        <img src="{$sys.imageurl}{$list.image}" />
                                     </div>
                                     <div class="video_text">
-                                        <p>历史_印度非暴力不合作运动-杨国纬</p>
-                                        <span class="seenum"><img src="img/see.png"/>104</span>
+                                        <p>{$list.title len="20"}</p>
+                                        <span class="seenum"><img src="img/see.png"/>{$list.views}</span>
                                     </div>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <div class="video_img">
-                                        <img src="img/videoimg.jpg" />
-                                    </div>
-                                    <div class="video_text">
-                                        <p>历史_印度非暴力不合作运动-杨国纬</p>
-                                        <span class="seenum"><img src="img/see.png"/>104</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="video_img">
-                                        <img src="img/videoimg.jpg" />
-                                    </div>
-                                    <div class="video_text">
-                                        <p>历史_印度非暴力不合作运动-杨国纬</p>
-                                        <span class="seenum"><img src="img/see.png"/>104</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="video_img">
-                                        <img src="img/videoimg.jpg" />
-                                    </div>
-                                    <div class="video_text">
-                                        <p>历史_印度非暴力不合作运动-杨国纬</p>
-                                        <span class="seenum"><img src="img/see.png"/>104</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="video_img">
-                                        <img src="img/videoimg.jpg" />
-                                    </div>
-                                    <div class="video_text">
-                                        <p>历史_印度非暴力不合作运动-杨国纬</p>
-                                        <span class="seenum"><img src="img/see.png"/>104</span>
-                                    </div>
-                                </a>
-                            </li>
+                            <!--/list-->
+                            
                         </ul>
                         
                         

@@ -586,6 +586,10 @@ img { border: 0; vertical-align: top; }
 	border: 1px solid #D8D8D8;
 	border-radius: 3px;
 }
+.page ul li.current a{
+	background:#4BD0FB;
+	color:#fff;
+}
 .logins{
 	width:400px;
 	height:380px;

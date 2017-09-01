@@ -1,5 +1,5 @@
 <div class="allmain">
-<h4 class="bottomb">视频添加</h4>
+<h4 class="bottomb">素材操作</h4>
 <div class="page_form amendk">
 <form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form">
 <div class="box-body   setsee" style="width:710px; margin:0 auto; border:1px solid #BABABA; padding:30px;">
@@ -12,6 +12,18 @@
         </td>
         
       </tr>
+      
+      <tr class="tr1">
+        <td>类型</td>
+        <td>
+         <select name="type" id="type">
+            <!--foreach:{$config['types'] $key $vo}-->
+            <option value="{$vo['value']}" <?php if($info['type']==$vo['value']){ ?> selected="selected" <?php } ?> >{$vo.name}</option>
+            <!--{/foreach}-->
+            </select>
+        </td>
+        
+      </tr>
   
          <tr class="tr2">
         <td>地址</td>
@@ -20,7 +32,7 @@
         </td>
         
       </tr>
-      <?php if($info) { ?> 
+      <?php if($info&&$info['type']=='video') { ?> 
       <script type="text/javascript" src="__PUBLICURL__/ckplayer/js/offlights.js"></script>
    <script type="text/javascript" src="__PUBLICURL__/ckplayer/ckplayer.js" charset="utf-8"></script>
          <tr style="position:relative; display:block;">

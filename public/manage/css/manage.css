@@ -292,6 +292,12 @@ button{
 #nav>a.active div.nav_video4{
 	background-image: url(../img/nav_video4_.png);
 }
+#nav>a div.nav_video5{
+	background-image: url(../img/nav_video5.png);
+}
+#nav>a.active div.nav_video5{
+	background-image: url(../img/nav_video5_.png);
+}
 #nav>a div.nav_forum1{
 	background-image: url(../img/nav_forum1.png);
 }

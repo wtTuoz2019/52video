@@ -6,7 +6,7 @@
 				<div class="page_form">
                <form action="__URL__/{$action}_save/time-<?php echo time(); ?>-ajax-true" method="post" id="form" autocomplete="off">
 					<table cellspacing="0" width="100%">
-						<tr>
+						<tr style="display:none">
 							<td>栏目：</td>
 							<td>
 								<select name="cid"  reg="." id="cid" msg="栏目未选择" onChange="get_fields()" >
@@ -25,7 +25,7 @@
                          	<tr>
 							<td>我的栏目：</td>
 							<td>
-								<select name="mid"  id="mid"  >
+								<select name="mid"  id="mid" >
 									<option value="">======选择栏目======</option>
                                       <!--foreach:{$menulist $vo}--> 
                                       <option value="{$vo['id']}" <?php if($info['mid']==$vo['id']) { ?> selected="selected" <?php } ?> 
@@ -60,9 +60,7 @@
                                 </select>
 							</td>
 						</tr>
-                       
-                       <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
-                           <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
+                  
                           <script type="text/javascript">
                             $(document).ready(function() {
                                         $('#csid').multiselect({
@@ -102,19 +100,71 @@
 								<input class="chooseimg" id="image1" value="选择图片"></input>
 							</td>
 						</tr>
-                               <tr>
-        <td width="100" align="right">内容</td>
-        <td colspan="2">
-          <?php echo module('editor')->get_editor('content'); ?>
-          <textarea name="content" style="width:100%; height:250px;" id="content">{$info_data.content html}</textarea>
-          <input type="button" onclick="javascript:get_remote_image()" style="margin-top:10px; width:100px !important;padding:0;" class="button_small" value="远程图片本地化" />
-          <?php echo module('editor')->get_editor_upload('editor_upload','editor_content') ?>
-          <input type="button" id="editor_upload" class="button_small" style="margin-top:10px; width:145px !important;padding:0;" value="上传图片和文件到编辑器" />
-          <!--hook-->
-          <?php module('common')->plus_hook('content','tools',$info);  ?>
-          <!--hook end-->
-          </td>
-      </tr>
+                        <tr>
+							<td>视频列表：</td>
+							<td>
+								<select name="sources[videos][]"  reg="." id="videos"  multiple="multiple" >
+                                   <?php    $videoids=$info['sources']['videos']?$info['sources']['videos']:array();  ?>
+                                  <!--foreach:{$videos $vo}--> 
+                                  <option value="{$vo['id']}"  <?php  if(in_array($vo['id'],$videoids)){echo 'selected';}?>  >
+                                      {$vo['name']}
+                                  </option>
+                                  <!--{/foreach}-->
+                                </select>
+							</td>
+						</tr>
+                      <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
+                           <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>   
+                     
+                          <script type="text/javascript">
+                        
+                                        $('#videos').multiselect({
+                                            includeSelectAllOption: true,
+                                            nonSelectedText:'未选择',
+                                            nSelectedText:'个已选',
+                                            selectAllText: '全选',
+                                            allSelectedText: '已全选',
+                                            enableClickableOptGroups: true,
+                                            enableFiltering: true,
+                                            numberDisplayed: 1,
+                                            maxHeight: 300
+                                            
+                                        });
+                                        
+                                  
+                                </script> 
+                            <tr>
+							<td>文档资源：</td>
+							<td>
+								<select name="sources[source][]"  reg="." id="source" >
+                                  <?php    $sourceids=$info['sources']['source']?$info['sources']['source']:array();  ?>
+                                  <!--foreach:{$sources $vo}--> 
+                                  <option value="{$vo['id']}"<?php  if(in_array($vo['id'],$sourceids)){echo 'selected';}?>    >
+                                      {$vo['name']}
+                                  </option>
+                                  <!--{/foreach}-->
+                                </select>
+							</td>
+						</tr>
+                     
+                          <script type="text/javascript">
+                            
+                                        $('#source').multiselect({
+                                            includeSelectAllOption: true,
+                                            nonSelectedText:'未选择',
+                                            nSelectedText:'个已选',
+                                            selectAllText: '全选',
+                                            allSelectedText: '已全选',
+                                            enableClickableOptGroups: true,
+                                            enableFiltering: true,
+                                            numberDisplayed: 1,
+                                            maxHeight: 300
+                                            
+                                        });
+                                        
+                                   
+                                </script> 
+                        
                     
 						<tr>
 							<td>描述：</td>
@@ -142,24 +192,7 @@
 								<div class="additional">
                                 
 								   
-									<div>
-										功能：
-									</div>
-									<div style="padding:0;">
-                                    <div id="functions">
-                                    <!--foreach:{$functions $vo}-->
-        
-                                      <div id="button{$vo.id}"><button type="button" class="button">{$vo.name}</button><input type="hidden" value="{$vo.id}" name="functions[{$vo.id}]">
-                                      <p><a href="javascript:" onClick="editfunctions('{$vo.id}')">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:" onClick="delfunctions('{$vo.id}',this)">删除</a></p>
-                                      </div>
-                                    
-                                    <!--{/foreach}-->
-								
-                                        </div>
-										<button type="button" class="addgn" onClick="addfunctions()" title="中间栏自定义菜单，建议最多设置4">
-											+添加
-										</button>
-									</div>
+									
                                     
 									<div class="choose">
 								
@@ -254,21 +287,7 @@
 								</div>
 							</td>
 						</tr>
-                         <tr>
-							<td>前置表单：</td>
-							<td>
-								<select name="beforeid"  id="beforeid"  >
-									<option value="">======选择表单======</option>
-                                      <!--foreach:{$form_list $vo}--> 
-                                      <option value="{$vo['id']}" <?php if($info['beforeid']==$vo['id']) { ?> selected="selected" <?php } ?> 
-                                         
-                                      >
-                                          {$vo['name']}
-                                      </option> 
-                                      <!--{/foreach}-->
-								</select>
-							</td>
-						</tr>
+                        
 					</table>
                     
                      <div class="form_submit">

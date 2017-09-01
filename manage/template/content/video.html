@@ -2,13 +2,13 @@
  <script src="__PUBLICURL__/data/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
 <div class="allmain">
 
-<h4>视频编辑</h4>
+<h4>素材编辑</h4>
 
 <div class="page_function">
  
   <div class="exercise borderk"> 
-   <a href="__URL__/video" class="active">视频列表</a>	
-  <a href="__URL__/videoadd" >添加</a>
+   <a href="__URL__/video" class="active">素材列表</a>	
+  <a  href="__URL__/videoadd" >添加</a>
   <div class="tosearch">
   <form method="get">
 <input type="text" class="form-control" name="search" placeholder="名称"  id="search">
@@ -43,7 +43,7 @@
          <td>
         {$vo.vurl}
         </td>
-        <td> <a href="__URL__/videoedit/id-{$vo.id}">设置看点</a>&nbsp;&nbsp; <a href="javascript:" onClick="del('{$vo.id}',this)">删除</a></td>
+        <td> <a href="__URL__/videoedit/id-{$vo.id}"><?=$vo['type']=='video'?'设置看点':'编辑'?></a>&nbsp;&nbsp; <a href="javascript:" onClick="del('{$vo.id}',this)">删除</a></td>
       </tr>
       <!--{/foreach}-->
     </table>

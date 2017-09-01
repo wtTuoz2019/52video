@@ -12,13 +12,16 @@ class editor_file_manageMod extends commonMod
 
 
 
-        $search=in(urldecode($_GET['search']));
+       
+		
+			$where="  type='video'";
+			
+			
+			 $search=in(urldecode($_GET['search']));
         if(!empty($search)){
-        $where[]=' name like "%' . $search . '%"';
+        $where.=' and  name like "%' . $search . '%"';
         $where_url='search-'.urlencode($search);
         }
-		
-			
 		 if($this->user['gid']==6){
 				$temp;$temp[]=0;
 		
@@ -30,14 +33,14 @@ class editor_file_manageMod extends commonMod
 				$temp[]=$val['id'];
 				}
 			} 
-		 	$where=" uid  in (".implode(',',$temp).") ";
+		 	$where=" and  uid  in (".implode(',',$temp).") ";
 			 }else{
 		if($this->user['cid'])	
-	 	$where=" uid =".$this->user['cid'];
+	 	$where=" and uid =".$this->user['cid'];
 			 }
 			
 	
-			
+		
 		 $listRows=20;
         $url = __URL__ . '/video/'.$where_url.'-page-{page}.html'; //分页基准网址
         $limit=$this->pagelimit($url,$listRows);
