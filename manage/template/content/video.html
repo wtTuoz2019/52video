@@ -41,7 +41,7 @@
            <td>{$vo.name}</td>
           <td>{$config['types'][$vo['type']]['name']}</td>
          <td>
-         <input class="kd" value="{$vo.vurl}" style="width:100%; border:0;"/>
+         <input  value="{$vo.vurl}" style="width:100%; border:0;outline:none;"/>
         </td>
         <td> <a href="__URL__/videoedit/id-{$vo.id}"><?=$vo['type']=='video'?'设置看点':'编辑'?></a>&nbsp;&nbsp; <a href="javascript:" onClick="del('{$vo.id}',this)">删除</a></td>
       </tr>

@@ -103,7 +103,7 @@
                         <tr>
 							<td>视频列表：</td>
 							<td>
-								<select name="sources[videos][]"  reg="." id="videos"  multiple="multiple" >
+								<select name="sources[videos][]"  id="videos"  multiple="multiple" >
                                    <?php    $videoids=$info['sources']['videos']?$info['sources']['videos']:array();  ?>
                                   <!--foreach:{$videos $vo}--> 
                                   <option value="{$vo['id']}"  <?php  if(in_array($vo['id'],$videoids)){echo 'selected';}?>  >
@@ -136,9 +136,9 @@
                             <tr>
 							<td>文档资源：</td>
 							<td>
-								<select name="sources[source][]"  reg="." id="source" >
+								<select name="sources[source][]"   multiple="multiple"  id="source" >
                                   <?php    $sourceids=$info['sources']['source']?$info['sources']['source']:array();  ?>
-                                  <!--foreach:{$sources $vo}--> 
+                                  <!--foreach:{$files $vo}--> 
                                   <option value="{$vo['id']}"<?php  if(in_array($vo['id'],$sourceids)){echo 'selected';}?>    >
                                       {$vo['name']}
                                   </option>

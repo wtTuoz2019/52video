@@ -172,19 +172,19 @@ class sourcesMod extends commonMod
 				$temp[]=$val['id'];
 				}
 			} 
-		 	$where=" and  uid  in (".implode(',',$temp).") ";
+		 	$wherevideos=" and  uid  in (".implode(',',$temp).") ";
 			 }else{
 		if($this->user['cid'])	
-	 	$where=" and uid =".$this->user['cid'];
+	 	$wherevideos=" and uid =".$this->user['cid'];
 			 }
 			
 	
 		
 		
      	
-		$data['videos']=model('content')->video_list("type='video' ".$where);
-		$data['files']=model('content')->video_list("type='file' ".$where);
-		$data['papers']=model('content')->video_list("type='paper' ".$where); 
+		$data['videos']=model('content')->video_list("type='video' ".$wherevideos);
+		$data['files']=model('content')->video_list("type='file' ".$wherevideos);
+		$data['papers']=model('content')->video_list("type='paper' ".$wherevideos); 
 		 
 	
 		 
