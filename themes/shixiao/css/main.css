@@ -164,8 +164,7 @@ img { border: 0; vertical-align: top; }
 	margin:0;
 }
 .nav ul li.login a{
-	text-decoration:underline;
-	padding:0;
+	padding: 0 15px;
 }
 .mainbg{
 	background:#F3F2F2;
