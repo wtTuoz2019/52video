@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>{$common.title}</title>
+        <link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
+		<!-- Css 样式-->
+	    <link rel="stylesheet" href="__TPL__mobile/music/css/style.css" />
+	    
+	    <!-- Javascript -->
+	    <script type="text/javascript" src="__TPL__mobile/music/js/jquery-2.1.4.min.js" ></script>
+	    
+	    <!-- Plugin -->
+	  
+	    <script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <link rel="stylesheet" href="__TPL__mobile/Scripts/countdown/jquery.countdown.css" />
+        <script type="text/javascript" src="__TPL__mobile/Scripts/countdown/jquery.countdown.js" ></script>
+     	<link rel="stylesheet" href="__TPL__mobile/dialog/skins/default.css" type="text/css" />
+	    <script type="text/javascript" src="__TPL__mobile/dialog/jquery.artDialog.js"></script>
+    </head>
+<body>
+    	
+<section>
+		<div class="play-box">
+				<div class="channels">
+        
+        <div class="show">
+   
+    
+     
+        
+     
+  <script type="text/javascript">
+var play=1;
+</script>
+   <?php   if ($info['airtime']>time()) {  ?>
+       
+   
+     
+        <div id="backdrop" class="backdrop">
+			<img src="{$sys['imageurl']}{$info.image}"  />
+          
+			<div class="counter">
+				<p>距离开播还有：</p>
+				<div id="countdown"></div>
+			</div>   
+		</div>
+<script type="text/javascript">
+ play=0;
+</script> 
+        <?php
+         }
+		?>
+ 
+<div class="player">
+            <?php  if(strstr($info['videourl'],"qq.com")){ ?>
+<iframe frameborder="0" width="100%" height="200" src="{$info.videourl}" allowfullscreen></iframe> 
+
+<?php  }elseif(strstr($info['videourl'],"http")&&(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"urren")||strstr($info['videourl'],"shanyueyun"))){?>
+
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1" ></div>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "200";//视频高度 
+  var url = "{$info.videourl}";//视频地址
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>
+
+
+
+<?php }else{  ?>
+          <div id="a1" ></div>
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+ 
+    <?php 
+		 if( @fopen('http://'.$config[out].'/video/'.$info[videourl].'/video.m3u8', 'r' )){  ?>
+         
+        <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "200";//视频高度
+  var url = "http://{$config.out}/video/{$info.videourl}/video.m3u8" 
+
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>  
+         
+         <?php }else{  ?>
+   <script type="text/javascript">
+	var w = "100%";//视频宽度
+  var h = "200";//视频高度
+  var url = "http://{$config.out}/video/{$info.videourl}/1280/video.m3u8" 
+
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script> <?php  }  ?>  
+              <?php  }  ?>  
+        </div>
+        <?php   if ($info['airtime']>time()) {  ?>
+        <script type="text/javascript">
+
+var note = $('#note'),
+					newYear = true;
+					t = '{$info.airtime}'*1000;
+					ts = <?php echo time(); ?>*1000;	
+
+				$("video").css({'height':'0px'});
+	$('#countdown').countdown({
+					timestamp	: t,
+					callback	: function(days, hours, minutes, seconds){
+						
+						var message = "";
+					
+						message += days + " day" + ( days==1 ? '':'s' ) + ", ";
+						message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
+						message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
+						message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
+						note.html(message);
+						if(days==0&&hours==0&&minutes==0&&seconds==0){
+							$("video").css({'height':'200px'});
+							$("#play").show();
+							$("#backdrop").hide();
+							
+						}
+					}
+				});
+				 
+</script> 
+        <?php
+         }
+		?>
+
+ 
+    </div>
+</div>
+		</div>
+        
+        
+        <!--#include file="videopublic.html"-->
+        
+        
+        
+         
+	</body>
+</html>

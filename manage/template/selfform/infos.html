@@ -13,7 +13,7 @@
 				
 			
 			</div>
-            <div class="scrolldiv">
+            <div class="scrolldiv" id="scrolldiv">
 			<table style="min-width: 1350px; transform: rotate(180deg);"  cellspacing="0" class="oftentable">
 				<tr class="bgth">
                 	<th style="text-align:left; padding-left:20px;" width="10%">ID</th>
@@ -126,4 +126,7 @@ function del(id,obj) {
 		}
 	});
 }
+$(function(){
+	document.getElementById('scrolldiv').scrollLeft=5000;
+});
 </script>

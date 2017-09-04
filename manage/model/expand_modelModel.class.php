@@ -294,7 +294,8 @@ class  expand_modelModel extends commonModel
     public function get_list_model($type,$str,$config){
         switch ($type) {
             case '1':
-            case '2':
+            case '2':return $str;
+                break;
             case '4':
                 return '<a href="'.$this->config['imageurl'].$str.'">'.$str.'</a>';
                 break;
