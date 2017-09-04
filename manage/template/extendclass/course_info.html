@@ -53,6 +53,27 @@
                                 </select>
 							</td>
 						</tr>
+                        
+                           <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
+                           <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
+                          <script type="text/javascript">
+                            $(document).ready(function() {
+                                        $('#tid').multiselect({
+                                            includeSelectAllOption: true,
+                                            nonSelectedText:'未选择',
+                                            nSelectedText:'个已选',
+                                            selectAllText: '全选',
+                                            allSelectedText: '已全选',
+                                            enableClickableOptGroups: true,
+                                            enableFiltering: true,
+                                            numberDisplayed: 1,
+                                            maxHeight: 300
+                                            
+                                        });
+                                        
+                                    });
+                                </script> 
+                       
       <tr>
         <td width="120" align="right">招生数</td>
         <td>

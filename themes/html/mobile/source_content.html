@@ -22,7 +22,11 @@
 	    <script type="text/javascript" src="__TPL__mobile/dialog/jquery.artDialog.js"></script>
     </head>
 <body>
-    	
+ <?php if($info['sources']['videos']){ 
+        $ids=implode(",", $info['sources']['videos']);
+		$videos=model('content')->video_list('id in ('.$ids.')');
+       
+         ?>   	
 <section>
 		<div class="play-box">
 				<div class="channels">
@@ -36,127 +40,380 @@
   <script type="text/javascript">
 var play=1;
 </script>
-   <?php   if ($info['airtime']>time()) {  ?>
-       
-   
-     
-        <div id="backdrop" class="backdrop">
-			<img src="{$sys['imageurl']}{$info.image}"  />
-          
-			<div class="counter">
-				<p>距离开播还有：</p>
-				<div id="countdown"></div>
-			</div>   
-		</div>
-<script type="text/javascript">
- play=0;
-</script> 
-        <?php
-         }
-		?>
- 
-<div class="player">
-            <?php  if(strstr($info['videourl'],"qq.com")){ ?>
-<iframe frameborder="0" width="100%" height="200" src="{$info.videourl}" allowfullscreen></iframe> 
-
-<?php  }elseif(strstr($info['videourl'],"http")&&(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"urren")||strstr($info['videourl'],"shanyueyun"))){?>
-
+  
+  
+  
    <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
    <div id="a1" ></div>
    <script type="text/javascript">
-	
+	function playweike(e){
+		$('#a1').html('');
+		$(e).parent().addClass('active').siblings('.active').removeClass('active');
 	var w = "100%";//视频宽度
   var h = "200";//视频高度 
-  var url = "{$info.videourl}";//视频地址
+ var url=$(e).attr('video');//视频地址
   var image = "{$sys['imageurl']}{$info.image}";//封面图片
   var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
   var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
   var video=[url];
 CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+}
 
 </script>
 
 
 
-<?php }else{  ?>
-          <div id="a1" ></div>
-   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
- 
-    <?php 
-		 if( @fopen('http://'.$config[out].'/video/'.$info[videourl].'/video.m3u8', 'r' )){  ?>
-         
-        <script type="text/javascript">
-	
-	var w = "100%";//视频宽度
-  var h = "200";//视频高度
-  var url = "http://{$config.out}/video/{$info.videourl}/video.m3u8" 
-
-  var image = "{$sys['imageurl']}{$info.image}";//封面图片
-  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
-  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
-  var video=[url];
-CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
-
-</script>  
-         
-         <?php }else{  ?>
-   <script type="text/javascript">
-	var w = "100%";//视频宽度
-  var h = "200";//视频高度
-  var url = "http://{$config.out}/video/{$info.videourl}/1280/video.m3u8" 
-
-  var image = "{$sys['imageurl']}{$info.image}";//封面图片
-  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
-  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
-  var video=[url];
-CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
-
-</script> <?php  }  ?>  
-              <?php  }  ?>  
-        </div>
-        <?php   if ($info['airtime']>time()) {  ?>
-        <script type="text/javascript">
-
-var note = $('#note'),
-					newYear = true;
-					t = '{$info.airtime}'*1000;
-					ts = <?php echo time(); ?>*1000;	
-
-				$("video").css({'height':'0px'});
-	$('#countdown').countdown({
-					timestamp	: t,
-					callback	: function(days, hours, minutes, seconds){
-						
-						var message = "";
-					
-						message += days + " day" + ( days==1 ? '':'s' ) + ", ";
-						message += hours + " hour" + ( hours==1 ? '':'s' ) + ", ";
-						message += minutes + " minute" + ( minutes==1 ? '':'s' ) + " and ";
-						message += seconds + " second" + ( seconds==1 ? '':'s' ) + " <br />";
-						note.html(message);
-						if(days==0&&hours==0&&minutes==0&&seconds==0){
-							$("video").css({'height':'200px'});
-							$("#play").show();
-							$("#backdrop").hide();
-							
-						}
-					}
-				});
-				 
-</script> 
-        <?php
-         }
-		?>
 
  
     </div>
 </div>
+</div>
+        
+ <script type="text/javascript" src="__PUBLIC__/js/mobilecomment.js"></script>  
+<script>
+$(function(){ 
+	$('span#right').bind('click',function(e){
+	e.stopPropagation();
+  	$(this).prev("#current").slideToggle();	
+	})
+
+});
+
+var cid='{$info.id}';
+	
+</script>
+<!--if:{$info['cid']<>'17'}-->
+		<div class="view-box clearfix">	
+        		<div class="schoolmessage">
+                	<img class="schoollogo" src="{$sys.imageurl}{$school[$info['csid']]['headimg']}"/>
+                    <p>
+                        <span>{$school[$info['csid']]['name']}</span>
+                       
+                        <span><img  src="__PUBLIC__/images/usersee.png"/>{$info.views}    <img  src="__PUBLIC__/images/comment1.png" style="margin-left:5px;"/><font id="commentnum">0</font></span>
+                	</p>
+                </div>
+                
+                <!--if:{$desimage}-->
+				<div class="support">
+                            	+技术支持
+                            </div>
+                <div id="Qr">
+                <div class="qrk">
+                <img class="qr" src="{$sys.imageurl}{$desimage}" /><span onclick="toclose(this)"><img src="/themes/html/mobile/img/gb.png" /></span>
+                </div>
+                </div>
+					 <!--/if-->
+		</div>
+	  <!--/if-->
+      
+      
+      
+      <section>
+			<div class="tab-box" id="tab-box">
+				<ul id="myTab" class="  clearfix" role="tablist">
+                	
+                          <li class="funcions1 active" ><a href="#funcions1"  role="tab" data-toggle="tab">互动评论</a></li>		
+                           <li class="funcions2 " ><a href="#funcions2"  role="tab" data-toggle="tab">打点评论</a></li>		
+                    <li class="funcions3 " ><a href="#funcions3"  role="tab" data-toggle="tab">课程目录</a></li>	
+                    <li class="funcions4 " ><a href="javascript:;" onClick="$('#ziliao').show();$('#a1').hide();">课件资源</a></li>	
+				</ul> 
+				
+				<div id="myTabContent" class="tab-content">
+                	
+                     <div class="tab-pane active" id="funcions1">
+                     
+                    
+                     
+                      <!--#include file="menu_comment.html"-->
+					 
+                     
+                     </div>
+                     <div class="tab-pane " id="funcions2">
+                     
+                    
+                     
+                      <!--#include file="menu_jiaoyan.html"-->
+					 
+                     
+                     </div>
+                     <div class="tab-pane  wclist" id="funcions3">
+                     
+                    
+                     <ul id="weikelist">
+                     <!--foreach:{$videos $val}-->  
+                        <li>
+                            <a href="javascript:" video="<?=urlencode($val['vurl'])?>" onclick="playweike(this)">{$val.name}</a>
+                        </li>
+                        <!--/loop-->
+					 </ul>
+                     
+                     
+                     <script>
+                     	$('#weikelist').find('a').eq(0).click();
+                     </script>
+                     </div>
+                           
+                            
+                    
+                        <div class="modal dbg" id="mymodal">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+					<div class="modal-body" style="padding-top:10px;">
+                 <?php  if($commentinputs&&$selfform){
+                
+                  ?>
+                 <div class="choosep">
+                 	<p><img src="img/tongji.jpg"/>{$selfform.name}</p>
+                 
+                 
+                      <!--foreach:{$commentinputs $v}-->
+                     
+      					{$php( echo model('selfform')->get_field_html($v,''))}
+                       
+      				  <!--{/foreach}-->
+           
+           
+            <input type="hidden" name="aid"  value="{$info.aid}"/>
+            <input type="hidden" name="fid" value="{$v.fid}"/>
+             </div>
+              <?php } ?>
+              
+              <?php if($jiaoyancommentflag){ ?>
+              <div class="comment-area" id="commentform" style="display:none"  >
+          
+           <span id="start2">开始:00:00</span>
+            <div class="area"><div class="progress1" id="progress2"></div></div>
+             <span id="end2">结束:00:00</span>
+           </div>  
+           <?php } ?>
+         
+         
+						<div contenteditable="true" id="editors"  style="padding:5px;" class="biaoqing" onfocus="hidespan(this)" onblur="showspan(this)" onkeydown="myInput.listen(this, event);"><span>输入评论...</span></div>
+                        <div class="imgk">
+                        	 <img id="smiles" src="__PUBLIC__/images/face.png" >
+                             <div class="page_emotion box_swipe" id="page_emotion">
+                                <dl id="list_emotion" class="list_emotion pt_10"></dl><!-- 表情框 -->
+                                <dt><ol id="nav_emotion" class="nav_emotion"></ol></dt><!-- 分页提示点 -->
+                            </div>
+                        </div>
+                        
+						<div class="icongroups">
+				
+						</div>
+						<div style="text-align: center;position:relative">
+                        	<input name="pid" type="hidden" value="" id="pid">
+                            <input name="toname" type="hidden" value="" id="toname">
+							<button id="input-type-submit" type="button" class="btn btn-primary">发布</button>
+							<button id="modal_cance" type="button" class="btn btn-default"  data-dismiss="modal">返回</button>
+                            <div id="messageto"></div>
+						</div>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
 		</div>
         
+                     
+                
+				</div>
+			</div>
+		</section>
+        <?php  } ?>
         
-        <!--#include file="videopublic.html"-->
+        
+         <?php  if($info['sources']['source']){ 
+           $ids=implode(",", $info['sources']['source']);
+		$sources=model('content')->video_list('id in ('.$ids.')');
+         
+          ?>
+        
+        <div id="ziliao">
+			<a href="javascript:;" class="toback">&lt;返回</a>
+				<ul>
+      <!--foreach:{$sources $val}-->  
+        	<li>
+            	
+                <?php  $name= explode( '.',$val['vurl']) ; $name='.'.end($name)?>
+             {$val.name}{$name}
+             <a href="{$val.vurl}"  >下载</a>
+             	
+                
+            </li>
+                <!--/loop-->
+                
+					
+				</ul>
+			</div>
+		
+        <script>
+        	if($('#a1').length==0){
+				$('#ziliao').show();
+				$('.toback').remove();
+			}
+			
+			$('.toback').click(function(){
+				$(this).parent().hide();
+			});
+        </script>
         
         
+        <?php  } ?>
+        <script>
+		            var s =document.getElementById("tab-box");
+		            var uls = document.getElementById("myTab");
+					var as = uls.getElementsByTagName("a");
+					for(var i=0; i<as.length;i++){
+						var sum = parseInt(s.clientWidth/ as.length)
+						as[i].style.width = sum +"px";
+					}
+					
+					function zan(){
+						var counts = document.getElementById("zan-counts");
+						
+						$.post('/index.php/change',{type:'love',fid:'{$info.aid}',uid:'<?php echo $userinfo["uid"];?>'},function(data){
+				if(data.status=='1'){
+				
+					 counts.innerHTML = counts.innerHTML*1+1;
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}else{
+					$.dialog({content:data.msg});
+					//alert(data.msg)
+				}
+			},'json');
+						
+						   
+					}
+					
+					
+		
+		 var style="<?=$zidingyi[style]?>";
+		changecolor(style);
+			$('#mask').click(function(){
+		$('#mask,#register').hide();
+	});
+function changecolor(color){
+	if(color=='red')
+{
+	$('.view-box').addClass('backgroudCb');
+	$('.infos').addClass('chageCw');
+	$('#myTab').addClass('backgroudC')
+	}else{
+		$('#myTab').addClass('tab-nav')
+		}
+}	
+					
+		</script>
+      
+<!--Tabs.js-->
+<script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
+<script>
+ 	
+	
+	
+	
+$('.gongneng').click(function(){
+	if($('#nowgn').css('height')=='0px'){
+		$('#nowgn').stop().animate({height:'100px'},300);
+	}else{
+		$('#nowgn').stop().animate({height:'0'},300);
+	}
+
+});
+	
+$('body').click(function(e){
+	var elem = e.target || e.srcElement; 
+	if(elem.id!='nowgn'){
+		console.log(1)
+		if($('#nowgn').css('height')=='100px'){
+			$('#nowgn').stop().animate({height:'0'},300);
+		}
+	}
+	
+});
+
+ 
+$('.support').click(function(e){
+		e.preventDefault();
+		$('#Qr').show();
+		$('#sfunction').stop().animate({height:'0'},500);
+	});
+	 
+	 
+	function toclose(e){
+		$(e).parents('#Qr').hide();
+	} 
+
+//修改播放器高度 
+$(function(){
+	$('.show').css('height',$(document).width()/16*9+'px');
+	$('.counter').css('top',(($(document).width()/16*9)-50)+'px');
+	$('#a1').css('height',$(document).width()/16*9+'px');
+	$('#play').css('height',$(document).width()/16*9+'px');
+	$('#Qr').css('top',$(document).width()/16*9+'px');
+	
+	//获取视频外多余高度
+	if($('.scroll-bar').length > 0){	
+		$('[id^="funcions"]').css('height',$(window).height()-125-$(document).width()/16*9+'px');
+		
+	}else{
+		$('[id^="funcions"]').css('height',$(window).height()-100-$(document).width()/16*9+'px');
+		
+	}
+	
+	if($('#container').children().length==0){
+		$('#container').append('<div class="nocomment"><img src="__PUBLIC__/images/nocomment.png" /></div>');
+		
+	}
+	
+	
+	
+});
+
+
+
+</script>
+<link href="__PUBLIC__/js/biaoqing/css/webiaoqing.css" rel="stylesheet" type="text/css">
+<script src="__PUBLIC__/js/biaoqing/js/webiaoqin.js" ></script> 
+
+<script>
+//div默认文字显示隐藏
+function hidespan(ele) {
+	if(ele.innerHTML == "<span>输入评论...</span>") {
+		ele.innerHTML = "";
+	}
+}
+function showspan(ele) {
+	if(ele.innerHTML == "") {
+		ele.innerHTML = "<span>输入评论...</span>";
+	}
+}
+$(function(){
+	$("#page_emotion  dd").click(function(){
+	console.log(1);
+     $(".biaoqing").html( $(".biaoqing").html().replace('输入评论...', '') );
+});
+});
+
+
+
+
+$('#smiles').click(function(){
+	$('#page_emotion').toggle();
+});
+
+
+
+
+</script>
+
+
+
+   <!--#include file="common.html"-->
+   
+        
+        
+       
+ </section>       
         
          
 	</body>
