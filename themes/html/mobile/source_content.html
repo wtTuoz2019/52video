@@ -107,15 +107,25 @@ var cid='{$info.id}';
         <ul id="weikelist">
                      <!--foreach:{$videos $val}-->  
                         <li>
-                            <a href="javascript:" video="{$val['vurl']}" onclick="playweike(this)">{$val.name len='12'}</a>
+                            <a href="javascript:" video="{$val['vurl']}" onclick="playweike(this)">{$val.name}</a>
                         </li>
                         <!--/loop-->
 					 </ul>
                   </div>
                       <script>
-					  	$('#weikelist').width($('#weikelist li').length*135);
+					  	var w1=0;
                      	$('#weikelist').find('a').eq(0).click();
-                     </script>
+						$('#weikelist a').each(function() {
+                            var len=$(this).text().length;
+							var text1=$(this).text().substring(0,len/2);
+							var text2=$(this).text().substring(len/2,len);
+							
+							$(this).html('<p>'+text1+'</p><p>'+text2+'</p>');
+							var w2=parseInt($(this).width())+30;
+							w1=w1+w2; 
+                        });
+						$('#weikelist').width(w1);
+                     </script> 
       </div>
       
       
@@ -357,6 +367,12 @@ $(function(){
 		$('[id^="funcions"]').css('height',$(window).height()-192-$(document).width()/16*9+'px');
 		
 	}
+	
+	if($('#weikelist li').length==1){
+		$('.kcmllist').hide();
+		$('[id^="funcions"]').css('height',$(window).height()-100-$(document).width()/16*9+'px');
+	}
+	
 	
 	if($('#container').children().length==0){
 		$('#container').append('<div class="nocomment"><img src="__PUBLIC__/images/nocomment.png" /></div>');

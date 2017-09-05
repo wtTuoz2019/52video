@@ -1357,20 +1357,20 @@ body{
 }
 .kcmllist ul li{
 	display:inline-block;
-	width:120px;
 	height:56px;
 	font-size:12px;
-	background:#F4F4F4;
-	padding:5px;
+	background:#F4F4F4; 
+	padding:10px 5px;
 	margin-right:15px !important;
 	border-radius:5px;
 }
 .kcmllist ul li:last-child{
-	margin-right:0 !important;
+	margin-right:0 !important; 
 }
-.kcmllist ul li a{
+.kcmllist ul li a,.kcmllist ul li a p{
 	font-size:13px;
 	color:#333;
+	display:block;
 }
 .kcmllist ul li.active a{
 	color:#606a97;

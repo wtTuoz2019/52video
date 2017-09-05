@@ -110,11 +110,16 @@
 		</script>
             
             <?php  } ?>
-		<?php  if ($signupdetail) { ?>
+		<?php  if ($signupdetail) {   if($signupdetail['lock']){ ?>
+          <button class="sign_up" onClick="cansesignup()">
+				已报名
+			</button>
+        				<?php  }else{ ?>
         <button class="sign_up" onClick="cansesignup()">
 				取消报名
 			</button>
-        
+        					 <?php  } ?>
+             
         	<?php  }else{ ?>
 			<button class="sign_up" onClick="signup()">
 				点击报名
