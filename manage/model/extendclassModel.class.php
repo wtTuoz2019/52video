@@ -148,6 +148,10 @@ class extendclassModel extends commonModel {
 		return $this->model->table('course_signup')->data($data)->insert();
 		
 		}
+	public function signup_del($id){
+		return $this->model->table('course_signup')->data(array('id'=>$id))->delete();
+		
+		}
 	public function batch_list($where){
 		return $this->model->table('course_batch')->where($where)->order('id desc')->select();
 		}

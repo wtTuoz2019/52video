@@ -851,7 +851,7 @@ class extendclassMod extends commonMod {
 		 $id=$_POST['id'];
      
         $this->alert_str($_POST['id'],'int',true);
-        model('extendclass')->student_del($id,$fid);
+        model('extendclass')->signup_del($id);
       
         $this->msg('删除成功！',1);
 		

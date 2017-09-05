@@ -91,11 +91,13 @@ class parentMod extends commonMod {
 			
 			
 		$course['bj_ids']=unserialize($course['bj_ids']);
-		if($course['bj_ids'][0]||count($course['bj_ids'])>1){
+		$this->signupdetail=model('extendclass')->signup_info(array('cid'=>$course['id'],'sid'=>$this->student['stid']));
+		if(($course['bj_ids'][0]||count($course['bj_ids'])>1)&&!$this->signupdetail){
 			if(!in_array($this->student['bj_id'],$course['bj_ids'])){
 				$this->alert('您所在的班级不能报名该课程');
 				}
 			}
+			
 			$bjsignnum=model('extendclass')->signup_bj_num(array('cid'=>$course['id'],'bj_id'=>$this->student['bj_id']));;
 			if($bjsignnum>=$course['limitnum'])$this->alert('报名已满');
 			
@@ -104,23 +106,24 @@ class parentMod extends commonMod {
 			
 			
 			}
-		$this->signupdetail=model('extendclass')->signup_info(array('cid'=>$course['id'],'sid'=>$this->student['stid']));
+		
 		$this->course=$course;
 		
 		$this->display('parents_kcdetail.html');
 		}
 	public function signup(){
-		
-		$batch=model('extendclass')->new_course(array('uid'=>$this->config['uid']));
+			$id=intval($_POST['id']);
+		$course=model('extendclass')->course_info('A.id='.$id.' and A.uid='.$this->config['uid']);
+		if(!$course)$this->msg('无此课程',0);
+		$batch=model('extendclass')->batch_info(array('uid'=>$this->config['uid'],'id'=>$course['bid']));
 		if($batch['limitnum']){
-			if($batch['limitnum']==model('extendclass')->signup_num(array('bid'=>$batch['id'],'sid'=>$this->student['stid']))){
+			if($batch['limitnum']<=model('extendclass')->signup_num(array('bid'=>$batch['id'],'sid'=>$this->student['stid']))){
 				$this->msg('每位学生最多只能报'.$batch['limitnum'].'课程',0);
 				}
 			
 			}
-		$id=intval($_POST['id']);
-		$course=model('extendclass')->course_info('A.id='.$id.' and A.uid='.$this->config['uid']);
-		if(!$course)$this->msg('无此课程',0);
+	
+		
 		$course['bj_ids']=unserialize($course['bj_ids']);
 		if($course['bj_ids'][0]||count($course['bj_ids'])>1){
 			if(!in_array($this->student['bj_id'],$course['bj_ids'])){
