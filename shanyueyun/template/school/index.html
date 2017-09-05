@@ -21,8 +21,9 @@
       <tr>
         <th width="10%"><center>ID</center></th>
         <th width="30%">名称</th>
-         <th width="15%">头像</th>
-          <th width="15%">LOGO</th>
+          <th width="10%">学段</th>
+         <th width="10%">头像</th>
+          <th width="10%">LOGO</th>
           <th width="20%">二维码</th>
           
        
@@ -32,6 +33,7 @@
       <tr>
         <td>{$vo.id}</td>
         <td>{$vo.name}</td>
+        <td>{$xueduan[$vo['sid']]['name']}</td>
          <td><img src="{$config.imageurl}{$vo.headimg}" height="40px" /></td>
        <td><img src="{$config.imageurl}{$vo.image}" height="40px" /></td>
          <td><img src="<?php 

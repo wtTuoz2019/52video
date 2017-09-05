@@ -1253,12 +1253,15 @@ p.allcomment span{
 	background-position:center center;
 	margin-bottom:2px;
 }
-.support{
+.support,.zylist{
 	color: #959595;
     float: right;
     line-height: 40px;
     padding-right: 7px;
 	font-size:14px;
+}
+.zylist{
+	color:#606a97;
 }
 body{
 	cursor:pointer;
@@ -1336,4 +1339,16 @@ body{
 	padding-left:10px;
 	font-size:16px;
 	margin-bottom:20px;
+}
+.kcmllist{
+	overflow:hidden;
+	font-size:12px;
+}
+.kcmllist .mltitle{
+	padding:10px;
+	float:left;
+}
+.kcmllist .mltitle p{
+	writing-mode:lr-tb;
+	width:15px;
 }

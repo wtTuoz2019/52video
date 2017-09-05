@@ -1275,6 +1275,7 @@ body .oftentable tr td{
 }
 #outvideo .videocontent>div.page_form table td .multiselect{
 	width:310px;
+	overflow:hidden;
 } 
 #outvideo .videocontent>div.page_form table tr td:first-child{
 	width: 130px;

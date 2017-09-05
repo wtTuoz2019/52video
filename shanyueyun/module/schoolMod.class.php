@@ -6,6 +6,7 @@ class schoolMod extends commonMod {
     {
         parent::__construct();
 		$this->citys=model('diyfield')->field_list_data(6);
+		$this->xueduan=model('diyfield')->field_list_databywhere(array('did'=>7,'pid'=>0));
     }
 
 	 //列表

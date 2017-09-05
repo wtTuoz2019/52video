@@ -36,6 +36,19 @@
           <td></td>
         </tr>
        <tr>
+         <tr>
+          <td width="120" >所属学段</td>
+          <td width="300"><select name="sid"  reg="." id="sid"  >
+              <!--foreach:{$xueduan $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['sid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+            </select>
+            </td>
+          <td></td>
+        </tr>
+       <tr>
         <td width="100">头像</td>
         <td colspan="2">
           <?php echo module('editor')->get_image_upload('headimg1','headimg',false,'editor_content') ?>

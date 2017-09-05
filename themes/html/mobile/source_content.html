@@ -93,18 +93,20 @@ var cid='{$info.id}';
                 	</p>
                 </div>
                 
-                <!--if:{$desimage}-->
-				<div class="support">
-                            	+技术支持
+                
+				<div class="zylist" onClick="$('#ziliao').show();$('#a1').hide();">
+                            	+课件资源
                             </div>
-                <div id="Qr">
-                <div class="qrk">
-                <img class="qr" src="{$sys.imageurl}{$desimage}" /><span onclick="toclose(this)"><img src="/themes/html/mobile/img/gb.png" /></span>
-                </div>
-                </div>
-					 <!--/if-->
+               
+					
 		</div>
 	  <!--/if-->
+      
+      <div class="kcmllist">
+      	<div class="mltitle">
+        	<p>课程目录</p>
+        </div>
+      </div>
       
       
       
@@ -115,7 +117,7 @@ var cid='{$info.id}';
                           <li class="funcions1 active" ><a href="#funcions1"  role="tab" data-toggle="tab">互动评论</a></li>		
                            <li class="funcions2 " ><a href="#funcions2"  role="tab" data-toggle="tab">打点评论</a></li>		
                     <li class="funcions3 " ><a href="#funcions3"  role="tab" data-toggle="tab">课程目录</a></li>	
-                    <li class="funcions4 " ><a href="javascript:;" onClick="$('#ziliao').show();$('#a1').hide();">课件资源</a></li>	
+                    
 				</ul> 
 				
 				<div id="myTabContent" class="tab-content">
@@ -252,6 +254,7 @@ var cid='{$info.id}';
 			
 			$('.toback').click(function(){
 				$(this).parent().hide();
+				$('#a1').show();
 			});
         </script>
         
@@ -356,7 +359,7 @@ $(function(){
 		$('[id^="funcions"]').css('height',$(window).height()-125-$(document).width()/16*9+'px');
 		
 	}else{
-		$('[id^="funcions"]').css('height',$(window).height()-100-$(document).width()/16*9+'px');
+		$('[id^="funcions"]').css('height',$(window).height()-99-$(document).width()/16*9+'px');
 		
 	}
 	

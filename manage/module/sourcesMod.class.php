@@ -231,7 +231,7 @@ class sourcesMod extends commonMod
     	$id=intval($_GET['id']);
 		$id=$id?$id:'18';
         $this->alert_str($id,'int');
-		$this->actionname='活动列表';
+		$this->actionname='课程资源列表';
         //获取公共信息条件
         $where=$this->common_list_where();
         $this->view()->assign($this->common_list());
@@ -278,7 +278,7 @@ class sourcesMod extends commonMod
 
     //内容添加
     public function add()
-    {	$this->actionname='活动发布';
+    {	$this->actionname='课程资源发布';
         $cid=intval($_GET['cid']);
         $this->alert_str($cid,'int');
         $this->view()->assign($this->common_info($cid));
@@ -319,7 +319,7 @@ class sourcesMod extends commonMod
     public function edit()
     {	
 		
-		$this->actionname='活动编辑';
+		$this->actionname='课程资源编辑';
         $id=intval($_GET['id']);
         $this->alert_str($id,'int');
 		$info=$this->common_info($id,true);

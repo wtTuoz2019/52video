@@ -33,6 +33,19 @@ class  diyfieldModel extends commonModel
 			}
 		return $temp;
     }
+	
+	  public function field_list_databywhere($where)
+    {
+        $data=$this->model->table('diyfield_value')->where($where)->order('sequence asc,id asc')->select();
+		$temp=array();
+		if(!is_array($data)){
+			return $temp;
+		}
+		foreach($data as $k=>$v){
+			$temp[$v['id']]=$v;
+			}
+		return $temp;
+    }
 
     //获取列表
     public function field_list($did = 0) {
