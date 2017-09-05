@@ -79,8 +79,64 @@
                                     });
                                 </script> 
                        
+                    <tr>
+          <td width="100" align="right">所属学段</td>
+          <td colspan="2" class="xueduan">
+             <select name="xueduan"  reg="." id="xueduan" alt="学段"   onChange="changxueduan(this)" msg="学段未选择"   >
+             <option value="0">学段</option>
+                <!--foreach:{$xueduan['xueduanlist'] $vo}--> 
+              <option value="{$vo['id']}" <?php if($xueduan['xueduan']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+           	</select>
+             <select name="kemu"  reg="." id="kemu" alt="科目" onChange="changxueduan(this)" msg="科目未选择"   >
+              <option value="0">科目</option>
+                <!--foreach:{$xueduan['kemulist'] $vo}--> 
+              <option value="{$vo['id']}" <?php if($xueduan['kemu']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+           	</select>
+            
+           
+             <select name="banben"  reg="." id="banben" alt="版本" onChange="changxueduan(this)" msg="版本未选择"  >
+              <option value="0">版本</option>
+                <!--foreach:{$xueduan['banbenlist'] $vo}--> 
+              <option value="{$vo['id']}" <?php if($xueduan['banben']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+           	</select>
+            
+             <select name="nianji"  reg="." id="nianji" msg="年级未选择"  alt="年级" >
+              <option value="0">年级</option>
+                <!--foreach:{$xueduan['celist'] $vo}--> 
+              <option value="{$vo['id']}" <?php if($info['nianji']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                  {$vo['name']}
+              </option>
+              <!--{/foreach}-->
+           	</select>
+            </td>
+        
+        </tr>    
+                     <script>
+                         function changxueduan(e){
+			var id=$(e).val();
+			var selectdom=$(e).next('select');
+			$.post('__URL__/xueduan',{id:id},function(data){
+				var html=' <option value="0">'+selectdom.attr('alt')+'</option>';
+				$.each(data,function(index,vo){
+					html+='<option value='+vo.id+' >'+vo.name+'</option>';
+					})
+				selectdom.html(html);
+				
+
+				},'json');
+			
+			}
                      
-                       
+                     </script>  
 						<tr>
 							<td>标题：</td>
 							<td>
@@ -302,4 +358,4 @@
 			
 			
 		</div>
-        {include file="activity/common"}
+        {include file="sources/common"}

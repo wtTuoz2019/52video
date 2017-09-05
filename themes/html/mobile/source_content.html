@@ -50,7 +50,7 @@ var play=1;
 		$('#a1').html('');
 		$(e).parent().addClass('active').siblings('.active').removeClass('active');
 	var w = "100%";//视频宽度
-  var h = "200";//视频高度 
+  var h = "300";//视频高度 
  var url=$(e).attr('video');//视频地址
   var image = "{$sys['imageurl']}{$info.image}";//封面图片
   var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
@@ -105,7 +105,21 @@ var cid='{$info.id}';
       <div class="kcmllist">
       	<div class="mltitle">
         	<p>课程目录</p>
+            
         </div>
+        <div class="ulk">
+        <ul id="weikelist">
+                     <!--foreach:{$videos $val}-->  
+                        <li>
+                            <a href="javascript:" video="<?=urlencode($val['vurl'])?>" onclick="playweike(this)">{$val.name len='12'}</a>
+                        </li>
+                        <!--/loop-->
+					 </ul>
+                  </div>
+                      <script>
+					  	$('#weikelist').width($('#weikelist li').length*135);
+                     	$('#weikelist').find('a').eq(0).click();
+                     </script>
       </div>
       
       
@@ -116,7 +130,7 @@ var cid='{$info.id}';
                 	
                           <li class="funcions1 active" ><a href="#funcions1"  role="tab" data-toggle="tab">互动评论</a></li>		
                            <li class="funcions2 " ><a href="#funcions2"  role="tab" data-toggle="tab">打点评论</a></li>		
-                    <li class="funcions3 " ><a href="#funcions3"  role="tab" data-toggle="tab">课程目录</a></li>	
+                    
                     
 				</ul> 
 				
@@ -138,22 +152,7 @@ var cid='{$info.id}';
 					 
                      
                      </div>
-                     <div class="tab-pane  wclist" id="funcions3">
                      
-                    
-                     <ul id="weikelist">
-                     <!--foreach:{$videos $val}-->  
-                        <li>
-                            <a href="javascript:" video="<?=urlencode($val['vurl'])?>" onclick="playweike(this)">{$val.name}</a>
-                        </li>
-                        <!--/loop-->
-					 </ul>
-                     
-                     
-                     <script>
-                     	$('#weikelist').find('a').eq(0).click();
-                     </script>
-                     </div>
                            
                             
                     
@@ -359,7 +358,7 @@ $(function(){
 		$('[id^="funcions"]').css('height',$(window).height()-125-$(document).width()/16*9+'px');
 		
 	}else{
-		$('[id^="funcions"]').css('height',$(window).height()-99-$(document).width()/16*9+'px');
+		$('[id^="funcions"]').css('height',$(window).height()-192-$(document).width()/16*9+'px');
 		
 	}
 	

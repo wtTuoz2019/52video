@@ -98,6 +98,7 @@ class sourcesMod extends commonMod
     {
         $position_list=model('position')->position_list();
         $category_list=model('category')->category_list();
+	
         $model_info=module('content_category')->get_model();
         $data['position_list']=$position_list;
         $data['category_list']=$category_list;
@@ -187,7 +188,7 @@ class sourcesMod extends commonMod
 		$data['papers']=model('content')->video_list("type='paper' ".$wherevideos); 
 		 
 	
-		 
+		
 		 
         $data['position_array']=$position_array;
         $data['file_id']=$file_id;
@@ -204,6 +205,16 @@ class sourcesMod extends commonMod
 
         return $data;
     }
+	
+	
+	public function xueduan(){
+		    $pid=intval($_POST['id']);
+			
+		   $list=model('diyfield')->field_list_array($pid);
+		; 
+
+		echo  json_encode($list);
+		}
 
     //公共保存检测信息
     public function common_data_check($data)
@@ -285,6 +296,9 @@ class sourcesMod extends commonMod
         $this->view()->assign($this->common_data_info($cid));
 			$this->field_list=model('form')->field_list(4);
 			 $where=$this->common_list_where();
+			 
+			  $data['xueduanlist']=model('diyfield')->field_list_data(7,0);
+			  $this->xueduan=$data;
 		 $this->list=model('live')->content_list(null,null,$where['where'],$where['order'],true);	
         $this->show('sources/info');
     }
@@ -323,6 +337,8 @@ class sourcesMod extends commonMod
         $id=intval($_GET['id']);
         $this->alert_str($id,'int');
 		$info=$this->common_info($id,true);
+	
+		
 		$content=$info['info'];
 		 $where=$this->common_list_where();
 		 $this->list=model('live')->content_list(null,null,$where['where'],$where['order'],true);	
@@ -330,6 +346,26 @@ class sourcesMod extends commonMod
         $this->view()->assign($info);
         $this->view()->assign($this->common_data_info($cid));
 		$this->field_list=model('form')->field_list(4);
+	
+			if($content['nianji']){
+		$datatemp=model('diyfield')->infovalue($content['nianji']);
+			
+		$data['banben']=$datatemp['pid'];
+		$data['celist']=model('diyfield')->field_list_data(7,$data['banben']);
+		
+		$datatemp=model('diyfield')->infovalue($data['banben']);
+	  	$data['kemu']=$datatemp['pid'];
+		$data['banbenlist']=model('diyfield')->field_list_data(7,$data['kemu']);
+		$datatemp=model('diyfield')->infovalue($data['kemu']);
+	  	$data['xueduan']=$datatemp['pid'];
+		$data['kemulist']=model('diyfield')->field_list_data(7,$data['xueduan']);
+	
+		}else{
+				$data['xueduanlist']=model('diyfield')->field_list_data(7,0);
+			}
+			
+			
+		$this->xueduan=$data;
         $this->show('sources/info');
     }
 

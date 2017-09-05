@@ -1315,21 +1315,7 @@ body{
 	border:1px solid #E0DFDF;
 	margin-top:7px;
 }
-.wclist a{
-	display:block;
-	color: #616161;
-	background-image:url(../img/noplay.png);
-	background-repeat:no-repeat;
-	padding:20px 15px;
-	padding-left:30px;
-	font-size:12px;
-	background-position: 10px 21px;
-	border-bottom: 1px dashed #D2D2D2;
-}
-.wclist li.active a{
-    color: #299fcb;
-    background-image: url(../img/onplay.png);
-}
+
 #ziliao .toback{
 	height:40px;
 	background:#38373C;
@@ -1344,14 +1330,48 @@ body{
 	overflow:hidden;
 	font-size:12px;
 	background:#fff;
+	margin-top:10px;
+	color:#606a97;
 }
 .kcmllist .mltitle{
 	padding:10px;
 	float:left;
+	padding-left:0;
 }
 .kcmllist .mltitle p{
 	writing-mode:lr-tb;
-	width:15px;
+	width:35px;
 	font-size:12px;
-	line-height: initial;
+	line-height: 13px;
+	padding:5px 10px;
+	text-align:center;
+	background:#F4F4F4;
+}
+.kcmllist .ulk{
+	overflow-x:scroll;
+	margin-left:45px;
+}
+.kcmllist ul{
+	
+	padding:13px 0;
+}
+.kcmllist ul li{
+	display:inline-block;
+	width:120px;
+	height:56px;
+	font-size:12px;
+	background:#F4F4F4;
+	padding:5px;
+	margin-right:15px !important;
+	border-radius:5px;
+}
+.kcmllist ul li:last-child{
+	margin-right:0 !important;
+}
+.kcmllist ul li a{
+	font-size:13px;
+	color:#333;
+}
+.kcmllist ul li.active a{
+	color:#606a97;
 }

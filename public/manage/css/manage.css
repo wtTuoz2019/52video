@@ -2478,3 +2478,6 @@ body .oftentable.tianyuant tr td{
 	max-height:40px;
 	max-width:40px;
 }
+#outvideo .videocontent>div.page_form table td.xueduan>select{
+	width:70px !important;
+}

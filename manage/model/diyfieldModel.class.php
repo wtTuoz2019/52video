@@ -19,10 +19,27 @@ class  diyfieldModel extends commonModel
         $cat = new Category(array('id', 'pid', 'name', 'cname'));
         return $data;
     }
+		 //获取模型信息
+    public function infovalue($id) {
+        $where['id']=$id;
+
+        return $this->model->table('diyfield_value')->where($where)->find();
+    }
 	
-	  public function field_list_data($did)
+	  public function infovalueid($where) {
+    
+
+       $data=$this->model->table('diyfield_value')->field('id')->where($where)->find();
+	   return $data['id'];
+    }
+  
+	  public function field_list_data($did,$pid=null)
     {
-        $data=$this->model->table('diyfield_value')->where('did='.$did)->order('sequence asc,id asc')->select();
+			
+		$where['did']=$did;
+		if(isset($pid))
+		$where['pid']=$pid;
+        $data=$this->model->table('diyfield_value')->where($where)->order('sequence asc,id asc')->select();
 		$temp=array();
 		if(!is_array($data)){
 			return $temp;
@@ -32,6 +49,23 @@ class  diyfieldModel extends commonModel
 			}
 		return $temp;
     }
+		  public function field_list_array($pid=0)
+    {
+			
+	
+		if(isset($pid))
+		$where['pid']=$pid;
+        $data=$this->model->table('diyfield_value')->where($where)->order('sequence asc,id asc')->select();
+		$temp=array();
+		if(!is_array($data)){
+			return $temp;
+		}
+		foreach($data as $k=>$v){
+			$temp[$v['id']]=$v;
+			}
+		return $temp;
+    }
+
 
     //获取列表
     public function field_list($did = 0) {
