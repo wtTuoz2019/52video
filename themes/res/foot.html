@@ -11,19 +11,16 @@
 					<li class="foot2">
 						<p class="toptitle">联系方式</p>
 						<ul>
-							<li>
-								<a href="#">地址：中国 上海</a>
-							</li>
-							<li>
-								<a href="#"> 电话：021-3126-5752</a>
-							</li>
-							<li>
-								<a href="#">传真：021-6082-3272</a>
-							</li>
+							<!--channel:{table="web_contact"  order="sequence desc,id asc" where="uid=<$sys.uid> " }-->
+                    	<li>
+							<?=$channel['image']?'<img src="'.$sys['imageurl'].$channel['image'].'">':''?><a href="{$channel.url}" target="_blank">{$channel.content}</a>
+                            
+						</li>
+                          <!--/channel-->
 						</ul>
 					</li>
 					<li class="foot3">
-						<img src="img/qr.jpg"/>
+						<img  src="{$sys.erweima}"/>
 					</li>
 				</ul>
 			</div>

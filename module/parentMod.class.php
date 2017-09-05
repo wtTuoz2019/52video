@@ -92,7 +92,8 @@ class parentMod extends commonMod {
 			
 		$course['bj_ids']=unserialize($course['bj_ids']);
 		$this->signupdetail=model('extendclass')->signup_info(array('cid'=>$course['id'],'sid'=>$this->student['stid']));
-		if(($course['bj_ids'][0]||count($course['bj_ids'])>1)&&!$this->signupdetail){
+		if(!$this->signupdetail){
+		if(($course['bj_ids'][0]||count($course['bj_ids'])>1)){
 			if(!in_array($this->student['bj_id'],$course['bj_ids'])){
 				$this->alert('您所在的班级不能报名该课程');
 				}
@@ -103,6 +104,7 @@ class parentMod extends commonMod {
 			
 			$course['signnum']=model('extendclass')->signup_num(array('cid'=>$course['id']));
 			if($course['signnum']>=$course['number'])$this->alert('报名已满');
+		}
 			
 			
 			}
