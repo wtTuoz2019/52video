@@ -1343,6 +1343,7 @@ body{
 .kcmllist{
 	overflow:hidden;
 	font-size:12px;
+	background:#fff;
 }
 .kcmllist .mltitle{
 	padding:10px;
@@ -1351,4 +1352,6 @@ body{
 .kcmllist .mltitle p{
 	writing-mode:lr-tb;
 	width:15px;
+	font-size:12px;
+	line-height: initial;
 }

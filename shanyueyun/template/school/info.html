@@ -39,6 +39,9 @@
          <tr>
           <td width="120" >所属学段</td>
           <td width="300"><select name="sid"  reg="." id="sid"  >
+           <option value="0">
+                 请选择
+              </option>
               <!--foreach:{$xueduan $vo}--> 
               <option value="{$vo['id']}" <?php if($info['sid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
                   {$vo['name']}
