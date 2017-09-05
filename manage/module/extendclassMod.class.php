@@ -815,7 +815,7 @@ class extendclassMod extends commonMod {
 					
 					$sid=model('extendclass')->student($array);
 							
-						$temp=array('cid'=>$cid,'time'=>time(),'sid'=>$sid);
+						$temp=array('cid'=>$cid,'time'=>time(),'sid'=>$sid,'bid'=> $info['bid']);
 					
 						model('extendclass')->signup_add_save($temp);
 						}
