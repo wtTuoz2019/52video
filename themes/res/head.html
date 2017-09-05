@@ -1,0 +1,28 @@
+<div class="head">
+			<div class="logo">
+				<img src="img/logo.jpg"/>闪阅云资源平台
+			</div>
+			
+			
+			<div class="search_login">
+				<form action="" method="post">
+					<input type="" name="" id="" value="" />
+					<button></button>
+				</form>
+				<a href="#" class="login">登陆</a>
+			</div>
+			
+		</div>
+		
+		<div class="navk">
+			<div class="nav">
+				<ul class="znav allnav">
+					
+					<!--channel:{table="web_menu"  order="sequence desc,id asc" where="uid=<$sys.uid> and pid=0" }-->
+					<li>
+						<a href="{$channel.murl}"><?=$channel['image']?'<img src="'.$sys['imageurl'].$channel['image'].'">':''?>{$channel.name}</a>
+					</li>
+                    <!--/channel-->
+				</ul>
+			</div>
+		</div>

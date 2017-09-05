@@ -122,7 +122,7 @@ class parentMod extends commonMod {
 				}
 			
 			}
-	
+	      
 		
 		$course['bj_ids']=unserialize($course['bj_ids']);
 		if($course['bj_ids'][0]||count($course['bj_ids'])>1){

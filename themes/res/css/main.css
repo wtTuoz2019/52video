@@ -276,6 +276,7 @@ input:focus{
 }
 .foot .foottop>ul li.foot1{
 	margin-right: 115px;
+	width:200px;
 }
 .foot .foottop>ul li.foot1 li{
 	background-image: url(../img/footicon1.png);
@@ -284,6 +285,8 @@ input:focus{
 	background-position: left center;
 	padding-left: 20px;
 	background-size: 12px;
+	float:left;
+	width:50%;
 }
 .foot .foottop>ul li.foot2{
 	width: 275px;
