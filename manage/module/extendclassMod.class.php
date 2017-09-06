@@ -303,7 +303,7 @@ class extendclassMod extends commonMod {
 		
 			$rows=$sheet['cells'];
 			$temp=array();
-			if($rows)
+			if(!$rows)$this->alert('表格内容格式错误，请下载模板编辑！');
 			foreach($rows as  $key=>$val){
 				if($key>1){
 						$array=array('name'=>$val[1],'mobile'=>$val[2],'schoolcode'=>$val[5],'codenumber'=>$val[6],'uid'=>$this->user['id']);
