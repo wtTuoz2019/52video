@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>{$common.title}</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
 	</head>
 	<body>
@@ -200,187 +200,32 @@
 					<div class="resk">
 						<p class="resnum">共搜索到50个资源</p>
 						<ul class="reslist">
+                        	<!--foreach:{$loop $list}-->
 							<li>
-								<a href="#">
+								<a href="{$list.aurl}">
 									<div class="res_img">
-										<img  src="img/videoimg.jpg"/>
+										<img  src="{$sys.imageurl}{$list.image}"/>
 									</div>
 									
 									<p class="res_name">
-										历史_印度非暴力不合作运动 
+										{$list.title len="15"} 
 									</p>
 									<p class="res_gs">
-										<span>上海闵行区阳光小学</span>
+										<span>{$school[$list['csid']]['name']}</span>
 										<span class="seenum">
 											<img src="img/see.png"/>
-											104
+											{$list.views}
 										</span>
 									</p>
 								</a>
 							</li>
-							<li>
-								<a href="#">
-									<div class="res_img">
-										<img  src="img/videoimg.jpg"/>
-									</div>
-									
-									<p class="res_name">
-										历史_印度非暴力不合作运动 
-									</p>
-									<p class="res_gs">
-										<span>上海闵行区阳光小学</span>
-										<span class="seenum">
-											<img src="img/see.png"/>
-											104
-										</span>
-									</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="res_img">
-										<img  src="img/videoimg.jpg"/>
-									</div>
-									
-									<p class="res_name">
-										历史_印度非暴力不合作运动 
-									</p>
-									<p class="res_gs">
-										<span>上海闵行区阳光小学</span>
-										<span class="seenum">
-											<img src="img/see.png"/>
-											104
-										</span>
-									</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="res_img">
-										<img  src="img/videoimg.jpg"/>
-									</div>
-									
-									<p class="res_name">
-										历史_印度非暴力不合作运动 
-									</p>
-									<p class="res_gs">
-										<span>上海闵行区阳光小学</span>
-										<span class="seenum">
-											<img src="img/see.png"/>
-											104
-										</span>
-									</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="res_img">
-										<img  src="img/videoimg.jpg"/>
-									</div>
-									
-									<p class="res_name">
-										历史_印度非暴力不合作运动 
-									</p>
-									<p class="res_gs">
-										<span>上海闵行区阳光小学</span>
-										<span class="seenum">
-											<img src="img/see.png"/>
-											104
-										</span>
-									</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="res_img">
-										<img  src="img/videoimg.jpg"/>
-									</div>
-									
-									<p class="res_name">
-										历史_印度非暴力不合作运动 
-									</p>
-									<p class="res_gs">
-										<span>上海闵行区阳光小学</span>
-										<span class="seenum">
-											<img src="img/see.png"/>
-											104
-										</span>
-									</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="res_img">
-										<img  src="img/videoimg.jpg"/>
-									</div>
-									
-									<p class="res_name">
-										历史_印度非暴力不合作运动 
-									</p>
-									<p class="res_gs">
-										<span>上海闵行区阳光小学</span>
-										<span class="seenum">
-											<img src="img/see.png"/>
-											104
-										</span>
-									</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="res_img">
-										<img  src="img/videoimg.jpg"/>
-									</div>
-									
-									<p class="res_name">
-										历史_印度非暴力不合作运动 
-									</p>
-									<p class="res_gs">
-										<span>上海闵行区阳光小学</span>
-										<span class="seenum">
-											<img src="img/see.png"/>
-											104
-										</span>
-									</p>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="res_img">
-										<img  src="img/videoimg.jpg"/>
-									</div>
-									
-									<p class="res_name">
-										历史_印度非暴力不合作运动 
-									</p>
-									<p class="res_gs">
-										<span>上海闵行区阳光小学</span>
-										<span class="seenum">
-											<img src="img/see.png"/>
-											104
-										</span>
-									</p>
-								</a>
-							</li>
+                            <!--/list-->
+							
 						</ul>
 						<div class="clear"></div>
 						<div class="page">
 							<ul>
-								<li class="current">
-									<a href="#">1</a>
-								</li>
-								<li>
-									<a href="#">2</a>
-								</li>
-								<li>
-									<a href="#">3</a>
-								</li>
-								<li>
-									<a href="#">4</a>
-								</li>
-								<li>
-									<a href="#">5</a>
-								</li>
+								{$page}
 							</ul>
 						</div>
 					</div>

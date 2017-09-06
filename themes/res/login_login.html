@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户登陆</title>
+        <script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
+	</head>
+	<body>
+		
+		  <!--#include file="head.html"-->
+			<div class="logins">
+            	<div class="logink">
+                	<div class="loginnav">
+                    	<a href="javascript:;" class="active">微信登陆</a>
+                        <a href="/manage/index.php/login" target="_blank">管理员登陆</a>
+                    </div>
+                    <div class="loginmain">
+                    	<p>打开微信“扫一扫”</p>
+                        <img src="{$sys.imageurl}/upload/login/{$code}.png"/>
+                    </div>
+                </div>
+            </div>
+        
+        
+         <script>
+function getResult(){
+	$.post("__URL__/logincode", { code: '{$code}'},
+	function(d){
+	
+		
+		if (d.status == 1) { 
+		window.location='{$tourl}';
+		}
+	}, "json");
+}
+setInterval("getResult()",3000); 
+ </script>
+ 
+
+		 <!--#include file="foot.html"-->
+        <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

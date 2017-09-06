@@ -1,3 +1,4 @@
+<div class="headtop">
 <div class="head">
 			<div class="logo">
 				<img src="{$sys.imageurl}{$sys.logo}"/>闪阅云资源平台
@@ -9,11 +10,25 @@
 					<input type="" name="" id="" value="" />
 					<button></button>
 				</form>
-				<a href="#" class="login">登陆</a>
+                  <?php 
+   if(!$userinfo){
+        ?>
+				<a href="/login/login.html" class="login">登陆</a>
+                <?php }?>
 			</div>
 			
 		</div>
-		
+         <?php if($userinfo){ ?>
+<div class="userlogo">
+                <img src="{$userinfo.headimgurl}" width="50px"></li>
+                		<!--<li><a href="javascript:" class="login"><?php echo $_SESSION['nickname'];?></a></li>-->
+                    <a href="/weixinlogin/logout" class="usertc">退出</a>
+              
+              </div>  
+                    <?php };?>
+        
+        
+		</div>
 		<div class="navk">
 			<div class="nav">
 				<ul class="znav allnav">

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$common.title}</title>
+        <meta name="description" content="{$sys.description}" />
+        <meta name="keywords" content="{$sys.keywords}" />
+       <script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" href="js/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+        <script type="text/javascript" src="js/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+		<script type=text/javascript src="js/dialog/jquery.artDialog.js?skin=default"></script>
+        <script type=text/javascript src="js/dialog/plugins/iframeTools.js"></script>
+        <link href="css/style1.css" type="text/css" rel="stylesheet">
+        <link href="css/details.css" type="text/css" rel="stylesheet">
+        <link href="css/index.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        
+       
+        
+	</head>
+    <body>
+    	<!--#include file="head.html"-->
+         
+        
+         <link href="css/rescss.css" rel="stylesheet" type="text/css" />
+         <div style="clear:both;"></div>
+		<div class="wkcnav">
+   
+			<ul>
+                 <?php if($info['sources']['videos']){  ?>
+				<li class="active">
+					<a href="#videok">课列实录</a>
+				</li>
+                
+                 <?php  } if($info['sources']['source']){  ?>
+				<li>
+					<a href="#wkcmain">课件资源 </a>
+				</li>
+                <?php  } ?>
+			</ul>
+		</div>
+        
+        <div class="resmain">
+        	
+        <?php if($info['sources']['videos']){ 
+        $ids=implode(",", $info['sources']['videos']);
+		$videos=model('content')->video_list('id in ('.$ids.')');
+       
+         ?>
+		<div class="videok active" id="videok">
+			<p class="video_title">{$info.title}
+            
+            </p>
+            <div class="videoqr"> 
+            扫码观看
+            <img class="smqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
+             <img class="bgqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
+            </div>
+			<div class="lplay">
+            
+			
+<div id="videoPlayer"></div>
+ <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1" ></div>
+   
+   
+
+</div>
+
+
+
+
+
+			<div class="rlist">
+				<p class="rtitle">课程目录</p>
+				<ul id="weikes">
+                 <!--foreach:{$videos $val}-->  
+            	<li >
+                	<a href="javascript:" video="<?=urlencode($val['vurl'])?>" onclick="playweike(this)">{$val.name}</a>
+                </li>
+                <!--/loop-->
+					
+				</ul>
+			</div>
+           
+           
+           
+
+         
+        <script type="text/javascript">
+	
+	function playweike(e){
+	$('#a1').html('');
+	$('#weikes li').removeClass('active');
+	$(e).parent().addClass('active');
+	var url=$(e).attr('video');
+		var w = "100%";//视频宽度
+  var h = "480";//视频高度
+
+  var image = "";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:1};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+	}
+	
+　$('#weikes').find('a').eq(0).click();
+
+</script>  
+            <script type="text/javascript" src="__PUBLIC__/js/comment.js"></script>   
+            <script>
+			$(function(){ 
+				$('span#right').bind('click',function(e){
+				e.stopPropagation();
+				$(this).prev("#current").slideToggle();	
+				})
+			
+			});
+			
+			var cid='{$info.id}';
+				
+			</script>
+            <div class="contentBox t100">
+            	<ul id="mainTabs" class="setdmtop">
+                	<li >
+                        <a  class="funcions1"  href="#funcions1" >互动评论</a>	
+                    </li>
+                    <li >
+                        <a  class="funcions2"  href="#funcions2" >打点评论</a>	
+                    </li>
+                </ul>
+                <div id="funcions1">
+                	<!--#include file="menu_comment.html"-->
+                </div>
+                <div id="funcions2">
+                	<!--#include file="menu_jiaoyan.html"-->
+                </div>
+                
+                
+                <div class="modal pcmodal" id="mymodal"> 
+		    <div class="modal-dialog" id="movediv">
+		        <div class="modal-content">
+                	<div class="modal-title">评论</div>
+					<div class="modal-body" style="position:static;">
+                 <?php if($commentinputs&&$selfform){ ?>
+                 <div class="choosep">
+                 	<p><img src="__TPL__mobile/img/tongji.jpg"/>{$selfform.name}</p>
+                 
+                 
+                      <!--foreach:{$commentinputs $v}-->
+                     
+      					{$php( echo model('selfform')->get_field_html($v,''))}
+                       
+      				  <!--{/foreach}-->
+           
+           
+            <input type="hidden" name="aid"  value="{$info.aid}"/>
+            <input type="hidden" name="fid" value="{$v.fid}"/>
+             </div>
+              <?php } ?>
+              
+                <?php if($jiaoyancommentflag){ ?>
+              <div class="comment-area" id="commentform" style="display:none"  >
+          
+           <span id="start2">开始:00:00</span>
+            <div class="area"><div class="progress1" id="progress2"></div></div>
+             <span id="end2">结束:00:00</span>
+           
+             <input type="button" value="获取开始" class="btn btn-primary"  onclick="getprogress()" />
+            
+            <input type="button" value="获取结束" class="btn btn-primary"   onclick="getprogressend()"  style=" "/>
+            <input name="progress"  id="progressinput" value="0"  type="hidden" >
+            <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
+            
+           </div>  
+           <?php } ?>
+						<textarea id="editors" placeholder="我的评论..."></textarea>
+						<div class="icongroups">
+				
+						</div>
+						<div style="text-align: center; margin-bottom:20px;">
+                        	<input name="pid" type="hidden" value="" id="pid">
+                            <input name="toname" type="hidden" value="" id="toname">
+							<button id="input-type-submit" type="button" class="btn btn-primary">发布</button>
+                            <button  type="button" class="btn toback" data-dismiss="modal">取消</button>
+							<button id="modal_cance" type="button" class="btn btn-default"  data-dismiss="modal">X</button>
+                            <div id="messageto"></div>
+						</div>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+            </div>
+            <?php  } ?>
+		</div>
+		
+
+		 <?php  if($info['sources']['source']){ 
+           $ids=implode(",", $info['sources']['source']);
+		$sources=model('content')->video_list('id in ('.$ids.')');
+         
+          ?>
+		
+		<div class="wkcmain" id="wkcmain">
+			<div id="wdzl">
+				<p class="wtitle">{$info.title}</p>
+                <div class="videoqr videoqr2"> 
+            扫码观看
+            <img class="smqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
+             <img class="bgqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
+            </div>
+				<ul>
+      <!--foreach:{$sources $val}-->  
+        	<li>
+            	<span>●</span>
+                <?php  $name= explode( '.',$val['vurl']) ; $name='.'.end($name)?>
+             {$val.name}{$name}
+             <a href="{$val.vurl}"  target="_blank">下载</a>
+             	<?php  
+             $types=array('.xls','.ppt','.pdf','.doc','.docx','.xlsx','.pptx','.txt');
+             if(in_array($name,$types)){
+               ?>
+               <a href="javascript:"  onclick="yl('http://dcsapi.com/?k=26984290&url={$val.vurl}','{$val.name}{$name}')">预览</a>
+             <?php } ?>
+                  
+                
+            </li>
+                <!--/loop-->
+                
+					
+				</ul>
+			</div>
+		</div>
+        
+     <div class="wdcontent">
+<div class="colse">
+<span></span>
+	<a href="javascript:">
+        关闭
+    </a>
+</div>
+<div class="loading" id="content_loading"></div>
+	 <iframe src=""  width="100%" height="694px" frameborder="0" scrolling="yes"  onload="loadFrame(this)"></iframe>
+</div>   
+        
+<?php  } ?>
+		</div>
+		
+		<!--#include file="foot.html"-->
+    	
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.idTabs.min.js"></script>
+			<script>
+				function loadFrame(e){
+					$('#content_loading').hide();
+				}
+				$('.videoqr .smqr').mouseover(function(){
+						$(this).next().show();
+					}).mouseout(function(){
+						$(this).next().hide();
+					});
+			
+				$('.wkcnav').find('li').eq(0).addClass('active');
+                $("#mainTabs").idTabs();
+				
+				
+				$('.wkcnav a').click(function(e){
+					e.preventDefault();
+					$(this).parent().addClass('active').siblings('.active').removeClass('active');
+					var id=$(this).attr('href');
+					$(id).addClass('active').siblings('.active').removeClass('active');
+				});
+				function yl(url,txt){
+		$('.wdcontent .colse span').text(txt);
+		$('.wdcontent iframe').attr('src',url);
+		$('.wdcontent').show();
+	}
+	$('.colse a').click(function(){
+		$(this).parents('.wdcontent').hide();
+	});
+				
+				
+				$(window).scroll(function () {
+					if ($(window).scrollTop() >= 720) {
+						 $('#a1').addClass('drag');
+					}else{
+						$('#a1').removeClass('drag');
+					}
+					
+					if ($(window).scrollTop() >= 140) {
+						 $('.wkcnav').addClass('fxtop');
+					}else{
+						$('.wkcnav').removeClass('fxtop');
+					}
+					 
+					
+					if($('#a1').hasClass("drag")){
+							var $div = $("#a1");
+						  /* 绑定鼠标左键按住事件 */
+						  $div.bind("mousedown",function(event){
+							/* 获取需要拖动节点的坐标 */
+							var offset_x = $(this)[0].offsetLeft;//x坐标
+							var offset_y = $(this)[0].offsetTop;//y坐标
+							/* 获取当前鼠标的坐标 */
+							var mouse_x = event.pageX;
+							var mouse_y = event.pageY;
+							/* 绑定拖动事件 */
+							/* 由于拖动时，可能鼠标会移出元素，所以应该使用全局（document）元素 */
+							$(document).bind("mousemove",function(ev){
+							  /* 计算鼠标移动了的位置 */
+							  var _x = ev.pageX - mouse_x;
+							  var _y = ev.pageY - mouse_y;
+							  /* 设置移动后的元素坐标 */
+							  var now_x = (offset_x + _x ) + "px";
+							  var now_y = (offset_y + _y ) + "px";
+							  /* 改变目标元素的位置 */
+							  $div.css({
+								top:now_y,
+								left:now_x
+								});
+								});
+							});
+						  /* 当鼠标左键松开，接触事件绑定 */
+						  $(document).bind("mouseup",function(){
+							$(this).unbind("mousemove");
+						  });
+					  
+						  $div.mouseenter( function() {
+							$div.append("<div id='dragto'> 点击按住视频可拖动 </div>");
+						  }).mouseleave( function(){
+							  $div.find("#dragto").remove();
+						  }); 
+					 }
+				});
+				
+            </script>
+    </body>
+</html>

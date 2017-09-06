@@ -196,10 +196,10 @@ class extendclassModel extends commonModel {
 			}
 		}
 	public function course_list($where){
-		return $this->model->table('course','A')->add_table('teacher','B','A.tid=B.id')->field('A.*,B.name as teachername,B.image,B.title as job,B.des as geyan')->where($where)->order('A.sequence asc')->select();
+		return $this->model->table('course','A')->add_table('teacher','B','A.tid=B.id')->field('A.*,B.name as teachername,B.image,B.title as job,B.des as geyan')->where($where)->order('A.sequence desc')->select();
 		}
 	public function my_course_list($where){
-		return $this->model->table('course','A')->add_table('course_signup','B','A.id=B.cid')->field('A.*')->where($where)->order('A.sequence asc')->select();
+		return $this->model->table('course','A')->add_table('course_signup','B','A.id=B.cid')->field('A.*')->where($where)->order('A.sequence desc')->select();
 		}
 	public function group_list($where){
 		return $this->model->table('course')->field('DISTINCT(`group`)')->where($where)->select();

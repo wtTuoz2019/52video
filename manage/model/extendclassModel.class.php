@@ -172,7 +172,7 @@ class extendclassModel extends commonModel {
 		
 		
 	public function course_list($where){
-		return $this->model->table('course')->where($where)->order('sequence asc')->select();
+		return $this->model->table('course')->where($where)->order('sequence desc')->select();
 		}
 	public function course_add_save($data){
 		return $this->model->table('course')->data($data)->insert();
