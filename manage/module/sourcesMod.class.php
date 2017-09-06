@@ -360,9 +360,9 @@ class sourcesMod extends commonMod
 	  	$data['xueduan']=$datatemp['pid'];
 		$data['kemulist']=model('diyfield')->field_list_data(7,$data['xueduan']);
 	
-		}else{
+		}
 				$data['xueduanlist']=model('diyfield')->field_list_data(7,0);
-			}
+			
 			
 			
 		$this->xueduan=$data;

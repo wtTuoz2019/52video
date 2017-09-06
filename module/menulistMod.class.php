@@ -32,10 +32,11 @@ class menulistMod extends commonMod
         } else {
             $listrows = $size;
         }
-       
-         $url=__INDEX__.'/menulis/index/id-'.$id.'-page-{page}.html'; 
-        $limit=$this->pagelimit($url,$listrows);
 
+	   
+	   
+         $url=__INDEX__.'/menulis/index/id-'.$id.'-page-{page}.html'; 
+       
         //设置栏目属性
         if ($this->info['pid'] == 0) {
             $son_id = model('web')->getcat($this->info['id'],	$whereuid);
@@ -46,8 +47,48 @@ class menulistMod extends commonMod
         } else {
             $where = 'A.status=1 AND A.mid=' . $this->info['id'];
         }
-
 		
+	  if($this->webconfig['template']=='res'){
+		$dataarray=model('diyfield')->field_list_data(7);
+	  	$this->cat =$cat= new Category(array('id', 'pid', 'name', 'cname'));
+		
+	  
+	  $data['xueduan']['values']=$cat->getChild(0,$dataarray);
+	  $data['xueduan']['select']=intval($_GET['xueduan'])?intval($_GET['xueduan']):$data['xueduan']['values'][0]['id'];
+	 if($_GET['xueduan']){
+		 $where .=' and xueduan='.$data['xueduan']['select'];
+		  $url.='?xueduan='.$data['xueduan']['select'];
+		 }
+	  $data['kemu']['values']=$cat->getChild($data['xueduan']['select'],$dataarray);
+	  $data['kemu']['select']=intval($_GET['kemu'])?intval($_GET['kemu']):$data['kemu']['values'][0]['id'];
+	  if($_GET['kemu']){
+		  
+		   $where .=' and kemu='.$data['xueduan']['select'];
+		     $url.='&kemu='.$data['kemu']['select'];
+	  }
+	  $data['banben']['values']=$cat->getChild($data['kemu']['select'],$dataarray);
+	  $data['banben']['select']=intval($_GET['banben'])?intval($_GET['banben']):$data['banben']['values'][0]['id'];
+	 if($_GET['banben']){
+		  $where .=' and banben='.$data['banben']['select'];
+		    $url.='&banben='.$data['banben']['select'];
+	 }
+	 $data['nianji']['values']=$cat->getChild($data['banben']['select'],$dataarray);
+	  $data['nianji']['select']=intval($_GET['nianji'])?intval($_GET['nianji']):0;
+	 
+	   if($_GET['nianji']){
+		   
+		    $where .=' and nianji='.$data['nianji']['select'];
+		    $url.='&nianji='.$data['nianji']['select'];
+	   }
+		   if(!$_GET['xueduan']){
+			$this->noselect=true;
+			$nianji=0; 
+			}
+		     $this->data=$data;
+		   }
+		 $limit=$this->pagelimit($url,$listrows);
+
+				
         //执行查询
         $this->loop=model('web')->content_list($where,$limit);
 		

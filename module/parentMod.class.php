@@ -88,7 +88,7 @@ class parentMod extends commonMod {
 		
 		$course['signnum']=0;
 		if($course['starttime']<time()){
-			
+		$course['signnum']=model('extendclass')->signup_num(array('cid'=>$course['id']));
 			
 		$course['bj_ids']=unserialize($course['bj_ids']);
 		$this->signupdetail=model('extendclass')->signup_info(array('cid'=>$course['id'],'sid'=>$this->student['stid']));
@@ -102,7 +102,7 @@ class parentMod extends commonMod {
 			$bjsignnum=model('extendclass')->signup_bj_num(array('cid'=>$course['id'],'bj_id'=>$this->student['bj_id']));;
 			if($bjsignnum>=$course['limitnum'])$this->alert('报名已满');
 			
-			$course['signnum']=model('extendclass')->signup_num(array('cid'=>$course['id']));
+			
 			if($course['signnum']>=$course['number'])$this->alert('报名已满');
 		}
 			
