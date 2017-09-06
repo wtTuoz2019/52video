@@ -296,11 +296,14 @@ class extendclassMod extends commonMod {
 			$data = new Spreadsheet_Excel_Reader();
 			// 设置输入编码 UTF-8/GB2312/CP936等等
 			$data->setOutputEncoding('UTF-8');
+			
 			$data->read('..'.$return['url']);
+			
 			$sheet=$data->sheets[0];
+		
 			$rows=$sheet['cells'];
 			$temp=array();
-		
+			if($rows)
 			foreach($rows as  $key=>$val){
 				if($key>1){
 						$array=array('name'=>$val[1],'mobile'=>$val[2],'schoolcode'=>$val[5],'codenumber'=>$val[6],'uid'=>$this->user['id']);
