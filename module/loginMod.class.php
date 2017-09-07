@@ -233,11 +233,14 @@ phpCAS::forceAuthentication();
 			
 				$data=array('mobile'=>$_POST['mobile'],'relation'=>$_POST['relation'],'stid'=>$student['id'],'uid'=>$this->userinfo['uid'],'byuid'=>$this->config['uid'],'name'=>$student['name']);
 				model('extendclass')->relation($data);
-				model('extendclass')->student_edit_save(array('mobile'=>$_POST['mobile'],'id'=>$student['id']));
+				model('extendclass')->student_edit_save(array('mobile'=>$_POST['mobile'],'bi_id'=>$_POST['bi_id'],'id'=>$student['id']));
 				 $this->msg($url,1);
 				
 				}
-		
+			$this->classes_list=model('extendclass')->classes_list(array('uid'=>$this->config['uid']));
+			
+			$this->student=model('user')->student('A.uid='.$this->userinfo['uid']." and type='student' and  B.uid=".$this->config['uid']." and  A.byuid=".$this->config['uid']);
+	
 			$this->display('parent_relation.html');
 		
 		}

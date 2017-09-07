@@ -65,6 +65,7 @@ class commonMod
 			if(!$webconfig['isopen'])$this->alert('站点已经关闭');
 			$this->config['child']=1;
 			$this->config['uid']=$webconfig['uid'];
+			$this->adminuser=model('user')->adminuser($webconfig['uid']);
 			if($webconfig['logo'])
 			$this->config['logo']=$webconfig['logo'];
 			$this->config['sitename']=$webconfig['name'];

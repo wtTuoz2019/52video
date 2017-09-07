@@ -167,7 +167,7 @@ class contentMod extends commonMod
 		
      
 			}
-		
+	
 		$school=model('school')->school_list($where);
 		
 		$teacher=model('teacher')->model_list();

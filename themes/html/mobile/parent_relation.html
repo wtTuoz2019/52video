@@ -49,6 +49,22 @@
             </td>
 			</tr>
             
+                <tr> 
+			<td>学生班级：</td>
+			</tr>
+			<tr>
+			<td>
+            	<select name="bj_id" class="dropdown-select" id="bj_id">
+                <option  value="0">请选择班级</option>
+                  <!--foreach:{$classes_list $vo}-->
+						<option  value="{$vo.id}"   <?php if($student['bj_id']==$vo['id']) { ?> selected="selected" <?php } ?>>{$vo.grade}年级{$vo.class}班</option>
+                    <!--{/foreach}-->
+						
+						
+					</select>
+            </td>
+			</tr>
+            
 			
 			<tr>
 			<td>家长身份：</td>
