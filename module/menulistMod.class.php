@@ -47,6 +47,11 @@ class menulistMod extends commonMod
         } else {
             $where = 'A.status=1 AND A.mid=' . $this->info['id'];
         }
+	 	 $keyword=urldecode($_GET['s']);
+		if($keyword){
+			  $where.= ' and A.title like "%' . $keyword . '%" ';
+			 $url=__INDEX__.'/menulis/index/id-'.$id.'-s-'.urlencode($keyword).'-page-{page}.html'; 
+			}
 		
 	  if($this->webconfig['template']=='res'){
 		$dataarray=model('diyfield')->field_list_data(7);
