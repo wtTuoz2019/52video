@@ -851,10 +851,10 @@ class extendclassMod extends commonMod {
 		}
 
 	public function signup_del(){
-		 $id=$_POST['id'];
+	 $id=$_POST['id'];
      
         $this->alert_str($_POST['id'],'int',true);
-        model('extendclass')->signup_del($id);
+        model('extendclass')->signup_del($id); 
       
         $this->msg('删除成功！',1);
 		
