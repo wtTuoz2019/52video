@@ -130,7 +130,7 @@ class extendclassModel extends commonModel {
 		}
 		
 	public function signup_list($where){
-		$data=$this->model->table('student','A')->field('A.*')->add_table('course_signup','B','A.id=B.sid')->where($where)->select();
+		$data=$this->model->table('student','A')->field('A.*,B.id as stid')->add_table('course_signup','B','A.id=B.sid')->where($where)->select();
 		
 			return $data;
 		}
