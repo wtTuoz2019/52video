@@ -15,6 +15,7 @@ class parentMod extends commonMod {
 			}	
 		if(!$student['bj_id']){
 		 $student['bj_id']=model('schooluser')->getclassesid(array('class'=>$student['class'],'grade'=>$student['grade']));
+		 if($student['bj_id'])
 			model('extendclass')->student_edit_save(array('id'=>$student['stid'],'bj_id'=>$student['bj_id']));
 			}	
 		$this->student=$student;
