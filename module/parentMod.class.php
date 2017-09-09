@@ -104,7 +104,7 @@ class parentMod extends commonMod {
 			}
 			
 			$bjsignnum=model('extendclass')->signup_bj_num(array('cid'=>$course['id'],'bj_id'=>$this->student['bj_id']));;
-			if($bjsignnum>=$course['limitnum'])$this->alert('报名已满');
+			if($bjsignnum>=$course['limitnum'])$this->alert('该班报名已满');
 			
 			
 			if($course['signnum']>=$course['number'])$this->alert('报名已满');
@@ -137,7 +137,7 @@ class parentMod extends commonMod {
 				}
 			}
 			$bjsignnum=model('extendclass')->signup_bj_num(array('cid'=>$course['id'],'bj_id'=>$this->student['bj_id']));;
-			if($bjsignnum>=$course['limitnum'])$this->msg('报名已满',0);
+			if($bjsignnum>=$course['limitnum'])$this->msg('该班报名已满',0);
 			
 			$course['signnum']=model('extendclass')->signup_num(array('cid'=>$course['id']));
 			if($course['signnum']>=$course['number'])$this->msg('报名已满',0);
