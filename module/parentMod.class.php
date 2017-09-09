@@ -5,6 +5,9 @@ class parentMod extends commonMod {
     {
         parent::__construct();
 		$this->getuserinfo();
+		
+		
+		
 		$student=model('user')->student('A.uid='.$this->userinfo['uid']." and type='student' and  B.uid=".$this->config['uid']." and  A.byuid=".$this->config['uid']);
 	
 		if(!$student){
@@ -14,7 +17,7 @@ class parentMod extends commonMod {
 		$this->redirect('/login/relation?'.$this->urltoken);
 			}	
 		if(!$student['bj_id']){
-		 $student['bj_id']=model('schooluser')->getclassesid(array('class'=>$student['class'],'grade'=>$student['grade']));
+		 $student['bj_id']=model('schooluser')->getclassesid(array('class'=>$student['class'],'grade'=>$student['grade'],'uid'=>$this->config['uid']));
 		 if($student['bj_id'])
 			model('extendclass')->student_edit_save(array('id'=>$student['stid'],'bj_id'=>$student['bj_id']));
 			}	

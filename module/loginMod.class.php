@@ -145,7 +145,7 @@ class loginMod extends commonMod {
 				   $this->alert('该学校为'.$this->config['school'].',您属于'.$array['XJXXMC'].'学生','/parent?'.$this->urltoken);
 				   }
 			   $student=array('name'=>$array['XM'],'XBM'=>$array['XBM'],'school'=>$array['XJXXMC'],'schoolcode'=>$array['XJFH'],'XJQXMC'=>$array['XJQXMC'],'XJXXDM'=>$array['XJXXDM'],'XJNJ'=>$array['XJNJ'],'XJBJ'=>$array['XJBJ'],'XBM'=>$array['XBM'],'time'=>time(),'grade'=>$array['XJNJ']%10,'class'=>intval($array['XJBJ']));
-			 $bj_id=model('schooluser')->getclassesid(array('class'=>$student['class'],'grade'=>$student['grade']));	if($bj_id)  $student['bj_id']=$bj_id;
+			 $bj_id=model('schooluser')->getclassesid(array('class'=>$student['class'],'grade'=>$student['grade'],'uid'=>$this->config['uid']));	if($bj_id)  $student['bj_id']=$bj_id;
 			   $student['uid']=$this->config['uid']?$this->config['uid']:1;
 			  
 			  $stid=model('extendclass')->student($student);
