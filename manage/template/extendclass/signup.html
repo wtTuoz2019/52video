@@ -4,7 +4,7 @@
 				报名管理
 			</h4>
 		<div class="borderk postk selectclassk" style="overflow:hidden;">
-				
+				<a href="javascript:" onClick="add()"  class="sendlive">添加</a>
 		  <form method="get" style="display:inline-block; vertical-align:middle;">
 					<span style="padding-top:5px;">
 						学生姓名：
@@ -21,7 +21,7 @@
    <a href="__ROOT__/excel/student.xls">模板下载</a>   <form method="post" style="display:inline-block; vertical-align:middle;">
 					 	<input  type="hidden" name="signup" value="1"/>
 					<button>
-						导出报名信息
+						导出学生信息
 					</button>
                     </form>
 			</div>
@@ -71,8 +71,8 @@
 	urldialog({
 		width:600,
 	height:400,
-	title:'报名操作',
-	url:'__URL__/signup_add'
+	title:'报名操作(已存在学生只需填写姓名跟联系手机)',
+	url:'__URL__/signup_add/cid-{$info.id}'
 	});
 	}
   function edit(id){

@@ -34,8 +34,13 @@
 					上课地点：{$course.place}
                     				</p>
 				<p>
-					上课时间：{$course.classtime}
+					上课时间：<?php $array=array('1'=>'周一','2'=>'周二','3'=>'周三','4'=>'周四','5'=>'周五','6'=>'周六','7'=>'周日');echo $array[$course['classtime']];  ?>
 				</p>
+                    <?php  if ($course['jie']){?>
+                <p>
+                第几节：{$course.jie}
+				</p>
+                 <?php  } ?>
 				<p>
 					招生人数：{$course.number}
 				</p>

@@ -111,6 +111,8 @@ class extendclassModel extends commonModel {
 		}
 	public function student($data){
 		$student=$this->model->table('student')->where(array('name'=>$data['name'],'uid'=>$data['uid'],'mobile'=>$data['mobile']))->find();
+		
+	
 		if($student)return $student['id'];
 		else return $this->model->table('student')->data($data)->insert();
 		

@@ -18,8 +18,8 @@
 					</button>
                     </form>
               <form  method="post"  enctype="multipart/form-data" id="form"> 
-   	<input  type="text" placeholder="请选择文件" value=""/>
-     <input class="shangc" type="file" name="file">  <a  type="submit" onClick="$('#form').submit();" >导入</a>
+   				<input  type="text" placeholder="请选择文件" value=""/>
+    			<input class="shangc" type="file" name="file">  <a  type="submit" onClick="$('#form').submit();" >导入</a>
      
      </form>
  	  <a href="__URL__/student/download-true">导出学生</a>
@@ -144,7 +144,7 @@ function audit(status){
  function add(){
 	urldialog({
 		width:600,
-	height:300,
+	height:400,
 	title:'学生操作',
 	url:'__URL__/student_add'
 	});

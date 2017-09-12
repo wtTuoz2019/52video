@@ -570,7 +570,7 @@ button{
 	margin-bottom: 20px;
 }
 .borderk a,#menuset .addmenuk button{
-	padding:0 20px;
+	padding:0 10px;
 	height:30px;
     border: 1px solid #C3C3C3;
 	line-height: 30px;
@@ -791,7 +791,7 @@ iframe#main{
 	position: relative;
 	font-size: 12px;
 	overflow: hidden;
-	margin-right: 55px;
+	vertical-align:middle;
 }
 #extendclass .selectclassk>div input{
 	width: 220px;
@@ -799,7 +799,7 @@ iframe#main{
 	border: 1px solid #BFBFBF;
 }
  .selectclassk form button{
-	padding: 0 20px;
+	padding: 0 10px;
     height: 30px;
     border: 1px solid #C3C3C3;
     line-height: 30px;
@@ -814,15 +814,15 @@ iframe#main{
     background: -o-linear-gradient(top,#ffffff,#d5d2d2);
 }
 #extendclass .selectclassk>div.chooseclass select{
-	width: 180px;
+	width: 150px;
 	height: 30px;
 	appearance:none;
 	-moz-appearance:none;
 	-webkit-appearance:none;
 	background: url(../img/sjx.png);
 	background-repeat: no-repeat;
-	background-position: 115px center;
-	padding-left: 45px;
+	background-position: 100px center;
+	padding-left: 30px;
 	float: left;
 	border: 1px solid #BFBFBF;
 }

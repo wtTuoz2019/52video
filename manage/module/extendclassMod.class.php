@@ -684,6 +684,67 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
 				   }
 			   
 			   }
+			   
+		if($_GET['download']){
+				require(CP_PATH . 'ext/PHPExcel.php');
+			require(CP_PATH . 'ext/PHPExcel/IOFactory.php');
+			$objPHPExcel = new PHPExcel();
+	        $objPHPExcel = new PHPExcel(); 
+      	  $objPHPExcel->getProperties()->setCreator("PHPExcel")
+                                     ->setLastModifiedBy("PHPExcel")
+                                     ->setTitle("PHPExcel reports")
+                                     ->setSubject("PHPExcel reports")
+                                     ->setDescription("PHPExcel document for Office 2003 XLS, generated at ".date('Y-m-d'))
+                                     ->setKeywords("PHPExcel reports")
+                                     ->setCategory("PHPExcel");
+			$keynames=array('教师','课程代码','课程名称','选修课组','课程模块','招生数','每班限额','报名人数','场地','报名开始时间','报名结束时间','课程时间','第几节','可选班级','课程说明','特别说明');
+		$keys = array_keys($keynames);
+		 $xlsx[] = $keynames;	$times=array('1'=>'周一','2'=>'周二','3'=>'周三','4'=>'周四','5'=>'周五','6'=>'周六','7'=>'周日');
+		foreach($list as $key=>$val){
+			
+			$bj_ids=unserialize($val['bj_ids']);
+			$bjs='';
+			if($bj_ids){
+				foreach($bj_ids as $v){
+				$bjs.=$bj[$v]['grade'].'年级'.$bj[$v]['class']."班|";
+				}
+				}
+		$temp=array($teacher[$val['tid']]['name'], $val['code'], $val['name'], $val['group'], $val['title'],$val['number'],$val['limitnum'],$val['signupnum'],$val['place'],date('Ymd H:i:s',$val['starttime']),date('Ymd H:i:s',$val['endtime']),$times[$val['classtime']],$val['jie'],$bjs?$bjs:'全部',$val['info'],$val['des']);
+		$xlsx[]=$temp;
+	
+      		  
+     	   }	
+		   
+		   $objPHPExcel->getActiveSheet()->getColumnDimension( chr(65+1))->setWidth(20);
+		     $objPHPExcel->getActiveSheet()->getColumnDimension( chr(65+2))->setWidth(30);
+			   $objPHPExcel->getActiveSheet()->getColumnDimension( chr(65+3))->setWidth(30);
+			 foreach($xlsx as $index => $row){
+            $i = $index + 1;
+            $sheet = $objPHPExcel->setActiveSheetIndex(0);
+            foreach($keys as $key => $val){
+				if($key<26){
+               $ascii = chr(65+$key);
+				}else{
+				$ascii = chr(65).chr(65+($key-26));	 
+					}
+		 $sheet->setCellValueExplicit($ascii.$i, $row[$val],PHPExcel_Cell_DataType::TYPE_STRING);
+               //$sheet->setCellValue($ascii.$i, $row[$val]);
+			   
+				
+            }
+     
+		
+			}
+			
+        $objPHPExcel->getActiveSheet()->setTitle('选课数据');
+        $objPHPExcel->setActiveSheetIndex(0);ob_end_clean() ;
+		header("Content-Type: text/html; charset=utf-8");
+		header("Content-type:application/vnd.ms-execl");
+		header("Content-Disposition:filename=course.xlsx");
+		  $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
+            $objWriter->save('php://output');  
+			
+			die;}	   
 		$this->list=$list;
 		 $this->show();
 		
@@ -752,7 +813,7 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
 		  $this->bj=$bj=model('extendclass')->classes_list($where);
 		 $cid=intval($_GET['cid']);
         $this->alert_str($cid,'int');
-	 $info=model('extendclass')->course_info(array('id'=>$cid));
+	 $this->info=$info=model('extendclass')->course_info(array('id'=>$cid));
 	 
 	 if($_POST['signup']){
 		 $list=model('extendclass')->signup_course_list('A.uid='.$this->user['id'].' and B.cid='.$cid);	
@@ -859,14 +920,27 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
 		$this->action='signup_add';
 		$where['uid']= $this->user['id'];
 		$this->bj=model('extendclass')->classes_list($where);
-		 $this->show('extendclass/student_info');
+		$this->cid=intval($_GET['cid']);
+		 $this->show('extendclass/signup_info');
 		}
 	public function signup_add_save(){
 		
 		$_POST['uid']= $this->user['id'];
-		$sid=model('extendclass')->signup_add_save($_POST);
+		
+		
+		$sid=model('extendclass')->student($_POST);
+		if($sid){ $cid=intval($_GET['cid']);
+		 $info=model('extendclass')->course_info(array('id'=>$cid));
+			$temp=array('cid'=>$cid,'time'=>time(),'sid'=>$sid,'bid'=> $info['bid'],'lock'=>1);
+				model('extendclass')->signup_add_save($temp);
+				$this->msg('添加成功！',1);
+			}else{
+				
+			$this->msg('学生信息错误！',0);	
+				}
+	
     	
-    	$this->msg('添加成功！',1);
+    	
 		
 		}
 

@@ -9,12 +9,13 @@
 					<span style="padding-top:5px;">
 						选修课程：
 					</span>
-					<input type="text" name="s" id="s" value="" />
+					<input type="text" name="s" id="s" value="" style="width:100px;"/>
 					<button class="query" style="position:static">
 						查询
 					</button>
                     </form>
 				</div>
+                   <a href="__URL__/course/bid-{$bid}-download-true">导出课程列表</a>
 				<div class="chooseclass">
                  <form method="post" style="display:inline-block; vertical-align:middle;">
 					<select name="bj_id">
@@ -31,13 +32,10 @@
                     </form>
                     
 				</div>
-                  
-			</div>
-            <div class="borderk" style="border-top:0;">
-            	<a href="#">导出学生成绩</a>
+               
                 <a href="#">导出学生考勤</a>
-                <a href="__URL__/exportnosign/bid-{$bid}"   class="sendlive">导出未报名学生</a>
-            </div>
+			</div>
+         
 			<table cellspacing="0" width="100%" class="oftentable">
 				<tr class="bgth">
 					<th width="70px">教师</th>
