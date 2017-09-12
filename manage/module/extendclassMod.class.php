@@ -619,7 +619,7 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
 			require(CP_PATH . 'ext/PHPExcel.php');
 			require(CP_PATH . 'ext/PHPExcel/IOFactory.php');
 			$objPHPExcel = new PHPExcel();
-	        $objPHPExcel = new PHPExcel(); 
+	        
       	  $objPHPExcel->getProperties()->setCreator("PHPExcel")
                                      ->setLastModifiedBy("PHPExcel")
                                      ->setTitle("PHPExcel reports")
@@ -680,6 +680,69 @@ if ($zip->open ($filename ,\ZipArchive::OVERWRITE) !== true) {
 		
 		exit ( '无法打开文件，或者文件创建失败' );}
 }				
+
+		require(CP_PATH . 'ext/PHPExcel.php');
+			require(CP_PATH . 'ext/PHPExcel/IOFactory.php');
+			$objPHPExcel = new PHPExcel();
+	        
+      	  $objPHPExcel->getProperties()->setCreator("PHPExcel")
+                                     ->setLastModifiedBy("PHPExcel")
+                                     ->setTitle("PHPExcel reports")
+                                     ->setSubject("PHPExcel reports")
+                                     ->setDescription("PHPExcel document for Office 2003 XLS, generated at ".date('Y-m-d'))
+                                     ->setKeywords("PHPExcel reports")
+                                     ->setCategory("PHPExcel");
+			$keynames=array('姓名','联系手机','学籍号','学号','班级','课程名称','任课老师','分数');
+			$keys = array_keys($keynames);
+		foreach($list as $k=>$v){
+			
+		
+		 $xlsx=array();
+		 $xlsx[] = $keynames;	
+		foreach($v as $key=>$value){
+		$temp=array( $value['name'], $value['mobile'], $value['schoolcode'], $value['codenumber'],  $bj[$value['bj_id']]['grade'].'年级'.$bj[$value['bj_id']]['class'].'班',$value['title'],$teacher[$value['tid']]['name'],$value['score']);
+		$xlsx[]=$temp;
+	
+      		  
+     	   }	
+		   
+		   $objPHPExcel->getActiveSheet()->getColumnDimension( chr(65+1))->setWidth(20);
+		     $objPHPExcel->getActiveSheet()->getColumnDimension( chr(65+2))->setWidth(30);
+			   $objPHPExcel->getActiveSheet()->getColumnDimension( chr(65+3))->setWidth(30);
+			 foreach($xlsx as $index => $row){
+            $i = $index + 1;
+            $sheet = $objPHPExcel->setActiveSheetIndex(0);
+            foreach($keys as $key => $val){
+				if($key<26){
+               $ascii = chr(65+$key);
+				}else{
+				$ascii = chr(65).chr(65+($key-26));	 
+					}
+		 $sheet->setCellValueExplicit($ascii.$i, $row[$val],PHPExcel_Cell_DataType::TYPE_STRING);
+               //$sheet->setCellValue($ascii.$i, $row[$val]);
+			   
+				
+            }
+     
+		
+			}
+			
+      $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+	  $file= __ROOTDIR__."/upload/extendclass/".$bj[$k]['grade'].'年级'.$bj[$k]['class'].'班.xls';
+		$objWriter->save($file);
+		$zip->addFile( $file ,basename($file));
+			}
+		
+		$zip->close ();
+		
+		header ( "Cache-Control: max-age=0" );
+header ( "Content-Description: File Transfer" );
+header ( 'Content-disposition: attachment; filename=' . basename ( $filename ) ); // 文件名
+header ( "Content-Type: application/zip" ); // zip格式的
+header ( "Content-Transfer-Encoding: binary" ); // 告诉浏览器，这是二进制文件
+header ( 'Content-Length: ' . filesize ( $filename ) ); // 告诉浏览器，文件大小
+@readfile ( $filename );//输出文件;
+die;
 						
 		}
 		
