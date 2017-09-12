@@ -12,10 +12,10 @@ class selfformModel extends commonModel {
 		
 		}
 	public function infobywhere($where=null){
-		return $this->model->table('selfform')->where($where)->find();
+		return $this->model->table('selfform')->where($where)->order('id desc')->find();
 		
 		}
-    //字段列表
+    //字段列表 
     public function form_inputs_list($where)
     {
 		
