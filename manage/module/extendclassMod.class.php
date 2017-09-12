@@ -293,33 +293,53 @@ class extendclassMod extends commonMod {
 		$return=module('editor_upload')->upload();
 			
 			if($return['error'])$this->error($return['msg']);
-			$data = new Spreadsheet_Excel_Reader();
-			// 设置输入编码 UTF-8/GB2312/CP936等等
-			$data->setOutputEncoding('UTF-8');
-			
-			$data->read('..'.$return['url']);
-			
-			$sheet=$data->sheets[0];
+		//	$data = new Spreadsheet_Excel_Reader();
+//			// 设置输入编码 UTF-8/GB2312/CP936等等
+//			$data->setOutputEncoding('UTF-8');
+//			
+//			$data->read('..'.$return['url']);
+//			
+				require(CP_PATH . 'ext/PHPExcel/IOFactory.php');
+$inputFileName='..'.$return['url'];
+
+ $inputFileType = PHPExcel_IOFactory::identify($inputFileName);  
+    $objReader = PHPExcel_IOFactory::createReader($inputFileType);  
+    $objPHPExcel = $objReader->load($inputFileName);  
+$sheet = $objPHPExcel->getSheet(0); // 读取第一個工作表
+$highestRow = $sheet->getHighestRow(); // 取得总行数
+$highestColumm = $sheet->getHighestColumn(); // 取得总列数
+ $highestColumm= PHPExcel_Cell::columnIndexFromString($highestColumm); //字母列转换为数字列 如:AA变为27
+ $temp=array();
 		
-			$rows=$sheet['cells'];
-			$temp=array();
-			if(!$rows)$this->alert('表格内容格式错误，请下载模板编辑！');
-			foreach($rows as  $key=>$val){
-				if($key>1){
-						$array=array('name'=>$val[1],'mobile'=>$val[2],'schoolcode'=>$val[5],'codenumber'=>$val[6],'uid'=>$this->user['id']);
+/** 循环读取每个单元格的数据 */
+for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
+ 		
+		$name=$sheet->getCellByColumnAndRow(0, $row)->getValue();
+	
+		$mobile=$sheet->getCellByColumnAndRow(1, $row)->getValue();
+	
+		$grade=$sheet->getCellByColumnAndRow(2, $row)->getValue();
+		$class=$sheet->getCellByColumnAndRow(3, $row)->getValue();
+		$schoolcode=$sheet->getCellByColumnAndRow(4, $row)->getValue();
+		$codenumber=$sheet->getCellByColumnAndRow(5, $row)->getValue();
+						$array=array('name'=>$name,'mobile'=>$mobile,'schoolcode'=>$schoolcode,'codenumber'=>$codenumber,'uid'=>$this->user['id']);
 						foreach($bj as $k=>$v){
-							if($v['grade']==intval($val['3'])&&$v['class']==intval($val['4'])){
+							if($v['grade']==intval($grade)&&$v['class']==intval($class)){
 								$array['bj_id']=$v['id'];
 								$students[]=$array;;break;
 								}
 							}
 						
 						
-						}
+						
+       
 				
-			
-				}
-			
+		
+       
+    
+}
+	
+			var_dump($students);die;
 					if($students)
 				model('extendclass')->student_add_saveall($students);
 			}
