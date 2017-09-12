@@ -44,7 +44,9 @@ class teacherMod extends commonMod {
 		
 		if(!$course)$this->alert('无此课程');
 	
-		
+		$course['signnum']=0;
+	
+		$course['signnum']=model('extendclass')->signup_num(array('cid'=>$course['id']));
 	
 		$this->course=$course;
 		
