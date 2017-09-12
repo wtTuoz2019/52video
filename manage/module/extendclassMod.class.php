@@ -322,7 +322,7 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
 		$class=$sheet->getCellByColumnAndRow(3, $row)->getValue();
 		$schoolcode=$sheet->getCellByColumnAndRow(4, $row)->getValue();
 		$codenumber=$sheet->getCellByColumnAndRow(5, $row)->getValue();
-						$array=array('name'=>$name,'mobile'=>$mobile,'schoolcode'=>$schoolcode,'codenumber'=>$codenumber,'uid'=>$this->user['id']);
+						$array=array('name'=>preg_replace("/(\s|\&nbsp\;|　|\xc2\xa0)/","",$name),'mobile'=>preg_replace("/(\s|\&nbsp\;|　|\xc2\xa0)/","",$mobile),'schoolcode'=>preg_replace("/(\s|\&nbsp\;|　|\xc2\xa0)/","",$schoolcode),'codenumber'=>preg_replace("/(\s|\&nbsp\;|　|\xc2\xa0)/","",$codenumber),'uid'=>$this->user['id']);
 						foreach($bj as $k=>$v){
 							if($v['grade']==intval($grade)&&$v['class']==intval($class)){
 								$array['bj_id']=$v['id'];
