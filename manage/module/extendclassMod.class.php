@@ -339,7 +339,7 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
     
 }
 	
-			var_dump($students);die;
+			
 					if($students)
 				model('extendclass')->student_add_saveall($students);
 			}

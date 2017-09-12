@@ -1039,17 +1039,17 @@ a,a:hover,a:focus{
 	background-image:url(../img/teacher.png);
 	background-repeat:no-repeat;
 	background-position:center center;
-	margin-top:80px;
+	margin-top:30px;
 }
 .ploginhead{
 	height:230px;
 	background-image:url(../img/parent.png);
 	background-repeat:no-repeat;
 	background-position:center center;
-	margin-top:80px;
+	margin-top:30px;
 }
 .logintablek{
-	width:550px;
+	width:650px;
 	margin:0 auto;
 }
 .logintablek .logink{
@@ -1105,7 +1105,7 @@ a,a:hover,a:focus{
 .logintablek .logink table td input,.logintablek .logink table td select{
 	width:100%;
 	border:1px solid #60B5C7;
-	height:50px;
+	height:55px;
 	font-size:19px;
 	padding:5px;
 }
@@ -1113,7 +1113,7 @@ a,a:hover,a:focus{
 	position:absolute;
 	top:10px;
 	right:0;
-	height:50px;
+	height:55px;
 	width:120px;
 	background:#55B0C3;
 	border:0;
@@ -1126,7 +1126,7 @@ button.submit{
 	font-size:24px;
 	color:#fff;
 	text-align:center; 
-	width:310px;
+	width:100%;
 	line-height:60px; 
 	display:block;
 	margin:0 auto;
@@ -1147,7 +1147,7 @@ a.submit{
 	border:0;
 }
 .logintablek .logink #accountlogin{
-	padding:40px 115px;
+	padding:40px 100px;
 }
 .logintablek .logink #onekeylogin{
 	padding:50px 45px;
@@ -1393,7 +1393,7 @@ a.submit{
     font-size: 24px;
     color: #474848;
     text-align: center;
-    width: 310px;
+    width: 100%;
     line-height: 60px;
     display: block;
     margin: 0 auto;
