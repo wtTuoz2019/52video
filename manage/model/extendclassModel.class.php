@@ -141,6 +141,20 @@ class extendclassModel extends commonModel {
 		
 			return $data;
 		}
+public function signup_course_bj_list($where){
+		$data=$this->model->table('student','A')->field('A.*,C.name as title,C.tid,B.score')->add_table('course_signup','B','A.id=B.sid')->add_table('course','C','B.cid=C.id')->where($where)->select();
+		$temp=array();
+		if($data){
+			foreach($data as $key=>$val){
+				$temp[$val['bj_id']][]=$val;
+				
+				}
+			
+			}
+		
+		
+			return $temp;
+		}
 		public function nosignup_course_list($uid=0,$bid=0){
 		$data=$this->model->table('student','A')->field('A.*')->where('uid='.$uid.' and id not in (select sid from dc_course_signup where uid='.$uid.' and bid='.$bid.' ) ')->select();
 		

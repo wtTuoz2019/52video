@@ -611,7 +611,9 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
 		 $this->teacher=$teacher=model('extendclass')->teacher_list($where);
 	
 		  $this->bj=$bj=model('extendclass')->classes_list($where);
-		if($_POST['bj_id']){
+		if($_GET['export']){
+			if($_POST['bj_id']){
+			
 		 $list=model('extendclass')->signup_course_list('A.uid='.$this->user['id'].' and A.bj_id='.$_POST['bj_id']);	
 		if($list){
 			require(CP_PATH . 'ext/PHPExcel.php');
@@ -663,10 +665,30 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
 		header("Content-Disposition:filename=student.xlsx");
 		  $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
             $objWriter->save('php://output');  
-			
+				die;
 			
 			}	
-		die;
+			}else{
+				
+			$list=model('extendclass')->signup_course_bj_list('A.uid='.$this->user['id']);		
+					if($list){
+						$filename = __ROOTDIR__."/upload/extendclass/" . date ( 'YmdH' ) . ".zip"; // 最终生成的文件名（含路径）
+// 生成文件
+$zip = new ZipArchive (); // 使用本类，linux需开启zlib，windows需取消php_zip.dll前的注释
+if ($zip->open ($filename ,\ZipArchive::OVERWRITE) !== true) {
+	if($zip->open ($filename ,\ZipArchive::CREATE) !== true){
+		
+		exit ( '无法打开文件，或者文件创建失败' );}
+}				
+						
+		}
+		
+		
+			
+				}
+			
+			
+	
 			}
 		
 		
