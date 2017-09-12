@@ -5,7 +5,7 @@
 			<div class="selectclassk borderk">
 				<div>
                 <a href="javascript:" onClick="add()"  class="sendlive">添加</a>
-                <form method="get" style="display:inline-block; vertical-align:middle;">
+                <form method="get" style="display:inline-block; vertical-align:middle; margin-left:40px;">
 					<span style="padding-top:5px;">
 						选修课程：
 					</span>
@@ -31,18 +31,23 @@
                     </form>
                     
 				</div>
-                  <a href="__URL__/exportnosign/bid-{$bid}"   class="sendlive">导出未报名学生</a>
+                  
 			</div>
+            <div class="borderk" style="border-top:0;">
+            	<a href="#">导出学生成绩</a>
+                <a href="#">导出学生考勤</a>
+                <a href="__URL__/exportnosign/bid-{$bid}"   class="sendlive">导出未报名学生</a>
+            </div>
 			<table cellspacing="0" width="100%" class="oftentable">
 				<tr class="bgth">
-					<th>教师</th>
+					<th width="70px">教师</th>
 					<th>课程代码</th>
 					<th>课程名称</th>
 					<th>选修课组</th>
 					<th>课程模块</th>
-					<th>招生数</th>
-					<th>每班限额</th>
-					<th>报名人数</th>
+					<th width="75px">招生数</th>
+					<th width="80px">每班限额</th>
+					<th width="80px">报名人数</th>
 					<th>场地</th>
 					<th width="130px"></th>
 				</tr>
