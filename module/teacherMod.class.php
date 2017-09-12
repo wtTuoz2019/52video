@@ -168,5 +168,11 @@ class teacherMod extends commonMod {
 			 model('extendclass')->schooluser_del($data);
 			$this->msg('解除成功',1);
 		}
+		
+		public function selfform(){
+		$selfform=model('selfform')->infobywhere(array('uid'=>$this->config['uid'],'send'=>'teacher'));
+		if(!$selfform)$this->alert('暂无问卷');
+		 header('Location:/selfform/index?fid='.$selfform['id'].$this->urltoken);
+		}
 
 }

@@ -11,6 +11,10 @@ class selfformModel extends commonModel {
 		return $this->model->table('selfform')->where(array('id'=>$id))->find();
 		
 		}
+	public function infobywhere($where=null){
+		return $this->model->table('selfform')->where($where)->find();
+		
+		}
     //字段列表
     public function form_inputs_list($where)
     {

@@ -58,7 +58,14 @@
 							<td>动态二维码：</td>
 							<td>
 								  <input name="dynamic" type="radio" value="1" <!--if:{$info['dynamic']==1}-->checked="checked"<!--{/if}-->/>开启
-                                                <input name="dynamic" type="radio"   value="0" <!--if:{!$info['dynamic']}-->checked="checked"<!--{/if}--> />关闭
+                                 <input name="dynamic" type="radio"   value="0" <!--if:{!$info['dynamic']}-->checked="checked"<!--{/if}--> />关闭
+							</td>
+						</tr>
+                           <tr>
+							<td>推送页面：</td>
+							<td>   <input name="send" type="radio" value="teacher" <!--if:{$info['send']=='teacher'}-->checked="checked"<!--{/if}-->/>老师
+								  <input name="send" type="radio" value="student" <!--if:{$info['send']=='student'}-->checked="checked"<!--{/if}-->/>学生
+                                 <input name="send" type="radio"   value="0" <!--if:{!$info['send']}-->checked="checked"<!--{/if}--> />不推送
 							</td>
 						</tr>
                          <tr>
