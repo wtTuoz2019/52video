@@ -728,7 +728,7 @@ if ($zip->open ($filename ,\ZipArchive::OVERWRITE) !== true) {
 			}
 			
       $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-	  $file= __ROOTDIR__."/upload/extendclass/".$bj[$k]['grade'].'年级'.$bj[$k]['class'].'班.xls';
+	  $file= __ROOTDIR__."/upload/extendclass/".$bj[$k]['grade'].'-'.$bj[$k]['class'].'.xls';
 		$objWriter->save($file);
 		$zip->addFile( $file ,basename($file));
 			}
