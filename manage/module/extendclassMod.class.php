@@ -672,7 +672,7 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
 				
 			$list=model('extendclass')->signup_course_bj_list('A.uid='.$this->user['id']);		
 					if($list){
-						$filename = __ROOTDIR__."/upload/extendclass/" . date ( 'YmdH' ) . ".zip"; // 最终生成的文件名（含路径）
+						$filename = __ROOTDIR__."/upload/extendclass/" .$this->user['user']. ".zip"; // 最终生成的文件名（含路径）
 // 生成文件
 $zip = new ZipArchive (); // 使用本类，linux需开启zlib，windows需取消php_zip.dll前的注释
 if ($zip->open ($filename ,\ZipArchive::OVERWRITE) !== true) {
