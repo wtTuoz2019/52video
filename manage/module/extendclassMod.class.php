@@ -1009,7 +1009,10 @@ die;
 		 $this->show('extendclass/signup_info');
 		}
 	public function signup_add_save(){
-		
+		foreach($_POST as  $key=>$value){
+			$_POST[$key]=trim($value);
+			
+			}
 		$_POST['uid']= $this->user['id'];
 		
 		
