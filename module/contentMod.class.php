@@ -415,6 +415,7 @@ class contentMod extends commonMod
     }
 		public function playstream(){
 			$where['stream']=$this->stream=$_GET['stream'];
+			 $this->info=model('data')->sn_info(array('sn'=>$this->stream));
 		if(MOBILE){
 		$this->getuserinfo();
 	
@@ -422,7 +423,7 @@ class contentMod extends commonMod
 		$where['endtime']=array('>',$nowtime);
 		$where['uid']=array('<>',$this->userinfo['uid']);
 		 $count=model('data')->streamvisitnum($where);
-		 $this->info=model('data')->sn_info(array('sn'=>$this->stream));
+		
 		
 		if($count>=20){
 			$this->alert('观看人数已满，请联系管理员');

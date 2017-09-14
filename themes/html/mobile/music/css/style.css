@@ -1375,3 +1375,91 @@ body{
 .kcmllist ul li.active a{
 	color:#606a97;
 }
+
+
+
+.pc header{
+	height:70px;
+	background:#2E2E2E;
+}
+.pc header .logo-box{
+	width:1000px;
+	background:none;
+	margin:0 auto;
+}
+.pc header .logo-box h1{
+	line-height:70px;
+	text-align:left;
+	font-size:22px;
+}
+.pc .channels .show{
+	height:400px;
+	
+	background:#F4F2F3;
+}
+.pc .play-box{
+	padding:40px 0;
+	background:#F4F2F3;
+}
+.pc .play-box,.pc .channels{
+	height:inherit;
+}
+.pc .jianjiemain{
+	width:1000px;
+	margin:0 auto;
+	margin-top:20px;
+	position:relative;
+}
+.pc .jianjiemain .jianjie{
+	height:60px;
+	line-height:60px;
+	background:#F4F2F3;
+	font-size:14px;
+	padding:0;
+	padding-left:80px;
+	position:relative;
+	border:1px solid #dcdcdc;
+}
+.pc .jianjiemain .jianjie .schoolimg{
+	position:absolute;
+	height:40px;
+	width:40px;
+	top:10px;
+	left:20px;
+}
+.pc{
+	background:#FFF !important;
+}
+.pc .jianjiemain .jianjie .pcsupport{
+	float:right;
+	margin-right:20px;
+}
+.pc .jianjiemain .jianjiek{
+	margin-top:10px;
+	border:1px solid #dcdcdc;
+}
+.pc .jianjiemain .jianjiek .jianjietitle{
+	font-size:14px;
+	height:40px;
+	line-height:40px;
+	padding-left:15px;
+	background:#F4F2F3;
+}
+.pc .jianjiemain .jianjiek img{
+	display:block;
+	width:100%;
+}
+.pc .jianjiemain  #Qr{
+	position:absolute;
+	top:0;
+	left:0;
+}
+.pc .bjtu{
+	width:1000px;
+	height:400px;
+	margin:0 auto;
+	background-image:url(../img/bjtu.jpg);
+	background-repeat:no-repeat;
+	background-size:100%;
+	background-position:center;
+}
