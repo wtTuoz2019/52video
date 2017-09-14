@@ -671,6 +671,7 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
 			}else{
 				
 			$list=model('extendclass')->signup_course_bj_list('A.uid='.$this->user['id']);		
+		
 					if($list){
 						$filename = __ROOTDIR__."/upload/extendclass/" .$this->user['id']. ".zip"; // 最终生成的文件名（含路径）
 // 生成文件
@@ -683,6 +684,11 @@ if ($zip->open ($filename ,\ZipArchive::OVERWRITE) !== true) {
 
 		require(CP_PATH . 'ext/PHPExcel.php');
 			require(CP_PATH . 'ext/PHPExcel/IOFactory.php');
+		
+			$keynames=array('姓名','联系手机','学籍号','学号','班级','课程名称','任课老师','分数');
+			$keys = array_keys($keynames);
+		foreach($list as $k=>$v){
+			
 			$objPHPExcel = new PHPExcel();
 	        
       	  $objPHPExcel->getProperties()->setCreator("PHPExcel")
@@ -692,11 +698,6 @@ if ($zip->open ($filename ,\ZipArchive::OVERWRITE) !== true) {
                                      ->setDescription("PHPExcel document for Office 2003 XLS, generated at ".date('Y-m-d'))
                                      ->setKeywords("PHPExcel reports")
                                      ->setCategory("PHPExcel");
-			$keynames=array('姓名','联系手机','学籍号','学号','班级','课程名称','任课老师','分数');
-			$keys = array_keys($keynames);
-		foreach($list as $k=>$v){
-			
-		
 		 $xlsx=array();
 		 $xlsx[] = $keynames;	
 		foreach($v as $key=>$value){
@@ -723,7 +724,7 @@ if ($zip->open ($filename ,\ZipArchive::OVERWRITE) !== true) {
 			   
 				
             }
-     
+      
 		
 			}
 			
