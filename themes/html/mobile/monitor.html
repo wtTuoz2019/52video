@@ -131,6 +131,10 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 			<dd><input type="text" name="starttime" value="<?php echo date('Y-m-d H:i',$info['starttime']); ?>"  placeholder="开始时间" style="color:#060505" id="starttime"></dd>
               <dd><button onClick="start()"  class="btn btn-primary">设置开始时间</button> <button  class="end btn btn-primary" onClick="end()">结束直播</button></dd>
             
+            <dd><input value="http://live.shanyueyun.com/content/playstream/stream-{$stream}" style="color:#060505" id="tourl"/></dd>
+            <dd>
+            	<button  class="btn btn-primary fuzhi" onClick="copyUrl(this)">复制链接</button>
+            </dd>
 		    </dl>
 		    <div id="datePlugin"></div>
 		</div>
@@ -138,8 +142,24 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 
 </div>
 <script src="__TPL__mobile/Scripts/jquery.idTabs.min.js"></script>
+    <script src="__PUBLIC__/js/clipboard.min.js"></script>
 </div>
   <script type="text/javascript">
+    var clipboard = new Clipboard('.fuzhi', {
+        text: function() {
+            return $('#tourl').val();
+        }
+    });
+
+    clipboard.on('success', function(e) {
+      alert("已复制");
+    });
+
+    clipboard.on('error', function(e) {
+         alert("复制失败");
+    });
+  
+  
 		 $("#myTab").idTabs();  
 		 $('#starttime').date({theme:"datetime"});
 		 var  fid='{$fid}';

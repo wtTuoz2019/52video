@@ -414,8 +414,10 @@ class contentMod extends commonMod
         return $data;
     }
 		public function playstream(){
+			$where['stream']=$this->stream=$_GET['stream'];
+		if(MOBILE){
 		$this->getuserinfo();
-		$where['stream']=$this->stream=$_GET['stream'];
+	
 		$nowtime=time();
 		$where['endtime']=array('>',$nowtime);
 		$where['uid']=array('<>',$this->userinfo['uid']);
@@ -426,7 +428,7 @@ class contentMod extends commonMod
 			$this->alert('观看人数已满，请联系管理员');
 			}
 		$this->count=$count+1;
-		
+		}
 		$url='http://'.$this->config['ali'].$_GET['stream'].'.m3u8';
 		$this->flag=@fopen($url,'r');
 		 $this->display('playstream.html');	
