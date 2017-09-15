@@ -126,8 +126,7 @@ class extendclassModel extends commonModel {
 		}
 	public function attendance_info($where){
 		$data=$this->model->table('course_attendance')->where($where)->find();
-		
-			return $data;
+		return $data;
 		}
 		public function attendance_list($where){
 		$data=$this->model->table('course_attendance')->where($where)->select();
@@ -214,6 +213,7 @@ class extendclassModel extends commonModel {
 	public function course_info($where){
 		return $this->model->table('course','A')->add_table('teacher','B','A.tid=B.id')->field('A.*,B.name as teachername,B.image,B.title as job,B.des as geyan')->where($where)->find();
 		}
+	
 	public function course_del($id){
 		return $this->model->table('course')->where(array('id'=>$id))->delete();
 		}

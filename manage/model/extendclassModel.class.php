@@ -155,6 +155,11 @@ public function signup_course_bj_list($where){
 		
 			return $temp;
 		}
+	public function attendance_list($where){
+		$data=$this->model->table('course_attendance')->where($where)->order('day asc')->select();
+		
+			return $data;
+		}
 		public function nosignup_course_list($uid=0,$bid=0){
 		$data=$this->model->table('student','A')->field('A.*')->where('uid='.$uid.' and id not in (select sid from dc_course_signup where uid='.$uid.' and bid='.$bid.' ) ')->select();
 		

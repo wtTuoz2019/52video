@@ -884,6 +884,78 @@ die;
     	$this->msg('编辑成功！',1);
 		
 		}
+	public function attendance(){
+		
+		$cid=intval($_GET['cid']);
+		$info=model('extendclass')->course_info(array('id'=>$cid));
+		$list=model('extendclass')->attendance_list(array('cid'=>$info['id']));	
+		
+		$students=model('extendclass')->signup_course_list('A.uid='.$this->user['id'].' and B.cid='.$cid);	
+		if($list){
+			$teacher=model('extendclass')->teacher_list($where);
+				require(CP_PATH . 'ext/PHPExcel.php');
+			require(CP_PATH . 'ext/PHPExcel/IOFactory.php');
+			$objPHPExcel = new PHPExcel();
+	        $objPHPExcel = new PHPExcel(); 
+      	  $objPHPExcel->getProperties()->setCreator("PHPExcel")
+                                     ->setLastModifiedBy("PHPExcel")
+                                     ->setTitle("PHPExcel reports")
+                                     ->setSubject("PHPExcel reports")
+                                     ->setDescription("PHPExcel document for Office 2003 XLS, generated at ".date('Y-m-d'))
+                                     ->setKeywords("PHPExcel reports")
+                                     ->setCategory("PHPExcel");
+			$keynames=array('序号','学号','姓名');
+			foreach($list as $key=>$value){
+				$keynames[]=$value['day'];
+				}
+				
+		$keys = array_keys($keynames);
+		 $xlsx[] = $keynames;	
+		 $i=1;
+			foreach($students as $key=>$value){
+		$temp=array($i++, $value['codenum'], $value['name']);
+		
+					foreach($list as $k=>$v){
+					$sids=unserialize($v['sids']);
+					
+					if(in_array($value['id'],$sids))$temp[]='×';
+					else $temp[]='√';
+					}
+				
+		$xlsx[]=$temp;
+			 }	
+			
+			 foreach($xlsx as $index => $row){
+            $i = $index + 1;
+            $sheet = $objPHPExcel->setActiveSheetIndex(0);
+            foreach($keys as $key => $val){
+				if($key<26){
+               $ascii = chr(65+$key);
+				}else{
+				$ascii = chr(65).chr(65+($key-26));	 
+					}
+		 $sheet->setCellValueExplicit($ascii.$i, $row[$val],PHPExcel_Cell_DataType::TYPE_STRING);
+               //$sheet->setCellValue($ascii.$i, $row[$val]);
+			   
+				
+            }
+     
+		
+			}
+			
+        $objPHPExcel->getActiveSheet()->setTitle('签到数据');
+        $objPHPExcel->setActiveSheetIndex(0);ob_end_clean() ;
+		header("Content-Type: text/html; charset=utf-8");
+		header("Content-type:application/vnd.ms-execl");
+		header("Content-Disposition:filename=".$info['name']."签到数据.xlsx");
+		  $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
+            $objWriter->save('php://output');  die;
+			
+			}else{
+			$this->alert('暂无签到记录');	
+				
+				}
+		}
 	public function course_del(){
 		 $id=$_POST['id'];
      
