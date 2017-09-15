@@ -614,7 +614,7 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
 		if($_GET['export']){
 			if($_POST['bj_id']){
 			
-		 $list=model('extendclass')->signup_course_list('A.uid='.$this->user['id'].' and A.bj_id='.$_POST['bj_id']);	
+		 $list=model('extendclass')->signup_course_list('A.uid='.$this->user['id'].' and C.bid='.$bid.' and A.bj_id='.$_POST['bj_id']);	
 		if($list){
 			require(CP_PATH . 'ext/PHPExcel.php');
 			require(CP_PATH . 'ext/PHPExcel/IOFactory.php');
@@ -670,7 +670,7 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
 			}	
 			}else{
 				
-			$list=model('extendclass')->signup_course_bj_list('A.uid='.$this->user['id']);		
+			$list=model('extendclass')->signup_course_bj_list('A.uid='.$this->user['id'].' and C.bid='.$bid);		
 		
 					if($list){
 						$filename = __ROOTDIR__."/upload/extendclass/" .$this->user['id']. ".zip"; // 最终生成的文件名（含路径）

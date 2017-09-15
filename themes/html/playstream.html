@@ -20,7 +20,7 @@
 		<header> 
 			<div class="logo-box">
 			
-             <h1>上海视盛信息学院直播观看页</h1>
+             <h1><img class="schoolimg" src="{$sys.imageurl}{$school[$info['csid']]['headimg']}"/>{$school[$info['csid']]['name']}</h1>
 			
 			</div>
 		</header>
@@ -63,16 +63,13 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
 		</section>
         
         <div class="jianjiemain">
-        	<div class="jianjie">
-            	<img class="schoolimg" src="{$sys.imageurl}{$school[$info['csid']]['headimg']}"/>{$school[$info['csid']]['name']}
-                <div class="pcsupport">
-                	+技术支持
-                </div>
-            </div>
+        	
             <div class="jianjiek">
             	<div class="jianjietitle">
                 	闪阅云教育微直播平台简介
-                    
+                    <div class="pcsupport">
+                        +技术支持
+                    </div>
                 </div>
                 <img src="__TPL__mobile/img/shanyueyun2.jpg"/>
             </div>
