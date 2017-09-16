@@ -182,7 +182,7 @@ class extendclassModel extends commonModel {
 		}
 		
 	public function new_course($where){
-		return $this->model->table('course_batch')->where($where)->order('id desc')->find();
+		return $this->model->table('course_batch')->where($where)->order('endtime desc')->find();
 		}	
 	public function scoretype_list($where){
 		$data=$this->model->table('scoretype')->where($where)->order('sequence asc')->select();
