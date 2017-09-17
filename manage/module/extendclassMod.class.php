@@ -5,6 +5,7 @@ class extendclassMod extends commonMod {
 	public function __construct()
     {
         parent::__construct();
+		$this->times=array('1'=>'周一','2'=>'周二','3'=>'周三','4'=>'周四','5'=>'周五','6'=>'周六','7'=>'周日');
     }
 
 	 
@@ -627,11 +628,11 @@ for ($row = 2; $row <= $highestRow; $row++){//行数是以第1行开始
                                      ->setDescription("PHPExcel document for Office 2003 XLS, generated at ".date('Y-m-d'))
                                      ->setKeywords("PHPExcel reports")
                                      ->setCategory("PHPExcel");
-			$keynames=array('姓名','联系手机','学籍号','学号','班级','课程名称','任课老师','分数');
+			$keynames=array('姓名','联系手机','学籍号','学号','班级','课程名称','任课老师','上课地点','上课时间','分数');
 		$keys = array_keys($keynames);
 		 $xlsx[] = $keynames;	
 		foreach($list as $key=>$value){
-		$temp=array( $value['name'], $value['mobile'], $value['schoolcode'], $value['codenumber'],  $bj[$value['bj_id']]['grade'].'年级'.$bj[$value['bj_id']]['class'].'班',$value['title'],$teacher[$value['tid']]['name'],$value['score']);
+		$temp=array( $value['name'], $value['mobile'], $value['schoolcode'], $value['codenumber'],  $bj[$value['bj_id']]['grade'].'年级'.$bj[$value['bj_id']]['class'].'班',$value['title'],$teacher[$value['tid']]['name'],$value['place'],$this->times[$value['classtime']],$value['score']);
 		$xlsx[]=$temp;
 	
       		  
@@ -685,7 +686,7 @@ if ($zip->open ($filename ,\ZipArchive::OVERWRITE) !== true) {
 		require(CP_PATH . 'ext/PHPExcel.php');
 			require(CP_PATH . 'ext/PHPExcel/IOFactory.php');
 		
-			$keynames=array('姓名','联系手机','学籍号','学号','班级','课程名称','任课老师','分数');
+			$keynames=array('姓名','联系手机','学籍号','学号','班级','课程名称','任课老师','上课地点','上课时间','分数');
 			$keys = array_keys($keynames);
 		foreach($list as $k=>$v){
 			
@@ -701,7 +702,7 @@ if ($zip->open ($filename ,\ZipArchive::OVERWRITE) !== true) {
 		 $xlsx=array();
 		 $xlsx[] = $keynames;	
 		foreach($v as $key=>$value){
-		$temp=array( $value['name'], $value['mobile'], $value['schoolcode'], $value['codenumber'],  $bj[$value['bj_id']]['grade'].'年级'.$bj[$value['bj_id']]['class'].'班',$value['title'],$teacher[$value['tid']]['name'],$value['score']);
+		$temp=array( $value['name'], $value['mobile'], $value['schoolcode'], $value['codenumber'],  $bj[$value['bj_id']]['grade'].'年级'.$bj[$value['bj_id']]['class'].'班',$value['title'],$teacher[$value['tid']]['name'],$value['place'],$this->times[$value['classtime']],$value['score']);
 		$xlsx[]=$temp;
 	
       		  
@@ -988,11 +989,11 @@ die;
                                      ->setDescription("PHPExcel document for Office 2003 XLS, generated at ".date('Y-m-d'))
                                      ->setKeywords("PHPExcel reports")
                                      ->setCategory("PHPExcel");
-			$keynames=array('姓名','联系手机','学籍号','学号','班级','课程名称','任课老师','分数');
+			$keynames=array('姓名','联系手机','学籍号','学号','班级','课程名称','任课老师','上课地点','上课时间','分数');
 		$keys = array_keys($keynames);
 		 $xlsx[] = $keynames;	
 		foreach($list as $key=>$value){
-		$temp=array( $value['name'], $value['mobile'], $value['schoolcode'], $value['codenumber'],  $bj[$value['bj_id']]['grade'].'年级'.$bj[$value['bj_id']]['class'].'班',$value['title'],$teacher[$value['tid']]['name'],$value['score']);
+		$temp=array( $value['name'], $value['mobile'], $value['schoolcode'], $value['codenumber'],  $bj[$value['bj_id']]['grade'].'年级'.$bj[$value['bj_id']]['class'].'班',$value['title'],$teacher[$value['tid']]['name'],$value['place'],$this->times[$value['classtime']],$value['score']);
 		$xlsx[]=$temp;
 	
       		  
