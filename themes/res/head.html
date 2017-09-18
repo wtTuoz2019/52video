@@ -41,3 +41,24 @@
 				</ul>
 			</div>
 		</div>
+        <script>
+        	$(function(){
+				var url = window.location.href;
+				var href=url.substr(url.length-5); 
+				
+				$('.nav li>a').each(function() {
+					if($(this).attr("href").indexOf(href)>=0){
+						$(this).parent().addClass('active').siblings('.active').removeClass('active');
+						
+					}else if($(this).attr("href")=='/'){
+						$(this).parent().addClass('active').siblings('.active').removeClass('active');
+					}
+				});
+				
+				
+				
+				
+				
+				
+			});
+        </script>

@@ -17,13 +17,15 @@ class fieldModel extends commonMod {
 			
         return $this->model->table('content')->where($where)->order('inputtime desc')->limit($limit)->select();
     }
+	
+	    public function field_list($where,$limit) {
+      
+        return $this->model->table('content')->where($where)->order('inputtime desc')->limit($limit)->select();
+    }
  
     public function field_index_count($where) {
-        session_start();
-      
-			if($_SESSION['sid']){
-			$where.=' AND csid='.$_SESSION['sid'];
-			}
+       
+			
         return $this->model->table('content')->where($where)->count();
     }
 

@@ -44,7 +44,7 @@ class commonMod
 		}else{
 			$this->wxuser=model('user')->wxuserdefault();	
 			$sitetemp=explode('.',$siteurl);
-		$webconfig=model('web')->web_config(array('site'=>$sitetemp[0]));
+		$webconfig=model('web')->web_config("site='".$sitetemp[0]."' or site='".$siteurl."'");
 		
 		}
 		$this->config['uid']=1;

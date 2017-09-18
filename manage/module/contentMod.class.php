@@ -141,7 +141,7 @@ class contentMod extends commonMod
 		$grade=model('diyfield')->field_list(1);
 		
 		$user=model('user')->current_user();
-		$uid=$user['id'];
+		$uid=$user['cid'];
 		if($user['gid']==6){
 			$temp;
 			$temp[]=0;
@@ -170,7 +170,7 @@ class contentMod extends commonMod
 	
 		$school=model('school')->school_list($where);
 		
-		$teacher=model('teacher')->model_list();
+		$teacher=model('teacher')->model_list(array('uid'=>$user['id']));
 		
         $position_list=model('position')->position_list();
         $tpl_list=model('category')->tpl_list();

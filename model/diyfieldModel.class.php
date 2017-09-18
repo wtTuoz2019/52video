@@ -22,7 +22,7 @@ class  diyfieldModel extends commonModel
 	
 	  public function field_list_data($did)
     {
-        $data=$this->model->table('diyfield_value')->where('did='.$did)->order('sequence asc,id asc')->select();
+        $data=$this->model->table('diyfield_value')->field('id,name,pid')->where('did='.$did)->order('sequence asc,id asc')->select();
 		$temp=array();
 		if(!is_array($data)){
 			return $temp;

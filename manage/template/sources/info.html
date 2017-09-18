@@ -47,6 +47,9 @@
           <td></td>
         </tr>
                           <?php } ?>
+						 <?php if($user['cid']&&$user['gid']<>6){ ?>
+          <input name="csid" type="hidden" value="{$user.cid}" />
+         <?php }else{ ?>
 						<tr>
 							<td>所属学校：</td>
 							<td>
@@ -60,7 +63,9 @@
                                 </select>
 							</td>
 						</tr>
-                  
+                       
+                       <script type="text/javascript" src="__PUBLICURL__/home/dist/js/bootstrap-multiselect.js"></script>
+                           <link rel="stylesheet" href="__PUBLICURL__/home/dist/css/bootstrap-multiselect.css" type="text/css"/>
                           <script type="text/javascript">
                             $(document).ready(function() {
                                         $('#csid').multiselect({
@@ -78,8 +83,22 @@
                                         
                                     });
                                 </script> 
-                       
-                    <tr>
+                                
+                                <?php  } ?>
+                       <tr>
+                          <td>所属老师</td>
+                          <td>
+                          <select name="tid"  reg="." id="tid" >
+                              <option value="0">======全部老师======</option>
+                              <!--foreach:{$teacher $vo}--> 
+                              <option value="{$vo['id']}" <?php if($info['tid']==$vo['id']) { ?> selected="selected" <?php } ?>  >
+                                  {$vo['name']}
+                              </option>
+                              <!--{/foreach}-->
+                            </select>
+                            </td>                       
+                           </tr>
+						<tr>
           <td width="100" align="right">所属学段</td>
           <td colspan="2" class="xueduan">
              <select name="xueduan"  reg="." id="xueduan" alt="学段"   onChange="changxueduan(this)" msg="学段未选择"   >

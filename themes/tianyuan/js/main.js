@@ -16,7 +16,14 @@ $(document).scroll(function () {
 	}
 });
 
-
+$(function(){
+	$('.videotitle a').text();
+	$('.nav .fnav>li>a').each(function() {
+		if($(this).text()==$('.videotitle a').text()){
+			$(this).parent().addClass('active').siblings('.active').removeClass('active');
+		}
+	});
+});
 //
 //导航跳转
 $('.hotnav>a').click(function(e){

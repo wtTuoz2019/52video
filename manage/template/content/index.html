@@ -77,7 +77,7 @@
          $url = "http://".$sys['MOBILE_DOMAIN']."/content/index?aid=".$vo['aid'];
           $id = $vo['aid'];
           model('live')->gsetQrcode($url, $id);
-          echo $img = "/upload/aidimage/".$vo['aid'].".png";
+          echo $img = $sys['imageurl']."/upload/aidimage/".$vo['aid'].".png";
         ?>"/>
 						<input type="" name="" id="" value="http://{$sys['MOBILE_DOMAIN']}/content/index?aid={$vo['aid']}&token={$token}" />
 						<div class="btns">
