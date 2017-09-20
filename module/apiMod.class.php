@@ -6,7 +6,7 @@ class apiMod extends commonMod
         parent::__construct();
 		//$_POST['username']='120101001200';
 //		$_POST['password']='123456';
-		if($_GET['_action']!='getteacher'&&$_GET['_action']!='sms'){
+		if($_GET['_action']!='getteacher'&&$_GET['_action']!='sms'&&$_GET['_action']!='getstatus'){
 			if(!($_POST['mobile']&&$_POST['smscode'])){
 			$array=array('code'=>0,'msg'=>'请提交手机号码跟验证码','data'=>'');
 			echo json_encode($array);die;	
@@ -26,6 +26,21 @@ class apiMod extends commonMod
 		//$_POST['user']=$user;
     }
 	
+	public function getstatus(){
+		
+	 	$schoolname=urldecode($_GET['name']);
+		$user=model('school')->user($schoolname);
+		$return['code']=1;
+		if($user){
+			if($user['overtime'])
+			$return['overtime']=$user['overtime'];
+			else
+			$return['overtime']='';
+			}else{
+				$return['overtime']=time()-1000;
+				}
+		echo json_encode($return);
+		}
 	public function  getteacher(){
 		if($_POST['mobile']){
 		$teacher=model('api')->getteacherbymobile('A.mobile='.trim($_POST['mobile']));
@@ -77,7 +92,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		
 		}
 	public function videolist(){
-		$where=array('csid'=>$this->user['csid']);
+		$where=array('cxueduan'=>$this->user['cxueduan']);
 		if($_POST['cid'])$where['cid']=intval($_POST['cid']);
 		else $where['cid']=array('in','(13,18)');
 		
@@ -127,8 +142,8 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
   	public function teacher(){
 		$data=$_POST;
 		
-		if($data['csid']){
-			$where['cid']=$data['csid'];
+		if($data['cxueduan']){
+			$where['cid']=$data['cxueduan'];
 			}
 		
 		$list=model('teacher')->model_list($where);
@@ -143,34 +158,43 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		$array=array('code'=>1,'msg'=>'成功','data'=>array('list'=>$data,'type'=>$type));
 		echo json_encode($array);die;
 		}
-	public function getvideoinputs(){
-		
+	public function getmenus(){
+		$menulist=model('web')->menu_list(array('uid'=>$this->user['uid'],'type'=>'cid'));	
+			$array=array('code'=>1,'msg'=>'成功','data'=>$menulist);
+		echo json_encode($array);die;
 		}
 	public function addvideo(){
+		if(!$_POST['cid']){
+			$array=array('code'=>0,'msg'=>'cid必填','data'=>'');	
+			
+			echo json_encode($array);die;
+			
+			}
+		
 		 $_POST=$this->plus_hook_replace('content','add_replace',$_POST);
 		 $data=array('title'=>$_POST['title'],
 		 			 'image'=>$_POST['image'],
-					 'nianji'=>$_POST['nianji'],
+					 'xueduan'=>$_POST['xueduan'],
 					 'kemu'=>$_POST['kemu'],
 					 'banben'=>$_POST['banben'],
-					 'sid'=>$_POST['sid'],
-					 'tid'=>$_POST['tid'],
-					 'csid'=>$_POST['csid'],
-					 'cid'=>$this->selection['cid'],
+					 'nianji'=>$_POST['nianji'],
+					 'mid'=>$_POST['mid'],
+					 'tid'=>$this->user['id'],
+					 'csid'=>$this->user['csid'],
+					 'cid'=>$_POST['cid'],
 					 'uid'=>$this->user['uid'],
-					 'status'=>-5);
+					 'status'=>0);
 		
 		$data['aid']=model('content')->add_save($data);
 		if($data['aid']){
     	model('content')->add_content_save($data);
-		model('content')->edit_save(array('aid'=>$data['aid'],'videourl'=>'aid'.$data['aid']));
-		if($this->selection['cid']==18){
-		$return=array('url'=>'aid'.$data['aid'],'uploads'=>array($this->config['fujia']['video'],$this->config['fujia']['plan'],$this->config['fujia']['source']),'bucket'=>'dianjiao');
-		}elseif($this->selection['cid']==33){
-		$return=array('url'=>'aid'.$data['aid'],'uploads'=>array($this->config['fujia']['videos'],$this->config['fujia']['register'],$this->config['fujia']['source']),'bucket'=>'weikecheng');	
-		}else{
-		$return=array('url'=>'aid'.$data['aid'],'uploads'=>array($this->config['fujia']['video'],$this->config['fujia']['register'],$this->config['fujia']['plan'],$this->config['fujia']['source']),'bucket'=>'dianjiao');
-			}
+		
+		$return=array('url'=>'/','bucket'=>'shanyueyunin');
+		if($data['cid']==13){
+		$return['uploads']=array($this->config['fujia']['video']);
+		}elseif($data['cid']==18){
+		$return['uploads']=array($this->config['fujia']['videos'],$this->config['fujia']['files']);
+		}
 		$array=array('code'=>1,'msg'=>'成功','data'=>$return);
 		}else{
 		$array=array('code'=>0,'msg'=>'添加失败','data'=>'');	
@@ -184,26 +208,23 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		 $_POST=$this->plus_hook_replace('content','add_replace',$_POST);
 		 $data=array('title'=>$_POST['title'],
 		 			 'image'=>$_POST['image'],
-					 'nianji'=>$_POST['nianji'],
+					 'xueduan'=>$_POST['xueduan'],
 					 'kemu'=>$_POST['kemu'],
 					 'banben'=>$_POST['banben'],
-					 'sid'=>$_POST['sid'],
-					 'tid'=>$_POST['tid'],
-					 'csid'=>$_POST['csid'],
+					 'nianji'=>$_POST['nianji'],
+					 'mid'=>$_POST['mid'],
 					 'aid'=>$_POST['aid'],
-					 'status'=>-5, 
-					 '');
+					 'status'=>0, );
 		
 	 $status=model('content')->edit_save($data);
 	 $info=model('content')->info(intval($_POST['aid']));
 		if($status){
-		if($info['cid']==18){
-		$return=array('url'=>'aid'.$data['aid'],'uploads'=>array($this->config['fujia']['video'],$this->config['fujia']['plan'],$this->config['fujia']['source']),'bucket'=>'dianjiao');
-		}elseif($info['cid']==33){
-		$return=array('url'=>'aid'.$data['aid'],'uploads'=>array($this->config['fujia']['videos'],$this->config['fujia']['register'],$this->config['fujia']['source']),'bucket'=>'weikecheng');	
-		}else{
-		$return=array('url'=>'aid'.$data['aid'],'uploads'=>array($this->config['fujia']['video'],$this->config['fujia']['register'],$this->config['fujia']['plan'],$this->config['fujia']['source']),'bucket'=>'dianjiao');
-			}
+		$return=array('url'=>'/','bucket'=>'shanyueyunin');
+		if($info['cid']==13){
+		$return['uploads']=array($this->config['fujia']['video']);
+		}elseif($info['cid']==18){
+		$return['uploads']=array($this->config['fujia']['videos'],$this->config['fujia']['files']);
+		}
 		$array=array('code'=>1,'msg'=>'编辑成功','data'=>$return);
 		}else{
 		$array=array('code'=>0,'msg'=>'编辑失败','data'=>'');	
@@ -220,7 +241,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 					 'isupload'=>1,
 					 '');
 		
-	 $status=model('content')->update_save($data);
+	 	$status=model('content')->update_save($data);
 		if($status){
 		
 		$array=array('code'=>1,'msg'=>'操作成功','data'=>'');
@@ -231,61 +252,113 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		
 		echo json_encode($array);die;
 		}	
+	public function upload_dir(){
+	
+		$data=$this->config['fujia'][$_POST['type']];
+		$data['bucket']='shanyueyunin';
+		$array=array('code'=>1,'msg'=>'操作成功','data'=>$data);
+		echo json_encode($array);die;
+		}
+	public function upload_list(){
+		$page=$_POST['page']?intval($_POST['page']):1;$pagenum=$_POST['pagenum']?intval($_POST['pagenum']):10;
+		$limit=($page-1)*$pagenum.','.$pagenum;
+		$where=array('uid'=>$this->user['uid'],'tid'=>$this->user['id']);
+		
+	
+		$list=model('content')->video_list($where,$limit);
+		$count=model('content')->video_count($where);
+		$array=array('code'=>1,'msg'=>'成功','data'=>array('list'=>$list,'count'=>$count));
+		echo json_encode($array);die;
+		}
+	public function upload_save(){
+		$data=array('name'=>$_POST['name'],
+					'vurl'=>$_POST['vurl'],
+					'type'=>$_POST['type']);
+		if($data['type']=='video'){
+			$data['vurl']= "http://".$this->config['out']."/video/".$data['vurl']."/video.m3u8";	
+			}else{
+			$data['vurl']= "http://".$this->config['hk']."/source/".$data['vurl'];		
+			}			
+					
+		$id=model('content')->video_add($data);
+		$aid=intval($_POST['aid']);
+		if($id&&$aid){
+			$data=model('content')->info($aid);
+			if($data){
+				if($data['cid']==13){
+					$array=array(
+					 'aid'=>$aid,
+					 'isupload'=>1,
+					 );
+		
+	 			$status=model('content')->update_save($array);
+					}
+				
+				}
+			}
+		
+		}
+	public function upload_edit(){
+		 $data=array('name'=>$_POST['name'],
+					 'id'=>intval($_POST['id']));
+		$status=model('content')->video_save($data);
+		if($status){
+		$array=array('code'=>1,'msg'=>'修改成功','data'=>'');
+		}else{
+		$array=array('code'=>0,'msg'=>'修改失败','data'=>'');	
+			}
+		echo json_encode($array);die;
+		}
+	public function upload_del(){
+		 $id=intval($_POST['id']);
+        $this->alert_str($id,'int',true);
+     
+        /*hook end*/
+        $status=model('content')->video_del($id);
+		if($status)
+      $array=array('code'=>1,'msg'=>'内容删除成功','data'=>'');
+      else
+	   $array=array('code'=>0,'msg'=>'内容删除失败','data'=>'');
+	   
+	   echo json_encode($array);die; 
+		
+		}
+	
 	public function infobyaid(){
 		$data=model('content')->info(intval($_POST['aid']));
 		if(!$data){
-		  $array=array('code'=>1,'msg'=>'编辑成功','data'=>$info);
+		  $array=array('code'=>0,'msg'=>'内容不存在','data'=>'');
 		  echo json_encode($array);die; 
 		
 			}
 		$info=array('title'=>$data['title'],
 		 			 'image'=>$data['image'],
-					 'nianji'=>$data['nianji'],
+					 'xueduan'=>$data['xueduan'],
 					 'kemu'=>$data['kemu'],
 					 'banben'=>$data['banben'],
-					 'sid'=>$data['sid'],
-					 'tid'=>$data['tid'],
-					 'csid'=>$data['csid'],
+					 'nianji'=>$data['nianji'],
+					 'mid'=>$data['mid'],
 					 'aid'=>$data['aid'],
 					 'isupload'=>$data['isupload']
 					);
-			 if($info['cid']==33){
-		 $bucket=model('source')->sourcebyweiketitle($data['videourl']);
-		 $info['register']=$bucket['register']; $info['source']=$bucket['source']; 
-			 if(!$bucket['weike']){
-			$bucket['weike']= module('content')->getweike($data['videourl']);
-			}
-			   $info['weike']=$bucket['weike'];
-			if(!$info['source']){
-			$bucket['source']=module('content')->getweikesource($data['videourl']);
-			 $info['source']=$bucket['source'];
-			}
-			 
-			if(!$info['register']){
-			$bucket=module('content')->getweikeregister($data['videourl']);
-			$info['register']=$bucket['register'];
+			 if($info['cid']==13){
 			
-			}
-			
+			$info['video']=model('content')->video_info(array('vurl'=>$info['videourl']));
 			
 			 }else{
-				  $bucket=model('source')->sourcebytitle($data['videourl']);
-				
-			 	$info['register']=$bucket['register']; 
-				
-		 if(!$bucket['plan']){
-			$bucket=module('content')->getplan($data['videourl']);  
-			}$info['plan']=$bucket['plan'];
-		 if(!$info['source']){
-			$bucket['source']=module('content')->getsource($data['videourl']);
-			$info['source']=$bucket['source']; 
-			}
-			
-				if(!$info['register']){
-			$bucket=module('content')->getregister($data['videourl']);
-			$info['register']=$bucket['register'];
-			}
-			
+				 $content=model('content')->info_content($info['aid']);
+				 
+				 $source=json_decode($content['sources'],true);
+				 if($source['videos']){ 
+        $ids=implode(",", $source['videos']);
+		$info['videos']=model('content')->video_list('id in ('.$ids.')');
+				 }
+				 
+				  if($source['source']){ 
+        $ids=implode(",", $source['source']);
+		$info['files']=model('content')->video_list('id in ('.$ids.')');
+				 }
+		
 			
 			}
 			

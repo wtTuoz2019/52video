@@ -472,8 +472,7 @@ class contentModel extends commonModel
 	public function video_info($where)
     {	
 	
-		
-        $id=$this->model->table('videolist')->where($where)->find(); 
+		 $id=$this->model->table('videolist')->where($where)->find(); 
       
         return $id;
     }

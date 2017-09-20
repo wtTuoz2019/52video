@@ -22,7 +22,7 @@ class webModel extends commonModel
 			}
 		}
 	public function menu_list($where){
-		$data=$this->model->table('web_menu')->where($where)->order('sequence desc,id asc')->select();
+		$data=$this->model->table('web_menu')->field('id,name,pid')->where($where)->order('sequence desc,id asc')->select();
 		
 		  $cat = new Category(array('id', 'pid', 'name', 'cname'));
         return $cat->getTree($data, 0);

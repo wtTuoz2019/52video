@@ -640,7 +640,7 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 		 	$where=" uid  in (".implode(',',$temp).") ";
 			 }else{
 		if($this->user['cid'])	
-	 	$where=" uid =".$this->user['cid'];
+	 	$where=" uid =".$this->user['id'];
 			 }
 			
 			

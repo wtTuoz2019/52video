@@ -2497,16 +2497,7 @@ body .oftentable.tianyuant tr td{
     margin: 0;
 	z-index:1000;
 }
-.hmbk{
-	width:300%;
-	overflow:hidden;
-	position:relative;
-	top:0;
-	left:0;
-}
 .hmbk>div{
-	width:900px;
-	float:left;
 	padding:20px 40px;
 	overflow:hidden;
 }
@@ -2517,9 +2508,23 @@ body .oftentable.tianyuant tr td{
 	height:350px;
 	padding:0 10px;
 }
+.hmbimgk{
+	overflow:hidden;
+}
+.hmbk>div.hmb>div .imgk{
+	width:300%;
+	position:relative;
+	top:0;
+	left:0;
+	overflow:hidden;
+}
+.hmbk>div.hmb>div .imgk img{
+	float:left;
+}
 .hmbk>div.hmb>div.hmbtext{
 	padding-top:100px;
 	line-height:25px;
+	padding-left:50px;
 }
 .allhmb>div{
 	display:none;

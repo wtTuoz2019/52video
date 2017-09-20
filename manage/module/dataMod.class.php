@@ -141,7 +141,7 @@ public function sexcity(){
 		$citydata1="";
 		if(is_array($data['city'])){
 		foreach($data['city'] as $k=>$v){
-			$v['city']=empty($v['city'])? "未知":$v['city'];
+			$v['city']=empty($v['city'])? "其他":$v['city'];
 			$citydata[]=array($v['city'],intval($v['count']));
 		
 			
