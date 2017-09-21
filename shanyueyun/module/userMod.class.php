@@ -130,10 +130,12 @@ class userMod extends commonMod {
 			 $_POST['overtime']=strtotime($_POST['overtime']);
 			
 			}
-			if(!$_POST['cid']){
+			
+			 if($_POST['gid']){
+				 if(!$_POST['cid']){
 			$_POST['cid']=0;
 			}
-			
+				 
 		if($_POST['gid']==2||$_POST['gid']==4){
 			
 			if(!$_POST['cid']){
@@ -141,7 +143,7 @@ class userMod extends commonMod {
 				}
 			}
 		
-		
+		}
         //录入模型处理
         model('user')->edit($_POST);
         $this->msg('用户修改成功! ',1);
