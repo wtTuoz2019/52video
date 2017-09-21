@@ -53,50 +53,48 @@ button{
 	padding-right: 35px;
 }
 .indexcontent .serve{
-	text-align: center;
-	margin-bottom: 130px;
+	overflow:hidden;
+	padding-top:40px;
 }
-.indexcontent .serve>div{
-	height: 280px;
-	width: 280px;
-	display: inline-block;
-	padding-top: 30px;
+.indexcontent .serve .servek{
+	width:320px;
+	height:175px;
+	background:#64B7C9;
+	float:left;
+	margin-right:20px;
+	color:#fff;
+	position:relative;
+	text-align:center;
+	font-size:16px;
+	padding-top:70px;
 }
-.indexcontent .serve>div:hover{
-	box-shadow: -4px 5px 20px 0px;
+.indexcontent .serve .servek h5{
+	font-size:48px;
 }
-.indexcontent .serve>div>div{
-	display: inline-block;
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	background: #fff;
-	line-height: 80px;
+.indexcontent .serve .servek .topimg{
+	background-image:url(../img/usersee1.png);
+	width:80px;
+	height:80px;
+	position:absolute;
+	background-repeat:no-repeat;
+	background-size:100%;
+	background-position:center;
+	left: 120px;
+    top: -40px;
 }
-.indexcontent .serve>div>p{
-	margin: 15px 0 50px 0;
+.indexcontent .serve .servek:nth-child(2) .topimg{
+	background-image:url(../img/usersee2.png);
 }
-.indexcontent .serve>div>button{
-	width: 120px;
-	height: 40px;
-	border: 1px solid #C3C3C3;
-	background: #fff;
-	color: #505050;
-	border-radius: 5px;
-	font-size: 12px;
+.indexcontent .serve .servek:nth-child(2){
+	background:#B593BB;
 }
-.indexcontent .serve>div.videoserve{
-	float: left;
-	background: #55B0C3;
+.indexcontent .serve .servek:nth-child(3) .topimg{
+	background-image:url(../img/usersee3.png);
 }
-.indexcontent .serve>div.xkserve{
-	background: #9398B1;
+.indexcontent .serve .servek:last-child{
+	margin-right:0;
+	background:#DDCF30;
 }
-.indexcontent .serve>div.forumserve{
-	float: right;
-	background: #DDCE30;
-}
-
 /*头部样式*/
 #header .head{
 	height: 80px;
@@ -2531,4 +2529,33 @@ body .oftentable.tianyuant tr td{
 }
 .allhmb>div.active{
 	display:block;
+}
+.tubiaok{
+	width:1000px;
+	overflow:hidden;
+	margin:40px auto 50px;
+}
+.tubiaok>div:first-child{
+	margin-left:0;
+	border-left:10px solid #009BD4;
+}
+.tubiaok>div{
+	float:left;
+	width:490px;
+	border:1px solid #DEDEDE;
+	border-left:10px solid #9398B1;
+	margin-left:20px;
+	height:350px;
+	overflow:hidden;
+	position:relative;
+}
+.tubiaok>div p{
+	text-align:center;
+	position:absolute;
+	width:100%;
+	font-size:16px;
+	color:#000;
+	top:30px;
+	left:0;
+	z-index:100;
 }

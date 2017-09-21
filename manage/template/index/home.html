@@ -20,48 +20,39 @@
 				
 			</div>
 			<div class="serve">
-            
-				<div class="videoserve" onclick="jump(1)">
-					<div>
-						<img src="__PUBLICURL__/manage/img/video.png"/>
-					</div>
-					<p>
-						视频服务
-					</p>
-					<button>
-						管理
-					</button>
-				</div>
-              
-				<div class="xkserve" onclick="jump(3)">
-					<div>
-						<img src="__PUBLICURL__/manage/img/xuanke.png"/>
-					</div>
-					<p>
-						选课服务
-					</p>
-					<button>
-						管理
-					</button>
-				</div>
-				<div class="forumserve" onclick="jump(4)">
-					<div>
-						<img src="__PUBLICURL__/manage/img/forum.png"/>
-					</div>
-					<p>
-						论坛服务
-					</p>
-					<button>
-						管理
-					</button>
-				</div>
+				<div class="servek">
+                	<div class="topimg"></div>
+                    <p>观看人次</p>
+                    <h5>{$data.all}</h5>
+                </div>
+                <div class="servek">
+                	<div class="topimg"></div>
+                    <p>评论数量</p>
+                    <h5>{$data.comment}</h5>
+                </div>
+                <div class="servek">
+                	<div class="topimg"></div>
+                    <p>素材数量</p>
+                    <h5>{$data.sucai}</h5>
+                </div>
 			</div>
 		</div>
-		
+		<div class="tubiaok">
+        	<div class="tubiao">
+            	<p>新建页面数量占比图</p>
+            	<div id="container" style="width:480px; height:400px;"></div>
+            </div>
+            <div class="tubiao">
+            	<p>观看人次占比图</p>
+            	<div id="container2" style="width:480px; height:400px;"></div>
+            </div>
+        </div>
 		
 		
 		 
-		
+<script type=text/javascript src=" __PUBLICURL__/js/highcharts.js"></script>
+<script type=text/javascript src=" __PUBLICURL__/js/highcharts-3d.js"></script>
+<script type=text/javascript src=" __PUBLICURL__/js/radialIndicator.min.js"></script>
 		
 		<script type="text/javascript">
 			//导航点击跳出退出
@@ -72,9 +63,119 @@
 			});
 			
 			
-			function jump(e){
+			
+			
+			$(function () {
+				$('#container').highcharts({
+					chart: {
+						plotBackgroundColor: null,
+						plotBorderWidth: 0,
+						plotShadow: false
+					},
+					title: {
+						text: '新建数量<br>{$contentnum}',
+						align: 'center',
+						verticalAlign: 'middle',
+						y: 50
+					},
+					tooltip: {
+						headerFormat: '{series.name}<br>',
+						pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+					},
+					plotOptions: {
+						pie: {
+							dataLabels: {
+								enabled: true,
+								distance: -50,
+								style: {
+									fontWeight: 'bold',
+									color: 'white',
+									textShadow: '0px 1px 2px black'
+								}
+							},
+							startAngle: -90,
+							endAngle: 90,
+							center: ['50%', '75%']
+						}
+					},
+					series: [{
+						type: 'pie',
+						name: '数量占比',
+						innerSize: '50%',
+						data: [
+							 <!--foreach:{$cteatenum $k $v}-->
+			 
+                ['{$cnames[$k]}({$v})',   {$v}],
 				
-				var iframe=parent.document.getElementById("main");
-				$(iframe).parents('body').find('#headnav>a').eq(e)[0].click();
-			}
+				 	<!--{/foreach}-->
+							{
+								name: '其他',
+								y: 0.7,
+								dataLabels: {
+									// 数据比较少，没有空间显示数据标签，所以将其关闭
+									enabled: false
+								}
+							}
+						]
+					}]
+				});
+				
+				$('#container2').highcharts({
+					chart: {
+						plotBackgroundColor: null,
+						plotBorderWidth: 0,
+						plotShadow: false
+					},
+					title: {
+						text: '观看人次<br>{$data.all}',
+						align: 'center',
+						verticalAlign: 'middle',
+						y: 50
+					},
+					tooltip: {
+						headerFormat: '{series.name}<br>',
+						pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+					},
+					plotOptions: {
+						pie: {
+							dataLabels: {
+								enabled: true,
+								distance: -50,
+								style: {
+									fontWeight: 'bold',
+									color: 'white',
+									textShadow: '0px 1px 2px black'
+								}
+							},
+							startAngle: -90,
+							endAngle: 90,
+							center: ['50%', '75%']
+						}
+					},
+					series: [{
+						type: 'pie',
+						name: '观看人次占比',
+						innerSize: '50%',
+						data: [
+						 <!--foreach:{$data['list'] $k $v}-->
+			 
+                ['{$cnames[$k]}({$v})',   {$v}],
+				
+				 	<!--{/foreach}-->
+							{
+								name: '其他',
+								y: 0.7,
+								dataLabels: {
+									// 数据比较少，没有空间显示数据标签，所以将其关闭
+									enabled: false
+								}
+							}
+						]
+					}]
+				});
+				
+			});
+			
+			
+			
 		</script>

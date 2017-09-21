@@ -21,6 +21,9 @@ class categoryModel extends commonModel
         $cat = new Category(array('cid', 'pid', 'name', 'cname'));
         return $cat->getTree($data, $id);
     }
+	
+	
+	
 
     //获取子栏目统计
     public function list_count($pid)
@@ -38,6 +41,20 @@ class categoryModel extends commonModel
     public function info($id)
     {
         return $this->model->table('category')->where('cid='.$id)->find();
+    }
+	 public function model_list()
+    {
+        $data=$this->model->table('category')->select();
+		
+		   $temp;
+	   if($data){
+		   foreach($data as $key=>$value){
+			   $temp[$value['cid']]=$value['name'];
+			   }
+		   
+		   }
+	   
+	   return $temp;
     }
 
     //字段保存格式化

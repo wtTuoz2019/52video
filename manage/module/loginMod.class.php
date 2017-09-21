@@ -77,7 +77,7 @@ class loginMod extends commonMod
 		
 		$this->show();
 		}
-	public function register(){
+	public function reg(){
 		
 		$this->show();
 		}

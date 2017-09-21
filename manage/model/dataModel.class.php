@@ -11,6 +11,56 @@ class  dataModel extends commonModel
         return $this->model->table('visit')->field('DISTINCT  uid')->where($where)->count();
     }
 	
+	   public function getuidcount($where) {
+        return $this->model->table('visit')->field('uid')->where($where)->count();
+    }
+	
+	  public function getcommentcount($where) {
+        return $this->model->table('comment')->where($where)->count();
+    }
+	
+	
+	 public function getvideocount($where) {
+        return $this->model->table('videolist')->where($where)->count();
+    }
+	
+	  public function contentcidcount($where) {
+         $data=$this->model->table('content')->field('count(aid) as num,cid')->where($where)->group('cid')->select();
+		   $temp;
+	   if($data){
+		   foreach($data as $key=>$value){
+			   $temp[$value['cid']]=$value['num'];
+			   }
+		   
+		   }
+	   
+	   return $temp;
+    }
+	 public function contentcount($where) {
+         $data=$this->model->table('content')->where($where)->count();
+		 
+	   return $data;
+    }
+	  public function livecount($where) {
+         $data=$this->model->table('expand_content_livestream')->where($where)->count();
+		 
+	   return $data;
+    }
+	
+	
+	  public function getaids($where) {
+       $data=$this->model->table('content')->field('aid')->where($where)->select();
+	   $temp;
+	   if($data){
+		   foreach($data as $key=>$value){
+			   $temp[]=$value['aid'];
+			   }
+		   
+		   }
+	   
+	   return $temp;
+    }
+	
 	 //获取数量
     public function getavg($where) {
         return $this->model->table('visit')->where($where)->find();

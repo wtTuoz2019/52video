@@ -130,15 +130,17 @@ class userMod extends commonMod {
 			 $_POST['overtime']=strtotime($_POST['overtime']);
 			
 			}
+			if(!$_POST['cid']){
+			$_POST['cid']=0;
+			}
+			
 		if($_POST['gid']==2||$_POST['gid']==4){
 			
 			if(!$_POST['cid']){
 				$this->msg('学校必选！',0);
 				}
 			}
-		if(!$_POST['cid']){
-			$_POST['cid']=0;
-			}
+		
 		
         //录入模型处理
         model('user')->edit($_POST);
