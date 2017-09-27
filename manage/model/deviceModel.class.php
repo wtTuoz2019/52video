@@ -22,9 +22,9 @@ class  deviceModel extends commonModel
         return $data;
     }
 	
-	public function channel_list($where=null){
+	public function channel_list($where=null,$limit=null){
 		
-		return  $this->model->field('A.id,A.sn,C.name')->table('device','A')->add_table('admin','B','A.cid=B.id')->add_table('school','C','B.cid=C.id')->where($where)->select();
+		return  $this->model->field('A.id,A.sn,C.name,C.headimg')->table('device','A')->add_table('admin','B','A.cid=B.id')->add_table('school','C','B.cid=C.id')->where($where)->limit($limit)->select();
 		}
 		public function getcsid($snid){
 		

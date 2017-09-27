@@ -22,23 +22,110 @@ class indexMod extends commonMod
         require (__ROOTDIR__.'/inc/config.php'); 
         $this->config_array=$config;
     	
-      		
-//			$data['city']=model('data')->citybywhere($wherecity);
-//	
-//	if(is_array($data['city'])){
-//		foreach($data['city'] as $k=>$v){
-//			$v['city']=empty($v['city'])? "其他":$v['city'];
-//			$citydata[pinyin($v['city'])]=intval($v['count']);
-//		
-//			
-//			}
-//		}
-			
-			//var_dump($citydata);
-		
-			
+
 	        $this->show();
     }
+	
+	public function flowdata(){
+		
+		$user=$this->user;
+		if($user['gid']==6){
+				$temp;$temp[]=1;
+			if($user['cid']){
+				$temp[]=$user['cid'];
+				}
+			$nextuser=model('user')->admin_list(' and  pid='.$user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['cid'];
+				}
+			} 
+			$whereaid=" csid  in (".implode(',',$temp).") ";
+			 }else{
+		if($user['cid'])	
+	 	$whereaid="csid =".$user['cid'];
+			 }
+			 
+			
+			if($whereaid)
+			$aids=model('data')->getaids($whereaid);	
+			
+			$where;
+			if($aids){$where['aid']=array('in','('.implode(',',$aids).')');
+
+			
+			}
+			
+			
+			
+	  $start=time()-3600;
+	  $timestep=360;$videoflow=array();
+	  $where=array('aid'=>$id);
+		for($i=1;$i<=10;$i++){
+			$starttime=$start+($i-1)*$timestep;
+			$endtime=$start+($i)*$timestep;
+			
+			
+			$where[1]='starttime<'.$endtime.' and endtime>'.$starttime;
+		
+			
+			$livenum['date'][]=date('H:i',$endtime);
+			if($where)
+			$livenum['value'][]=intval(model('data')->getuidcount($where));
+			else
+			$livenum['value'][]=0;
+			
+			}	
+		
+		$this->msg($livenum,1);
+			
+		
+		
+		
+		}
+	public function gettop(){
+		$user=$this->user;
+		$uid=$user['id'];
+		if($user['gid']==6){
+			$temp;
+			$temp[]=1;
+			if($user['cid']){
+				$temp[]=$user['id'];
+				}
+			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['id'];
+				}
+			}
+			
+			if($temp){
+			 	$where='B.id in ('.implode(',',$temp).') ';	
+				}
+			}else{
+		
+			
+			if($user['cid']){
+			$where='B.id='.$uid;	
+				}
+		
+     
+			}
+		
+		   $channel = model('device')->channel_list($where,10);
+		
+			if(is_array($channel)){
+		foreach($channel as $k=>$v){
+			
+			$citydata[]=array($v['name'],intval($v['count']));
+		
+			
+			}
+		}
+		
+		$this->msg($citydata,1);
+		
+		}
 	    
     // 显示管理后台首页
     public function nav_video()

@@ -72,4 +72,27 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 			$this->msg($playlist,1);
 		}
 
+		public function liveonline(){
+		
+		 	require(CP_CORE_PATH . '/../ext/aliyunsdk/aliyun-php-sdk-core/Config.php');
+					
+$iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['AccessKeyId'], $this->config['AccessSecret']);
+			$client = new DefaultAcsClient($iClientProfile); 
+			$request = new Cdn\DescribeLiveStreamsOnlineListRequest();  
+			$request->setMethod("GET");
+			$request->setDomainName($this->config['DomainName']);  
+			$request->setAppName($this->config['AppName']);
+			$response = $client->getAcsResponse($request); 
+			$sns=array();
+		
+			if($response->OnlineInfo->LiveStreamOnlineInfo){
+				foreach($response->OnlineInfo->LiveStreamOnlineInfo as $key=>$val){
+					$sns[$val->StreamName]=1;
+					
+					}
+				}
+		
+		
+			$this->msg($sns,1);
+		}
 }

@@ -139,7 +139,7 @@ class liveMod extends commonMod
         $category_list=model('category')->category_list();
         $subject=model('diyfield')->field_list(2);
 		$grade=model('diyfield')->field_list(1);
-		$user=model('user')->current_user();
+		$user=$this->user;
 		$uid=$user['id'];
 		if($user['gid']==6){
 			$temp;

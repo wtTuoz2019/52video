@@ -9,7 +9,7 @@ class dataMod extends commonMod
  	public function admindata(){
 		
 		$user=model('user')->admin_user();
-		
+		if(!$user)die;
 		if($user['gid']==6){
 				$temp;$temp[]=1;
 			if($user['cid']){

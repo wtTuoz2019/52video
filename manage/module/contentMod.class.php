@@ -140,7 +140,7 @@ class contentMod extends commonMod
         $subject=model('diyfield')->field_list(2);
 		$grade=model('diyfield')->field_list(1);
 		
-		$user=model('user')->current_user();
+		$user=$this->user;
 		$uid=$user['cid'];
 		if($user['gid']==6){
 			$temp;
@@ -627,7 +627,7 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 		
 			
 		 if($this->user['gid']==6){
-				$temp;$temp[]=1;
+				$temp;$temp[]=0;
 		
 				$temp[]=$this->user['id'];
 				

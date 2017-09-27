@@ -2681,50 +2681,55 @@ body .oftentable.tianyuant tr td{
 .serve .data_table tr{
 	height:40px;
 }
-.serve table.s_table tr:last-child{
-	border:0;
-}
-.servetop .s_title{
-	position:fixed;
-	width:1000px;
-	top:0;
-	z-index:1000;
-}
-.servetop {
-	padding-top:46px;
-	margin-top:0;
-}
-.serve .chaxun{
-	float:right;
-	margin-right:15px;
-}
-.act{
-	background:#F4F5F9;
-}
-.servetop .s_table{
-	position:relative;
-	padding-top:50px;
-	display:block;
-}
-.servetop .s_table tbody{
-	display:block;
-}
-.servetop .s_table td{
-	width:30%;
+#jkvideo .search p{
 	float:left;
-	line-height:49px;
-	left:0;
+	line-height:40px;
+	font-size:18px;
 }
-.servetop .s_table tr{
-	width:998px;
+.jkvideo_list{
 	overflow:hidden;
+}
+.jkvideo_list li{
+	float:left;
+	width:200px;
+	height:200px;
+	margin:30px 20px 0 0;
+	background-image:url(../img/isvideo.jpg);
+	background-repeat:no-repeat;
+	background-size:100%;
+	color:#79b2e1;
+	text-align:center;
+	font-size:14px;
+}
+.jkvideo_list li.islive{
+	background-image:url(../img/islive.jpg);
+	color:#ff5050;
+}
+.jkvideo_list li a{
+	color:#79b2e1;
+}
+.jkvideo_list li.islive a{
+	color:#ff5050;
+}
+.jkvideo_list li .tongdao{
+	text-align:right;
+	font-size:12px;
+	margin-top:10px;
+}
+.jkvideo_list li a{
 	display:block;
+	width:100%;
+	height:100%; 
+	padding:0 15px;
+	padding-top:25px;
 }
-.servetop .s_table tr td:nth-child(2){
-	width:40%;
+.jkvideo_list li:nth-child(5n){
+	margin-right:0;
 }
-.servetop .s_table .table_head{
-	position:absolute !important;
-	top:0;
-	left:0;
+#jkvideo .search{
+	overflow:hidden;
+}
+.jkvideo_list li a .schoollogo{
+	height:70px;
+	margin-bottom:20px;
 }

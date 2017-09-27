@@ -6,7 +6,35 @@ class dataMod extends commonMod
         parent::__construct();
     }
 	public function watch(){
+		$user=$this->user;
+		$uid=$user['id'];
+		if($user['gid']==6){
+			$temp;
+			$temp[]=1;
+			if($user['cid']){
+				$temp[]=$user['id'];
+				}
+			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['id'];
+				}
+			}
+			
+			if($temp){
+			 	$where='B.id in ('.implode(',',$temp).') ';	
+				}
+			}else{
 		
+			
+			if($user['cid']){
+			$where='B.id='.$uid;	
+				}
+		
+     
+			}
+		
+		   $this->channel=$channel = model('device')->channel_list($where);
 		 $this->display('data/watch');
 		
 		}

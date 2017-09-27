@@ -21,7 +21,7 @@
 				<p> 
 					登录IP为： {$user.ip}
                 </p>
-				<a href="http://kf.shanyueyun.com/manage/index.php/data/watch" target="_blank" class="monitor_btn">进入监看页面</a>
+				<a href="__APP__/data/watch" target="_blank" class="monitor_btn">进入监看页面</a>
 			</div>
 			<div class="serve">
 				<p class="s_title">
@@ -185,6 +185,9 @@
 			});
 			
 			$(function () {
+				
+				$.post('__URL__/flowdata',{},function(data){
+				
 				$('#container').highcharts({
 					chart: {
 						type: 'line'
@@ -193,7 +196,7 @@
 						text: ''
 					},
 					xAxis: {
-						categories: ['时间', '时间', '时间', '时间', '时间', '时间', '时间', '时间', '时间', '时间', '时间', '时间']
+						categories:    data.message.date
 					},
 					yAxis: {
 						title: {
@@ -209,14 +212,15 @@
 						}
 					},
 					series: [{
-						name: '时间',
-						data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+						name: '人',
+						data:  data.message.value
 					}
 							]
 				});
-			});
-
-			$(function () {
+				},'json');
+				
+			$.post('__URL__/gettop',{},function(data){
+					
 				$('#container2').highcharts({
 					chart: {
 						type: 'column'
@@ -227,9 +231,10 @@
 					xAxis: {
 						type: 'category',
 						labels: {
+							   rotation: -30, 
 							style: {
 								fontSize: '13px',
-								fontFamily: 'Verdana, sans-serif'
+								fontFamily: 'Verdana, sans-serif',    writingMode:'tb-rl' 
 							}
 						}
 					},
@@ -247,18 +252,7 @@
 					},
 					series: [{
 						name: '时长',
-						data: [
-							['学校名称', 85],
-							['学校名称', 70],
-							['学校名称', 60],
-							['学校名称', 50],
-							['学校名称', 40],
-							['学校名称', 50],
-							['学校名称', 40],
-							['学校名称', 50],
-							['学校名称', 40],
-							['学校名称', 30]
-						],
+						data: data.message,
 						dataLabels: {
 							color: '#FFFFFF',
 							align: 'right',
@@ -270,5 +264,8 @@
 						}
 					}]
 				});
+					},'json');
 			});
+
+		
 		</script>
