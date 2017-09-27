@@ -6,7 +6,59 @@ class dataMod extends commonMod
         parent::__construct();
     }
 
- 
+ 	public function admindata(){
+		
+		$user=model('user')->admin_user();
+		
+		if($user['gid']==6){
+				$temp;$temp[]=1;
+			if($user['cid']){
+				$temp[]=$user['cid'];
+				}
+			$nextuser=model('user')->admin_list('  pid='.$user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['cid'];
+				}
+			} 
+			$whereaid=" csid  in (".implode(',',$temp).") ";
+			 }else{
+		if($user['cid'])	
+	 	$whereaid="csid =".$user['cid'];
+			 }
+			 
+			
+			if($whereaid)
+			$aids=model('data')->getaids($whereaid);	
+			
+			$where;
+			if($aids){$where['aid']=array('in','('.implode(',',$aids).')');
+			$wherecomment['fid']=array('in','('.implode(',',$aids).')');
+			$wherecity=' where aid in ('.implode(',',$aids).')';
+				$data['contentnum']=model('data')->contentcount($where);
+		
+			$data['pv']=model('data')->getuidcount($where);
+			$data['uv']=model('data')->getcount($where);
+			
+			$data['commentnum']=model('data')->getcommentcount($wherecomment);
+			
+			
+			$data['looktime']=model('data')->looktimesum($where);
+			$where['cid']='16';
+			$data['livetime']=model('data')->looktimesum($where);
+			}
+			
+		
+			$data['updatetime']=time();
+			$data['id']=$user['id'];
+			model('user')->admin_save($data);
+			echo $user['user'].'更新时间：'.date('Y-m-d H:i:s');
+		
+		
+		
+		
+		
+		}
     // 内容列表
     public function index()
     {

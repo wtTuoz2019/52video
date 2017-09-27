@@ -22,75 +22,20 @@ class indexMod extends commonMod
         require (__ROOTDIR__.'/inc/config.php'); 
         $this->config_array=$config;
     	
-      		$user=$this->user;
+      		
+//			$data['city']=model('data')->citybywhere($wherecity);
+//	
+//	if(is_array($data['city'])){
+//		foreach($data['city'] as $k=>$v){
+//			$v['city']=empty($v['city'])? "其他":$v['city'];
+//			$citydata[pinyin($v['city'])]=intval($v['count']);
+//		
+//			
+//			}
+//		}
 			
-		 if($user['gid']==6){
-				$temp;$temp[]=0;
-			if($user['cid']){
-				$temp[]=$user['cid'];
-				}
-			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
-			if($nextuser){
-			foreach($nextuser as $key=>$val){
-				$temp[]=$val['cid'];
-				}
-			} 
-			$whereaid=" csid  in (".implode(',',$temp).") ";
-			 }else{
-		if($user['cid'])	
-	 	$whereaid="csid =".$user['cid'];
-			 }
-			if($whereaid)
-			$aids=model('data')->getaids($whereaid);	
-			
-			$where;
-			if($aids){$where['aid']=array('in','('.implode(',',$aids).')');
-			$wherecomment['fid']=array('in','('.implode(',',$aids).')');
-			}
-			$this->cnames=model('category')->model_list();
-			$this->contentnum=model('data')->contentcount($where);
-			$cteatenum=model('data')->contentcidcount($where);
-			$cteatenum['16']=model('data')->livecount($where);
-			$data['all']=model('data')->getuidcount($where);
-			
-			$data['comment']=model('data')->getcommentcount($wherecomment);
-			
-				
-		 if($this->user['gid']==6){
-				$temp;$temp[]=0;
+			//var_dump($citydata);
 		
-				$temp[]=$this->user['id'];
-				
-			$nextuser=model('user')->admin_list(' AND pid='.$this->user['id']);
-			if($nextuser){
-			foreach($nextuser as $key=>$val){
-				$temp[]=$val['id'];
-				}
-			} 
-		 	$wheresucai=" uid  in (".implode(',',$temp).") ";
-			 }else{
-		if($this->user['cid'])	
-	 	$wheresucai=" uid =".$this->user['id'];
-			 }
-			
-				$data['sucai']=model('data')->getvideocount($wheresucai);
-			
-			$where['cid']='13';
-			$data['list']['13']=model('data')->getuidcount($where);
-			$where['cid']='16';
-			$data['list']['16']=model('data')->getuidcount($where);
-			$where['cid']='17';
-			$data['list']['17']=model('data')->getuidcount($where);
-			$where['cid']='18';
-			$data['list']['18']=model('data')->getuidcount($where);
-			
-			$data['allcount']=$allcount?$allcount:0;
-			$data['coursecount']=$coursecount?$coursecount:0;
-			$data['livecount']=$livecount?$livecount:0;
-			
-			
-			$this->data=$data;
-			$this->cteatenum=$cteatenum;
 			
 	        $this->show();
     }

@@ -143,7 +143,7 @@ class activityMod extends commonMod
 		$uid=$user['cid'];
 		if($user['gid']==6){
 			$temp;
-			$temp[]=0;
+			$temp[]=1;
 			if($user['cid']){
 				$temp[]=$user['cid'];
 				}

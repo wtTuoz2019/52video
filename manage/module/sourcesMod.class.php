@@ -144,7 +144,7 @@ class sourcesMod extends commonMod
 		$uid=$user['cid'];
 		if($user['gid']==6){
 			$temp;
-			$temp[]=0;
+			$temp[]=1;
 			if($user['cid']){
 				$temp[]=$user['cid'];
 				}
@@ -193,7 +193,7 @@ class sourcesMod extends commonMod
 			$data['info']['auditfield_lists']=array();
 			}
 		  if($this->user['gid']==6){
-				$temp;$temp[]=0;
+				$temp;$temp[]=1;
 		
 				$temp[]=$this->user['id'];
 				

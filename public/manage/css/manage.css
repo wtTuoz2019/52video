@@ -26,14 +26,17 @@ button{
 .indexcontent{
 	width: 1000px;
 	margin: 0 auto;
+	padding-bottom:100px;
 }
 .indexcontent .loginshow{
 	height: 225px;
-	background: #009BD4;
+	background: #fff;
 	padding: 20px 30px 0 30px;
-	color: #fff;
-	margin: 70px 0 35px 0;
+	color: #000;
+	border:1px solid #E2E2E3;
+	margin-top: 70px;
 	text-align:left;
+	position:relative;
 }
 .indexcontent .loginshow>div{
 	margin-bottom: 30px;
@@ -49,51 +52,122 @@ button{
 	margin-bottom: 8px;
 	font-size: 14px;
 }
+.indexcontent .loginshow .monitor_btn{
+	position:absolute;
+	width:140px;
+	height:42px;
+	border:1px solid #e2e2e2;
+	text-align:center;
+	background: -moz-linear-gradient(top,#F7F7F7,#E2E2E2);
+    background: linear-gradient(to bottom,#F7F7F7,#E2E2E2);
+    background: -webkit-linear-gradient(top,#F7F7F7,#E2E2E2);
+    background: -o-linear-gradient(top,#F7F7F7,#E2E2E2);
+	line-height:40px;
+	right:40px;
+	bottom:15px;
+	color:#808080;
+	font-size:14px;
+}
 .indexcontent .loginshow>p span{
 	padding-right: 35px;
 }
-.indexcontent .serve{
-	overflow:hidden;
-	padding-top:40px;
-}
-.indexcontent .serve .servek{
-	width:320px;
-	height:175px;
-	background:#64B7C9;
-	float:left;
-	margin-right:20px;
-	color:#fff;
+.serve{
+	border:1px solid #E2E3E4;
+	margin-top:25px;
 	position:relative;
+}
+.serve .s_title{
+	font-size:14px;
+	padding-left:15px;
+	background:#F4F5F9;
+	line-height:45px;
+	border-bottom:1px solid #E2E3E4;
+}
+.serve .chaxun>*{
+	vertical-align:middle;
+	font-size:12px;
+}
+.serve .chaxun input{
+	width:158px;
+	height:32px;
+	border:1px solid #E2E2E2;
+	border-right:0;
+}
+.serve .chaxun .sbtn{
+	height:32px;
+	width:62px;
+	border:1px solid #E2E2E2;
+	background: -moz-linear-gradient(top,#EFEFEF,#C8C8C8);
+    background: linear-gradient(to bottom,#EFEFEF,#C8C8C8);
+    background: -webkit-linear-gradient(top,#EFEFEF,#C8C8C8);
+    background: -o-linear-gradient(top,#EFEFEF,#C8C8C8);
+	line-height:30px;
+	display:inline-block;
 	text-align:center;
-	font-size:16px;
-	padding-top:70px;
 }
-.indexcontent .serve .servek h5{
-	font-size:48px;
+.serve .servek{
+	padding:0 15px;
 }
-.indexcontent .serve .servek .topimg{
-	background-image:url(../img/usersee1.png);
-	width:80px;
-	height:80px;
-	position:absolute;
-	background-repeat:no-repeat;
-	background-size:100%;
-	background-position:center;
-	left: 120px;
-    top: -40px;
+.serve .servek ul{
+	overflow:hidden;
+	border-top:1px solid #ECECEC;
+	padding:25px 0;
 }
-.indexcontent .serve .servek:nth-child(2) .topimg{
-	background-image:url(../img/usersee2.png);
+.serve .servek ul:first-child{
+	border:0;
 }
-.indexcontent .serve .servek:nth-child(2){
-	background:#B593BB;
+.serve .servek ul li{
+	float:left;
+	width:33%;
+	text-align:center;
+	height:125px;
+	border-left:1px solid #ECECEC;
+	padding-top:15px;
 }
-.indexcontent .serve .servek:nth-child(3) .topimg{
-	background-image:url(../img/usersee3.png);
+.serve .servek ul li:first-child{
+	border:0;
 }
-.indexcontent .serve .servek:last-child{
-	margin-right:0;
-	background:#DDCF30;
+.serve .servek ul li:nth-child(2){
+	width:34%;
+}
+.serve .servek ul li p{
+	font-size:20px;
+	margin-bottom:25px;
+}
+.serve ul li h5{
+	font-size:30px;
+	font-weight:normal;
+}
+.serve table{
+	font-size:12px;
+}
+.serve table.s_table td{
+	text-align:center;
+}
+.serve table tr{
+	height:50px;
+	border-bottom:1px solid #DEDEDE;
+}
+.serve table tr.table_head td{
+	padding:10px 0;
+}
+.serve table tr.table_head td p{
+	border-left:1px solid #DEDEDE;
+	height:30px;
+	line-height:30px;
+}
+.serve table tr.table_head td:first-child p{
+	border-left:0;
+}
+.serve .page,.serve .page ul.pagination{
+	float:inherit;
+}
+.serve .page{
+	padding:10px 0;
+	text-align:center;
+}
+.serve .page ul.pagination{
+	margin:0;
 }
 /*头部样式*/
 #header .head{
@@ -2530,32 +2604,127 @@ body .oftentable.tianyuant tr td{
 .allhmb>div.active{
 	display:block;
 }
-.tubiaok{
-	width:1000px;
-	overflow:hidden;
-	margin:40px auto 50px;
+.choose_time{
+	text-align:right;
+	padding:25px;
 }
-.tubiaok>div:first-child{
-	margin-left:0;
-	border-left:10px solid #009BD4;
+.choose_time select{
+	width:100px;
+	padding-left:20px;
 }
-.tubiaok>div{
+#MapColor{
+	display:none;
 	float:left;
-	width:490px;
-	border:1px solid #DEDEDE;
-	border-left:10px solid #9398B1;
-	margin-left:20px;
-	height:350px;
-	overflow:hidden;
-	position:relative;
+	width:30px;
+	height:180px;
+	margin:80px 0 0 10px;
+	display:inline;
+	background:url(../img/map_color.png) center 0;
 }
-.tubiaok>div p{
-	text-align:center;
+.regionList{
+	float:right;
+	width:438px;
+	height:460px;
+	overflow-y:scroll;
+}
+.stateTip, #StateTip{
+	display:none;
 	position:absolute;
-	width:100%;
-	font-size:16px;
-	color:#000;
-	top:30px;
+	padding:8px;
+	background:#fff;
+	border:2px solid #2385B1;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	font-size:12px;
+	font-family:Tahoma;
+	color:#333;
+}
+.mapInfo i{ 
+	display:inline-block;
+	width:15px;
+	height:15px;
+	margin-top:5px; 
+	line-height:15px; 
+	font-style:normal; 
+	background:#aeaeae; 
+	color:#fff; 
+	font-size:11px; 
+	font-family: Tahoma; 
+	-webkit-border-radius:15px; 
+	border-radius:15px; 
+	text-align:center
+}
+.mapInfo i.active{
+	background:#E27F21;
+}
+.mapInfo b{ 
+	font-weight:normal; 
+	color:#2770B5;
+}
+.regionMap{
+	float:left; 
+	margin-left:35px; 
+	display:inline;
+}
+.serve .data_table td{
+	padding-left:15px;
+}
+.serve .data_table td div{
+	height:15px;
+	background:#1AAD19;
+}
+.serve .data_table .dt_head{
+	background:#F6F8F9;
+	border:0;
+}
+.serve .data_table tr{
+	height:40px;
+}
+.serve table.s_table tr:last-child{
+	border:0;
+}
+.servetop .s_title{
+	position:fixed;
+	width:1000px;
+	top:0;
+	z-index:1000;
+}
+.servetop {
+	padding-top:46px;
+	margin-top:0;
+}
+.serve .chaxun{
+	float:right;
+	margin-right:15px;
+}
+.act{
+	background:#F4F5F9;
+}
+.servetop .s_table{
+	position:relative;
+	padding-top:50px;
+	display:block;
+}
+.servetop .s_table tbody{
+	display:block;
+}
+.servetop .s_table td{
+	width:30%;
+	float:left;
+	line-height:49px;
 	left:0;
-	z-index:100;
+}
+.servetop .s_table tr{
+	width:998px;
+	overflow:hidden;
+	display:block;
+}
+.servetop .s_table tr td:nth-child(2){
+	width:40%;
+}
+.servetop .s_table .table_head{
+	position:absolute !important;
+	top:0;
+	left:0;
 }

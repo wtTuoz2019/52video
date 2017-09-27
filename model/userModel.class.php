@@ -152,6 +152,38 @@ class userModel extends commonModel
 		return $this->model->table('schooluser','A')->add_table('teacher','B','A.stid=B.id')->where($where)->find();
 		
 		}
+	    //获取用户列表
+    public function admin_user()
+    {
+       
+        $data=$this->model->field('*')
+                ->table('admin')->where('id=385')
+               ->order('id asc')
+                ->find();
+        return $data;
+
+    }
+	
+	    //编辑用户内容
+    public function admin_save($data)
+    {
+        $condition['id']=intval($data['id']);
+        $id=$this->model->table('admin')->data($data)->where($condition)->update();
+        return $id;
+    }
+
+	 //获取用户列表
+    public function admin_list($where=null)
+    {
+   
+        $data=$this->model->field('*')
+                ->table('admin')
+                ->where($where)
+                ->order('id asc')
+                ->select();
+        return $data;
+
+    }
 
 }
 

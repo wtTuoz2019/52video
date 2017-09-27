@@ -5,7 +5,11 @@ class dataMod extends commonMod
     {
         parent::__construct();
     }
-
+	public function watch(){
+		
+		 $this->display('data/watch');
+		
+		}
  
     // 内容列表
     public function index()

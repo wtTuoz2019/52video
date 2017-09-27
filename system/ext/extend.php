@@ -30,6 +30,24 @@ echo '11';
 
 
 
+    //获取栏目拼音
+    function pinyin($name)
+    {
+         $pinyin = new Pinyin();
+            $name = preg_replace('/\s+/', '-', $name);
+            $pattern = '/[^\x{4e00}-\x{9fa5}\d\w\-]+/u';
+            $name = preg_replace($pattern, '', $name);
+            $urlname = substr($pinyin->output($name, true),0,30);
+            if(substr($urlname,0,1)=='-'){
+                $urlname=substr($urlname,1);
+            }
+            if(substr($urlname,-1)=='-'){
+                $urlname=substr($urlname,0,-1);
+            }
+       return $urlname;
+    }
+
+
 //自定义模板标签解析函数
 function tpl_parse_ext($template,$config=array())
 {

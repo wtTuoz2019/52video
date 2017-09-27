@@ -107,8 +107,8 @@ public function addvisit($uid){
 				);
 		if($ip!='unknown'){
 		$data['ip']=$ip;
+		$data['province']=$iparray['province'];
 		$data['city']=$iparray['city'];
-		
 		}
 		if($aid){
 			$data['aid']=$where['aid']=$aid;

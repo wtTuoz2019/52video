@@ -1,7 +1,11 @@
-	<div class="indexcontent">
+    <script type="text/javascript" src="__PUBLICURL__/manage/js/lib/raphael-min.js"></script>
+    <script type="text/javascript" src="__PUBLICURL__/manage/js/res/chinaMapConfig.js"></script>
+    <script type="text/javascript" src="__PUBLICURL__/manage/js/res/worldMapConfig.js"></script>
+    <script type="text/javascript" src="__PUBLICURL__/manage/js/map.js"></script>
+    <div class="indexcontent">
 			<div class="loginshow">
 				<div>
-					<img src="__PUBLICURL__/manage/img/backstage.png"/>
+					<img src="__PUBLICURL__/manage/img/backstage2.png"/>
 					<span>
 						{$user.user} [{$user.nicename}]
 					</span>
@@ -17,43 +21,161 @@
 				<p> 
 					登录IP为： {$user.ip}
                 </p>
-				
+				<a href="http://kf.shanyueyun.com/manage/index.php/data/watch" target="_blank" class="monitor_btn">进入监看页面</a>
 			</div>
 			<div class="serve">
-				<div class="servek">
-                	<div class="topimg"></div>
-                    <p>观看人次</p>
-                    <h5>{$data.all}</h5>
-                </div>
+				<p class="s_title">
+                	用户分析
+                </p>
+                
                 <div class="servek">
-                	<div class="topimg"></div>
-                    <p>评论数量</p>
-                    <h5>{$data.comment}</h5>
-                </div>
-                <div class="servek">
-                	<div class="topimg"></div>
-                    <p>素材数量</p>
-                    <h5>{$data.sucai}</h5>
+                	<ul>
+                    	<li>
+                        	<p>直播时长（分钟）</p>
+                            <h5><?=$user['livetime']*$user['multiple']?></h5>
+                        </li>
+                        <li>
+                        	<p>观看时长（分钟）</p>
+                            <h5><?=$user['looktime']*$user['multiple']?></h5>
+                        </li>
+                        <li>
+                        	<p>观众总计（人）</p>
+                            <h5><?=$user['uv']*$user['multiple']?></h5>
+                        </li>
+                    </ul>
+                    <ul>
+                    	<li>
+                        	<p>观看人次（次）</p>
+                            <h5><?=$user['pv']*$user['multiple']?></h5>
+                        </li>
+                        <li>
+                        	<p>评论数量（条）</p>
+                            <h5><?=$user['commentnum']*$user['multiple']?></h5>
+                        </li>
+                        <li>
+                        	<p>课程数量（场）</p>
+                            <h5><?=$user['contentnum']*$user['multiple']?></h5>
+                        </li>
+                    </ul>
                 </div>
 			</div>
+            
+            <div class="serve">
+                <p class="s_title">
+                        实时在线统计
+                </p>
+                <div id="container" style="width:100%; height:405px;"></div>
+            </div>
+		
+        	<div class="serve">
+            	<p class="s_title">
+                	T10播出时长排行榜
+                </p>
+                <div class="choose_time">
+                	
+                    <select>
+                    	<option>日</option>
+                        <option>周</option>
+                        <option>月</option>
+                    </select>
+                </div>
+                
+                <div id="container2" style="width:100%; height:405px;"></div>
+            </div>
+        
+        
+            
+            <div class="serve" style=" display:none;">
+                <p class="s_title">
+                        访客分布
+                </p>
+                <div id="Region" style="position:relative; height:460px;">
+					
+					<div class="regionMap" id="RegionMap"></div>
+					<div id="MapColor"></div>
+                    <div class="regionList" id="MapControl">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" class="data_table">
+                        	<tr class="dt_head">
+                            	<td width="20%">
+                                	省份
+                                </td>
+                                <td width="20%">
+                                	用户数
+                                </td>
+                                <td width="60%"></td>
+                            </tr>
+                        </table>
+					</div>
+				</div>
+            </div>
+            
 		</div>
-		<div class="tubiaok">
-        	<div class="tubiao">
-            	<p>新建页面数量占比图</p>
-            	<div id="container" style="width:480px; height:400px;"></div>
-            </div>
-            <div class="tubiao">
-            	<p>观看人次占比图</p>
-            	<div id="container2" style="width:480px; height:400px;"></div>
-            </div>
-        </div>
 		
 		
 		 
 <script type=text/javascript src=" __PUBLICURL__/js/highcharts.js"></script>
 <script type=text/javascript src=" __PUBLICURL__/js/highcharts-3d.js"></script>
-<script type=text/javascript src=" __PUBLICURL__/js/radialIndicator.min.js"></script>
-		
+<!--<script type=text/javascript src=" __PUBLICURL__/js/radialIndicator.min.js"></script>-->
+	<!--	<script>
+        	//地图
+        var data = {"jiangsu":{"value":"30.05%","index":"1","stateInitColor":"0"},"henan":{"value":"19.77%","index":"2","stateInitColor":"0"},"anhui":{"value":"10.85%","index":"3","stateInitColor":"0"},"zhejiang":{"value":"10.02%","index":"4","stateInitColor":"0"},"liaoning":{"value":"8.46%","index":"5","stateInitColor":"0"},"beijing":{"value":"4.04%","index":"6","stateInitColor":"1"},"hubei":{"value":"3.66%","index":"7","stateInitColor":"1"},"jilin":{"value":"2.56%","index":"8","stateInitColor":"1"},"shanghai":{"value":"2.47%","index":"9","stateInitColor":"1"},"guangxi":{"value":"2.3%","index":"10","stateInitColor":"1"},"sichuan":{"value":"1.48%","index":"11","stateInitColor":"2"},"guizhou":{"value":"0.99%","index":"12","stateInitColor":"2"},"hunan":{"value":"0.78%","index":"13","stateInitColor":"2"},"shandong":{"value":"0.7%","index":"14","stateInitColor":"2"},"guangdong":{"value":"0.44%","index":"15","stateInitColor":"2"},"jiangxi":{"value":"0.34%","index":"16","stateInitColor":"3"},"fujian":{"value":"0.27%","index":"17","stateInitColor":"3"},"yunnan":{"value":"0.23%","index":"18","stateInitColor":"3"},"hainan":{"value":"0.21%","index":"19","stateInitColor":"3"},"shanxi":{"value":"0.11%","index":"20","stateInitColor":"3"},"hebei":{"value":"0.11%","index":"21","stateInitColor":"4"},"neimongol":{"value":"0.04%","index":"22","stateInitColor":"4"},"tianjin":{"value":"0.04%","index":"23","stateInitColor":"4"},"gansu":{"value":"0.04%","index":"24","stateInitColor":"4"},"shaanxi":{"value":"0.02%","index":"25","stateInitColor":"4"},"macau":{"value":"0.0%","index":"26","stateInitColor":"7"},"hongkong":{"value":"0.0%","index":"27","stateInitColor":"7"},"taiwan":{"value":"0.0%","index":"28","stateInitColor":"7"},"qinghai":{"value":"0.0%","index":"29","stateInitColor":"7"},"xizang":{"value":"0.0%","index":"30","stateInitColor":"7"},"ningxia":{"value":"0.0%","index":"31","stateInitColor":"7"},"xinjiang":{"value":"0.0%","index":"32","stateInitColor":"7"},"heilongjiang":{"value":"0.0%","index":"33","stateInitColor":"7"},"chongqing":{"value":"0.0%","index":"34","stateInitColor":"7"}};
+			
+			for(k in data){
+				
+					$('#MapControl table').append('<tr name="'+k+'"><td>'+chinaMapConfig.names[k]+'</td><td>'+data[k].value+'</td><td><div style="width:'+data[k].value+'"></div></td>');
+				
+			}
+
+			var mapObj_1 = {};
+			var stateColorList = ['003399', '0058B0', '0071E1', '1C8DFF', '51A8FF', '82C0FF', 'AAD5ee', 'AAD5FF'];
+			
+			$('#RegionMap').SVGMap({
+				external: mapObj_1,
+				mapName: 'china',
+				mapWidth: 450,
+				mapHeight: 450,
+				stateData: data,
+				// stateTipWidth: 118,
+				// stateTipHeight: 47,
+				// stateTipX: 2,
+				// stateTipY: 0,
+				stateTipHtml: function (mapData, obj) {
+					var _value = mapData[obj.id].value;
+					var _idx = mapData[obj.id].index;
+					var active = '';
+					_idx < 4 ? active = 'active' : active = '';
+					var tipStr = '<div class="mapInfo"><i class="' + active + '">' + _idx + '</i><span>' + obj.name + '</span><b>' + _value + '</b></div>';
+					return tipStr;
+				}
+			});
+			$('#MapControl table tr').hover(function () {
+				var thisName = $(this).attr('name');
+				
+				var thisHtml = $(this).html();
+				$('#MapControl li').removeClass('select');
+				$(this).addClass('select');
+				$(document.body).append('<div id="StateTip"></div');
+				$('#StateTip').css({
+					left: $(mapObj_1[thisName].node).offset().left - 50,
+					top: $(mapObj_1[thisName].node).offset().top - 40
+				}).html(thisHtml).show();
+				mapObj_1[thisName].attr({
+					fill: '#E99A4D'
+				});
+			}, function () {
+				var thisName = $(this).attr('name');
+
+				$('#StateTip').remove();
+				$('#MapControl li').removeClass('select');
+				mapObj_1[$(this).attr('name')].attr({
+					fill: "#" + stateColorList[data[$(this).attr('name')].stateInitColor]
+				});
+			});
+			
+			$('#MapColor').show();
+        </script>-->
+        
+        
 		<script type="text/javascript">
 			//导航点击跳出退出
 			$('#header .headuser').mouseenter(function(){
@@ -62,120 +184,91 @@
 			    $('#header .exit').fadeOut(500);
 			});
 			
-			
-			
-			
 			$(function () {
 				$('#container').highcharts({
 					chart: {
-						plotBackgroundColor: null,
-						plotBorderWidth: 0,
-						plotShadow: false
+						type: 'line'
 					},
 					title: {
-						text: '新建数量<br>{$contentnum}',
-						align: 'center',
-						verticalAlign: 'middle',
-						y: 50
+						text: ''
 					},
-					tooltip: {
-						headerFormat: '{series.name}<br>',
-						pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+					xAxis: {
+						categories: ['时间', '时间', '时间', '时间', '时间', '时间', '时间', '时间', '时间', '时间', '时间', '时间']
+					},
+					yAxis: {
+						title: {
+							text: ''
+						}
 					},
 					plotOptions: {
-						pie: {
+						line: {
 							dataLabels: {
-								enabled: true,
-								distance: -50,
-								style: {
-									fontWeight: 'bold',
-									color: 'white',
-									textShadow: '0px 1px 2px black'
-								}
+								enabled: false          // 开启数据标签
 							},
-							startAngle: -90,
-							endAngle: 90,
-							center: ['50%', '75%']
+							enableMouseTracking: true // 关闭鼠标跟踪，对应的提示框、点击事件会失效
 						}
 					},
 					series: [{
-						type: 'pie',
-						name: '数量占比',
-						innerSize: '50%',
-						data: [
-							 <!--foreach:{$cteatenum $k $v}-->
-			 
-                ['{$cnames[$k]}({$v})',   {$v}],
-				
-				 	<!--{/foreach}-->
-							{
-								name: '其他',
-								y: 0.7,
-								dataLabels: {
-									// 数据比较少，没有空间显示数据标签，所以将其关闭
-									enabled: false
-								}
-							}
-						]
-					}]
+						name: '时间',
+						data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+					}
+							]
 				});
-				
+			});
+
+			$(function () {
 				$('#container2').highcharts({
 					chart: {
-						plotBackgroundColor: null,
-						plotBorderWidth: 0,
-						plotShadow: false
+						type: 'column'
 					},
 					title: {
-						text: '观看人次<br>{$data.all}',
-						align: 'center',
-						verticalAlign: 'middle',
-						y: 50
+						text: ''
 					},
-					tooltip: {
-						headerFormat: '{series.name}<br>',
-						pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
-					},
-					plotOptions: {
-						pie: {
-							dataLabels: {
-								enabled: true,
-								distance: -50,
-								style: {
-									fontWeight: 'bold',
-									color: 'white',
-									textShadow: '0px 1px 2px black'
-								}
-							},
-							startAngle: -90,
-							endAngle: 90,
-							center: ['50%', '75%']
+					xAxis: {
+						type: 'category',
+						labels: {
+							style: {
+								fontSize: '13px',
+								fontFamily: 'Verdana, sans-serif'
+							}
 						}
 					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: '（时长/时）'
+						}
+					},
+					legend: {
+						enabled: false
+					},
+					tooltip: {
+						pointFormat: '（时长/时）'
+					},
 					series: [{
-						type: 'pie',
-						name: '观看人次占比',
-						innerSize: '50%',
+						name: '时长',
 						data: [
-						 <!--foreach:{$data['list'] $k $v}-->
-			 
-                ['{$cnames[$k]}({$v})',   {$v}],
-				
-				 	<!--{/foreach}-->
-							{
-								name: '其他',
-								y: 0.7,
-								dataLabels: {
-									// 数据比较少，没有空间显示数据标签，所以将其关闭
-									enabled: false
-								}
+							['学校名称', 85],
+							['学校名称', 70],
+							['学校名称', 60],
+							['学校名称', 50],
+							['学校名称', 40],
+							['学校名称', 50],
+							['学校名称', 40],
+							['学校名称', 50],
+							['学校名称', 40],
+							['学校名称', 30]
+						],
+						dataLabels: {
+							color: '#FFFFFF',
+							align: 'right',
+							format: '{point.y:.1f}', // one decimal
+							style: {
+								fontSize: '13px',
+								fontFamily: 'Verdana, sans-serif'
 							}
-						]
+						}
 					}]
 				});
-				
 			});
-			
-			
-			
 		</script>

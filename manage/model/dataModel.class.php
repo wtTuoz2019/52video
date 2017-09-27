@@ -96,6 +96,17 @@ class  dataModel extends commonModel
 		return $data;
 		
 		}
+		public function citybywhere($where){
+		
+		
+		$sql="SELECT city ,count(distinct uid) as count FROM `dc_visit` ".$where." group by city";
+	 	//$sql="SELECT dc_user.city , count(distinct dc_user.uid) as count FROM `dc_visit` LEFT join dc_user on dc_visit.uid=dc_user.uid  where `aid`=".$aid." and dc_user.uid is not null group by dc_user.city";
+		
+		$data=$this->model->query($sql);
+		
+		return $data;
+		
+		}
 	public function sex($aid){
 		$aid=intval($aid);
 		

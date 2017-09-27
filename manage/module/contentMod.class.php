@@ -144,7 +144,7 @@ class contentMod extends commonMod
 		$uid=$user['cid'];
 		if($user['gid']==6){
 			$temp;
-			$temp[]=0;
+			$temp[]=1;
 			if($user['cid']){
 				$temp[]=$user['cid'];
 				}
@@ -627,7 +627,7 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 		
 			
 		 if($this->user['gid']==6){
-				$temp;$temp[]=0;
+				$temp;$temp[]=1;
 		
 				$temp[]=$this->user['id'];
 				

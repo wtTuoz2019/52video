@@ -15,7 +15,7 @@ class userMod extends commonMod {
 			}
 		 $search=in(urldecode($_GET['search']));
         if(!empty($search)){
-            $where.=' and  ( nicename like "%' . $search . '%")';
+            $where.=' and  ( nicename like "%' . $search . '%"  or user like "%' . $search . '%")';
             $url='-search-'.$search;
         }
 		 $url = __URL__ . '/index/page-{page}'.$url; //分页基准网址
