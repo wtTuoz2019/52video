@@ -2700,6 +2700,7 @@ body .oftentable.tianyuant tr td{
 	color:#79b2e1;
 	text-align:center;
 	font-size:14px;
+	position:relative;
 }
 .jkvideo_list li.islive{
 	background-image:url(../img/islive.jpg);
@@ -2712,9 +2713,9 @@ body .oftentable.tianyuant tr td{
 	color:#ff5050;
 }
 .jkvideo_list li .tongdao{
-	text-align:right;
-	font-size:12px;
-	margin-top:10px;
+	position:absolute;
+	bottom:15px;
+	right:15px;
 }
 .jkvideo_list li a{
 	display:block;
