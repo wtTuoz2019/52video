@@ -2732,5 +2732,6 @@ body .oftentable.tianyuant tr td{
 }
 .jkvideo_list li a .schoollogo{
 	height:70px;
+	max-width:105px;
 	margin-bottom:20px;
 }

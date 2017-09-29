@@ -19,8 +19,38 @@ class indexMod extends commonMod
     // 显示管理后台欢迎页
     public function home()
     {
-        require (__ROOTDIR__.'/inc/config.php'); 
-        $this->config_array=$config;
+		
+		//var_dump($this->user);
+//        		$user=$this->user;
+//		if(!$user)die;
+//		if($user['gid']==6){
+//				$temp;$temp[]=1;
+//			if($user['cid']){
+//				$temp[]=$user['cid'];
+//				}
+//			$nextuser=model('user')->admin_list('  pid='.$user['id']);
+//			if($nextuser){
+//			foreach($nextuser as $key=>$val){
+//				$temp[]=$val['cid'];
+//				}
+//			} 
+//			$whereaid=" csid  in (".implode(',',$temp).") ";
+//			 }else{
+//		if($user['cid'])	
+//	 	$whereaid="csid =".$user['cid'];
+//			 }
+//			
+//				if($whereaid){
+//			$aids=model('data')->getaids($whereaid);	
+//			$where;
+//			if($aids){$where['aid']=array('in','('.implode(',',$aids).')');}
+//			
+//				$where['cid']='16';
+//			$data['livetime']=model('data')->looktimesum($where);
+//			
+//			//var_dump($data);die;
+//	}
+//		
     	
 
 	        $this->show();

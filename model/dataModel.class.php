@@ -78,7 +78,7 @@ class  dataModel extends commonModel
     }
 	
 	 public function looktimesum($where=array()){
-        $data=$this->model->table('visit')->where($where)->field('sum(endtime-starttime) as staytime')->find();
+        $data=$this->model->table('visit')->where($where)->field('sum(endtime-starttime)/60 as staytime')->find();
         return $data['staytime'];
     }
 	public function getstarttime($where=array()){
