@@ -92,8 +92,8 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		
 		}
 	public function videolist(){
-		if($this->user['cxueduan'])
-		$where=array('cxueduan'=>$this->user['cxueduan']);
+		
+		$where=array('tid'=>$this->user['id']);
 		if($_POST['cid'])$where['cid']=intval($_POST['cid']);
 		else $where['cid']=array('in','(13,18)');
 		
