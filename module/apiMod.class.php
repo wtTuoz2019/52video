@@ -125,7 +125,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		    model('content')->gsetQrcode($url, $id,$ $qcode);
 		   
 		   
-			$list[]=array('aid'=>$value['aid'],'title'=>$value['title'],'image'=>$value['image'],'qcode'=>$qcode,'isupload'=>$value['isupload'],'url'=>$this->user['site']."/content/index?aid=".$value['aid'],'bucket'=>$bucket);
+			$list[]=array('aid'=>$value['aid'],'cid'=>$value['cid'],'title'=>$value['title'],'image'=>$value['image'],'qcode'=>$qcode,'isupload'=>$value['isupload'],'url'=>$this->user['site']."/content/index?aid=".$value['aid'],'bucket'=>$bucket);
 			
 			
 			
