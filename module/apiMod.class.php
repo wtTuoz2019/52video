@@ -190,7 +190,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		if($data['aid']){
     	model('content')->add_content_save($data);
 		
-		$return=array('url'=>'/','bucket'=>'shanyueyunin');
+		$return=array('url'=>'','bucket'=>'shanyueyunin');
 		if($data['cid']==13){
 		$return['uploads']=array($this->config['fujia']['video']);
 		}elseif($data['cid']==18){
@@ -220,7 +220,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 	 $status=model('content')->edit_save($data);
 	 $info=model('content')->info(intval($_POST['aid']));
 		if($status){
-		$return=array('url'=>'/','bucket'=>'shanyueyunin');
+		$return=array('url'=>'','bucket'=>'shanyueyunin');
 		if($info['cid']==13){
 		$return['uploads']=array($this->config['fujia']['video']);
 		}elseif($info['cid']==18){
