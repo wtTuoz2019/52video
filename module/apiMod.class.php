@@ -276,7 +276,8 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 					'vurl'=>$_POST['vurl'],
 					'type'=>$_POST['type']);
 		if($data['type']=='video'){
-			$data['vurl']= "http://".$this->config['out']."/video/".$data['vurl']."/video.m3u8";	
+			$temp=explode(".", $data['vurl']);
+			$data['vurl']= "http://".$this->config['out']."/video/".$temp[0]."/video.m3u8";	
 			}else{
 			$data['vurl']= "http://".$this->config['hk']."/source/".$data['vurl'];		
 			}			
@@ -284,20 +285,36 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		$id=model('content')->video_add($data);
 		$aid=intval($_POST['aid']);
 		if($id&&$aid){
-			$data=model('content')->info($aid);
-			if($data){
-				if($data['cid']==13){
+			$info=model('content')->info($aid);
+			if($info){
+				if($info['cid']==13){
 					$array=array(
 					 'aid'=>$aid,
 					 'isupload'=>1,
+					 'videourl'=>$data['vurl']
 					 );
 		
 	 			$status=model('content')->update_save($array);
-					}
+					}elseif($info['cid']==18){
+					$content=model('content')->info_content($aid);	
+					$content['sources']	=json_decode($content['sources'],true);
+					if($data['type']=='video'){
+					$content['sources']['videos'][]=$id;
+			}else{
+					$content['sources']['source'][]=$id;	
+			}	
+					model('content')->edit_content_save($content);
+						}
 				
 				}
 			}
-		
+		if($id){
+		$array=array('code'=>1,'msg'=>'添加成功','data'=>$id);
+		}else{
+		$array=array('code'=>0,'msg'=>'添加失败','data'=>'');	
+			}
+			
+		echo json_encode($array);die;
 		}
 	public function upload_edit(){
 		 $data=array('name'=>$_POST['name'],

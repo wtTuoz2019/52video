@@ -364,7 +364,8 @@ class contentModel extends commonMod
     //内容字段处理
     public function common_content_save($data)
     {
-        $data['content']=html_in($data['content']);
+       $data['sources']=json_encode($data['sources']);
+		  $data['content']=html_in($data['content']);
         return $data;
     }
 
@@ -408,7 +409,7 @@ class contentModel extends commonMod
 
 
     //基础表信息
-    public function update_save($data,$ext=true)
+    public function update_save($data)
     {
        
        
