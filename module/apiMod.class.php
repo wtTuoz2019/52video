@@ -281,7 +281,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 					
 		if($data['type']=='video'){
 			$temp=explode(".", $data['vurl']);
-			$data['vurl']= $this->config['out']."video/".$temp[0]."/video.m3u8";	
+			$data['vurl']= 'http://'.$this->config['out']."/video/".$temp[0]."/video.m3u8";	
 			}else{
 			$data['type']='file';
 			$data['vurl']= $this->config['hk']."source/".$data['vurl'];		
