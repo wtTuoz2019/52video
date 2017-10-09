@@ -274,12 +274,14 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 	public function upload_save(){
 		$data=array('name'=>$_POST['name'],
 					'vurl'=>$_POST['vurl'],
-					'type'=>$_POST['type']);
+					'type'=>$_POST['type'],
+					'tid'=>$this->user['id'],
+					 'uid'=>$this->user['uid'],);
 		if($data['type']=='video'){
 			$temp=explode(".", $data['vurl']);
-			$data['vurl']= "http://".$this->config['out']."/video/".$temp[0]."/video.m3u8";	
+			$data['vurl']= $this->config['out']."video/".$temp[0]."/video.m3u8";	
 			}else{
-			$data['vurl']= "http://".$this->config['hk']."/source/".$data['vurl'];		
+			$data['vurl']= $this->config['hk']."source/".$data['vurl'];		
 			}			
 					
 		$id=model('content')->video_add($data);
