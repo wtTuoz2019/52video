@@ -89,7 +89,7 @@ function del(id,obj) {
 		data:{id: id},
 		tip:1,
 		success:function(){
-			$(obj).parent().parent().remove();
+			$(obj).parent().parent().parent().remove();
 		}
 	});
 }
