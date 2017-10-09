@@ -9,6 +9,7 @@ class dataMod extends commonMod
  	public function admindata(){
 		
 		$user=model('user')->admin_user();
+	
 		if(!$user)die;
 		if($user['gid']==6){
 				$temp;$temp[]=1;
@@ -28,13 +29,16 @@ class dataMod extends commonMod
 			 }
 			 
 			
-			if($whereaid)
+			if($whereaid||($user['gid']!='2'&&$user['gid']!='4'))
 			$aids=model('data')->getaids($whereaid);	
 			
 			$where;
 			if($aids){$where['aid']=array('in','('.implode(',',$aids).')');
 			$wherecomment['fid']=array('in','('.implode(',',$aids).')');
 			$wherecity=' where aid in ('.implode(',',$aids).')';
+			
+			
+			
 				$data['contentnum']=model('data')->contentcount($where);
 		
 			$data['pv']=model('data')->getuidcount($where);

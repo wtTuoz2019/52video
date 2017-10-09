@@ -157,7 +157,7 @@ class userModel extends commonModel
     {
        
         $data=$this->model->field('*')
-                ->table('admin')->where('updatetime<'.strtotime(date('Y-m-d')))
+                ->table('admin')->where('id=1')
                ->order('id asc')
                 ->find();
         return $data;

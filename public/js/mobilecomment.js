@@ -220,6 +220,7 @@ if($('.choosep :input').length){
 						//if(typeof(d.count)!="undefined"){
 //							$('#commentnum').text(d.count);
 //							}
+
 						$('#container_show').html(escapes(d.message));
 					
 						
