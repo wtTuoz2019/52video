@@ -190,7 +190,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		if($data['aid']){
     	model('content')->add_content_save($data);
 		
-		$return=array('url'=>'','bucket'=>'shanyueyunin');
+		$return=array('aid'=>$data['aid'],'url'=>'','bucket'=>'shanyueyunin');
 		if($data['cid']==13){
 		$return['uploads']=array($this->config['fujia']['video']);
 		}elseif($data['cid']==18){
