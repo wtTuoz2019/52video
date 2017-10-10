@@ -290,7 +290,7 @@ class contentModel extends commonMod
     {	
 	
 		
-       return $this->model->table('videolist')->field('id,name,vurl,type')->limit($limit)->where($where)->order('id desc')->select(); 
+       return $this->model->table('videolist')->field('id,name,vurl,type,size')->limit($limit)->where($where)->order('id desc')->select(); 
       
       
     }
@@ -538,7 +538,7 @@ class contentModel extends commonMod
     }
 	public function video_info($where)
     {	
-		 $id=$this->model->field('id,name,vurl,type')->table('videolist')->where($where)->find(); 
+		 $id=$this->model->field('id,name,vurl,type,zize')->table('videolist')->where($where)->find(); 
       
         return $id;
     }

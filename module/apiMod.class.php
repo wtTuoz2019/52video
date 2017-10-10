@@ -276,6 +276,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		$data=array('name'=>$nametemp['0'],
 					'vurl'=>$_POST['vurl'],
 					'type'=>$_POST['type'],
+					'size'=>$_POST['size'],
 					'tid'=>$this->user['id'],
 					 'uid'=>$this->user['uid'],);
 					
