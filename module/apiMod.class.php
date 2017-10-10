@@ -362,11 +362,12 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 					 'nianji'=>$data['nianji'],
 					 'mid'=>$data['mid'],
 					 'aid'=>$data['aid'],
+					 'cid'=>$data['cid'],
 					 'isupload'=>$data['isupload']
 					);
 			 if($info['cid']==13){
 			
-			$info['video']=model('content')->video_info(array('vurl'=>$info['videourl']));
+			$info['video']=model('content')->video_info(array('vurl'=>$data['videourl']));
 			
 			 }else{
 				 $content=model('content')->info_content($info['aid']);
