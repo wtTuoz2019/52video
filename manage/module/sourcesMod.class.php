@@ -206,14 +206,15 @@ class sourcesMod extends commonMod
 		 	$wherevideos=" and  uid  in (".implode(',',$temp).") ";
 			 }else{
 		if($this->user['cid'])	
-	 	$wherevideos=" and uid =".$this->user['cid'];
+	 	$wherevideos=" and uid =".$this->user['id'];
 			 }
 			
 	
 		
 		
-     	
+     
 		$data['videos']=model('content')->video_list("type='video' ".$wherevideos);
+		
 		$data['files']=model('content')->video_list("type='file' ".$wherevideos);
 		$data['papers']=model('content')->video_list("type='paper' ".$wherevideos); 
 		 
