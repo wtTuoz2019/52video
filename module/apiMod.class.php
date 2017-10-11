@@ -273,16 +273,18 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		}
 	public function upload_save(){
 		 $nametemp=explode(".", $_POST['name']);
+		 
+		
 		$data=array('name'=>$nametemp['0'],
 					'vurl'=>$_POST['vurl'],
 					'type'=>$_POST['type'],
 					'size'=>$_POST['size'],
 					'tid'=>$this->user['id'],
 					 'uid'=>$this->user['uid'],);
-					
+				
 		if($data['type']=='video'){
 			$temp=explode(".", $data['vurl']);
-			$data['vurl']= 'http://'.$this->config['out']."/video/".$temp[0]."/video.m3u8";	
+			$data['vurl']= $temp[0];	
 			}else{
 			$data['type']='file';
 			$data['vurl']= $this->config['hk']."source/".$data['vurl'];		

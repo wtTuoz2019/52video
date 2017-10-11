@@ -45,14 +45,14 @@
     font-size: 12px;
     padding: 15px 30px;
     padding-left: 45px;
-    background-image: url(../images/noplay.png);
+    background-image: url(../img/noplay.png);
     background-repeat: no-repeat;
     background-position: 20px 15px;
     border-bottom: 1px dashed #D2D2D2;
 }
 .videok>div.rlist ul li.active a{
 	color: #299fcb;
-	background-image: url(../images/onplay.png);
+	background-image: url(../img/onplay.png);
 }
 .wkcnav {
     height: 55px;
