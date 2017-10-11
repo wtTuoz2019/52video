@@ -76,6 +76,10 @@
 				<ul id="weikes">
                  <!--foreach:{$videos $val}-->  
             	<li >
+                   	<?php if(!strstr($val['vurl'],"heims")||strstr($val['videourl'],"vurl")||strstr($val['vurl'],"shanyueyun")||strstr($val['vurl'],"urren")){
+                  
+	$val['vurl']='http://'.$config['out'].'/video/'.$val['vurl'].'/video.m3u8';
+	    } ?> 
                 	<a href="javascript:" video="<?=urlencode($val['vurl'])?>" onclick="playweike(this)">{$val.name}</a>
                 </li>
                 <!--/loop-->

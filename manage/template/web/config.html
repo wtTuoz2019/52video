@@ -264,22 +264,19 @@ $('.btmnavk .bnav input').click(function(){
 	mbindex=0;
 	$('.imgk').stop().animate({left:0},700);
 	var id=$(this).parents('.bnav').attr('title');
-	$(this).parents('.btmnavk').find('input').prop("checked",false);
 	 $(this).parents('.btmnavk').find('.iradio_minimal').removeClass('checked');
 	$(this).parents('.btmnavk').find('.iradio_minimal').attr('aria-checked',false);
-	$(this).parents('.bnav').find('input').prop('checked',true);
 	$(this).parents('.bnav').find('.iradio_minimal').addClass('checked');
 	 $(this).parents('.bnav').find('.iradio_minimal').attr('aria-checked',true);
 	 $(id).addClass('active').siblings('.active').removeClass('active');
 	 
-	 
+	  
 });
 
 $('#choosemb').click(function(){
-	$('.btmnavk input').each(function() {
-        if($(this)[0].checked==true){
-			 console.log($(this)[0]);
-			 $('#mbval').val($(this).val());
+	$('.btmnavk .iradio_minimal').each(function() {
+        if($(this).hasClass('checked')){
+			 $('#mbval').val($(this).find('input').val());
 		}
     });
 });
