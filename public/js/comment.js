@@ -83,6 +83,11 @@ var commenturl="http://comment.shanyueyun.net";
 		
         });
 		
+		if( typeof newcommentflag=='undefined'||typeof newjiaoyancommentflag=='undefined'){
+			
+			arr['type']=jiaoyanarr['type']='all';
+			}
+		
 		   $('#input-type-submit').click(function(){
 			 
 				var this_ = this;
@@ -138,8 +143,11 @@ if($('.choosep :input').length){
 					if(d.status == 1){
 					
 			           	flag=0;
+						if($('#progressinput')){
+							jiaoyanautomatic(jiaoyanarr);
+							}else{
 						automatic(arr);
-						
+							}
 						$('#modal_cance').click();
 						commentsucess(d.message);
 						
@@ -234,13 +242,13 @@ if($('.choosep :input').length){
 						$('#jiaoyancontainer').html(escapes(d.message));
 						jiaoyanlistflag['id'] = d.message[0]['id'];
 						$('#jiaoyan #more').show();
-						$('#refresh').hide();
+						$('div#refresh').hide();
 						newjiaoyancommentflag=false;
 						commentHandle();
 						currentshow();
 						
 					}else{
-						$('#refresh').hide();
+						$('div#refresh').hide();
 						}
 			
 			}
@@ -252,14 +260,14 @@ if($('.choosep :input').length){
 							}
 						$('#container').html(escapes(d.message));
 						listflag['id'] = d.message[0]['id'];
-						$('#more').show();
-						$('#refresh').hide();
+						$('div#more').show();
+						$('div##refresh').hide();
 						newcommentflag=false;
 						commentHandle();
 						currentshow();
 						
 					}else{
-						$('#refresh').hide();
+						$('div#refresh').hide();
 						}
 			
 			}
@@ -267,9 +275,9 @@ if($('.choosep :input').length){
 				$.post(url+'/index.php/comment/pc_autoflag',{data: listflag},function(d){
 					if(d.status==1){
 						newcommentflag=true;
-						$('#refresh').show();
+						$('#comment #refresh').show();
 					}else{
-						$('#refresh').hide();
+						$('#comment #refresh').hide();
 						}
 				},'json')
 			}
