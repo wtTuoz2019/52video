@@ -118,7 +118,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 			$list=array();
 		foreach($loop as $key=>$value){
 			if($value['image'])$value['image']=$this->config['imageurl'].$value['image'];
-			$url = "http://".$sys['MOBILE_DOMAIN']."/content/index?aid=".$value['aid'];
+			$url = "http://".$this->config['MOBILE_DOMAIN']."/content/index?aid=".$value['aid'];
           $id = $value['aid'];
          
            $qcode = $this->config['imageurl']."/upload/aidimage/".$value['aid'].".png";

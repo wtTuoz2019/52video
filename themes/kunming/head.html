@@ -1,0 +1,68 @@
+<div class="head">
+        	<div class="head_login">
+            	<div class="logink">
+                	欢迎您，进入云南省教育资源公共服务平台
+                                       <?php 
+                   if(!$userinfo){
+                        ?>
+                    <a href="/login/login.html">用户登录</a>
+                    
+                     <?php }?>
+                     
+                     
+                     
+                     <?php if($userinfo){ ?>
+<div class="userlogo">
+                <img src="{$userinfo.headimgurl}" width="50px"></li>
+                		
+                    <a href="/weixinlogin/logout" class="usertc">退出</a>
+              
+              </div>  
+                    <?php };?>
+                     
+                     
+                </div>
+            </div>
+            
+            <div class="headbg">
+            	<div class="headlogo">
+                	<img src="img/logo.png"/>
+                </div>
+            </div>
+            
+            <div class="navk">
+            	<div class="nav">
+                	<ul>
+                    <!--channel:{table="web_menu"  order="sequence desc,id asc" where="uid=<$sys.uid> and pid=0" }-->
+                    	<li>
+                        	<a href="{$channel.murl}"><?=$channel['image']?'<img src="'.$sys['imageurl'].$channel['image'].'">':''?>{$channel.name}</a>
+                        </li>
+                       
+                        <!--/channel-->
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+        <script>
+        	$(function(){
+				var url = window.location.href;
+				var href=url.substr(url.length-5); 
+				
+				$('.nav li>a').each(function() {
+					if($(this).attr("href").indexOf(href)>=0){
+						$(this).parent().addClass('active').siblings('.active').removeClass('active');
+						
+					}else if($(this).attr("href")=='/'){
+						$(this).parent().addClass('active').siblings('.active').removeClass('active');
+					}
+				});
+				
+				
+				
+				
+				
+				
+			});
+        </script>

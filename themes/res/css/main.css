@@ -524,7 +524,8 @@ input{
 	border-radius: 3px;
 }
 .page ul li a.current{
-
+	background:#22B9FF;
+	color:#fff;
 }
 .headtop {
     position: relative;

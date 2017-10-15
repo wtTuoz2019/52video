@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$common.title}</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <script src="/themes/shixiao/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+    <body>
+    	
+        <!--#include file="head.html"-->
+        <div class="now">
+			<div class="text">
+				当前位置：<a href="/">首页</a> > <a href="#">热门推荐</a>
+			</div>
+		</div>
+        
+        
+        <div class="mainall listmain">
+        	
+        
+        <div class="fl_nav listfl">
+					<ul>
+						<li class="fl_search">
+							活动类别 ：
+						</li>
+						<li class="current">
+							<a href="#">全部</a>
+						</li>
+						<li>
+							<a href="#">省级活动</a>
+						</li>
+						<li>
+							<a href="#">市级活动</a>
+						</li>
+						<li>
+							<a href="#">区县级活动</a>
+						</li>
+                        <li>
+							<a href="#">校级活动</a>
+						</li>
+					</ul>
+					<ul>
+						<li class="fl_search">
+							活动状态：
+						</li>
+						<li class="current">
+							<a href="#">全部</a>
+						</li>
+						<li>
+							<a href="#">尚未开始</a>
+						</li>
+						<li>
+							<a href="#">正在进行</a>
+						</li>
+						<li>
+							<a href="#">已经结束</a>
+						</li>
+						
+					</ul>
+					<ul>
+						<li class="fl_search">
+							活动类型：
+						</li>
+						<li class="current">
+							<a href="#">全部</a>
+						</li>
+						<li>
+							<a href="#">免费</a>
+						</li>
+						<li>
+							<a href="#">收费</a>
+						</li>
+						
+					</ul>
+					
+				</div>
+        
+        	<div class="res_nav">
+					<ul>
+						<li class="active">
+							<a href="javascript:;">资源</a>
+						</li>
+						<li class="res_search">
+							<form action="" method="get">
+								<input type="text" name="s" id="s" value="" placeholder="输入关键词搜索"/>
+								<button></button>
+							</form>
+						</li>
+					</ul>
+				</div>
+                
+                <div class="res_main hot">
+                	<ul>
+                    	<!--foreach:{$loop $list}-->
+                    	<li>
+                    	<a href="{$list.aurl}">
+                        	<div class="videoimg">
+                            	<img class="spimg" src="{$sys.imageurl}{$list.image}" />
+                                <div class="saoma">
+                                	<p>扫码观看</p>
+                                    <img class="spqr" src="img/qr.png"  />
+                                </div>
+                            </div>
+                            <div class="videotext">
+                            	<h5>{$list.title len="15"} </h5>
+                                <p>
+                                	<span class="seenum">
+										<img src="img/see.png"/>{$list.views}
+									</span>
+                                </p>
+                            </div>
+                        </a>
+                    	</li>
+                        <!--/list-->
+                        
+                    </ul>
+                    
+                    
+                    <div class="clear"></div>
+                    <div class="page">
+							<ul>
+								{$page}
+							</ul>
+						</div>
+                </div>
+        
+        
+        
+        
+        
+        </div>
+        
+        
+        
+      <!--#include file="foot.html"-->
+      
+      
+      
+        
+        
+        
+    
+    
+    <script src="/themes/kunming/js/main.js"></script>
+    
+    
+    </body>
+</html>
