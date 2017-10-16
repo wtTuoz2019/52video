@@ -11,9 +11,34 @@ class teacherMod extends commonMod {
     public function index()
     {	 $user=model('user')->current_user();
 		 
-		if($user['cid'])	
-	 	$where=" sid =".$user['cid'];
-        $this->list=model('teacher')->model_list($where);
+	if($user['gid']==6){
+			$temp;
+			$temp[]=0;
+			if($user['cid']){
+				$temp[]=$user['id'];
+				}
+			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['id'];
+				}
+			}
+			
+			if($temp){
+				$wheret='uid in ('.implode(',',$temp).') ';	
+				}
+			}else{
+		
+			
+			if($user['cid']){
+				$wheret='uid='.$uid;	
+				}
+		
+     
+			}
+			
+		
+        $this->list=model('teacher')->model_list($wheret);
 		$this->subject=model('diyfield')->field_list_data(2);
 		$this->grade=model('diyfield')->field_list_data(1);
 		

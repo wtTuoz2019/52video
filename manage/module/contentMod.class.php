@@ -158,31 +158,35 @@ class contentMod extends commonMod
 			$temp;
 			$temp[]=1;
 			if($user['cid']){
-				$temp[]=$user['cid'];
+				$temp[]=$user['id'];
 				}
 			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
 			if($nextuser){
 			foreach($nextuser as $key=>$val){
-				$temp[]=$val['cid'];
+				$temp[]=$val['id'];
 				}
 			}
 			
 			if($temp){
-			 	$where='id in ('.implode(',',$temp).')';	
+			 	$where='B.id in ('.implode(',',$temp).') ';	
+				$wheret='uid in ('.implode(',',$temp).') ';	
 				}
 			}else{
 		
 			
 			if($user['cid']){
-			$where='id='.$uid;	
+			$where='B.id='.$uid;	
+				$wheret='uid='.$uid;	
 				}
 		
      
 			}
-	
+			
+			
+		$teacher=model('teacher')->model_list($wheret);
 		$school=model('school')->school_list($where);
 		
-		$teacher=model('teacher')->model_list(array('uid'=>$user['id']));
+	
 		
         $position_list=model('position')->position_list();
         $tpl_list=model('category')->tpl_list();

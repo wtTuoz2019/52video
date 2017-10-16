@@ -165,17 +165,21 @@ class liveMod extends commonMod
 			
 			if($temp){
 			 	$where='B.id in ('.implode(',',$temp).') ';	
+				$wheret='uid in ('.implode(',',$temp).') ';	
 				}
 			}else{
 		
 			
 			if($user['cid']){
 			$where='B.id='.$uid;	
+				$wheret='uid='.$uid;	
 				}
 		
      
 			}
-		$teacher=model('teacher')->model_list(array('uid'=>$user['id']));
+			
+			
+		$teacher=model('teacher')->model_list($wheret);
 		
 		   $channel = model('device')->channel_list($where);
 	
