@@ -8,6 +8,12 @@ class liveMod extends commonMod
 		$this->webconfig= model('web')->web_config(array('token'=>$this->user['token']));
 		if($this->webconfig['isopen']){
 		$this->menulist=model('web')->menu_list(array('uid'=>$this->user['id'],'type'=>'cid'));	
+		if($this->user['gid']==6){
+		if($_POST['mid']){
+			$_POST['gmid']=$_POST['mid'];
+			unset($_POST['mid']);
+			}
+		}
 			}
     }
 
@@ -123,6 +129,9 @@ class liveMod extends commonMod
     {
         if($status){
             $info=model('live')->info($id);
+			if($this->user['gid']==6){
+		$info['mid']=$info['gmid'];
+		}
             $info_data=model('live')->info_content($id);
             $position_array=model('position')->relation_array($id);
             $file_id=model('upload')->get_relation('content',$id);

@@ -1472,3 +1472,9 @@ body{
 	background-size:100%;
 	background-position:center;
 }
+#ziliao li p{
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	width:75%;
+}
