@@ -93,9 +93,10 @@ class contentMod extends commonMod
 		
 		if($this->webconfig){
 				$whereuid=array('uid'=>$this->config['uid']);
-				 $this->menuinfo=model('web')->menu_info(array('id'=>$info['mid']));
+				   $midname=$this->config['gid']==6?'gmid':'mid';
+				 $this->menuinfo=model('web')->menu_info(array('id'=>$info[$midname]));
         //位置导航
-        $this->nav=array_reverse(model('web')->nav($info['mid'],	$whereuid));
+        $this->nav=array_reverse(model('web')->nav($info[$midname],	$whereuid));
 		
 		  $this->parent_category = model('web')->menu_info(array('id'=>$this->menuinfo['pid']));
      
@@ -294,8 +295,8 @@ class contentMod extends commonMod
         model('content')->views_content($info['aid'],$info['views']);
         
     
-		$zidingyi=unserialize($info_content['zidingyi']);
-		$this->zidingyi=$zidingyi;
+		//$zidingyi=unserialize($info_content['zidingyi']);
+//		$this->zidingyi=$zidingyi;
 	 	$this->functions=model('content')->functions_list(array('aid'=>$info['aid']));
 		
       
@@ -314,8 +315,8 @@ class contentMod extends commonMod
        $this->desimage=model('content')->getdesimage($info['csid']);
 	   
 	   
-        $this->info=$info;
-
+      
+		
         if ($info["cid"] == 16) {
 
             $this->channel=model('content')->channel($info['channel']);
@@ -331,11 +332,12 @@ class contentMod extends commonMod
 			$this->subscribe='subscribe';	
 				}
 				
-			
-		if($info['tpl']&&MOBILE){
+			  $this->info=$info;
+			  unset($info);
+		if($this->info['tpl']&&MOBILE){
 			
 		
-			$this->display($info['tpl']);
+			$this->display($this->info['tpl']);
 			
 			}else{
 				if($_GET['frame']){

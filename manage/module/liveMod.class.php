@@ -175,7 +175,7 @@ class liveMod extends commonMod
 		
      
 			}
-		$teacher=model('teacher')->model_list();
+		$teacher=model('teacher')->model_list(array('uid'=>$user['id']));
 		
 		   $channel = model('device')->channel_list($where);
 	

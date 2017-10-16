@@ -40,6 +40,7 @@ class webModel extends commonModel
 		
 		}
 	public function menu_del($id){
+		$this->model->table('web_menu')->where(array('pid'=>$id))->delete();
 		return $this->model->table('web_menu')->where(array('id'=>$id))->delete();
 		}
 	public function pics_list($where){

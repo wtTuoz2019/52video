@@ -25,7 +25,9 @@ class webModel extends commonModel
 		$data=$this->model->table('web_menu')->field('id,name,pid')->where($where)->order('sequence desc,id asc')->select();
 		
 		  $cat = new Category(array('id', 'pid', 'name', 'cname'));
-        return $cat->getTree($data, 0);
+      $temp=$cat->getTree($data, 0);
+	  unset($cat); unset($cat);
+	  return $temp;
 		}
 	public function menu_add_save($data){
 		return $this->model->table('web_menu')->data($data)->insert();
@@ -58,6 +60,7 @@ class webModel extends commonModel
 	    //栏目导航
     public function nav($id,$where)
     {
+	
         $data = $this->model->field('id,pid,name')->table('web_menu')->where($where)->select();
         $cat = new Category(array(
             'id',
@@ -68,15 +71,17 @@ class webModel extends commonModel
         if(empty($data)){
              return;
         }
-        $cat = $cat->getPath($data, $id);
-        return $cat; 
+        $catname = $cat->getPath($data, $id);
+	
+		 unset($data);  unset($cat);
+        return $catname; 
     }
 	
     //栏目树
     public function getcat($id,$where)
     {
-        $id = $cid;
         $data = $this->model->field('id,pid,name')->table('web_menu')->where($where)->select();
+			
         $cat = new Category(array(
             'id',
             'pid',
@@ -90,12 +95,30 @@ class webModel extends commonModel
         foreach ($cat_for as $v) {
             $cat_id .= $v['id'] . ",";
         }
-
+ unset($data); unset($cat_for); unset($cat);
         if (!empty($cat_id)) {
             return $cat_id . $id;
         } else {
             return $id;
         }
+    }
+	
+	
+	  //栏目树
+    public function getcatname($id,$where)
+    {
+        $data = $this->model->field('id,pid,name')->table('web_menu')->where($where)->select();
+			
+        $cat = new Category(array(
+            'id',
+            'pid',
+            'name',
+            'cname')); //初始化无限分类
+
+        $cat_for = $cat->getTree($data, $id); //获取分类数据树结构
+        unset($data); unset($cat);
+            return  $cat_for;
+       
     }
 	
 	    //栏目树
@@ -118,11 +141,37 @@ class webModel extends commonModel
 			else
             $cat_id .="," . $v['id'] ;
         }
-
+ unset($data); unset($cat_for); unset($cat);
         if (!empty($cat_id)) {
             return $cat_id ;
         } else {
             return $id;
+        }
+    }
+	
+	    public function getliveaids($where)
+    {
+        echo  $loop="
+            SELECT B.aid
+             FROM {$this->model->pre}content A 
+             LEFT JOIN {$this->model->pre}expand_content_livestream B ON A.Aid = B.Aid
+             WHERE {$where}
+            ";
+        $data = $this->model->query($loop);
+     
+        if(empty($data)){
+            return 0;
+        }
+        foreach ($data as $k=>$v) {
+			if(!$k)$cat_id= $v['aid'];
+			else
+            $cat_id .="," . $v['aid'] ;
+        }
+unset($data);
+        if (!empty($cat_id)) {
+            return $cat_id ;
+        } else {
+            return 0;
         }
     }
 	

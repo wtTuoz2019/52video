@@ -564,9 +564,12 @@ div.timg img{
 .listmain{
 	margin-bottom:65px;
 }
-
-
-
+.listmain .fl_nav{
+	margin-bottom:0;
+}
+.listmain .res_nav{
+	margin-top:35px;
+}
 
 
 

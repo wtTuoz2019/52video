@@ -95,8 +95,9 @@ class categoryModel extends commonMod
         if(empty($data)){
              return;
         }
-        $cat = $cat->getPath($data, $id);
-        return $cat; 
+        $catname = $cat->getPath($data, $id);
+		unset($data);	unset($cat);
+        return $catname; 
     }
 
     //栏目树
@@ -114,6 +115,7 @@ class categoryModel extends commonMod
         if(empty($cat_for)){
             return $id;
         }
+		unset($data);	unset($cat);
         foreach ($cat_for as $v) {
             $cat_id .= $v['cid'] . ",";
         }

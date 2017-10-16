@@ -1476,5 +1476,7 @@ body{
 	overflow: hidden;
 	text-overflow:ellipsis;
 	white-space: nowrap;
-	width:75%;
+	width: 75%;
+    display: inline-block;
+    line-height: 50px;
 }

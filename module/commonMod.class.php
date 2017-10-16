@@ -49,10 +49,11 @@ class commonMod
 		}
 		$this->config['uid']=1;
 		if($admininfo){
+			
 			$this->config['child']=1;
 			$this->config['school']=$admininfo['nicename'];
 			$this->config['uid']=$admininfo['id'];
-			$_SESSION['sid']=$admininfo['cid'];
+			//$_SESSION['sid']=$admininfo['cid'];
 			if($admininfo['logo'])
 			$this->config['logo']=$admininfo['logo'];
 			$this->config['sitename']=$admininfo['sitename'];
@@ -61,17 +62,22 @@ class commonMod
 			if($admininfo['copyright'])$this->config['copyright']=$admininfo['copyright'];
 			
 			}
+			
 		if($webconfig){
 			if(!$webconfig['isopen'])$this->alert('站点已经关闭');
 			$this->config['child']=1;
 			$this->config['uid']=$webconfig['uid'];
 			$this->adminuser=model('user')->adminuser($webconfig['uid']);
+		
 			if($webconfig['logo'])
 			$this->config['logo']=$webconfig['logo'];
 			$this->config['sitename']=$webconfig['name'];
 			$this->config['erweima']=$webconfig['erweima']?$this->config['imageurl'].$webconfig['erweima']:'/public/erweima.jpg';
+			$this->config['gid']=$this->adminuser['gid'];
+			
 			$this->webconfig=$webconfig;
-			$this->menulist=model('web')->menu_list(array('uid'=>$this->config['uid'],'type'=>'cid'));	
+			unset($webconfig);
+			//$this->menulist=model('web')->menu_list(array('uid'=>$this->config['uid'],'type'=>'cid'));	
 			}
 		$userinfo=$_COOKIE[$this->config['SPOT'].'_wxuser'];
 		

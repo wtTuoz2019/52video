@@ -36,23 +36,66 @@ class menulistMod extends commonMod
 	   
 	   
          $url=__INDEX__.'/menulis/index/id-'.$id.'-page-{page}.html'; 
-       
+       $midname=$this->config['gid']==6?'gmid':'mid';
         //设置栏目属性
         if ($this->info['pid'] == 0) {
+			
             $son_id = model('web')->getcat($this->info['id'],	$whereuid);
-			if($son_id)
-            $where = 'A.status=1 AND A.mid in (' . $son_id . ') ';
+			
+		
+			if($son_id){
+            $where = 'A.status=1 AND A.'.$midname.' in (' . $son_id . ') ';
+			$this->sons= model('web')->getcatname($this->info['id'],	$whereuid);
+			$this->fid=$this->info['id'];
+			
+			}
 			else
-			 $where = 'A.status=1 AND A.mid=' . $this->info['id'];
+			 $where = 'A.status=1 AND A.'.$midname.'=' . $this->info['id'];
         } else {
-            $where = 'A.status=1 AND A.mid=' . $this->info['id'];
+            $where = 'A.status=1 AND A.'.$midname.'=' . $this->info['id'];
+			
+			$son_id = model('web')->getcat($this->info['pid'],	$whereuid);
+			
+		
+			if($son_id){
+            
+			$this->sons= model('web')->getcatname($this->info['pid'],	$whereuid);
+			$this->fid=$this->info['pid'];
+			
+			}
         }
+		
 	 	 $keyword=urldecode($_GET['s']);
 		if($keyword){
 			  $where.= ' and A.title like "%' . $keyword . '%" ';
 			 $url=__INDEX__.'/menulis/index/id-'.$id.'-s-'.urlencode($keyword).'-page-{page}.html'; 
 			}
-		
+		if($_GET['status']){
+			$time=time();
+			switch ($_GET['status']) {
+case "wait":
+   	 $wherelive=$where.' and   B.starttime>'.$time;
+	  $aids=model('web')->getliveaids($wherelive);
+	   $where.=' and A.aid in ('.$aids.')';
+    break;
+case "now":
+    $wherelive=$where.' and B.starttime<'.$time.' and (B.starttime+60*B.time)>'.$time;
+ 
+	 $aids=model('web')->getliveaids($wherelive);
+	 
+	 $where.=' and A.aid in ('.$aids.')';
+	 
+    break;
+case "over":
+    $wherelive=$where.' and A.cid=16 and (starttime+60*time)>'.$time;
+ 
+	  $aids=model('web')->getliveaids($wherelive);
+   	 $where.=' and A.aid not in ('.$aids.')';
+   
+    break;
+}
+
+				}
 	  if($this->webconfig['template']=='res'){
 		$dataarray=model('diyfield')->field_list_data(7);
 	  	$this->cat =$cat= new Category(array('id', 'pid', 'name', 'cname'));

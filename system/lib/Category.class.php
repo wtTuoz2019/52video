@@ -80,6 +80,7 @@ class Category
 				if($Category[$this->field['pid']]==$pid)
 					$childs[]=$Category;
 			}
+			unset($data);
 			return $childs;
 	}
 	
@@ -163,6 +164,7 @@ class Category
 		
 			if($this->rawList[$key][$this->field['id']]==$id)
 			{
+				//var_dump($this->rawList[$key]);die;
 				$this->formatList[]=$this->rawList[$key];
 				return $this->rawList[$key][$this->field['pid']];
 			}

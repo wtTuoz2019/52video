@@ -86,7 +86,8 @@
 			});
 		</script>
         
-        	
+        	 
+                      <?php if(!$user['cid']&&$user['gid']!=6){ ?>
          <tr>
           <td>所属科目</td>
           <td><select name="sid"  reg="." id="sid" onchange="changeteacher()" >
@@ -148,6 +149,7 @@
 		
           
         </script>
+          <?php } ?>
           <tr>
           <td>所属老师</td>
           <td><select name="tid"  reg="." id="tid" >

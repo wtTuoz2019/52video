@@ -11,54 +11,49 @@
         <!--#include file="head.html"-->
         <div class="now">
 			<div class="text">
-				当前位置：<a href="/">首页</a> > <a href="#">热门推荐</a>
+				当前位置：<a href="/">首页</a> > <a href="#">{$info.name}</a>
 			</div>
 		</div>
         
         
         <div class="mainall listmain">
         	
-        
+        <?php if($sons){ ?>
         <div class="fl_nav listfl">
 					<ul>
 						<li class="fl_search">
 							活动类别 ：
 						</li>
-						<li class="current">
-							<a href="#">全部</a>
+                        	<li class="<?=$fid==$info['id']?'current':''?>">
+							<a href="/menulist/index/id-{$fid}-status-<?=$_GET['status']?>">全部</a>
 						</li>
-						<li>
-							<a href="#">省级活动</a>
+                        	<!--foreach:{$sons $list}-->
+					
+						<li class="<?=$list['id']==$info['id']?'current':''?>">
+							<a href="/menulist/index/id-{$list['id']}-status-<?=$_GET['status']?>">{$list.name}</a>
 						</li>
-						<li>
-							<a href="#">市级活动</a>
-						</li>
-						<li>
-							<a href="#">区县级活动</a>
-						</li>
-                        <li>
-							<a href="#">校级活动</a>
-						</li>
+						
+                        <!--/list-->
 					</ul>
 					<ul>
 						<li class="fl_search">
 							活动状态：
 						</li>
-						<li class="current">
-							<a href="#">全部</a>
+						<li class="<?=!$_GET['status']?'current':''?>">
+							<a href="/menulist/index/id-{$info['id']}">全部</a>
 						</li>
-						<li>
-							<a href="#">尚未开始</a>
+						<li class="<?=$_GET['status']=='wait'?'current':''?>">
+							<a href="/menulist/index/id-{$info['id']}-status-wait">尚未开始</a>
 						</li>
-						<li>
-							<a href="#">正在进行</a>
+						<li  class="<?=$_GET['status']=='now'?'current':''?>">
+							<a href="/menulist/index/id-{$info['id']}-status-now">正在进行</a>
 						</li>
-						<li>
-							<a href="#">已经结束</a>
+						<li  class="<?=$_GET['status']=='over'?'current':''?>">
+							<a href="/menulist/index/id-{$info['id']}-status-over">已经结束</a>
 						</li>
 						
 					</ul>
-					<ul>
+			<!--		<ul>
 						<li class="fl_search">
 							活动类型：
 						</li>
@@ -72,14 +67,14 @@
 							<a href="#">收费</a>
 						</li>
 						
-					</ul>
+					</ul>-->
 					
 				</div>
-        
+          <?php } ?>
         	<div class="res_nav">
 					<ul>
 						<li class="active">
-							<a href="javascript:;">资源</a>
+							<a href="javascript:;">{$info.name}</a>
 						</li>
 						<li class="res_search">
 							<form action="" method="get">
