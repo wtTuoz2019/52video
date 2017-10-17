@@ -38,11 +38,11 @@ class diytplMod extends commonMod {
 		$aid=unserialize($info['aid']);
 		if(!$aid){
 			$where=' cid='.$info['cid'].' AND status=1';
-			if($_SESSION['sid']){
-			$where.=' AND csid='.$_SESSION['sid'];
+			if($this->config['csid']){
+			$where.=' AND csid='.$this->config['csid'];
 			}
 				
-			
+		
 			$aid_all=$this->model->table('content')->field('aid')->where($where)->select();
 				if(is_array($aid_all)){
 			foreach($aid_all as $k=>$v){

@@ -53,7 +53,7 @@ class commonMod
 			$this->config['child']=1;
 			$this->config['school']=$admininfo['nicename'];
 			$this->config['uid']=$admininfo['id'];
-			//$_SESSION['sid']=$admininfo['cid'];
+			$this->config['csid']=$admininfo['cid'];
 			if($admininfo['logo'])
 			$this->config['logo']=$admininfo['logo'];
 			$this->config['sitename']=$admininfo['sitename'];
