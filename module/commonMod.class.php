@@ -122,7 +122,7 @@ class commonMod
 	
 	public  function getuserinfo(){
 		
-	
+
 		if(MOBILE){ 
 //			if(!$_SESSION['uid']||($this->wxuser['wxname']!=$this->userinfo['from']&&$this->wxuser['oauth'])){
 //				
@@ -320,6 +320,7 @@ class commonMod
         if($this->config['LANG_OPEN']){
             $lang=__LANG__.'/';
         }
+		
         if(MOBILE){
 		
           $mobile_tpl='mobile'.'/';

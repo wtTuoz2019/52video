@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="inforbg">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=750, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/xueshi/css/main.css"/>
+	</head>
+
+    <body>
+    	<div class="data_k">
+        	<div class="infor infork1">
+            	<!--<div>
+                	<p>您当前属于：</p>
+                    <p>普通教师</p>
+                </div>-->
+                <div>
+                	<p>姓名：</p>
+                    <p>{$info['info']['xm']}</p>
+                </div>
+                <div>
+                	<p>身份证：</p>
+                    <p>{$info['info']['userid']}</p>
+                </div>
+                <div>
+                	<p>单位：</p>
+                    <p>{$info['info']['danwei']}</p>
+                </div>
+            </div>
+            
+            <div>
+            	<div class="selectk">
+                	年份：
+                    <select>
+                       <!--foreach:{$info['hours'] $key $vo}-->
+                    	<option value="{$key}">{$vo.startyear}-{$vo.endyear}</option>
+                           <!--{/foreach}-->
+                      
+                    </select>
+                </div>
+                <div class="yeardata"> 
+                    <!--foreach:{$info['hours'] $key $vo}-->
+                <div class="infor infork2"  id="{$key}">
+                    <div>
+                        <p>年份：</p>
+                        <p>{$vo.startyear}</p>
+                    </div>
+                    <div>
+                        <p>学时：</p>
+                        <p>{$vo.hour}</p>
+                    </div>
+                    <div>
+                        <p>认证学时：</p>
+                        <p>{$vo.authhour}</p>
+                    </div>
+                    <div>
+                        <p>所需学时：</p>
+                        <p>{$vo.needhour}</p>
+                    </div>
+                    <div>
+                        <p>还需学时：</p>
+                        <p>{$vo.surplushour}</p>
+                    </div>
+                    <div>
+                        <p>是否合格：</p>
+                        <p>{$vo.pass}</p>
+                    </div>
+                </div>
+                   <!--{/foreach}-->
+                     
+                </div>
+            </div>
+                  <!--       <tr class="beizhu">
+                	<td colspan="6">
+                    	<div>备注：</div>
+                        <div>你尊敬老师,热爱劳动。能积极参加幼儿园的各项活动。本学期进步较大:动手能力明显提高,做事比以前耐心多了,上课能听老师讲课,有时能积极举手发。</div>
+                    </td>
+                </tr>-->
+               <!--foreach:{$info['classes'] $key $vo}-->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="infortable" id="{$key}">
+            	<tr>
+                	<th width="175"><p>班级</p></th>
+                    <th width="80"><p>学时</p></th>
+                    <th width="90"><p>优秀</p></th>
+                    <th width="120"><p>合计学时</p></th>
+                    <th width="120"><p>获得时间</p></th>
+                    <th width="125"><p>审核状态</p></th>
+                </tr>
+                <!--foreach:{$vo $v}-->
+                <tr>
+                	<td>{$v.classname}</td>
+                    <td>{$v.hour}</td>
+                    <td>{$v.resulttypetext}</td>
+                    <td>{$v.finalhour}</td>
+                    <td>{$v.submittime}</td>
+                    <td class="redcolor">{$v.statename}</td>
+                </tr>
+     <!--{/foreach}-->
+              
+            </table>
+                <!--{/foreach}-->
+            
+        </div>
+        
+        
+    	<script src="__PUBLIC__/xueshi/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+			$(function(){
+				var firstid=$('.selectk select').val();
+				$('#'+firstid).addClass('active');
+			});
+        	
+			$('.selectk select').change(function(){
+				var id=$(this).children('option:selected').val();
+				$('#'+id).addClass('active').siblings('.active').removeClass('active');
+			});
+        </script>
+	</body>
+</html>

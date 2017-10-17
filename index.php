@@ -39,7 +39,7 @@ if($config['LANG_OPEN']){
 define('__LANG__', $lang);
 
 //处理手机版
-if($config['MOBILE_OPEN']&&$config['MOBILE_DOMAIN']){
+if($config['MOBILE_OPEN']&&$config['MOBILE_DOMAIN']){	
 	if($config['MOBILE_DOMAIN']==$_SERVER["HTTP_HOST"]||$_GET['mobile']){//isMobile()||
 		define('MOBILE', true);
 	}else{
