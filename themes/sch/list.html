@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$common.title}</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <script src="/themes/shixiao/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--#include file="head.html"-->
+		<div class="now">
+			<div class="text">
+				当前位置：<a href="/">首页</a> > <a href="__INDEX__">课列资源</a>
+			</div>
+		</div>
+		
+		
+		<div class="allmain">
+			<div class="maink">
+				
+			
+				<div class="fl_nav">
+					<ul>
+						<li class="fl_search">
+							学段：
+						</li>
+						<li <?php if(!$_GET['xueduan']){ ?> class="current" <?php } ?>>
+							<a href="/menulist/index/id-{$info['id']}">全部</a>
+						</li>
+                          <!--foreach:{$data['xueduan']['values'] $list}-->
+       <li <?php if($list['id']==$_GET['xueduan']){ ?> class="current" <?php } ?>>  <a href="/menulist/index/id-{$info['id']}?xueduan={$list['id']}" >{$list.name}</a></li>
+        <!--/list-->
+                        
+                        
+						
+					</ul>
+					<ul>
+						<li class="fl_search">
+							科目：
+						</li>
+						<li <?php if(!$_GET['kemu']){ ?> class="current" <?php } ?>>
+							<a href="/menulist/index/id-{$info['id']}">全部</a>
+						</li>
+                          <!--foreach:{$data['kemu']['values'] $list}-->
+       <li <?php if($list['id']==$_GET['kemu']){ ?> class="current" <?php } ?>>  <a href="/menulist/index/id-{$info['id']}?xueduan={$data['xueduan']['select']}&kemu={$list['id']}" >{$list.name}</a></li>
+        <!--/list-->
+                        
+					</ul>
+					<ul>
+						<li class="fl_search">
+							版本：
+						</li>
+						<li <?php if(!$_GET['banben']){ ?> class="current" <?php } ?>>
+							<a href="/menulist/index/id-{$info['id']}">全部</a>
+						</li>
+                          <!--foreach:{$data['banben']['values'] $list}-->
+       <li <?php if($list['id']==$_GET['banben']){ ?> class="current" <?php } ?>>  <a href="/menulist/index/id-{$info['id']}?xueduan={$data['xueduan']['select']}&kemu={$data['kemu']['select']}&banben={$list['id']}" >{$list.name}</a></li>
+        <!--/list-->
+					</ul>
+					<ul>
+						<li class="fl_search">
+							年级：
+						</li>
+						<li <?php if(!$_GET['nianji']){ ?> class="current" <?php } ?>>
+							<a href="/menulist/index/id-{$info['id']}">全部</a>
+						</li>
+                          <!--foreach:{$data['nianji']['values'] $list}-->
+       <li <?php if($list['id']==$_GET['nianji']){ ?> class="current" <?php } ?>>  <a href="/menulist/index/id-{$info['id']}?xueduan={$data['xueduan']['select']}&kemu={$data['kemu']['select']}&banben={$data['banben']['select']}&nianji={$list['id']}" >{$list.name}</a></li>
+        <!--/list-->
+					</ul>
+				</div>
+				
+				
+				<!--内容下载-->
+				<div class="res_nav">
+					<ul>
+						<li class="active">
+							<a href="javascript:;">当前资源</a>
+						</li>
+						<li class="res_search">
+							<form action="" method="get">
+								<input type="text" name="s" id="s" value="" placeholder="输入关键词搜索"/>
+								<button></button>
+							</form>
+						</li>
+					</ul>
+				</div>
+				
+				
+				<div class="res_main">
+					<div class="resk">
+						<!--<p class="resnum">共搜索到50个资源</p>-->
+						<ul class="reslist">
+                        	<!--foreach:{$loop $list}-->
+							<li>
+								<a href="{$list.aurl}">
+									<div class="res_img">
+										<img  src="{$sys.imageurl}{$list.image}"/>
+									</div>
+									
+									<p class="res_name">
+										{$list.title len="15"} 
+									</p>
+									<p class="res_gs">
+										<span>{$school[$list['csid']]['name']}</span>
+										<span class="seenum">
+											<img src="img/see.png"/>
+											{$list.views}
+										</span>
+									</p>
+								</a>
+							</li>
+                            <!--/list-->
+							
+						</ul>
+						<div class="clear"></div>
+						<div class="page">
+							<ul>
+								{$page}
+							</ul>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+		
+		
+		<!--#include file="foot.html"-->
+		
+	</body>
+</html>

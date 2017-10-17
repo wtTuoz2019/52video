@@ -1,0 +1,154 @@
+
+  <link rel="stylesheet" href="__PUBLIC__/data/css/font-awesome.min.css" />   
+ 
+
+ <div class="contentBox">
+	<div class="addAnswerBox">
+    <?php  if(($activity['signup']||$info['signup'])&&!$signinfo['status']){ ?>
+          <div class="logintishi">
+          	 温馨提示：您还没有实名认证，暂时无法进行评论。<a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=no">立即验证</a>
+          </div>
+   
+    <?php }  ?> 
+    
+    
+
+    
+    
+    
+    <button id="editors" onClick="jiaoyancomment(this)">我要评论</button>
+    
+    
+    
+    
+		
+	</div>
+</div>
+
+
+     <script type="text/javascript">  
+  	var url='http://{$config.MOBILE_DOMAIN}';
+	 var headpic='{$userinfo.headimgurl}';
+	 var nickname='{$userinfo.nickname}';
+	  var uid='{$userinfo.uid}';
+	  var jiaoyandata = {
+			    fid: '{$info.aid}',
+				uid:uid,
+			    pageSize: 10,
+			    pageIndex: 0,
+				type:'dadian'
+			  };  
+			  var jiaoyanarr = {
+			    fid: '{$info.aid}',
+			    id:'0',
+				type:'dadian'
+				
+			  };
+			  var data = {
+			    fid: '{$info.aid}',
+				uid:uid,
+			    pageSize: 10,
+			    pageIndex: 0,
+			  }; 
+			  
+			   var arr = {
+			    fid: '{$info.aid}',
+			    id:'0'
+			  };
+			var jiaoyanlistflag={
+			    fid: '{$info.aid}',
+			    id:'0',
+				type:'dadian'
+			  };
+			    var id = 0,
+			  flag=0;
+			  var commentflag='save';
+			  var newjiaoyancommentflag=false;
+	
+	
+		
+</script> 
+						<div class="comment" id="jiaoyan">
+							<div style=" -webkit-overflow-scrolling: touch; overflow:auto;"> <div class="load_m tr" id="refresh">有新评论，刷新看看</div>
+   <div class="container" id="container">
+    
+     <div  id="jiaoyancontainer">
+    
+    
+      	
+    
+      
+	
+	</div>	
+      	
+    
+      
+	
+	</div>	
+    
+      <div class="load_m tr" id="more">加载更多</div>
+
+    <script>
+			$('#jiaoyan #refresh').bind('click',function(e){
+				jiaoyanautomatic(jiaoyanarr);
+				
+				});
+			$(function(){ 
+　				
+		jiaoyanautomatic(jiaoyanarr);
+				setInterval("jiaoyanqwert()",5000);
+		}); 
+			
+		
+	
+		$("#jiaoyan #more").click(function(){
+			getjiaoyancomment();
+			
+		});
+			function tocomment(){
+				$("#mymodal").modal("toggle");
+				}
+			function pay(){
+		 price=parseFloat($('#price').val());
+		
+		if(price>1000 || price <1||$('#price').val()==''){
+	$.dialog({
+						        content: '金额不得小于1或大于1000元',
+								bottom:'20%',
+								fixed:true,
+								width:200,
+								height:80
+					          });
+	return false;
+	}
+	
+		$.ajax({
+				  url: "__ROOT__/index.php/comment/savepay",
+				  type: "POST",
+				  data: {
+					fid: data['fid'],
+					message: $('#desc').val(),
+					price: price,
+			        uid: data['uid']
+				  },
+				  dataType: "json",
+				  success: function( d ) {
+					if(d.message>0){
+				$.post('__ROOT__/wxpay/index?openid={$userinfo.openid}',{id:d.message,price:$('#price').val(),desc:$('#desc').val()},function(data){
+		
+			callpay(data);
+			},'json')
+			} 
+		 }});
+		}
+  
+
+  
+  
+    </script>
+    
+
+    
+    
+    </div>
+						</div>

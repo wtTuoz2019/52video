@@ -153,30 +153,31 @@ class contentMod extends commonMod
 		$grade=model('diyfield')->field_list(1);
 		
 		$user=$this->user;
-		$uid=$user['cid'];
+		
 		if($user['gid']==6){
 			$temp;
 			$temp[]=1;
 			if($user['cid']){
-				$temp[]=$user['id'];
+				$temp[]=$user['cid'];
 				}
 			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
 			if($nextuser){
 			foreach($nextuser as $key=>$val){
-				$temp[]=$val['id'];
+				$temp[]=$val['cid'];
+				$temp1[]=$val['id'];
 				}
 			}
 			
 			if($temp){
-			 	$where='B.id in ('.implode(',',$temp).') ';	
-				$wheret='uid in ('.implode(',',$temp).') ';	
+			 	$where='id in ('.implode(',',$temp).') ';	
+				$wheret='uid in ('.implode(',',$temp1).') ';	
 				}
 			}else{
 		
 			
 			if($user['cid']){
-			$where='B.id='.$uid;	
-				$wheret='uid='.$uid;	
+			$where='id='.$user['cid'];	
+				$wheret='uid='.$user['id'];	
 				}
 		
      

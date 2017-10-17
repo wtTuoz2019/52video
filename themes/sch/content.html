@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$common.title}</title>
+        <meta name="viewport" content="width=1100,user-scalable=no">
+		<script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" href="js/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+        <script type="text/javascript" src="js/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
+		<script type=text/javascript src="js/dialog/jquery.artDialog.js?skin=default"></script>
+        <script type=text/javascript src="js/dialog/plugins/iframeTools.js"></script>
+        <link href="css/style1.css" type="text/css" rel="stylesheet">
+        <link href="css/details.css" type="text/css" rel="stylesheet">
+        <link href="css/index.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <script>var play=1;</script>
+	</head>
+	<body>
+    <!--#include file="head.html"-->
+    	<div class="videotitle">
+        	<p>
+             <!--foreach:{$nav $list}-->
+            <a href="/menulist/index/id-{$list.id}" class="gaol">{$list.name}</a> > 
+             <!--/list-->
+                        
+             {$info.title} </p>
+        </div>
+    	 
+        <div class="videobg">
+        	<div class="contentBox">
+            	<h3>
+                	{$info.title} 
+                	<img class="smqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"/>
+                    <img class="bgqr" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"/>
+                </h3>
+                
+               <?php if(strstr($info['videourl'],"http")&&(strstr($info['videourl'],"heims")||strstr($info['videourl'],"aodianyun")||strstr($info['videourl'],"urren")||strstr($info['videourl'],"shanyueyun"))){?>
+
+   <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1" ></div>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "400";//视频高度
+  var url = "{$info.videourl}";//视频地址
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:1};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>
+
+
+<?php }else{
+
+
+	
+		
+
+?>
+<div id="videoPlayer"></div>
+ <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+   <div id="a1" ></div>
+   
+   
+   <?php 
+		 if( @fopen('http://'.$config[out].'/video/'.$info[videourl].'/video.m3u8', 'r' )){  ?>
+         
+        <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "400";//视频高度
+  var url = "http://{$config.out}/video/{$info.videourl}/video.m3u8" 
+
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>  
+         
+         <?php }else{  ?>
+   <script type="text/javascript">
+	
+	var w = "100%";//视频宽度
+  var h = "400";//视频高度
+  var url = "http://{$config.out}/video/{$info.videourl}/1280/video.m3u8" 
+  var urlarray = "http://{$config.out}/video/{$info.videourl}/640/video.m3u8|http://{$config.out}/video/{$info.videourl}/1280/video.m3u8|http://{$config.out}/video/{$info.videourl}/1920/video.m3u8";//视频地址
+  var image = "{$sys['imageurl']}{$info.image}";//封面图片
+  var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,deft:'标清|高清|超清',defa:urlarray,c:0,s:4,i:image,lv:0,p:play};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,flashvars,video,params);
+
+</script>
+
+  <?php } ?>
+      
+        <?php  }  ?>  
+                 
+               
+                
+          
+    
+    	<!--#include file="videopublic.html"-->
+        
+		
+        <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+        
+	</body>
+</html>
