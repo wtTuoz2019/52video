@@ -163,3 +163,9 @@ td{
 .yeardata>div.active{
 	display:block;  
 }
+.classdata>table{
+	display:none;
+}
+.classdata>table.active{
+	display:block;  
+}

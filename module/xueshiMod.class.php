@@ -115,11 +115,12 @@ $this->redirect("/xueshi/index.html?mobile=yes".$this->urltoken);
 		 $this->display('xueshi_bind.html');
 		}
 		public function search(){
+			
 			if(!$_GET['openid'])echo 0;;
 			$where="A.type='xueshi' and openid='".$_GET['openid']."'";
 			$user=model('schooluser')->xueshiuserbyopenid($where);
 			if($user){
-						 try {
+						 try { 
 
     //解决OpenSSL Error问题需要加第二个array参数，具体参考 http://stackoverflow.com/questions/25142227/unable-to-connect-to-wsdl
     $client = new SoapClient("http://116.249.125.29/service/sdk.asmx?WSDL",
@@ -149,8 +150,8 @@ $this->redirect("/xueshi/index.html?mobile=yes".$this->urltoken);
    
 } catch (SOAPFault $e) {
     print $e;
-}
-				echo 1;
+} 
+				echo $user['cardno'];
 				}else{
 					
 					echo 0;

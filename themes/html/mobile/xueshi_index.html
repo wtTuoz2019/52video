@@ -76,8 +76,9 @@
                         <div>你尊敬老师,热爱劳动。能积极参加幼儿园的各项活动。本学期进步较大:动手能力明显提高,做事比以前耐心多了,上课能听老师讲课,有时能积极举手发。</div>
                     </td>
                 </tr>-->
+                <div class="classdata"> 
                <!--foreach:{$info['classes'] $key $vo}-->
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="infortable" id="{$key}">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="infortable" id="t{$key}">
             	<tr>
                 	<th width="175"><p>班级</p></th>
                     <th width="80"><p>学时</p></th>
@@ -99,7 +100,7 @@
               
             </table>
                 <!--{/foreach}-->
-            
+            <div class="yeardata"> 
         </div>
         
         
@@ -107,12 +108,21 @@
         <script>
 			$(function(){
 				var firstid=$('.selectk select').val();
-				$('#'+firstid).addClass('active');
+				$('div#'+firstid).addClass('active');
+				$('#t'+firstid).addClass('active');
+				console.log($('#t'+firstid));
 			});
         	
 			$('.selectk select').change(function(){
 				var id=$(this).children('option:selected').val();
-				$('#'+id).addClass('active').siblings('.active').removeClass('active');
+				if($('#t'+id).length==0){
+					$('.classdata').find('table.active').removeClass('active');
+				}
+				
+				
+				
+				$('div#'+id).addClass('active').siblings('.active').removeClass('active');
+				$('#t'+id).addClass('active').siblings('.active').removeClass('active');
 			});
         </script>
 	</body>
