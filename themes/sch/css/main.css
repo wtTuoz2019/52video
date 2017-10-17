@@ -242,6 +242,7 @@ ul.mbul li:nth-child(3n){
 }
 .teacherk ul{
 	overflow:hidden;
+	padding:50px 0;
 }
 .teacherk li{
 	float:left;
