@@ -12,5 +12,12 @@ class schooluserModel extends commonModel
 		return $data['id'];
 		
 		}
+	public function xueshiuser($where){
+		
+		
+		return $this->model->table('schooluser')->where($where)->find();
+		
+		}
+
 }
 ?>

