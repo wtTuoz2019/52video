@@ -70,31 +70,34 @@
                      
                 </div>
             </div>
-                  <!--       <tr class="beizhu">
-                	<td colspan="6">
-                    	<div>备注：</div>
-                        <div>你尊敬老师,热爱劳动。能积极参加幼儿园的各项活动。本学期进步较大:动手能力明显提高,做事比以前耐心多了,上课能听老师讲课,有时能积极举手发。</div>
-                    </td>
-                </tr>-->
+                
                 <div class="classdata"> 
                <!--foreach:{$info['classes'] $key $vo}-->
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="infortable" id="t{$key}">
             	<tr>
+                 <th width="120"><p>培训时间</p></th>
                 	<th width="175"><p>班级</p></th>
                     <th width="80"><p>学时</p></th>
                     <th width="90"><p>优秀</p></th>
-                    <th width="120"><p>合计学时</p></th>
-                    <th width="120"><p>获得时间</p></th>
-                    <th width="125"><p>审核状态</p></th>
+             
+                   
+                   <!-- <th width="125"><p>审核状态</p></th>-->
                 </tr>
                 <!--foreach:{$vo $v}-->
                 <tr>
+                  <td>{$v.studytime}</td>
                 	<td>{$v.classname}</td>
                     <td>{$v.hour}</td>
                     <td>{$v.resulttypetext}</td>
-                    <td>{$v.finalhour}</td>
-                    <td>{$v.submittime}</td>
-                    <td class="redcolor">{$v.statename}</td>
+                    
+       <!--           
+                    <td class="redcolor">{$v.statename}</td>-->
+                </tr>
+                       <tr class="beizhu">
+                	<td colspan="6">
+                    	<div>备注：</div>
+                        <div>{$v.remark}</div>
+                    </td>
                 </tr>
      <!--{/foreach}-->
               

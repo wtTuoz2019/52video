@@ -25,6 +25,7 @@ class schooluserModel extends commonModel
 	public function xueshiuseradd($data){
 		$user=$this->model->table('schooluser')->where(array('uid'=>$data['uid'],'byuid'=>$data['byuid'],'type'=>$data['type']))->find();
 		if($user){
+			
 			return $this->model->table('schooluser')->where(array('uid'=>$data['uid'],'byuid'=>$data['byuid'],'type'=>$data['type']))->data($data)->update();
 			
 		}
@@ -57,6 +58,7 @@ class schooluserModel extends commonModel
 	public function xueshiclassadd($data){
 		$user=$this->model->table('xueshi_classes')->where(array('userid'=>$data['userid'],'id'=>$data['id']))->find();
 		if($user){
+			//var_dump($data);
 			return $this->model->table('xueshi_classes')->where(array('userid'=>$data['userid'],'id'=>$data['id']))->data($data)->update();
 			
 		}

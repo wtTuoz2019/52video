@@ -42,6 +42,7 @@ class xueshiMod extends commonMod {
 	
     foreach($result['string'] as $key=>$value){
 		$data=json_decode(str_replace("'",'"',$value),true);
+	
 		 model('schooluser')->xueshiclassadd($data);
 		}
 			
