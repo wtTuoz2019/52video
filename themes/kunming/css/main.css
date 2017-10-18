@@ -20,7 +20,13 @@ input{
 .h1, .h2, .h3, h1, h2, h3{
 	margin:0;
 }
-
+.resk{
+	padding:40px 0;
+}
+.resk.hot>ul li{
+	margin-top:0;
+	margin-bottom:20px;
+}
 .head_login{
 	height:60px;
 }

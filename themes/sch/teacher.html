@@ -4,121 +4,158 @@
 		<meta charset="utf-8" />
 		<title>{$common.title}</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
-        <script src="/themes/shixiao/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/themes/sch/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
 	</head>
     <body>
     	<!--#include file="head.html"-->
-        <div class="now">
-			<div class="text">
-				当前位置：<a href="/">首页</a> > <a href="#">名师课堂</a>
-			</div>
-		</div>
-        
-        <div class="teacherbg">
-        	<div class="mainall">
-            	<div class="teacherdata">
-                	<div class="timg">
-                    	<img src="img/teaherhead.jpg"/>
-                    </div>
-                	<div class="ttxt">
-                    	<h5>张雪峰——语文老师</h5>
-                        <h5>昆明第一中学</h5>
-                        <p>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。[1]  研途考研VIP名师。
-2016年6月凭借《34秒解读35所985高校》走红网络，2016年9月出版《你离考研成功，就差这本书》。</p>
-                    </div>
+        <div class="teahead">
+        	<div class="teacherbg">
+                <div class="bghead">
+                    <img src="img/teaherhead.jpg"/>
+                </div>
+                <div class="bgtext">
+                	<h5>张雪峰——语文老师</h5>
+                    <h5>三年级一班</h5>
+                    <p class="thjianjie">
+                    	中共党员，本科学历，小学高级教师。长沙市小学语文优秀教师。1995年参加湖南省小学语文教学比武，荣获一等奖的第一名，同年10月代表湖南省参加全国语文教学比武再获二等奖 。2005年——2007年多次代表学校担任省级，国家级观摩课的执教任务，并获得各级领导及专家们的一致好评。2006年10月，作为语文学科带头人被学校派往昆明进行课题骨干培训，使自己的专业水平得以提升。
+                    </p>
                 </div>
                 
-                <div class="res_nav">
-					<ul>
-						<li class="active">
-							<a href="javascript:;">名师列表</a>
-						</li>
-						<li class="res_search">
-							<form action="" method="get">
-								<input type="text" name="s" id="s" value="" placeholder="输入关键词搜索"/>
-								<button></button>
-							</form>
-						</li>
-					</ul>
-				</div>
-                
-                <div class="res_main hot">
-                	<ul>
+            </div>
+        </div>
+        <div class="bian_top bian"> 
+        	<img src="img/tiao_top.png"/>
+        </div> 
+        <div class="mainall">
+        	<p class="ctitle">教学课程</p>
+            <div class="thvideo">
+            	<ul class="mbul">
                     	<li>
-                    	<a href="#">
-                        	<div class="videoimg">
-                            	<img class="spimg" src="img/videoimg.jpg" />
-                                <div class="saoma">
-                                	<p>扫码观看</p>
-                                    <img class="spqr" src="img/qr.png"  />
+                            <a href="{$list.aurl}">
+                                <div class="videoimg">
+                                    <img class="spimg" src="img/videoimg.jpg" />
+                                    <div class="saoma">
+                                        <p>扫码观看</p>
+                                        <img class="spqr" src="img/qr.png"  />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="videotext">
-                            	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                                <p>
-                                	<span class="seenum">
-										<img src="img/see.png"/>104
-									</span>
-                                </p>
-                            </div>
-                        </a>
+                                <div class="videotext">
+                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
+                                    <p>
+                                        <span class="seenum">
+                                            <img src="img/see.png"/>104
+                                        </span>
+                                    </p>
+                                </div>
+                            </a>
                     	</li>
                         <li>
-                    	<a href="#">
-                        	<div class="videoimg">
-                            	<img class="spimg" src="img/videoimg.jpg" />
-                                <div class="saoma">
-                                	<p>扫码观看</p>
-                                    <img class="spqr" src="img/qr.png"  />
+                            <a href="{$list.aurl}">
+                                <div class="videoimg">
+                                    <img class="spimg" src="img/videoimg.jpg" />
+                                    <div class="saoma">
+                                        <p>扫码观看</p>
+                                        <img class="spqr" src="img/qr.png"  />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="videotext">
-                            	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                                <p>
-                                	<span class="seenum">
-										<img src="img/see.png"/>104
-									</span>
-                                </p>
-                            </div>
-                        </a>
+                                <div class="videotext">
+                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
+                                    <p>
+                                        <span class="seenum">
+                                            <img src="img/see.png"/>104
+                                        </span>
+                                    </p>
+                                </div>
+                            </a>
                     	</li>
                         <li>
-                    	<a href="#">
-                        	<div class="videoimg">
-                            	<img class="spimg" src="img/videoimg.jpg" />
-                                <div class="saoma">
-                                	<p>扫码观看</p>
-                                    <img class="spqr" src="img/qr.png"  />
+                            <a href="{$list.aurl}">
+                                <div class="videoimg">
+                                    <img class="spimg" src="img/videoimg.jpg" />
+                                    <div class="saoma">
+                                        <p>扫码观看</p>
+                                        <img class="spqr" src="img/qr.png"  />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="videotext">
-                            	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                                <p>
-                                	<span class="seenum">
-										<img src="img/see.png"/>104
-									</span>
-                                </p>
-                            </div>
-                        </a>
+                                <div class="videotext">
+                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
+                                    <p>
+                                        <span class="seenum">
+                                            <img src="img/see.png"/>104
+                                        </span>
+                                    </p>
+                                </div>
+                            </a>
+                    	</li>
+                        <li>
+                            <a href="{$list.aurl}">
+                                <div class="videoimg">
+                                    <img class="spimg" src="img/videoimg.jpg" />
+                                    <div class="saoma">
+                                        <p>扫码观看</p>
+                                        <img class="spqr" src="img/qr.png"  />
+                                    </div>
+                                </div>
+                                <div class="videotext">
+                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
+                                    <p>
+                                        <span class="seenum">
+                                            <img src="img/see.png"/>104
+                                        </span>
+                                    </p>
+                                </div>
+                            </a>
+                    	</li>
+                        <li>
+                            <a href="{$list.aurl}">
+                                <div class="videoimg">
+                                    <img class="spimg" src="img/videoimg.jpg" />
+                                    <div class="saoma">
+                                        <p>扫码观看</p>
+                                        <img class="spqr" src="img/qr.png"  />
+                                    </div>
+                                </div>
+                                <div class="videotext">
+                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
+                                    <p>
+                                        <span class="seenum">
+                                            <img src="img/see.png"/>104
+                                        </span>
+                                    </p>
+                                </div>
+                            </a>
+                    	</li>
+                        <li>
+                            <a href="{$list.aurl}">
+                                <div class="videoimg">
+                                    <img class="spimg" src="img/videoimg.jpg" />
+                                    <div class="saoma">
+                                        <p>扫码观看</p>
+                                        <img class="spqr" src="img/qr.png"  />
+                                    </div>
+                                </div>
+                                <div class="videotext">
+                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
+                                    <p>
+                                        <span class="seenum">
+                                            <img src="img/see.png"/>104
+                                        </span>
+                                    </p>
+                                </div>
+                            </a>
                     	</li>
                     </ul>
-                    
-                    
-                    <div class="clear"></div>
                     <div class="page">
 							<ul>
 								{$page}
 							</ul>
-						</div>
-                </div>
-                
-                
-        	</div>
-       	</div>
+						</div> 
+            </div>
+        </div>
         
         
         <!--#include file="foot.html"-->
         
-        <script src="/themes/kunming/js/main.js"></script>
+        <script src="/themes/sch/js/main.js"></script>
 	</body>
 </html>

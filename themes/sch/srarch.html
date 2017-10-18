@@ -9,44 +9,45 @@
 	<body>
 		<!--#include file="head.html"-->
 	
+		<div class="search_result"><p>共搜索<span>{$count}</span>资源</p></div>
 		
-		
-		<div class="allmain">
-			<div class="maink">
-				
-			
+		<div class="mainall">
 			
 				
 			
+			
+				
+			
 				
 				
-				<div class="res_main">
-					<div class="resk">
-						<!--<p class="resnum">共搜索到50个资源</p>-->
-						<ul class="reslist">
+				
+					<div class="searchlist">
+						
+						<ul class="mbul">
                         	<!--foreach:{$loop $list}-->
 							<li>
-								<a href="{$list.aurl}">
-									<div class="res_img">
-										<img  src="{$sys.imageurl}{$list.image}"/>
-									</div>
-									
-									<p class="res_name">
-										{$list.title len="15"} 
-									</p>
-									<p class="res_gs">
-										<span>{$school[$list['csid']]['name']}</span>
-										<span class="seenum">
-											<img src="img/see.png"/>
-											{$list.views}
-										</span>
-									</p>
-								</a>
-							</li>
+                            <a href="{$list.aurl}">
+                                <div class="videoimg">
+                                    <img class="spimg" src="{$sys.imageurl}{$list.image}" />
+                                    <div class="saoma">
+                                        <p>扫码观看</p>
+                                        <img class="spqr" src="img/qr.png"  />
+                                    </div>
+                                </div>
+                                <div class="videotext">
+                                    <h5>{$list.title len="20"}</h5>
+                                    <p>
+                                        <span class="seenum">
+                                            <img src="img/see.png"/>{$list.views}
+                                        </span>
+                                    </p>
+                                </div>
+                            </a>
+                    	</li>
                             <!--/list-->
 							
 						</ul>
-						<div class="clear"></div>
+						
 						<div class="page">
 							<ul>
 								{$page}
@@ -55,7 +56,7 @@
 					</div>
 				</div>
 			
-			</div>
+			
 		</div>
 		
 		

@@ -1,29 +1,57 @@
 <div class="head">
 	<div class="headc">
-    	<img class="headlogo" src="img/logo.jpg"/>
+    	<img class="headlogo" src="{$sys.imageurl}{$sys.logo}"/>
         
         <div class="navright">
         <ul class="headnav">
-        	<li class="active">
-            	<a href="#">首页</a>
-            </li>
+        <!--channel:{table="web_menu"  order="sequence desc,id asc" where="uid=<$sys.uid> and pid=0" }-->
+        
             <li>
-            	<a href="#">视频资源</a>
+            	<a href="{$channel.murl}"><?=$channel['image']?'<img src="'.$sys['imageurl'].$channel['image'].'">':''?>{$channel.name}</a>
             </li>
-            <li>
-            	<a href="#">优课鉴赏</a>
-            </li>
-            <li>
-            	<a href="#">教师讲堂</a>
-            </li>
+            
+             <!--/channel-->
         </ul>
         <div class="navlogin">
         	<form action="__INDEX__/search">
 				<input name="keyword" type="text" id="keyword" />
 				<button type="submit"></button>
 			</form>
-            <a href="/login/login.html" class="login">登陆</a>
+               <?php 
+                   if(!$userinfo){
+                        ?>
+            <a href="/login/login.html" class="login">登录</a>
+             <?php }?>
         </div>
         </div>
     </div>
+      <?php if($userinfo){ ?>
+<div class="userlogo">
+                <img src="{$userinfo.headimgurl}" width="50px"></li>
+                		
+                    <a href="/weixinlogin/logout" class="usertc">退出</a>
+              
+              </div>  
+                    <?php };?>
 </div>
+<script>
+        	$(function(){
+				var url = window.location.href;
+				var href=url.substr(url.length-5); 
+				
+				$('.headnav li>a').each(function() {
+					if($(this).attr("href").indexOf(href)>=0){
+						$(this).parent().addClass('active').siblings('.active').removeClass('active');
+						
+					}else if($(this).attr("href")=='/'){
+						$(this).parent().addClass('active').siblings('.active').removeClass('active');
+					}
+				});
+				
+				
+				
+				
+				
+				
+			});
+        </script>

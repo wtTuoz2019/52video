@@ -12,3 +12,10 @@ $('.teacherk li').mouseover(function (){
 	$(this).addClass('active').siblings('.active').removeClass('active'); 
 });
 
+
+$('.idx_nav>a').click(function(e){
+	e.preventDefault();
+	$(this).addClass('active').siblings('.active').removeClass('active');
+	var id=$(this).attr('href');
+	$(id).addClass('active').siblings('.active').removeClass('active');
+});

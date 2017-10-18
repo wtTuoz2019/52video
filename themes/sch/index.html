@@ -22,130 +22,69 @@
             </p>
             
            <div class="idx_nav">
-           		<a href="#" class="active">最新</a><a href="#">最热</a>
+           		<a href="#new" class="active">最新</a><a href="#hot">最热</a>
            </div>
            
            <div class="videoidx">
-           		<div>
+           		<div id="new" class="active">
                 	<ul class="mbul">
+                    <!--list:{table="content" where="A.mid in ( <$info.mids> ) " order="updatetime desc" limit="6" }-->
                     	<li>
                             <a href="{$list.aurl}">
                                 <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
+                                    <img class="spimg" src="{$sys.imageurl}{$list.image}" />
                                     <div class="saoma">
                                         <p>扫码观看</p>
                                         <img class="spqr" src="img/qr.png"  />
                                     </div>
                                 </div>
                                 <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
+                                    <h5>{$list.title len="20"}</h5>
                                     <p>
                                         <span class="seenum">
-                                            <img src="img/see.png"/>104
+                                            <img src="img/see.png"/>{$list.views}
                                         </span>
                                     </p>
                                 </div>
                             </a>
                     	</li>
-                        <li>
-                            <a href="{$list.aurl}">
-                                <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
-                                    <div class="saoma">
-                                        <p>扫码观看</p>
-                                        <img class="spqr" src="img/qr.png"  />
-                                    </div>
-                                </div>
-                                <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
-                                    <p>
-                                        <span class="seenum">
-                                            <img src="img/see.png"/>104
-                                        </span>
-                                    </p>
-                                </div>
-                            </a>
-                    	</li>
-                        <li>
-                            <a href="{$list.aurl}">
-                                <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
-                                    <div class="saoma">
-                                        <p>扫码观看</p>
-                                        <img class="spqr" src="img/qr.png"  />
-                                    </div>
-                                </div>
-                                <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
-                                    <p>
-                                        <span class="seenum">
-                                            <img src="img/see.png"/>104
-                                        </span>
-                                    </p>
-                                </div>
-                            </a>
-                    	</li>
-                        <li>
-                            <a href="{$list.aurl}">
-                                <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
-                                    <div class="saoma">
-                                        <p>扫码观看</p>
-                                        <img class="spqr" src="img/qr.png"  />
-                                    </div>
-                                </div>
-                                <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
-                                    <p>
-                                        <span class="seenum">
-                                            <img src="img/see.png"/>104
-                                        </span>
-                                    </p>
-                                </div>
-                            </a>
-                    	</li>
-                        <li>
-                            <a href="{$list.aurl}">
-                                <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
-                                    <div class="saoma">
-                                        <p>扫码观看</p>
-                                        <img class="spqr" src="img/qr.png"  />
-                                    </div>
-                                </div>
-                                <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
-                                    <p>
-                                        <span class="seenum">
-                                            <img src="img/see.png"/>104
-                                        </span>
-                                    </p>
-                                </div>
-                            </a>
-                    	</li>
-                        <li>
-                            <a href="{$list.aurl}">
-                                <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
-                                    <div class="saoma">
-                                        <p>扫码观看</p>
-                                        <img class="spqr" src="img/qr.png"  />
-                                    </div>
-                                </div>
-                                <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
-                                    <p>
-                                        <span class="seenum">
-                                            <img src="img/see.png"/>104
-                                        </span>
-                                    </p>
-                                </div>
-                            </a>
-                    	</li>
+                        <!--/list-->
+                        
                     </ul>
                     
                     
                 </div>
+                <div id="hot">
+                	<ul class="mbul">
+                     <!--list:{table="content" position='5' where="A.mid in ( <$info.mids> ) " order="views desc" limit="6" }-->
+                    	<li>
+                            <a href="{$list.aurl}">
+                                <div class="videoimg">
+                                    <img class="spimg" src="{$sys.imageurl}{$list.image}" />
+                                    <div class="saoma">
+                                        <p>扫码观看</p>
+                                        <img class="spqr" src="img/qr.png"  />
+                                    </div>
+                                </div>
+                                <div class="videotext">
+                                    <h5>{$list.title len="20"}</h5>
+                                    <p>
+                                        <span class="seenum">
+                                            <img src="img/see.png"/>{$list.views}
+                                        </span>
+                                    </p>
+                                </div>
+                            </a>
+                    	</li>
+                        <!--/list-->
+                        
+                    </ul>
+                    
+                    
+                </div>
+                
+                
+                
                 <a href="#" class="more">更多课程 &gt;</a>
            </div>
            

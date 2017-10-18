@@ -24,6 +24,24 @@ input{
 .head{
 	height:80px;
 	background:#fff;
+	position:relative;
+}
+.userlogo{
+	position:absolute;
+	top:0;
+	right:10px;
+	height:80px;
+	padding:15px 0;
+}
+.userlogo a{
+	display: inline-block;
+    font-size: 12px;
+    color: #4a4a4a;
+    padding: 5px 10px;
+    background: #ddd;
+    border-radius: 3px;
+    position: relative;
+    top: -10px;
 }
 .head .headc{
 	width:1100px;
@@ -74,7 +92,8 @@ input{
 	width:100%;
 	border:1px solid #A0A0A0;
 	border-radius:15px;
-	padding-right:35px
+	padding-right:35px;
+	padding-left:15px;
 }
 .headc .navlogin form button{
 	position:absolute;
@@ -325,6 +344,7 @@ ul.mbul li:nth-child(3n){
 }
 .teacherlistk{
 	margin-top:30px;
+	margin-bottom:135px;
 }
 .teacherlistk ul{
 	overflow:hidden;
@@ -346,8 +366,89 @@ ul.mbul li:nth-child(3n){
 .teacherlistk ul li:nth-child(3n){
 	margin-right:0;
 }
-
-
+.page ul{
+	text-align: center;
+}
+.page ul li{
+	display: inline-block;
+}
+.page ul li a{
+	display: block;
+	color: #919294;
+	padding: 5px 11px;
+	border: 1px solid #D8D8D8;
+	border-radius: 3px;
+}
+.page ul li a.current{
+	background:#22B9FF;
+	color:#fff;
+}
+.teahead{
+	background:#3FD7DA;
+}
+.teacherbg{
+	width:1100px;
+	margin:0 auto;
+	padding-bottom:70px;
+	padding-top:45px;
+	overflow:hidden;
+}
+.teacherbg>div{
+	float:left;
+}
+.teacherbg div.bghead{
+	width:245px;
+	text-align:center;
+}
+.teacherbg>div.bghead img{
+	width:140px;
+	height:140px;
+	border-radius:50%;
+	border:7px solid #EFEFEF;
+}
+.teacherbg div.bgtext{
+	width:855px;
+	padding-top:20px;
+}
+.teacherbg div.bgtext h5{
+	font-weight:normal;
+	font-size:24px;
+}
+.teacherbg div.bgtext .thjianjie{
+	font-size:12px;
+	margin-top:15px;
+	line-height:25px;
+}
+.thvideo{
+	margin-top:45px;
+	margin-bottom:140px;
+}
+.listk{
+	margin-top:45px;
+	margin-bottom:140px;
+}
+.videoidx>div{
+	display:none;
+}
+.videoidx>div.active{
+	display:block;
+}
+.search_result{
+	
+	line-height:40px;
+	background:#dcdcdc;
+}
+.search_result p{
+	width:1100px;
+	margin:0 auto;
+	font-size:14px;
+}
+.search_result p span{
+	color:#2AADFD;
+}
+.searchlist{
+	padding:40px 0;
+}
 
 
 
@@ -385,7 +486,7 @@ ul.mbul li:nth-child(3n){
 }
 .footer .foottitle{
 	font-size: 14px;
-	color: #fff;
+	color: #000;
 	padding-bottom: 12px;
 	background-image: url(../img/foott.png);
 	background-repeat: no-repeat;
@@ -432,7 +533,7 @@ ul.mbul li:nth-child(3n){
 	margin: 15px 0 0 25px;
 }
 .footk  ul li a {
-    color: #fff;
+    color: #000;
 }
 .footk  ul li a:hover {
     text-decoration: underline;

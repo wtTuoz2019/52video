@@ -83,7 +83,7 @@ var commenturl="http://comment.shanyueyun.net";
 		
         });
 		
-		if( typeof newcommentflag=='undefined'||typeof newjiaoyancommentflag=='undefined'){
+		if( typeof newcommentflag=='undefined'&&typeof newjiaoyancommentflag!='undefined'){
 			
 			arr['type']=jiaoyanarr['type']='all';
 			}

@@ -124,13 +124,14 @@ class extendclassMod extends commonMod {
 		
 		}
 	public function teacher(){
-	
+			$user=$this->user;
+			
 			if($user['gid']==6){
 			$temp;
-			$temp[]=0;
-			if($user['cid']){
+		
+		
 				$temp[]=$user['id'];
-				}
+				
 			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
 			if($nextuser){
 			foreach($nextuser as $key=>$val){
@@ -150,7 +151,7 @@ class extendclassMod extends commonMod {
 		
      
 			}
-			
+		
 		  	if($_FILES['file']['name']){
 		$return=module('editor_upload')->upload();
 			
@@ -238,6 +239,8 @@ class extendclassMod extends commonMod {
 		if($_GET['s']){
 			 $where['name']=array('like',"'%".$_GET['s']."%'");
 			  }
+			  
+			 
 		 $this->list=model('extendclass')->teacher_list($where,$limit);
 		 
 		   $count=model('extendclass')->teacher_count($where);
