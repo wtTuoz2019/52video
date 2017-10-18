@@ -8,3 +8,7 @@ $('.contentBox h3 .smqr').mouseover(function (){
 }).mouseout(function (){
 	$('.bgqr').hide();  
 });
+$('.teacherk li').mouseover(function (){  
+	$(this).addClass('active').siblings('.active').removeClass('active'); 
+});
+

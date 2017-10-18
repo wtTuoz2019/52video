@@ -234,24 +234,118 @@ ul.mbul li:nth-child(3n){
 	background: #fff;
 }
 .teacherk{
-	min-height:300px;
+	padding-bottom:90px;
 	background:#CFFEFF;
-}
-.teacherk{
 	padding-top:80px;
 }
 .teacherk ul{
 	overflow:hidden;
-	padding:50px 0;
+	padding-top:50px;
+	height:460px;
 }
 .teacherk li{
 	float:left;
 	width:260px;
 	height:310px;
 	background:#FFFFFF;
+	overflow:hidden;
+	border:1px solid #E0E0E0;
+	border-top:5px solid #E0E0E0;
+	-webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+	position:relative;
 }
-
-
+.teacherk li.active{
+	width:320px;
+	height:410px;
+	border-color:#3FD7DA;
+	top:-50px;
+}
+.teacherk li a,.teacherlistk li a{
+	display:block;
+	padding:0 8px;
+	color:#808080;
+	font-size:12px;
+}
+.teacherk li .showtop,.teacherlistk li .showtop{
+	text-align:center;
+	padding:30px 0;
+}
+.teacherk li .showtop img,.teacherlistk li .showtop img{
+	width:150px;
+	height:150px;
+	border:10px solid #ECECEC;
+	border-radius:50%;
+	margin-bottom:35px;
+}
+.teacherk li .showtop p,.teacherlistk li .showtop p{
+	font-size:14px;
+	margin-bottom:10px;
+	color:#000;
+}
+.teacherk li .showtop p.btxt,.teacherlistk li .showtop p.btxt{
+	margin-bottom:0;
+}
+.teacherk .heng,.teacherlistk .heng{
+	height:0;
+	width:0;
+	display:block;
+	margin:0 auto;
+	-webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -ms-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+.teacherlistk .heng{
+	height:3px;
+	width:200px;
+	background:#E0E0E0;
+}
+.teacherk li.active .heng,.teacherlistk li:hover .heng{
+	height:3px;
+	width:100%;
+	background:#3FD7DA;
+}
+.teacherk li p.tjtxt,.teacherlistk li p.tjtxt{
+	padding:20px 15px 0;
+}
+.teacherlistk li:hover{
+	border-color:#3FD7DA;
+}
+.banner2{
+	height:400px;
+}
+.banner2 img{
+	height:100%;
+	width:100%;
+}
+.teacherlistk{
+	margin-top:30px;
+}
+.teacherlistk ul{
+	overflow:hidden;
+}
+.teacherlistk ul li{
+	width:325px;
+	height:410px;
+	float:left;
+	border:1px solid #E0E0E0;
+	border-top:5px solid #E0E0E0;
+	-webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+	margin-right:62.5px;
+	margin-bottom:40px;
+}
+.teacherlistk ul li:nth-child(3n){
+	margin-right:0;
+}
 
 
 
