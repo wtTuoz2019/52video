@@ -125,6 +125,10 @@ $this->redirect("/xueshi/index.html?".$this->urltoken);
 			$where="A.type='xueshi' and openid='".$_GET['openid']."'";
 			$user=model('schooluser')->xueshiuserbyopenid($where);
 			if($user){
+					
+					$res['openid']=$_GET['openid'];
+					model('comment')->wechat_add($res);	
+				
 						 try { 
 
     //解决OpenSSL Error问题需要加第二个array参数，具体参考 http://stackoverflow.com/questions/25142227/unable-to-connect-to-wsdl
