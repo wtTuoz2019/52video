@@ -13,7 +13,7 @@ class xueshiMod extends commonMod {
     public function index() {
 		 $this->getuserinfo();
 		$user=model('schooluser')->xueshiuser(array('uid'=>$this->userinfo['uid'],'type'=>'xueshi'));
-		if(!$user)$this->redirect("/xueshi/bind.html?mobile=yes".$this->urltoken);
+		if(!$user)$this->redirect("/xueshi/bind.html?".$this->urltoken);
 		
 		
 				 try {
@@ -69,7 +69,11 @@ class xueshiMod extends commonMod {
 		$this->info=$list;
 		 $this->display('xueshi_index.html');
 	}
-	
+	public  function unbind(){
+		
+		$user=model('schooluser')->xueshiuserdel(array('uid'=>$this->userinfo['uid'],'type'=>'xueshi'));
+		$this->alert('解除成功',"/xueshi/bind.html?".$this->urltoken);
+	}
 	public  function bind(){
 		$this->getuserinfo();
 		 if($_POST){
@@ -105,7 +109,7 @@ class xueshiMod extends commonMod {
 		 model('schooluser')->xueshihoursadd($data);
 		}
    
-$this->redirect("/xueshi/index.html?mobile=yes".$this->urltoken);
+$this->redirect("/xueshi/index.html?".$this->urltoken);
 } catch (SOAPFault $e) {
     print $e;
 }

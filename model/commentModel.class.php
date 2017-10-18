@@ -185,8 +185,9 @@ class  commentModel extends commonMod
 //				return $this->model->table('user')->where("unionid='".$data['unionid']."'")->data($data)->update();	
 //				}
 //			}
-		if($this->model->table('user')->where("openid='".$data['openid']."'")->find()){
-			
+$user=$this->model->table('user')->where("openid='".$data['openid']."'")->find();
+		if($user){
+			$data['loginnum']=$user['loginnum']+1;
 			return $this->model->table('user')->where("openid='".$data['openid']."'")->data($data)->update();	
 			}else{
 			return $this->model->table('user')->data($data)->insert();	

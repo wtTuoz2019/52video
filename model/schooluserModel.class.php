@@ -22,6 +22,12 @@ class schooluserModel extends commonModel
 		return $this->model->table('schooluser')->where($where)->find();
 		
 		}
+		public function xueshiuserdel($where){
+		
+		
+		return $this->model->table('schooluser')->where($where)->delete();
+		
+		}
 	public function xueshiuseradd($data){
 		$user=$this->model->table('schooluser')->where(array('uid'=>$data['uid'],'byuid'=>$data['byuid'],'type'=>$data['type']))->find();
 		if($user){

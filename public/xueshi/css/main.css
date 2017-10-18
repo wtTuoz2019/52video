@@ -169,3 +169,16 @@ td{
 .classdata>table.active{
 	display:block;  
 }
+.binding{
+	position:fixed;
+	bottom:100px;
+	right:30px;
+	font-size:26px;
+	width:130px;
+	height:60px;
+	border-radius:15px;
+	background-color:rgba(0,0,0,0.6);
+	color:#fff;
+	text-align:center;
+	line-height:60px;
+}
