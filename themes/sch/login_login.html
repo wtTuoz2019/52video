@@ -9,6 +9,7 @@
 	<body>
 		
 		  <!--#include file="head.html"-->
+          <div class="loginbg">
 			<div class="logins">
             	<div class="logink">
                 	<div class="loginnav">
@@ -22,7 +23,7 @@
                 </div>
             </div>
         
-        
+        </div>
          <script>
 function getResult(){
 	$.post("__URL__/logincode", { code: '{$code}'},
@@ -40,5 +41,10 @@ setInterval("getResult()",3000);
 
 		 <!--#include file="foot.html"-->
         <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+			$(function(){
+				$('.headnav').find('li.active').removeClass('active');
+			});
+        </script>
 	</body>
 </html>

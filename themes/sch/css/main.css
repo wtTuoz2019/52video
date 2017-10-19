@@ -539,12 +539,15 @@ ul.mbul li:nth-child(3n){
     text-decoration: underline;
 }
 
-
+.loginbg{
+	background:#CFFEFF;
+	padding:95px 0;
+}
 .logins{
 	width:400px;
 	height:380px;
-	margin:95px auto;
-	background: rgba(230,230,230,.5);
+	margin:0 auto;
+	background: rgba(255,255,255,.5);
 	padding: 10px;
 }
 .logink{
@@ -557,8 +560,8 @@ ul.mbul li:nth-child(3n){
 .logink .loginnav a{
 	float:left;
 	width:50%;
-	background: #eaeaea;
-    color: #9e9e9e;
+	background: #bdf4f5;
+    color: #bbb;
 	height: 50px;
     text-align: center;
     line-height: 50px;

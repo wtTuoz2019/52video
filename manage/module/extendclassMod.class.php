@@ -125,7 +125,7 @@ class extendclassMod extends commonMod {
 		}
 	public function teacher(){
 			$user=$this->user;
-			
+		
 			if($user['gid']==6){
 			$temp;
 		
@@ -146,7 +146,7 @@ class extendclassMod extends commonMod {
 		
 			
 			if($user['cid']){
-				$where='uid='.$uid;	
+				$where='uid='.$user['id'];	
 				}
 		
      
