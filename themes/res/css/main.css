@@ -38,7 +38,6 @@ input{
 }
 .head .logo img{
 	height: 40px;
-	width: 40px;
 	margin-right: 10px;
 	vertical-align: middle;
 }
@@ -107,7 +106,7 @@ input{
 	margin-right: 47px;
 }
 .navk ul.znav.allnav>li{
-	margin-right: 140px;
+	margin-right: 65px;
 }
 .navk ul.znav>li:last-child{
 	margin-right: 0;

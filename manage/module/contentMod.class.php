@@ -156,9 +156,10 @@ class contentMod extends commonMod
 		
 		if($user['gid']==6){
 			$temp;
-			$temp[]=1;
+			$temp[]=1;$temp1[]=$user['id'];
 			if($user['cid']){
 				$temp[]=$user['cid'];
+				
 				}
 			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
 			if($nextuser){

@@ -139,14 +139,15 @@
                     <a href="__URL__/school.html">+more</a>
                 </p>
                 
-                <ul>
-                	<!--<li>
+                <ul>  <!--list:{table="school" where="id in <$sys.cids> and image is not null  " order="views desc" limit="1" }-->
+                	<li>
                     	<a href="themes/kunming/school.html">
-                    	<img src="img/schoollogo.jpg"/>
-                    	<p>保山学院</p>
+                    	<img src="{$sys.imageurl}{$list.image}"/>
+                    	<p>{$list.name}</p>
                         </a>
                     </li>
-                    <li>
+                         <!--/list-->
+                   <!-- <li>
                     	<a href="themes/kunming/school.html">
                     	<img src="img/schoollogo.jpg"/>
                     	<p>保山学院</p>

@@ -76,20 +76,22 @@ class commonMod
 			$this->config['gid']=$this->adminuser['gid'];
 			if($this->adminuser['gid']==6){
 			
-			$temp;
-		
+			$temp;$tempcid[]=1;
+			if($this->adminuser['cid'])
+			$tempcid[]=$this->adminuser['cid'];
 			$temp[]=$this->adminuser['id'];
 				
 			$nextuser=model('user')->admin_list(' pid='.$this->adminuser['id']);
 			if($nextuser){
 			foreach($nextuser as $key=>$val){
 				$temp[]=$val['id'];
+					$tempcid[]=$val['cid'];
 				}
 			}
 			
 		
 			$this->config['uids']='('.implode(',',$temp).') ';	
-				
+			$this->config['cids']='('.implode(',',$tempcid).') ';		
 				}
 			
 			$this->webconfig=$webconfig;

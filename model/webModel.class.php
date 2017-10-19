@@ -151,7 +151,7 @@ class webModel extends commonModel
 	
 	    public function getliveaids($where)
     {
-        echo  $loop="
+         $loop="
             SELECT B.aid
              FROM {$this->model->pre}content A 
              LEFT JOIN {$this->model->pre}expand_content_livestream B ON A.Aid = B.Aid

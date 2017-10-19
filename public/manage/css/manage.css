@@ -470,6 +470,12 @@ button{
 #nav>a.active div.nav_WeChat4{
 	background-image: url(../img/nav_WeChat4_.png);
 }
+#nav>a div.nav_WeChat5{
+	background-image: url(../img/nav_WeChat5.png);
+}
+#nav>a.active div.nav_WeChat5{
+	background-image: url(../img/nav_WeChat5_.png);
+}
 #nav>a div.nav_function1{
 	background-image: url(../img/nav_function1.png);
 }
