@@ -11,6 +11,7 @@ class labelMod extends commonMod {
         if(empty($data)){
             return;
         }
+	
 		$data = stripslashes($data);
 		preg_match_all('/([a-z0-9_]+)=[\"|\'](.*)[\"|\']/iU', $data, $matches);
 		$label = array_combine($matches[1], $matches[2]);
@@ -63,15 +64,15 @@ class labelMod extends commonMod {
 
     //内容获取
     public function get_content($where,$data) {
-        session_start();
+     //   session_start();
     
-             $condition='A.status=1'.$where['mid'].$where['cid'].$where['image'].$where['position'].$where['where'];
+         $condition='A.status=1'.$where['mid'].$where['cid'].$where['image'].$where['position'].$where['where'];
         
 	
-		if($_SESSION['sid']){
-			$condition.=' AND A.sid='.$_SESSION['sid'];
-			}
-		
+	//	if($_SESSION['sid']){
+//			$condition.=' AND A.sid='.$_SESSION['sid'];
+//			}
+//		
 		
         $langwhere=' AND B.lang='.model('lang')->langid();
         //获取推荐位
@@ -372,7 +373,7 @@ class labelMod extends commonMod {
 
 	//转换条件
 	public function get_where($get) {
-
+  
 		//基本条件
 		$where['limit'] = $get['limit'];
         $where['order'] = $get['order'];

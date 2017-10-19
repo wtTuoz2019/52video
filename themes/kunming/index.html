@@ -15,18 +15,14 @@
         <div class="mainall">
         	<div id="bannerlb">
                 <ul class="imgList">
-                  
-                     <li><img src="img/banner.jpg"/></li>
-                     <li><img src="img/banner.jpg"/></li>
-                     <li><img src="img/banner.jpg"/></li>
-                     <li><img src="img/banner.jpg"/></li>
-                                     
+                  <!--list:{table="web_menu_pics"  where="mid=<$info.id> " order="sequence desc,id asc" }-->
+                     <li><img src="{$sys.imageurl}{$list.image}"/></li>
+                    <!--/list-->                 
                 </ul>
                 <ul class="indexList">
+                <!--list:{table="web_menu_pics"  where="mid=<$info.id> " order="sequence desc,id asc" }-->
                  <li ></li>
-                 <li ></li>
-                 <li ></li>
-                 <li ></li>
+                  <!--/list-->    
                 </ul>
             </div>
             
@@ -73,21 +69,24 @@
                 </p>
                 
                 <ul>
-				<!--<li>
-					<a href="themes/kunming/teacher.html">
-						<img class="teaherhead" src="img/teaherhead.jpg"/>
+               
+                 <!--list:{table="teacher" where="uid in <$sys.uids>  " order="views desc" limit="4" }-->
+			<li>
+					<a href="__APP__/field/teacher/tid-{$list['id']}">
+						<img class="teaherhead" src="{$sys.imageurl}{$list.image}"/>
 						<p class="t_name">
-							<span>张雪峰</span>
+							<span>{$list.name}</span>
 							<br />
-							<span>职称：语文老师</span>
+							<span>职称：{$list.title}</span>
 						</p>
 						<span class="heng"></span>
 						<p class="t_data">
-							张雪峰，1984年出生于齐齐哈尔 ，毕业于郑州大学。现研途考研VIP名师。参加了网络综艺节。
+							{$list.des}
 						</p>
 					</a>
 				</li>
-				<li>
+                   <!--/list-->
+				<!--	<li>
 					<a href="themes/kunming/teacher.html">
 						<img class="teaherhead" src="img/teaherhead.jpg"/>
 						<p class="t_name">
@@ -130,14 +129,14 @@
 					</a>
 				</li>-->
 			</ul>
-		<!--	<a href="themes/kunming/teacherlist.html" class="more">更多教师 &gt;</a>-->
+			<a href="__URL__/teacher.html" class="more">更多教师 &gt;</a>
             </div>
             
             <div class="schoolk">
             	<p class="idx_title">
                 	名校教学
                     
-                  <!--  <a href="themes/kunming/schoollist.html">+more</a>-->
+                    <a href="__URL__/school.html">+more</a>
                 </p>
                 
                 <ul>

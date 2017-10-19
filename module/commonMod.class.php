@@ -74,6 +74,23 @@ class commonMod
 			$this->config['sitename']=$webconfig['name'];
 			$this->config['erweima']=$webconfig['erweima']?$this->config['imageurl'].$webconfig['erweima']:'/public/erweima.jpg';
 			$this->config['gid']=$this->adminuser['gid'];
+			if($this->adminuser['gid']==6){
+			
+			$temp;
+		
+			$temp[]=$this->adminuser['id'];
+				
+			$nextuser=model('user')->admin_list(' pid='.$this->adminuser['id']);
+			if($nextuser){
+			foreach($nextuser as $key=>$val){
+				$temp[]=$val['id'];
+				}
+			}
+			
+		
+			$this->config['uids']='('.implode(',',$temp).') ';	
+				
+				}
 			
 			$this->webconfig=$webconfig;
 			unset($webconfig);
