@@ -283,13 +283,13 @@ ul.mbul li:nth-child(3n){
 	border-color:#3FD7DA;
 	top:-50px;
 }
-.teacherk li a,.teacherlistk ul>li a{
+.teacherk li a,.teacherlistk>ul li a{
 	display:block;
 	padding:0 8px;
 	color:#808080;
 	font-size:12px;
 }
-.teacherk li .showtop,.teacherlistk ul>li .showtop{
+.teacherk li .showtop,.teacherlistk>ul li .showtop{
 	text-align:center;
 	padding:30px 0;
 }
@@ -324,7 +324,7 @@ ul.mbul li:nth-child(3n){
 	width:200px;
 	background:#E0E0E0;
 }
-.teacherk li.active .heng,.teacherlistk ul>li:hover .heng{
+.teacherk li.active .heng,.teacherlistk>ul li:hover .heng{
 	height:3px;
 	width:100%;
 	background:#3FD7DA;
@@ -332,7 +332,7 @@ ul.mbul li:nth-child(3n){
 .teacherk li p.tjtxt,.teacherlistk li p.tjtxt{
 	padding:20px 15px 0;
 }
-.teacherlistk ul>li:hover{
+.teacherlistk>ul li:hover{
 	border-color:#3FD7DA;
 }
 .banner2{
@@ -346,10 +346,10 @@ ul.mbul li:nth-child(3n){
 	margin-top:30px;
 	margin-bottom:135px;
 }
-.teacherlistk ul>li{
+.teacherlistk>ul{
 	overflow:hidden;
 }
-.teacherlistk ul>li{
+.teacherlistk>ul li{
 	width:325px;
 	height:410px;
 	float:left;
@@ -363,7 +363,7 @@ ul.mbul li:nth-child(3n){
 	margin-right:62.5px;
 	margin-bottom:40px;
 }
-.teacherlistk ul>li:nth-child(3n){
+.teacherlistk>ul li:nth-child(3n){
 	margin-right:0;
 }
 .page{

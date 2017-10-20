@@ -18,4 +18,6 @@ $(function(){
 	  $('.shjianjie').find("a").click(function(){
       	$(this).parent().text(text);
       })
+	  
+	  
 });

@@ -1,6 +1,6 @@
 
 .videok{
-	width: 1100px;
+	width: 1000px;
 	margin: 0 auto;
 	padding: 20px 0;
 	overflow: hidden;
@@ -16,8 +16,8 @@
 	float: left;
 }
 .videok>div.lplay{
-	width: 860px;
-    padding: 15px 30px;
+	width: 810px;
+    padding: 15px 15px;
     border: 1px solid #D0D0D0;
 }
 .videok>div.lplay #a1{
@@ -25,7 +25,7 @@
 	background-color: #000;
 }
 .videok>div.rlist{
-	width: 240px;
+	width: 190px;
     height: 512px;
     border: 1px solid #D0D0D0;
     border-left: 0;
@@ -61,7 +61,7 @@
     border-top: 1px solid #D1D1D1;
 }
 .wkcnav ul {
-    width: 1100px;
+    width: 1000px;
     margin: 0 auto;
 }
 .wkcnav ul li {

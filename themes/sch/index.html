@@ -100,61 +100,22 @@
                 </p>
                 
                 <ul>
-                	<li class="active">
-                    	<a href="themes/sch/teacher.html">
+                 <!--list:{table="teacher" where="uid =<$sys.uid>"  order="views desc" limit="4" }-->
+                	<li>
+                    	<a href="__APP__/field/teacher/tid-{$list['id']}">
                         <div class="showtop">
-                        	<img src="img/teaherhead.jpg"/>
-                            <p>张雪峰——英语老师</p>
-                            <p class="btxt">三年级一班</p>
+                        	<img src="{$sys.imageurl}{$list.image}"/>
+                            <p>{$list.name}</p>
+                            <p class="btxt">职称：{$list.title}</p>
                         </div>
                         <span class="heng"></span>
                         <p class="tjtxt">
-                        	老师偷懒了，还没有设置简介哦！
+                        	{$list.des}
                         </p>
                         </a>
                     </li>
-                    <li>
-                    	<a href="themes/sch/teacher.html">
-                        <div class="showtop">
-                        	<img src="img/teaherhead.jpg"/>
-                            <p>张雪峰——英语老师</p>
-                            <p class="btxt">三年级一班</p>
-                        </div>
-                        <span class="heng"></span>
-                        <p class="tjtxt">
-                        	张雪峰，1984年出生于齐齐哈尔 ，毕业于郑州大学。现研途考研VIP名师。参加了网络综艺节。张
-毕业于郑州大学。现研途考研VIP名师。参加了网络综艺节。
-                        </p>
-                        </a>
-                    </li>
-                    <li>
-                    	<a href="themes/sch/teacher.html">
-                        <div class="showtop">
-                        	<img src="img/teaherhead.jpg"/>
-                            <p>张雪峰——英语老师</p>
-                            <p class="btxt">三年级一班</p>
-                        </div>
-                        <span class="heng"></span>
-                        <p class="tjtxt">
-                        	张雪峰，1984年出生于齐齐哈尔 ，毕业于郑州大学。现研途考研VIP名师。参加了网络综艺节。张
-毕业于郑州大学。现研途考研VIP名师。参加了网络综艺节。
-                        </p>
-                        </a>
-                    </li>
-                    <li>
-                    	<a href="themes/sch/teacher.html">
-                        <div class="showtop">
-                        	<img src="img/teaherhead.jpg"/>
-                            <p>张雪峰——英语老师</p>
-                            <p class="btxt">三年级一班</p>
-                        </div>
-                        <span class="heng"></span>
-                        <p class="tjtxt">
-                        	张雪峰，1984年出生于齐齐哈尔 ，毕业于郑州大学。现研途考研VIP名师。参加了网络综艺节。张
-毕业于郑州大学。现研途考研VIP名师。参加了网络综艺节。
-                        </p>
-                        </a>
-                    </li>
+                     <!--/list-->
+                  
                 </ul>
                 <a href="__URL__/teacher.html" class="more">更多名师 &gt;</a>
             </div>
@@ -168,5 +129,10 @@
 		<!--#include file="foot.html"-->
         
         <script src="/themes/sch/js/main.js"></script>
+        <script>
+        	$(function(){
+				$('.teacherk ul li:first-child').addClass('active');
+			});
+        </script>
 	</body>
 </html>

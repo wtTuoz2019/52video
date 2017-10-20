@@ -23,7 +23,7 @@ class  teacherModel extends commonModel
 	  //列表
     public function teacherlist($where,$limit=null) {
 	
-      $data= $this->model->table('teacher')->where($where)->limit($limit)->order('sequence asc,id desc')->select();
+      $data= $this->model->table('teacher')->where($where)->limit($limit)->order('sequence asc,views desc')->select();
 		
 		
 		 return $data;

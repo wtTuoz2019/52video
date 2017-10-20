@@ -17,14 +17,15 @@
 	</head>
 	<body>
     <!--#include file="head.html"-->
-    	<div class="videotitle">
-        	<p>
+    	<div class="now">
+        	<div class="text">
+            当前位置：
              <!--foreach:{$nav $list}-->
             <a href="/menulist/index/id-{$list.id}" class="gaol">{$list.name}</a> > 
              <!--/list-->
                         
-             {$info.title} </p>
-        </div> 
+             {$info.title} </div>
+        </div>
     	 
         <div class="videobg">
         	<div class="contentBox">
