@@ -98,7 +98,7 @@ class contentMod extends commonMod
         //位置导航
         $this->nav=array_reverse(model('web')->nav($info[$midname],	$whereuid));
 		
-		  $this->parent_category = model('web')->menu_info(array('id'=>$this->menuinfo['pid']));
+		  $this->top_category = model('web')->menu_info(array('id'=> $this->nav[0]['id']));
      
 			}else{
         //查询栏目的信息

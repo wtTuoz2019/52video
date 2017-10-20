@@ -49,7 +49,9 @@
         	$(function(){
 				var url = window.location.href;
 				var href=url.substr(url.length-5); 
-				
+				<?php if($top_category['id']){ ?>
+				href='id-{$top_category.id}';
+				<?php } ?>
 				$('.nav li>a').each(function() {
 					if($(this).attr("href").indexOf(href)>=0){
 						$(this).parent().addClass('active').siblings('.active').removeClass('active');

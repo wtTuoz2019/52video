@@ -14,10 +14,10 @@
                     <img src="img/teaherhead.jpg"/>
                 </div>
                 <div class="bgtext">
-                	<h5>张雪峰——语文老师</h5>
-                    <h5>三年级一班</h5>
+                	<h5>{$teacher[$tid]['name']}</h5>
+                    <h5>{$teacher[$tid]['title']}</h5>
                     <p class="thjianjie">
-                    	中共党员，本科学历，小学高级教师。长沙市小学语文优秀教师。1995年参加湖南省小学语文教学比武，荣获一等奖的第一名，同年10月代表湖南省参加全国语文教学比武再获二等奖 。2005年——2007年多次代表学校担任省级，国家级观摩课的执教任务，并获得各级领导及专家们的一致好评。2006年10月，作为语文学科带头人被学校派往昆明进行课题骨干培训，使自己的专业水平得以提升。
+                    {$teacher[$tid]['des']}
                     </p>
                 </div>
                 
@@ -30,17 +30,18 @@
         	<p class="ctitle">教学课程</p>
             <div class="thvideo">
             	<ul class="mbul">
+                 <!--foreach:{$loop $list}-->
                     	<li>
-                            <a href="{$list.aurl}">
+                            <a href="{$list.aurl}" target="_blank">
                                 <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
+                                    <img class="spimg" src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $sys['imageurl'].$list['image'];} ?>" />
                                     <div class="saoma">
                                         <p>扫码观看</p>
-                                        <img class="spqr" src="img/qr.png"  />
+                                        <img class="spqr" src="{$sys['imageurl']}/upload/aidimage/{$list.aid}.png"  />
                                     </div>
                                 </div>
                                 <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
+                                    <h5>{$list.titlex len='15'}</h5>
                                     <p>
                                         <span class="seenum">
                                             <img src="img/see.png"/>104
@@ -49,101 +50,8 @@
                                 </div>
                             </a>
                     	</li>
-                        <li>
-                            <a href="{$list.aurl}">
-                                <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
-                                    <div class="saoma">
-                                        <p>扫码观看</p>
-                                        <img class="spqr" src="img/qr.png"  />
-                                    </div>
-                                </div>
-                                <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
-                                    <p>
-                                        <span class="seenum">
-                                            <img src="img/see.png"/>104
-                                        </span>
-                                    </p>
-                                </div>
-                            </a>
-                    	</li>
-                        <li>
-                            <a href="{$list.aurl}">
-                                <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
-                                    <div class="saoma">
-                                        <p>扫码观看</p>
-                                        <img class="spqr" src="img/qr.png"  />
-                                    </div>
-                                </div>
-                                <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
-                                    <p>
-                                        <span class="seenum">
-                                            <img src="img/see.png"/>104
-                                        </span>
-                                    </p>
-                                </div>
-                            </a>
-                    	</li>
-                        <li>
-                            <a href="{$list.aurl}">
-                                <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
-                                    <div class="saoma">
-                                        <p>扫码观看</p>
-                                        <img class="spqr" src="img/qr.png"  />
-                                    </div>
-                                </div>
-                                <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
-                                    <p>
-                                        <span class="seenum">
-                                            <img src="img/see.png"/>104
-                                        </span>
-                                    </p>
-                                </div>
-                            </a>
-                    	</li>
-                        <li>
-                            <a href="{$list.aurl}">
-                                <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
-                                    <div class="saoma">
-                                        <p>扫码观看</p>
-                                        <img class="spqr" src="img/qr.png"  />
-                                    </div>
-                                </div>
-                                <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
-                                    <p>
-                                        <span class="seenum">
-                                            <img src="img/see.png"/>104
-                                        </span>
-                                    </p>
-                                </div>
-                            </a>
-                    	</li>
-                        <li>
-                            <a href="{$list.aurl}">
-                                <div class="videoimg">
-                                    <img class="spimg" src="img/videoimg.jpg" />
-                                    <div class="saoma">
-                                        <p>扫码观看</p>
-                                        <img class="spqr" src="img/qr.png"  />
-                                    </div>
-                                </div>
-                                <div class="videotext">
-                                    <h5>徐徐徐徐徐徐徐徐徐徐徐徐</h5>
-                                    <p>
-                                        <span class="seenum">
-                                            <img src="img/see.png"/>104
-                                        </span>
-                                    </p>
-                                </div>
-                            </a>
-                    	</li>
+                       <!--/list-->
+                       
                     </ul>
                     <div class="page">
 							<ul>

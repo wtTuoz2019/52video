@@ -72,7 +72,7 @@ input{
 }
 .headc .headnav li.active a{
 	color:#fff;
-	background:#3FD7DA;
+	background:#18A4EC;
 } 
 .head .headc .headlogo{
 	height:50px;
@@ -137,8 +137,14 @@ input{
 	width:1100px;
 	margin:0 auto;
 }
+.schoolvideo{
+	position:absolute;
+	top:900px;
+	left:30px;
+	z-index:100;
+}
 .ctitle{
-	color:#3fd7da;
+	color:#18a4ec;
 	font-size:30px;
 	text-align:center;
 }
@@ -150,7 +156,7 @@ input{
 	display:inline-block;
 	width:100px;
 	height:40px;
-	border:1px solid #0ACDD1;
+	border:1px solid #70C7F3;
 	color:#b2b2b2;
 	line-height:40px;
 	text-align:center;
@@ -164,7 +170,7 @@ input{
 	border-left:0;
 }
 .idx_nav a.active{
-	background:#3FD7DA;
+	background:#18A4EC;
 	color:#fff;
 }
 ul.mbul{
@@ -254,7 +260,7 @@ ul.mbul li:nth-child(3n){
 }
 .teacherk{
 	padding-bottom:90px;
-	background:#CFFEFF;
+	background:#A7E0FD;
 	padding-top:80px;
 }
 .teacherk ul{
@@ -391,7 +397,7 @@ ul.mbul li:nth-child(3n){
 	color:#fff;
 }
 .teahead{
-	background:#3FD7DA;
+	background:#A7E0FD;
 }
 .teacherbg{
 	width:1100px;
@@ -456,6 +462,98 @@ ul.mbul li:nth-child(3n){
 .searchlist{
 	padding:40px 0;
 }
+.shvideo{
+	overflow:hidden;
+	border:1px solid #D2D2D2;
+	padding-bottom:5px;
+	background:#fff;
+	margin-bottom:50px;
+}
+.shvideo>div{
+	float:left;
+}
+.shvideo>div.svideok{
+	width:674px;
+}
+.shvideo>div.svideolist{
+	width:424px;
+}
+.shvideo>div.svideok .vtitle{
+	border-right:1px solid #D2D2D2;
+}
+.shvideo>div.svideok .vtitle .ssaoma{
+	float:right;
+	line-height:40px;
+	position:relative;
+}
+.shvideo>div.svideolist .vtitle a{
+	float:right;
+	color:#18a4ec;
+}
+.shvideo>div.svideolist ul{
+	padding:0 5px;
+	height:440px;
+	overflow-y:auto;
+}
+.shvideo>div.svideolist ul li{
+	height:110px;
+	border-bottom:1px dashed #DADADA;
+	padding:5px 10px;
+}
+.shvideo>div.svideolist ul li a>div{
+	float:left;
+	height:98px;
+	width:50%;
+}
+.shvideo>div.svideolist ul li a{
+	display:block;
+}
+.shvideo>div.svideolist ul li div.svideoimg img{
+	width:100%;
+	height:100%;
+}
+.shvideo>div.svideolist ul li div.svideotxt{
+	color:#787878;
+	font-size:12px;
+	padding-left:10px;
+	padding-top:30px;
+} 
+.shvideo>div.svideok .vtitle .ssaoma .smqr{
+	height:30px;
+	width:30px;
+	border:1px solid #000;
+	vertical-align:middle;
+}
+.shvideo>div.svideok .vtitle .ssaoma .bgqr{
+	width:100px;
+	height:100px;
+	position:absolute;
+	border:1px solid #000;
+	top: 40px;
+    right: 0;
+	display:none;
+}
+.shvideo .vtitle{
+	height:40px;
+	line-height:40px;
+	background:#EEEEEE;
+	padding:0 10px;
+	font-size:14px;
+}
+
+.shvideo #play,.shvideo  #a1{
+	height:440px;
+}
+.bjtu{
+	height:440px;
+	background-image:url(../img/novideo.jpg);
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:100%;
+}
+
+
+
 
 
 
@@ -478,7 +576,7 @@ ul.mbul li:nth-child(3n){
 
 .footer{
 	height: 230px;
-	background: #3FD7DA;
+	background: #18A4EC;
 }
 .footer .footk{
 	width: 1100px;
@@ -493,7 +591,7 @@ ul.mbul li:nth-child(3n){
 }
 .footer .foottitle{
 	font-size: 14px;
-	color: #000;
+	color: #fff;
 	padding-bottom: 12px;
 	background-image: url(../img/foott.png);
 	background-repeat: no-repeat;
@@ -540,7 +638,7 @@ ul.mbul li:nth-child(3n){
 	margin: 15px 0 0 25px;
 }
 .footk  ul li a {
-    color: #000;
+    color: #fff;
 }
 .footk  ul li a:hover {
     text-decoration: underline;

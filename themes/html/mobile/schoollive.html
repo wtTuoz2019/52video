@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
 		<title>{$common.title}</title>
           <link rel="stylesheet" href="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="__TPL__mobile/css/style1.css" />
@@ -20,19 +20,7 @@
         <script type="text/javascript" src="__TPL__mobile/Scripts/countdown/jquery.countdown.js" ></script>
      <link rel="stylesheet" href="__TPL__mobile/dialog/skins/default.css" type="text/css">
 	    <script type="text/javascript" src="__TPL__mobile/dialog/jquery.artDialog.js"></script>
-        <script type="text/javascript">
-			if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
-				var version = parseFloat(RegExp.$1);
-				if(version>2.3){
-					var phoneScale = parseInt(window.screen.width)/750;
-					document.write('<meta name="viewport" content="width=750, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
-				}else{
-					document.write('<meta name="viewport" content="width=750, target-densitydpi=device-dpi">');
-				}
-			}else{
-				document.write('<meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">');
-			}
-		</script>
+        <meta name="viewport" content="width=750, user-scalable=no">
         
         <link rel="stylesheet" href="__TPL__mobile/css/schoollive.css" />
 	</head>
@@ -42,7 +30,7 @@
         	<div class="thisschool">
             	
                 	<img src="{$sys.imageurl}{$school.image}">
-              
+              <p>{$school.name}</p>
             </div>
         </div>
 		<div class="historylive">
@@ -115,7 +103,7 @@ var note = $('#note'),
 				}	
 
 	var w = "100%";//视频宽度
-  var h = "395";//视频高度 
+  var h = "440";//视频高度 
   var url = "http://{$sys.ali}{$channel.vMp4url}.m3u8";//视频地址
   var image = "{$sys['imageurl']}{$info.image}";//封面图片
   var flashvars={f:'__PUBLIC__/plays/m3u8.swf',a:url,c:0,s:4,i:image,lv:1,p:play};
@@ -415,14 +403,13 @@ var note = $('#note'),
 				}
             </style>
         		<div class="tishi">
-                	<img  src="__PUBLIC__/images/video.png" />
-                    <p>很抱歉！暂无直播，请查看历史直播</p>
+                	
                 </div>
         	
 			<div class="introduce">
-            	<span class="title">
+            	<div class="title">
                 	学校介绍
-                </span>
+                </div>
                 <p>
                 {$school.des}
                 </p>

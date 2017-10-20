@@ -2,7 +2,7 @@
 	font-size:19px;
 }
 .headbg{
-	height:250px;
+	height:335px;
 	background-image:url(../Images/headbg.jpg);
 	background-repeat:no-repeat;
 	background-size:100% 100%;
@@ -10,7 +10,7 @@
 	padding-top:45px;
 }
 .play-box{
-	height:395px;
+	height:440px;
 }
 .view-box.clearfix{
 	height:50px;
@@ -68,17 +68,12 @@ p.allcomment span{
 #usercenter{
 	bottom:140px;
 }
-.introduce{
-	padding:15px;
-}
 .introduce .title{
-	font-size:29px;
-	color:#34aee1;
-	display:inline-block;
-	line-height:60px;
-	width:255px;
-	padding-left:50px;
-	border-bottom:1px solid #34aee1;
+	line-height:80px;
+	font-size:30px;
+	text-align:center;
+	border-bottom:5px solid #3498DB;
+	color:#18a4ec;
 }
 .introduce >p{
 	font-size:19px;
@@ -89,8 +84,11 @@ p.allcomment span{
 .tishi{
 	position:absolute;
 	width:100%;
-	text-align:center;
-	top:435px;
+	height:440px;
+	top:377px;
+	background-image:url(../Images/novideo.jpg);
+	background-repeat:no-repeat;
+	background-size:100%;
 }
 .tishi p{
 	font-size:18px;
@@ -98,7 +96,7 @@ p.allcomment span{
 	color:#adadad;
 }
 .historylive{
-	height:30px;
+	height:40px;
 	background:#31aee7;
 	overflow:hidden;
 	position:relative;
@@ -109,19 +107,26 @@ p.allcomment span{
 	float:right;
 	color:#fff;
 	font-size:18px;
-	line-height:30px;
+	line-height:40px;
 	margin-right:10px;
 }
 .headbg .thisschool{
 	text-align:center;
+	padding-top:60px;
 }
 
 .headbg .thisschool img{
-	height:160px;
+	height:120px;
+}
+.headbg .thisschool p{
+	font-size:40px;
+	color:#fff;
+	margin-top:10px !important;
+	text-shadow: 0px 5px 3px #252323;
 }
 #tohistory{
 	position:absolute;
-	top:280px;
+	top:375px;
 	min-height:1050px;
 	width:100%;
 	background:#fff;
@@ -164,7 +169,7 @@ p.allcomment span{
 	left:-5px;
 }
 .channels{
-	height:395px;
+	height:440px;
 }
 .counter p{
 	font-size:21px;
@@ -181,7 +186,7 @@ p.allcomment span{
 	font-size:18px;
 }
 .channels .show{
-	height:395px;
+	height:440px;
 }
 #myTabContent>div{
 	line-height:27px;

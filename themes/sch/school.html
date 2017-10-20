@@ -4,32 +4,30 @@
 		<meta charset="utf-8" />
 		<title>{$common.title}</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
-        <script src="/themes/kunming/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/themes/sch/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
 	</head>
     <body>
-    	   <!--#include file="head.html"-->
-        <div class="now">
-			<div class="text">
-				当前位置：<a href="/">首页</a> > <a href="__APP__/index/school">名校列表</a>
-			</div>
-		</div>
-        
-        <div class="schoolbg">
-        	<div class="mainall">
-            	<div class="schooldata teacherdata">
-                	<div class="timg">
-                    	<img src="{$sys.imageurl}{$school[$csid]['image']}">
-                    </div>
-                	<div class="ttxt">
-                    	<h5> {$school[$csid]['name']}</h5>
-                        
-                        <p class="shjianjie"> {$school[$csid]['des']}</p>
-                        <p class="videonum">资源：{$count}</p>
-                    </div>
+    	<!--#include file="head.html"-->
+        <div class="teahead">
+        	<div class="teacherbg">
+                <div class="bghead">
+                    <img src="{$sys.imageurl}{$school[$csid]['image']}">
+                </div>
+                <div class="bgtext">
+                	<h5> {$school[$csid]['name']}</h5>
+                    <h5> </h5>
+                    <p class="thjianjie">
+                    {$school[$csid]['des']}
+                    </p>
                 </div>
                 
-               
-                <div class="shvideo">
+            </div>
+        </div>
+        <div class="bian_top bian"> 
+        	<img src="img/tiao_top.png"/>
+        </div> 
+        <div class="mainall">
+        	<div class="shvideo">
                 	<div class="svideok">
                     	<div class="vtitle">
                         	{$school[$csid]['name']}直播间
@@ -70,7 +68,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
                    	<div class="svideolist">
                     	<div class="vtitle">
                         	视频资源
-                        	<a href="__URL__/school/csid-{$csid}-type-video" target="_blank">更多》</a>
+                        	
                         </div>
                         
                         <ul>
@@ -95,18 +93,14 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,f
                    
                     
                 </div>
-                
-                
-                
-               
-                
-                
-        	</div>
-       	</div>
+            
+            
+            
+        </div>
         
         
         <!--#include file="foot.html"-->
         
-        <script src="/themes/kunming/js/main.js"></script>
+        <script src="/themes/sch/js/main.js"></script>
 	</body>
 </html>
