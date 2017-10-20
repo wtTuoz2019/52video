@@ -169,6 +169,20 @@ class contentModel extends commonMod
         $condition['aid'] = $aid;
         $this->model->table('content')->data($data)->where($condition)->update();
     }
+	
+	  public function views_teacher($id=0){
+       $info="
+            update {$this->model->pre}teacher  set views=views+1
+             WHERE id=".$id;
+            $info=$this->model->query($info);
+    }
+	
+	 public function views_school($id=0){
+        $info="
+            update {$this->model->pre}school  set views=views+1
+             WHERE id=".$id;
+            $info=$this->model->query($info);
+    }
 
     //URL路径
     public function url_format($dir,$cid,$cname,$info){

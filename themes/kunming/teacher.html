@@ -18,13 +18,13 @@
         	<div class="mainall">
             	<div class="teacherdata">
                 	<div class="timg">
-                    	<img src="img/teaherhead.jpg"/>
+                    	<img src="{$sys.imageurl}{$teacher[$tid]['image']}"/>
                     </div>
                 	<div class="ttxt">
-                    	<h5>张雪峰——语文老师</h5>
-                        <h5>昆明第一中学</h5>
-                        <p>张雪峰，1984年出生于齐齐哈尔，毕业于郑州大学。[1]  研途考研VIP名师。
-2016年6月凭借《34秒解读35所985高校》走红网络，2016年9月出版《你离考研成功，就差这本书》。</p>
+                    	<h5>{$teacher[$tid]['name']}——{$teacher[$tid]['title']}</h5>
+                        <h5>{$school[$teacher[$tid]['cid']]['name']}</h5>
+                        <p>{$teacher[$tid]['des']}</p>
+                        <p class="videonum">资源：12</p>
                     </div>
                 </div>
                 
@@ -44,63 +44,28 @@
                 
                 <div class="res_main hot">
                 	<ul>
+                    <!--foreach:{$loop $list}-->
                     	<li>
-                    	<a href="#">
+                    	<a href="{$list.aurl}">
                         	<div class="videoimg">
-                            	<img class="spimg" src="img/videoimg.jpg" />
+                            	<img class="spimg" src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $sys['imageurl'].$list['image'];} ?>" />
                                 <div class="saoma">
                                 	<p>扫码观看</p>
-                                    <img class="spqr" src="img/qr.png"  />
+                                    <img class="spqr" src="{$sys['imageurl']}/upload/aidimage/{$list.aid}.png"  />
                                 </div>
                             </div>
                             <div class="videotext">
-                            	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
+                            	<h5>{$list.titlex len='15'}</h5>
                                 <p>
                                 	<span class="seenum">
-										<img src="img/see.png"/>104
+										<img src="img/see.png"/>{$list.views}
 									</span>
                                 </p>
                             </div>
                         </a>
                     	</li>
-                        <li>
-                    	<a href="#">
-                        	<div class="videoimg">
-                            	<img class="spimg" src="img/videoimg.jpg" />
-                                <div class="saoma">
-                                	<p>扫码观看</p>
-                                    <img class="spqr" src="img/qr.png"  />
-                                </div>
-                            </div>
-                            <div class="videotext">
-                            	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                                <p>
-                                	<span class="seenum">
-										<img src="img/see.png"/>104
-									</span>
-                                </p>
-                            </div>
-                        </a>
-                    	</li>
-                        <li>
-                    	<a href="#">
-                        	<div class="videoimg">
-                            	<img class="spimg" src="img/videoimg.jpg" />
-                                <div class="saoma">
-                                	<p>扫码观看</p>
-                                    <img class="spqr" src="img/qr.png"  />
-                                </div>
-                            </div>
-                            <div class="videotext">
-                            	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                                <p>
-                                	<span class="seenum">
-										<img src="img/see.png"/>104
-									</span>
-                                </p>
-                            </div>
-                        </a>
-                    	</li>
+                           <!--/list-->
+                      
                     </ul>
                     
                     

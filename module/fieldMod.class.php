@@ -128,7 +128,7 @@ class fieldMod extends commonMod {
 	
 	
 	  public function school() {
-       $title = trim($_GET['v']);
+       $title = trim($_GET['s']);
        $fieldlist;
 	   $fieldlist['sid']=model('field')->field_array(2);
 	   $fieldlist['gid']=model('field')->field_array(1);
@@ -144,6 +144,11 @@ class fieldMod extends commonMod {
 		$wheretemp.=" AND csid=".$csid."";
 		$url_.="&csid=".$csid;
 	  }
+	  if($title){
+        $where.=" AND title like '%".$title."%'";
+		$wheretemp.=" AND title like '%".$title."%'";
+      }
+	  
     	$this->allurl=sprintf($urltmp,$data['sid'],$data['gid']);
 		$this->fieldurl=sprintf($urltmp,$data['sid'],$data['gid'])."&cid=13";
 		$this->liveurl=sprintf($urltmp,$data['sid'],$data['gid'])."&cid=16";
@@ -245,7 +250,7 @@ class fieldMod extends commonMod {
         $this->display('school.html');  
     }
 	 public function teacher() {
-       $title = trim($_GET['v']);
+       $title = trim($_GET['s']);
    
 	  $this->tid=$tid=intval($_GET['tid']);
 	  $urltmp='?sid=%s&gid=%s';
@@ -265,7 +270,11 @@ class fieldMod extends commonMod {
 		   $url_.="&cid=".$cid;
       }
 	  
-	   
+	     if($title){
+        $where.=" AND title like '%".$title."%'";
+		$wheretemp.=" AND title like '%".$title."%'";
+      }
+	  
 	 
         $listrows=6;
         //分页处理

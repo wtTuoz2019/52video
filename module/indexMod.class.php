@@ -55,7 +55,13 @@ class indexMod extends commonMod {
         //分页处理
         $url=__INDEX__.'/index/teacher/pages-{page}.html'; 
         $limit=$this->pagelimit($url,$listrows);
-		$where=' image<>""';
+		
+		$where['image']=array('<>','""');
+		//$where['uid']=array('in',$this->config['uids']);
+		 $title = trim($_GET['s']);
+		  if($title){
+      $where['name']=array('like',"'%".$title."%'");
+      }
 		$this->loop=model('teacher')->teacherlist($where,$limit);
 		  //统计总内容数量
       	$count=model('teacher')->teachercount($where);
@@ -72,8 +78,12 @@ class indexMod extends commonMod {
         //分页处理
         $url=__INDEX__.'/index/school/pages-{page}.html'; 
         $limit=$this->pagelimit($url,$listrows);
-		$where=' image<>""';
-	
+		$where['image']=array('<>','""');
+		$where['id']=array('in',$this->config['cids']);
+		 $title = trim($_GET['s']);
+		  if($title){
+      $where['name']=array('like',"'%".$title."%'");
+      }
 		$this->loop=model('school')->model_list($where,$limit);
 		  //统计总内容数量
       	$count=model('school')->count($where);

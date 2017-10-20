@@ -232,7 +232,7 @@ input{
 .gteaherk .idx_title{
 	background-image:url(../img/icon2.png);
 }
-.gteaherk ul li{
+.gteaherk>ul li{
 	width: 235px;
 	height: 320px;
 	float: left;
@@ -243,30 +243,30 @@ input{
 	text-align: center;
 	padding: 20px 15px;
 }
-.gteaherk ul li:last-child{
+.gteaherk>ul li:last-child{
 	margin-right: 0;
 }
-.gteaherk ul{
+.gteaherk>ul{
 	padding-top: 35px;
 }
-.gteaherk ul li .teaherhead{
+.gteaherk>ul li .teaherhead{
 	width: 130px;
 	height: 130px;
 	border-radius: 50%;
 	border: 5px solid #EFEFEF;
 }
-.gteaherk ul li a{
+.gteaherk>ul li a{
 	color: #000;
 	display:block;
 }
-.gteaherk ul li:hover{
+.gteaherk>ul li:hover{
 	box-shadow: 7px 7px 10px 0px rgba(219,227,233,0.75);
 }
-.gteaherk ul li .t_name{
+.gteaherk>ul li .t_name{
 	margin: 14px 0;
 	font-size: 14px;
 }
-.gteaherk ul li span.heng{
+.gteaherk>ul li span.heng{
 	display: inline-block;
 	width: 120px;
 	transition: all 0.5s ease 0s;
@@ -274,12 +274,12 @@ input{
 	background: #DCDCDC;
 	vertical-align: top;
 }
-.gteaherk ul li .t_data{
+.gteaherk>ul li .t_data{
 	color: #808080;
 	font-size: 12px;
 	text-align: left;
 }
-.gteaherk ul li:hover span.heng{
+.gteaherk>ul li:hover span.heng{
 	width: 100%;
 	background: #22B9FF;
 }
@@ -304,7 +304,7 @@ input{
 .schoolk .idx_title{
 	background-image:url(../img/icon3.png);
 }
-.schoolk ul li{
+.schoolk>ul li{
 	float:left;
 	width:235px;
 	height:125px;
@@ -315,20 +315,20 @@ input{
 	margin-top:40px;
 	padding-top:12px;
 }
-.schoolk ul li a{
+.schoolk>ul li a{
 	display:block;
 }
-.schoolk ul li:hover{
+.schoolk>ul li:hover{
 	box-shadow: 7px 7px 10px 0px #e1e9ef;
 }
-.schoolk ul li:nth-child(4n){
+.schoolk>ul li:nth-child(4n){
 	margin-right:0;
 }
-.schoolk ul li img{
+.schoolk>ul li img{
 	width:70px;
 	height:70px;
 }
-.schoolk ul li p{
+.schoolk>ul li p{
 	font-size:16px;
 	margin-top:8px;
 	color:#111;
@@ -397,7 +397,7 @@ input{
 }
 .res_nav ul li.res_search{
 	float: right;
-	line-height: 53px;
+	padding-top:8px;
 }
 .res_nav ul li.res_search form{
 	position: relative;
@@ -418,7 +418,7 @@ input{
 	background-position: center;
 	background-size: 25px;
 	right: 5px;
-	top: 11.5px;
+	top: 2.5px;
 	border: 0;
 	background-color: transparent;
 }
@@ -427,24 +427,32 @@ input{
 	padding:20px 15px;
 	border:1px solid #E0E5E9;
 	background:#fff;
+	margin-bottom:20px;
 }
 .res_main.gteaherk>ul,.res_main.hot>ul{
 	padding:0;
 }
-.res_main.gteaherk ul li{
+.res_main.gteaherk>ul li{
 	margin-bottom:15px;
 	width:221px;
 	height:310px;
 	margin-right:28px;
 }
-.res_main.gteaherk ul li:nth-child(4n){
+.res_main.gteaherk>ul li:nth-child(4n){
 	margin-right:0;
+}
+.page{
+	text-align:center;
 }
 .page ul{
 	text-align: center;
+    overflow: hidden;
+    display: inline-block;
 }
 .page ul li{
 	display: inline-block;
+    vertical-align: middle;
+    float: left;
 }
 .page ul li a{
 	display: block;
@@ -458,9 +466,8 @@ input{
 	color:#fff;
 }
 .teacherdata{
-	border:1px solid #E0E5E9;
-	height:230px;
 	overflow:hidden;
+	border:1px solid #DCDCDC;
 	background:#fff;
 	margin-bottom:20px;
 }
@@ -468,27 +475,48 @@ input{
 	float:left;
 }
 .teacherdata>div.timg{
-	width:240px;
+	width:180px;
 	text-align:center;
+	height:150px;
 }
-div.timg img{
-	width: 140px;
-    height: 140px;
-    border-radius: 50%;
-	margin-top:44px;
-    border: 7px solid #EFEFEF;
+.teacherdata>div.timg img{
+	width:100px;
+	height:100px;
+	margin-top:24px;
+	border-radius:50%;
+	border:5px solid #EFEFEF;
 }
 .teacherdata>div.ttxt{
-	padding-top:50px;
+	width:818px;
+	padding-top:30px;
+	padding-right:25px;
 }
 .teacherdata>div.ttxt h5{
-	font-size:24px;
+	font-size:18px;
 	font-weight:normal;
+	margin-bottom:10px;
 }
 .teacherdata>div.ttxt p{
 	font-size:12px;
-	width:690px;
-	margin-top:20px;
+	color:#686868;
+	line-height:25px;
+}
+.schooldata>div.timg img{
+	border: 0;
+    border-radius: inherit;
+	width:65px;
+	height:65px;
+}
+.schooldata>div.timg{
+	height:115px;
+	width:115px;
+}
+.schooldata>div.ttxt{
+	width:883px;
+}
+.teacherdata>div.ttxt .videonum{
+	text-align:right;
+	color:#000;
 }
 .res_main.hot>ul li{
 	width:305px;
@@ -508,13 +536,6 @@ div.timg img{
 }
 .res_main.schoolk>ul li{
 	width:227px;
-}
-.schooldata div.timg img{
-	height:145px;
-	width:145px;
-	border:1px solid #E8E8E8;
-	padding:10px;
-	border-radius:inherit;
 }
 .fl_nav{
 	

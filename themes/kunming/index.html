@@ -44,7 +44,7 @@
                             	<img class="spimg" src="{$sys.imageurl}{$list.image}" />
                                 <div class="saoma">
                                 	<p>扫码观看</p>
-                                    <img class="spqr" src="img/qr.png"  />
+                                    <img class="spqr" src="{$sys['imageurl']}/upload/aidimage/{$list.aid}.png"  />
                                 </div>
                             </div>
                             <div class="videotext">
@@ -139,11 +139,11 @@
                     <a href="__URL__/school.html">+more</a>
                 </p>
                 
-                <ul>  <!--list:{table="school" where="id in <$sys.cids> and image is not null  " order="views desc" limit="1" }-->
+                <ul>  <!--list:{table="school" where="id in <$sys.cids>   " order="views desc" limit="9" }-->
                 	<li>
-                    	<a href="themes/kunming/school.html">
+                    	<a href="/field/school/csid-{$list.id}">
                     	<img src="{$sys.imageurl}{$list.image}"/>
-                    	<p>{$list.name}</p>
+                    	<p>{$list.name len="10"}</p>
                         </a>
                     </li>
                          <!--/list-->

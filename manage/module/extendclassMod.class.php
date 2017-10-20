@@ -257,6 +257,7 @@ class extendclassMod extends commonMod {
 	public function teacher_add_save(){
 		
 		$_POST['uid']= $this->user['id'];
+		$_POST['cid']= $this->user['cid'];
 		model('extendclass')->teacher_add_save($_POST);
     	
     	$this->msg('添加成功！',1);

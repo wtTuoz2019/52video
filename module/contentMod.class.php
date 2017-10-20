@@ -293,7 +293,13 @@ class contentMod extends commonMod
 		
         //更新访问计数
         model('content')->views_content($info['aid'],$info['views']);
-        
+		if($info['tid']){
+			   model('content')->views_teacher($info['tid']);
+			}
+        if($info['csid']){
+			 model('content')->views_school($info['csid']);
+			
+			}
     
 		//$zidingyi=unserialize($info_content['zidingyi']);
 //		$this->zidingyi=$zidingyi;

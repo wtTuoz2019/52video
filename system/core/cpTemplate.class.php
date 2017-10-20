@@ -37,6 +37,8 @@ class cpTemplate {
 
 	//执行模板解析输出
 	public function display($tpl = '', $return = false, $is_tpl = true ,$diy_tpl=false) {
+		
+		
 		//如果没有设置模板，则调用当前模块的当前操作模板
 		if ( $is_tpl &&  ($tpl == "") && (!empty($_GET['_module'])) && (!empty($_GET['_action'])) ) {
 			$tpl = $_GET['_module'] . "/" . $_GET['_action'];
@@ -67,6 +69,7 @@ class cpTemplate {
 				if ( (!file_exists($cacheFile)) || (filemtime($tplFile) > filemtime($cacheFile)) ) {
 					file_put_contents($cacheFile, "<?php if (!defined('CANPHP')) exit;?>" . $this->compile($tpl,true,$diy_tpl));//写入缓存
 				}
+				
 				include( $cacheFile );//加载编译后的模板缓存
 				
 			} else {
@@ -84,6 +87,8 @@ class cpTemplate {
 				eval('?>' . $compile_content);
 			}
 		} else {
+		
+		
 			eval('?>' . $this->compile( $tpl, $is_tpl,$diy_tpl));//直接执行编译后的模板
 		}
 		
@@ -109,7 +114,8 @@ class cpTemplate {
 			if($diy_tpl){
 				$tplFile = $tpl;
 			}else{
-			 	$tplFile = $this->config['TPL_TEMPLATE_PATH'] . $tpl . $this->config['TPL_TEMPLATE_SUFFIX'];
+				 $this->config['TPL_TEMPLATE_PATH'] ;
+				$tplFile = $this->config['TPL_TEMPLATE_PATH'] . $tpl . $this->config['TPL_TEMPLATE_SUFFIX'];
 			}
 		
 			if ( !file_exists($tplFile) ) {

@@ -74,6 +74,7 @@ class commonMod
 			$this->config['sitename']=$webconfig['name'];
 			$this->config['erweima']=$webconfig['erweima']?$this->config['imageurl'].$webconfig['erweima']:'/public/erweima.jpg';
 			$this->config['gid']=$this->adminuser['gid'];
+			 $this->config['TPL_TEMPLATE_PATH']='themes/'.$webconfig['template'].'/';
 			if($this->adminuser['gid']==6){
 			
 			$temp;$tempcid[]=1;
@@ -318,6 +319,8 @@ class commonMod
 
     //获取模板对象
     public function view(){
+		
+		
         static $view = NULL;
         if( empty($view) ){
             $view = new cpTemplate( $this->config );
@@ -346,13 +349,14 @@ class commonMod
 		 
 		 }
 		
+		
 		 if($this->webconfig){
 			$tpl_add=$this->webconfig['template'].'/'; 
 			 }
-		 
+		
 		  if($this->webconfig){
 			  $tpl_add=$this->webconfig['template'].'/'; 
-			   $this->config['TPL_TEMPLATE_PATH']='themes/'.$tpl_add;
+			 
 			  $tpl=__ROOTDIR__.'/themes/'.$tpl_add.$lang.$mobile_tpl.$tpl;
             if( $is_tpl && $this->layout ){
                 $this->__template_file = $tpl;
@@ -374,17 +378,9 @@ class commonMod
 		
 		$school=model('school')->school_list();
 		
-		//foreach($school as $k=>$v){
-//			if($v['coordinate']){
-//			$temp=explode(",", $v['coordinate']);
-//	
-//			$data[]=array('lat'=>$temp[1],'lng'=>$temp[0],'value'=>1,'type'=>2);
-//			}
-//			}
-//			echo json_encode($data);die;
-//		var_dump($data);die;
-		$subject=model('diyfield')->field_list_data(2);
-		$grade=model('diyfield')->field_list_data(1);
+
+	//	$subject=model('diyfield')->field_list_data(2);
+//		$grade=model('diyfield')->field_list_data(1);
 		$teacher=model('teacher')->model_list();
 		 $this->assign('school', $school);
 		 $this->assign('subject', $subject);
