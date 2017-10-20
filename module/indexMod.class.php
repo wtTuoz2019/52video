@@ -57,7 +57,7 @@ class indexMod extends commonMod {
         $limit=$this->pagelimit($url,$listrows);
 		
 		$where['image']=array('<>','""');
-		//$where['uid']=array('in',$this->config['uids']);
+		$where['uid']=array('in',$this->config['uids']);
 		 $title = trim($_GET['s']);
 		  if($title){
       $where['name']=array('like',"'%".$title."%'");

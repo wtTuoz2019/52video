@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$common.title}</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <script src="/themes/sch/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+    <body>
+    	<!--#include file="head.html"-->
+    	<div class="banner2">
+        	<img src="img/banner2.jpg"/>
+        </div>
+        <div class="bian_top bian"> 
+        	<img src="img/tiao_top.png"/>
+        </div> 
+        <div class="mainall">
+        	<p class="ctitle">名师讲堂</p>
+            
+            <div class="teacherlistk">
+            	<ul>
+                <!--foreach:{$loop $list}-->
+                	<li>
+                    	<a href="teacher.html">
+                        <div class="showtop">
+                        	<img src="img/teaherhead.jpg"/>
+                            <p>张雪峰——英语老师</p>
+                            <p class="btxt">三年级一班</p>
+                        </div>
+                        <span class="heng"></span>
+                        <p class="tjtxt">
+                        	张雪峰，1984年出生于齐齐哈尔 ，毕业于郑州大学。现研途考研VIP名师。参加了网络综艺节。张
+毕业于郑州大学。现研途考研VIP名师。参加了网络综艺节。
+                        </p>
+                        </a>
+                    </li>
+                   <!--/list-->
+                   
+                </ul>
+                
+                <div class="page">
+							<ul>
+								{$page}
+							</ul>
+						</div> 
+            </div>
+            
+        </div>
+        
+        
+        
+        
+      	<!--#include file="foot.html"-->  
+    </body>
+</html>

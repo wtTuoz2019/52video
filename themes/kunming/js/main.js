@@ -3,7 +3,7 @@ $('.hot ul li').mouseover(function (){
 }).mouseout(function (){
 	$(this).find('.saoma').hide();  
 });
-$('.contentBox h3 .smqr').mouseover(function (){  
+$('.smqr').mouseover(function (){  
 	$('.bgqr').show();  
 }).mouseout(function (){
 	$('.bgqr').hide();  

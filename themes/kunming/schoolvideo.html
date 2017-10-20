@@ -4,34 +4,39 @@
 		<meta charset="utf-8" />
 		<title>{$common.title}</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
-        <script src="/themes/kunming/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/themes/shixiao/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
 	</head>
     <body>
-    	<!--#include file="head.html"-->
+    	   <!--#include file="head.html"-->
         <div class="now">
 			<div class="text">
-				当前位置：<a href="/">首页</a> > <a href="#">名师课堂</a>
+				当前位置：<a href="/">首页</a> > <a href="__APP__/index/school">名校列表</a>
 			</div>
 		</div>
         
-        <div class="teacherbg">
+        <div class="schoolbg">
         	<div class="mainall">
-            	<div class="teacherdata">
-                	<div class="timg">
-                    	<img src="{$sys.imageurl}{$teacher[$tid]['image']}"/>
+            	<div class="schooldata teacherdata">
+              <div class="timg">
+                    	<img src="{$sys.imageurl}{$school[$csid]['image']}">
                     </div>
                 	<div class="ttxt">
-                    	<h5>{$teacher[$tid]['name']}——{$teacher[$tid]['title']}</h5>
-                        <h5>{$school[$teacher[$tid]['cid']]['name']}</h5>
-                        <p>{$teacher[$tid]['des']}</p>
-                        <p class="videonum">资源：12</p>
+                    	<h5>   {$school[$csid]['name']}</h5>
+                        
+                        <p class="shjianjie"> {$school[$csid]['des']}</p>
+                        <p class="videonum">资源：{$count}</p>
                     </div>
                 </div>
+                
+               
+                
+                
+                
                 
                 <div class="res_nav">
 					<ul>
 						<li class="active">
-							<a href="javascript:;">名师列表</a>
+							<a href="javascript:;">历史回看</a>
 						</li>
 						<li class="res_search">
 							<form action="" method="get">
@@ -44,9 +49,9 @@
                 
                 <div class="res_main hot">
                 	<ul>
-                    <!--foreach:{$loop $list}-->
+                    	     <!--foreach:{$loop $list}-->
                     	<li>
-                    	<a href="{$list.aurl}" target="_blank">
+                    	<a href="{$list.aurl}">
                         	<div class="videoimg">
                             	<img class="spimg" src="<?php if(!$list['image']){ echo '/public/images/mr.png'; }else{ echo $sys['imageurl'].$list['image'];} ?>" />
                                 <div class="saoma">
@@ -65,7 +70,6 @@
                         </a>
                     	</li>
                            <!--/list-->
-                      
                     </ul>
                     
                     

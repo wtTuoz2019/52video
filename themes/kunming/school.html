@@ -4,13 +4,13 @@
 		<meta charset="utf-8" />
 		<title>{$common.title}</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
-        <script src="/themes/shixiao/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/themes/kunming/js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
 	</head>
     <body>
     	   <!--#include file="head.html"-->
         <div class="now">
 			<div class="text">
-				当前位置：<a href="/">首页</a> > <a href="#">名师课堂</a>
+				当前位置：<a href="/">首页</a> > <a href="__APP__/index/school">名校列表</a>
 			</div>
 		</div>
         
@@ -18,102 +18,87 @@
         	<div class="mainall">
             	<div class="schooldata teacherdata">
                 	<div class="timg">
-                    	<img src="img/schoollogo.png"/>
+                    	<img src="{$sys.imageurl}{$school[$csid]['image']}">
                     </div>
                 	<div class="ttxt">
-                    	<h5>昆明第一中学</h5>
+                    	<h5>   {$school[$csid]['name']}</h5>
                         
-                        <p class="shjianjie">昆明市第一中学是云南省一级一等高级中学。学校创建于 1905 年，废经正书院改办学堂，名为“省会中学堂”。 1909 年省学务处征调省会中学堂堂舍办云南图书馆，将省会中学堂与师范传习所合并成为两级师范学堂附属中学堂。1911 年“重九”起义后，两级师范附属中学堂、高等学堂（前方言学堂）、第一模范中学堂（前云南府中学堂）三校合并，于 1912 年 2 月命名“云南省立第一中学校”。 1932 年云南省立第一中学与云南省立第五中学（前私立成德中学、云南中学校）合并，改名“云南省立昆华中学”。1950年昆华中学合并龙渊中学、昆华师范附中，更名“云南省昆明第一中学”。至 1984年定名为“昆明市第一中学”。</p>
-                        <p class="videonum">资源：12</p>
+                        <p class="shjianjie"> {$school[$csid]['des']}</p>
+                        <p class="videonum">资源：{$count}</p>
                     </div>
                 </div>
                 
                
-                
-                
-                <!--<div class="res_nav">
-					<ul>
-						<li class="active">
-							<a href="javascript:;">名师列表</a>
-						</li>
-						<li class="res_search">
-							<form action="" method="get">
-								<input type="text" name="s" id="s" value="" placeholder="输入关键词搜索"/>
-								<button></button>
-							</form>
-						</li>
-					</ul>
-				</div>
-                
-                <div class="res_main hot">
-                	<ul>
-                    	<li>
-                    	<a href="#">
-                        	<div class="videoimg">
-                            	<img class="spimg" src="img/videoimg.jpg" />
-                                <div class="saoma">
-                                	<p>扫码观看</p>
-                                    <img class="spqr" src="img/qr.png"  />
-                                </div>
+                <div class="shvideo">
+                	<div class="svideok">
+                    	<div class="vtitle">
+                        	{$school[$csid]['name']}直播间
+                        	<div class="ssaoma">
+                            	（提示：鼠标移动至二维码）
+                                 <img class="smqr" src="img/qr.png" />
+                                 <img class="bgqr" src="{$sys.imageurl}/upload/school/{$csid}.png" />
                             </div>
-                            <div class="videotext">
-                            	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                                <p>
-                                	<span class="seenum">
-										<img src="img/see.png"/>104
-									</span>
-                                </p>
+                        </div>
+                        
+                       <!--if:{$flag}-->
+    
+       <div id="play" class="play" style="width:1000px; margin:0 auto;">
+        	
+        </div>
+        
+  <script type="text/javascript" src="__PUBLIC__/ckplayer/ckplayer.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+
+var w = "1000px";//视频宽度
+  var h = "400";//视频高度 
+  var url = "rtmp://{$sys.ali}{$stream}";//视频地址
+ var flashvars={f:url,c:0,s:0,lv:1,loaded:'loadHandler',p:1};
+  var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+  var video=[url];
+CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','play','player_a1',w,h,false,flashvars,video,params);
+				 
+</script>
+
+ <!--{else}-->
+
+<div class="bjtu">
+</div>
+
+<!--{/if}-->
+                    </div>
+                   	<div class="svideolist">
+                    	<div class="vtitle">
+                        	视频资源
+                        	<a href="__URL__/school/csid-{$csid}-type-video" target="_blank">更多》</a>
+                        </div>
+                        
+                        <ul>
+                        
+                        <!--foreach:{$loop $list}-->
+                        
+                        	<li>
+                            <a href="{$list.aurl}" target="_blank">
+                            <div class="svideoimg">
+                            	<img src="{$sys.imageurl}{$list.image}"/>
                             </div>
-                        </a>
-                    	</li>
-                        <li>
-                    	<a href="#">
-                        	<div class="videoimg">
-                            	<img class="spimg" src="img/videoimg.jpg" />
-                                <div class="saoma">
-                                	<p>扫码观看</p>
-                                    <img class="spqr" src="img/qr.png"  />
-                                </div>
-                            </div>
-                            <div class="videotext">
-                            	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                                <p>
-                                	<span class="seenum">
-										<img src="img/see.png"/>104
-									</span>
-                                </p>
-                            </div>
-                        </a>
-                    	</li>
-                        <li>
-                    	<a href="#">
-                        	<div class="videoimg">
-                            	<img class="spimg" src="img/videoimg.jpg" />
-                                <div class="saoma">
-                                	<p>扫码观看</p>
-                                    <img class="spqr" src="img/qr.png"  />
-                                </div>
-                            </div>
-                            <div class="videotext">
-                            	<h5>历史_印度非暴力不合作运动-杨国纬</h5>
-                                <p>
-                                	<span class="seenum">
-										<img src="img/see.png"/>104
-									</span>
-                                </p>
-                            </div>
-                        </a>
-                    	</li>
-                    </ul>
+                            
+                            <div class="svideotxt">{$list.title len="10"}</div>
+                            </a>
+                        </li>
+                       
+                              <!--/list-->
+                          
+                        </ul>
+                        
+                    </div> 
+                   
                     
-                    
-                    <div class="clear"></div>
-                    <div class="page">
-							<ul>
-								{$page}
-							</ul>
-						</div>
-                </div>-->
+                </div>
+                
+                
+                
+               
                 
                 
         	</div>

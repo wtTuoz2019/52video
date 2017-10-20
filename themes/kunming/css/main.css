@@ -597,11 +597,94 @@ input{
 .listmain .res_nav{
 	margin-top:35px;
 }
+.shvideo{
+	overflow:hidden;
+	border:1px solid #D2D2D2;
+	padding-bottom:5px;
+	background:#fff;
+}
+.shvideo>div{
+	float:left;
+}
+.shvideo>div.svideok{
+	width:624px;
+}
+.shvideo>div.svideolist{
+	width:374px;
+}
+.shvideo>div.svideok .vtitle{
+	border-right:1px solid #D2D2D2;
+}
+.shvideo>div.svideok .vtitle .ssaoma{
+	float:right;
+	line-height:40px;
+	position:relative;
+}
+.shvideo>div.svideolist .vtitle a{
+	float:right;
+	color:#18a4ec;
+}
+.shvideo>div.svideolist ul{
+	padding:0 5px;
+	height:440px;
+	overflow-y:auto;
+}
+.shvideo>div.svideolist ul li{
+	height:110px;
+	border-bottom:1px dashed #DADADA;
+	padding:5px 10px;
+}
+.shvideo>div.svideolist ul li a>div{
+	float:left;
+	height:98px;
+	width:50%;
+}
+.shvideo>div.svideolist ul li a{
+	display:block;
+}
+.shvideo>div.svideolist ul li div.svideoimg img{
+	width:100%;
+	height:100%;
+}
+.shvideo>div.svideolist ul li div.svideotxt{
+	color:#787878;
+	font-size:12px;
+	padding-left:10px;
+	padding-top:30px;
+} 
+.shvideo>div.svideok .vtitle .ssaoma .smqr{
+	height:30px;
+	width:30px;
+	border:1px solid #000;
+	vertical-align:middle;
+}
+.shvideo>div.svideok .vtitle .ssaoma .bgqr{
+	width:100px;
+	height:100px;
+	position:absolute;
+	border:1px solid #000;
+	top: 40px;
+    right: 0;
+	display:none;
+}
+.shvideo .vtitle{
+	height:40px;
+	line-height:40px;
+	background:#EEEEEE;
+	padding:0 10px;
+	font-size:14px;
+}
 
-
-
-
-
+.shvideo #play,.shvideo  #a1{
+	height:440px;
+}
+.bjtu{
+	height:440px;
+	background-image:url(../img/novideo.jpg);
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:100%;
+}
 
 
 
@@ -669,24 +752,8 @@ input{
 }
 
 
-
-.videotitle p{
-	line-height:60px;
+.nowvideotitle.now .text{
 	width:1100px;
-	margin:0 auto;
-	text-align:left;
-	clear:both;
-	font-size:12px;
-}
-.videotitle p a{
-	color:#111;
-}
-.videotitle p a:first-child{
-	font-size:16px;
-}
-.videotitle{
-	height:60px;
-	background:#EBEBEB;
 }
 .videobg{
 	background:#F7F7F7;

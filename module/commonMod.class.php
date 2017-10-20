@@ -378,7 +378,6 @@ class commonMod
 		
 		$school=model('school')->school_list();
 		
-
 	//	$subject=model('diyfield')->field_list_data(2);
 //		$grade=model('diyfield')->field_list_data(1);
 		$teacher=model('teacher')->model_list();

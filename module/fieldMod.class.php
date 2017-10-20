@@ -149,6 +149,15 @@ class fieldMod extends commonMod {
 		$wheretemp.=" AND title like '%".$title."%'";
       }
 	  
+	  if(!$_GET['type']){
+		  
+		  $this->sninfo=$sninfo=model('data')->sn_info('B.cid='.$csid);
+		 if($sninfo){
+			$videourl='http://'.$this->config['ali'].$sninfo['sn'].'.m3u8';
+			$this->flag=@fopen($videourl,'r'); 
+			 }
+		  }
+	  
     	$this->allurl=sprintf($urltmp,$data['sid'],$data['gid']);
 		$this->fieldurl=sprintf($urltmp,$data['sid'],$data['gid'])."&cid=13";
 		$this->liveurl=sprintf($urltmp,$data['sid'],$data['gid'])."&cid=16";
@@ -223,12 +232,12 @@ class fieldMod extends commonMod {
 	 
         $listrows=6;
         //分页处理
-        $url=__INDEX__.'/field/school/pages-{page}.html?'.$url_; 
+        $url=__INDEX__.'/field/school/type-video-pages-{page}.html?'.$url_; 
         $limit=$this->pagelimit($url,$listrows);
         $nav=array(
             0=>array('name'=>'field','url'=>__INDEX__.'/fields/index'),
         );
-		$this->school=$school=model('school')->info($csid);
+		//$this->school=$school=model('school')->info($csid);
 
         //MEDIA信息
         $this->common=model('pageinfo')->media($school['name'],$field);
@@ -247,7 +256,8 @@ class fieldMod extends commonMod {
 
         $this->assign('loop',$loop);
         $this->assign('nav',$nav);
-        $this->display('school.html');  
+		
+        $this->display('school'.$_GET['type'].'.html');  
     }
 	 public function teacher() {
        $title = trim($_GET['s']);
