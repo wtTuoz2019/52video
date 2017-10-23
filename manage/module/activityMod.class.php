@@ -189,8 +189,9 @@ class activityMod extends commonMod
         $position_list=model('position')->position_list();
         $tpl_list=model('category')->tpl_list();
 		if($this->user['gid']!=1)
-		$where['uid']= $this->user['id'];
-		 $data['form_list']=model('selfform')->form_list($where,$limit);
+		$wheres['uid']= $this->user['id'];
+	
+		 $data['form_list']=model('selfform')->form_list($wheres,$limit);
 	
         $data['info']=$info;
         $data['info_data']=$info_data;

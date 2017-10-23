@@ -119,6 +119,38 @@ input{
 	height:100%;
 	width:100%;
 }
+.slideBox{
+	position:relative;
+}
+.slideBox .bd {
+    position: relative;
+    height: 100%;
+    z-index: 0;
+}
+.slideBox .hd a{
+	position:absolute;
+	width: 70px;
+    height: 70px;
+    background: url(../img/right.png) no-repeat rgba(0,0,0,0.1);
+    position: absolute;
+    top: 240px;
+    z-index: 100;
+    cursor: pointer;
+}
+.slideBox.banner2 .hd a{
+	top:140px;
+}
+.slideBox .hd a.next{
+	right:1%;
+}
+.slideBox .hd a.prev{
+	left:1%;
+	background: url(../img/left.png) no-repeat rgba(0,0,0,0.1);
+}
+.slideBox  .bd li {
+    zoom: 1;
+    vertical-align: middle;
+}
 .bian{
 	height:52px;
 	position:relative;
@@ -136,6 +168,9 @@ input{
 .mainall{
 	width:1100px;
 	margin:0 auto;
+}
+.min_searchk{
+	min-height:550px;
 }
 .schoolvideo{
 	position:absolute;

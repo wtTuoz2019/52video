@@ -19,3 +19,4 @@ $('.idx_nav>a').click(function(e){
 	var id=$(this).attr('href');
 	$(id).addClass('active').siblings('.active').removeClass('active');
 });
+jQuery(".slideBox").slide({mainCell:".bd ul",effect:"left",autoPlay:true,delayTime:1000});
