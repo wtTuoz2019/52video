@@ -53,7 +53,7 @@ class contentModel extends commonMod
 	 //获取内容 
     public function getlist($aids) 
     {
-        return $this->model->table('content')->where("aid in (".$aids.")")->order('updatetime desc')->select(); 
+        return $this->model->table('content')->where("aid in (".$aids.")")->order('sequence desc,updatetime desc')->select(); 
     }
  
     public function info_content($aid)

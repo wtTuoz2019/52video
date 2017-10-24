@@ -2741,3 +2741,19 @@ body .oftentable.tianyuant tr td{
 	max-width:105px;
 	margin-bottom:20px;
 }
+.additional .paixu{
+	padding-top:0 !important;
+	padding-bottom:10px !important;
+}
+.additional .paixu>div{
+	display:inline-block;
+}
+.additional .paixu>div:first-child{
+	width:59px;
+	text-align:right;
+}
+
+.additional .paixu input{
+	height:25px;
+	width:88px;
+}
