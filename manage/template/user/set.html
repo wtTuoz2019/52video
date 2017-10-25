@@ -60,5 +60,15 @@
 </div>
 <script type="text/javascript">
 //提交表单
-savelistform({addurl:"__URL__/set",listurl:"__URL__/set"});
+saveform({
+	success:function(msg){
+		tip({msg:msg});
+  	
+	},
+	failure:function(msg){
+		tip({msg:msg});
+		
+	}}
+);
+
 </script>

@@ -67,7 +67,7 @@ class userMod extends commonMod {
         
         //录入模型处理
         model('user')->edit($_POST);
-        $this->msg('密码修改成功! ',1);
+        $this->msg('修改成功! ',1);
     }
 	public function device(){
 		 $this->actionname='设备列表';

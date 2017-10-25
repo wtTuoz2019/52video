@@ -22,6 +22,10 @@ a:hover, a:focus {
 button{
 	cursor: pointer;
 }
+
+.aui_icon div.aui_iconBg{
+	background-size:100% !important;
+}
 /*首页样式*/
 .indexcontent{
 	width: 1000px;

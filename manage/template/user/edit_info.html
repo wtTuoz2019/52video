@@ -34,5 +34,15 @@
 		</div>
   <script type="text/javascript">
 //提交表单
-savelistform({addurl:"__URL__/password",listurl:"__URL__/password"});
+//提交表单
+saveform({
+	success:function(msg){
+		tip({msg:msg});
+  		document.getElementById("form").reset();
+	},
+	failure:function(msg){
+		tip({msg:msg});
+		
+	}}
+);
 </script>
