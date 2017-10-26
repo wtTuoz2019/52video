@@ -239,7 +239,10 @@ class extendclassMod extends commonMod {
 		
 		
 		if($_GET['s']){
+			if($where)
 			 $where.= " and name like '%".$_GET['s']."%'";
+			 else
+			  $where= " name like '%".$_GET['s']."%'";
 			  }
 			  
 			 
