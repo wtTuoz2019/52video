@@ -236,8 +236,10 @@ class extendclassMod extends commonMod {
 		 	   $url = __URL__ . '/teacher/page-{page}.html';
         $listRows = 20;
         $limit=$this->pagelimit($url,$listRows);
+		
+		
 		if($_GET['s']){
-			 $where['name']=array('like',"'%".$_GET['s']."%'");
+			 $where.= " and name like '%".$_GET['s']."%'";
 			  }
 			  
 			 
