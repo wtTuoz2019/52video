@@ -998,3 +998,7 @@ body{
 .pinglun .comlistarea.right p.school{
 	margin:0;
 }
+.school_data{
+	height:55px;
+	background:#f7f7f7;
+}

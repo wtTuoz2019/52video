@@ -15,7 +15,16 @@ class xueshiMod extends commonMod {
 		$user=model('schooluser')->xueshiuser(array('uid'=>$this->userinfo['uid'],'type'=>'xueshi'));
 		if(!$user)$this->redirect("/xueshi/bind.html?".$this->urltoken);
 		
-		
+		$where=array('userid'=>$user['cardno']);
+		$hours=model('schooluser')->xueshihourslist($where);
+			$list=array();
+		foreach($hours as $key=>$value){
+			$list['hours'][$value['endyear']]=$value;
+			
+			}
+			
+			
+			foreach($list['hours'] as $key=>$value){
 				 try {
 
     //解决OpenSSL Error问题需要加第二个array参数，具体参考 http://stackoverflow.com/questions/25142227/unable-to-connect-to-wsdl
@@ -33,16 +42,16 @@ class xueshiMod extends commonMod {
     );
     //print_r($client->__getFunctions());
     //print_r($client->__getTypes());
-	$parm = array('userid' =>$user['cardno'], 'pasword' => $user['password']);
+	$parm = array('userid' =>$user['cardno'], 'pasword' => $user['password'],'year'=>$key);
 	
 	$result = $client->GetTeacherClass($parm);
   	$result = get_object_vars($result);  
 	$result=(array)$result['GetTeacherClassResult'];
 	 if(!is_array($result['string']))$this->alert($result['string']);
 	
-    foreach($result['string'] as $key=>$value){
-		$data=json_decode(str_replace("'",'"',$value),true);
-	
+    foreach($result['string'] as $ke=>$val){
+		$data=json_decode(str_replace("'",'"',$val),true);
+		$data['year']=$key;
 		 model('schooluser')->xueshiclassadd($data);
 		}
 			
@@ -51,14 +60,10 @@ class xueshiMod extends commonMod {
 } catch (SOAPFault $e) {
     print $e;
 }
-		$where=array('userid'=>$user['cardno']);
-		$hours=model('schooluser')->xueshihourslist($where);
-		$classes=model('schooluser')->xueshiclasslist($where);
-		$list=array();
-		foreach($hours as $key=>$value){
-			$list['hours'][$value['endyear']]=$value;
-			
 			}
+		
+		$classes=model('schooluser')->xueshiclasslist($where);
+	
 		foreach($classes as $key=>$value){
 				if(!$list['info'])$list['info']=array('xm'=>$value['xm'],'danwei'=>$value['title'],'userid'=>$value['userid']);
 			 $year=date('Y',strtotime($value['submittime']));
