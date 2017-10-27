@@ -953,7 +953,7 @@ die;
 					foreach($list as $k=>$v){
 					$sids=unserialize($v['sids']);
 					
-					if(in_array($value['id'],$sids))$temp[]='×';
+					if($sids&&in_array($value['id'],$sids))$temp[]='×';
 					else $temp[]='√';
 					}
 				
