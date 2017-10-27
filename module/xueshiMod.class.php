@@ -22,9 +22,11 @@ class xueshiMod extends commonMod {
 			$list['hours'][$value['endyear']]=$value;
 			
 			}
-			
+			$classes=model('schooluser')->xueshiclasslist($where);
 			
 			foreach($list['hours'] as $key=>$value){
+				
+				if($classes&&$key==(date('Y')-1))
 				 try {
 
     //解决OpenSSL Error问题需要加第二个array参数，具体参考 http://stackoverflow.com/questions/25142227/unable-to-connect-to-wsdl
@@ -46,12 +48,15 @@ class xueshiMod extends commonMod {
 	
 	$result = $client->GetTeacherClass($parm);
   	$result = get_object_vars($result);  
+		
 	$result=(array)$result['GetTeacherClassResult'];
-	 if(!is_array($result['string']))$this->alert($result['string']);
+	 if(!is_array($result['string']))continue;
 	
     foreach($result['string'] as $ke=>$val){
 		$data=json_decode(str_replace("'",'"',$val),true);
 		$data['year']=$key;
+		$data['classname']=$data['pxxm'];
+			$data['userid']=$value['userid'];
 		 model('schooluser')->xueshiclassadd($data);
 		}
 			
@@ -66,8 +71,8 @@ class xueshiMod extends commonMod {
 	
 		foreach($classes as $key=>$value){
 				if(!$list['info'])$list['info']=array('xm'=>$value['xm'],'danwei'=>$value['title'],'userid'=>$value['userid']);
-			 $year=date('Y',strtotime($value['submittime']));
-			$list['classes'][$year][]=$value;
+			
+			$list['classes'][$value['year']+1][]=$value;
 			
 			}
 		

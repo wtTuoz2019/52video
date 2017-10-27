@@ -999,6 +999,50 @@ body{
 	margin:0;
 }
 .school_data{
-	height:55px;
+	height:65px;
 	background:#f7f7f7;
+	padding:9px 20px;
+	border:1px solid #E2E2E2;
+}
+.school_data .schoollogo{
+	height:45px;
+	width:45px;
+	vertical-align:middle;
+	margin-right:10px;
+}
+.school_data span{
+	vertical-align:middle;
+}
+.school_data  .support{
+	float:right;
+	line-height:45px;
+	cursor:pointer;	
+}
+#Qr {
+    position:absolute;
+    width: 100%;
+    top: 0;
+	left:0;
+    padding-top: 20px;
+    height: 100%;
+    z-index: 99999;
+    background: rgba(0,0,0,0.6);
+	display:none;
+}
+#Qr .qrk {
+    width: 40%;
+    margin: 0 auto;
+    position: relative;
+}
+#Qr img.qr {
+    width: 100%;
+}
+#Qr span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+	cursor:pointer;
 }

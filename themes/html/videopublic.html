@@ -32,7 +32,15 @@ var cid='{$info.id}';
 	<div class="school_data">
     	<img class="schoollogo" src="{$sys.imageurl}{$school[$info['csid']]['headimg']}"/>
         <span>{$school[$info['csid']]['name']}</span>
+        <div class="support">
+                            	+技术支持
+                            </div>
     </div>
+    <div id="Qr">
+                <div class="qrk">
+                <img class="qr" src="{$sys.imageurl}{$desimage}" /><span onclick="toclose(this)"><img src="/themes/html/mobile/img/gb.png" /></span>
+                </div>
+                </div>
 
 
     <ul id="mainTabs" class="setdmtop">
@@ -197,6 +205,18 @@ var cid='{$info.id}';
 <script type="text/javascript" src="__PUBLIC__/js/jquery.idTabs.min.js"></script>
 <script>
 	$("#mainTabs").idTabs();
+	
+	
+	$('.support').click(function(e){
+		e.preventDefault();
+		$('#Qr').show();
+		$('#sfunction').stop().animate({height:'0'},500);
+	});
+	 
+	 
+	function toclose(e){
+		$(e).parents('#Qr').hide();
+	} 
 </script>
 <div class="contentBox">
 	<div class="mborder"></div>
