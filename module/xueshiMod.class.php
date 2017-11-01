@@ -23,10 +23,10 @@ class xueshiMod extends commonMod {
 			
 			}
 			$classes=model('schooluser')->xueshiclasslist($where);
-			
+				
 			foreach($list['hours'] as $key=>$value){
 				
-				if($classes&&$key==(date('Y')-1))
+				if(!$classes||($classes&&$key==(date('Y')-1)))
 				 try {
 
     //解决OpenSSL Error问题需要加第二个array参数，具体参考 http://stackoverflow.com/questions/25142227/unable-to-connect-to-wsdl
@@ -69,6 +69,7 @@ class xueshiMod extends commonMod {
 		
 		$classes=model('schooluser')->xueshiclasslist($where);
 	
+		if(!is_array($classes))$this->alert('接口错误，确认刷新',"/xueshi/index.html?".$this->urltoken);
 		foreach($classes as $key=>$value){
 				if(!$list['info'])$list['info']=array('xm'=>$value['xm'],'danwei'=>$value['title'],'userid'=>$value['userid']);
 			
