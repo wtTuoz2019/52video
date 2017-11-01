@@ -25,8 +25,8 @@ class xueshiMod extends commonMod {
 			$classes=model('schooluser')->xueshiclasslist($where);
 				
 			foreach($list['hours'] as $key=>$value){
-				
-				if(!$classes||($classes&&$key==(date('Y')-1)))
+			
+				if( $key==2015)
 				 try {
 
     //解决OpenSSL Error问题需要加第二个array参数，具体参考 http://stackoverflow.com/questions/25142227/unable-to-connect-to-wsdl
@@ -44,22 +44,37 @@ class xueshiMod extends commonMod {
     );
     //print_r($client->__getFunctions());
     //print_r($client->__getTypes());
-	$parm = array('userid' =>$user['cardno'], 'pasword' => $user['password'],'year'=>$key);
+	echo $key-1;
+	$parm = array('userid' =>$user['cardno'], 'pasword' => $user['password'],'year'=>$key-1);
 	
 	$result = $client->GetTeacherClass($parm);
+	
+	
   	$result = get_object_vars($result);  
 		
 	$result=(array)$result['GetTeacherClassResult'];
-	 if(!is_array($result['string']))continue;
+
+	 if(!$result['string'])continue;
 	
+	if(is_array($result['string'])){
     foreach($result['string'] as $ke=>$val){
 		$data=json_decode(str_replace("'",'"',$val),true);
-		$data['year']=$key;
+		$data['year']= $key-1;
 		$data['classname']=$data['pxxm'];
+		$data['studytime']=$data['pxsj'];
 			$data['userid']=$value['userid'];
+		
 		 model('schooluser')->xueshiclassadd($data);
 		}
+		}else{
+			$data=json_decode(str_replace("'",'"',$result['string']),true);
+		$data['year']= $key-1;
+		$data['classname']=$data['pxxm'];
+		$data['studytime']=$data['pxsj'];
+			$data['userid']=$value['userid'];
 			
+		 model('schooluser')->xueshiclassadd($data);	
+			}	
 		
    
 } catch (SOAPFault $e) {
