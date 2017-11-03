@@ -209,9 +209,10 @@ class selfformMod extends commonMod
         //过滤完后提交表单
         model('selfform')->add_value($valuedata);
     
-      
+        $msg=$info['msg']?$info['msg']:'提交成功';
+         $this->msg($msg,1);
        
-         $this->msg('提交成功');
+        
        
         
     }
@@ -284,7 +285,10 @@ class selfformMod extends commonMod
     
       
        
-         $this->msg('提交成功',1);
+        $msg=$info['msg']?$info['msg']:'提交成功';
+         $this->msg($msg,1);
+       
+       
        
         
     }
