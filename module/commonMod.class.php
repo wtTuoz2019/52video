@@ -520,7 +520,7 @@ class commonMod
     public function msg($message,$status=1) {
         if (is_ajax()){
             @header("Content-type:text/html");
-            echo json_encode(array('code' => $status, 'message' => $message));
+            echo json_encode(array('status' => $status, 'message' => $message));
             exit;
         }else{
             $this->alert($message);
@@ -530,7 +530,7 @@ class commonMod
 	   public function jsonmsg($message,$status=1,$data='') {
         
             @header("Content-type:text/html");
-            echo json_encode(array('status' => $status, 'message' => $message,'data'=>$data));
+            echo json_encode(array('code' => $status, 'message' => $message,'data'=>$data));
             exit;
         
     }

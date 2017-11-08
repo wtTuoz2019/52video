@@ -58,7 +58,7 @@ function getlivelist(){
 			var fhtml='';
 			var bhtml='';
 		$('.jkvideo_list li').each(function(index, element) {
-			
+		
           if(typeof data['message'][$(element).attr('id')]=='undefined'){
 			  if($(element).hasClass('islive')){
 			  fhtml+='<li id="'+$(element).attr('id')+'">'+ $(element).html()+'</li>'
