@@ -90,6 +90,12 @@ class userModel extends commonModel
                     ->where('id='.$uid)
                     ->find();
     }
+	
+	
+	  public function admin_info($user) {
+        return $this->model->table('admin')->where('user="'.$user.'" or mobile="'.$user.'"')->find();
+    }
+
 
     //通过用户名查找
     public function repeat($username) {
@@ -109,6 +115,11 @@ class userModel extends commonModel
         return $this->model->table('admin')->where("siteurl='".$siteurl."'")->find();
     }
 	
+	  //获取模型信息
+    public function sn_info($where) {
+    
+	return $this->model->table('device')->where($where)->find();
+    }
 	  //获取用户内容
     public function admininfobyid($id)
     {

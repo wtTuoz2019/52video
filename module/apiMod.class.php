@@ -6,7 +6,7 @@ class apiMod extends commonMod
         parent::__construct();
 		//$_POST['username']='120101001200';
 //		$_POST['password']='123456';
-		if($_GET['_action']!='getteacher'&&$_GET['_action']!='sms'&&$_GET['_action']!='getstatus'){
+		if($_GET['_action']!='getteacher'&&$_GET['_action']!='sms'&&$_GET['_action']!='getstatus'&&$_GET['_action']!='getapush'){
 			if(!($_POST['mobile']&&$_POST['smscode'])){
 			$array=array('code'=>0,'msg'=>'请提交手机号码跟验证码','data'=>'');
 			echo json_encode($array);die;	
@@ -25,7 +25,33 @@ class apiMod extends commonMod
 	
 		//$_POST['user']=$user;
     }
+	public function getapush(){
+		 if(empty($_POST['username'])||empty($_POST['password'])){
+            $this->jsonmsg('帐号信息输入错误!',0);
+        }
+        //获取帐号信息
+        $info=model('user')->admin_info($_POST['username']);
+        //进行帐号验证
+        if(empty($info)){
+            $this->jsonmsg('登录失败! 无此管理员帐号!',0);
+        }
+        if($info['password']<>md5($_POST['password'])){
+            $this->jsonmsg('登录失败! 密码错误!',0);
+        }
+        if($info['status']==0){
+            $this->jsonmsg('登录失败! 帐号已禁用!',0);
+        }
+		if(!$info['cid']){
+            $this->jsonmsg('不是使用账号，请联系管理员!',0);
+        }
+		if($info['status']==2){
+            $this->jsonmsg('账号在审核中，请耐心等待!',0);
+        }
 	
+		$sninfo=model('user')->sn_info(array('cid'=>$info['id']));
+		$array=array('pushurl'=>'rtmp://push.urren.net/shanyueyun','livestream'=>$sninfo['sn']);
+		$this->jsonmsg('success',1,$array);
+		}
 	public function getstatus(){
 		
 	 	$schoolname=urldecode($_GET['name']);

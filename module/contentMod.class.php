@@ -423,7 +423,7 @@ class contentMod extends commonMod
     }
 		public function playstream(){
 			$where['stream']=$this->stream=$_GET['stream'];
-			 $this->info=model('data')->sn_info(array('sn'=>$this->stream));
+		$this->info=model('data')->sn_info(array('sn'=>$this->stream));
 		if(MOBILE){
 		$this->getuserinfo();
 	
