@@ -28,7 +28,7 @@ class menulistMod extends commonMod
         //设置分页
         $size = intval($this->info['page']); 
         if (empty($size)) {
-            $listrows = 10;
+            $listrows = 9;
         } else {
             $listrows = $size;
         }
