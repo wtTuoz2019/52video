@@ -35,7 +35,7 @@ class menulistMod extends commonMod
 
 	   
 	   
-         $url=__INDEX__.'/menulis/index/id-'.$id.'-page-{page}.html'; 
+         $url=__INDEX__.'/menulist/index/id-'.$id.'-page-{page}.html'; 
        $midname=$this->config['gid']==6?'gmid':'mid';
         //设置栏目属性
         if ($this->info['pid'] == 0) {
