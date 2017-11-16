@@ -130,27 +130,7 @@ function getpre_auth_code($appid,$appsecret){
  * @return mixed
  */
 function S($name, $value='', $expire=1600, $type='',$options=null) {
-//    static $_cache = array();
-//    //取得缓存对象实例
-//    $cache=new CacheFile();
-//    if ('' !== $value) {
-//        if (is_null($value)) {
-//            // 删除缓存
-//            if ($result)
-//                unset($_cache[$type . '_' . $name]);
-//            return $result;
-//        }else {
-//            // 缓存数据
-//            $cache->set($name, $value, $expire);
-//            $_cache[$type . '_' . $name] = $value;
-//        }
-//        return;
-//    }
-//    if (isset($_cache[$type . '_' . $name]))
-//        return $_cache[$type . '_' . $name];
-//    // 获取缓存数据
-//    $value = $cache->get($name);
-//    $_cache[$type . '_' . $name] = $value;
+
     if ('' !== $value) {
         if (is_null($value)) {
            
@@ -211,8 +191,10 @@ function curlPost($url, $data){
 	}
 	
 function getAccessToken($appid,$appsecret){
-	
-			
+	 $access_token=S('access_token');
+
+
+		if(!$access_token){
 		$url_get='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.$appid.'&secret='.$appsecret;
 		$json=json_decode(curlGet($url_get));
 		if (!$json->errmsg){
@@ -220,8 +202,11 @@ function getAccessToken($appid,$appsecret){
 			
 			return $json;
 		}
+		$access_token=$json->access_token;
+		S('access_token',$access_token,$json->expires_in-1);
 		
-		return $json->access_token;
+				}
+		return $access_token ;
 		 
 	}
 function formartkandian($time){
