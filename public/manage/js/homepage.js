@@ -45,7 +45,7 @@ function loadFrame(obj){
 $('#content_loading').hide();
     var url = obj.contentWindow.location.href;
     if(url.indexOf("login")!=-1){  
-        window.location.href="http://kf.shanyueyun.com/manage/index.php/login";
+        window.location.href="/manage/index.php/login";
     } 
 }  
 
