@@ -20,10 +20,15 @@ a{
 #carousel div.swiper-wrapper{
 	overflow:hidden;
 	width:2250px;
+	height:400px;
 }
 #carousel div.swiper-wrapper>div{
 	float:left;
 	height:400px;
+}
+#carousel div.swiper-wrapper>div img{
+	width:100%;
+	height:100%;
 }
 #carousel div.swipe-wrap>div>img{
 	width:100%;

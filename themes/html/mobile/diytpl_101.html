@@ -128,6 +128,9 @@
 			  	$('.sindex li').eq(swiper.activeIndex).addClass("active").siblings().removeClass("active");
 			}
 		});
+		$(function(){
+			$('#carousel div.swiper-wrapper').css('width',$('#carousel div.swiper-wrapper').children().length*750);
+		})
 	</script>
 	 
  <!--#include file="sharewx.html"-->
