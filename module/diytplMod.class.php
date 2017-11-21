@@ -96,7 +96,6 @@ class diytplMod extends commonMod {
 		
 		
 		
-		
 		$this->assign('info',$info);
 		$this->assign('list',$list);
 		
