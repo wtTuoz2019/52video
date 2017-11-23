@@ -12,7 +12,7 @@
     <script src="__TPL__diytpl/javascript/jquery-2.1.4.min.js" ></script>
      <!--TAB-->
     <script src="__TPL__diytpl/javascript/jquery.idTabs.min.js" ></script>
-   
+   	<link rel="stylesheet" href="__TPL__diytpl/css/style3.css" type="text/css" />
 </head>
 	
 <body>
@@ -66,15 +66,18 @@
                         <div class="content">
                          
                             <a href="{$vo.aurl}">
-                              
+                              <h5> {$vo.title}</h5>
                                 <div class="picture">
                                     <img src="{$sys['imageurl']}{$vo.image}" />
                                     <span class="play"></span>
                                 </div>
-                                  <h5> {$vo.title len="20"}</h5>
+                                  
                                 <div class="person">
-                                   <p><?php echo $vo['cid']==16?date('Y-m-d',model('content')->get_starttime($vo['aid'])):date('Y-m-d',$vo['updatetime'])?> <span style=" position:relative;"><img id="img-1" src="__TPL__diytpl/img/eyes2.png" />{$vo.views}</span>  </p>
-                                 <!-- <img id="img-1" src="__TPL__diytpl/img/eyes1.png" />-->
+                                  <!-- <p><?php echo $vo['cid']==16?date('Y-m-d',model('content')->get_starttime($vo['aid'])):date('Y-m-d',$vo['updatetime'])?> <span style=" position:relative;"><img id="img-1" src="__TPL__diytpl/img/eyes2.png" />{$vo.views}</span>  </p>-->
+                                 观看直播
+                                 <span>
+                                 	&gt;
+                                 </span>
                                 
                                 </div>
                             </a>

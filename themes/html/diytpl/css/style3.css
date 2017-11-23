@@ -1,0 +1,45 @@
+.wraper{
+	background:#E5E5E5;
+}
+.orderList1 li .content{
+	border-radius:10px;
+	border:1px solid #D6D6D6;
+}
+.orderList1 li .picture{
+	margin-top:0;
+}
+.orderList1 li a h5{
+	padding:0;
+	font-size:20px;
+	font-weight:700;
+	padding:0 20px;
+	white-space: inherit;
+	margin-bottom:5px;
+}
+.orderList1 li .person{
+	height:50px;
+	line-height:50px;
+	color:#3499F6;
+	padding:0 20px;
+	font-size:18px;
+	border-top:1px solid #D6D6D6;
+}
+.orderList1 li .person span{
+	float:right;
+	line-height:50px;
+	font-size:22px;
+	color:#D6D6D6;
+}
+.orderList1 li .content,.orderList1 li{
+	padding-bottom:0;
+}
+.orderList1 li{
+	padding-top:30px;
+}
+body{
+	background:none;
+}
+.orderList1{
+	margin: 0 20px;
+
+}
