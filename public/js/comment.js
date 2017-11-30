@@ -261,7 +261,7 @@ if($('.choosep :input').length){
 						$('#container').html(escapes(d.message));
 						listflag['id'] = d.message[0]['id'];
 						$('div#more').show();
-						$('div##refresh').hide();
+						$('div#refresh').hide();
 						newcommentflag=false;
 						commentHandle();
 						currentshow();
