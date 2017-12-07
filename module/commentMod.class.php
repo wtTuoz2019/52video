@@ -5,7 +5,7 @@ class commentMod extends commonMod {
 	public function __construct()
     {
         parent::__construct();
-		if($_GET['_action']!='list_')
+		if($_GET['_action']!='list_'&&$_GET['_action']!='ajax_list')
 		$this->getuserinfo();
     }
 

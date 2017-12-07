@@ -89,6 +89,7 @@ class selfformMod extends commonMod
 			}
 			}
 			
+			
 	$this->msg((array)$temp,1);
 			}	
 		
