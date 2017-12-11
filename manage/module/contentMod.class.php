@@ -358,7 +358,7 @@ class contentMod extends commonMod
 			
 			require(CP_CORE_PATH . '/../ext/aliyunsdk/aliyun-php-sdk-core/Config.php');
 					
-$iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['AccessKeyId'], $this->config['AccessSecret']);
+$iClientProfile = DefaultProfile::getProfile("cn-shanghai",$this->config['newAccessKeyId'], $this->config['newAccessSecret']);
 			$client = new DefaultAcsClient($iClientProfile); 
 			$request = new Cdn\CreateLiveStreamRecordIndexFilesRequest();  
 			$request->setMethod("GET");
@@ -368,6 +368,7 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 	
 			$request->setOssEndpoint($this->config['OssEndpoint']);
 			$request->setOssBucket($this->config['OssBucket']);
+			
 			$request->setOssObject('live/'.$stream.'-'.$content['aid'].'.m3u8');
 			$request->setStartTime(date('Y-m-d\TH:i:s\Z',$live['starttime']));
 			$request->setEndTime(date('Y-m-d\TH:i:s\Z',($live['starttime']+$live['time']*60)));

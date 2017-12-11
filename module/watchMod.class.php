@@ -15,7 +15,7 @@ class watchMod extends commonMod {
 		 
 		 	require(CP_CORE_PATH . '/../ext/aliyunsdk/aliyun-php-sdk-core/Config.php');
 					
-$iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['AccessKeyId'], $this->config['AccessSecret']);
+$iClientProfile = DefaultProfile::getProfile("cn-shanghai",$this->config['newAccessKeyId'], $this->config['newAccessSecret']);
 			$client = new DefaultAcsClient($iClientProfile); 
 			$request = new Cdn\DescribeLiveStreamsOnlineListRequest();  
 			$request->setMethod("GET");
@@ -45,7 +45,7 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 		
 		 	require(CP_CORE_PATH . '/../ext/aliyunsdk/aliyun-php-sdk-core/Config.php');
 					
-$iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['AccessKeyId'], $this->config['AccessSecret']);
+$iClientProfile = DefaultProfile::getProfile("cn-shanghai",$this->config['newAccessKeyId'], $this->config['newAccessSecret']);
 			$client = new DefaultAcsClient($iClientProfile); 
 			$request = new Cdn\DescribeLiveStreamsOnlineListRequest();  
 			$request->setMethod("GET");
@@ -76,7 +76,7 @@ $iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['Access
 		
 		 	require(CP_CORE_PATH . '/../ext/aliyunsdk/aliyun-php-sdk-core/Config.php');
 					
-$iClientProfile = DefaultProfile::getProfile("cn-hangzhou",$this->config['AccessKeyId'], $this->config['AccessSecret']);
+$iClientProfile = DefaultProfile::getProfile("cn-shanghai",$this->config['newAccessKeyId'], $this->config['newAccessSecret']);
 			$client = new DefaultAcsClient($iClientProfile); 
 			$request = new Cdn\DescribeLiveStreamsOnlineListRequest();  
 			$request->setMethod("GET");
