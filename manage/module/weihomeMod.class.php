@@ -28,7 +28,7 @@ class weihomeMod extends commonMod
 		 	$where[]=" uid  in (".implode(',',$temp).") ";
 			 }else{
 		if($this->user['cid'])	
-	 	$where[]=" uid =".$this->user['cid'];
+	 	$where[]=" uid =".$this->user['id'];
 			 }
 			
 		 $this->list=model('weihome')->index_list($where,$limit);

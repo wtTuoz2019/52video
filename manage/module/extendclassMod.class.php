@@ -126,32 +126,32 @@ class extendclassMod extends commonMod {
 	public function teacher(){
 			$user=$this->user;
 		
-			if($user['gid']==6){
-			$temp;
-		
-		
-				$temp[]=$user['id'];
-				
-			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
-			if($nextuser){
-			foreach($nextuser as $key=>$val){
-				$temp[]=$val['id'];
-				}
-			}
-			
-			if($temp){
-				$where='uid in ('.implode(',',$temp).') ';	
-				}
-			}else{
-		
-			
-			if($user['cid']){
-				$where='uid='.$user['id'];	
-				}
-		
-     
-			}
-		
+		//	if($user['gid']==6){
+//			$temp;
+//		
+//		
+//				$temp[]=$user['id'];
+//				
+//			$nextuser=model('user')->admin_list(' AND pid='.$user['id']);
+//			if($nextuser){
+//			foreach($nextuser as $key=>$val){
+//				$temp[]=$val['id'];
+//				}
+//			}
+//			
+//			if($temp){
+//				$where='uid in ('.implode(',',$temp).') ';	
+//				}
+//			}else{
+//		
+//			
+//			if($user['cid']){
+//				
+//				}
+//		
+//     
+//			}
+		$where='uid='.$user['id'];	
 		  	if($_FILES['file']['name']){
 		$return=module('editor_upload')->upload();
 			
