@@ -47,9 +47,7 @@ class userModel extends commonModel
     public function admin_list($where=null)
     {
         $user=$this->current_user();
-        if(model('user_group')->model_power('user','current')&&$user['keep']<>1){
-            $where=' AND A.id='.$user['id'];
-        }
+      
         $data=$this->model->field('A.*,B.name as gname')
                 ->table('admin','A')
                 ->add_table('admin_group','B','A.gid = B.id')
@@ -57,6 +55,26 @@ class userModel extends commonModel
                 ->order('id asc')
                 ->select();
         return $data;
+
+    }
+
+
+	    //获取用户列表
+    public function user_list($where=null)
+    {
+        $user=$this->current_user();
+       
+        $data=$this->model->field('A.*,B.name as gname')
+                ->table('admin','A')
+                ->add_table('admin_group','B','A.gid = B.id')
+                ->where('B.grade>='.$user['grade'].$where)
+                ->order('id asc')
+                ->select();
+					foreach($data as $key=>$val){
+			$temp[$val['id']]=$val;
+			}
+        return $temp;
+       
 
     }
 

@@ -21,7 +21,10 @@
 					<th style="text-align:left; padding-left:20px;" width="30%">名称</th>
 					
 					<th width="20%">创建时间</th>
-                    <th width="20%">访问二维码</th>
+                    <?php if($user['gid']!=2&&$user['gid']!=4){ ?>
+                    <th width="20%">所属账号</th>
+                      <?php } ?>
+                     <th width="20%">访问二维码</th>
 					
 					<th width="10%">操作</th>
 				</tr>
@@ -36,6 +39,11 @@
 							 {$php(echo date('Y-m-d H:i',$vo['time']))}
 						
 					</td>
+                    
+                      <?php if($user['gid']!=2&&$user['gid']!=4){ ?>
+                  <td>	{$userlist[$vo['uid']]['user']}</td>
+                      <?php } ?>
+                    
                     <td>
                     
                     	<img src="<?php 

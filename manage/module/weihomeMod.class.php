@@ -30,7 +30,7 @@ class weihomeMod extends commonMod
 		if($this->user['cid'])	
 	 	$where[]=" uid =".$this->user['id'];
 			 }
-			
+		$this->userlist=model('user')->user_list();
 		 $this->list=model('weihome')->index_list($where,$limit);
         $count=model('weihome')->count($where);
         $this->page=$this->page($url, $count, $listRows);
