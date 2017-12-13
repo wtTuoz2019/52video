@@ -217,7 +217,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		if($data['aid']){
     	model('content')->add_content_save($data);
 		
-		$return=array('aid'=>$data['aid'],'url'=>'','bucket'=>'shanyueyunin');
+		$return=array('aid'=>$data['aid'],'url'=>'','bucket'=>'syueyunin');
 		if($data['cid']==13){
 		$return['uploads']=array($this->config['fujia']['video']);
 		}elseif($data['cid']==18){
@@ -247,7 +247,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 	 $status=model('content')->edit_save($data);
 	 $info=model('content')->info(intval($_POST['aid']));
 		if($status){
-		$return=array('url'=>'','bucket'=>'shanyueyunin');
+		$return=array('url'=>'','bucket'=>'syueyunin');
 		if($info['cid']==13){
 		$return['uploads']=array($this->config['fujia']['video']);
 		}elseif($info['cid']==18){
@@ -283,7 +283,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 	public function upload_dir(){
 	
 		$data=$this->config['fujia'][$_POST['type']];
-		$data['bucket']='shanyueyunin';
+		$data['bucket']='syueyunin';
 		$array=array('code'=>1,'msg'=>'操作成功','data'=>$data);
 		echo json_encode($array);die;
 		}
