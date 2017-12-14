@@ -355,7 +355,7 @@ class contentMod extends commonMod
 				exit();
 				}
 				
-			 $this->display($this->category['content_tpl']);	
+			 $this->display($_GET['lang'].$this->category['content_tpl']);	
 			}
         
     }

@@ -1,0 +1,147 @@
+   <p class="allcomment">All the research<span>（<font id="jiaoyancommentnum">0</font>）</span></p>
+      <link rel="stylesheet" href="__PUBLIC__/data/css/font-awesome.min.css" />   
+    
+       
+     <script type="text/javascript">  
+  	var url='http://{$config.MOBILE_DOMAIN}';
+	  var headpic='{$userinfo.headimgurl}';
+	 var nickname='{$userinfo.nickname}';
+	  var uid='{$userinfo.uid}';
+	  var jiaoyandata = {
+			    fid: '{$info.aid}',
+				uid:uid,
+			    pageSize: 10,
+			    pageIndex: 0,
+				type:'dadian'
+			  };  
+			var data = {
+			    fid: '{$info.aid}',
+				uid:uid,
+			    pageSize: 10,
+			    pageIndex: 0,
+			  }; 
+			  
+			   var arr = {
+			    fid: '{$info.aid}',
+			    id:'0'
+			  }; jiaoyanarr = {
+			    fid: '{$info.aid}',
+			    id:'0',
+				type:'dadian'
+				
+			  };
+			var jiaoyanlistflag={
+			    fid: '{$info.aid}',
+			    id:'0',
+				type:'dadian'
+			  };
+			  var id = 0,
+			  flag=0;
+			  var commentflag='save';
+			  var newjiaoyancommentflag=false;
+	
+	
+		
+</script>
+        
+						<div class="comment" id="jiaoyan">
+							<div style=" -webkit-overflow-scrolling: touch; overflow:auto;"> <div class="load_m tr" id="refresh">New comments, refresh</div>
+   <div class="container" id="jiaoyancontainer">
+    
+    
+      	
+    
+      
+	
+	</div>	
+    
+      <div class="load_m tr" id="more">To load more</div>
+	    
+         <link rel="stylesheet" href="__TPL__mobile/css/newadd.css" />
+      <div class="commentinput">
+      
+      <?php  if(($activity['signup']||$info['signup'])&&!$signinfo['status']){ ?>
+          <div class="logintishi">
+          	 Warm note: you have not been authenticated yet, you can't comment for now.<a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=no">Immediately verify</a>
+          </div>
+   
+    <?php }  ?> 
+      
+      
+      <div class="comment-form-comment" id="commentform" >
+          
+           <span id="start">Start:00:00</span>
+            <div class="area"><div class="progress1" id="progress1"></div></div>
+             <span id="end">End:00:00</span>
+          
+            <input type="button" value="get started" class="btn btn-primary"  onclick="getprogress()"  />
+            
+            <input type="button" value="get over" class="btn btn-primary"   onclick="getprogressend()"  style=" "/>
+            <input name="progress"  id="progressinput" value="0"  type="hidden" >
+            <input name="progressend"  id="progressendinput" value="0"  type="hidden" >
+         </div>
+         <div onClick="jiaoyancomment(this)">
+			<img id="inputimg" src="__PUBLIC__/images/commentinput2_EN.jpg" >
+		</div>
+		</div>
+    <script>
+			$('#jiaoyan #refresh').bind('click',function(e){
+				jiaoyanautomatic(jiaoyanarr);
+				
+				});
+			$(function(){ 
+　				
+		jiaoyanautomatic(jiaoyanarr);
+				setInterval("jiaoyanqwert()",5000);
+		}); 
+			
+		
+	
+		$("#jiaoyan #more").click(function(){
+			getjiaoyancomment();
+			
+		});
+			function tocomment(){
+				$("#mymodal").modal("toggle");
+				}
+			function pay(){
+		 price=parseFloat($('#price').val());
+		
+		if(price>1000 || price <1||$('#price').val()==''){
+	$.dialog({
+						        content: '金额不得小于1或大于1000元',
+								bottom:'20%',
+								fixed:true,
+								width:200,
+								height:80
+					          });
+	return false;
+	}
+	
+		$.ajax({
+				  url: "__ROOT__/index.php/comment/savepay",
+				  type: "POST",
+				  data: {
+					fid: data['fid'],
+					message: $('#desc').val(),
+					price: price,
+			        uid: data['uid']
+				  },
+				  dataType: "json",
+				  success: function( d ) {
+					if(d.message>0){
+				$.post('__ROOT__/wxpay/index?openid={$userinfo.openid}',{id:d.message,price:$('#price').val(),desc:$('#desc').val()},function(data){
+		
+			callpay(data);
+			},'json')
+			} 
+		 }});
+		}
+  
+  
+  
+  
+    </script>
+    
+    </div>
+						</div>

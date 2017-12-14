@@ -1,0 +1,188 @@
+ <div class="contentBox">
+	<div class="addAnswerBox">
+   
+    
+    
+    
+    <button id="editors" onClick="comment(this)">commentaries</button>
+    
+    
+    
+    
+		
+	</div>
+</div>
+ 
+  <link rel="stylesheet" href="__PUBLIC__/data/css/font-awesome.min.css" />   
+   
+        
+        
+        <div class="modal fade bs-example-modal-sm hongbao" id="mymodal-data1" style=" width:345px;" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">					
+               <a href="javascript:" data-toggle="modal" data-target="#mymodal-data1"> <div class="Closebutton"></div></a>
+
+								<div class="modal-content" id="modal" style=" background:none;">
+									<div class="modal-body" style=" background:none;">
+									<div class="list" style=" background:none;">
+<input   name="price" placeholder="输入金额，1-1000元" value="" id="price">
+<input name="desc" placeholder="很精彩，赞一个" value="" id="desc">
+<input  type="submit" value=""  onClick="pay()" id="pay" style=" width:228px; background:none; height:50px; border:none;">
+									</div>
+									</div>
+									
+								</div>
+						</div>
+     <script type="text/javascript">  
+  	var url='http://{$config.MOBILE_DOMAIN}';
+	  var headpic='{$userinfo.headimgurl}';
+	 var nickname='{$userinfo.nickname}';
+	  var uid='{$userinfo.uid}';
+	  var data = {
+			    fid: '{$info.aid}',
+				uid:uid,
+			    pageSize: 10,
+			    pageIndex: 0,
+			  };  
+			  var arr = {
+			    fid: '{$info.aid}',
+			    id:'0'
+			  };
+			var listflag={
+			    fid: '{$info.aid}',
+			    id:'0'
+			  };
+			  var id = 0,
+			  flag=0;
+			  var commentflag='save';
+			  var newcommentflag=false;
+	
+	
+		
+</script>  
+						<div class="comment" id="comment">
+							<div style=" -webkit-overflow-scrolling: touch; overflow:auto;"> <div class="load_m tr" id="refresh">New comments, refresh</div>
+   <div class="container" id="container">
+    
+    
+      	
+    
+      
+	
+	</div>	
+    
+      <div class="load_m tr" id="more">To load more</div>
+	
+   
+    <script>
+	
+	
+		//弹窗
+	function mydialog(t, c) {
+		var d = art.dialog({
+		  title: t,
+		  content: c,	
+		  });
+		  d.show();
+		  setTimeout(function () {
+			d.close();
+		}, 1200);
+	}
+			$('#refresh').bind('click',function(e){
+				automatic(arr);
+				
+				});
+			$(function(){ 
+　			automatic(arr);
+				setInterval("qwert()",5000);
+		}); 
+			
+			$('span#right').bind('click',function(e){
+				 e.stopPropagation();
+  				$(this).prev("#current").slideToggle();	
+				})
+	
+		$("#more").click(function(){
+			getcomment();
+			
+		});
+			function tocomment(){
+				$("#mymodal").modal("toggle");
+				}
+			function pay(){
+		 price=parseFloat($('#price').val());
+		
+		if(price>1000 || price <1||$('#price').val()==''){
+	$.dialog({
+						        content: '金额不得小于1或大于1000元',
+								bottom:'20%',
+								fixed:true,
+								width:200,
+								height:80
+					          });
+	return false;
+	}
+	
+		$.ajax({
+				  url: "__ROOT__/index.php/comment/savepay",
+				  type: "POST",
+				  data: {
+					fid: data['fid'],
+					message: $('#desc').val(),
+					price: price,
+			        uid: data['uid']
+				  },
+				  dataType: "json",
+				  success: function( d ) {
+					if(d.message>0){
+				$.post('__ROOT__/wxpay/index?openid={$userinfo.openid}',{id:d.message,price:$('#price').val(),desc:$('#desc').val()},function(data){
+		
+			callpay(data);
+			},'json')
+			} 
+		 }});
+		}
+  
+  
+  
+  
+  $("#submit").click(function(){
+		var length_ = $('#message').val().length;
+		if (length_<1) {
+			
+			mydialog('Prompting', 'Comments must not be less than 1 character');
+			return false;
+		};
+	  $.post("__ROOT__/user/index.php/comment/data",
+	  {	
+		type:'content',
+		fid:$('#fid').val(),
+		message:$('#message').val()
+	  },
+	  function(d){
+		if(d.status == 1){
+			$('#message').val('');
+			           	flag=0;
+						automatic(arr);
+						
+						$('#modal_cance').click();
+						commentsucess(d.message);
+		}else{
+			art.dialog({
+				title: 'Prompting',
+				content: 'Comments need to be logged in first',
+				button: [
+					{
+						name: 'Login immediately',
+						callback: function () {
+							toweixinLogin()
+						}
+					}
+				]
+			});
+		}
+	  },'json');
+	});
+  
+    </script>
+    
+    </div>
+						</div>

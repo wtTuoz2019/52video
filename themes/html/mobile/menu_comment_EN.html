@@ -1,0 +1,119 @@
+<!--<p class="allcomment">全部评论<span>（<font id="commentnum">0</font>）</span></p>
+-->  <link rel="stylesheet" href="__PUBLIC__/data/css/font-awesome.min.css" />   
+
+        
+  
+     <script type="text/javascript">  
+  	var url='http://{$config.MOBILE_DOMAIN}';
+	   var headpic='{$userinfo.headimgurl}';
+	 var nickname='{$userinfo.nickname}';
+	  var uid='{$userinfo.uid}';
+	  var data = {
+			    fid: '{$info.aid}',
+				uid:uid,
+			    pageSize: 10,
+			    pageIndex: 0,
+			  };  
+			  var arr = {
+			    fid: '{$info.aid}',
+			    id:'0'
+			  };
+			var listflag={
+			    fid: '{$info.aid}',
+			    id:'0'
+			  };
+			  var id = 0,
+			  flag=0;
+			  var commentflag='save';
+			  var newcommentflag=false; 
+	
+	
+		
+</script>
+        
+						<div class="comment" id="comment">
+							<div style=" -webkit-overflow-scrolling: touch; overflow:auto;"> <div class="load_m tr" id="refresh">New comments, refresh</div>
+   <div class="container" id="container">
+    
+    
+      	
+    
+      
+	
+	</div>	
+    
+      <div class="load_m tr" id="more">To load more</div>
+	
+
+      <div class="commentinput">
+      	<div class="gongneng"></div>
+			<img id="inputimg" src="__PUBLIC__/images/commentinput2_EN.jpg"  onClick="comment(this)">
+            <div id="nowgn">
+            <div>
+            	<div class="gn1">
+                	<a href="/myhome/index">
+                    </a>
+                    Personal
+                </div>
+            </div>
+            </div>
+		</div>
+    <script>
+			$('#comment #refresh').bind('click',function(e){
+				automatic(arr);
+				
+				});
+			$(function(){ 
+　			automatic(arr);
+				setInterval("qwert()",5000);
+		}); 
+			
+		
+		$("#comment #more").click(function(){
+			getcomment();
+			
+		});
+			function tocomment(){
+				$("#mymodal").modal("toggle");
+				}
+			function pay(){
+		 price=parseFloat($('#price').val());
+		
+		if(price>1000 || price <1||$('#price').val()==''){
+	$.dialog({
+						        content: '金额不得小于1或大于1000元',
+								bottom:'20%',
+								fixed:true,
+								width:200,
+								height:80
+					          });
+	return false;
+	}
+	
+		$.ajax({
+				  url: "__ROOT__/index.php/comment/savepay",
+				  type: "POST",
+				  data: {
+					fid: data['fid'],
+					message: $('#desc').val(),
+					price: price,
+			        uid: data['uid']
+				  },
+				  dataType: "json",
+				  success: function( d ) {
+					if(d.message>0){
+				$.post('__ROOT__/wxpay/index?openid={$userinfo.openid}',{id:d.message,price:$('#price').val(),desc:$('#desc').val()},function(data){
+		
+			callpay(data);
+			},'json')
+			} 
+		 }});
+		}
+  
+  
+  
+  
+    </script>
+    
+    </div>
+						</div>

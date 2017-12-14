@@ -17,7 +17,7 @@
 
 <body>
  <!--头部-->
-<!--#include file="head.html"-->
+<!--#include file="head_EN.html"-->
 <script type="text/javascript" src="__TPL__mobile/music/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
 <script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
 <script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
@@ -27,11 +27,11 @@
 <link href="__TPL__/new/css/index.css" rel="stylesheet" type="text/css" />
 
 
-	<div class="lang_nav">
-    	<a href="{$info.aurl}{$urltoken}" class="active">CN</a>
-        <a href="{$info.aurl}{$urltoken}&lang=en">EN</a>
-    </div>
 
+	<div class="lang_nav">
+    	<a href="{$info.aurl}{$urltoken}">CN</a>
+        <a href="{$info.aurl}{$urltoken}&lang=en" class="active">EN</a>
+    </div>
 <!--END-->
 <!--start 中间部分--> 
 <div class="volid">
@@ -39,7 +39,7 @@
     		<img class="big_img" src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
 				<h1><img src="{$sys['imageurl']}/upload/aidimage/{$info.aid}.png"  />
                 <p>
-                	<span>扫码观看</span>
+                	<span>Sweep yards to watch</span>
                 	
                 </p>{$info.title}</h1>
                 
@@ -157,7 +157,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 		var x=nMS/1000;
 		
         if(nMS>= 0){
-            var str = "<span>离开播还有<\/span><br>" + myD+"<i>天</i>"+myH+"<i>小时</i>"+myM+"<i>分</i>"+myS+"<i>秒</i>";
+            var str = "<span>Countdown<\/span><br>" + myD+"<i>d</i>"+myH+"<i>h</i>"+myM+"<i>m</i>"+myS+"<i>s</i>";
 			obj.html(str);
         }else{
 			
@@ -173,7 +173,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
              <?php
          }
 		?>
-		 <!--#include file="videopublic.html"-->
+		 <!--#include file="videopublic_EN.html"-->
 <!--END-->
 <script type="text/javascript"> 
   	
@@ -186,7 +186,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 	function collection(){
 		$.post('__ROOT__/index.php/change/collection',{fid:'{$info.aid}'},function(data){
 			if(data.status=='1'){
-				$('#collection').html("已收藏")
+				$('#collection').html("collected")
 				mydialog('提示', data.message);
 			}else{
 				mydialog('提示', data.message);
@@ -240,7 +240,7 @@ CKobject.embed('__PUBLIC__/ckplayer/ckplayer.swf','a1','ckplayer_a1',w,h,false,f
 			  });
 		  
 			  $div.mouseenter( function() {
-				$div.append("<div id='dragto'> 点击按住视频可拖动 </div>");
+				$div.append("<div id='dragto'> Click and hold video to drag </div>");
 			  }).mouseleave( function(){
 				  $div.find("#dragto").remove();
 			  }); 

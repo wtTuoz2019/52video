@@ -1480,3 +1480,31 @@ body{
     display: inline-block;
     line-height: 50px;
 }
+
+.lang_nav{
+	position:fixed;
+	bottom:55px;
+	right:10px;
+	z-index:1000;
+	border:1px solid #BFBFBF;
+	border-radius:5px;
+}
+.lang_nav a{
+	display:block;
+	float:left;
+	width:40px;
+	height:25px;
+	text-align:center;
+	line-height:25px;
+	font-size:12px;
+	color:#000;
+	border-radius:0 5px 5px 0;
+	background:#fff;
+}
+.lang_nav a:first-child{
+	border-radius:5px 0 0 5px;
+}
+.lang_nav a.active{
+	background:#BFBFBF;
+	color:#fff;
+}

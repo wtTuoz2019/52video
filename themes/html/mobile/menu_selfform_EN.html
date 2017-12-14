@@ -1,0 +1,51 @@
+  <?php  if(  $this->commentinputs&& $this->selfform){
+              
+                  ?>
+                 <div class="nosie">
+                 
+                 
+                 <?php  if(($activity['signup']||$info['signup'])&&!$signinfo['status']){ ?>
+          <div class="logintishi pingding">
+          	  Warm note: you have not been authenticated yet, you can't comment for now.<a href="{$php( echo module('label')->get_aurl($info['aid']))}&nosign=no">Immediately verify</a>
+          </div>
+   
+    <?php }  ?> 
+                 
+                 
+                 <p class="headtitle"><?=$this->selfform['intro']?></p>
+                   <form action="__INDEX__/selfform/only_post" method="post" id="form" >
+                 
+                      <!--foreach:{$this->commentinputs $v}-->
+                     
+      					{$php( echo model('selfform')->get_field_html($v,''))}
+                       
+      				  <!--{/foreach}-->
+           
+           
+            <input type="hidden" name="aid"  value="{$info.aid}"/>
+            <input type="hidden" name="fid" value="{$v.fid}"/>
+            <button type="submit" class="tijiao">submit</button>
+        </form>
+        
+             </div>
+             
+       <script type=text/javascript src="/public/js/duxui.js"></script>
+<script type=text/javascript src="/public/dialog/jquery.artDialog.js?skin=default"></script>
+<script type=text/javascript src="/public/dialog/plugins/iframeTools.js"></script>
+
+<script type=text/javascript src="/public/js/common.js"></script>
+<script type="text/javascript">
+saveform({
+	success:function(msg){
+		tip({msg:msg});
+		document.getElementById("form").reset();
+  
+	},
+	failure:function(msg){
+		tip({msg:msg});
+	}}
+);
+
+</script>
+              <?php } ?>
+              

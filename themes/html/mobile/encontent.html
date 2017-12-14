@@ -24,8 +24,8 @@
 <body>
     
     <div class="lang_nav">
-    	<a href="{$info.aurl}{$urltoken}" class="active">CN</a>
-        <a href="{$info.aurl}{$urltoken}&lang=en">EN</a>
+    	<a href="{$info.aurl}{$urltoken}">CN</a>
+        <a href="{$info.aurl}{$urltoken}&lang=en" class="active">EN</a>
     </div>
     
     
@@ -50,7 +50,7 @@ var play=1;
 			<img src="{$sys['imageurl']}{$info.image}"  />
           
 			<div class="counter">
-				<p>距离开播还有：</p>
+				<p>Countdown：</p>
 				<div id="countdown"></div>
 			</div>   
 		</div>
@@ -160,7 +160,7 @@ var note = $('#note'),
 		</div>
         
         
-        <!--#include file="videopublic.html"-->
+        <!--#include file="videopublic_EN.html"-->
         
         
         
