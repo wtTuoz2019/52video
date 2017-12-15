@@ -18,6 +18,8 @@ $config['DomainName']="live.urren.net";
 $config['AppName']="shanyueyun"; 
 $config['OssEndpoint']='oss-cn-shanghai.aliyuncs.com';
 $config['OssBucket']='syueyunin';
+$config['ImageBucket']='syueyunimage';
+$config['ImageDir']='upload/soft';
 $config['addurl']="http://mp.weixin.qq.com/s?__biz=MzI1ODE1NTA3MA==&mid=401655815&idx=1&sn=12e50037d8e83fa8dd53c71bffed53c2&scene=0&previewkey=%2FHNoLEJ26gPbpUTkR5Hxi8NS9bJajjJKzz%2F0By7ITJA%3D#rd"; 
 $config['AccessID']="968436971281"; 
 $config['AccessKEY']="LeW0uX5NDHT5VqNJ5d8s6OeSRIh6PZRo"; 

@@ -115,6 +115,8 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		$data['AccessKeyId']=$this->config['newAccessKeyId'];
 		$data['AccessSecret']=$this->config['newAccessSecret'];
 		$data['OssEndpoint']=$this->config['OssEndpoint'];
+		$data['ImageBucket']=$this->config['ImageBucket'];
+		$data['ImageDir']=$this->config['ImageDir'];
 		
 		$array=array('code'=>1,'msg'=>'登录成功','data'=>$data);
 		echo json_encode($array);die;	
@@ -141,7 +143,7 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		 $loop=model('field')->field_list($where,$limit);
 		
 		 $count=model('field')->field_index_count($where);
-		 $bucket='shanyueyunin';
+		 $bucket='syueyunin';
 		 
 		if(is_array($loop)){
 			$list=array();
