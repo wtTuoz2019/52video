@@ -114,6 +114,8 @@ $array=array('code'=>1,'msg'=>'发送成功','data'=>'');
 		$data['logo']=$this->config['imageurl'].$data['logo'];
 		$data['AccessKeyId']=$this->config['newAccessKeyId'];
 		$data['AccessSecret']=$this->config['newAccessSecret'];
+		$data['OssEndpoint']=$this->config['OssEndpoint'];
+		
 		$array=array('code'=>1,'msg'=>'登录成功','data'=>$data);
 		echo json_encode($array);die;	
 		
